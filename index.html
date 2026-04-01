@@ -176,6 +176,69 @@
       border-left: 3px solid #e2e8f0; padding-left: 12px; margin-top: 8px;
     }
 
+    /* Pain detail list */
+    .pain-detail-list {
+      margin-top: 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .pain-detail {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: #fff; border-radius: 10px; padding: 16px 18px;
+      border: 1px solid #e2e8f0;
+    }
+    .pain-num {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #fff;
+    }
+    .pain-num.step-do { background: #6366F1; }
+    .pain-num.step-fail { background: #DC2626; }
+    .pain-detail-text h4 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+    .pain-detail-text p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+    /* Pain → Solution compare */
+    .walls-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px;
+    }
+    .walls-compare-box {
+      border-radius: 16px; padding: 36px 32px;
+    }
+    .walls-compare-box.pain-box {
+      background: #FEF2F2; border: 2px solid #FECACA;
+    }
+    .walls-compare-box.solve-box {
+      background: #F0FDF4; border: 2px solid #BBF7D0;
+    }
+    .walls-compare-box h3 {
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 20px;
+    }
+    .pain-box h3 { color: #DC2626; }
+    .solve-box h3 { color: #059669; }
+    .solve-point {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: #fff; border-radius: 10px; padding: 16px 18px;
+      border: 1px solid #D1FAE5; margin-bottom: 12px;
+    }
+    .solve-point:last-child { margin-bottom: 0; }
+    .solve-icon {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #fff; background: #10B981;
+    }
+    .solve-point h4 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+    .solve-point p { font-size: 0.85rem; color: #475569; line-height: 1.6; }
+    .walls-result {
+      text-align: center; margin-top: 40px; padding: 32px;
+      background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      border-radius: 16px; border: 2px solid #c7d2fe;
+    }
+    .walls-result-title {
+      font-size: 1.6rem; font-weight: 900; margin-bottom: 8px;
+    }
+    .walls-result-accent {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .walls-result-sub { font-size: 1rem; color: #64748b; }
+
     /* ===== S2.5: RECOMMEND ENGINE ===== */
     .recommend {
       background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
@@ -698,6 +761,7 @@
       .hero-visual { display: none; }
       .walls-grid { grid-template-columns: 1fr; }
       .wall-card.wall-primary { transform: none; }
+      .walls-compare { grid-template-columns: 1fr; }
       .scoring-grid { grid-template-columns: repeat(2,1fr); }
       .profile-content { grid-template-columns: 1fr; }
       .step3-card { grid-template-columns: 60px 1fr; }
@@ -801,30 +865,108 @@
   </div>
 </section>
 
-<!-- S2: THREE WALLS -->
+<!-- S2: PAIN & SOLUTION -->
 <section class="walls">
   <div class="walls-inner">
     <h2 class="section-title">自治体営業の最大の壁──「提案が刺さる自治体」が見つからない</h2>
-    <p class="section-sub">自治体営業には構造的な「3つの壁」があります。中でも最初の壁が最も深刻です。</p>
-    <div class="walls-grid">
-      <div class="wall-card wall-primary">
-        <div class="wall-icon">🔍</div>
-        <h3 class="wall-title">探索の壁 <span class="wall-en">Targeting</span></h3>
-        <p class="wall-desc">全国1,741自治体から、国や都道府県の政策に基づいて自社の提案が刺さる自治体を特定する。この作業に膨大な時間がかかっています。</p>
-        <div class="wall-stat">1自治体の調査に平均 数時間〜数日</div>
-        <div class="wall-quote">「国の政策も県の方針も調べて、各自治体の計画書も読んで……気づいたら数週間が経っていた」</div>
+    <p class="section-sub">自治体に提案したい。しかし1,741もの自治体から最適なターゲットを見つけるには、<br>膨大なリサーチが必要です。その構造的な課題を、47Connectが解決します。</p>
+
+    <div class="walls-compare">
+      <!-- 左: 現状の課題 -->
+      <div class="walls-compare-box pain-box">
+        <h3>❌ 現状：自力でのリサーチ</h3>
+        <p style="font-size:0.9rem; color:#64748b; margin-bottom:20px;">自治体に提案しようとすると、こんな作業が待っています。</p>
+
+        <div class="pain-detail-list">
+          <div class="pain-detail">
+            <span class="pain-num step-do">1</span>
+            <div class="pain-detail-text">
+              <h4>マニフェスト・市政情報を一つずつ確認</h4>
+              <p>首長の公約、総合計画、重点施策……自治体ごとに情報の場所も形式もバラバラ。まず「どこを見ればいいか」がわからない。</p>
+            </div>
+          </div>
+          <div class="pain-detail">
+            <span class="pain-num step-do">2</span>
+            <div class="pain-detail-text">
+              <h4>予算書を読み込んで予算配分を把握</h4>
+              <p>数十〜数百ページの予算書PDFから、関連する費目を探し出す。どの事業にいくら予算がついているのか、前年度比はどうか。</p>
+            </div>
+          </div>
+          <div class="pain-detail">
+            <span class="pain-num step-do">3</span>
+            <div class="pain-detail-text">
+              <h4>過去の事業実績と現状を調査</h4>
+              <p>過去にどのような事業が実施され、現在どうなっているか。議会議事録や事業評価報告書を遡って確認する。</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; padding:16px; background:#fff; border-radius:10px; border:2px solid #FECACA;">
+          <p style="font-size:0.9rem; font-weight:700; color:#DC2626; margin-bottom:12px;">しかし、この作業には3つの構造的な問題があります。</p>
+          <div class="pain-detail-list" style="margin-top:0;">
+            <div class="pain-detail" style="border-color:#FECACA;">
+              <span class="pain-num step-fail">!</span>
+              <div class="pain-detail-text">
+                <h4>情報がどこにあるかわからない</h4>
+                <p>自治体ごとにHP構成が異なり、必要な情報の所在を特定するだけで大きな工数がかかります。</p>
+              </div>
+            </div>
+            <div class="pain-detail" style="border-color:#FECACA;">
+              <span class="pain-num step-fail">!</span>
+              <div class="pain-detail-text">
+                <h4>見つけても情報量が膨大すぎる</h4>
+                <p>予算書・総合計画・議事録・事業評価……1自治体だけでも確認すべき資料は数十ページに及びます。</p>
+              </div>
+            </div>
+            <div class="pain-detail" style="border-color:#FECACA;">
+              <span class="pain-num step-fail">!</span>
+              <div class="pain-detail-text">
+                <h4>全部調べた後に「相性が悪い」とわかる</h4>
+                <p>時間をかけて調査した結果、自社の提案と合わないことが判明。手戻りが頻繁に発生し、リサーチ工数が何倍にも膨れ上がります。</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="wall-card wall-secondary">
-        <div class="wall-icon">📝</div>
-        <h3 class="wall-title">提案の壁 <span class="wall-en">Proposal</span></h3>
-        <p class="wall-desc">自治体ごとの予算文脈や政策背景に合わせた提案設計の負荷。1件あたり2〜3週間。</p>
-      </div>
-      <div class="wall-card wall-secondary">
-        <div class="wall-icon">📬</div>
-        <h3 class="wall-title">到達の壁 <span class="wall-en">Reach</span></h3>
-        <p class="wall-desc">適切な担当者へ届かない。一般的な案内メールの開封率は10%未満。</p>
+
+      <!-- 右: 47Connectの解決 -->
+      <div class="walls-compare-box solve-box">
+        <h3>✅ 47Connect：AIがリサーチを代行</h3>
+        <p style="font-size:0.9rem; color:#475569; margin-bottom:20px;">47Connectなら、これらの課題を根本から解消できます。</p>
+
+        <div class="solve-point">
+          <span class="solve-icon">1</span>
+          <div>
+            <h4>相性の良い自治体をAIが自動レコメンド</h4>
+            <p>御社の情報を登録するだけで、1,741自治体の中から提案適合度の高い自治体をスコア付きで自動抽出。<strong>「どこを見ればいいか」を探す必要がありません。</strong></p>
+          </div>
+        </div>
+        <div class="solve-point">
+          <span class="solve-icon">2</span>
+          <div>
+            <h4>膨大な資料をAIがサマライズして提示</h4>
+            <p>予算書・総合計画・首長方針・議会議事録を自動で構造化。<strong>数十ページの資料が1画面のサマリーに。</strong>必要な情報だけを瞬時に把握できます。</p>
+          </div>
+        </div>
+        <div class="solve-point">
+          <span class="solve-icon">3</span>
+          <div>
+            <h4>「相性判定済み」の状態からスタート</h4>
+            <p>AIが事前にスコアリングした結果をもとに確認するため、<strong>調べた後に「合わなかった」という手戻りが発生しません。</strong>リサーチ工数を大幅に削減できます。</p>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; padding:20px; background:#fff; border-radius:10px; border:2px solid #BBF7D0; text-align:center;">
+          <p style="font-size:0.85rem; color:#64748b; margin-bottom:4px;">リサーチにかかる時間</p>
+          <div style="display:flex; align-items:center; justify-content:center; gap:16px;">
+            <span style="font-size:1.3rem; font-weight:800; color:#DC2626; text-decoration:line-through;">数週間</span>
+            <span style="font-size:1.5rem; color:#10B981;">→</span>
+            <span style="font-size:1.8rem; font-weight:900; background:linear-gradient(135deg,#6366F1,#10B981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">数分</span>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
