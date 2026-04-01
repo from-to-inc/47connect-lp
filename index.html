@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>47Connect - 御社の提案が刺さる自治体を、AIが見つける</title>
+  <meta name="description" content="1,741自治体の政策・予算・課題をAIが分析。御社の提案が刺さる自治体を自動でピックアップ。">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; }
+    a { text-decoration: none; }
+
+    /* ===== COMMON ===== */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary { background: #10B981; color: #fff; }
+    .btn-primary:hover { background: #059669; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+    .btn-secondary { background: #fff; color: #6366F1; border: 2px solid #6366F1; }
+    .btn-secondary:hover { background: #EEF2FF; }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .btn-outline-dark { background: #fff; color: #334155; border: 2px solid #e2e8f0; }
+    .btn-outline-dark:hover { border-color: #6366F1; color: #6366F1; }
+    .btn-full { width: 100%; text-align: center; }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 12px 24px;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .header-logo { font-size: 1.2rem; font-weight: 800; color: #6366F1; }
+    .header-logo span { color: #10B981; }
+    .header-cta .btn { padding: 8px 20px; font-size: 0.85rem; }
+
+    /* ===== S1: HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
+      padding: 120px 24px 80px;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
+    }
+    .hero-title {
+      font-size: 2.2rem; font-weight: 800; line-height: 1.4; color: #1e293b; margin-bottom: 20px;
+    }
+    .hero-accent {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub { font-size: 1.1rem; color: #475569; line-height: 1.8; margin-bottom: 24px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .badge {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 20px;
+      padding: 6px 14px; font-size: 0.85rem; color: #334155;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Dashboard Mockup */
+    .mockup {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12); overflow: hidden;
+    }
+    .mockup-bar {
+      background: #1e293b; padding: 12px 16px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ef4444; } .dot-y { background: #f59e0b; } .dot-g { background: #22c55e; }
+    .mockup-label { color: #94a3b8; font-size: 0.75rem; margin-left: 8px; }
+    .mockup-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .mockup-card {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 12px 16px; display: flex; align-items: flex-start; gap: 12px;
+    }
+    .mockup-score {
+      background: linear-gradient(135deg, #6366F1, #10B981); color: #fff;
+      font-weight: 700; font-size: 1.1rem; width: 40px; height: 40px;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .mockup-detail { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .mockup-city { font-weight: 700; font-size: 0.95rem; color: #1e293b; }
+    .mockup-reasons { display: flex; flex-wrap: wrap; gap: 4px; }
+    .match-tag {
+      font-size: 0.65rem; font-weight: 600; padding: 2px 6px; border-radius: 4px;
+    }
+    .match-tag.policy { background: #EEF2FF; color: #6366F1; }
+    .match-tag.local { background: #F0FDF4; color: #059669; }
+    .mockup-summary { font-size: 0.7rem; color: #64748b; }
+
+    /* ===== S2: THREE WALLS ===== */
+    .walls { background: #f8fafc; padding: 80px 24px; }
+    .walls-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .walls-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 24px; }
+    .wall-card {
+      background: #fff; border-radius: 12px; padding: 32px 24px; text-align: left;
+      border: 1px solid #e2e8f0; transition: box-shadow 0.2s;
+    }
+    .wall-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .wall-card.wall-primary {
+      border: 2px solid #6366F1; background: #EEF2FF;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.12);
+    }
+    .wall-card.wall-secondary { opacity: 0.85; }
+    .wall-card.wall-secondary .wall-desc { font-size: 0.9rem; }
+    .wall-icon { font-size: 2rem; margin-bottom: 16px; }
+    .wall-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+    .wall-en { font-size: 0.8rem; color: #6366F1; font-weight: 500; }
+    .wall-desc { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 12px; }
+    .wall-stat {
+      background: #FEF2F2; color: #DC2626; font-size: 0.9rem; font-weight: 600;
+      padding: 8px 12px; border-radius: 6px; display: inline-block; margin-bottom: 12px;
+    }
+    .wall-quote {
+      font-size: 0.85rem; color: #94a3b8; font-style: italic;
+      border-left: 3px solid #e2e8f0; padding-left: 12px; margin-top: 8px;
+    }
+
+    /* ===== S2.5: RECOMMEND ENGINE ===== */
+    .recommend {
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
+      padding: 80px 24px;
+    }
+    .recommend-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .scoring-layers {
+      background: #fff; border-radius: 12px; padding: 32px; margin-bottom: 40px;
+      border: 1px solid #e2e8f0; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .scoring-layer {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 20px; border-radius: 8px; margin-bottom: 8px;
+      font-size: 0.95rem; font-weight: 600; text-align: left;
+    }
+    .scoring-layer:last-child { margin-bottom: 0; }
+    .scoring-layer .layer-num {
+      width: 28px; height: 28px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 0.75rem;
+      font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .layer-1 { background: #f5f3ff; }
+    .layer-1 .layer-num { background: #8b5cf6; }
+    .layer-2 { background: #eef2ff; }
+    .layer-2 .layer-num { background: #6366f1; }
+    .layer-3 { background: #ecfdf5; }
+    .layer-3 .layer-num { background: #10b981; }
+    .layer-4 { background: #fef3c7; }
+    .layer-4 .layer-num { background: #f59e0b; }
+    .scoring-arrow {
+      text-align: center; font-size: 1.5rem; color: #6366F1;
+      margin: 16px 0; font-weight: 700;
+    }
+    .scoring-result {
+      background: linear-gradient(135deg, #6366F1, #10B981); color: #fff;
+      padding: 16px 24px; border-radius: 8px; font-size: 1rem; font-weight: 700;
+    }
+    .scoring-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px;
+    }
+    .scoring-card {
+      background: #fff; border-radius: 12px; padding: 24px 16px;
+      border: 1px solid #e2e8f0; text-align: center;
+    }
+    .scoring-card .sc-pct {
+      font-size: 1.8rem; font-weight: 800;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+    .scoring-card .sc-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .scoring-card .sc-desc { font-size: 0.8rem; color: #64748b; line-height: 1.6; }
+    .recommend-note {
+      background: #fff; border-radius: 12px; padding: 24px; border-left: 4px solid #6366F1;
+      text-align: left; color: #475569; line-height: 1.8; font-size: 0.95rem;
+    }
+
+    /* ===== S2.7: PROFILE SUMMARY ===== */
+    .profile { background: #fff; padding: 80px 24px; }
+    .profile-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .profile-content {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+      margin-top: 48px;
+    }
+    .profile-mockup {
+      background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;
+      overflow: hidden; text-align: left;
+    }
+    .profile-mockup-header {
+      background: #1e293b; color: #fff; padding: 12px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    .profile-mockup-score {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      padding: 4px 12px; border-radius: 6px; font-size: 0.8rem;
+    }
+    .profile-mockup-body { padding: 20px; }
+    .profile-row {
+      display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0; font-size: 0.85rem;
+    }
+    .profile-row:last-child { border-bottom: none; }
+    .profile-row .pr-icon { flex-shrink: 0; font-size: 1rem; }
+    .profile-row .pr-label { color: #64748b; width: 120px; flex-shrink: 0; font-weight: 600; }
+    .profile-row .pr-value { color: #1e293b; }
+    .profile-comparison { text-align: left; }
+    .profile-comparison h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
+    .pc-item {
+      background: #f8fafc; border-radius: 8px; padding: 20px;
+      margin-bottom: 16px; border: 1px solid #e2e8f0;
+    }
+    .pc-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .pc-item p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+    .pc-item .pc-time {
+      font-size: 1.2rem; font-weight: 800; margin-top: 8px;
+    }
+    .pc-time.before { color: #DC2626; }
+    .pc-time.after {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ===== S3: THREE CORE STEPS ===== */
+    .steps { background: #f8fafc; padding: 80px 24px; }
+    .steps-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .steps-flow-3 {
+      display: flex; flex-direction: column; gap: 0; margin: 48px 0 40px;
+      position: relative;
+    }
+    .step3-card {
+      display: grid; grid-template-columns: 80px 1fr 1fr; gap: 0;
+      background: #fff; border-radius: 16px; padding: 0; overflow: hidden;
+      border: 2px solid #e2e8f0; transition: all 0.3s;
+      margin-bottom: 24px; position: relative;
+    }
+    .step3-card:hover { box-shadow: 0 8px 32px rgba(99,102,241,0.1); border-color: #c7d2fe; }
+    .step3-connector {
+      position: absolute; left: 40px; bottom: -24px; width: 2px; height: 24px;
+      background: linear-gradient(180deg, #6366F1, #10B981); z-index: 1;
+    }
+    .step3-num-col {
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff; padding: 24px 0;
+    }
+    .step3-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .step3-num-label { font-size: 0.65rem; font-weight: 600; opacity: 0.8; margin-top: 4px; letter-spacing: 0.1em; }
+    .step3-content {
+      padding: 32px 28px; text-align: left;
+      border-right: 1px solid #f1f5f9;
+    }
+    .step3-title { font-size: 1.3rem; font-weight: 800; color: #1e293b; margin-bottom: 8px; }
+    .step3-catch {
+      font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .step3-desc { font-size: 0.9rem; color: #475569; line-height: 1.8; margin-bottom: 16px; }
+    .step3-features {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .step3-feat {
+      background: #EEF2FF; color: #4F46E5; font-size: 0.78rem; font-weight: 600;
+      padding: 4px 12px; border-radius: 20px;
+    }
+    .step3-visual {
+      padding: 24px; display: flex; align-items: center; justify-content: center;
+      background: #fafaff;
+    }
+    .step3-mockup {
+      background: #fff; border-radius: 10px; border: 1px solid #e2e8f0;
+      overflow: hidden; width: 100%; max-width: 360px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .step3-mockup-header {
+      background: #1e293b; color: #fff; padding: 8px 14px;
+      font-size: 0.7rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .step3-mockup-body { padding: 12px; }
+    .step3-mockup-row {
+      display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+      border-bottom: 1px solid #f1f5f9; font-size: 0.75rem; color: #334155;
+    }
+    .step3-mockup-row:last-child { border-bottom: none; }
+    .step3-mockup-score {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      color: #fff; font-weight: 800; font-size: 0.8rem;
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step3-mockup-city { font-weight: 700; }
+    .step3-mockup-tag {
+      font-size: 0.65rem; background: #F0FDF4; color: #059669;
+      padding: 2px 6px; border-radius: 4px;
+    }
+    /* Profile mockup in step3 */
+    .step3-profile-row {
+      display: flex; gap: 8px; padding: 6px 8px;
+      border-bottom: 1px solid #f1f5f9; font-size: 0.72rem; color: #334155;
+    }
+    .step3-profile-row:last-child { border-bottom: none; }
+    .step3-pr-icon { flex-shrink: 0; }
+    .step3-pr-label { color: #64748b; width: 60px; flex-shrink: 0; font-weight: 600; font-size: 0.68rem; }
+    .step3-pr-value { color: #1e293b; font-size: 0.68rem; }
+    .step3-proposal-badge {
+      display: inline-block; background: #10B981; color: #fff;
+      font-size: 0.65rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px; margin-left: auto;
+    }
+    /* CRM mockup in step3 */
+    .step3-crm-row {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4px;
+      padding: 6px 8px; font-size: 0.68rem; color: #334155;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .step3-crm-row:last-child { border-bottom: none; }
+    .step3-crm-header {
+      font-weight: 700; color: #64748b; font-size: 0.65rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .step3-crm-status {
+      font-size: 0.6rem; font-weight: 600; padding: 2px 6px; border-radius: 4px;
+      display: inline-block; text-align: center;
+    }
+    .crm-hot { background: #FEF2F2; color: #DC2626; }
+    .crm-warm { background: #FFFBEB; color: #D97706; }
+    .crm-new { background: #EEF2FF; color: #6366F1; }
+    /* Step 3 card highlights */
+    .step3-card.step-recommend { border-color: #10B981; }
+    .step3-card.step-recommend .step3-num-col { background: linear-gradient(135deg, #10B981, #059669); }
+    .step3-card.step-summarize .step3-num-col { background: linear-gradient(135deg, #6366F1, #4F46E5); }
+    .step3-card.step-crm .step3-num-col { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    /* Flow arrow between steps */
+    .step3-flow-arrow {
+      text-align: center; margin: -8px 0; position: relative; z-index: 2;
+    }
+    .step3-flow-arrow span {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      color: #fff; font-size: 1.2rem; font-weight: 700;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+    }
+
+    /* ===== S4: COMPARISON ===== */
+    .compare { background: #fff; padding: 80px 24px; }
+    .compare-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .compare-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem; margin-bottom: 32px; }
+    .compare-table th, .compare-table td { padding: 16px 14px; border-bottom: 1px solid #e2e8f0; }
+    .compare-table thead th { background: #1e293b; color: #fff; font-weight: 700; font-size: 0.9rem; }
+    .compare-table thead th.col-hl { background: #6366F1; }
+    .compare-table td.col-hl { background: #EEF2FF; font-weight: 600; }
+    .compare-table td:first-child { text-align: left; font-weight: 600; color: #1e293b; }
+    .compare-table td { color: #334155; font-weight: 500; }
+    .compare-table .row-hl td { background: #FFFBEB; }
+    .compare-table .row-hl td.col-hl { background: #EEF2FF; }
+    .check {
+      color: #10B981; font-weight: 700; font-size: 1.2rem;
+      background: #F0FDF4; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #10B981;
+    }
+    .cross {
+      color: #DC2626; font-weight: 700; font-size: 1.2rem;
+      background: #FEF2F2; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #DC2626;
+    }
+    .partial {
+      color: #D97706; font-weight: 700; font-size: 1.2rem;
+      background: #FFFBEB; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #F59E0B;
+    }
+    .compare-note {
+      background: #f8fafc; border-radius: 12px; padding: 24px; border-left: 4px solid #6366F1;
+      text-align: left; color: #475569; line-height: 1.8;
+    }
+
+    /* ===== S4.5: WHY FROMTO ===== */
+    .why-fromto { background: #fff; padding: 80px 24px; }
+    .why-fromto-inner { max-width: 1100px; margin: 0 auto; }
+    .why-grid { display: flex; flex-direction: column; gap: 32px; margin-top: 48px; }
+    .why-card {
+      background: #f8fafc; border-radius: 12px; padding: 32px;
+      border-left: 4px solid #6366F1;
+    }
+    .why-card.why-primary {
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
+      border-left: 5px solid #10B981; padding: 40px;
+    }
+    .why-card.why-primary h3 { font-size: 1.3rem; }
+    .why-primary-points {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;
+    }
+    .why-primary-point {
+      background: #fff; border-radius: 10px; padding: 20px;
+      border: 1px solid #e2e8f0;
+    }
+    .why-primary-point h4 {
+      font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;
+    }
+    .why-primary-point p { font-size: 0.88rem; color: #475569; line-height: 1.7; }
+    .why-secondary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .why-card h3 { font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
+    .why-card p { font-size: 0.95rem; color: #475569; line-height: 1.8; }
+    .why-card .why-highlight {
+      display: inline-block; background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      padding: 4px 12px; border-radius: 6px; font-weight: 700; color: #6366F1;
+      margin-top: 12px; font-size: 0.9rem;
+    }
+    .why-timeline { margin-top: 48px; }
+    .why-timeline-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; padding: 0 20px;
+    }
+    .why-timeline-inner::before {
+      content: ''; position: absolute; left: 20px; right: 20px; top: 50%;
+      height: 3px; background: linear-gradient(90deg, #6366F1, #10B981);
+      transform: translateY(-50%); z-index: 0;
+    }
+    .tl-point {
+      text-align: center; position: relative; z-index: 1;
+      background: #fff; padding: 0 8px;
+    }
+    .tl-dot {
+      width: 16px; height: 16px; border-radius: 50%; margin: 0 auto 8px;
+      background: #6366F1; border: 3px solid #EEF2FF;
+    }
+    .tl-year { font-size: 0.85rem; font-weight: 700; color: #6366F1; }
+    .tl-label { font-size: 0.75rem; color: #64748b; max-width: 100px; margin: 4px auto 0; }
+
+    /* ===== S4.7: TRACK RECORD MAP ===== */
+    .track-record { background: #f8fafc; padding: 80px 24px; }
+    .track-record-inner { max-width: 1100px; margin: 0 auto; }
+    .map-container {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08); margin-top: 48px;
+    }
+    .map-header {
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      color: #fff; padding: 20px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .map-header h3 { font-size: 1.1rem; font-weight: 700; }
+    .map-header-stats { display: flex; gap: 24px; }
+    .map-stat-item { text-align: center; }
+    .map-stat-num { font-size: 1.4rem; font-weight: 800; }
+    .map-stat-label { font-size: 0.75rem; opacity: 0.85; }
+    .map-iframe-wrap { padding: 0; }
+    .map-iframe-wrap iframe { display: block; width: 100%; height: 600px; border: 0; }
+    .map-caption {
+      padding: 16px 28px; background: #f1f5f9;
+      font-size: 0.85rem; color: #64748b; text-align: center;
+    }
+    .track-highlights {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px;
+    }
+    .track-hl-card {
+      background: #fff; border-radius: 12px; padding: 24px; text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+    .track-hl-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .track-hl-card h4 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    .track-hl-card p { font-size: 0.85rem; color: #64748b; }
+
+    /* ===== S5: STATS ===== */
+    .stats {
+      background: linear-gradient(135deg, #312e81, #1e1b4b);
+      padding: 80px 24px; color: #fff;
+    }
+    .stats-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .stats .section-title { color: #fff; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 16px; }
+    .stats-grid-2 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 40px; }
+    .stat-num {
+      font-size: 2.4rem; font-weight: 800;
+      background: linear-gradient(135deg, #818cf8, #34d399);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+    .stat-label { font-size: 0.9rem; color: #c7d2fe; }
+
+    /* ===== S6: TAX BENEFIT ===== */
+    .tax { background: #f8fafc; padding: 80px 24px; }
+    .tax-inner { max-width: 1000px; margin: 0 auto; }
+    .tax-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .tax-bar { display: flex; border-radius: 8px; overflow: hidden; height: 120px; margin-bottom: 12px; }
+    .tax-seg {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff; padding: 8px 4px;
+    }
+    .tax-seg.loss { background: #6366F1; width: 30%; }
+    .tax-seg.credit { background: #10B981; width: 60%; }
+    .tax-seg.burden { background: #f59e0b; width: 10%; }
+    .tax-label { font-size: 0.7rem; opacity: 0.9; }
+    .tax-value { font-size: 0.85rem; font-weight: 700; }
+    .tax-example { text-align: center; font-size: 0.85rem; color: #94a3b8; }
+    .tax-msgs { display: flex; flex-direction: column; gap: 16px; }
+    .tax-msg {
+      background: #fff; border-radius: 8px; padding: 16px 20px; border: 1px solid #e2e8f0;
+    }
+    .tax-msg h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .tax-msg p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+
+    /* ===== S7: PRICING ===== */
+    .pricing { background: #fff; padding: 80px 24px; }
+    .pricing-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; align-items: stretch; }
+    .plan-card {
+      background: #fff; border-radius: 12px; padding: 32px 24px; border: 2px solid #e2e8f0;
+      text-align: left; display: flex; flex-direction: column; position: relative; transition: box-shadow 0.2s;
+    }
+    .plan-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .plan-card.recommended { border-color: #6366F1; box-shadow: 0 8px 32px rgba(99,102,241,0.15); }
+    .plan-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #6366F1; color: #fff; font-size: 0.75rem; font-weight: 700;
+      padding: 4px 16px; border-radius: 12px;
+    }
+    .plan-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .plan-amount { font-size: 2rem; font-weight: 800; }
+    .plan-unit { font-size: 0.85rem; color: #64748b; }
+    .plan-desc {
+      font-size: 0.85rem; color: #64748b; margin: 8px 0 24px;
+      padding-bottom: 24px; border-bottom: 1px solid #e2e8f0;
+    }
+    .plan-features { list-style: none; flex: 1; margin-bottom: 24px; }
+    .plan-features li {
+      font-size: 0.85rem; color: #334155; padding: 6px 0;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .plan-features li.disabled { color: #cbd5e1; }
+    .plan-features li .icon { flex-shrink: 0; font-weight: 700; }
+    .plan-features li:not(.disabled) .icon { color: #10B981; }
+    .plan-note { font-size: 0.7rem; color: #94a3b8; margin-left: 4px; }
+
+    /* ===== S8: TESTIMONIALS ===== */
+    .testimonials { background: #f8fafc; padding: 80px 24px; }
+    .testimonials-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-bottom: 40px; }
+    .case-card {
+      background: #fff; border-radius: 12px; padding: 28px; text-align: left; border: 1px solid #e2e8f0;
+    }
+    .case-tag {
+      background: #EEF2FF; color: #6366F1; font-size: 0.75rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 12px;
+    }
+    .case-company { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+    .case-text { font-size: 0.85rem; color: #475569; line-height: 1.7; margin-bottom: 8px; }
+    .case-quote {
+      font-size: 0.9rem; color: #6366F1; font-style: italic;
+      border-left: 3px solid #6366F1; padding-left: 12px; margin-top: 16px;
+    }
+
+    /* ===== S9: FAQ ===== */
+    .faq { background: #fff; padding: 80px 24px; }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    .faq-item {
+      background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;
+      overflow: hidden; cursor: pointer; transition: box-shadow 0.2s;
+    }
+    .faq-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .faq-q {
+      padding: 18px 20px; font-size: 0.95rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-toggle { font-size: 1.2rem; color: #6366F1; flex-shrink: 0; margin-left: 16px; }
+    .faq-a {
+      display: none; padding: 0 20px 18px; font-size: 0.9rem; color: #64748b; line-height: 1.8;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ===== S10: CTA ===== */
+    .cta-section { background: #f8fafc; padding: 80px 24px; }
+    .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .cta-options { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 48px; }
+    .cta-card {
+      background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 28px 20px;
+      transition: all 0.2s;
+    }
+    .cta-card.hl { border-color: #6366F1; background: #EEF2FF; }
+    .cta-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+    .cta-icon { font-size: 2rem; margin-bottom: 12px; }
+    .cta-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .cta-card p { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; }
+
+    /* Form */
+    .form-section {
+      background: #fff; border-radius: 12px; padding: 40px; text-align: left;
+    }
+    .form-title { font-size: 1.2rem; font-weight: 700; text-align: center; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 6px; }
+    .required { color: #ef4444; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px;
+      font-size: 0.9rem; color: #1e293b; background: #fff; box-sizing: border-box;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: #6366F1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+    .form-note { font-size: 0.75rem; color: #94a3b8; text-align: center; margin-top: 12px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #1e293b; color: #94a3b8; padding: 40px 24px;
+    }
+    .footer-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+    }
+    .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 4px; }
+    .footer-brand p, .footer-info p, .footer-copy p { font-size: 0.8rem; }
+    .footer-copy p { font-size: 0.75rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-title { font-size: 1.6rem; }
+      .hero-visual { display: none; }
+      .walls-grid { grid-template-columns: 1fr; }
+      .wall-card.wall-primary { transform: none; }
+      .scoring-grid { grid-template-columns: repeat(2,1fr); }
+      .profile-content { grid-template-columns: 1fr; }
+      .step3-card { grid-template-columns: 60px 1fr; }
+      .step3-visual { display: none; }
+      .pricing-grid, .cta-options { grid-template-columns: 1fr; }
+      .stats-grid, .stats-grid-2 { grid-template-columns: repeat(2,1fr); }
+      .stat-num { font-size: 1.8rem; }
+      .tax-content, .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-section { padding: 24px; }
+      .section-title { font-size: 1.4rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .why-primary-points { grid-template-columns: 1fr; }
+      .why-secondary-grid { grid-template-columns: 1fr; }
+      .why-timeline-inner { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .why-timeline-inner::before { display: none; }
+      .track-highlights { grid-template-columns: 1fr; }
+      .map-header { flex-direction: column; gap: 12px; text-align: center; }
+      .map-iframe-wrap iframe { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">47<span>Connect</span></div>
+    <div class="header-cta">
+      <a href="#contact" class="btn btn-primary" style="padding:8px 20px;font-size:0.85rem;">無料でマッチング精度を体験する</a>
+    </div>
+  </div>
+</header>
+
+<!-- S1: HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        御社の提案が刺さる自治体を見つける時間を、<br>
+        <span class="hero-accent">数週間から、数分に。</span>
+      </h1>
+      <p class="hero-sub">
+        1,741自治体の政策・予算・課題をAIが分析。<br>
+        国や都道府県の政策方針と御社の製品・サービスを掛け合わせ、<br>
+        相性の良い自治体を自動でピックアップします。
+      </p>
+      <div class="hero-badges">
+        <span class="badge">✓ 一次情報ベースのAIマッチング</span>
+        <span class="badge">✓ 106自治体との実取引データ</span>
+        <span class="badge">✓ 自治体プロファイル自動サマライズ</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">無料でマッチング精度を体験する</a>
+        <a href="#recommend" class="btn btn-secondary">レコメンドの仕組みを見る</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mockup">
+        <div class="mockup-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="mockup-label">47Connect - AIレコメンド結果</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-card">
+            <div class="mockup-score">92</div>
+            <div class="mockup-detail">
+              <div class="mockup-city">三原市</div>
+              <div class="mockup-reasons">
+                <span class="match-tag policy">防災DX推進（国方針）</span>
+                <span class="match-tag local">R7防災備蓄計画策定中</span>
+              </div>
+              <div class="mockup-summary">防災費 3.2億円（前年比+12%）/ 危機管理課</div>
+            </div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-score">85</div>
+            <div class="mockup-detail">
+              <div class="mockup-city">神石高原町</div>
+              <div class="mockup-reasons">
+                <span class="match-tag policy">地域防災力強化（県方針）</span>
+                <span class="match-tag local">避難所環境整備を予算化</span>
+              </div>
+              <div class="mockup-summary">総務費 1.8億円 / 総務課 防災担当</div>
+            </div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-score">78</div>
+            <div class="mockup-detail">
+              <div class="mockup-city">廿日市市</div>
+              <div class="mockup-reasons">
+                <span class="match-tag policy">国土強靱化（国方針）</span>
+                <span class="match-tag local">総合計画に防災DX明記</span>
+              </div>
+              <div class="mockup-summary">防災費 2.1億円 / 危機管理課</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2: THREE WALLS -->
+<section class="walls">
+  <div class="walls-inner">
+    <h2 class="section-title">自治体営業の最大の壁──「提案が刺さる自治体」が見つからない</h2>
+    <p class="section-sub">自治体営業には構造的な「3つの壁」があります。中でも最初の壁が最も深刻です。</p>
+    <div class="walls-grid">
+      <div class="wall-card wall-primary">
+        <div class="wall-icon">🔍</div>
+        <h3 class="wall-title">探索の壁 <span class="wall-en">Targeting</span></h3>
+        <p class="wall-desc">全国1,741自治体から、国や都道府県の政策に基づいて自社の提案が刺さる自治体を特定する。この作業に膨大な時間がかかっています。</p>
+        <div class="wall-stat">1自治体の調査に平均 数時間〜数日</div>
+        <div class="wall-quote">「国の政策も県の方針も調べて、各自治体の計画書も読んで……気づいたら数週間が経っていた」</div>
+      </div>
+      <div class="wall-card wall-secondary">
+        <div class="wall-icon">📝</div>
+        <h3 class="wall-title">提案の壁 <span class="wall-en">Proposal</span></h3>
+        <p class="wall-desc">自治体ごとの予算文脈や政策背景に合わせた提案設計の負荷。1件あたり2〜3週間。</p>
+      </div>
+      <div class="wall-card wall-secondary">
+        <div class="wall-icon">📬</div>
+        <h3 class="wall-title">到達の壁 <span class="wall-en">Reach</span></h3>
+        <p class="wall-desc">適切な担当者へ届かない。一般的な案内メールの開封率は10%未満。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2.5: RECOMMEND ENGINE -->
+<section id="recommend" class="recommend">
+  <div class="recommend-inner">
+    <h2 class="section-title">なぜ47Connectのレコメンドは、他社と精度が違うのか</h2>
+    <p class="section-sub">国の政策から自治体の個別課題まで、4層の情報を掛け合わせてスコアリング</p>
+
+    <div class="scoring-layers">
+      <div class="scoring-layer layer-1">
+        <span class="layer-num">1</span>
+        <span>国の政策方針（デジタル田園都市構想・国土強靱化・カーボンニュートラル等）</span>
+      </div>
+      <div class="scoring-layer layer-2">
+        <span class="layer-num">2</span>
+        <span>都道府県の重点施策（県独自の補助金・推進計画・重点分野）</span>
+      </div>
+      <div class="scoring-layer layer-3">
+        <span class="layer-num">3</span>
+        <span>自治体の個別課題（予算書・総合計画・首長方針・議会議事録）</span>
+      </div>
+      <div class="scoring-layer layer-4">
+        <span class="layer-num">4</span>
+        <span>御社の製品・サービス特性（カテゴリ・対象分野・実績）</span>
+      </div>
+      <div class="scoring-arrow">↓</div>
+      <div class="scoring-result">AIが4層を掛け合わせ、御社の提案が刺さる自治体をスコアリング</div>
+    </div>
+
+    <div class="scoring-grid">
+      <div class="scoring-card">
+        <div class="sc-pct">35%</div>
+        <div class="sc-name">地域マッチ度</div>
+        <div class="sc-desc">自治体の地域特性・人口・産業構造と御社の強みのフィット度</div>
+      </div>
+      <div class="scoring-card">
+        <div class="sc-pct">25%</div>
+        <div class="sc-name">分野マッチ度</div>
+        <div class="sc-desc">国/県の政策分野と御社の製品カテゴリの合致度</div>
+      </div>
+      <div class="scoring-card">
+        <div class="sc-pct">25%</div>
+        <div class="sc-name">パイプ強度</div>
+        <div class="sc-desc">FromToの106自治体との実取引で得た一次情報に基づく精度</div>
+      </div>
+      <div class="scoring-card">
+        <div class="sc-pct">15%</div>
+        <div class="sc-name">実績・評価</div>
+        <div class="sc-desc">類似案件の過去実績、自治体側の受入姿勢</div>
+      </div>
+    </div>
+
+    <div class="recommend-note">
+      <p>他社ツールが<strong>「公開情報だけ」</strong>でスコアリングするのに対し、47Connectは<strong>106自治体との実取引で蓄積した一次情報</strong>──担当者の熱量、決裁ルート、受入実績──をスコアリングに反映。この<strong>「一次情報の層」</strong>が、レコメンド精度の決定的な差を生みます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- S2.7: PROFILE SUMMARY -->
+<section class="profile">
+  <div class="profile-inner">
+    <h2 class="section-title">見つけた自治体の全貌を、1画面でサマライズ</h2>
+    <p class="section-sub">数十の自治体HPを巡回する必要はもうありません</p>
+
+    <div class="profile-content">
+      <div class="profile-mockup">
+        <div class="profile-mockup-header">
+          <span>三原市 プロファイル</span>
+          <span class="profile-mockup-score">マッチスコア: 92</span>
+        </div>
+        <div class="profile-mockup-body">
+          <div class="profile-row">
+            <span class="pr-icon">📊</span>
+            <span class="pr-label">予算概要</span>
+            <span class="pr-value">一般会計 580億円 / 防災費 3.2億円（前年比+12%）</span>
+          </div>
+          <div class="profile-row">
+            <span class="pr-icon">📋</span>
+            <span class="pr-label">重点施策</span>
+            <span class="pr-value">防災DX推進・子育て支援・空き家対策</span>
+          </div>
+          <div class="profile-row">
+            <span class="pr-icon">👤</span>
+            <span class="pr-label">首長方針</span>
+            <span class="pr-value">「デジタル技術による防災体制強化」を公約</span>
+          </div>
+          <div class="profile-row">
+            <span class="pr-icon">📞</span>
+            <span class="pr-label">推定担当課</span>
+            <span class="pr-value">危機管理課（防災DX担当）</span>
+          </div>
+          <div class="profile-row">
+            <span class="pr-icon">🏛️</span>
+            <span class="pr-label">関連議事録</span>
+            <span class="pr-value">R6.12月議会「防災備蓄品の更新について」質疑あり</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-comparison">
+        <h3>情報収集の時間を圧倒的に短縮</h3>
+        <div class="pc-item">
+          <h4>❌ 従来の情報収集</h4>
+          <p>自治体HP → 予算書PDF → 総合計画 → 議事録……<br>数十ページの資料を読み込んで整理</p>
+          <div class="pc-time before">1自治体あたり 数時間〜数日</div>
+        </div>
+        <div class="pc-item">
+          <h4>✅ 47Connectのサマライズ</h4>
+          <p>AIが自動で構造化・要約。<br>予算・計画・首長方針・担当課が1画面に</p>
+          <div class="pc-time after">1自治体あたり 30秒で全体像を把握</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: THREE CORE STEPS -->
+<section class="steps">
+  <div class="steps-inner">
+    <h2 class="section-title">47Connectが変える自治体営業の3ステップ</h2>
+    <p class="section-sub">探索・分析・管理。数週間を要していた自治体営業プロセスを、47Connectが根本から効率化します。</p>
+
+    <div class="steps-flow-3">
+      <!-- STEP 1: AIレコメンド -->
+      <div class="step3-card step-recommend">
+        <div class="step3-num-col">
+          <div class="step3-num">1</div>
+          <div class="step3-num-label">STEP</div>
+        </div>
+        <div class="step3-content">
+          <h3 class="step3-title">🎯 AIが最適な自治体を自動選定</h3>
+          <div class="step3-catch">御社との相性が高い自治体を、AIが自動でレコメンド。</div>
+          <p class="step3-desc">
+            御社の企業情報、そして製品やサービスを登録いただくだけで、提案に最適な自治体が見つかります。国の政策方針 × 都道府県の重点施策 × 自治体の予算・課題をAIが4層で分析し、<strong>提案適合度の高い自治体をスコア付きで自動抽出</strong>。1,741自治体の中から最適なターゲットを即座に特定できます。
+          </p>
+          <div class="step3-features">
+            <span class="step3-feat">4層AIスコアリング</span>
+            <span class="step3-feat">一次情報ベース</span>
+            <span class="step3-feat">毎月自動更新</span>
+            <span class="step3-feat">1,741自治体対応</span>
+          </div>
+        </div>
+        <div class="step3-visual">
+          <div class="step3-mockup">
+            <div class="step3-mockup-header">
+              <span>AIレコメンド結果</span>
+              <span style="opacity:0.6;">3件マッチ</span>
+            </div>
+            <div class="step3-mockup-body">
+              <div class="step3-mockup-row">
+                <div class="step3-mockup-score">92</div>
+                <div><div class="step3-mockup-city">三原市</div><span class="step3-mockup-tag">防災DX推進</span></div>
+              </div>
+              <div class="step3-mockup-row">
+                <div class="step3-mockup-score">85</div>
+                <div><div class="step3-mockup-city">神石高原町</div><span class="step3-mockup-tag">地域防災力強化</span></div>
+              </div>
+              <div class="step3-mockup-row">
+                <div class="step3-mockup-score">78</div>
+                <div><div class="step3-mockup-city">廿日市市</div><span class="step3-mockup-tag">国土強靱化</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step3-flow-arrow"><span>↓</span></div>
+
+      <!-- STEP 2: サマライズ -->
+      <div class="step3-card step-summarize">
+        <div class="step3-num-col">
+          <div class="step3-num">2</div>
+          <div class="step3-num-label">STEP</div>
+        </div>
+        <div class="step3-content">
+          <h3 class="step3-title">📋 自治体の全貌を30秒で把握</h3>
+          <div class="step3-catch">レコメンドされた自治体の詳細情報を、1画面に集約。</div>
+          <p class="step3-desc">
+            予算・重点施策・首長方針・推定担当課・議会議事録──レコメンドされた自治体の情報をAIが構造化・サマライズし、1画面に集約します。<strong>「この自治体に御社の製品を提案すべきか」を即座にご判断いただけます。</strong>数十ページの資料を個別に確認する工数を大幅に削減します。
+          </p>
+          <div class="step3-features">
+            <span class="step3-feat">予算構造の可視化</span>
+            <span class="step3-feat">首長方針サマリー</span>
+            <span class="step3-feat">提案適合性判定</span>
+            <span class="step3-feat">議会議事録要約</span>
+          </div>
+        </div>
+        <div class="step3-visual">
+          <div class="step3-mockup">
+            <div class="step3-mockup-header">
+              <span>三原市 プロファイル</span>
+              <span style="background:#10B981;padding:2px 8px;border-radius:4px;font-size:0.65rem;">提案チャンスあり</span>
+            </div>
+            <div class="step3-mockup-body">
+              <div class="step3-profile-row">
+                <span class="step3-pr-icon">📊</span>
+                <span class="step3-pr-label">予算</span>
+                <span class="step3-pr-value">防災費 3.2億円（前年比+12%）</span>
+              </div>
+              <div class="step3-profile-row">
+                <span class="step3-pr-icon">📋</span>
+                <span class="step3-pr-label">重点施策</span>
+                <span class="step3-pr-value">防災DX推進・子育て支援</span>
+              </div>
+              <div class="step3-profile-row">
+                <span class="step3-pr-icon">👤</span>
+                <span class="step3-pr-label">首長方針</span>
+                <span class="step3-pr-value">「防災体制のデジタル化」公約</span>
+              </div>
+              <div class="step3-profile-row">
+                <span class="step3-pr-icon">📞</span>
+                <span class="step3-pr-label">担当課</span>
+                <span class="step3-pr-value">危機管理課（防災DX担当）</span>
+              </div>
+              <div class="step3-profile-row">
+                <span class="step3-pr-icon">🏛️</span>
+                <span class="step3-pr-label">議会</span>
+                <span class="step3-pr-value">R6.12月「防災備蓄品更新」質疑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step3-flow-arrow"><span>↓</span></div>
+
+      <!-- STEP 3: CRM管理 -->
+      <div class="step3-card step-crm">
+        <div class="step3-num-col">
+          <div class="step3-num">3</div>
+          <div class="step3-num-label">STEP</div>
+        </div>
+        <div class="step3-content">
+          <h3 class="step3-title">📊 自治体営業をリストで管理</h3>
+          <div class="step3-catch">レコメンドされた自治体をCRMで一元管理。営業状況を即座に把握。</div>
+          <p class="step3-desc">
+            AIがレコメンドした自治体をそのままCRMリストに追加。ステータス管理・メモ・フラグ付けで営業パイプラインを可視化。<strong>予算サイクルや人事異動の時期も自動アラート</strong>で、最適なタイミングを逃しません。
+          </p>
+          <div class="step3-features">
+            <span class="step3-feat">パイプライン管理</span>
+            <span class="step3-feat">予算サイクルアラート</span>
+            <span class="step3-feat">人事異動通知</span>
+            <span class="step3-feat">チーム共有</span>
+          </div>
+        </div>
+        <div class="step3-visual">
+          <div class="step3-mockup">
+            <div class="step3-mockup-header">
+              <span>CRM - 営業リスト</span>
+              <span style="opacity:0.6;">12件管理中</span>
+            </div>
+            <div class="step3-mockup-body">
+              <div class="step3-crm-row step3-crm-header">
+                <span>自治体</span><span>スコア</span><span>ステータス</span><span>次アクション</span>
+              </div>
+              <div class="step3-crm-row">
+                <span style="font-weight:600;">三原市</span>
+                <span>92</span>
+                <span><span class="step3-crm-status crm-hot">商談中</span></span>
+                <span>4/10 面談</span>
+              </div>
+              <div class="step3-crm-row">
+                <span style="font-weight:600;">神石高原町</span>
+                <span>85</span>
+                <span><span class="step3-crm-status crm-warm">提案済</span></span>
+                <span>反応待ち</span>
+              </div>
+              <div class="step3-crm-row">
+                <span style="font-weight:600;">廿日市市</span>
+                <span>78</span>
+                <span><span class="step3-crm-status crm-new">リスト追加</span></span>
+                <span>提案書作成</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:16px 36px;">この3ステップを体験する</a>
+    </div>
+  </div>
+</section>
+
+<!-- S4: COMPARISON -->
+<section class="compare">
+  <div class="compare-inner">
+    <h2 class="section-title">他の手段と、何が違うのか</h2>
+    <p class="section-sub">AI分析の精度、自治体への到達力、営業管理まで──47Connectと既存手段の違いを比較します。</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>比較項目</th>
+          <th class="col-hl">47Connect</th>
+          <th>他社DBサービス</th>
+          <th>自治体コンサル・顧問</th>
+          <th>自力営業</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>月額料金</td><td class="col-hl"><strong>10万円〜</strong></td><td><strong>15〜30万円程度</strong></td><td><strong>30〜150万円 <sup>※</sup></strong></td><td><strong>人件費のみ</strong></td></tr>
+        <tr><td>対応自治体数</td><td class="col-hl"><strong>全国対応</strong></td><td><strong>全国対応</strong></td><td><strong>3〜5自治体</strong></td><td><strong>担当者次第</strong></td></tr>
+        <tr><td>AIレコメンド（公開情報ベース）</td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>一次情報ベースのスコアリング</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>自治体プロファイル自動サマライズ</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr><td>提案書AI自動生成</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="partial">△</span></td><td><span class="cross">×</span></td></tr>
+        <tr><td>自治体への到達力</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td></tr>
+        <tr><td>開封・閲覧追跡</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr><td>CRM（自治体営業管理）</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="partial">△</span></td></tr>
+        <tr><td>企業版ふるさと納税連携</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="partial">△</span></td><td><span class="partial">△</span></td></tr>
+        <tr><td>スケーラビリティ</td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr><td>属人性リスク</td><td class="col-hl"><strong>なし</strong></td><td><strong>なし</strong></td><td><strong>高い</strong></td><td><strong>高い</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.8rem; color:#64748b; text-align:left; margin-bottom:24px;">※ 元首長・元議員・自治体コンサルなど、依頼先の経歴・専門性により大きく異なります。</p>
+    <div class="compare-note">
+      <p>他社DBサービスは<strong>公開情報のみ</strong>の分析で、自治体への到達手段を持ちません。自治体コンサル・顧問（元首長・元議員等）は<strong>属人的なネットワークに依存</strong>し、対応可能な自治体数は3〜5が限界です。47Connectは106自治体との実取引から得た<strong>一次情報をAIスコアリングに反映</strong>し、提案書生成から信頼パイプ配信・営業管理まで<strong>一気通貫</strong>で提供します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- S4.5: WHY FROMTO -->
+<section class="why-fromto">
+  <div class="why-fromto-inner">
+    <h2 class="section-title">なぜFromToに、これができるのか</h2>
+    <p class="section-sub">自治体と企業の間に立ち続けてきた実績と基盤</p>
+
+    <div class="why-grid">
+      <!-- メインカード：一次情報 × 独自パイプ（統合） -->
+      <div class="why-card why-primary">
+        <h3>🤝 寄附仲介の実績が生んだ、他社にはない2つの武器</h3>
+        <p>FromToは企業版ふるさと納税の寄附仲介を160件超・総額2億円以上にわたり手がけてきました。この実績の中で106を超える自治体と直接の信頼関係を構築しています。この関係があるからこそ、<strong>他社では取得できない一次情報</strong>と、<strong>企業の提案を確実に届ける独自のパイプ</strong>という2つの優位性を持つことができます。</p>
+
+        <div class="why-primary-points">
+          <div class="why-primary-point">
+            <h4>📊 他社では取れない「一次情報」</h4>
+            <p>公開情報だけでは、自治体の実態は見えません。<strong>担当者の関心度、決裁ルート、過去の受入実績と反応</strong>──こうした情報は、直接の取引関係がなければ得られないものです。FromToはこの一次情報を体系的に蓄積し、AIスコアリングの精度に反映しています。</p>
+          </div>
+          <div class="why-primary-point">
+            <h4>📬 提案が届く「独自パイプ」</h4>
+            <p>一般的な営業メールの開封率は10%未満。しかし、FromToが自治体と築いてきた信頼関係を通じた配信は、到達率において大きな優位性を持ちます。<strong>「FromToからの情報なら確認する」</strong>──この関係性こそが、企業の提案を届ける回路となります。</p>
+          </div>
+        </div>
+        <span class="why-highlight" style="margin-top:20px;">→ 寄附仲介の実績に裏打ちされた、参入障壁の高い独自の強み</span>
+      </div>
+
+      <!-- サブカード2つ -->
+      <div class="why-secondary-grid">
+        <div class="why-card">
+          <h3>📊 1,741全自治体のデータを構造化するAI基盤</h3>
+          <p>予算書・総合計画・首長方針・議会議事録──自治体が公開する膨大な情報を、AIが自動で収集・構造化・更新。47都道府県を網羅し、国の政策方針から各自治体の個別課題まで4層で分析可能な基盤を構築しています。</p>
+          <span class="why-highlight">→ 全国規模での最適マッチングを実現</span>
+        </div>
+        <div class="why-card">
+          <h3>🔄 寄附仲介×SaaS──両輪で回る独自のビジネスモデル</h3>
+          <p>寄附仲介事業で自治体との関係を深化させ、そこで得た一次情報を47Connectのレコメンド精度に還元。SaaSの利用拡大が仲介機会を創出し、さらに一次情報が蓄積される。<strong>このフライホイール構造が、持続的な競争優位性の基盤です。</strong></p>
+          <span class="why-highlight">→ 参入障壁の高い独自構造</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S4.7: TRACK RECORD MAP -->
+<section class="track-record">
+  <div class="track-record-inner">
+    <h2 class="section-title">全国に広がるFromToの寄附実績</h2>
+    <p class="section-sub">103自治体・139件の寄附実績が、47Connectのレコメンド精度を支えています</p>
+
+    <div class="map-container">
+      <div class="map-header">
+        <h3>📍 企業版ふるさと納税 寄附実施マップ</h3>
+        <div class="map-header-stats">
+          <div class="map-stat-item">
+            <div class="map-stat-num">103</div>
+            <div class="map-stat-label">寄附自治体数</div>
+          </div>
+          <div class="map-stat-item">
+            <div class="map-stat-num">139</div>
+            <div class="map-stat-label">寄附実施件数</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-iframe-wrap">
+        <iframe
+          src="https://a53d78e1-5a87-46b2-81fb-5680a6e34ab2-00-19udbz4bdzq0v.picard.replit.dev/embed/japan-map?session=aggregated"
+          width="100%"
+          height="600"
+          style="border:0;"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="map-caption">
+        ※ 累計実績。色の濃さは寄附実施件数を示しています。
+      </div>
+    </div>
+
+    <div class="track-highlights">
+      <div class="track-hl-card">
+        <div class="track-hl-icon">🗾</div>
+        <h4>全国47都道府県に展開</h4>
+        <p>北海道から沖縄まで、全国の自治体との取引実績を保有。地域を問わないネットワークを構築しています。</p>
+      </div>
+      <div class="track-hl-card">
+        <div class="track-hl-icon">📈</div>
+        <h4>毎年拡大する実績</h4>
+        <p>寄附仲介件数は年々増加。既存自治体からの紹介による新規開拓が継続的に拡大しています。</p>
+      </div>
+      <div class="track-hl-card">
+        <div class="track-hl-icon">🔑</div>
+        <h4>実績＝レコメンドの精度</h4>
+        <p>各自治体との取引から得た一次情報をAIスコアリングに反映。実績の蓄積がレコメンド精度を継続的に向上させます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <h2 class="section-title">積み重ねた実績が、レコメンド精度の源泉。</h2>
+    <div class="stats-grid" style="margin-top:48px;">
+      <div><div class="stat-num">1,741</div><div class="stat-label">分析対象自治体（全国カバー）</div></div>
+      <div><div class="stat-num">106+</div><div class="stat-label">一次情報を持つ自治体</div></div>
+    </div>
+    <div class="stats-grid-2">
+      <div><div class="stat-num">22</div><div class="stat-label">仲介契約企業</div></div>
+      <div><div class="stat-num">160+</div><div class="stat-label">仲介実績（件）</div></div>
+      <div><div class="stat-num">2億円+</div><div class="stat-label">仲介総額</div></div>
+    </div>
+    <div style="text-align:center;">
+      <a href="#contact" class="btn btn-outline">詳しい実績資料を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- S6: TAX BENEFIT -->
+<section class="tax">
+  <div class="tax-inner">
+    <h2 class="section-title">寄附額の最大約9割が税額控除。CSRと節税を同時に実現。</h2>
+    <div class="tax-content" style="margin-top:48px;">
+      <div>
+        <div class="tax-bar">
+          <div class="tax-seg loss"><span class="tax-label">損金算入</span><span class="tax-value">約30万円</span></div>
+          <div class="tax-seg credit"><span class="tax-label">税額控除</span><span class="tax-value">最大約60万円</span></div>
+          <div class="tax-seg burden"><span class="tax-label">実質負担</span><span class="tax-value">約10万円</span></div>
+        </div>
+        <p class="tax-example">100万円の寄附の場合</p>
+      </div>
+      <div class="tax-msgs">
+        <div class="tax-msg"><h4>📈 経営企画部の方へ</h4><p>税額控除で実質負担を最小化しながら、自治体市場への橋頭堡を築けます。</p></div>
+        <div class="tax-msg"><h4>🌱 CSR部の方へ</h4><p>具体的な地域課題解決に直結する、数字で語れるCSR活動を実現できます。</p></div>
+        <div class="tax-msg"><h4>🤝 営業部の方へ</h4><p>自治体への導入実績が、地域企業・住民への認知拡大につながります。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: PRICING -->
+<section class="pricing">
+  <div class="pricing-inner">
+    <h2 class="section-title">まずはライトから。事業規模に合わせて拡張。</h2>
+    <div class="pricing-grid" style="margin-top:48px;">
+      <!-- FREE -->
+      <div class="plan-card">
+        <h3 class="plan-name">フリー</h3>
+        <div><span class="plan-amount">0円</span></div>
+        <p class="plan-desc">寄附仲介サービス利用企業のみ</p>
+        <ul class="plan-features">
+          <li><span class="icon">✓</span> 基本機能（企業・製品登録）<span class="plan-note">仲介依頼企業のみ</span></li>
+          <li><span class="icon">✓</span> マッチング自治体とのメッセージ</li>
+          <li class="disabled"><span class="icon">—</span> AIレコメンド</li>
+          <li class="disabled"><span class="icon">—</span> 自治体プロファイル・サマライズ</li>
+          <li class="disabled"><span class="icon">—</span> 自治体CRM機能</li>
+          <li class="disabled"><span class="icon">—</span> 提案書AI自動生成</li>
+          <li><span class="icon">✓</span> 仲介手数料 <span class="plan-note">通常実施</span></li>
+        </ul>
+        <a href="#contact" class="btn btn-outline-dark btn-full">寄附仲介について相談する</a>
+      </div>
+      <!-- LIGHT -->
+      <div class="plan-card">
+        <h3 class="plan-name">ライト</h3>
+        <div><span class="plan-amount">10万円</span><span class="plan-unit">/月（税抜）</span></div>
+        <p class="plan-desc">提案が刺さる自治体を効率的に見つけたい企業に</p>
+        <ul class="plan-features">
+          <li><span class="icon">✓</span> 基本機能（企業・製品登録）</li>
+          <li><span class="icon">✓</span> <strong>AIレコメンド（4層スコアリング）</strong></li>
+          <li><span class="icon">✓</span> <strong>自治体プロファイル・サマライズ</strong></li>
+          <li><span class="icon">✓</span> 自治体CRM機能</li>
+          <li><span class="icon">✓</span> 提案書AI自動生成</li>
+          <li><span class="icon">✓</span> アポ獲得支援（メール配信）<span class="plan-note">別途有料</span></li>
+          <li><span class="icon">✓</span> 仲介手数料 <span class="plan-note">通常実施</span></li>
+        </ul>
+        <a href="#contact" class="btn btn-outline-dark btn-full">ライトプランを始める</a>
+      </div>
+      <!-- STANDARD -->
+      <div class="plan-card recommended">
+        <div class="plan-badge">おすすめ</div>
+        <h3 class="plan-name">スタンダード</h3>
+        <div><span class="plan-amount">20万円</span><span class="plan-unit">/月（税抜）</span></div>
+        <p class="plan-desc">本格的に自治体開拓を推進する企業に</p>
+        <ul class="plan-features">
+          <li><span class="icon">✓</span> ライトの全機能</li>
+          <li><span class="icon">✓</span> オンボーディング支援 <span class="plan-note">1〜3ヶ月</span></li>
+          <li><span class="icon">✓</span> 月2回のフォローミーティング</li>
+          <li><span class="icon">✓</span> アポ獲得支援（メール配信）<span class="plan-note">別途有料</span></li>
+          <li><span class="icon">✓</span> 仲介手数料ディスカウント <span class="plan-note">18%→10%</span></li>
+          <li><span class="icon">✓</span> 人材派遣型寄附も値引き</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary btn-full">スタンダードを始める</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8: TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <h2 class="section-title">先行企業は、すでに成果を出しています。</h2>
+    <div class="testimonials-grid" style="margin-top:48px;">
+      <div class="case-card">
+        <span class="case-tag">防災用品メーカー</span>
+        <h3 class="case-company">株式会社A社</h3>
+        <p class="case-text"><strong>課題:</strong> 自治体に防災備蓄品を提案したいが、国の防災方針に合致する自治体を1,741の中から探す時間がない。飛び込みメールの返信率は1%以下。</p>
+        <p class="case-text"><strong>成果:</strong> 47ConnectのAIレコメンドが国の防災DX方針と合致する23自治体をピックアップ。サマライズで各自治体の防災予算・計画を30秒で把握。FromToの信頼パイプで提案を配信し、3自治体との商談が成立。</p>
+        <div class="case-quote">「数週間かかっていた自治体探索が、ものの数分で終わった。しかもピンポイントで刺さる自治体ばかり。」</div>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">IT企業・DX支援</span>
+        <h3 class="case-company">株式会社B社</h3>
+        <p class="case-text"><strong>課題:</strong> DX推進人材の派遣を自治体に提案したいが、どの自治体がDX人材を求めているかわからず、接点もゼロ。</p>
+        <p class="case-text"><strong>成果:</strong> 47Connectが国のDX推進方針と合致する自治体をAIレコメンド。自治体プロファイルのサマライズで各自治体のDX課題を即座に把握。従来3ヶ月かかっていたターゲット選定が1日で完了し、2自治体へ派遣開始。</p>
+        <div class="case-quote">「月20万円で、コンサルの何倍もの自治体にリーチできている。しかも提案が刺さる自治体だけを選べる。」</div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <a href="#contact" class="btn btn-primary">自社に合うプランを相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- S9: FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <h2 class="section-title">よくいただくご質問</h2>
+    <div class="faq-list" style="margin-top:40px;">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>47Connectはどのような企業に向いていますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">自治体に提案したい製品・サービスがあるが、どの自治体にアプローチすべきかわからない企業に最適です。業種・規模を問わず、防災・福祉・教育・DX・環境など幅広い分野でご利用いただけます。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>レコメンドのスコアはどのように算出されますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">国の政策方針・都道府県の重点施策・自治体の個別課題（予算書・総合計画・首長方針）・御社の製品特性の4層を掛け合わせてAIがスコアリングします。さらに、106自治体との実取引から得た一次情報（担当者の熱量・決裁ルート・受入実績）を加味することで、公開情報だけでは得られない精度を実現しています。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>自治体プロファイルのサマライズにはどんな情報が含まれますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">予算概要（一般会計・分野別予算・前年比）、総合計画の重点施策、首長の方針・公約、推定担当課、関連する議会議事録の要約などが含まれます。従来数時間かかっていた1自治体の情報収集が、30秒で完了します。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>「信頼パイプ」とは何ですか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">FromToが寄附仲介事業を通じて構築した106以上の自治体との直接的な信頼関係です。企業の提案をFromTo名義で配信するため、一般的な営業メール（開封率10%未満）と比べて、自治体担当者に確実に届きます。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>他社DBサービスとの違いは？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">レコメンドの精度が根本的に異なります。他社DBサービスは公開情報のみで分析しますが、47Connectは106自治体との実取引データ（担当者情報、受入実績、決裁ルート）をAIスコアリングに反映しています。さらに、自治体プロファイルの自動サマライズ、提案書のAI自動生成、信頼パイプでの配信、閲覧追跡、CRM管理まで一気通貫で提供します。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>企業版ふるさと納税の手続きはサポートしてもらえますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">はい。寄附手続きから効果報告まで、FromToが一貫してサポートします。地域再生計画への記載がない場合の計画変更手続きも無料で支援いたします。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>最低契約期間はありますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">ライトプランは月単位での契約が可能です。スタンダードプランはオンボーディング期間を含むため、3ヶ月以上の利用を推奨しています。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>無料トライアルはありますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">2週間の無料デモ環境を提供しています。AIレコメンドの精度やサマライズの内容、ダッシュボードの操作感を実際に体験いただけます。</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>導入にどのくらい時間がかかりますか？</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">アカウント発行後、即日利用開始できます。スタンダードプランでは初期設定のオンボーディングサポート（1〜3ヶ月）も無料で提供しています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S10: CTA -->
+<section id="contact" class="cta-section">
+  <div class="cta-inner">
+    <h2 class="section-title">御社の提案が刺さる自治体、見つけませんか？</h2>
+    <div class="cta-options" style="margin-top:40px;">
+      <div class="cta-card">
+        <div class="cta-icon">📄</div>
+        <h3>資料請求</h3>
+        <p>3分でわかるサービス概要資料</p>
+        <a href="mailto:info@fromto.co.jp?subject=47Connect資料請求" class="btn btn-outline-dark">ダウンロード</a>
+      </div>
+      <div class="cta-card hl">
+        <div class="cta-icon">💻</div>
+        <h3>無料デモ</h3>
+        <p>2週間の無料トライアル環境</p>
+        <a href="mailto:info@fromto.co.jp?subject=47Connectデモ申込" class="btn btn-primary">デモを申し込む</a>
+      </div>
+      <div class="cta-card">
+        <div class="cta-icon">🤝</div>
+        <h3>無料相談</h3>
+        <p>専任担当者が課題をヒアリング</p>
+        <a href="mailto:info@fromto.co.jp?subject=47Connect無料相談" class="btn btn-outline-dark">相談を予約する</a>
+      </div>
+    </div>
+    <div class="form-section">
+      <h3 class="form-title">お問い合わせフォーム</h3>
+      <form onsubmit="event.preventDefault(); alert('送信機能は実装後に有効になります。');">
+        <div class="form-row">
+          <div class="form-group">
+            <label>企業名 <span class="required">*</span></label>
+            <input type="text" placeholder="株式会社○○" required>
+          </div>
+          <div class="form-group">
+            <label>部署名</label>
+            <input type="text" placeholder="経営企画部">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>ご担当者名 <span class="required">*</span></label>
+            <input type="text" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label>メールアドレス <span class="required">*</span></label>
+            <input type="email" placeholder="yamada@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ご検討中のプラン</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>ライト（10万円/月）</option>
+            <option>スタンダード（20万円/月）</option>
+            <option>まだ決まっていない</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ご相談内容</label>
+          <textarea rows="4" placeholder="お気軽にご記入ください"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">送信する</button>
+        <p class="form-note">※ 個人情報は厳重に管理し、営業目的以外には使用しません。</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>47Connect</h3>
+      <p>自治体特化型営業プラットフォーム</p>
+    </div>
+    <div class="footer-info">
+      <p><strong>株式会社FromTo</strong></p>
+      <p>所在地: 沖縄県</p>
+    </div>
+    <div class="footer-copy">
+      <p>&copy; 2018-2026 株式会社FromTo. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ toggle +/- indicator
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const toggle = item.querySelector('.faq-toggle');
+    toggle.textContent = item.classList.contains('open') ? '−' : '+';
+  });
+});
+</script>
+
+</body>
+</html>
