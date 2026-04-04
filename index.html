@@ -1453,13 +1453,52 @@
             <input type="email" placeholder="yamada@example.com" required>
           </div>
         </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>電話番号 <span class="required">*</span></label>
+            <input type="tel" placeholder="03-1234-5678" required>
+          </div>
+          <div class="form-group">
+            <label>ご興味のある内容</label>
+            <select>
+              <option value="">選択してください</option>
+              <option>資料請求</option>
+              <option>利用予約</option>
+              <option>その他ご相談</option>
+            </select>
+          </div>
+        </div>
         <div class="form-group">
-          <label>ご検討中のプラン</label>
+          <label>自治体営業で最も課題に感じていることは？</label>
           <select>
             <option value="">選択してください</option>
-            <option>資料請求</option>
-            <option>利用予約</option>
-            <option>まだ決まっていない</option>
+            <option>どの自治体にアプローチすべきかわからない</option>
+            <option>自治体の政策・予算情報の収集に時間がかかる</option>
+            <option>自治体営業の進捗管理が属人的になっている</option>
+            <option>自治体との接点を作る手段がない</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>特に興味のある機能は？（複数選択可）</label>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#334155; cursor:pointer;"><input type="checkbox" style="width:16px; height:16px; accent-color:#6366F1;"> AIレコメンド（相性の良い自治体を自動発見）</label>
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#334155; cursor:pointer;"><input type="checkbox" style="width:16px; height:16px; accent-color:#6366F1;"> 自治体情報サマライズ（予算・政策の構造化要約）</label>
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#334155; cursor:pointer;"><input type="checkbox" style="width:16px; height:16px; accent-color:#6366F1;"> 自治体CRM（パイプライン管理・アラート）</label>
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#334155; cursor:pointer;"><input type="checkbox" style="width:16px; height:16px; accent-color:#6366F1;"> 提案メール自動生成</label>
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#334155; cursor:pointer;"><input type="checkbox" style="width:16px; height:16px; accent-color:#6366F1;"> AIエージェントによる分析相談</label>
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#334155; cursor:pointer;"><input type="checkbox" style="width:16px; height:16px; accent-color:#6366F1;"> メール一斉配信</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>現在アプローチしている（したい）自治体の数は？</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>まだ具体的にはない</option>
+            <option>1〜5自治体</option>
+            <option>6〜20自治体</option>
+            <option>21〜50自治体</option>
+            <option>51以上</option>
           </select>
         </div>
         <div class="form-group">
