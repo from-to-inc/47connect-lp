@@ -389,6 +389,15 @@
       padding: 24px; display: flex; align-items: center; justify-content: center;
       background: #fafaff;
     }
+    .step3-visual-screenshot {
+      padding: 16px;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    }
+    .step3-screenshot {
+      width: 100%; max-width: 100%; border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+      border: 1px solid #e2e8f0;
+    }
     .step3-mockup {
       background: #fff; border-radius: 10px; border: 1px solid #e2e8f0;
       overflow: hidden; width: 100%; max-width: 360px;
@@ -766,6 +775,7 @@
       .profile-content { grid-template-columns: 1fr; }
       .step3-card { grid-template-columns: 60px 1fr; }
       .step3-visual { display: none; }
+      .step3-visual-screenshot { display: flex; padding: 12px; }
       .pricing-grid, .cta-options { grid-template-columns: 1fr; }
       .stats-grid, .stats-grid-2 { grid-template-columns: repeat(2,1fr); }
       .stat-num { font-size: 1.8rem; }
@@ -1024,40 +1034,8 @@
             <span class="step3-feat">議会議事録要約</span>
           </div>
         </div>
-        <div class="step3-visual">
-          <div class="step3-mockup">
-            <div class="step3-mockup-header">
-              <span>三原市 プロファイル</span>
-              <span style="background:#10B981;padding:2px 8px;border-radius:4px;font-size:0.65rem;">提案チャンスあり</span>
-            </div>
-            <div class="step3-mockup-body">
-              <div class="step3-profile-row">
-                <span class="step3-pr-icon">📊</span>
-                <span class="step3-pr-label">予算</span>
-                <span class="step3-pr-value">防災費 3.2億円（前年比+12%）</span>
-              </div>
-              <div class="step3-profile-row">
-                <span class="step3-pr-icon">📋</span>
-                <span class="step3-pr-label">重点施策</span>
-                <span class="step3-pr-value">防災DX推進・子育て支援</span>
-              </div>
-              <div class="step3-profile-row">
-                <span class="step3-pr-icon">👤</span>
-                <span class="step3-pr-label">首長方針</span>
-                <span class="step3-pr-value">「防災体制のデジタル化」公約</span>
-              </div>
-              <div class="step3-profile-row">
-                <span class="step3-pr-icon">📞</span>
-                <span class="step3-pr-label">担当課</span>
-                <span class="step3-pr-value">危機管理課（防災DX担当）</span>
-              </div>
-              <div class="step3-profile-row">
-                <span class="step3-pr-icon">🏛️</span>
-                <span class="step3-pr-label">議会</span>
-                <span class="step3-pr-value">R6.12月「防災備蓄品更新」質疑</span>
-              </div>
-            </div>
-          </div>
+        <div class="step3-visual step3-visual-screenshot">
+          <img src="images/image.png" alt="自治体AI分析ダッシュボード — 総合スコア82点・7分野評価レーダー・キーインサイトTOP10を1画面で把握" class="step3-screenshot" />
         </div>
       </div>
 
