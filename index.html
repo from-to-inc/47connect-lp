@@ -718,6 +718,25 @@
     }
     .faq-item.open .faq-a { display: block; }
 
+    /* ===== EARLY-BIRD CAMPAIGN ===== */
+    .early-bird { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 80px 24px; color: #fff; }
+    .early-bird-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .early-bird-badge { display: inline-block; background: #f59e0b; color: #1e1b4b; font-weight: 800; font-size: 0.85rem; padding: 6px 18px; border-radius: 100px; margin-bottom: 20px; letter-spacing: 0.05em; }
+    .early-bird h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+    .early-bird .sub { font-size: 1rem; color: #c7d2fe; margin-bottom: 40px; }
+    .early-bird-box { background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 40px 32px; margin-bottom: 32px; backdrop-filter: blur(8px); }
+    .price-compare { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+    .price-old { font-size: 1.1rem; color: #a5b4fc; text-decoration: line-through; }
+    .price-arrow { font-size: 1.5rem; color: #f59e0b; }
+    .price-new { font-size: 2.8rem; font-weight: 900; color: #f59e0b; line-height: 1; }
+    .price-new .tax { font-size: 0.85rem; font-weight: 500; color: #c7d2fe; }
+    .price-detail { font-size: 0.9rem; color: #c7d2fe; margin-bottom: 0; }
+    .price-detail strong { color: #fff; }
+    .early-bird-conditions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .eb-tag { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 10px 18px; font-size: 0.85rem; color: #e0e7ff; }
+    .eb-tag strong { color: #fff; }
+    .early-bird-note { font-size: 0.75rem; color: #818cf8; margin-top: 16px; }
+
     /* ===== S10: CTA ===== */
     .cta-section { background: #f8fafc; padding: 80px 24px; }
     .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; }
@@ -765,6 +784,140 @@
     .footer-copy p { font-size: 0.75rem; }
 
     /* ===== RESPONSIVE ===== */
+    /* ===== PROCUREMENT FLOW (自治体調達プロセス) ===== */
+    .proc-flow { background: #fff; padding: 80px 24px; }
+    .proc-flow-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .proc-flow-diagram {
+      display: flex; align-items: stretch; gap: 0; margin-top: 48px;
+      position: relative;
+    }
+    /* 左側: 企画検討期間（47Connect対象領域） */
+    .proc-left {
+      flex: 3; display: flex; flex-direction: column;
+      border: 3px dashed #DC2626; border-radius: 20px;
+      padding: 32px 24px 24px; position: relative;
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+    }
+    .proc-left-label {
+      position: absolute; top: -16px; left: 24px;
+      background: #DC2626; color: #fff; font-size: 0.8rem; font-weight: 700;
+      padding: 4px 16px; border-radius: 20px;
+    }
+    .proc-left-steps {
+      display: flex; align-items: flex-start; gap: 12px; flex: 1;
+    }
+    .proc-step {
+      flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;
+      position: relative;
+    }
+    .proc-step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 800; color: #fff;
+      margin-bottom: 12px;
+    }
+    .proc-step-num.plan { background: #B45309; }
+    .proc-step-num.neutral { background: #6B7280; }
+    .proc-step-icon {
+      font-size: 2.5rem; margin-bottom: 8px; line-height: 1;
+    }
+    .proc-step-title {
+      font-size: 1rem; font-weight: 800; color: #1e293b; margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .proc-step-detail {
+      font-size: 0.8rem; color: #64748b; line-height: 1.5;
+    }
+    /* ステップ間の矢印 */
+    .proc-arrow {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: #9CA3AF; font-weight: 700;
+      padding: 0 4px; align-self: center;
+    }
+    .proc-arrow-big {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: #9CA3AF; font-weight: 700;
+      padding: 0 8px; align-self: center; flex-shrink: 0;
+    }
+    /* 議会承認 */
+    .proc-approval {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; padding: 0 12px; align-self: center;
+    }
+    .proc-approval-box {
+      background: linear-gradient(180deg, #92764A, #6B5B3E);
+      color: #fff; writing-mode: vertical-rl; text-orientation: upright;
+      font-size: 1rem; font-weight: 800; letter-spacing: 0.15em;
+      padding: 20px 14px; border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(107, 91, 62, 0.3);
+    }
+    /* 右側: 入札・落札 */
+    .proc-right {
+      flex: 2; display: flex; flex-direction: column;
+      background: #F1F5F9; border-radius: 20px;
+      padding: 32px 24px 24px; position: relative;
+    }
+    .proc-right-steps {
+      display: flex; align-items: flex-start; gap: 12px; flex: 1;
+    }
+    /* 下部ラベル */
+    .proc-bottom-labels {
+      display: flex; gap: 0; margin-top: 20px;
+    }
+    .proc-period-label {
+      text-align: center; font-weight: 700; padding: 12px 16px;
+      border-radius: 10px; font-size: 0.95rem;
+    }
+    .proc-period-label.planning {
+      flex: 3; background: #FEF2F2; color: #DC2626;
+      margin-right: 8px;
+    }
+    .proc-period-label.bidding {
+      flex: 2; background: #F1F5F9; color: #64748b;
+      margin-left: 8px;
+    }
+    .proc-period-label .period-time {
+      display: block; font-size: 1.3rem; font-weight: 900; margin-top: 4px;
+    }
+    /* 47Connectバッジ */
+    .proc-highlight-box {
+      margin-top: 32px; padding: 24px 32px;
+      background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      border: 2px solid #c7d2fe; border-radius: 16px;
+      text-align: center;
+    }
+    .proc-highlight-box p {
+      font-size: 1rem; color: #475569; margin-bottom: 8px; line-height: 1.7;
+    }
+    .proc-highlight-box .proc-highlight-main {
+      font-size: 1.4rem; font-weight: 900; color: #1e293b; margin: 0;
+    }
+    .proc-highlight-main .accent-purple {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ===== UPCOMING FEATURES ===== */
+    .upcoming { background: #fff; padding: 80px 24px; }
+    .upcoming-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .upcoming-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+    }
+    .upcoming-card {
+      background: #f8fafc; border-radius: 16px; padding: 32px 24px;
+      border: 1px solid #e2e8f0; text-align: left;
+      position: relative; transition: all 0.3s;
+    }
+    .upcoming-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .upcoming-card .upcoming-badge {
+      position: absolute; top: 16px; right: 16px;
+      background: #DBEAFE; color: #2563EB; font-size: 0.7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 12px;
+    }
+    .upcoming-card .upcoming-icon { font-size: 2rem; margin-bottom: 12px; }
+    .upcoming-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+    .upcoming-card p { font-size: 0.9rem; color: #64748b; line-height: 1.7; }
+
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-title { font-size: 1.6rem; }
@@ -793,6 +946,17 @@
       .track-highlights { grid-template-columns: 1fr; }
       .map-header { flex-direction: column; gap: 12px; text-align: center; }
       .map-iframe-wrap iframe { height: 400px; }
+      /* Procurement flow responsive */
+      .proc-flow-diagram { flex-direction: column; gap: 16px; }
+      .proc-left, .proc-right { padding: 24px 16px 20px; }
+      .proc-left-steps, .proc-right-steps { flex-direction: column; gap: 16px; }
+      .proc-arrow { transform: rotate(90deg); padding: 4px 0; }
+      .proc-arrow-big { transform: rotate(90deg); padding: 8px 0; }
+      .proc-approval { padding: 12px 0; }
+      .proc-approval-box { writing-mode: horizontal-tb; text-orientation: mixed; letter-spacing: 0.3em; padding: 12px 20px; }
+      .proc-bottom-labels { flex-direction: column; gap: 8px; }
+      .upcoming-grid { grid-template-columns: 1fr; }
+      .proc-period-label.planning, .proc-period-label.bidding { margin: 0; }
     }
   </style>
 </head>
@@ -803,7 +967,7 @@
   <div class="header-inner">
     <div class="header-logo">47<span>Connect</span></div>
     <div class="header-cta">
-      <a href="#contact" class="btn btn-primary" style="padding:8px 20px;font-size:0.85rem;">資料を請求する</a>
+      <a href="#contact" class="btn btn-primary" style="padding:8px 20px;font-size:0.85rem;">特別キャンペーンで予約</a>
     </div>
   </div>
 </header>
@@ -821,14 +985,11 @@
         分析だけで終わらない。115自治体との実取引パイプラインで、<br>
         レコメンドから提案・寄附実行まで一気通貫で支援。
       </p>
-      <div class="hero-badges">
-        <span class="badge">✓ 115自治体との実取引パイプライン</span>
-        <span class="badge">✓ 寄附仲介160件・総額2億円超の実績</span>
-        <span class="badge">✓ 7年の運営実績</span>
-      </div>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">資料を請求する</a>
-        <a href="#contact" class="btn btn-secondary">利用予約を申し込む</a>
+        <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:18px 36px; position:relative; overflow:hidden;">
+          <span style="display:block; font-size:0.75rem; font-weight:600; opacity:0.9; margin-bottom:4px;">6月末まで｜先行20社限定・58%OFF</span>
+          特別キャンペーンで利用予約する
+        </a>
       </div>
     </div>
     <div class="hero-visual">
@@ -909,6 +1070,89 @@
   </div>
 </section>
 
+<!-- S2.5b: 自治体調達プロセス（フロー図） -->
+<section class="proc-flow">
+  <div class="proc-flow-inner">
+    <h2 class="section-title">自治体の予算は、入札の<strong style="color:#DC2626;">半年〜2年前</strong>に決まっています。</h2>
+    <p class="section-sub">入札情報が出てからでは遅い。意思決定プロセスの上流にアプローチすることが、自治体営業の勝ちパターンです。</p>
+
+    <div class="proc-flow-diagram">
+      <!-- 左: 企画検討期間（47Connect領域） -->
+      <div class="proc-left">
+        <div class="proc-left-label">47Connectがカバーする領域</div>
+        <div class="proc-left-steps">
+          <div class="proc-step">
+            <div class="proc-step-num plan">1</div>
+            <div class="proc-step-icon">👨‍💼</div>
+            <div class="proc-step-title">事業の<br>方向性決定</div>
+            <div class="proc-step-detail">首長<br>課題抽出・方向性の決定</div>
+          </div>
+          <div class="proc-arrow">→</div>
+          <div class="proc-step">
+            <div class="proc-step-num plan">2</div>
+            <div class="proc-step-icon">👩‍💼</div>
+            <div class="proc-step-title">政策内容<br>決定</div>
+            <div class="proc-step-detail">政策企画課<br>政策立案</div>
+          </div>
+          <div class="proc-arrow">→</div>
+          <div class="proc-step">
+            <div class="proc-step-num plan">3</div>
+            <div class="proc-step-icon">📋</div>
+            <div class="proc-step-title">予算編成</div>
+            <div class="proc-step-detail">各部署<br>参考見積取得・予算編成</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proc-arrow-big">→</div>
+
+      <!-- 議会承認 -->
+      <div class="proc-approval">
+        <div class="proc-approval-box">議会承認</div>
+      </div>
+
+      <div class="proc-arrow-big">→</div>
+
+      <!-- 右: 入札・落札 -->
+      <div class="proc-right">
+        <div class="proc-right-steps">
+          <div class="proc-step">
+            <div class="proc-step-num neutral">4</div>
+            <div class="proc-step-icon">📑</div>
+            <div class="proc-step-title">入札情報<br>開示</div>
+            <div class="proc-step-detail">入札参加者募集</div>
+          </div>
+          <div class="proc-arrow">→</div>
+          <div class="proc-step">
+            <div class="proc-step-num neutral">5</div>
+            <div class="proc-step-icon">🤝</div>
+            <div class="proc-step-title">入札・落札</div>
+            <div class="proc-step-detail">事業者決定・実施</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 期間ラベル -->
+    <div class="proc-bottom-labels">
+      <div class="proc-period-label planning">
+        企画検討期間<span class="period-time">約半年〜2年</span>
+      </div>
+      <div class="proc-period-label bidding">
+        募集期間<span class="period-time">平均2週間</span>
+      </div>
+    </div>
+
+    <!-- 47Connectメッセージ -->
+    <div class="proc-highlight-box">
+      <p>多くの企業が入札情報（④⑤）を見てから動きますが、その時点で予算と仕様は確定済み。</p>
+      <p class="proc-highlight-main">
+        <span class="accent-purple">47Connect</span>は、企画段階（①②③）の情報を可視化し、<br>
+        <span class="accent-purple">「入札の前に選ばれる企業」</span>になるための武器を提供します。
+      </p>
+    </div>
+  </div>
+</section>
 
 <!-- S2.7: PROFILE SUMMARY -->
 <section class="profile">
@@ -917,38 +1161,8 @@
     <p class="section-sub">数十の自治体HPを巡回する必要はもうありません</p>
 
     <div class="profile-content">
-      <div class="profile-mockup">
-        <div class="profile-mockup-header">
-          <span>三原市 プロファイル</span>
-          <span class="profile-mockup-score">マッチスコア: 92</span>
-        </div>
-        <div class="profile-mockup-body">
-          <div class="profile-row">
-            <span class="pr-icon">📊</span>
-            <span class="pr-label">予算概要</span>
-            <span class="pr-value">一般会計 580億円 / 防災費 3.2億円（前年比+12%）</span>
-          </div>
-          <div class="profile-row">
-            <span class="pr-icon">📋</span>
-            <span class="pr-label">重点施策</span>
-            <span class="pr-value">防災DX推進・子育て支援・空き家対策</span>
-          </div>
-          <div class="profile-row">
-            <span class="pr-icon">👤</span>
-            <span class="pr-label">首長方針</span>
-            <span class="pr-value">「デジタル技術による防災体制強化」を公約</span>
-          </div>
-          <div class="profile-row">
-            <span class="pr-icon">📞</span>
-            <span class="pr-label">推定担当課</span>
-            <span class="pr-value">危機管理課（防災DX担当）</span>
-          </div>
-          <div class="profile-row">
-            <span class="pr-icon">🏛️</span>
-            <span class="pr-label">関連議事録</span>
-            <span class="pr-value">R6.12月議会「防災備蓄品の更新について」質疑あり</span>
-          </div>
-        </div>
+      <div class="profile-mockup" style="border:none; background:none; overflow:visible;">
+        <img src="images/image.png" alt="自治体プロファイル サマライズ画面" style="width:100%; border-radius:12px; box-shadow:0 8px 32px rgba(99,102,241,0.15); border:1px solid #e2e8f0;">
       </div>
       <div class="profile-comparison">
         <h3>情報収集の時間を圧倒的に短縮</h3>
@@ -961,6 +1175,10 @@
           <h4>✅ 47Connectのサマライズ</h4>
           <p>AIが自動で構造化・要約。<br>予算・計画・首長方針・担当課が1画面に</p>
           <div class="pc-time after">1自治体あたり 30秒で全体像を把握</div>
+        </div>
+        <div style="margin-top:24px; background:linear-gradient(135deg,#EEF2FF,#F0FDF4); border-radius:12px; padding:20px 24px; text-align:center;">
+          <p style="font-size:0.95rem; color:#334155; margin-bottom:8px;">工数が劇的に減るから ──</p>
+          <p style="font-size:1.4rem; font-weight:800; color:#4f46e5; margin:0;">同じ時間で、提案できる自治体数が<span style="color:#059669;">2倍</span>に。</p>
         </div>
       </div>
     </div>
@@ -1099,7 +1317,36 @@
     </div>
 
     <div style="text-align:center;">
-      <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:16px 36px;">資料を請求する</a>
+      <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:16px 36px;">特別キャンペーンで予約する</a>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING FEATURES -->
+<section class="upcoming">
+  <div class="upcoming-inner">
+    <h2 class="section-title">今後追加予定の機能</h2>
+    <p class="section-sub">レコメンド・サマライズ・CRM管理の3つのコア機能に加え、<br>自治体営業をさらに加速させる機能を順次リリースしていきます。</p>
+
+    <div class="upcoming-grid">
+      <div class="upcoming-card">
+        <span class="upcoming-badge">開発中</span>
+        <div class="upcoming-icon">📬</div>
+        <h3>提案メール自動生成</h3>
+        <p>レコメンド結果とサマライズ情報をもとに、自治体の担当部局向けの提案メールをAIが自動で生成。提案書作成の工数を大幅に削減します。</p>
+      </div>
+      <div class="upcoming-card">
+        <span class="upcoming-badge">開発中</span>
+        <div class="upcoming-icon">📨</div>
+        <h3>提案メール一括配信</h3>
+        <p>生成した提案メールを、該当する自治体の担当部局へ一括で配信。FromToが築いてきた自治体との信頼関係を活かした独自の配信チャネルです。</p>
+      </div>
+      <div class="upcoming-card">
+        <span class="upcoming-badge">開発中</span>
+        <div class="upcoming-icon">🤖</div>
+        <h3>AIエージェント分析</h3>
+        <p>自治体の予算書・総合計画・議会議事録をAIエージェントが深掘り分析。営業戦略に必要な情報を対話形式で取得できます。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1115,29 +1362,24 @@
         <tr>
           <th>比較項目</th>
           <th class="col-hl">47Connect</th>
-          <th>他社DBサービス</th>
-          <th>自治体コンサル・顧問</th>
-          <th>自力営業</th>
+          <th>他社DB</th>
+          <th>コンサル</th>
+          <th>自力</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>対応自治体数</td><td class="col-hl"><strong>全国対応</strong></td><td><strong>全国対応</strong></td><td><strong>3〜5自治体</strong></td><td><strong>担当者次第</strong></td></tr>
-        <tr><td>AIレコメンド（公開情報ベース）</td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
-        <tr class="row-hl"><td><strong>一次情報ベースのスコアリング</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
-        <tr class="row-hl"><td><strong>自治体プロファイル自動サマライズ</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
-        <tr><td>提案書AI自動生成</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="partial">△</span></td><td><span class="cross">×</span></td></tr>
-        <tr><td>自治体への到達力</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td></tr>
-        <tr><td>開封・閲覧追跡</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
-        <tr><td>CRM（自治体営業管理）</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="partial">△</span></td></tr>
-        <tr><td>企業版ふるさと納税連携</td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="partial">△</span></td><td><span class="partial">△</span></td></tr>
-        <tr><td>スケーラビリティ</td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
-        <tr><td>属人性リスク</td><td class="col-hl"><strong>なし</strong></td><td><strong>なし</strong></td><td><strong>高い</strong></td><td><strong>高い</strong></td></tr>
+        <tr><td>全国1,741自治体カバー</td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>AIレコメンド</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>一次情報スコアリング</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>自治体サマライズ</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>CRM・営業管理</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr><td>属人性リスク</td><td class="col-hl"><strong>なし</strong></td><td><strong>なし</strong></td><td><strong>高</strong></td><td><strong>高</strong></td></tr>
       </tbody>
     </table>
     </div>
     <p style="font-size:0.8rem; color:#64748b; text-align:left; margin-bottom:24px;">※ 元首長・元議員・自治体コンサルなど、依頼先の経歴・専門性により大きく異なります。</p>
     <div class="compare-note">
-      <p>LobbyAIでも自治体は見つかる。しかし、公開情報だけのレコメンドと、<strong>115自治体との実取引で得た非公開一次情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>自治体情報のサマライズからCRM管理まで、自治体営業の意思決定基盤を一気通貫で提供</strong>します。</p>
+      <p>他社DBでも自治体は見つかる。しかし、公開情報だけのレコメンドと、<strong>実取引で得た非公開一次情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理の3つを一気通貫で提供</strong>。自治体営業の意思決定基盤をワンストップで。</p>
     </div>
   </div>
 </section>
@@ -1156,15 +1398,15 @@
 
         <div class="why-primary-points">
           <div class="why-primary-point">
-            <h4>📊 他社では取れない「一次情報」</h4>
-            <p>公開情報だけでは、自治体の実態は見えません。<strong>担当者の関心度、決裁ルート、過去の受入実績と反応</strong>──こうした情報は、直接の取引関係がなければ得られないものです。FromToはこの一次情報を体系的に蓄積し、AIスコアリングの精度に反映しています。</p>
+            <h4>📊 他社では取れない「一次情報」がレコメンド精度を決定づける</h4>
+            <p>公開情報だけでは、自治体の実態は見えません。<strong>担当者の関心度、決裁ルート、過去の受入実績と反応</strong>──こうした情報は、直接の取引関係がなければ得られないものです。FromToはこの一次情報を体系的に蓄積し、AIレコメンドのスコアリング精度に反映しています。</p>
           </div>
           <div class="why-primary-point">
-            <h4>📬 提案が届く「独自パイプ」</h4>
-            <p>一般的な営業メールの開封率は10%未満。しかし、FromToが自治体と築いてきた信頼関係を通じた配信は、到達率において大きな優位性を持ちます。<strong>「FromToからの情報なら確認する」</strong>──この関係性こそが、企業の提案を届ける回路となります。</p>
+            <h4>🏛️ 自治体の「今」を正確にサマライズできる理由</h4>
+            <p>予算書の数字だけでは、自治体が何を求めているかはわかりません。FromToは実取引の中で得た<strong>担当課の本音・優先度・実際の課題感</strong>を把握しています。この知見があるからこそ、サマライズの精度が他社とは根本的に異なります。</p>
           </div>
         </div>
-        <span class="why-highlight" style="margin-top:20px;">→ 寄附仲介の実績に裏打ちされた、参入障壁の高い独自の強み</span>
+        <span class="why-highlight" style="margin-top:20px;">→ 寄附仲介の実績に裏打ちされた、レコメンド・サマライズの圧倒的な精度</span>
       </div>
 
       <!-- サブカード2つ -->
@@ -1255,44 +1497,52 @@
   </div>
 </section>
 
-<!-- S7: PRICING (非表示: サービス未リリースのため) -->
-<section class="pricing" style="display:none;">
+<!-- S7: PRICING -->
+<section class="pricing">
   <div class="pricing-inner">
-    <h2 class="section-title">事業規模に合わせて、2つのプランから選択。</h2>
-    <p class="section-sub">全機能にクレジット制を導入。AIアクションは使った分だけ。</p>
-    <div class="pricing-grid" style="margin-top:48px; max-width:800px; margin-left:auto; margin-right:auto;">
-      <!-- SPOT -->
-      <div class="plan-card">
-        <h3 class="plan-name">スポット</h3>
-        <div><span class="plan-amount">25万円</span><span class="plan-unit">/月（税抜）</span></div>
-        <p class="plan-desc">1〜3ヶ月の短期利用・予算サイクルの集中利用に</p>
-        <ul class="plan-features">
-          <li><span class="icon">✓</span> 自治体レコメンド（AIスコアリング）</li>
-          <li><span class="icon">✓</span> 自治体情報サマライズ</li>
-          <li><span class="icon">✓</span> 自治体CRM機能</li>
-          <li><span class="icon">✓</span> 逆引きリクエスト</li>
-          <li><span class="icon">✓</span> 担当部局への提案メール自動生成 <span class="plan-note">5cr/件</span></li>
-          <li><span class="icon">✓</span> 該当自治体へのメール一斉配信 <span class="plan-note">別途ご相談</span></li>
-          <li><span class="icon">✓</span> AIエージェントによる相談 <span class="plan-note">50cr/件</span></li>
-          <li><span class="icon">✓</span> AIクレジット <span class="plan-note">100cr/月</span></li>
-        </ul>
-        <a href="#contact" class="btn btn-outline-dark btn-full">スポットプランを始める</a>
-      </div>
-      <!-- ANNUAL LIGHT -->
+    <h2 class="section-title">料金プラン</h2>
+    <p class="section-sub">自治体の予算が本格決定する10月までが勝負。<br>今のうちに情報を仕入れ、提案準備を進めることで「入札前に選ばれる企業」になれます。</p>
+    <div class="pricing-grid" style="margin-top:48px; max-width:900px; margin-left:auto; margin-right:auto;">
+      <!-- ベータ版キャンペーン -->
       <div class="plan-card recommended">
-        <div class="plan-badge">おすすめ</div>
-        <h3 class="plan-name">年間ライト</h3>
-        <div><span class="plan-amount">10万円</span><span class="plan-unit">/月（税抜・年間契約）</span></div>
-        <p class="plan-desc">通年で自治体開拓を推進する企業に</p>
+        <div class="plan-badge">6/30まで限定</div>
+        <h3 class="plan-name">ベータ版キャンペーン</h3>
+        <div style="margin-bottom:8px;">
+          <span style="font-size:1rem; color:#94a3b8; text-decoration:line-through;">通常 月額20万円 × 6ヶ月 = 120万円</span>
+        </div>
+        <div><span class="plan-amount" style="color:#DC2626;">50万円</span><span class="plan-unit">/半年（税抜）</span></div>
+        <div style="background:#FEF2F2; color:#DC2626; font-weight:700; font-size:0.9rem; padding:6px 16px; border-radius:20px; display:inline-block; margin:8px 0 16px;">58%OFF キャンペーン</div>
+        <p class="plan-desc">2026年7月〜12月のベータ版運用期間。予算が本格決定する10月までに情報を仕入れ、提案準備を進められます。</p>
         <ul class="plan-features">
-          <li><span class="icon">✓</span> スポットの全機能</li>
-          <li><span class="icon">✓</span> <strong>AIクレジット2倍</strong> <span class="plan-note">200cr/月</span></li>
-          <li><span class="icon">✓</span> オンボーディング支援 <span class="plan-note">1〜3ヶ月</span></li>
-          <li><span class="icon">✓</span> 月2回のフォローミーティング</li>
-          <li><span class="icon">✓</span> 仲介手数料ディスカウント <span class="plan-note">18%→10%</span></li>
-          <li><span class="icon">✓</span> 人材派遣型寄附も値引き</li>
+          <li><span class="icon">✓</span> <strong>自治体AIレコメンド（4層スコアリング）</strong></li>
+          <li><span class="icon">✓</span> <strong>自治体情報サマライズ</strong></li>
+          <li><span class="icon">✓</span> <strong>自治体CRM管理</strong></li>
+          <li><span class="icon">✓</span> オンボーディング支援</li>
+          <li><span class="icon">✓</span> 月次フォローミーティング</li>
+          <li><span class="icon">✓</span> ご要望を製品に優先反映</li>
         </ul>
-        <a href="#contact" class="btn btn-primary btn-full">年間ライトを始める</a>
+        <p style="font-size:0.78rem; color:#94a3b8; margin-top:8px; text-align:left;">※ 提案メール生成・一括配信・AIエージェント分析は今後順次追加</p>
+        <a href="#contact" class="btn btn-primary btn-full">キャンペーン価格で申し込む</a>
+        <p style="font-size:0.8rem; color:#94a3b8; margin-top:12px;">申込締切：2026年6月30日 ／ 先行20社限定</p>
+      </div>
+      <!-- 本番ローンチ後 -->
+      <div class="plan-card">
+        <h3 class="plan-name">本番ローンチ後</h3>
+        <div style="margin-bottom:8px;">
+          <span style="font-size:0.85rem; color:#64748b;">2027年1月〜</span>
+        </div>
+        <div><span class="plan-amount">要お問い合わせ</span></div>
+        <div style="background:#F0FDF4; color:#059669; font-weight:700; font-size:0.9rem; padding:6px 16px; border-radius:20px; display:inline-block; margin:8px 0 16px;">ベータ版利用者はキャンペーン大幅割引</div>
+        <p class="plan-desc">本番ローンチ後の正式料金プラン。ベータ版からの継続利用で大幅割引を適用。</p>
+        <ul class="plan-features">
+          <li><span class="icon">✓</span> レコメンド・サマライズ・CRM管理</li>
+          <li><span class="icon">✓</span> 提案メール生成・一括配信</li>
+          <li><span class="icon">✓</span> AIエージェント分析</li>
+          <li><span class="icon">✓</span> <strong>ベータ版利用者は大幅割引で継続</strong></li>
+          <li><span class="icon">✓</span> 年間契約・スポット契約を選択可能</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline-dark btn-full">料金について問い合わせる</a>
+        <p style="font-size:0.8rem; color:#94a3b8; margin-top:12px;">ベータ版からの移行で自動適用</p>
       </div>
     </div>
   </div>
@@ -1326,7 +1576,7 @@
       </div>
     </div>
     <div style="text-align:center;">
-      <a href="#contact" class="btn btn-primary">資料を請求する</a>
+      <a href="#contact" class="btn btn-primary">特別キャンペーンで予約する</a>
     </div>
   </div>
 </section>
@@ -1354,7 +1604,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>他社DBサービスとの違いは？</span><span class="faq-toggle">+</span></div>
-        <div class="faq-a">LobbyAIは公開情報に基づく分析ツールです。47Connectは公開情報に加えて115自治体との実取引で得た非公開一次情報をスコアリングに活用し、レコメンド精度が根本的に異なります。さらに自治体情報のサマライズ、CRM管理まで自治体営業の意思決定基盤を一気通貫で提供します。</div>
+        <div class="faq-a">他社DBは公開情報に基づく分析ツールです。47Connectは公開情報に加えて115自治体との実取引で得た非公開一次情報をスコアリングに活用し、レコメンド精度が根本的に異なります。さらに自治体情報のサマライズ、CRM管理まで自治体営業の意思決定基盤を一気通貫で提供します。</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>実際に自治体にアプローチしたい場合は？</span><span class="faq-toggle">+</span></div>
@@ -1380,22 +1630,44 @@
   </div>
 </section>
 
+<!-- EARLY-BIRD: 有償POC -->
+<section class="early-bird">
+  <div class="early-bird-inner">
+    <span class="early-bird-badge">先行20社限定</span>
+    <h2>7月先行導入プログラム受付中</h2>
+    <p class="sub">自治体の予算が本格決定する10月までが勝負。7月から情報収集を始めれば、提案準備で先手を打てます。<br>導入企業様のご要望を優先的に製品へ反映いたします。</p>
+    <div class="early-bird-box">
+      <p style="font-size:1rem; color:#c7d2fe; margin-bottom:8px;">ベータ版キャンペーン価格（6月末まで）</p>
+      <div class="price-compare">
+        <span class="price-old">月額20万円 × 6ヶ月 = 120万円</span>
+        <span class="price-arrow">→</span>
+        <span class="price-new">50<span class="tax">万円/半年（税抜）</span></span>
+      </div>
+      <p class="price-detail">利用期間：<strong>2026年7月〜12月</strong>／オンボーディング・月次フォロー付き</p>
+      <p class="price-detail" style="margin-top:8px;">本番ローンチ後（2027年1月〜）も<strong>キャンペーン大幅割引</strong>で継続利用可能</p>
+    </div>
+    <div class="early-bird-conditions">
+      <span class="eb-tag"><strong>全機能</strong>　利用可能</span>
+      <span class="eb-tag"><strong>58%OFF</strong>　50万円/半年</span>
+      <span class="eb-tag"><strong>枠数</strong>　先行20社限定</span>
+      <span class="eb-tag"><strong>締切</strong>　2026年6月30日</span>
+      <span class="eb-tag"><strong>特典</strong>　要望を製品に優先反映</span>
+    </div>
+    <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:16px 48px;">キャンペーン価格で申し込む</a>
+    <p class="early-bird-note">※ 枠に限りがございますのでお早めにどうぞ。</p>
+  </div>
+</section>
+
 <!-- S10: CTA -->
 <section id="contact" class="cta-section">
   <div class="cta-inner">
-    <h2 class="section-title">自治体営業の未来を、今日から変える。</h2>
-    <div class="cta-options" style="margin-top:40px; max-width:700px; margin-left:auto; margin-right:auto;">
+    <h2 class="section-title">まずはお気軽にご相談ください。</h2>
+    <div class="cta-options" style="margin-top:40px; max-width:500px; margin-left:auto; margin-right:auto;">
       <div class="cta-card hl">
-        <div class="cta-icon">📄</div>
-        <h3>資料請求</h3>
-        <p>サービス概要・機能・活用事例をまとめた資料をお届けします</p>
-        <a href="mailto:info@fromto.co.jp?subject=47Connect資料請求" class="btn btn-primary">資料を請求する</a>
-      </div>
-      <div class="cta-card">
         <div class="cta-icon">🚀</div>
-        <h3>利用予約</h3>
-        <p>サービス開始時に優先的にご案内いたします</p>
-        <a href="mailto:info@fromto.co.jp?subject=47Connect利用予約" class="btn btn-outline-dark">利用予約を申し込む</a>
+        <h3>先行導入（20社限定）</h3>
+        <p>6月末までのお申し込みで58%OFFキャンペーン。7月から全機能をご利用いただけます。</p>
+        <a href="mailto:info@fromto.co.jp?subject=47Connectキャンペーン申込" class="btn btn-primary">キャンペーン価格で申し込む</a>
       </div>
     </div>
     <div class="form-section">
@@ -1430,8 +1702,9 @@
             <label>ご興味のある内容</label>
             <select>
               <option value="">選択してください</option>
-              <option>資料請求</option>
+              <option>キャンペーン申込（6月末まで）</option>
               <option>利用予約</option>
+              <option>料金について</option>
               <option>その他ご相談</option>
             </select>
           </div>
