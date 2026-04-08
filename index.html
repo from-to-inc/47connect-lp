@@ -300,7 +300,6 @@
     .profile { background: #fff; padding: 80px 24px; }
     .profile-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
     .profile-content {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
       margin-top: 48px;
     }
     .profile-mockup {
@@ -326,18 +325,44 @@
     .profile-row .pr-label { color: #64748b; width: 120px; flex-shrink: 0; font-weight: 600; }
     .profile-row .pr-value { color: #1e293b; }
     .profile-comparison { text-align: left; }
-    .profile-comparison h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
-    .pc-item {
-      background: #f8fafc; border-radius: 8px; padding: 20px;
-      margin-bottom: 16px; border: 1px solid #e2e8f0;
+    .profile-comparison h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; text-align: center; }
+    .profile-ba-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 0;
     }
-    .pc-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
-    .pc-item p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+    .pc-item {
+      border-radius: 16px; padding: 28px 24px; text-align: center;
+    }
+    .pc-item.pc-before {
+      background: #FEF2F2; border: 2px solid #FECACA;
+    }
+    .pc-item.pc-after {
+      background: #F0FDF4; border: 2px solid #BBF7D0;
+    }
+    .pc-item h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; }
+    .pc-before h4 { color: #DC2626; }
+    .pc-after h4 { color: #059669; }
+    .pc-item p { font-size: 0.9rem; color: #64748b; line-height: 1.7; }
     .pc-item .pc-time {
-      font-size: 1.2rem; font-weight: 800; margin-top: 8px;
+      font-size: 1.4rem; font-weight: 900; margin-top: 16px;
     }
     .pc-time.before { color: #DC2626; }
     .pc-time.after {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .profile-result-hero {
+      margin-top: 40px; padding: 40px 32px; text-align: center;
+      background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      border-radius: 20px; border: 2px solid #c7d2fe;
+    }
+    .profile-result-hero .result-sub {
+      font-size: 1rem; color: #475569; margin-bottom: 8px;
+    }
+    .profile-result-hero .result-main {
+      font-size: 2rem; font-weight: 900; color: #1e293b; margin: 0; line-height: 1.4;
+    }
+    .profile-result-hero .result-num {
+      font-size: 3rem;
       background: linear-gradient(135deg, #6366F1, #10B981);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
@@ -927,6 +952,9 @@
       .walls-compare { grid-template-columns: 1fr; }
       .scoring-grid { grid-template-columns: repeat(2,1fr); }
       .profile-content { grid-template-columns: 1fr; }
+      .profile-ba-grid { grid-template-columns: 1fr; }
+      .profile-result-hero .result-main { font-size: 1.4rem; }
+      .profile-result-hero .result-num { font-size: 2.2rem; }
       .step3-card { grid-template-columns: 60px 1fr; }
       .step3-visual { display: none; }
       .step3-visual-screenshot { display: block; grid-column: 1 / -1; padding: 12px 0; }
@@ -1160,27 +1188,29 @@
     <h2 class="section-title">見つけた自治体の全貌を、1画面でサマライズ</h2>
     <p class="section-sub">数十の自治体HPを巡回する必要はもうありません</p>
 
-    <div class="profile-content">
-      <div class="profile-mockup" style="border:none; background:none; overflow:visible;">
-        <img src="images/image.png" alt="自治体プロファイル サマライズ画面" style="width:100%; border-radius:12px; box-shadow:0 8px 32px rgba(99,102,241,0.15); border:1px solid #e2e8f0;">
+    <!-- Before / After 横並び -->
+    <div class="profile-ba-grid" style="margin-top:48px;">
+      <div class="pc-item pc-before">
+        <h4>❌ Before：従来の情報収集</h4>
+        <p>自治体HP → 予算書PDF → 総合計画 → 議事録……<br>数十ページの資料を読み込んで整理</p>
+        <div class="pc-time before">1自治体あたり 2〜3週間</div>
       </div>
-      <div class="profile-comparison">
-        <h3>情報収集の時間を圧倒的に短縮</h3>
-        <div class="pc-item">
-          <h4>❌ 従来の情報収集</h4>
-          <p>自治体HP → 予算書PDF → 総合計画 → 議事録……<br>数十ページの資料を読み込んで整理</p>
-          <div class="pc-time before">1自治体あたり 2〜3週間</div>
-        </div>
-        <div class="pc-item">
-          <h4>✅ 47Connectのサマライズ</h4>
-          <p>AIが自動で構造化・要約。<br>予算・計画・首長方針・担当課が1画面に</p>
-          <div class="pc-time after">1自治体あたり 30秒で全体像を把握</div>
-        </div>
-        <div style="margin-top:24px; background:linear-gradient(135deg,#EEF2FF,#F0FDF4); border-radius:12px; padding:20px 24px; text-align:center;">
-          <p style="font-size:0.95rem; color:#334155; margin-bottom:8px;">工数が劇的に減るから ──</p>
-          <p style="font-size:1.4rem; font-weight:800; color:#4f46e5; margin:0;">同じ時間で、提案できる自治体数が<span style="color:#059669;">2倍</span>に。</p>
-        </div>
+      <div class="pc-item pc-after">
+        <h4>✅ After：47Connectのサマライズ</h4>
+        <p>AIが自動で構造化・要約。<br>予算・計画・首長方針・担当課が1画面に</p>
+        <div class="pc-time after">1自治体あたり 30秒で全体像を把握</div>
       </div>
+    </div>
+
+    <!-- スクリーンショット画像 -->
+    <div style="margin-top:40px;">
+      <img src="images/image.png" alt="自治体プロファイル サマライズ画面" style="width:100%; max-width:900px; border-radius:16px; box-shadow:0 12px 40px rgba(99,102,241,0.18); border:1px solid #e2e8f0;">
+    </div>
+
+    <!-- 提案数2倍メッセージ（大きくドン） -->
+    <div class="profile-result-hero">
+      <p class="result-sub">工数が劇的に減るから ──</p>
+      <p class="result-main">同じ時間で、提案できる自治体数が<span class="result-num">2倍</span>に。</p>
     </div>
   </div>
 </section>
