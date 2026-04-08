@@ -953,6 +953,8 @@
       .scoring-grid { grid-template-columns: repeat(2,1fr); }
       .profile-content { grid-template-columns: 1fr; }
       .profile-ba-grid { grid-template-columns: 1fr; }
+      .profile-inner [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+      .profile-inner [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
       .profile-result-hero .result-main { font-size: 1.4rem; }
       .profile-result-hero .result-num { font-size: 2.2rem; }
       .step3-card { grid-template-columns: 60px 1fr; }
@@ -1182,34 +1184,86 @@
   </div>
 </section>
 
-<!-- S2.7: PROFILE SUMMARY -->
+<!-- S2.7: BEFORE / AFTER -->
 <section class="profile">
   <div class="profile-inner">
-    <h2 class="section-title">見つけた自治体の全貌を、1画面でサマライズ</h2>
-    <p class="section-sub">数十の自治体HPを巡回する必要はもうありません</p>
+    <h2 class="section-title">自治体営業の「探す・調べる」を、AIが一瞬で終わらせる</h2>
+    <p class="section-sub">ターゲット選定から自治体理解まで。1ヶ月かかっていた準備工数が、わずか30分に。</p>
 
     <!-- Before / After 横並び -->
     <div class="profile-ba-grid" style="margin-top:48px;">
       <div class="pc-item pc-before">
-        <h4>❌ Before：従来の情報収集</h4>
-        <p>自治体HP → 予算書PDF → 総合計画 → 議事録……<br>数十ページの資料を読み込んで整理</p>
-        <div class="pc-time before">1自治体あたり 2〜3週間</div>
+        <h4>❌ Before：従来の自治体営業準備</h4>
+        <div style="text-align:left; margin:16px 0;">
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+            <span style="background:#FEE2E2; color:#DC2626; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px;">STEP1</span>
+            <span style="font-size:0.9rem; color:#475569;">ターゲット自治体の選定</span>
+            <span style="margin-left:auto; font-weight:700; color:#DC2626; font-size:0.85rem;">2〜3週間</span>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+            <span style="background:#FEE2E2; color:#DC2626; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px;">STEP2</span>
+            <span style="font-size:0.9rem; color:#475569;">自治体ごとの情報収集・分析</span>
+            <span style="margin-left:auto; font-weight:700; color:#DC2626; font-size:0.85rem;">2〜3週間</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem; color:#64748b;">1,741自治体の中から候補を手作業でリサーチ。<br>予算書・総合計画・議事録を1つずつ読み込み……</p>
+        <div class="pc-time before" style="font-size:1.6rem; margin-top:20px;">合計 約1ヶ月</div>
       </div>
       <div class="pc-item pc-after">
-        <h4>✅ After：47Connectのサマライズ</h4>
-        <p>AIが自動で構造化・要約。<br>予算・計画・首長方針・担当課が1画面に</p>
-        <div class="pc-time after">1自治体あたり 30秒で全体像を把握</div>
+        <h4>✅ After：47Connectなら</h4>
+        <div style="text-align:left; margin:16px 0;">
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+            <span style="background:#D1FAE5; color:#059669; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px;">STEP1</span>
+            <span style="font-size:0.9rem; color:#475569;">AIレコメンドで自治体を自動選定</span>
+            <span style="margin-left:auto; font-weight:700; color:#059669; font-size:0.85rem;">5分</span>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+            <span style="background:#D1FAE5; color:#059669; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px;">STEP2</span>
+            <span style="font-size:0.9rem; color:#475569;">AIサマライズで全貌を即座に把握</span>
+            <span style="margin-left:auto; font-weight:700; color:#059669; font-size:0.85rem;">25分</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem; color:#64748b;">企業情報を登録するだけでAIが最適な自治体を選定。<br>各自治体の予算・方針・担当課を1画面でサマライズ。</p>
+        <div class="pc-time after" style="font-size:1.6rem; margin-top:20px;">合計 約30分</div>
       </div>
     </div>
 
-    <!-- スクリーンショット画像 -->
-    <div style="margin-top:40px;">
-      <img src="images/image.png" alt="自治体プロファイル サマライズ画面" style="width:100%; max-width:900px; border-radius:16px; box-shadow:0 12px 40px rgba(99,102,241,0.18); border:1px solid #e2e8f0;">
+    <!-- 工数コスト削減の訴求 -->
+    <div style="margin-top:32px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:800px; margin-left:auto; margin-right:auto;">
+      <div style="background:#f8fafc; border-radius:12px; padding:24px 16px; text-align:center; border:1px solid #e2e8f0;">
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:4px;">削減工数</div>
+        <div style="font-size:1.8rem; font-weight:900; color:#DC2626;">99.8<span style="font-size:1rem;">%</span></div>
+        <div style="font-size:0.75rem; color:#94a3b8;">1ヶ月 → 30分</div>
+      </div>
+      <div style="background:#f8fafc; border-radius:12px; padding:24px 16px; text-align:center; border:1px solid #e2e8f0;">
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:4px;">削減コスト（年収600万円換算）</div>
+        <div style="font-size:1.8rem; font-weight:900; color:#4f46e5;">約50<span style="font-size:1rem;">万円</span></div>
+        <div style="font-size:0.75rem; color:#94a3b8;">1サイクルあたり</div>
+      </div>
+      <div style="background:#f8fafc; border-radius:12px; padding:24px 16px; text-align:center; border:1px solid #e2e8f0;">
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:4px;">年間削減効果</div>
+        <div style="font-size:1.8rem; font-weight:900; color:#059669;">数百<span style="font-size:1rem;">万円〜</span></div>
+        <div style="font-size:0.75rem; color:#94a3b8;">複数サイクル実施時</div>
+      </div>
+    </div>
+
+    <!-- スクリーンショット画像（2枚：レコメンド + サマライズ） -->
+    <div style="margin-top:48px; display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:1000px; margin-left:auto; margin-right:auto;">
+      <div style="text-align:center;">
+        <p style="font-size:0.85rem; font-weight:700; color:#6366F1; margin-bottom:12px;">🎯 AIレコメンド画面</p>
+        <div style="background:#f8fafc; border-radius:16px; padding:24px; border:1px solid #e2e8f0; min-height:200px; display:flex; align-items:center; justify-content:center;">
+          <p style="color:#94a3b8; font-size:0.9rem;">画像準備中</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:0.85rem; font-weight:700; color:#10B981; margin-bottom:12px;">📋 AIサマライズ画面</p>
+        <img src="images/image.png" alt="自治体AIサマライズ画面" style="width:100%; border-radius:16px; box-shadow:0 8px 32px rgba(99,102,241,0.15); border:1px solid #e2e8f0;">
+      </div>
     </div>
 
     <!-- 提案数2倍メッセージ（大きくドン） -->
     <div class="profile-result-hero">
-      <p class="result-sub">工数が劇的に減るから ──</p>
+      <p class="result-sub">営業人材1人分の工数が30分で完了するから ──</p>
       <p class="result-main">同じ時間で、提案できる自治体数が<span class="result-num">2倍</span>に。</p>
     </div>
   </div>
