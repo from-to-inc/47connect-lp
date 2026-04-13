@@ -1004,6 +1004,18 @@
       }
       /* ヒーローサブテキストのbr非表示 */
       .hero-sub br { display: none; }
+      /* ヒーロー: テキスト→画像→CTAの順に並べ替え */
+      .hero-inner {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .hero-content {
+        display: contents !important;
+      }
+      .hero-title { order: 1; }
+      .hero-sub { order: 2; }
+      .hero-visual { order: 3 !important; margin-top: 24px; margin-bottom: 24px; }
+      .hero-cta { order: 4 !important; }
       /* ヒーローCTAを全幅に */
       .hero-cta .btn-primary {
         width: 100% !important;
