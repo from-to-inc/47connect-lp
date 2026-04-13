@@ -990,7 +990,27 @@
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-title { font-size: 1.6rem; }
-      .hero-visual { display: none; }
+      /* ヒーロー画像: スマホでもテキスト下に表示 */
+      .hero-visual {
+        display: block !important;
+        margin-top: 32px;
+      }
+      .hero-visual img {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+      }
+      /* ヒーローサブテキストのbr非表示 */
+      .hero-sub br { display: none; }
+      /* ヒーローCTAを全幅に */
+      .hero-cta .btn-primary {
+        width: 100% !important;
+        padding: 16px 20px !important;
+        font-size: 1rem !important;
+        text-align: center;
+      }
       .walls-grid { grid-template-columns: 1fr; }
       .wall-card.wall-primary { transform: none; }
       .walls-compare { grid-template-columns: 1fr; }
@@ -1059,16 +1079,36 @@
       .hero { padding: 100px 16px 60px !important; }
       .hero-sub { font-size: 0.9rem; }
 
-      /* === 比較表スクロール === */
+      /* === 比較表スクロール+ヒント === */
       .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
       .compare-table { min-width: 500px; }
+      .compare-table-wrap::after {
+        content: '← スクロールで全体を表示 →';
+        display: block; text-align: center;
+        font-size: 0.75rem; color: #94a3b8; padding: 8px 0 0;
+      }
+
+      /* === キャンペーンボックス内フォント調整 === */
+      .pricing [style*="font-size:2rem"] { font-size: 1.5rem !important; }
+      .pricing [style*="font-size:1.4rem"] { font-size: 1.1rem !important; }
 
       /* === スクリーンショット画像 === */
       .profile-screenshots img { height: auto !important; object-fit: contain !important; }
 
-      /* === ヘッダー === */
+      /* === フォント可読性（最小14px確保） === */
+      .ba-step-text { font-size: 0.85rem !important; }
+      .ba-step-time { font-size: 0.85rem !important; }
+      .proc-step-detail { font-size: 0.78rem !important; }
+
+      /* === ヘッダー（タップターゲット44px確保） === */
       .header-logo { font-size: 1.1rem; }
-      .header-cta .btn { padding: 6px 14px !important; font-size: 0.75rem !important; }
+      .header-cta .btn {
+        padding: 10px 16px !important;
+        font-size: 0.78rem !important;
+        min-height: 44px;
+        display: inline-flex !important;
+        align-items: center;
+      }
 
       /* === ベータ版キャンペーンボックス === */
       .pricing [style*="padding:48px 40px"] { padding: 32px 20px !important; }
