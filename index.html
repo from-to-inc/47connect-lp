@@ -1052,14 +1052,15 @@
       .proc-left, .proc-right { padding: 16px 12px; }
       .proc-left-steps, .proc-right-steps { flex-direction: column; gap: 4px; }
 
-      /* ステップを3列grid: [番号] [アイコン] [タイトル+説明] */
+      /* ステップを3列grid: [番号] [アイコン] [タイトル+説明] 中央寄せ */
       .proc-step {
         display: grid !important;
-        grid-template-columns: 36px 36px 1fr !important;
+        grid-template-columns: 36px 36px auto !important;
         grid-template-rows: auto auto !important;
         gap: 0 12px !important;
         align-items: center !important;
         text-align: left !important;
+        justify-content: center !important;
         padding: 10px 0;
       }
       /* 番号: 左 */
