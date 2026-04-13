@@ -14,136 +14,853 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans JP', 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-      color: #0a0a0a;
-      line-height: 1.8;
-      font-weight: 400;
-      font-size: 1rem;
+      color: #1e293b;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      background: #fafafa;
     }
     img { max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
+    a { text-decoration: none; }
 
     /* ===== COMMON ===== */
     .section-title {
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: #0a0a0a;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e293b;
       text-align: center;
       margin-bottom: 16px;
-      letter-spacing: -0.04em;
-      line-height: 1.3;
+      letter-spacing: -0.02em;
     }
     .section-sub {
-      font-size: 1rem;
-      color: #6b7280;
+      font-size: 1.05rem;
+      color: #64748b;
       text-align: center;
       margin-bottom: 48px;
-      line-height: 1.8;
-    }
-    .section-divider {
-      border: none;
-      border-top: 2px solid #e5e5e5;
-      margin: 0;
+      line-height: 1.7;
     }
     .btn {
       display: inline-block;
       padding: 16px 32px;
-      border-radius: 0;
+      border-radius: 10px;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      border: 2px solid #0a0a0a;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
       letter-spacing: 0.02em;
     }
     .btn-primary {
-      background: #0a0a0a;
-      color: #fafafa;
-      border-color: #0a0a0a;
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(16,185,129,0.25);
     }
-    .btn-primary:hover { background: #10B981; border-color: #10B981; }
-    .btn-outline-dark {
-      background: transparent;
-      color: #0a0a0a;
-      border: 2px solid #0a0a0a;
-    }
-    .btn-outline-dark:hover { background: #10B981; color: #fafafa; border-color: #10B981; }
+    .btn-primary:hover { background: linear-gradient(135deg, #059669, #047857); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,185,129,0.35); }
+    .btn-secondary { background: #fff; color: #6366F1; border: 2px solid #6366F1; }
+    .btn-secondary:hover { background: #EEF2FF; }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .btn-outline-dark { background: #fff; color: #334155; border: 2px solid #e2e8f0; }
+    .btn-outline-dark:hover { border-color: #6366F1; color: #6366F1; }
     .btn-full { width: 100%; text-align: center; }
 
     /* ===== HEADER ===== */
     .header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(250,250,250,0.95); backdrop-filter: blur(8px);
-      border-bottom: 2px solid #e5e5e5;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e2e8f0;
       padding: 12px 24px;
     }
     .header-inner {
-      max-width: 960px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .header-logo { font-size: 1.3rem; font-weight: 900; color: #0a0a0a; letter-spacing: -0.02em; }
+    .header-logo { font-size: 1.3rem; font-weight: 900; color: #6366F1; letter-spacing: -0.02em; }
     .header-logo span { color: #10B981; }
     .header-cta .btn { padding: 8px 20px; font-size: 0.85rem; }
 
     /* ===== S1: HERO ===== */
     .hero {
-      background: #fafafa;
-      padding: 160px 24px 120px;
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 50%, #fff 100%);
+      padding: 140px 24px 100px;
       position: relative;
     }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 50%, rgba(16,185,129,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
     .hero-inner {
-      max-width: 960px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
     }
+    .hero-inner { position: relative; z-index: 1; }
     .hero-title {
-      font-size: 2.8rem; font-weight: 900; line-height: 1.35; color: #0a0a0a; margin-bottom: 24px;
-      letter-spacing: -0.04em;
+      font-size: 2.5rem; font-weight: 900; line-height: 1.45; color: #1e293b; margin-bottom: 24px;
+      letter-spacing: -0.03em;
     }
     .hero-accent {
-      color: #10B981;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-sub { font-size: 1rem; color: #6b7280; line-height: 1.8; margin-bottom: 32px; }
+    .hero-sub { font-size: 1.1rem; color: #475569; line-height: 1.8; margin-bottom: 24px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .badge {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 24px;
+      padding: 8px 16px; font-size: 0.85rem; color: #334155; font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* ===== S2: THREE WALLS ===== */
-    .walls { background: #fafafa; padding: 120px 24px; }
-    .walls-inner { max-width: 960px; margin: 0 auto; text-align: center; }
-    .walls-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    .wall-item {
-      text-align: left; padding: 32px 0;
-      border-top: 2px solid #e5e5e5;
+    /* Dashboard Mockup */
+    .mockup {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 25px 80px rgba(99,102,241,0.15), 0 8px 24px rgba(0,0,0,0.08);
+      overflow: hidden; transform: perspective(1000px) rotateY(-2deg);
+      transition: transform 0.4s;
     }
-    .wall-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
-    .wall-en { font-size: 0.85rem; color: #10B981; font-weight: 500; }
-    .wall-desc { font-size: 1rem; color: #6b7280; line-height: 1.8; margin-bottom: 12px; }
+    .mockup:hover { transform: perspective(1000px) rotateY(0deg); }
+    .mockup-bar {
+      background: #1e293b; padding: 12px 16px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ef4444; } .dot-y { background: #f59e0b; } .dot-g { background: #22c55e; }
+    .mockup-label { color: #94a3b8; font-size: 0.75rem; margin-left: 8px; }
+    .mockup-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .mockup-card {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 12px 16px; display: flex; align-items: flex-start; gap: 12px;
+    }
+    .mockup-score {
+      background: linear-gradient(135deg, #6366F1, #10B981); color: #fff;
+      font-weight: 700; font-size: 1.1rem; width: 40px; height: 40px;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .mockup-detail { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .mockup-city { font-weight: 700; font-size: 0.95rem; color: #1e293b; }
+    .mockup-reasons { display: flex; flex-wrap: wrap; gap: 4px; }
+    .match-tag {
+      font-size: 0.65rem; font-weight: 600; padding: 2px 6px; border-radius: 4px;
+    }
+    .match-tag.policy { background: #EEF2FF; color: #6366F1; }
+    .match-tag.local { background: #F0FDF4; color: #059669; }
+    .mockup-summary { font-size: 0.7rem; color: #64748b; }
+
+    /* ===== S2: THREE WALLS ===== */
+    .walls { background: #f8fafc; padding: 80px 24px; }
+    .walls-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .walls-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .wall-card {
+      background: #fff; border-radius: 16px; padding: 36px 28px; text-align: left;
+      border: 1px solid #e2e8f0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .wall-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .wall-card.wall-primary {
+      border: 2px solid #6366F1; background: #EEF2FF;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.12);
+    }
+    .wall-card.wall-secondary { opacity: 0.85; }
+    .wall-card.wall-secondary .wall-desc { font-size: 0.9rem; }
+    .wall-icon { font-size: 2rem; margin-bottom: 16px; }
+    .wall-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+    .wall-en { font-size: 0.8rem; color: #6366F1; font-weight: 500; }
+    .wall-desc { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 12px; }
     .wall-stat {
-      color: #DC2626; font-size: 0.9rem; font-weight: 700;
-      padding: 8px 0; display: inline-block; margin-bottom: 12px;
+      background: #FEF2F2; color: #DC2626; font-size: 0.9rem; font-weight: 600;
+      padding: 8px 12px; border-radius: 6px; display: inline-block; margin-bottom: 12px;
     }
     .wall-quote {
-      font-size: 0.85rem; color: #6b7280; font-style: italic;
-      border-left: 3px solid #e5e5e5; padding-left: 12px; margin-top: 8px;
+      font-size: 0.85rem; color: #94a3b8; font-style: italic;
+      border-left: 3px solid #e2e8f0; padding-left: 12px; margin-top: 8px;
     }
 
-    /* ===== PROCUREMENT FLOW ===== */
-    .proc-flow { background: #fafafa; padding: 120px 24px; }
-    .proc-flow-inner { max-width: 960px; margin: 0 auto; text-align: center; }
+    /* Pain detail list */
+    .pain-detail-list {
+      margin-top: 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .pain-detail {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: #fff; border-radius: 10px; padding: 16px 18px;
+      border: 1px solid #e2e8f0;
+    }
+    .pain-num {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #fff;
+    }
+    .pain-num.step-do { background: #6366F1; }
+    .pain-num.step-fail { background: #DC2626; }
+    .pain-detail-text h4 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+    .pain-detail-text p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+    /* Pain → Solution compare */
+    .walls-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px;
+    }
+    .walls-compare-box {
+      border-radius: 16px; padding: 36px 32px;
+    }
+    .walls-compare-box.pain-box {
+      background: #FEF2F2; border: 2px solid #FECACA;
+    }
+    .walls-compare-box.solve-box {
+      background: #F0FDF4; border: 2px solid #BBF7D0;
+    }
+    .walls-compare-box h3 {
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 20px;
+    }
+    .pain-box h3 { color: #DC2626; }
+    .solve-box h3 { color: #059669; }
+    .solve-point {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: #fff; border-radius: 10px; padding: 16px 18px;
+      border: 1px solid #D1FAE5; margin-bottom: 12px;
+    }
+    .solve-point:last-child { margin-bottom: 0; }
+    .solve-icon {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #fff; background: #10B981;
+    }
+    .solve-point h4 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+    .solve-point p { font-size: 0.85rem; color: #475569; line-height: 1.6; }
+    .walls-result {
+      text-align: center; margin-top: 40px; padding: 32px;
+      background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      border-radius: 16px; border: 2px solid #c7d2fe;
+    }
+    .walls-result-title {
+      font-size: 1.6rem; font-weight: 900; margin-bottom: 8px;
+    }
+    .walls-result-accent {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .walls-result-sub { font-size: 1rem; color: #64748b; }
+
+    /* ===== S2.5: RECOMMEND ENGINE ===== */
+    .recommend {
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
+      padding: 80px 24px;
+    }
+    .recommend-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .scoring-layers {
+      background: #fff; border-radius: 12px; padding: 32px; margin-bottom: 40px;
+      border: 1px solid #e2e8f0; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .scoring-layer {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 20px; border-radius: 8px; margin-bottom: 8px;
+      font-size: 0.95rem; font-weight: 600; text-align: left;
+    }
+    .scoring-layer:last-child { margin-bottom: 0; }
+    .scoring-layer .layer-num {
+      width: 28px; height: 28px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 0.75rem;
+      font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .layer-1 { background: #f5f3ff; }
+    .layer-1 .layer-num { background: #8b5cf6; }
+    .layer-2 { background: #eef2ff; }
+    .layer-2 .layer-num { background: #6366f1; }
+    .layer-3 { background: #ecfdf5; }
+    .layer-3 .layer-num { background: #10b981; }
+    .layer-4 { background: #fef3c7; }
+    .layer-4 .layer-num { background: #f59e0b; }
+    .scoring-arrow {
+      text-align: center; font-size: 1.5rem; color: #6366F1;
+      margin: 16px 0; font-weight: 700;
+    }
+    .scoring-result {
+      background: linear-gradient(135deg, #6366F1, #10B981); color: #fff;
+      padding: 16px 24px; border-radius: 8px; font-size: 1rem; font-weight: 700;
+    }
+    .scoring-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px;
+    }
+    .scoring-card {
+      background: #fff; border-radius: 12px; padding: 24px 16px;
+      border: 1px solid #e2e8f0; text-align: center;
+    }
+    .scoring-card .sc-pct {
+      font-size: 1.8rem; font-weight: 800;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+    .scoring-card .sc-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .scoring-card .sc-desc { font-size: 0.8rem; color: #64748b; line-height: 1.6; }
+    .recommend-note {
+      background: #fff; border-radius: 12px; padding: 24px; border-left: 4px solid #6366F1;
+      text-align: left; color: #475569; line-height: 1.8; font-size: 0.95rem;
+    }
+
+    /* ===== S2.7: PROFILE SUMMARY ===== */
+    .profile { background: #fff; padding: 80px 24px; }
+    .profile-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .profile-content {
+      margin-top: 48px;
+    }
+    .profile-mockup {
+      background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;
+      overflow: hidden; text-align: left;
+    }
+    .profile-mockup-header {
+      background: #1e293b; color: #fff; padding: 12px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    .profile-mockup-score {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      padding: 4px 12px; border-radius: 6px; font-size: 0.8rem;
+    }
+    .profile-mockup-body { padding: 20px; }
+    .profile-row {
+      display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0; font-size: 0.85rem;
+    }
+    .profile-row:last-child { border-bottom: none; }
+    .profile-row .pr-icon { flex-shrink: 0; font-size: 1rem; }
+    .profile-row .pr-label { color: #64748b; width: 120px; flex-shrink: 0; font-weight: 600; }
+    .profile-row .pr-value { color: #1e293b; }
+    .profile-comparison { text-align: left; }
+    .profile-comparison h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; text-align: center; }
+    .profile-ba-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 0;
+    }
+    .pc-item {
+      border-radius: 16px; padding: 28px 24px; text-align: center;
+    }
+    .pc-item.pc-before {
+      background: #FEF2F2; border: 2px solid #FECACA;
+    }
+    .pc-item.pc-after {
+      background: #F0FDF4; border: 2px solid #BBF7D0;
+    }
+    .pc-item h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; }
+    .pc-before h4 { color: #DC2626; }
+    .pc-after h4 { color: #059669; }
+    .pc-item p { font-size: 0.9rem; color: #64748b; line-height: 1.7; }
+    .pc-item .pc-time {
+      font-size: 1.4rem; font-weight: 900; margin-top: 16px;
+    }
+    .pc-time.before { color: #DC2626; }
+    .pc-time.after {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .pc-reduction {
+      display: inline-block; background: #ECFDF5; border: 2px solid #10B981;
+      border-radius: 12px; padding: 8px 20px; margin-top: 16px;
+      font-size: 0.85rem; font-weight: 700; color: #059669;
+    }
+    .pc-reduction strong {
+      font-size: 1.2rem; color: #047857;
+    }
+    .ba-step-row {
+      display: flex; gap: 8px; align-items: center; margin-bottom: 10px; text-align: left;
+    }
+    .ba-step-badge {
+      font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 6px;
+      flex-shrink: 0; white-space: nowrap;
+    }
+    .ba-step-badge.red { background: #FEE2E2; color: #DC2626; }
+    .ba-step-badge.green { background: #D1FAE5; color: #059669; }
+    .ba-step-text { font-size: 0.85rem; color: #475569; flex: 1; min-width: 0; }
+    .ba-step-time { font-weight: 700; font-size: 0.85rem; flex-shrink: 0; white-space: nowrap; margin-left: auto; }
+    .ba-step-time.red { color: #DC2626; }
+    .ba-step-time.green { color: #059669; }
+    /* 2倍訴求 */
+    .profile-result-hero {
+      margin-top: 36px; padding: 36px 24px; text-align: center;
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
+      border-radius: 20px; border: 2px solid #c7d2fe;
+    }
+    .profile-result-hero .result-sub {
+      font-size: 0.95rem; color: #475569; margin-bottom: 4px;
+    }
+    .profile-result-hero .result-main {
+      font-size: 1.6rem; font-weight: 900; color: #1e293b; margin: 0; line-height: 1.5;
+    }
+    .profile-result-hero .result-num {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    /* スクショ画像グリッド */
+    .profile-screenshots {
+      margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; max-width: 1100px; margin-left: auto; margin-right: auto;
+      align-items: end;
+    }
+    .profile-screenshots > div { display: flex; flex-direction: column; align-items: center; }
+    .profile-screenshots img { width: 100%; height: 320px; object-fit: cover; object-position: top left; }
+    .profile-ss-label {
+      font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .profile-ss-placeholder {
+      background: #f8fafc; border-radius: 12px; padding: 24px;
+      border: 1px solid #e2e8f0; min-height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      color: #94a3b8; font-size: 0.85rem;
+    }
+
+    /* ===== S3: THREE CORE STEPS ===== */
+    .steps { background: #f8fafc; padding: 80px 24px; }
+    .steps-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .steps-flow-3 {
+      display: flex; flex-direction: column; gap: 0; margin: 48px 0 40px;
+      position: relative;
+    }
+    .step3-card {
+      display: grid; grid-template-columns: 80px 1fr 1fr; gap: 0;
+      background: #fff; border-radius: 16px; padding: 0; overflow: hidden;
+      border: 2px solid #e2e8f0; transition: all 0.3s;
+      margin-bottom: 24px; position: relative;
+    }
+    .step3-card:hover { box-shadow: 0 8px 32px rgba(99,102,241,0.1); border-color: #c7d2fe; }
+    .step3-connector {
+      position: absolute; left: 40px; bottom: -24px; width: 2px; height: 24px;
+      background: linear-gradient(180deg, #6366F1, #10B981); z-index: 1;
+    }
+    .step3-num-col {
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff; padding: 24px 0;
+    }
+    .step3-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .step3-num-label { font-size: 0.65rem; font-weight: 600; opacity: 0.8; margin-top: 4px; letter-spacing: 0.1em; }
+    .step3-content {
+      padding: 32px 28px; text-align: left;
+      border-right: 1px solid #f1f5f9;
+    }
+    .step3-title { font-size: 1.3rem; font-weight: 800; color: #1e293b; margin-bottom: 8px; }
+    .step3-catch {
+      font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .step3-desc { font-size: 0.9rem; color: #475569; line-height: 1.8; margin-bottom: 16px; }
+    .step3-features {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .step3-feat {
+      background: #EEF2FF; color: #4F46E5; font-size: 0.78rem; font-weight: 600;
+      padding: 4px 12px; border-radius: 20px;
+    }
+    .step3-visual {
+      padding: 24px; display: flex; align-items: center; justify-content: center;
+      background: #fafaff;
+    }
+    .step3-visual-screenshot {
+      padding: 16px;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    }
+    .step3-screenshot {
+      width: 100%; max-width: 100%; border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+      border: 1px solid #e2e8f0;
+    }
+    .step3-mockup {
+      background: #fff; border-radius: 10px; border: 1px solid #e2e8f0;
+      overflow: hidden; width: 100%; max-width: 360px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .step3-mockup-header {
+      background: #1e293b; color: #fff; padding: 8px 14px;
+      font-size: 0.7rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .step3-mockup-body { padding: 12px; }
+    .step3-mockup-row {
+      display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+      border-bottom: 1px solid #f1f5f9; font-size: 0.75rem; color: #334155;
+    }
+    .step3-mockup-row:last-child { border-bottom: none; }
+    .step3-mockup-score {
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      color: #fff; font-weight: 800; font-size: 0.8rem;
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step3-mockup-city { font-weight: 700; }
+    .step3-mockup-tag {
+      font-size: 0.65rem; background: #F0FDF4; color: #059669;
+      padding: 2px 6px; border-radius: 4px;
+    }
+    /* Profile mockup in step3 */
+    .step3-profile-row {
+      display: flex; gap: 8px; padding: 6px 8px;
+      border-bottom: 1px solid #f1f5f9; font-size: 0.72rem; color: #334155;
+    }
+    .step3-profile-row:last-child { border-bottom: none; }
+    .step3-pr-icon { flex-shrink: 0; }
+    .step3-pr-label { color: #64748b; width: 60px; flex-shrink: 0; font-weight: 600; font-size: 0.68rem; }
+    .step3-pr-value { color: #1e293b; font-size: 0.68rem; }
+    .step3-proposal-badge {
+      display: inline-block; background: #10B981; color: #fff;
+      font-size: 0.65rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px; margin-left: auto;
+    }
+    /* CRM mockup in step3 */
+    .step3-crm-row {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4px;
+      padding: 6px 8px; font-size: 0.68rem; color: #334155;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .step3-crm-row:last-child { border-bottom: none; }
+    .step3-crm-header {
+      font-weight: 700; color: #64748b; font-size: 0.65rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .step3-crm-status {
+      font-size: 0.6rem; font-weight: 600; padding: 2px 6px; border-radius: 4px;
+      display: inline-block; text-align: center;
+    }
+    .crm-hot { background: #FEF2F2; color: #DC2626; }
+    .crm-warm { background: #FFFBEB; color: #D97706; }
+    .crm-new { background: #EEF2FF; color: #6366F1; }
+    /* Step 3 card highlights */
+    .step3-card.step-recommend { border-color: #10B981; }
+    .step3-card.step-recommend .step3-num-col { background: linear-gradient(135deg, #10B981, #059669); }
+    .step3-card.step-summarize .step3-num-col { background: linear-gradient(135deg, #6366F1, #4F46E5); }
+    .step3-card.step-crm .step3-num-col { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    /* Flow arrow between steps */
+    .step3-flow-arrow {
+      text-align: center; margin: -8px 0; position: relative; z-index: 2;
+    }
+    .step3-flow-arrow span {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      color: #fff; font-size: 1.2rem; font-weight: 700;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+    }
+
+    /* ===== S4: COMPARISON ===== */
+    .compare { background: #fff; padding: 80px 24px; }
+    .compare-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem; margin-bottom: 32px; }
+    .compare-table th, .compare-table td { padding: 16px 14px; border-bottom: 1px solid #e2e8f0; }
+    .compare-table thead th { background: #1e293b; color: #fff; font-weight: 700; font-size: 0.9rem; }
+    .compare-table thead th.col-hl { background: #6366F1; }
+    .compare-table td.col-hl { background: #EEF2FF; font-weight: 600; }
+    .compare-table td:first-child { text-align: left; font-weight: 600; color: #1e293b; }
+    .compare-table td { color: #334155; font-weight: 500; }
+    .compare-table .row-hl td { background: #FFFBEB; }
+    .compare-table .row-hl td.col-hl { background: #EEF2FF; }
+    .check {
+      color: #10B981; font-weight: 700; font-size: 1.2rem;
+      background: #F0FDF4; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #10B981;
+    }
+    .cross {
+      color: #DC2626; font-weight: 700; font-size: 1.2rem;
+      background: #FEF2F2; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #DC2626;
+    }
+    .partial {
+      color: #D97706; font-weight: 700; font-size: 1.2rem;
+      background: #FFFBEB; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #F59E0B;
+    }
+    .compare-note {
+      background: #f8fafc; border-radius: 12px; padding: 24px; border-left: 4px solid #6366F1;
+      text-align: left; color: #475569; line-height: 1.8;
+    }
+
+    /* ===== S4.5: WHY FROMTO ===== */
+    .why-fromto { background: #fff; padding: 80px 24px; }
+    .why-fromto-inner { max-width: 1100px; margin: 0 auto; }
+    .why-grid { display: flex; flex-direction: column; gap: 32px; margin-top: 48px; }
+    .why-card {
+      background: #f8fafc; border-radius: 12px; padding: 32px;
+      border-left: 4px solid #6366F1;
+    }
+    .why-card.why-primary {
+      background: linear-gradient(135deg, #EEF2FF 0%, #F0FDF4 100%);
+      border-left: 5px solid #10B981; padding: 40px;
+    }
+    .why-card.why-primary h3 { font-size: 1.3rem; }
+    .why-primary-points {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;
+    }
+    .why-primary-point {
+      background: #fff; border-radius: 10px; padding: 20px;
+      border: 1px solid #e2e8f0;
+    }
+    .why-primary-point h4 {
+      font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;
+    }
+    .why-primary-point p { font-size: 0.88rem; color: #475569; line-height: 1.7; }
+    .why-secondary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .why-card h3 { font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
+    .why-card p { font-size: 0.95rem; color: #475569; line-height: 1.8; }
+    .why-card .why-highlight {
+      display: inline-block; background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      padding: 4px 12px; border-radius: 6px; font-weight: 700; color: #6366F1;
+      margin-top: 12px; font-size: 0.9rem;
+    }
+    .why-timeline { margin-top: 48px; }
+    .why-timeline-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; padding: 0 20px;
+    }
+    .why-timeline-inner::before {
+      content: ''; position: absolute; left: 20px; right: 20px; top: 50%;
+      height: 3px; background: linear-gradient(90deg, #6366F1, #10B981);
+      transform: translateY(-50%); z-index: 0;
+    }
+    .tl-point {
+      text-align: center; position: relative; z-index: 1;
+      background: #fff; padding: 0 8px;
+    }
+    .tl-dot {
+      width: 16px; height: 16px; border-radius: 50%; margin: 0 auto 8px;
+      background: #6366F1; border: 3px solid #EEF2FF;
+    }
+    .tl-year { font-size: 0.85rem; font-weight: 700; color: #6366F1; }
+    .tl-label { font-size: 0.75rem; color: #64748b; max-width: 100px; margin: 4px auto 0; }
+
+    /* ===== S4.7: TRACK RECORD MAP ===== */
+    .track-record { background: #f8fafc; padding: 80px 24px; }
+    .track-record-inner { max-width: 1100px; margin: 0 auto; }
+    .map-container {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08); margin-top: 48px;
+    }
+    .map-header {
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      color: #fff; padding: 20px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .map-header h3 { font-size: 1.1rem; font-weight: 700; }
+    .map-header-stats { display: flex; gap: 24px; }
+    .map-stat-item { text-align: center; }
+    .map-stat-num { font-size: 1.4rem; font-weight: 800; }
+    .map-stat-label { font-size: 0.75rem; opacity: 0.85; }
+    .map-iframe-wrap { padding: 0; }
+    .map-iframe-wrap iframe { display: block; width: 100%; height: 600px; border: 0; }
+    .map-caption {
+      padding: 16px 28px; background: #f1f5f9;
+      font-size: 0.85rem; color: #64748b; text-align: center;
+    }
+    .track-highlights {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px;
+    }
+    .track-hl-card {
+      background: #fff; border-radius: 16px; padding: 28px; text-align: center;
+      border: 1px solid #e2e8f0; transition: all 0.3s;
+    }
+    .track-hl-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-3px); }
+    .track-hl-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .track-hl-card h4 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    .track-hl-card p { font-size: 0.85rem; color: #64748b; }
+
+    /* ===== S5: STATS ===== */
+    .stats {
+      background: linear-gradient(135deg, #312e81 0%, #1e1b4b 50%, #0f172a 100%);
+      padding: 100px 24px; color: #fff;
+      position: relative;
+    }
+    .stats::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(99,102,241,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(16,185,129,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .stats-inner { max-width: 1000px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .stats .section-title { color: #fff; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-bottom: 24px; }
+    .stats-grid-2 { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-bottom: 48px; }
+    .stat-num {
+      font-size: 3rem; font-weight: 900;
+      background: linear-gradient(135deg, #a5b4fc, #6ee7b7);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px; letter-spacing: -0.03em;
+    }
+    .stat-label { font-size: 0.95rem; color: #c7d2fe; font-weight: 500; }
+
+    /* ===== S6: TAX BENEFIT ===== */
+    .tax { background: #f8fafc; padding: 80px 24px; }
+    .tax-inner { max-width: 1000px; margin: 0 auto; }
+    .tax-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .tax-bar { display: flex; border-radius: 8px; overflow: hidden; height: 120px; margin-bottom: 12px; }
+    .tax-seg {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff; padding: 8px 4px;
+    }
+    .tax-seg.loss { background: #6366F1; width: 30%; }
+    .tax-seg.credit { background: #10B981; width: 60%; }
+    .tax-seg.burden { background: #f59e0b; width: 10%; }
+    .tax-label { font-size: 0.7rem; opacity: 0.9; }
+    .tax-value { font-size: 0.85rem; font-weight: 700; }
+    .tax-example { text-align: center; font-size: 0.85rem; color: #94a3b8; }
+    .tax-msgs { display: flex; flex-direction: column; gap: 16px; }
+    .tax-msg {
+      background: #fff; border-radius: 8px; padding: 16px 20px; border: 1px solid #e2e8f0;
+    }
+    .tax-msg h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .tax-msg p { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+
+    /* ===== S7: PRICING ===== */
+    .pricing { background: #fff; padding: 80px 24px; }
+    .pricing-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: stretch; }
+    .plan-card {
+      background: #fff; border-radius: 16px; padding: 36px 28px; border: 2px solid #e2e8f0;
+      text-align: left; display: flex; flex-direction: column; position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .plan-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .plan-card.recommended { border-color: #6366F1; box-shadow: 0 12px 40px rgba(99,102,241,0.18); transform: scale(1.03); }
+    .plan-card.recommended:hover { transform: scale(1.03) translateY(-4px); }
+    .plan-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #6366F1; color: #fff; font-size: 0.75rem; font-weight: 700;
+      padding: 4px 16px; border-radius: 12px;
+    }
+    .plan-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .plan-amount {
+      font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .plan-unit { font-size: 0.85rem; color: #64748b; }
+    .plan-desc {
+      font-size: 0.85rem; color: #64748b; margin: 8px 0 24px;
+      padding-bottom: 24px; border-bottom: 1px solid #e2e8f0;
+    }
+    .plan-features { list-style: none; flex: 1; margin-bottom: 24px; }
+    .plan-features li {
+      font-size: 0.85rem; color: #334155; padding: 6px 0;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .plan-features li.disabled { color: #cbd5e1; }
+    .plan-features li .icon { flex-shrink: 0; font-weight: 700; }
+    .plan-features li:not(.disabled) .icon { color: #10B981; }
+    .plan-note { font-size: 0.7rem; color: #94a3b8; margin-left: 4px; }
+
+    /* ===== S8: TESTIMONIALS ===== */
+    .testimonials { background: #f8fafc; padding: 80px 24px; }
+    .testimonials-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 40px; }
+    .case-card {
+      background: #fff; border-radius: 16px; padding: 32px; text-align: left; border: 1px solid #e2e8f0;
+      transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .case-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .case-tag {
+      background: #EEF2FF; color: #6366F1; font-size: 0.75rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 12px;
+    }
+    .case-company { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+    .case-text { font-size: 0.85rem; color: #475569; line-height: 1.7; margin-bottom: 8px; }
+    .case-quote {
+      font-size: 0.9rem; color: #6366F1; font-style: italic;
+      border-left: 3px solid #6366F1; padding-left: 12px; margin-top: 16px;
+    }
+
+    /* ===== S9: FAQ ===== */
+    .faq { background: #fff; padding: 80px 24px; }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    .faq-item {
+      background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;
+      overflow: hidden; cursor: pointer; transition: all 0.2s;
+    }
+    .faq-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-color: #c7d2fe; }
+    .faq-q {
+      padding: 18px 20px; font-size: 0.95rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-toggle { font-size: 1.2rem; color: #6366F1; flex-shrink: 0; margin-left: 16px; }
+    .faq-a {
+      display: none; padding: 0 20px 18px; font-size: 0.9rem; color: #64748b; line-height: 1.8;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ===== EARLY-BIRD CAMPAIGN ===== */
+    .early-bird { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 80px 24px; color: #fff; }
+    .early-bird-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .early-bird-badge { display: inline-block; background: #f59e0b; color: #1e1b4b; font-weight: 800; font-size: 0.85rem; padding: 6px 18px; border-radius: 100px; margin-bottom: 20px; letter-spacing: 0.05em; }
+    .early-bird h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+    .early-bird .sub { font-size: 1rem; color: #c7d2fe; margin-bottom: 40px; }
+    .early-bird-box { background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 40px 32px; margin-bottom: 32px; overflow: hidden; }
+    .price-detail { font-size: 0.9rem; color: #c7d2fe; margin-bottom: 0; }
+    .price-detail strong { color: #fff; }
+    .early-bird-conditions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .eb-tag { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 10px 18px; font-size: 0.85rem; color: #e0e7ff; }
+    .eb-tag strong { color: #fff; }
+    .early-bird-note { font-size: 0.75rem; color: #818cf8; margin-top: 16px; }
+
+    /* ===== S10: CTA ===== */
+    .cta-section { background: #f8fafc; padding: 80px 24px; }
+    .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .cta-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 48px; }
+    .cta-card {
+      background: #fff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 32px 24px;
+      transition: all 0.3s;
+    }
+    .cta-card.hl { border-color: #6366F1; background: #EEF2FF; box-shadow: 0 8px 24px rgba(99,102,241,0.1); }
+    .cta-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .cta-icon { font-size: 2rem; margin-bottom: 12px; }
+    .cta-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .cta-card p { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; }
+
+    /* Form */
+    .form-section {
+      background: #fff; border-radius: 16px; padding: 48px; text-align: left;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;
+    }
+    .form-title { font-size: 1.2rem; font-weight: 700; text-align: center; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 6px; }
+    .required { color: #ef4444; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px;
+      font-size: 0.9rem; color: #1e293b; background: #fff; box-sizing: border-box;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: #6366F1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+    .form-note { font-size: 0.75rem; color: #94a3b8; text-align: center; margin-top: 12px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #1e293b; color: #94a3b8; padding: 40px 24px;
+    }
+    .footer-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+    }
+    .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 4px; }
+    .footer-brand p, .footer-info p, .footer-copy p { font-size: 0.8rem; }
+    .footer-copy p { font-size: 0.75rem; }
+
+    /* ===== RESPONSIVE ===== */
+    /* ===== PROCUREMENT FLOW (自治体調達プロセス) ===== */
+    .proc-flow { background: #fff; padding: 80px 24px; }
+    .proc-flow-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
     .proc-flow-diagram {
       display: flex; align-items: stretch; gap: 0; margin-top: 48px;
       position: relative;
     }
+    /* 左側: 企画検討期間（47Connect対象領域） */
     .proc-left {
       flex: 3; display: flex; flex-direction: column;
-      border: 3px dashed #DC2626;
+      border: 3px dashed #DC2626; border-radius: 20px;
       padding: 32px 24px 24px; position: relative;
-      background: #fff;
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
     }
     .proc-left-label {
       position: absolute; top: -16px; left: 24px;
       background: #DC2626; color: #fff; font-size: 0.8rem; font-weight: 700;
-      padding: 4px 16px;
+      padding: 4px 16px; border-radius: 20px;
     }
     .proc-left-steps {
       display: flex; align-items: flex-start; gap: 12px; flex: 1;
@@ -153,456 +870,153 @@
       position: relative;
     }
     .proc-step-num {
-      width: 36px; height: 36px;
+      width: 36px; height: 36px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem; font-weight: 800; color: #fff;
       margin-bottom: 12px;
     }
-    .proc-step-num.plan { background: #0a0a0a; }
-    .proc-step-num.neutral { background: #6b7280; }
+    .proc-step-num.plan { background: #B45309; }
+    .proc-step-num.neutral { background: #6B7280; }
     .proc-step-icon {
-      font-size: 2rem; margin-bottom: 8px; line-height: 1;
+      font-size: 2.5rem; margin-bottom: 8px; line-height: 1;
     }
     .proc-step-title {
-      font-size: 1rem; font-weight: 800; color: #0a0a0a; margin-bottom: 6px;
+      font-size: 1rem; font-weight: 800; color: #1e293b; margin-bottom: 6px;
       line-height: 1.3;
     }
     .proc-step-detail {
-      font-size: 0.8rem; color: #6b7280; line-height: 1.5;
+      font-size: 0.8rem; color: #64748b; line-height: 1.5;
     }
+    /* ステップ間の矢印 */
     .proc-arrow {
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: #6b7280; font-weight: 700;
+      font-size: 1.5rem; color: #9CA3AF; font-weight: 700;
       padding: 0 4px; align-self: center;
     }
     .proc-arrow-big {
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: #6b7280; font-weight: 700;
+      font-size: 1.5rem; color: #9CA3AF; font-weight: 700;
       padding: 0 8px; align-self: center; flex-shrink: 0;
     }
+    /* 議会承認 */
     .proc-approval {
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; padding: 0 12px; align-self: center;
     }
     .proc-approval-box {
-      background: #0a0a0a;
-      color: #fafafa; writing-mode: vertical-rl; text-orientation: upright;
+      background: linear-gradient(180deg, #92764A, #6B5B3E);
+      color: #fff; writing-mode: vertical-rl; text-orientation: upright;
       font-size: 1rem; font-weight: 800; letter-spacing: 0.15em;
-      padding: 20px 14px;
+      padding: 20px 14px; border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(107, 91, 62, 0.3);
     }
+    /* 右側: 入札・落札 */
     .proc-right {
       flex: 2; display: flex; flex-direction: column;
-      background: #fff; border: 1px solid #e5e5e5;
+      background: #F1F5F9; border-radius: 20px;
       padding: 32px 24px 24px; position: relative;
     }
     .proc-right-steps {
       display: flex; align-items: flex-start; gap: 12px; flex: 1;
     }
+    /* 下部ラベル */
     .proc-bottom-labels {
       display: flex; gap: 0; margin-top: 20px;
     }
     .proc-period-label {
       text-align: center; font-weight: 700; padding: 12px 16px;
-      font-size: 0.95rem;
+      border-radius: 10px; font-size: 0.95rem;
     }
     .proc-period-label.planning {
-      flex: 3; background: #fff; color: #DC2626; border: 2px solid #DC2626;
+      flex: 3; background: #FEF2F2; color: #DC2626;
       margin-right: 8px;
     }
     .proc-period-label.bidding {
-      flex: 2; background: #fff; color: #6b7280; border: 1px solid #e5e5e5;
+      flex: 2; background: #F1F5F9; color: #64748b;
       margin-left: 8px;
     }
     .proc-period-label .period-time {
       display: block; font-size: 1.3rem; font-weight: 900; margin-top: 4px;
     }
+    /* 47Connectバッジ */
     .proc-highlight-box {
-      margin-top: 48px; padding: 32px;
-      background: #0a0a0a; color: #fafafa;
+      margin-top: 32px; padding: 24px 32px;
+      background: linear-gradient(135deg, #EEF2FF, #F0FDF4);
+      border: 2px solid #c7d2fe; border-radius: 16px;
       text-align: center;
     }
     .proc-highlight-box p {
-      font-size: 1rem; color: #fafafa; margin-bottom: 8px; line-height: 1.7; opacity: 0.8;
+      font-size: 1rem; color: #475569; margin-bottom: 8px; line-height: 1.7;
     }
     .proc-highlight-box .proc-highlight-main {
-      font-size: 1.4rem; font-weight: 900; color: #fafafa; margin: 0; opacity: 1;
+      font-size: 1.4rem; font-weight: 900; color: #1e293b; margin: 0;
     }
     .proc-highlight-main .accent-purple {
-      color: #10B981;
-    }
-
-    /* ===== BEFORE / AFTER ===== */
-    .profile { background: #fafafa; padding: 120px 24px; }
-    .profile-inner { max-width: 960px; margin: 0 auto; text-align: center; }
-    .profile-ba-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 0;
-    }
-    .pc-item {
-      padding: 32px 24px; text-align: center;
-      border-top: 3px solid #e5e5e5;
-    }
-    .pc-item.pc-before {
-      border-top-color: #DC2626;
-    }
-    .pc-item.pc-after {
-      border-top-color: #10B981;
-    }
-    .pc-item h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; }
-    .pc-before h4 { color: #DC2626; }
-    .pc-after h4 { color: #059669; }
-    .pc-item p { font-size: 0.9rem; color: #6b7280; line-height: 1.7; }
-    .pc-item .pc-time {
-      font-size: 1.4rem; font-weight: 900; margin-top: 16px;
-    }
-    .pc-time.before { color: #DC2626; }
-    .pc-time.after { color: #10B981; }
-    .pc-reduction {
-      display: inline-block; background: #0a0a0a; color: #10B981;
-      padding: 8px 20px; margin-top: 16px;
-      font-size: 0.85rem; font-weight: 700;
-    }
-    .pc-reduction strong {
-      color: #fafafa;
-    }
-    .ba-step-row {
-      display: flex; gap: 8px; align-items: center; margin-bottom: 10px; text-align: left;
-    }
-    .ba-step-badge {
-      font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
-      flex-shrink: 0; white-space: nowrap;
-    }
-    .ba-step-badge.red { background: #FEE2E2; color: #DC2626; }
-    .ba-step-badge.green { background: #D1FAE5; color: #059669; }
-    .ba-step-text { font-size: 0.85rem; color: #6b7280; flex: 1; min-width: 0; }
-    .ba-step-time { font-weight: 700; font-size: 0.85rem; flex-shrink: 0; white-space: nowrap; margin-left: auto; }
-    .ba-step-time.red { color: #DC2626; }
-    .ba-step-time.green { color: #059669; }
-    .profile-result-hero {
-      margin-top: 48px; padding: 48px 24px; text-align: center;
-      background: #0a0a0a; color: #fafafa;
-    }
-    .profile-result-hero .result-sub {
-      font-size: 0.95rem; color: #fafafa; margin-bottom: 4px; opacity: 0.7;
-    }
-    .profile-result-hero .result-main {
-      font-size: 1.6rem; font-weight: 900; color: #fafafa; margin: 0; line-height: 1.5;
-    }
-    .profile-result-hero .result-num {
-      font-size: 2.8rem; color: #10B981;
-    }
-    .profile-screenshots {
-      margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr;
-      gap: 32px; max-width: 960px; margin-left: auto; margin-right: auto;
-      align-items: end;
-    }
-    .profile-screenshots > div { display: flex; flex-direction: column; align-items: center; }
-    .profile-screenshots img { width: 100%; height: 320px; object-fit: cover; object-position: top left; }
-    .profile-ss-label {
-      font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; color: #0a0a0a;
-    }
-
-    /* ===== THREE CORE STEPS ===== */
-    .steps { background: #fafafa; padding: 120px 24px; }
-    .steps-inner { max-width: 960px; margin: 0 auto; text-align: center; }
-    .steps-flow-3 {
-      display: flex; flex-direction: column; gap: 0; margin: 64px 0 48px;
-    }
-    .step3-item {
-      display: grid; grid-template-columns: 120px 1fr 1fr; gap: 0;
-      border-top: 2px solid #e5e5e5;
-      padding: 48px 0;
-    }
-    .step3-num-col {
-      display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start;
-      padding: 0;
-    }
-    .step3-num { font-size: 4rem; font-weight: 900; line-height: 1; color: #10B981; }
-    .step3-num-label { font-size: 0.75rem; font-weight: 700; color: #6b7280; margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
-    .step3-content {
-      padding: 0 32px; text-align: left;
-    }
-    .step3-title { font-size: 1.5rem; font-weight: 700; color: #0a0a0a; margin-bottom: 8px; }
-    .step3-catch {
-      font-size: 1rem; font-weight: 600; margin-bottom: 12px; color: #10B981;
-    }
-    .step3-desc { font-size: 1rem; color: #6b7280; line-height: 1.8; margin-bottom: 16px; }
-    .step3-features {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .step3-feat {
-      background: transparent; color: #0a0a0a; font-size: 0.8rem; font-weight: 600;
-      padding: 4px 12px; border: 1px solid #e5e5e5;
-    }
-    .step3-visual-screenshot {
-      padding: 16px; display: flex; align-items: center; justify-content: center;
-    }
-    .step3-screenshot {
-      width: 100%; max-width: 100%;
-      border: 1px solid #e5e5e5;
+      background: linear-gradient(135deg, #6366F1, #10B981);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
     /* ===== UPCOMING FEATURES ===== */
-    .upcoming { background: #fafafa; padding: 120px 24px; }
-    .upcoming-inner { max-width: 960px; margin: 0 auto; text-align: center; }
+    .upcoming { background: #fff; padding: 80px 24px; }
+    .upcoming-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
     .upcoming-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
     }
-    .upcoming-item {
-      text-align: left; padding: 32px 0;
-      border-top: 2px solid #e5e5e5;
-      position: relative;
+    .upcoming-card {
+      background: #f8fafc; border-radius: 16px; padding: 32px 24px;
+      border: 1px solid #e2e8f0; text-align: left;
+      position: relative; transition: all 0.3s;
     }
-    .upcoming-item .upcoming-badge {
-      display: inline-block; background: #0a0a0a; color: #fafafa;
-      font-size: 0.7rem; font-weight: 700;
-      padding: 3px 10px; margin-bottom: 12px;
+    .upcoming-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .upcoming-card .upcoming-badge {
+      position: absolute; top: 16px; right: 16px;
+      background: #DBEAFE; color: #2563EB; font-size: 0.7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 12px;
     }
-    .upcoming-item h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: #0a0a0a; }
-    .upcoming-item p { font-size: 1rem; color: #6b7280; line-height: 1.8; }
+    .upcoming-card .upcoming-icon { font-size: 2rem; margin-bottom: 12px; }
+    .upcoming-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+    .upcoming-card p { font-size: 0.9rem; color: #64748b; line-height: 1.7; }
 
-    /* ===== COMPARISON TABLE ===== */
-    .compare { background: #fafafa; padding: 120px 24px; }
-    .compare-inner { max-width: 960px; margin: 0 auto; text-align: center; }
-    .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .compare-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem; margin-bottom: 32px; }
-    .compare-table th, .compare-table td { padding: 16px 14px; border-bottom: 1px solid #e5e5e5; }
-    .compare-table thead th { background: #0a0a0a; color: #fafafa; font-weight: 700; font-size: 0.9rem; }
-    .compare-table thead th.col-hl { background: #10B981; }
-    .compare-table td.col-hl { background: #f0fdf4; font-weight: 600; }
-    .compare-table td:first-child { text-align: left; font-weight: 600; color: #0a0a0a; }
-    .compare-table td { color: #0a0a0a; font-weight: 500; }
-    .compare-table .row-hl td { background: #fafafa; }
-    .compare-table .row-hl td.col-hl { background: #f0fdf4; }
-    .check {
-      color: #10B981; font-weight: 700; font-size: 1.2rem;
-    }
-    .cross {
-      color: #DC2626; font-weight: 700; font-size: 1.2rem;
-    }
-    .partial {
-      color: #D97706; font-weight: 700; font-size: 1.2rem;
-    }
-    .compare-note {
-      padding: 24px; border-left: 4px solid #10B981;
-      text-align: left; color: #6b7280; line-height: 1.8;
-      background: #fff;
-    }
-
-    /* ===== WHY FROMTO ===== */
-    .why-fromto { background: #fafafa; padding: 120px 24px; }
-    .why-fromto-inner { max-width: 960px; margin: 0 auto; }
-    .why-grid { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
-    .why-item {
-      padding: 48px 0; border-top: 2px solid #e5e5e5;
-    }
-    .why-item.why-primary {
-      border-top: 3px solid #10B981;
-    }
-    .why-item h3 { font-size: 1.5rem; font-weight: 700; color: #0a0a0a; margin-bottom: 16px; }
-    .why-item p { font-size: 1rem; color: #6b7280; line-height: 1.8; }
-    .why-primary-points {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px;
-    }
-    .why-primary-point {
-      padding: 24px 0;
-      border-top: 1px solid #e5e5e5;
-    }
-    .why-primary-point h4 {
-      font-size: 1rem; font-weight: 700; color: #0a0a0a; margin-bottom: 8px;
-    }
-    .why-primary-point p { font-size: 0.9rem; color: #6b7280; line-height: 1.7; }
-    .why-highlight {
-      display: inline-block; padding: 4px 0; font-weight: 700; color: #10B981;
-      margin-top: 12px; font-size: 0.9rem;
-    }
-    .why-secondary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-
-    /* ===== TRACK RECORD MAP ===== */
-    .track-record { background: #0a0a0a; padding: 120px 24px; color: #fafafa; }
-    .track-record-inner { max-width: 960px; margin: 0 auto; }
-    .track-record .section-title { color: #fafafa; }
-    .track-record .section-sub { color: rgba(250,250,250,0.6); }
-    .map-container {
-      overflow: hidden; margin-top: 48px;
-    }
-    .map-header {
-      background: transparent; color: #fafafa; padding: 0 0 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 2px solid rgba(250,250,250,0.15);
-    }
-    .map-header h3 { font-size: 1.1rem; font-weight: 700; }
-    .map-header-stats { display: flex; gap: 24px; }
-    .map-stat-item { text-align: center; }
-    .map-stat-num { font-size: 1.4rem; font-weight: 800; color: #10B981; }
-    .map-stat-label { font-size: 0.75rem; opacity: 0.6; }
-    .map-caption {
-      padding: 16px 0; font-size: 0.85rem; color: rgba(250,250,250,0.5); text-align: center;
-    }
-    .track-highlights {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px;
-    }
-    .track-hl-item {
-      text-align: left; padding: 32px 0;
-      border-top: 2px solid rgba(250,250,250,0.15);
-    }
-    .track-hl-item h4 { font-size: 1rem; font-weight: 700; color: #fafafa; margin-bottom: 8px; }
-    .track-hl-item p { font-size: 0.9rem; color: rgba(250,250,250,0.6); line-height: 1.7; }
-
-    /* ===== PRICING ===== */
-    .pricing { background: #fafafa; padding: 120px 24px; }
-    .pricing-inner { max-width: 960px; margin: 0 auto; text-align: center; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; align-items: stretch; }
-    .plan-item {
-      background: #fff; padding: 40px 32px; border: 1px solid #e5e5e5;
-      text-align: left; display: flex; flex-direction: column; position: relative;
-    }
-    .plan-item.recommended {
-      border-left: 4px solid #10B981;
-    }
-    .plan-badge {
-      display: inline-block; background: #10B981; color: #fafafa;
-      font-size: 0.75rem; font-weight: 700;
-      padding: 4px 12px; margin-bottom: 16px;
-    }
-    .plan-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-    .plan-amount {
-      font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em;
-      color: #0a0a0a;
-    }
-    .plan-unit { font-size: 0.85rem; color: #6b7280; }
-    .plan-desc {
-      font-size: 0.85rem; color: #6b7280; margin: 8px 0 24px;
-      padding-bottom: 24px; border-bottom: 1px solid #e5e5e5;
-    }
-    .plan-features { list-style: none; flex: 1; margin-bottom: 24px; }
-    .plan-features li {
-      font-size: 0.85rem; color: #0a0a0a; padding: 6px 0;
-      display: flex; align-items: flex-start; gap: 8px;
-    }
-    .plan-features li.disabled { color: #6b7280; }
-    .plan-features li .icon { flex-shrink: 0; font-weight: 700; }
-    .plan-features li:not(.disabled) .icon { color: #10B981; }
-    .plan-note { font-size: 0.7rem; color: #6b7280; margin-left: 4px; }
-
-    /* ===== FAQ ===== */
-    .faq { background: #fafafa; padding: 120px 24px; }
-    .faq-inner { max-width: 800px; margin: 0 auto; }
-    .faq-list { display: flex; flex-direction: column; gap: 0; }
-    .faq-item {
-      border-bottom: 1px solid #e5e5e5;
-      overflow: hidden; cursor: pointer;
-      background: transparent;
-    }
-    .faq-q {
-      padding: 20px 0; font-size: 1rem; font-weight: 600;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .faq-toggle { font-size: 1.2rem; color: #0a0a0a; flex-shrink: 0; margin-left: 16px; }
-    .faq-a {
-      display: none; padding: 0 0 20px; font-size: 1rem; color: #6b7280; line-height: 1.8;
-    }
-    .faq-item.open .faq-a { display: block; }
-
-    /* ===== EARLY-BIRD ===== */
-    .early-bird { background: #0a0a0a; padding: 120px 24px; color: #fafafa; }
-    .early-bird-inner { max-width: 800px; margin: 0 auto; text-align: center; }
-    .early-bird-badge {
-      display: inline-block; background: #10B981; color: #fafafa;
-      font-weight: 800; font-size: 0.85rem; padding: 6px 18px;
-      margin-bottom: 24px; letter-spacing: 0.05em;
-    }
-    .early-bird h2 { font-size: 2rem; font-weight: 900; margin-bottom: 12px; line-height: 1.4; color: #fafafa; }
-    .early-bird .sub { font-size: 1rem; color: rgba(250,250,250,0.6); margin-bottom: 48px; }
-    .early-bird-box {
-      background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.15);
-      padding: 48px 32px; margin-bottom: 32px;
-    }
-    .price-detail { font-size: 0.9rem; color: rgba(250,250,250,0.6); margin-bottom: 0; }
-    .price-detail strong { color: #fafafa; }
-    .early-bird-conditions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
-    .eb-tag {
-      border: 1px solid rgba(255,255,255,0.2); padding: 10px 18px;
-      font-size: 0.85rem; color: rgba(250,250,250,0.7);
-    }
-    .eb-tag strong { color: #fafafa; }
-    .early-bird-note { font-size: 0.75rem; color: rgba(250,250,250,0.4); margin-top: 16px; }
-
-    /* ===== CTA ===== */
-    .cta-section { background: #fafafa; padding: 120px 24px; }
-    .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; }
-    .cta-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-bottom: 48px; }
-    .cta-item {
-      padding: 40px 32px; text-align: left;
-      border-top: 3px solid #e5e5e5;
-      background: #fff;
-    }
-    .cta-item.hl { border-top-color: #10B981; }
-    .cta-item h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-    .cta-item p { font-size: 0.9rem; color: #6b7280; margin-bottom: 16px; line-height: 1.7; }
-
-    /* Form */
-    .form-section {
-      background: #fff; padding: 48px; text-align: left;
-      border: 1px solid #e5e5e5;
-    }
-    .form-title { font-size: 1.2rem; font-weight: 700; text-align: center; margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #0a0a0a; margin-bottom: 6px; }
-    .required { color: #ef4444; }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 10px 12px; border: 1px solid #e5e5e5;
-      font-size: 0.9rem; color: #0a0a0a; background: #fff; box-sizing: border-box;
-      font-family: inherit;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: #10B981; box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
-    }
-    .form-note { font-size: 0.75rem; color: #6b7280; text-align: center; margin-top: 12px; }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      background: #0a0a0a; color: rgba(250,250,250,0.5); padding: 40px 24px;
-    }
-    .footer-inner {
-      max-width: 960px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
-    }
-    .footer-brand h3 { color: #fafafa; font-size: 1.1rem; margin-bottom: 4px; }
-    .footer-brand p, .footer-info p, .footer-copy p { font-size: 0.8rem; }
-    .footer-copy p { font-size: 0.75rem; }
-
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .section-title { font-size: 1.8rem; }
-      .hero { padding: 120px 24px 80px; }
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-title { font-size: 1.8rem; }
+      .hero-title { font-size: 1.6rem; }
       .hero-visual { display: none; }
       .walls-grid { grid-template-columns: 1fr; }
+      .wall-card.wall-primary { transform: none; }
+      .walls-compare { grid-template-columns: 1fr; }
+      .scoring-grid { grid-template-columns: repeat(2,1fr); }
+      .profile-content { grid-template-columns: 1fr; }
       .profile-ba-grid { grid-template-columns: 1fr; gap: 16px; }
-      .pc-item { padding: 24px 16px; }
+      .pc-item { padding: 20px 16px; }
       .pc-item h4 { font-size: 0.95rem; }
       .ba-step-row { gap: 6px; }
       .ba-step-text { font-size: 0.8rem; }
       .ba-step-time { font-size: 0.8rem; }
       .pc-item .pc-time { font-size: 1.3rem; }
-      .profile-result-hero { padding: 32px 16px; margin-top: 32px; }
+      .profile-result-hero { padding: 28px 16px; margin-top: 24px; }
       .profile-result-hero .result-main { font-size: 1.2rem; }
       .profile-result-hero .result-num { font-size: 2rem; }
       .profile-screenshots { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
-      .step3-item { grid-template-columns: 1fr; gap: 16px; }
-      .step3-num-col { flex-direction: row; align-items: baseline; gap: 8px; }
-      .step3-visual-screenshot { padding: 12px 0; }
-      .step3-visual-screenshot .step3-screenshot { width: 100%; }
+      .step3-card { grid-template-columns: 60px 1fr; }
+      .step3-visual { display: none; }
+      .step3-visual-screenshot { display: block; grid-column: 1 / -1; padding: 12px 0; }
+      .step3-visual-screenshot .step3-screenshot { width: 100%; border-radius: 8px; }
       .pricing-grid, .cta-options { grid-template-columns: 1fr; }
+      .stats-grid, .stats-grid-2 { grid-template-columns: repeat(2,1fr); }
+      .stat-num { font-size: 1.8rem; }
+      .tax-content, .testimonials-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .form-section { padding: 24px; }
+      .section-title { font-size: 1.4rem; }
       .footer-inner { flex-direction: column; text-align: center; }
       .why-primary-points { grid-template-columns: 1fr; }
       .why-secondary-grid { grid-template-columns: 1fr; }
+      .why-timeline-inner { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .why-timeline-inner::before { display: none; }
       .track-highlights { grid-template-columns: 1fr; }
       .map-header { flex-direction: column; gap: 12px; text-align: center; }
+      .map-iframe-wrap iframe { height: 400px; }
+      /* Procurement flow responsive */
       .proc-flow-diagram { flex-direction: column; gap: 16px; }
       .proc-left, .proc-right { padding: 24px 16px 20px; }
       .proc-left-steps, .proc-right-steps { flex-direction: column; gap: 16px; }
@@ -611,15 +1025,8 @@
       .proc-approval { padding: 12px 0; }
       .proc-approval-box { writing-mode: horizontal-tb; text-orientation: mixed; letter-spacing: 0.3em; padding: 12px 20px; }
       .proc-bottom-labels { flex-direction: column; gap: 8px; }
-      .proc-period-label.planning, .proc-period-label.bidding { margin: 0; }
       .upcoming-grid { grid-template-columns: 1fr; }
-      .compare-table-wrap { overflow-x: auto; }
-      .walls, .proc-flow, .profile, .steps, .upcoming, .compare, .why-fromto,
-      .track-record, .pricing, .faq, .early-bird, .cta-section {
-        padding: 80px 24px;
-      }
-      .hero .btn { min-height: 44px; }
-      .cta-item .btn, .plan-item .btn { min-height: 44px; }
+      .proc-period-label.planning, .proc-period-label.bidding { margin: 0; }
     }
   </style>
 </head>
@@ -656,33 +1063,34 @@
       </div>
     </div>
     <div class="hero-visual">
-      <img src="images/header_image.png" alt="47Connect AI分析ダッシュボード -- 総合スコア・7分野評価レーダー・キーインサイトを1画面で把握" style="width:120%; max-width:none; margin-left:-10%; border:1px solid #e5e5e5;" />
+      <img src="images/header_image.png" alt="47Connect AI分析ダッシュボード — 総合スコア・7分野評価レーダー・キーインサイトを1画面で把握" style="width:120%; max-width:none; border-radius:16px; box-shadow:0 12px 48px rgba(0,0,0,0.15); margin-left:-10%;" />
     </div>
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- S2: THREE WALLS -->
+<!-- S2: よそ者の壁 -->
 <section class="walls">
   <div class="walls-inner">
     <h2 class="section-title">1,741の自治体市場。企業からは「見えない市場」です。</h2>
     <p class="section-sub">見えないからこそ生まれる、3つの構造的な課題。</p>
 
     <div class="walls-grid">
-      <div class="wall-item">
+      <div class="wall-card">
+        <div class="wall-icon">🔍</div>
         <h3 class="wall-title">知らない <span class="wall-en">Discovery</span></h3>
         <p class="wall-desc">全国1,741自治体から、自社製品と政策課題が一致する自治体を特定できない。</p>
         <div class="wall-stat">自治体候補の絞り込みに 2〜3週間</div>
         <div class="wall-quote">「調べても調べても、どの自治体が自社製品を必要としているのかわからない」</div>
       </div>
-      <div class="wall-item">
+      <div class="wall-card">
+        <div class="wall-icon">📝</div>
         <h3 class="wall-title">わからない <span class="wall-en">Understanding</span></h3>
         <p class="wall-desc">予算書、総合計画、施政方針、議会議事録… 情報は公開されているが、散在していて全体像が掴めない。</p>
         <div class="wall-stat">1自治体の情報収集に 2〜3週間</div>
         <div class="wall-quote">「予算書を読んでも、結局この自治体が何を求めているのかわからない」</div>
       </div>
-      <div class="wall-item">
+      <div class="wall-card">
+        <div class="wall-icon">📊</div>
         <h3 class="wall-title">管理できない <span class="wall-en">Management</span></h3>
         <p class="wall-desc">予算サイクル、人事異動、議会日程…自治体営業は長期戦。スプレッドシートでは追いきれない。</p>
         <div class="wall-stat">自治体営業の平均リードタイム 6〜18ヶ月</div>
@@ -692,56 +1100,62 @@
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- PROCUREMENT FLOW -->
+<!-- S2.5b: 自治体調達プロセス（フロー図） -->
 <section class="proc-flow">
   <div class="proc-flow-inner">
     <h2 class="section-title">自治体の予算は、入札の<strong style="color:#DC2626;">半年〜2年前</strong>に決まっています。</h2>
     <p class="section-sub">入札情報が出てからでは遅い。意思決定プロセスの上流にアプローチすることが、自治体営業の勝ちパターンです。</p>
 
     <div class="proc-flow-diagram">
+      <!-- 左: 企画検討期間（47Connect領域） -->
       <div class="proc-left">
         <div class="proc-left-label">47Connectがカバーする領域</div>
         <div class="proc-left-steps">
           <div class="proc-step">
             <div class="proc-step-num plan">1</div>
+            <div class="proc-step-icon">👨‍💼</div>
             <div class="proc-step-title">事業の<br>方向性決定</div>
             <div class="proc-step-detail">首長<br>課題抽出・方向性の決定</div>
           </div>
-          <div class="proc-arrow">&rarr;</div>
+          <div class="proc-arrow">→</div>
           <div class="proc-step">
             <div class="proc-step-num plan">2</div>
+            <div class="proc-step-icon">👩‍💼</div>
             <div class="proc-step-title">政策内容<br>決定</div>
             <div class="proc-step-detail">政策企画課<br>政策立案</div>
           </div>
-          <div class="proc-arrow">&rarr;</div>
+          <div class="proc-arrow">→</div>
           <div class="proc-step">
             <div class="proc-step-num plan">3</div>
+            <div class="proc-step-icon">📋</div>
             <div class="proc-step-title">予算編成</div>
             <div class="proc-step-detail">各部署<br>参考見積取得・予算編成</div>
           </div>
         </div>
       </div>
 
-      <div class="proc-arrow-big">&rarr;</div>
+      <div class="proc-arrow-big">→</div>
 
+      <!-- 議会承認 -->
       <div class="proc-approval">
         <div class="proc-approval-box">議会承認</div>
       </div>
 
-      <div class="proc-arrow-big">&rarr;</div>
+      <div class="proc-arrow-big">→</div>
 
+      <!-- 右: 入札・落札 -->
       <div class="proc-right">
         <div class="proc-right-steps">
           <div class="proc-step">
             <div class="proc-step-num neutral">4</div>
+            <div class="proc-step-icon">📑</div>
             <div class="proc-step-title">入札情報<br>開示</div>
             <div class="proc-step-detail">入札参加者募集</div>
           </div>
-          <div class="proc-arrow">&rarr;</div>
+          <div class="proc-arrow">→</div>
           <div class="proc-step">
             <div class="proc-step-num neutral">5</div>
+            <div class="proc-step-icon">🤝</div>
             <div class="proc-step-title">入札・落札</div>
             <div class="proc-step-detail">事業者決定・実施</div>
           </div>
@@ -749,6 +1163,7 @@
       </div>
     </div>
 
+    <!-- 期間ラベル -->
     <div class="proc-bottom-labels">
       <div class="proc-period-label planning">
         企画検討期間<span class="period-time">約半年〜2年</span>
@@ -758,27 +1173,27 @@
       </div>
     </div>
 
+    <!-- 47Connectメッセージ -->
     <div class="proc-highlight-box">
-      <p>多くの企業が入札情報を見てから動きますが、その時点で予算と仕様は確定済み。</p>
+      <p>多くの企業が入札情報（④⑤）を見てから動きますが、その時点で予算と仕様は確定済み。</p>
       <p class="proc-highlight-main">
-        <span class="accent-purple">47Connect</span>は、企画段階の情報を可視化し、<br>
+        <span class="accent-purple">47Connect</span>は、企画段階（①②③）の情報を可視化し、<br>
         <span class="accent-purple">「入札の前に選ばれる企業」</span>になるための武器を提供します。
       </p>
     </div>
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- BEFORE / AFTER -->
+<!-- S2.7: BEFORE / AFTER -->
 <section class="profile">
   <div class="profile-inner">
     <h2 class="section-title">自治体営業の「探す・調べる」を、AIが一瞬で終わらせる</h2>
     <p class="section-sub">ターゲット選定から自治体理解まで。1ヶ月かかっていた準備工数が、わずか30分に。</p>
 
+    <!-- Before / After 横並び -->
     <div class="profile-ba-grid" style="margin-top:48px;">
       <div class="pc-item pc-before">
-        <h4>Before：従来の自治体営業準備</h4>
+        <h4>❌ Before：従来の自治体営業準備</h4>
         <div style="margin:16px 0;">
           <div class="ba-step-row">
             <span class="ba-step-badge red">STEP1</span>
@@ -791,11 +1206,11 @@
             <span class="ba-step-time red">2〜3週間</span>
           </div>
         </div>
-        <p style="font-size:0.85rem; color:#6b7280;">1,741自治体から候補を手作業でリサーチ。<br>予算書・総合計画・議事録を1つずつ読み込み……</p>
+        <p style="font-size:0.85rem; color:#64748b;">1,741自治体から候補を手作業でリサーチ。<br>予算書・総合計画・議事録を1つずつ読み込み……</p>
         <div class="pc-time before" style="font-size:1.5rem; margin-top:20px;">合計 約1ヶ月</div>
       </div>
       <div class="pc-item pc-after">
-        <h4>After：47Connectなら</h4>
+        <h4>✅ After：47Connectなら</h4>
         <div style="margin:16px 0;">
           <div class="ba-step-row">
             <span class="ba-step-badge green">STEP1</span>
@@ -808,47 +1223,47 @@
             <span class="ba-step-time green">30分</span>
           </div>
         </div>
-        <p style="font-size:0.85rem; color:#6b7280;">企業情報を登録するだけでAIが最適な自治体を選定。<br>各自治体の予算・方針・担当課を1画面でサマライズ。</p>
+        <p style="font-size:0.85rem; color:#64748b;">企業情報を登録するだけでAIが最適な自治体を選定。<br>各自治体の予算・方針・担当課を1画面でサマライズ。</p>
         <div class="pc-time after" style="font-size:1.5rem; margin-top:20px;">合計 約30分</div>
         <div class="pc-reduction">準備工数を大幅削減（<strong>1ヶ月 → 30分</strong>）</div>
       </div>
     </div>
 
+    <!-- 提案数2倍メッセージ -->
     <div class="profile-result-hero">
       <p class="result-sub">営業1人分の準備工数が30分で完了するから ──</p>
       <p class="result-main">空いた時間で、<span class="result-num">より多く</span>の自治体に提案できる。</p>
     </div>
 
+    <!-- スクリーンショット画像（2枚：レコメンド + サマライズ） -->
     <div class="profile-screenshots">
       <div style="text-align:center;">
-        <p class="profile-ss-label" style="color:#10B981;">AIレコメンド画面</p>
-        <img src="images/recommend-screen.png" alt="AIレコメンド画面 -- 自治体一覧・分析ダッシュボード" style="width:100%; border:1px solid #e5e5e5;">
+        <p class="profile-ss-label" style="color:#6366F1;">🎯 AIレコメンド画面</p>
+        <img src="images/recommend-screen.png" alt="AIレコメンド画面 — 自治体一覧・分析ダッシュボード" style="width:100%; border-radius:12px; box-shadow:0 8px 24px rgba(99,102,241,0.12); border:1px solid #e2e8f0;">
       </div>
       <div style="text-align:center;">
-        <p class="profile-ss-label">AIサマライズ画面</p>
-        <img src="images/image.png" alt="自治体AIサマライズ画面" style="width:100%; border:1px solid #e5e5e5;">
+        <p class="profile-ss-label" style="color:#10B981;">📋 AIサマライズ画面</p>
+        <img src="images/image.png" alt="自治体AIサマライズ画面" style="width:100%; border-radius:12px; box-shadow:0 8px 24px rgba(99,102,241,0.12); border:1px solid #e2e8f0;">
       </div>
     </div>
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- THREE CORE STEPS -->
+<!-- S3: THREE CORE STEPS -->
 <section class="steps">
   <div class="steps-inner">
     <h2 class="section-title">サクッと見つけて、サクッと理解して、キチンと管理。</h2>
     <p class="section-sub">探索・分析・管理。数週間を要していた自治体営業プロセスを、47Connectが根本から効率化します。</p>
 
     <div class="steps-flow-3">
-      <!-- STEP 1 -->
-      <div class="step3-item">
+      <!-- STEP 1: AIレコメンド -->
+      <div class="step3-card step-recommend">
         <div class="step3-num-col">
           <div class="step3-num">1</div>
           <div class="step3-num-label">STEP</div>
         </div>
         <div class="step3-content">
-          <h3 class="step3-title">AIが最適な自治体を自動選定</h3>
+          <h3 class="step3-title">🎯 AIが最適な自治体を自動選定</h3>
           <div class="step3-catch">御社との相性が高い自治体を、AIが自動でレコメンド。</div>
           <p class="step3-desc">
             御社の企業情報、そして製品やサービスを登録いただくだけで、提案に最適な自治体が見つかります。国の政策方針 × 都道府県の重点施策 × 自治体の予算・課題をAIが3層で分析し、<strong>提案適合度の高い自治体をスコア付きで自動抽出</strong>。1,741自治体の中から最適なターゲットを即座に特定できます。
@@ -859,19 +1274,21 @@
             <span class="step3-feat">1,741自治体対応</span>
           </div>
         </div>
-        <div class="step3-visual-screenshot">
-          <img src="images/recommend-screen.png" alt="AIレコメンド -- 自治体一覧・分析。スコア付きで最適な自治体を自動抽出" class="step3-screenshot" />
+        <div class="step3-visual step3-visual-screenshot">
+          <img src="images/recommend-screen.png" alt="AIレコメンド — 自治体一覧・分析。スコア付きで最適な自治体を自動抽出" class="step3-screenshot" />
         </div>
       </div>
 
-      <!-- STEP 2 -->
-      <div class="step3-item">
+      <div class="step3-flow-arrow"><span>↓</span></div>
+
+      <!-- STEP 2: サマライズ -->
+      <div class="step3-card step-summarize">
         <div class="step3-num-col">
           <div class="step3-num">2</div>
           <div class="step3-num-label">STEP</div>
         </div>
         <div class="step3-content">
-          <h3 class="step3-title">自治体の全貌を30分で把握</h3>
+          <h3 class="step3-title">📋 自治体の全貌を30分で把握</h3>
           <div class="step3-catch">レコメンドされた自治体の詳細情報を、1画面に集約。</div>
           <p class="step3-desc">
             予算・重点施策・首長方針・AIが分析した想定担当課・議会議事録──レコメンドされた自治体の情報をAIが構造化・サマライズし、1画面に集約します。<strong>「この自治体に御社の製品を提案すべきか」を即座にご判断いただけます。</strong>数十ページの資料を個別に確認する工数を大幅に削減します。
@@ -883,19 +1300,21 @@
             <span class="step3-feat">議会議事録要約</span>
           </div>
         </div>
-        <div class="step3-visual-screenshot">
-          <img src="images/image.png" alt="自治体AI分析ダッシュボード -- 総合スコア82点・7分野評価レーダー・キーインサイトTOP10を1画面で把握" class="step3-screenshot" />
+        <div class="step3-visual step3-visual-screenshot">
+          <img src="images/image.png" alt="自治体AI分析ダッシュボード — 総合スコア82点・7分野評価レーダー・キーインサイトTOP10を1画面で把握" class="step3-screenshot" />
         </div>
       </div>
 
-      <!-- STEP 3 -->
-      <div class="step3-item">
+      <div class="step3-flow-arrow"><span>↓</span></div>
+
+      <!-- STEP 3: CRM管理 -->
+      <div class="step3-card step-crm">
         <div class="step3-num-col">
           <div class="step3-num">3</div>
           <div class="step3-num-label">STEP</div>
         </div>
         <div class="step3-content">
-          <h3 class="step3-title">レコメンドした自治体を追跡・管理</h3>
+          <h3 class="step3-title">📊 レコメンドした自治体を追跡・管理</h3>
           <div class="step3-catch">自治体ごとの営業ステータスを一元管理。いつ・誰に・何を提案したかを即座に把握。</div>
           <p class="step3-desc">
             AIがレコメンドした自治体をそのままCRMリストに追加。ステータス管理・メモ・フラグ付けで営業パイプラインを可視化。予算サイクルや人事異動の時期に合わせたアラート機能も<strong>今後対応予定</strong>です。
@@ -907,8 +1326,8 @@
             <span class="step3-feat">チーム共有</span>
           </div>
         </div>
-        <div class="step3-visual-screenshot">
-          <img src="images/crm_list.png" alt="CRM営業リスト -- 自治体をステータス管理・パイプライン可視化" class="step3-screenshot" />
+        <div class="step3-visual step3-visual-screenshot">
+          <img src="images/crm_list.png" alt="CRM営業リスト — 自治体をステータス管理・パイプライン可視化" class="step3-screenshot" />
         </div>
       </div>
     </div>
@@ -919,8 +1338,6 @@
   </div>
 </section>
 
-<hr class="section-divider">
-
 <!-- UPCOMING FEATURES -->
 <section class="upcoming">
   <div class="upcoming-inner">
@@ -928,18 +1345,21 @@
     <p class="section-sub">レコメンド・サマライズ・CRM管理の3つのコア機能に加え、<br>自治体営業をさらに加速させる機能を順次リリースしていきます。</p>
 
     <div class="upcoming-grid">
-      <div class="upcoming-item">
+      <div class="upcoming-card">
         <span class="upcoming-badge">開発中</span>
+        <div class="upcoming-icon">📬</div>
         <h3>提案メール自動生成</h3>
         <p>レコメンド結果とサマライズ情報をもとに、自治体の担当部局向けの提案メールをAIが自動で生成。提案書作成の工数を大幅に削減します。</p>
       </div>
-      <div class="upcoming-item">
+      <div class="upcoming-card">
         <span class="upcoming-badge">開発中</span>
+        <div class="upcoming-icon">📨</div>
         <h3>提案メール一括配信</h3>
         <p>生成した提案メールを、該当する自治体の担当部局へ一括で配信。複数自治体への同時アプローチを効率化します。</p>
       </div>
-      <div class="upcoming-item">
+      <div class="upcoming-card">
         <span class="upcoming-badge">開発中</span>
+        <div class="upcoming-icon">🤖</div>
         <h3>AIエージェント分析</h3>
         <p>自治体の予算書・総合計画・議会議事録をAIエージェントが深掘り分析。営業戦略に必要な情報を対話形式で取得できます。</p>
       </div>
@@ -947,9 +1367,7 @@
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- COMPARISON -->
+<!-- S4: COMPARISON -->
 <section class="compare">
   <div class="compare-inner">
     <h2 class="section-title">「同じレコメンド」でも、データの深さが根本的に違う。</h2>
@@ -967,7 +1385,7 @@
       </thead>
       <tbody>
         <tr><td>全国1,741自治体カバー</td><td class="col-hl"><span class="check">○</span></td><td><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
-        <tr class="row-hl"><td><strong>AIレコメンド</strong></td><td class="col-hl"><span class="check">○</span></td><td>△<br><span style="font-size:0.7rem;color:#6b7280;">キーワードマッチング</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
+        <tr class="row-hl"><td><strong>AIレコメンド</strong></td><td class="col-hl"><span class="check">○</span></td><td>△<br><span style="font-size:0.7rem;color:#94a3b8;">キーワードマッチング</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
         <tr class="row-hl"><td><strong>仲介実績に基づくスコアリング</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
         <tr class="row-hl"><td><strong>自治体サマライズ</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
         <tr class="row-hl"><td><strong>CRM・営業管理</strong></td><td class="col-hl"><span class="check">○</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td><td><span class="cross">×</span></td></tr>
@@ -975,49 +1393,49 @@
       </tbody>
     </table>
     </div>
-    <p style="font-size:0.8rem; color:#6b7280; text-align:left; margin-bottom:24px;">※ 元首長・元議員・自治体コンサルなど、依頼先の経歴・専門性により大きく異なります。</p>
+    <p style="font-size:0.8rem; color:#64748b; text-align:left; margin-bottom:24px;">※ 元首長・元議員・自治体コンサルなど、依頼先の経歴・専門性により大きく異なります。</p>
     <div class="compare-note">
       <p>他社DBでも自治体は見つかる。しかし、公開情報だけのレコメンドと、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理の3つを一気通貫で提供</strong>。自治体営業の意思決定基盤をワンストップで。</p>
     </div>
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- WHY FROMTO -->
+<!-- S4.5: WHY FROMTO -->
 <section class="why-fromto">
   <div class="why-fromto-inner">
     <h2 class="section-title">なぜFromToに、これができるのか</h2>
     <p class="section-sub">自治体と企業の間に立ち続けてきた実績と基盤</p>
 
     <div class="why-grid">
-      <div class="why-item why-primary">
-        <h3>寄附仲介の実績が生んだ、他社にはないデータ資産</h3>
+      <!-- メインカード：寄附仲介実績 × 独自パイプ（統合） -->
+      <div class="why-card why-primary">
+        <h3>🤝 寄附仲介の実績が生んだ、他社にはないデータ資産</h3>
         <p>FromToは企業版ふるさと納税の寄附仲介を154件・総額2億円以上にわたり手がけてきました。この実績の中で112を超える自治体と直接の信頼関係を構築しています。この関係があるからこそ、<strong>担当部局が実際に求めているニーズ情報</strong>を蓄積しています。</p>
 
         <div class="why-primary-points">
           <div class="why-primary-point">
-            <h4>他社では取れない「担当部局のニーズ情報」がレコメンド精度を決定づける</h4>
+            <h4>📊 他社では取れない「担当部局のニーズ情報」がレコメンド精度を決定づける</h4>
             <p>公開情報だけでは、自治体の実態は見えません。<strong>担当部局がどんな課題を抱え、何を求めているか</strong>──こうしたニーズ情報は、寄附仲介の実取引がなければ得られないものです。FromToはこの情報を体系的に蓄積し、AIレコメンドのスコアリング精度に反映しています。</p>
           </div>
           <div class="why-primary-point">
-            <h4>自治体の「今」を正確にサマライズできる理由</h4>
+            <h4>🏛️ 自治体の「今」を正確にサマライズできる理由</h4>
             <p>予算書の数字だけでは、自治体が何を求めているかはわかりません。FromToは実取引の中で得た<strong>担当課の本音・優先度・実際の課題感</strong>を把握しています。この知見があるからこそ、サマライズの精度が他社とは根本的に異なります。</p>
           </div>
         </div>
-        <span class="why-highlight" style="margin-top:20px;">&rarr; 寄附仲介の実績に裏打ちされた、レコメンド・サマライズの圧倒的な精度</span>
+        <span class="why-highlight" style="margin-top:20px;">→ 寄附仲介の実績に裏打ちされた、レコメンド・サマライズの圧倒的な精度</span>
       </div>
 
+      <!-- サブカード2つ -->
       <div class="why-secondary-grid">
-        <div class="why-item">
-          <h3>1,741全自治体のデータを構造化するAI基盤</h3>
+        <div class="why-card">
+          <h3>📊 1,741全自治体のデータを構造化するAI基盤</h3>
           <p>予算書・総合計画・首長方針・議会議事録──自治体が公開する膨大な情報を、AIが自動で収集・構造化・更新。47都道府県を網羅し、国の政策方針から各自治体の個別課題まで3層で分析可能な基盤を構築しています。</p>
-          <span class="why-highlight">&rarr; 全国規模での最適マッチングを実現</span>
+          <span class="why-highlight">→ 全国規模での最適マッチングを実現</span>
         </div>
-        <div class="why-item">
-          <h3>企業と自治体をつなぐ双方向プラットフォーム</h3>
+        <div class="why-card">
+          <h3>🔄 企業と自治体をつなぐ双方向プラットフォーム</h3>
           <p>寄附仲介で自治体との信頼関係を深化させ、そこで得た担当部局のニーズ情報を47Connectのレコメンド精度に還元。契約企業が増えるほど自治体側にとっても価値が高まり、企業と自治体の双方が集まるプラットフォームへ成長する。<strong>データ分析だけのツールでは実現できない、「つなげる力」が持続的な競争優位性の基盤です。</strong></p>
-          <span class="why-highlight">&rarr; 仲介実績に裏打ちされた、参入障壁の高い双方向プラットフォーム</span>
+          <span class="why-highlight">→ 仲介実績に裏打ちされた、参入障壁の高い双方向プラットフォーム</span>
         </div>
       </div>
     </div>
@@ -1025,9 +1443,7 @@
   </div>
 </section>
 
-<hr class="section-divider" style="border-color: rgba(255,255,255,0.1);">
-
-<!-- TRACK RECORD MAP -->
+<!-- S4.7: TRACK RECORD MAP -->
 <section class="track-record">
   <div class="track-record-inner">
     <h2 class="section-title">全国に広がるFromToの寄附実績</h2>
@@ -1035,7 +1451,7 @@
 
     <div class="map-container">
       <div class="map-header">
-        <h3>企業版ふるさと納税 寄附実施マップ</h3>
+        <h3>📍 企業版ふるさと納税 寄附実施マップ</h3>
         <div class="map-header-stats">
           <div class="map-stat-item">
             <div class="map-stat-num">112</div>
@@ -1047,70 +1463,70 @@
           </div>
         </div>
       </div>
-      <div style="text-align:center; padding:40px 0;">
+      <div style="text-align:center; padding:40px 20px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0;">
         <svg viewBox="0 0 800 700" style="max-width:600px; width:100%; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
           <!-- 北海道 -->
-          <g transform="translate(580,30)"><rect width="110" height="80" rx="0" fill="#10B981" opacity="0.7"/><text x="55" y="35" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">北海道</text><text x="55" y="55" text-anchor="middle" fill="#fff" font-size="11">実績あり</text></g>
+          <g transform="translate(580,30)"><rect width="110" height="80" rx="8" fill="#6366F1" opacity="0.7"/><text x="55" y="35" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">北海道</text><text x="55" y="55" text-anchor="middle" fill="#fff" font-size="11">実績あり</text></g>
           <!-- 東北 -->
-          <g transform="translate(540,130)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">青森</text></g>
-          <g transform="translate(620,130)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">岩手</text></g>
-          <g transform="translate(540,185)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">秋田</text></g>
-          <g transform="translate(620,185)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">宮城</text></g>
-          <g transform="translate(540,240)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">山形</text></g>
-          <g transform="translate(620,240)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">福島</text></g>
+          <g transform="translate(540,130)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">青森</text></g>
+          <g transform="translate(620,130)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">岩手</text></g>
+          <g transform="translate(540,185)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">秋田</text></g>
+          <g transform="translate(620,185)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">宮城</text></g>
+          <g transform="translate(540,240)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">山形</text></g>
+          <g transform="translate(620,240)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">福島</text></g>
           <!-- 関東 -->
-          <g transform="translate(440,300)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">茨城</text></g>
-          <g transform="translate(520,300)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">栃木</text></g>
-          <g transform="translate(600,300)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">群馬</text></g>
-          <g transform="translate(440,355)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">埼玉</text></g>
-          <g transform="translate(520,355)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">千葉</text></g>
-          <g transform="translate(600,355)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.8"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">東京</text></g>
-          <g transform="translate(680,355)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">神奈川</text></g>
+          <g transform="translate(440,300)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">茨城</text></g>
+          <g transform="translate(520,300)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">栃木</text></g>
+          <g transform="translate(600,300)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">群馬</text></g>
+          <g transform="translate(440,355)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">埼玉</text></g>
+          <g transform="translate(520,355)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">千葉</text></g>
+          <g transform="translate(600,355)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.8"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">東京</text></g>
+          <g transform="translate(680,355)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">神奈川</text></g>
           <!-- 中部 -->
-          <g transform="translate(340,250)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">新潟</text></g>
-          <g transform="translate(420,250)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">富山</text></g>
-          <g transform="translate(340,305)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">石川</text></g>
-          <g transform="translate(340,360)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">福井</text></g>
-          <g transform="translate(420,410)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">山梨</text></g>
-          <g transform="translate(500,410)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">長野</text></g>
-          <g transform="translate(340,415)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">岐阜</text></g>
-          <g transform="translate(420,465)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">静岡</text></g>
-          <g transform="translate(340,470)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.7"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">愛知</text></g>
+          <g transform="translate(340,250)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">新潟</text></g>
+          <g transform="translate(420,250)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">富山</text></g>
+          <g transform="translate(340,305)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">石川</text></g>
+          <g transform="translate(340,360)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">福井</text></g>
+          <g transform="translate(420,410)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">山梨</text></g>
+          <g transform="translate(500,410)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">長野</text></g>
+          <g transform="translate(340,415)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">岐阜</text></g>
+          <g transform="translate(420,465)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">静岡</text></g>
+          <g transform="translate(340,470)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.7"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">愛知</text></g>
           <!-- 近畿 -->
-          <g transform="translate(220,370)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">三重</text></g>
-          <g transform="translate(220,425)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">滋賀</text></g>
-          <g transform="translate(220,480)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">京都</text></g>
-          <g transform="translate(300,480)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.7"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">大阪</text></g>
-          <g transform="translate(140,480)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">兵庫</text></g>
-          <g transform="translate(140,425)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">奈良</text></g>
-          <g transform="translate(140,370)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">和歌山</text></g>
+          <g transform="translate(220,370)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">三重</text></g>
+          <g transform="translate(220,425)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">滋賀</text></g>
+          <g transform="translate(220,480)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">京都</text></g>
+          <g transform="translate(300,480)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.7"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">大阪</text></g>
+          <g transform="translate(140,480)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">兵庫</text></g>
+          <g transform="translate(140,425)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">奈良</text></g>
+          <g transform="translate(140,370)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.3"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">和歌山</text></g>
           <!-- 中国 -->
-          <g transform="translate(40,380)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">鳥取</text></g>
-          <g transform="translate(40,435)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">島根</text></g>
-          <g transform="translate(40,490)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">岡山</text></g>
-          <g transform="translate(40,545)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.7"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">広島</text></g>
-          <g transform="translate(40,600)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">山口</text></g>
+          <g transform="translate(40,380)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">鳥取</text></g>
+          <g transform="translate(40,435)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">島根</text></g>
+          <g transform="translate(40,490)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">岡山</text></g>
+          <g transform="translate(40,545)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.7"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">広島</text></g>
+          <g transform="translate(40,600)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">山口</text></g>
           <!-- 四国 -->
-          <g transform="translate(120,540)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">徳島</text></g>
-          <g transform="translate(200,540)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">香川</text></g>
-          <g transform="translate(120,595)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">愛媛</text></g>
-          <g transform="translate(200,595)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">高知</text></g>
+          <g transform="translate(120,540)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">徳島</text></g>
+          <g transform="translate(200,540)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">香川</text></g>
+          <g transform="translate(120,595)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">愛媛</text></g>
+          <g transform="translate(200,595)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">高知</text></g>
           <!-- 九州・沖縄 -->
-          <g transform="translate(20,30)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">福岡</text></g>
-          <g transform="translate(100,30)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">佐賀</text></g>
-          <g transform="translate(20,85)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">長崎</text></g>
-          <g transform="translate(100,85)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">熊本</text></g>
-          <g transform="translate(180,30)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">大分</text></g>
-          <g transform="translate(180,85)"><rect width="70" height="45" rx="0" fill="#fafafa" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#0a0a0a" font-size="11" font-weight="600">宮崎</text></g>
-          <g transform="translate(100,140)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">鹿児島</text></g>
-          <g transform="translate(20,200)"><rect width="70" height="45" rx="0" fill="#10B981" opacity="0.9"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">沖縄</text><text x="35" y="36" text-anchor="middle" fill="#fff" font-size="9">本社</text></g>
+          <g transform="translate(20,30)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">福岡</text></g>
+          <g transform="translate(100,30)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.4"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">佐賀</text></g>
+          <g transform="translate(20,85)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">長崎</text></g>
+          <g transform="translate(100,85)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">熊本</text></g>
+          <g transform="translate(180,30)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">大分</text></g>
+          <g transform="translate(180,85)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.5"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">宮崎</text></g>
+          <g transform="translate(100,140)"><rect width="70" height="45" rx="6" fill="#6366F1" opacity="0.6"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">鹿児島</text></g>
+          <g transform="translate(20,200)"><rect width="70" height="45" rx="6" fill="#10B981" opacity="0.8"/><text x="35" y="20" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">沖縄</text><text x="35" y="36" text-anchor="middle" fill="#fff" font-size="9">本社</text></g>
           <!-- 凡例 -->
           <g transform="translate(580,500)">
-            <text x="0" y="0" font-size="12" font-weight="700" fill="#fafafa">寄附仲介実績</text>
-            <rect x="0" y="10" width="20" height="12" rx="0" fill="#fafafa" opacity="0.3"/><text x="26" y="20" font-size="10" fill="#fafafa" opacity="0.6">1〜3件</text>
-            <rect x="0" y="28" width="20" height="12" rx="0" fill="#fafafa" opacity="0.5"/><text x="26" y="38" font-size="10" fill="#fafafa" opacity="0.6">4〜8件</text>
-            <rect x="0" y="46" width="20" height="12" rx="0" fill="#10B981" opacity="0.7"/><text x="26" y="56" font-size="10" fill="#fafafa" opacity="0.6">9件以上</text>
-            <rect x="0" y="64" width="20" height="12" rx="0" fill="#10B981" opacity="0.9"/><text x="26" y="74" font-size="10" fill="#fafafa" opacity="0.6">本社所在地</text>
+            <text x="0" y="0" font-size="12" font-weight="700" fill="#334155">寄附仲介実績</text>
+            <rect x="0" y="10" width="20" height="12" rx="3" fill="#6366F1" opacity="0.3"/><text x="26" y="20" font-size="10" fill="#64748b">1〜3件</text>
+            <rect x="0" y="28" width="20" height="12" rx="3" fill="#6366F1" opacity="0.5"/><text x="26" y="38" font-size="10" fill="#64748b">4〜8件</text>
+            <rect x="0" y="46" width="20" height="12" rx="3" fill="#6366F1" opacity="0.7"/><text x="26" y="56" font-size="10" fill="#64748b">9件以上</text>
+            <rect x="0" y="64" width="20" height="12" rx="3" fill="#10B981" opacity="0.8"/><text x="26" y="74" font-size="10" fill="#64748b">本社所在地</text>
           </g>
         </svg>
       </div>
@@ -1120,15 +1536,18 @@
     </div>
 
     <div class="track-highlights">
-      <div class="track-hl-item">
+      <div class="track-hl-card">
+        <div class="track-hl-icon">🗾</div>
         <h4>全国47都道府県が対象</h4>
         <p>北海道から沖縄まで、全国1,741自治体を分析対象としてカバー。寄附仲介の実績エリアも全国各地に広がっています。</p>
       </div>
-      <div class="track-hl-item">
+      <div class="track-hl-card">
+        <div class="track-hl-icon">📈</div>
         <h4>毎年拡大する実績</h4>
         <p>寄附仲介件数は年々増加。既存自治体からの紹介による新規開拓が継続的に拡大しています。</p>
       </div>
-      <div class="track-hl-item">
+      <div class="track-hl-card">
+        <div class="track-hl-icon">🔑</div>
         <h4>実績＝レコメンドの精度</h4>
         <p>各自治体との寄附仲介で得たニーズ情報をAIスコアリングに反映。実績の蓄積がレコメンド精度を継続的に向上させます。</p>
       </div>
@@ -1136,102 +1555,100 @@
   </div>
 </section>
 
-<hr class="section-divider">
 
-<!-- PRICING -->
+<!-- S7: PRICING -->
 <section class="pricing">
   <div class="pricing-inner">
     <h2 class="section-title">料金プラン</h2>
     <p class="section-sub">自治体の予算が本格決定する10月までが勝負。<br>今のうちに情報を仕入れ、提案準備を進めることで「入札前に選ばれる企業」になれます。</p>
     <div class="pricing-grid" style="margin-top:48px; max-width:900px; margin-left:auto; margin-right:auto;">
       <!-- ライトプラン -->
-      <div class="plan-item recommended">
+      <div class="plan-card recommended">
         <div class="plan-badge">6/30まで限定</div>
         <h3 class="plan-name">ライトプラン</h3>
-        <p style="font-size:0.85rem; color:#6b7280; margin-bottom:8px;">ベータ版キャンペーン・6ヶ月（2026年7月〜12月）</p>
+        <p style="font-size:0.85rem; color:#64748b; margin-bottom:8px;">ベータ版キャンペーン・6ヶ月（2026年7月〜12月）</p>
         <div style="margin-bottom:8px;">
-          <span style="font-size:1rem; color:#6b7280; text-decoration:line-through;">通常 月額10万円 × 6ヶ月 = 60万円</span>
+          <span style="font-size:1rem; color:#94a3b8; text-decoration:line-through;">通常 月額10万円 × 6ヶ月 = 60万円</span>
         </div>
         <div><span class="plan-amount" style="color:#DC2626;">30万円</span><span class="plan-unit">/半年（税抜）</span></div>
-        <div style="background:#0a0a0a; color:#fafafa; font-weight:700; font-size:0.9rem; padding:6px 16px; display:inline-block; margin:8px 0 16px;">50%OFF キャンペーン</div>
+        <div style="background:#FEF2F2; color:#DC2626; font-weight:700; font-size:0.9rem; padding:6px 16px; border-radius:20px; display:inline-block; margin:8px 0 16px;">50%OFF キャンペーン</div>
         <p class="plan-desc">予算が本格決定する10月までに情報を仕入れ、提案準備を進められます。</p>
         <ul class="plan-features">
-          <li><span class="icon">&#10003;</span> <strong>自治体AIレコメンド（3層スコアリング）</strong></li>
-          <li><span class="icon">&#10003;</span> <strong>自治体情報サマライズ</strong></li>
-          <li><span class="icon">&#10003;</span> <strong>自治体CRM管理</strong></li>
-          <li><span class="icon">&#10003;</span> 5名まで利用可能</li>
-          <li><span class="icon">&#10003;</span> ご要望を製品に優先反映</li>
+          <li><span class="icon">✓</span> <strong>自治体AIレコメンド（3層スコアリング）</strong></li>
+          <li><span class="icon">✓</span> <strong>自治体情報サマライズ</strong></li>
+          <li><span class="icon">✓</span> <strong>自治体CRM管理</strong></li>
+          <li><span class="icon">✓</span> 5名まで利用可能</li>
+          <li><span class="icon">✓</span> ご要望を製品に優先反映</li>
         </ul>
-        <div style="background:#f0fdf4; color:#059669; font-weight:600; font-size:0.85rem; padding:8px 16px; margin-top:12px; text-align:left; border-left:3px solid #10B981;">
-          初期構築費用（通常10万円）&rarr; <strong>ベータ版は無料</strong>
+        <div style="background:#F0FDF4; color:#059669; font-weight:600; font-size:0.85rem; padding:8px 16px; border-radius:8px; margin-top:12px; text-align:left;">
+          初期構築費用（通常10万円）→ <strong>ベータ版は無料</strong>
         </div>
         <a href="#contact" class="btn btn-primary btn-full" style="margin-top:16px;">キャンペーン価格で申し込む</a>
-        <p style="font-size:0.8rem; color:#6b7280; margin-top:12px;">申込締切：2026年6月30日 ／ 先行20社限定</p>
+        <p style="font-size:0.8rem; color:#94a3b8; margin-top:12px;">申込締切：2026年6月30日 ／ 先行20社限定</p>
       </div>
       <!-- スタンダードプラン -->
-      <div class="plan-item">
+      <div class="plan-card">
         <h3 class="plan-name">スタンダードプラン</h3>
         <div><span class="plan-amount">20万円</span><span class="plan-unit">/月（税抜）</span></div>
         <p class="plan-desc" style="margin-top:12px;">CSスタッフによるオンボーディング付き。高機能プランで自治体営業を本格支援。</p>
         <ul class="plan-features">
-          <li><span class="icon">&#10003;</span> ライトプランの全機能</li>
-          <li><span class="icon">&#10003;</span> 提案メール生成・一括配信 <span style="font-size:0.7rem; color:#10B981;">※開発中・順次提供</span></li>
-          <li><span class="icon">&#10003;</span> AIエージェント分析 <span style="font-size:0.7rem; color:#10B981;">※開発中・順次提供</span></li>
-          <li><span class="icon">&#10003;</span> <strong>CSスタッフによるオンボーディング支援</strong></li>
-          <li><span class="icon">&#10003;</span> 月2回のフォローミーティング</li>
-          <li><span class="icon">&#10003;</span> 年間契約・スポット契約を選択可能</li>
+          <li><span class="icon">✓</span> ライトプランの全機能</li>
+          <li><span class="icon">✓</span> 提案メール生成・一括配信 <span style="font-size:0.7rem; color:#6366F1;">※開発中・順次提供</span></li>
+          <li><span class="icon">✓</span> AIエージェント分析 <span style="font-size:0.7rem; color:#6366F1;">※開発中・順次提供</span></li>
+          <li><span class="icon">✓</span> <strong>CSスタッフによるオンボーディング支援</strong></li>
+          <li><span class="icon">✓</span> 月2回のフォローミーティング</li>
+          <li><span class="icon">✓</span> 年間契約・スポット契約を選択可能</li>
         </ul>
-        <p style="font-size:0.78rem; color:#6b7280; margin-top:8px; text-align:left;">※ 初期構築費用: 10万円（別途）</p>
+        <p style="font-size:0.78rem; color:#94a3b8; margin-top:8px; text-align:left;">※ 初期構築費用: 10万円（別途）</p>
         <a href="#contact" class="btn btn-outline-dark btn-full" style="margin-top:12px;">スタンダードプランについて問い合わせる</a>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="section-divider">
 
-<!-- FAQ -->
+<!-- S9: FAQ -->
 <section class="faq">
   <div class="faq-inner">
     <h2 class="section-title">よくいただくご質問</h2>
     <div class="faq-list" style="margin-top:40px;">
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>47Connectはどのような企業に向いていますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">自治体に提案したい製品・サービスがあるが、どの自治体にアプローチすべきかわからない企業に最適です。業種・規模を問わず、防災・福祉・教育・DX・環境など幅広い分野でご利用いただけます。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>レコメンドのスコアはどのように算出されますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">国の政策方針・都道府県の重点施策・自治体の個別課題（予算書・総合計画・首長方針）の3層を掛け合わせてAIがスコアリングします。さらに、112自治体との寄附仲介で得た担当部局のニーズ情報（担当課の関心事・実際の課題感・受入実績）を加味することで、公開情報だけでは得られない精度を実現しています。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>自治体プロファイルのサマライズにはどんな情報が含まれますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">予算概要（一般会計・分野別予算・前年比）、総合計画の重点施策、首長の方針・公約、AIが分析した想定担当課、関連する議会議事録の要約などが含まれます。従来数週間かかっていた1自治体の情報収集が、30分で完了します。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>他社の自治体DBサービスとの違いは？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">他社DBは公開情報に基づくキーワードマッチングが中心です。47Connectは公開情報に加え、112自治体との寄附仲介で得た担当部局のニーズ情報をスコアリングに活用。さらにレコメンド・サマライズ・CRM管理まで一気通貫で提供し、自治体営業の意思決定基盤をワンストップでカバーします。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>データのセキュリティ対策は？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">御社の企業情報・利用データは暗号化して管理しており、第三者への提供は一切行いません。アクセス権限はアカウント単位で管理され、チーム外への情報漏洩を防止しています。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>実際に自治体にアプローチしたい場合は？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">メール配信サービスや寄附仲介による接点構築のご提案も可能です。FromToが寄附仲介で築いた自治体との信頼関係を活かしたアプローチを、オプションとしてご用意しています。お気軽にご相談ください。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>企業版ふるさと納税の手続きはサポートしてもらえますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">はい。寄附手続きから効果報告まで、FromToが一貫してサポートします。地域再生計画への記載がない場合の計画変更手続きも無料で支援いたします。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>最低契約期間はありますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">現在はベータ版キャンペーンとして、ライトプランの半額（30万円/半年）でご提供しています。期間中はスタンダードプランの機能も順次ご利用いただけます。詳しくはお問い合わせください。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>サービスはいつから利用できますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">2026年7月より導入いただけるよう進めております。6月末までにお申し込みいただいた企業様のみ、初期構築費0円・半額キャンペーン価格でご利用いただけます。</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q"><span>導入にどのくらい時間がかかりますか？</span><span class="faq-toggle">+</span></div>
         <div class="faq-a">お申し込みから最短2週間で利用開始いただけます。御社の企業情報・製品情報の登録後、AIレコメンドの初回結果をお届けいたします。</div>
       </div>
@@ -1239,24 +1656,22 @@
   </div>
 </section>
 
-<hr class="section-divider" style="border-color: rgba(255,255,255,0.1);">
-
-<!-- EARLY-BIRD -->
+<!-- EARLY-BIRD: 有償POC -->
 <section class="early-bird">
   <div class="early-bird-inner">
     <span class="early-bird-badge">先行20社限定</span>
     <h2>7月先行導入プログラム受付中</h2>
     <p class="sub">自治体の予算が本格決定する10月までが勝負。7月から情報収集を始めれば、提案準備で先手を打てます。<br>導入企業様のご要望を優先的に製品へ反映いたします。</p>
     <div class="early-bird-box">
-      <p style="font-size:1rem; color:rgba(250,250,250,0.6); margin-bottom:16px;">ベータ版キャンペーン価格（ライトプラン・6ヶ月）</p>
-      <p style="font-size:1.1rem; color:rgba(250,250,250,0.4); text-decoration:line-through; margin-bottom:8px;">通常 月額10万円 × 6ヶ月 = 60万円</p>
+      <p style="font-size:1rem; color:#c7d2fe; margin-bottom:16px;">ベータ版キャンペーン価格（ライトプラン・6ヶ月）</p>
+      <p style="font-size:1.1rem; color:#a5b4fc; text-decoration:line-through; margin-bottom:8px;">通常 月額10万円 × 6ヶ月 = 60万円</p>
       <p style="margin-bottom:4px;">
-        <span style="font-size:1.6rem; font-weight:900; color:#10B981;">50%OFF</span>
-        <span style="font-size:1.6rem; font-weight:900; color:#fafafa; margin-left:12px;">30万円</span>
-        <span style="font-size:0.9rem; color:rgba(250,250,250,0.6);">/半年（税抜）</span>
+        <span style="font-size:1.6rem; font-weight:900; color:#f59e0b;">50%OFF</span>
+        <span style="font-size:1.6rem; font-weight:900; color:#fff; margin-left:12px;">30万円</span>
+        <span style="font-size:0.9rem; color:#c7d2fe;">/半年（税抜）</span>
       </p>
       <p class="price-detail" style="margin-top:16px;">利用期間：<strong>2026年7月〜12月</strong>／初期構築費用無料</p>
-      <p class="price-detail" style="margin-top:8px;"><strong style="color:#10B981;">提案メール生成・AIエージェント分析は開発完了次第、優先的にご案内いたします</strong></p>
+      <p class="price-detail" style="margin-top:8px;"><strong style="color:#f59e0b;">提案メール生成・AIエージェント分析は開発完了次第、優先的にご案内いたします</strong></p>
     </div>
     <div class="early-bird-conditions">
       <span class="eb-tag"><strong>対象</strong>　ライトプラン</span>
@@ -1265,43 +1680,44 @@
       <span class="eb-tag"><strong>締切</strong>　2026年6月30日</span>
       <span class="eb-tag"><strong>特典</strong>　開発中機能を優先案内</span>
     </div>
-    <p style="font-size:0.9rem; color:rgba(250,250,250,0.6); max-width:700px; margin:0 auto 24px; line-height:1.7; text-align:center;">
+    <p style="font-size:0.9rem; color:#c7d2fe; max-width:700px; margin:0 auto 24px; line-height:1.7; text-align:center;">
       本番ローンチ後は料金が値上げとなる可能性がありますが、<br>
-      <strong style="color:#10B981;">ベータ版ご利用企業様には、本番ローンチ後1年間は値上げ前の価格を基準に、さらにキャンペーン価格でご提供</strong>いたします。
+      <strong style="color:#f59e0b;">ベータ版ご利用企業様には、本番ローンチ後1年間は値上げ前の価格を基準に、さらにキャンペーン価格でご提供</strong>いたします。
     </p>
-    <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:16px 48px; background:#10B981; border-color:#10B981;">キャンペーン価格で申し込む</a>
+    <a href="#contact" class="btn btn-primary" style="font-size:1.1rem; padding:16px 48px;">キャンペーン価格で申し込む</a>
     <p class="early-bird-note">※ 枠に限りがございますのでお早めにどうぞ。</p>
   </div>
 </section>
 
-<hr class="section-divider">
-
-<!-- CTA -->
+<!-- S10: CTA -->
 <section id="contact" class="cta-section">
   <div class="cta-inner">
     <h2 class="section-title">自治体営業、次の一歩を踏み出しませんか？</h2>
-    <p class="section-sub">申し込み前のご相談も大歓迎です。まずはお気軽にお問い合わせください。</p>
+    <p class="section-sub" style="color:#94a3b8;">申し込み前のご相談も大歓迎です。まずはお気軽にお問い合わせください。</p>
     <div class="cta-options" style="margin-top:40px; max-width:800px; margin-left:auto; margin-right:auto;">
-      <div class="cta-item hl">
+      <div class="cta-card hl">
+        <div class="cta-icon">🚀</div>
         <h3>キャンペーン価格で申し込む</h3>
-        <p>6月末まで・先行20社限定。<br>通常60万円 &rarr; <strong style="color:#DC2626;">30万円/半年（50%OFF）</strong></p>
+        <p>6月末まで・先行20社限定。<br>通常60万円 → <strong style="color:#DC2626;">30万円/半年（50%OFF）</strong></p>
         <a href="mailto:info@fromto.co.jp?subject=47Connectキャンペーン申込" class="btn btn-primary">キャンペーンに申し込む</a>
-        <p style="font-size:0.75rem; color:#6b7280; margin-top:8px;">開発中機能は完了次第、優先的にご案内</p>
+        <p style="font-size:0.75rem; color:#94a3b8; margin-top:8px;">開発中機能は完了次第、優先的にご案内</p>
       </div>
-      <div class="cta-item">
+      <div class="cta-card">
+        <div class="cta-icon">💬</div>
         <h3>まずは話を聞いてみる</h3>
         <p>「自社に合うか知りたい」「具体的な活用イメージを聞きたい」など、<strong>お気軽にご相談ください。</strong></p>
         <a href="mailto:info@fromto.co.jp?subject=47Connect オンライン相談希望&body=ご希望の日時候補をお知らせください。30分程度のオンライン面談を設定いたします。" class="btn btn-outline-dark">オンライン相談を予約する</a>
-        <p style="font-size:0.75rem; color:#6b7280; margin-top:8px;">30分程度のオンライン面談｜日程調整のうえご案内</p>
+        <p style="font-size:0.75rem; color:#94a3b8; margin-top:8px;">30分程度のオンライン面談｜日程調整のうえご案内</p>
       </div>
     </div>
     <div class="form-section">
       <h3 class="form-title">お問い合わせフォーム</h3>
-      <div style="text-align:center; padding:24px;">
-        <p style="font-size:1rem; font-weight:600; color:#0a0a0a; margin-bottom:8px;">お問い合わせ・お申し込みはメールにて承っております</p>
-        <p style="font-size:0.9rem; color:#6b7280; margin-bottom:16px;">下記ボタンからメールをお送りください。担当者より1営業日以内にご連絡いたします。</p>
+      <!-- Googleフォーム統合後に差し替え予定 -->
+      <div style="text-align:center; padding:24px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0;">
+        <p style="font-size:1rem; font-weight:600; color:#334155; margin-bottom:8px;">お問い合わせ・お申し込みはメールにて承っております</p>
+        <p style="font-size:0.9rem; color:#64748b; margin-bottom:16px;">下記ボタンからメールをお送りください。担当者より1営業日以内にご連絡いたします。</p>
         <a href="mailto:info@fromto.co.jp?subject=47Connectお問い合わせ" class="btn btn-primary" style="font-size:1rem; padding:14px 36px;">メールでお問い合わせ</a>
-        <p style="font-size:0.75rem; color:#6b7280; margin-top:12px;">info@fromto.co.jp</p>
+        <p style="font-size:0.75rem; color:#94a3b8; margin-top:12px;">info@fromto.co.jp</p>
       </div>
     </div>
   </div>
@@ -1329,7 +1745,7 @@
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {
     const toggle = item.querySelector('.faq-toggle');
-    toggle.textContent = item.classList.contains('open') ? '\u2212' : '+';
+    toggle.textContent = item.classList.contains('open') ? '−' : '+';
   });
 });
 </script>
