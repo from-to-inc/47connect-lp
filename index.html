@@ -990,17 +990,18 @@
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-title { font-size: 1.6rem; }
-      /* ヒーロー画像: スマホでもテキスト下に表示 */
+      /* ヒーロー画像: スマホでもテキスト下に表示（コンパクト） */
       .hero-visual {
         display: block !important;
-        margin-top: 32px;
       }
       .hero-visual img {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        border-radius: 12px !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+        width: 85% !important;
+        max-width: 85% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+        border-radius: 10px !important;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.1) !important;
       }
       /* ヒーローサブテキストのbr非表示 */
       .hero-sub br { display: none; }
@@ -1014,7 +1015,7 @@
       }
       .hero-title { order: 1; }
       .hero-sub { order: 2; }
-      .hero-visual { order: 3 !important; margin-top: 24px; margin-bottom: 24px; }
+      .hero-visual { order: 3 !important; margin-top: 16px; margin-bottom: 16px; }
       .hero-cta { order: 4 !important; }
       /* ヒーローCTAを全幅に */
       .hero-cta .btn-primary {
@@ -1128,7 +1129,7 @@
       section { padding-left: 16px !important; padding-right: 16px !important; }
 
       /* === ヒーロー === */
-      .hero { padding: 100px 16px 60px !important; }
+      .hero { padding: 80px 16px 40px !important; }
       .hero-sub { font-size: 0.9rem; }
 
       /* === 比較表スクロール+ヒント === */
