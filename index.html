@@ -1037,6 +1037,43 @@
       .proc-bottom-labels { flex-direction: column; gap: 8px; }
       .upcoming-grid { grid-template-columns: 1fr; }
       .proc-period-label.planning, .proc-period-label.bidding { margin: 0; }
+
+      /* 料金プラン: インラインgridの1カラム化 */
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+      /* セクションpadding縮小 */
+      section { padding-left: 16px !important; padding-right: 16px !important; }
+
+      /* ヒーローCTA */
+      .hero { padding: 100px 16px 60px !important; }
+      .hero-sub { font-size: 0.9rem; }
+
+      /* 比較表スクロール */
+      .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .compare-table { min-width: 500px; }
+
+      /* スクリーンショット画像 */
+      .profile-screenshots img { height: auto !important; object-fit: contain !important; }
+
+      /* ヘッダー */
+      .header-logo { font-size: 1.1rem; }
+      .header-cta .btn { padding: 6px 14px !important; font-size: 0.75rem !important; }
+
+      /* 早期キャンペーンボックス */
+      .early-bird-conditions { flex-wrap: wrap; }
+      .eb-tag { font-size: 0.7rem; }
+
+      /* スポットプラン補足 */
+      .pricing [style*="display:grid"][style*="gap:24px"] { gap: 16px !important; }
+
+      /* CTA ボタン */
+      .btn { padding: 14px 24px !important; font-size: 0.9rem !important; }
+
+      /* 本番ローンチ後プラン */
+      .pricing [style*="padding:32px 28px"] { padding: 24px 20px !important; }
+
+      /* フッター */
+      .footer-info p { font-size: 0.75rem; }
     }
   </style>
 </head>
