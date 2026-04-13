@@ -1052,30 +1052,41 @@
       .proc-left, .proc-right { padding: 16px 12px; }
       .proc-left-steps, .proc-right-steps { flex-direction: column; gap: 4px; }
 
-      /* ステップを横並び: [番号+アイコン(左・大)] [テキスト(右・改行あり)] */
+      /* ステップを2列grid: 左[番号+アイコン] 右[タイトル+説明] */
       .proc-step {
-        flex-direction: row !important;
-        align-items: flex-start !important;
+        display: grid !important;
+        grid-template-columns: 48px 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 2px 14px !important;
+        align-items: start !important;
         text-align: left !important;
-        gap: 16px;
         padding: 10px 0;
       }
-      /* 左側: 番号+アイコンを縦に積む */
+      /* 番号: 左上 */
       .proc-step-num {
-        width: 36px; height: 36px; font-size: 0.85rem;
-        margin-bottom: 8px !important;
-        flex-shrink: 0;
-      }
-      .proc-step-icon {
-        width: 36px !important; height: 36px !important;
+        grid-column: 1; grid-row: 1;
+        width: 32px; height: 32px; font-size: 0.8rem;
         margin-bottom: 0 !important;
-        flex-shrink: 0;
       }
-      .proc-step-icon svg { width: 36px !important; height: 36px !important; }
-      /* 右側: タイトル+詳細を改行付きで表示 */
-      .proc-step-title { font-size: 1rem; font-weight: 800; margin-bottom: 2px; }
+      /* アイコン: 左下 */
+      .proc-step-icon {
+        grid-column: 1; grid-row: 2;
+        width: 32px !important; height: 32px !important;
+        margin-bottom: 0 !important;
+      }
+      .proc-step-icon svg { width: 32px !important; height: 32px !important; }
+      /* タイトル: 右上 */
+      .proc-step-title {
+        grid-column: 2; grid-row: 1;
+        font-size: 1rem; font-weight: 800; margin-bottom: 0;
+        align-self: center;
+      }
       .proc-step-title br { display: none; }
-      .proc-step-detail { font-size: 0.8rem; line-height: 1.6; }
+      /* 説明: 右下 */
+      .proc-step-detail {
+        grid-column: 2; grid-row: 2;
+        font-size: 0.8rem; line-height: 1.6; color: #64748b;
+      }
 
       /* 矢印をコンパクトに */
       .proc-arrow { transform: rotate(90deg); padding: 0; font-size: 0.8rem; }
