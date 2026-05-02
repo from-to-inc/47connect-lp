@@ -669,6 +669,10 @@
   .promo-cta .btn:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft);box-shadow:none;transform:none}
   .promo-note{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
 
+  /* Solution Section（独立化された2層構造） */
+  .solution-section{background:var(--bg-alt);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+  .solution-section .layers-intro{margin-top:32px;margin-bottom:0}
+
   /* 2層構造の説明 */
   .layers-intro{margin-top:80px;margin-bottom:48px}
   .layers-title{font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:32px;letter-spacing:-.01em}
@@ -831,8 +835,9 @@
     <div class="logo">47<span>Connect</span></div>
     <nav class="nav">
       <a href="#problem">課題</a>
-      <a href="#sambo">自治体AI参謀</a>
+      <a href="#solution">解決策</a>
       <a href="#roi">ROI試算</a>
+      <a href="#sambo">自治体AI参謀</a>
       <a href="#why">FromToについて</a>
       <a href="#pricing">料金</a>
       <a href="#assurance">契約条件</a>
@@ -901,6 +906,187 @@
     </div>
   </div>
 </section>
+
+<!-- SOLUTION（2層構造の宣言） -->
+<section id="solution" class="solution-section">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">The Solution</div>
+      <h2 class="h-section">47Connect は <em>2層</em> で出来ています。</h2>
+      <p class="lede">「データさえあれば自分で動ける」プロには Layer 1。「コンサル代替で毎日相談したい」企業には Layer 2。<strong>2層を組み合わせて、自治体ビジネスの歩留まりを構造から作り直します。</strong></p>
+    </div>
+    <!-- 2層構造の説明 -->
+    <div class="layers-intro">
+      <div class="layers-grid">
+        <div class="layer-card layer-1">
+          <div class="layer-num">Layer 1</div>
+          <div class="layer-name">データ層</div>
+          <div class="layer-sub">自治体ビジネスの羅針盤</div>
+          <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
+          <div class="layer-tag">→ ライトプラン</div>
+        </div>
+        <div class="layer-card layer-2">
+          <div class="layer-num">Layer 2</div>
+          <div class="layer-name">AI参謀層</div>
+          <div class="layer-sub">データを使い切る相棒</div>
+          <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
+          <div class="layer-tag">→ スタンダードプラン</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI by Numbers -->
+<section id="roi" class="roi-section">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">ROI by Numbers</div>
+      <h2 class="h-section">月20万円が、御社にいくらの<em>経済効果</em>を生むか。</h2>
+      <p class="lede">価格ではなく、総合プロセスのROIで判断していただけます。<br>製造業・営業2名・年4件規模の試算ケース。<strong>実質2人で4件取っていた仕事を、1人で6件取れる構造へ。</strong></p>
+    </div>
+
+    <!-- Before / After 比較 -->
+    <div class="roi-compare">
+      <div class="roi-compare-card before">
+        <div class="roi-compare-label">Before — 導入前</div>
+        <div class="roi-compare-stat">
+          <div class="roi-stat-num">月80h</div>
+          <div class="roi-stat-sub">営業2名 × 月40h<br>を自治体情報整理に投入</div>
+        </div>
+        <div class="roi-compare-result">年4件・売上1.2億円</div>
+      </div>
+      <div class="roi-compare-arrow">→</div>
+      <div class="roi-compare-card after">
+        <div class="roi-compare-label">After — 導入後（基本シナリオ）</div>
+        <div class="roi-compare-stat">
+          <div class="roi-stat-num">月4h</div>
+          <div class="roi-stat-sub">1名 × 月4h（76h削減・90%以上効率化）<br>残った1人を新規提案へ</div>
+        </div>
+        <div class="roi-compare-result">年6件・売上1.8億円(1.5倍)</div>
+      </div>
+    </div>
+
+    <p class="roi-story">
+      <strong>「実質2人で4件取っていた仕事が、1人で6件取れる。」</strong><br>
+      残った1人の工数を新規提案に振り向ければ、さらに増やせる余地が生まれます。
+    </p>
+
+    <!-- なぜ実現するのか（ロジック説明） -->
+    <div class="roi-logic">
+      <h3 class="roi-sub-h3">なぜ「2人で4件 → 1人で6件」が実現するのか？</h3>
+      <div class="roi-logic-grid">
+        <div class="roi-logic-step">
+          <div class="roi-logic-no">STEP 1</div>
+          <div class="roi-logic-title">情報整理の工数を圧縮</div>
+          <p>自治体情報整理に使っていた工数を、月80h（2名分）→ 月4h（1名分）に削減。<br><strong>月76時間が空く。</strong></p>
+        </div>
+        <div class="roi-logic-step">
+          <div class="roi-logic-no">STEP 2</div>
+          <div class="roi-logic-title">浮いた時間を「提案そのもの」へ</div>
+          <p>今まで情報整理に8割の時間を使っていた営業担当が、<strong>提案準備・顧客対応・戦略立案に集中できる。</strong>残った1人をフルに新規提案へ。</p>
+        </div>
+        <div class="roi-logic-step">
+          <div class="roi-logic-no">STEP 3</div>
+          <div class="roi-logic-title">質と量が同時に向上</div>
+          <p>タイミング最適化（首長任期×予算サイクル）と提案質向上（議事録引用・データ裏付け）が重なり、<strong>案件数 4件 → 6件・成約率も向上。</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ヒーロー数字 3カード -->
+    <div class="roi-numbers">
+      <div class="roi-num-card">
+        <div class="roi-num-big">17.4<span>倍</span></div>
+        <div class="roi-num-label">ROI 月次</div>
+      </div>
+      <div class="roi-num-card">
+        <div class="roi-num-big">+2<span>件</span></div>
+        <div class="roi-num-label">年間 追加案件獲得（年6,000万円規模）</div>
+      </div>
+      <div class="roi-num-card">
+        <div class="roi-num-big">0.7<span>ヶ月</span></div>
+        <div class="roi-num-label">ペイバック期間</div>
+      </div>
+    </div>
+
+    <!-- 3軸便益 -->
+    <div class="roi-3benefit">
+      <h3 class="roi-sub-h3">3軸の経済効果</h3>
+      <div class="roi-3benefit-grid">
+        <div class="roi-benefit-card">
+          <div class="roi-benefit-no">❶</div>
+          <h4>工数削減効果</h4>
+          <div class="roi-benefit-detail">月80h → 月4h<br><strong>76h削減</strong></div>
+          <div class="roi-benefit-result">月22.8万円<br>の人件費削減</div>
+        </div>
+        <div class="roi-benefit-card">
+          <div class="roi-benefit-no">❷</div>
+          <h4>提案件数増加</h4>
+          <div class="roi-benefit-detail">年4件 → 年6件<br><strong>1.5倍</strong></div>
+          <div class="roi-benefit-result">年6,000万円<br>の追加売上</div>
+        </div>
+        <div class="roi-benefit-card">
+          <div class="roi-benefit-no">❸</div>
+          <h4>コンバージョン改善</h4>
+          <div class="roi-benefit-detail">タイミング最適化<br>×提案質向上</div>
+          <div class="roi-benefit-result">成約率向上<br>（首長任期・予算サイクル連動）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3層ペルソナ別便益 -->
+    <div class="roi-personas">
+      <h3 class="roi-sub-h3">3層ペルソナ別の便益（稟議資料そのもの）</h3>
+      <div class="roi-personas-grid">
+        <div class="roi-persona-card">
+          <div class="roi-persona-label">現場・営業担当者</div>
+          <ul>
+            <li>実質2人で月80時間 → 1人で月4時間</li>
+            <li>情報収集の8割が自動化</li>
+            <li>残った1人を新規提案に振り向け可能</li>
+          </ul>
+        </div>
+        <div class="roi-persona-card">
+          <div class="roi-persona-label">中間管理職（営業部長等）</div>
+          <ul>
+            <li>チーム生産性 1.5倍</li>
+            <li>属人化リスクの解消</li>
+            <li>成約率向上 × タイミング最適化</li>
+          </ul>
+        </div>
+        <div class="roi-persona-card">
+          <div class="roi-persona-label">経営層</div>
+          <ul>
+            <li>年6,000万円の追加売上効果（年2件の追加案件獲得）</li>
+            <li>ROI倍率 17.4倍・ペイバック0.7ヶ月</li>
+            <li>全1,741自治体への戦略リーチ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 伸び代Box（控えめ） -->
+    <div class="roi-stretch">
+      <strong>★ さらなる伸び代 ★</strong>
+      削減工数（年912h）を全て新規提案に振り向けた場合、理論上の最大年間追加売上は <strong>数十億円規模まで拡張可能</strong>。業種・規模・営業体制により実現可能性は変動します。
+    </div>
+
+    <!-- 前提・注記 -->
+    <div class="roi-disclaimer">
+      ※ 製造業（学校家具・防災製品）・営業2名・年4件・受注単価3,000万円規模での試算ケース／
+      年間費用 370万円（月額20万×12 + 初期費10万 + AIクレジット月10万×12）に対する試算／
+      47Connect ROIシミュレーター v7 に基づく／
+      業種・規模・営業体制により数値は変動します／
+      導入効果を保証するものではありません。
+    </div>
+
+    <div class="roi-cta">
+      <a href="#contact" class="btn btn-primary">御社業種・規模でROI試算を依頼する<span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
 
 <!-- PROCUREMENT FLOW -->
 <section>
@@ -1266,157 +1452,6 @@
 </section>
 
 
-<!-- ROI by Numbers -->
-<section id="roi" class="roi-section">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow">ROI by Numbers</div>
-      <h2 class="h-section">月20万円が、御社にいくらの<em>経済効果</em>を生むか。</h2>
-      <p class="lede">価格ではなく、総合プロセスのROIで判断していただけます。<br>製造業・営業2名・年4件規模の試算ケース。<strong>実質2人で4件取っていた仕事を、1人で6件取れる構造へ。</strong></p>
-    </div>
-
-    <!-- Before / After 比較 -->
-    <div class="roi-compare">
-      <div class="roi-compare-card before">
-        <div class="roi-compare-label">Before — 導入前</div>
-        <div class="roi-compare-stat">
-          <div class="roi-stat-num">月80h</div>
-          <div class="roi-stat-sub">営業2名 × 月40h<br>を自治体情報整理に投入</div>
-        </div>
-        <div class="roi-compare-result">年4件・売上1.2億円</div>
-      </div>
-      <div class="roi-compare-arrow">→</div>
-      <div class="roi-compare-card after">
-        <div class="roi-compare-label">After — 導入後（基本シナリオ）</div>
-        <div class="roi-compare-stat">
-          <div class="roi-stat-num">月4h</div>
-          <div class="roi-stat-sub">1名 × 月4h（76h削減・90%以上効率化）<br>残った1人を新規提案へ</div>
-        </div>
-        <div class="roi-compare-result">年6件・売上1.8億円（1.5倍）</div>
-      </div>
-    </div>
-
-    <p class="roi-story">
-      <strong>「実質2人で4件取っていた仕事が、1人で6件取れる。」</strong><br>
-      残った1人の工数を新規提案に振り向ければ、さらに増やせる余地が生まれます。
-    </p>
-
-    <!-- なぜ実現するのか（ロジック説明） -->
-    <div class="roi-logic">
-      <h3 class="roi-sub-h3">なぜ「2人で4件 → 1人で6件」が実現するのか？</h3>
-      <div class="roi-logic-grid">
-        <div class="roi-logic-step">
-          <div class="roi-logic-no">STEP 1</div>
-          <div class="roi-logic-title">情報整理の工数を圧縮</div>
-          <p>自治体情報整理に使っていた工数を、月80h（2名分）→ 月4h（1名分）に削減。<br><strong>月76時間が空く。</strong></p>
-        </div>
-        <div class="roi-logic-step">
-          <div class="roi-logic-no">STEP 2</div>
-          <div class="roi-logic-title">浮いた時間を「提案そのもの」へ</div>
-          <p>今まで情報整理に8割の時間を使っていた営業担当が、<strong>提案準備・顧客対応・戦略立案に集中できる。</strong>残った1人をフルに新規提案へ。</p>
-        </div>
-        <div class="roi-logic-step">
-          <div class="roi-logic-no">STEP 3</div>
-          <div class="roi-logic-title">質と量が同時に向上</div>
-          <p>タイミング最適化（首長任期×予算サイクル）と提案質向上（議事録引用・データ裏付け）が重なり、<strong>案件数 4件 → 6件・成約率も向上。</strong></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ヒーロー数字 3カード -->
-    <div class="roi-numbers">
-      <div class="roi-num-card">
-        <div class="roi-num-big">17.4<span>倍</span></div>
-        <div class="roi-num-label">ROI 月次</div>
-      </div>
-      <div class="roi-num-card">
-        <div class="roi-num-big">+2<span>件</span></div>
-        <div class="roi-num-label">年間 追加案件獲得（年6,000万円規模）</div>
-      </div>
-      <div class="roi-num-card">
-        <div class="roi-num-big">0.7<span>ヶ月</span></div>
-        <div class="roi-num-label">ペイバック期間</div>
-      </div>
-    </div>
-
-    <!-- 3軸便益 -->
-    <div class="roi-3benefit">
-      <h3 class="roi-sub-h3">3軸の経済効果</h3>
-      <div class="roi-3benefit-grid">
-        <div class="roi-benefit-card">
-          <div class="roi-benefit-no">❶</div>
-          <h4>工数削減効果</h4>
-          <div class="roi-benefit-detail">月80h → 月4h<br><strong>76h削減</strong></div>
-          <div class="roi-benefit-result">月22.8万円<br>の人件費削減</div>
-        </div>
-        <div class="roi-benefit-card">
-          <div class="roi-benefit-no">❷</div>
-          <h4>提案件数増加</h4>
-          <div class="roi-benefit-detail">年4件 → 年6件<br><strong>1.5倍</strong></div>
-          <div class="roi-benefit-result">年6,000万円<br>の追加売上</div>
-        </div>
-        <div class="roi-benefit-card">
-          <div class="roi-benefit-no">❸</div>
-          <h4>コンバージョン改善</h4>
-          <div class="roi-benefit-detail">タイミング最適化<br>×提案質向上</div>
-          <div class="roi-benefit-result">成約率向上<br>（首長任期・予算サイクル連動）</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3層ペルソナ別便益 -->
-    <div class="roi-personas">
-      <h3 class="roi-sub-h3">3層ペルソナ別の便益（稟議資料そのもの）</h3>
-      <div class="roi-personas-grid">
-        <div class="roi-persona-card">
-          <div class="roi-persona-label">現場・営業担当者</div>
-          <ul>
-            <li>実質2人で月80時間 → 1人で月4時間</li>
-            <li>情報収集の8割が自動化</li>
-            <li>残った1人を新規提案に振り向け可能</li>
-          </ul>
-        </div>
-        <div class="roi-persona-card">
-          <div class="roi-persona-label">中間管理職（営業部長等）</div>
-          <ul>
-            <li>チーム生産性 1.5倍</li>
-            <li>属人化リスクの解消</li>
-            <li>成約率向上 × タイミング最適化</li>
-          </ul>
-        </div>
-        <div class="roi-persona-card">
-          <div class="roi-persona-label">経営層</div>
-          <ul>
-            <li>年6,000万円の追加売上効果（年2件の追加案件獲得）</li>
-            <li>ROI倍率 17.4倍・ペイバック0.7ヶ月</li>
-            <li>全1,741自治体への戦略リーチ</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- 伸び代Box（控えめ） -->
-    <div class="roi-stretch">
-      <strong>★ さらなる伸び代 ★</strong>
-      削減工数（年912h）を全て新規提案に振り向けた場合、理論上の最大年間追加売上は <strong>数十億円規模まで拡張可能</strong>。業種・規模・営業体制により実現可能性は変動します。
-    </div>
-
-    <!-- 前提・注記 -->
-    <div class="roi-disclaimer">
-      ※ 製造業（学校家具・防災製品）・営業2名・年4件・受注単価3,000万円規模での試算ケース／
-      年間費用 370万円（月額20万×12 + 初期費10万 + AIクレジット月10万×12）に対する試算／
-      47Connect ROIシミュレーター v7 に基づく／
-      業種・規模・営業体制により数値は変動します／
-      導入効果を保証するものではありません。
-    </div>
-
-    <div class="roi-cta">
-      <a href="#contact" class="btn btn-primary">御社業種・規模でROI試算を依頼する<span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-
 <!-- PRICING -->
 <section id="pricing" class="price">
   <div class="wrap">
@@ -1452,27 +1487,6 @@
             <li><strong>Pilot 20 称号</strong>（プロダクト内表示）</li>
             <li>自治体AI参謀の精度向上に直接関与（CPOチームとの月次FB）</li>
           </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2層構造の説明 -->
-    <div class="layers-intro">
-      <h3 class="layers-title">47Connect は <em>2層</em> で出来ています。</h3>
-      <div class="layers-grid">
-        <div class="layer-card layer-1">
-          <div class="layer-num">Layer 1</div>
-          <div class="layer-name">データ層</div>
-          <div class="layer-sub">自治体ビジネスの羅針盤</div>
-          <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
-          <div class="layer-tag">→ ライトプラン</div>
-        </div>
-        <div class="layer-card layer-2">
-          <div class="layer-num">Layer 2</div>
-          <div class="layer-name">AI参謀層</div>
-          <div class="layer-sub">データを使い切る相棒</div>
-          <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
-          <div class="layer-tag">→ スタンダードプラン</div>
         </div>
       </div>
     </div>
