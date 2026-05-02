@@ -514,7 +514,30 @@
   .promo-cta .btn:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft);box-shadow:none;transform:none}
   .promo-note{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
 
-  .plans-head{margin-top:80px;margin-bottom:28px;text-align:center}
+  /* 2層構造の説明 */
+  .layers-intro{margin-top:80px;margin-bottom:48px}
+  .layers-title{font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:32px;letter-spacing:-.01em}
+  .layers-title em{font-style:normal;color:var(--accent-ink)}
+  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .layer-card{background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:32px 28px;display:flex;flex-direction:column;gap:8px}
+  .layer-card.layer-1{border-top:4px solid var(--ok)}
+  .layer-card.layer-2{border-top:4px solid var(--accent)}
+  .layer-num{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.14em;font-weight:600}
+  .layer-card.layer-1 .layer-num{color:var(--ok)}
+  .layer-card.layer-2 .layer-num{color:var(--accent-ink)}
+  .layer-name{font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .layer-sub{font-size:.92rem;color:var(--ink-3);margin-bottom:8px}
+  .layer-card p{font-size:.9rem;color:var(--ink-2);line-height:1.85;flex:1}
+  .layer-tag{margin-top:14px;font-size:.86rem;font-weight:600;padding:8px 14px;border-radius:6px;text-align:center}
+  .layer-card.layer-1 .layer-tag{background:var(--ok-soft);color:#1F6D63}
+  .layer-card.layer-2 .layer-tag{background:var(--accent-soft);color:var(--accent-ink)}
+  @media (max-width:860px){.layers-grid{grid-template-columns:1fr}}
+
+  /* ライトプラン用 highlight ボックス */
+  .plan-hl-light{background:var(--ok-soft) !important;border-left:3px solid var(--ok)}
+  .plan-hl-light .plan-hl-title{color:#1F6D63 !important}
+
+  .plans-head{margin-top:48px;margin-bottom:28px;text-align:center}
   .plans-head h3{font-size:1.25rem;font-weight:700;margin-bottom:8px}
   .plans-head p{font-size:.9rem;color:var(--ink-2)}
   .plans{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -1126,6 +1149,27 @@
       </div>
     </div>
 
+    <!-- 2層構造の説明 -->
+    <div class="layers-intro">
+      <h3 class="layers-title">47Connect は <em>2層</em> で出来ています。</h3>
+      <div class="layers-grid">
+        <div class="layer-card layer-1">
+          <div class="layer-num">Layer 1</div>
+          <div class="layer-name">データ層</div>
+          <div class="layer-sub">自治体ビジネスの羅針盤</div>
+          <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
+          <div class="layer-tag">→ ライトプラン</div>
+        </div>
+        <div class="layer-card layer-2">
+          <div class="layer-num">Layer 2</div>
+          <div class="layer-name">AI参謀層</div>
+          <div class="layer-sub">データを使い切る相棒</div>
+          <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
+          <div class="layer-tag">→ スタンダードプラン</div>
+        </div>
+      </div>
+    </div>
+
     <!-- PLANS AFTER LAUNCH -->
     <div class="plans-head">
       <h3>本格運用プラン（2026年11月以降）</h3>
@@ -1133,38 +1177,42 @@
     </div>
     <div class="plans">
       <div class="plan">
-        <div class="plan-name">Light</div>
+        <div class="plan-name">Light（データプラン）</div>
         <div class="plan-title">ライトプラン</div>
         <div class="plan-price">
           <strong>¥100,000</strong><span>/月（税別・月払い）</span>
         </div>
-        <div class="plan-note">セルフサービス型。自治体AI参謀との対話 + 検索の基本機能。</div>
+        <div class="plan-note"><strong>自治体営業のプロフェッショナル・自治体コンサル業者向け</strong>。Layer 1（データ層）フル活用。</div>
+        <div class="plan-hl plan-hl-light">
+          <div class="plan-hl-title">📚 Layer 1: データ層フル開放</div>
+          <div class="plan-hl-desc">コンサル相当の網羅データを検索・閲覧。御社事業との適合度を自動スコア化した簡易レコメンドまで含む。<strong>「データさえあれば自分で戦略を組める」</strong> 自治体営業に精通したプロチーム、または自治体コンサル業者が複数企業の営業に活用するデータプラットフォームとして最適。</div>
+        </div>
         <ul class="plan-feat">
-          <li class="star">自治体AI参謀との対話（月100ターン）</li>
-          <li class="star">議事録・予算・首長検索</li>
-          <li class="star">自治体提案特化CRM</li>
-          <li class="star">クレジット同梱：月30クレジット</li>
+          <li class="star">1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</li>
+          <li class="star">御社事業との適合度を自動スコア化（簡易レコメンド・自動アラート）</li>
+          <li class="star">自治体提案特化CRM（首長任期・予算サイクル・議会日程の統合管理）</li>
+          <li class="star">公開即日のデータ反映（主要200自治体・Q4で全1,741に拡大）</li>
           <li class="star">1課単位・追加ユーザー課金なし</li>
           <li class="star">月払い・1年契約・13ヶ月目以降は月単位継続</li>
-          <li class="muted">提案書ドラフト自動生成・業種別ROIシミュレーター（追加クレジットで対応可）</li>
-          <li class="muted">公開即日通知</li>
-          <li class="muted">付帯オンボーディング</li>
+          <li class="muted">AI参謀との戦略対話 → スタンダードプラン</li>
+          <li class="muted">提案書ドラフト・ROI試算の自動生成 → スタンダードプラン</li>
+          <li class="muted">付帯オンボーディング → スタンダードプラン</li>
         </ul>
       </div>
       <div class="plan reco">
-        <div class="plan-pill">オススメ</div>
-        <div class="plan-name">Standard</div>
+        <div class="plan-pill">オススメ・コンサル代替</div>
+        <div class="plan-name">Standard（AI参謀プラン）</div>
         <div class="plan-title">スタンダードプラン</div>
         <div class="plan-price">
           <strong>¥200,000</strong><span>/月（税別・月払い）</span>
         </div>
-        <div class="plan-note">自治体AI参謀のフル機能 + 1年間付帯オンボーディング付きのフル支援プラン</div>
+        <div class="plan-note"><strong>自治体ビジネスのコンサル知見がない企業向け</strong>。コンサル代替で毎日相談。Layer 1 + Layer 2 フル活用。</div>
         <div class="plan-hl">
-          <div class="plan-hl-title">★ 自治体AI参謀のフル機能 + 月200ターン同梱</div>
-          <div class="plan-hl-desc">御社専属の自治体AI参謀として、自治体調査・戦略立案・提案書作成・ROI試算の4機能をフル提供。コンサル並みの思考の深さで毎日伴走します。</div>
+          <div class="plan-hl-title">🎖 Layer 2: AI参謀層フル開放</div>
+          <div class="plan-hl-desc">「自治体コンサルに何でも聞ける」体験。御社専属の自治体AI参謀が、データ層をフル活用して戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
         </div>
         <ul class="plan-feat">
-          <li class="star">ライトプランの全機能</li>
+          <li class="star"><strong>ライトプラン（データ層）の全機能</strong></li>
           <li class="star">自治体AI参謀との対話（月200ターン）</li>
           <li class="star">提案書ドラフト自動生成（議事録引用つき）</li>
           <li class="star">業種別ROIシミュレーター</li>
