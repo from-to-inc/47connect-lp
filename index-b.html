@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>47Connect — 自治体AI参謀。コンサル代替AIサービス｜Pilot 20 受付中</title>
-<meta name="description" content="自治体の予算書が公開された日に、自治体AI参謀が動き出す。Claude Opus 4.7 標準採用。コンサル月100万円が3週間で出す成果物を、自治体AI参謀が即日アウトプット。先着20社限定の Pilot 20 プログラム受付中。" />
+<meta name="description" content="予算書が出た日に、自治体AI参謀が動き出す。コンサル3週間でやることをAI参謀が即日。月20万円から、自治体ビジネスを毎日相談できる相棒に。先着20社限定のPilot 20プログラム受付中。" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
@@ -177,6 +177,16 @@
     padding:5px 11px;border-radius:999px;letter-spacing:.02em;
   }
 
+  /* HERO 段階リリース注記 */
+  .hero-notice{
+    margin-top:16px;padding:12px 16px;
+    background:var(--warn-soft);border-left:3px solid var(--warn);
+    border-radius:0 6px 6px 0;
+    font-size:.82rem;color:var(--ink-2);line-height:1.7;
+  }
+  .hero-notice strong{color:var(--ink);font-weight:700}
+  .hero-notice a{color:var(--accent-ink);text-decoration:underline}
+
   @media (max-width:860px){
     .hero{padding:48px 0 64px}
     .hero-inner{grid-template-columns:1fr;gap:40px}
@@ -283,6 +293,21 @@
     font-size:.85rem;font-weight:600;color:var(--accent-ink);
     background:var(--accent-soft);padding:8px 12px;border-radius:6px;margin-top:auto;
   }
+  /* 段階リリースタグ */
+  .sambo-stage-tag{
+    margin-top:10px;font-size:.72rem;font-weight:600;
+    color:var(--ok);background:var(--ok-soft);
+    padding:6px 10px;border-radius:4px;letter-spacing:.02em;
+  }
+  .sambo-stage-tag.stage-q4{color:var(--accent-ink);background:var(--accent-soft)}
+  .sambo-stage-tag.stage-future{color:var(--ink-3);background:var(--bg-alt);border:1px dashed var(--line)}
+  /* セクション冒頭の段階リリース注記 */
+  .sambo-stage-notice{
+    margin:24px auto 0;max-width:680px;padding:14px 20px;
+    background:#fff;border:1px solid var(--line);border-radius:8px;
+    font-size:.85rem;color:var(--ink-2);line-height:1.8;text-align:left;
+  }
+  .sambo-stage-notice strong{color:var(--ink);font-weight:700}
   @media (max-width:860px){.sambo-grid{grid-template-columns:1fr}}
 
   /* ---- TTP / SPEED 比較バー ---- */
@@ -642,32 +667,18 @@
 <section class="hero">
   <div class="wrap hero-inner">
     <div>
-      <div class="hero-kicker"><span class="dot"></span>自治体AI参謀 Pilot 20 受付中・先着20社限定</div>
+      <div class="hero-kicker"><span class="dot"></span>Pilot 20 受付中・先着20社限定</div>
       <h1>
         予算書が出た日に、<br>
-        <span class="mark">自治体AI参謀が動き出す。</span><br>
-        自治体ビジネスを、毎日相談できる相棒に。
+        <span class="mark">自治体AI参謀が動き出す。</span>
       </h1>
       <p class="lede">
-        1,741自治体の予算書・議事録・パブコメを公開当日に解析。<br>
-        Claude Opus 4.7 を標準投入した自治体AI参謀が、コンサルが3週間で出す提案を即日アウトプット。<br>
-        <strong>コンサル月100万円 → 自治体AI参謀 月20万円から。</strong>
+        コンサル3週間 → AI参謀 即日。<br>
+        <strong>月20万円から、自治体ビジネスを毎日相談できる相棒に。</strong>
       </p>
-      <ul class="hero-bullets">
-        <li>公開即日に提案材料化（TTP 24時間以内を目標）</li>
-        <li>議事録引用つき提案書ドラフトを参謀と共同編集</li>
-        <li>自治体AI参謀のモデルは <strong>Claude Opus 4.7 標準採用</strong>（業界唯一）</li>
-        <li>3ヶ月以内に保守シナリオで回収できなければ、違約金なし撤退オプション付き</li>
-      </ul>
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary">Pilot 20 に応募する<span class="arrow">→</span></a>
-        <a href="#sambo" class="btn btn-ghost">自治体AI参謀の仕事を見る</a>
-      </div>
-      <div class="hero-badges">
-        <span class="hero-badge">Opus 対話 無制限</span>
-        <span class="hero-badge">クレジット単価 創業時固定保証</span>
-        <span class="hero-badge">初期構築費 無料</span>
-        <span class="hero-badge">先着20社限定</span>
+        <a href="#sambo" class="btn btn-ghost">仕組みを見る</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -788,6 +799,12 @@
       <div class="eyebrow">Your AI Strategic Advisor</div>
       <h2 class="h-section">コンサルが3週間でやることを、<em>自治体AI参謀が対話の中で。</em></h2>
       <p class="lede">自治体ビジネスのプロが3週間かけて作る成果物を、自治体AI参謀が分解して、毎日の対話の中で随時アウトプットします。納品して帰らない、常駐型。</p>
+      <div class="sambo-stage-notice">
+        <strong>📅 Pilot 20 期間中の段階リリース計画：</strong>
+        ① 自治体調査・② 戦略立案 = <strong>2026年7月リリース</strong>（β版開始時点） ／
+        ③ 提案書作成 = <strong>2026年Q4リリース</strong> ／
+        ④ 事業計画（ROI試算） = <strong>2027年Q1以降</strong>
+      </div>
     </div>
 
     <div class="sambo-grid">
@@ -796,24 +813,28 @@
         <h3>① 自治体調査の参謀<small>Research</small></h3>
         <p>議事録・予算・首長公約・パブコメを公開当日に構造化。「この自治体、いま何が動いてる？」と聞けば、自治体AI参謀が論点を整理して即返答。</p>
         <div class="tagline">公開即日 × 1,741自治体 横断構造化</div>
+        <div class="sambo-stage-tag">✅ 2026年7月（β版開始）リリース予定</div>
       </div>
       <div class="sambo-card">
         <div class="icon">🎯</div>
         <h3>② 戦略立案の参謀<small>Strategy</small></h3>
         <p>御社の勝ち実績10自治体を学習し、全国の類似プロファイル自治体を機械抽出。「次に攻めるべき自治体」を根拠つきで提示します。</p>
         <div class="tagline">勝ちパターン転写 × 全国レコメンド</div>
+        <div class="sambo-stage-tag">✅ 2026年7月（β版開始）リリース予定</div>
       </div>
       <div class="sambo-card">
         <div class="icon">📝</div>
         <h3>③ 提案書作成の参謀<small>Drafting</small></h3>
         <p>その自治体固有の議題・予算項目・首長公約を引用した提案書ドラフトを共同編集。「この一文を強化して」と話せば、対話で書き上がる。</p>
         <div class="tagline">議事録引用 × 各自治体個別最適</div>
+        <div class="sambo-stage-tag stage-q4">🔜 2026年Q4リリース予定</div>
       </div>
       <div class="sambo-card">
         <div class="icon">📊</div>
         <h3>④ 事業計画の参謀<small>Business Case</small></h3>
         <p>業種別ROIシミュレーターで稟議資料を即作成。「役員会で説明できる数字を出して」と頼めば、3層ペルソナ（現場/中間/経営）対応の試算が出る。</p>
         <div class="tagline">稟議資料 × 役員会対応の数字</div>
+        <div class="sambo-stage-tag stage-future">🔮 2027年Q1以降リリース予定</div>
       </div>
     </div>
   </div>
@@ -853,39 +874,6 @@
         ※ TTP（Time to Proposal）= 自治体の情報公開から、企業の提案準備が整うまでの時間。<br>
         ※ Pilot 20 期間中は主要200自治体で運用、Q4までに全1,741自治体に拡大予定。
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Why Opus -->
-<section class="opus">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow">Why Claude Opus 4.7</div>
-      <h2 class="h-section">日常の相談相手に、<em>Claude Opus 4.7</em>を投入。<br>コンサル並みの思考の深さを、毎日。</h2>
-      <p class="lede">業界の他のツールが Sonnet / Haiku で安く済ませている中、47Connect の 自治体AI参謀は最上位モデル Claude Opus 4.7 を標準採用。理由は1つ — コンサル代替を名乗る以上、思考の深さで妥協できないから。</p>
-    </div>
-
-    <div class="opus-grid">
-      <div class="opus-card">
-        <div class="icon-text">🧠</div>
-        <h3>思考の深さ</h3>
-        <p>コンサルの戦略思考に近いニュアンス・文脈の読み取り。<strong>「予算書のここが効いた理由」</strong>まで踏み込んだ対話が成立します。</p>
-      </div>
-      <div class="opus-card">
-        <div class="icon-text">💬</div>
-        <h3>少ない往復で答えに到達</h3>
-        <p>Sonnet/Haiku なら5往復必要な戦略相談を、<strong>Opusなら1〜2往復で完結</strong>。深く考えるから、聞き返しが減ります。</p>
-      </div>
-      <div class="opus-card">
-        <div class="icon-text">💰</div>
-        <h3>だからクレジットが減っていく</h3>
-        <p>1回の対話で問題解決するから、<strong>月のクレジット消費がむしろ減る</strong>。Opus採用は、長期で見れば顧客にとって最も経済的な選択。</p>
-      </div>
-    </div>
-
-    <div class="opus-note">
-      <strong>月額プランに含まれる Opus 対話枠：</strong>スタンダード月200ターン同梱。超過分は1クレジット/ターン。<strong>Pilot 20 期間中は無制限利用可</strong>。Founding Partner として、Opusの対話精度向上に直接ご参画いただけます。
     </div>
   </div>
 </section>
@@ -958,7 +946,7 @@
 </section>
 
 <!-- UPCOMING -->
-<section class="coming">
+<section id="roadmap" class="coming">
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow">Roadmap</div>
@@ -1047,10 +1035,10 @@
           <td><span class="mark-no">—</span></td>
         </tr>
         <tr>
-          <td>使用AIモデル</td>
-          <td class="us"><strong>Claude Opus 4.7</strong></td>
+          <td>御社事業文脈の学習</td>
+          <td class="us"><strong>御社専用に最適化</strong></td>
           <td>—</td>
-          <td>非公開 / 軽量モデル</td>
+          <td>—</td>
           <td>—</td>
         </tr>
       </tbody>
@@ -1086,7 +1074,7 @@
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 03</div>
         <h3><em>鮮度</em>の速度</h3>
-        <p>予算書・議事録・パブコメが公開された<strong>当日中に提案材料化（TTP 24時間以内）</strong>。スクレイピング基盤×AI構造化パイプライン×Opus対話を3層で揃えるFromToだから可能な速度です。</p>
+        <p>予算書・議事録・パブコメが公開された<strong>当日中に提案材料化（TTP 24時間以内）</strong>。スクレイピング基盤×AI構造化パイプライン×AI参謀対話を3層で揃えるFromToだから可能な速度です。</p>
         <div class="pillar-tag">→ 業界最速・公開即日対応</div>
       </div>
     </div>
@@ -1119,7 +1107,7 @@
             <span class="promo-strike">通常 60万円</span>
             <span class="promo-price">30万円<small>／半年一括（税別）</small></span>
           </div>
-          <div class="promo-disc">50%OFF + 初期構築費（通常10万円・税別）無料 + Opus 対話 無制限</div>
+          <div class="promo-disc">50%OFF + 初期構築費（通常10万円・税別）無料 + AI参謀対話 無制限</div>
           <div class="promo-cta">
             <a href="#contact" class="btn">Pilot 20 に応募する<span class="arrow">→</span></a>
             <p class="promo-note">申込締切：2026年6月30日 ／ 先着20社限定 ／ Pilot 期間終了後（2026年11月予定）に本格運用へ移行（月払い・1年契約構造へ自動切替）</p>
@@ -1128,7 +1116,7 @@
         <div class="promo-incs">
           <div class="promo-incs-lbl">Pilot 20 限定特典</div>
           <ul>
-            <li><strong>Opus 対話 無制限利用</strong>（パイロット期間中）</li>
+            <li><strong>AI参謀対話 無制限利用</strong>（パイロット期間中）</li>
             <li><strong>クレジット単価 創業時固定保証</strong>（永続適用）</li>
             <li><strong>初期構築費 無料</strong>（通常 10万円）</li>
             <li><strong>Pilot 20 称号</strong>（プロダクト内表示）</li>
@@ -1152,7 +1140,7 @@
         </div>
         <div class="plan-note">セルフサービス型。自治体AI参謀との対話 + 検索の基本機能。</div>
         <ul class="plan-feat">
-          <li class="star">自治体AI参謀との対話（Opus / 月100ターン）</li>
+          <li class="star">自治体AI参謀との対話（月100ターン）</li>
           <li class="star">議事録・予算・首長検索</li>
           <li class="star">自治体提案特化CRM</li>
           <li class="star">クレジット同梱：月30クレジット</li>
@@ -1172,12 +1160,12 @@
         </div>
         <div class="plan-note">自治体AI参謀のフル機能 + 1年間付帯オンボーディング付きのフル支援プラン</div>
         <div class="plan-hl">
-          <div class="plan-hl-title">★ 自治体AI参謀のフル機能 + Opus 月200ターン同梱</div>
-          <div class="plan-hl-desc">御社専属の自治体AI参謀として、自治体調査・戦略立案・提案書作成・ROI試算の4機能をフル提供。Claude Opus 4.7 標準採用で、コンサル並みの思考の深さで毎日伴走します。</div>
+          <div class="plan-hl-title">★ 自治体AI参謀のフル機能 + 月200ターン同梱</div>
+          <div class="plan-hl-desc">御社専属の自治体AI参謀として、自治体調査・戦略立案・提案書作成・ROI試算の4機能をフル提供。コンサル並みの思考の深さで毎日伴走します。</div>
         </div>
         <ul class="plan-feat">
           <li class="star">ライトプランの全機能</li>
-          <li class="star">自治体AI参謀との対話（Opus / 月200ターン）</li>
+          <li class="star">自治体AI参謀との対話（月200ターン）</li>
           <li class="star">提案書ドラフト自動生成（議事録引用つき）</li>
           <li class="star">業種別ROIシミュレーター</li>
           <li class="star">公開即日通知（主要200自治体）</li>
@@ -1193,7 +1181,7 @@
     <div class="credits">
       <div class="credits-head">
         <h4>クレジット追加プラン（買うほどお得・4段階）</h4>
-        <p>クレジットは "自治体AI参謀が本気を出す瞬間に使う稼働燃料"。全国一括分析・Opus深掘りレポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
+        <p>クレジットは "自治体AI参謀が本気を出す瞬間に使う稼働燃料"。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
       </div>
 
       <table class="credits-tbl">
@@ -1237,7 +1225,7 @@
         <h5>クレジット消費の目安</h5>
         <ul>
           <li>全国1,741自治体一括スコアリング <strong>50 cr</strong></li>
-          <li>Opus 深掘り戦略レビュー（役員稟議用） <strong>10 cr/回</strong></li>
+          <li>深掘り戦略レビュー（役員稟議用） <strong>10 cr/回</strong></li>
           <li>大型PDF一括処理（予算書セット） <strong>5 cr/件</strong></li>
           <li>業種別ROI 詳細レポート出力 <strong>3 cr/回</strong></li>
         </ul>
@@ -1318,11 +1306,15 @@
       <!-- 自治体AI参謀 -->
       <details class="faq-item" open>
         <summary>自治体AI参謀って、結局何ができますか？</summary>
-        <div class="ans">自治体ビジネスのプロのコンサルが3週間でやる4つの仕事——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「納品して帰らない」こと。常駐型・伴走型です。<br><br>使用モデルは <strong>Claude Opus 4.7</strong>。業界の他のツールが Sonnet/Haiku で安く済ませている中、コンサル代替を名乗る以上、思考の深さで妥協できないため最上位モデルを標準採用しています。</div>
+        <div class="ans">自治体ビジネスのプロのコンサルが3週間でやる4つの仕事——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「納品して帰らない」こと。常駐型・伴走型です。<br><br><strong>※ Pilot 20 期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong> リリース。③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供予定です。</div>
       </details>
       <details class="faq-item">
-        <summary>なぜモデルにOpusを使うのですか？</summary>
-        <div class="ans">コンサルの戦略思考に近いニュアンス・文脈の読み取りを実現するために、<strong>Claude Opus 4.7 を標準採用</strong>しています。<br><br>Sonnet/Haiku なら5往復必要な戦略相談を、<strong>Opusなら1〜2往復で完結</strong>。深く考えるから、聞き返しが減り、結果として月のクレジット消費もむしろ減る——これが Opus 採用の経済合理性です。</div>
+        <summary>AI参謀は今すぐ全機能使えますか？</summary>
+        <div class="ans"><strong>結論：いいえ。Pilot 20 期間中は段階的にリリースします。</strong><br><br>2026年7月（Pilot 20開始）時点で即日提供されるのは：<br>① <strong>自治体調査の参謀</strong>（チャット型・データ引用つき回答・自治体プロファイルとの連動）<br>② <strong>戦略立案の参謀</strong>（御社プロファイルを学習した自治体レコメンド・優先順位提示）<br><br>2026年Q4以降に追加：<br>③ <strong>提案書作成の参謀</strong>（議事録引用つき提案書ドラフト共同編集）<br><br>2027年Q1以降：<br>④ <strong>事業計画の参謀</strong>（業種別ROIシミュレーター・稟議資料自動生成）<br><br>Pilot 20 顧客は段階リリースの各段階で <strong>最初の利用権</strong> を得ます。また、リリース計画自体に対する月次フィードバックを反映する権利もあります。</div>
+      </details>
+      <details class="faq-item">
+        <summary>キャラクターの参謀には名前がありますか？</summary>
+        <div class="ans">現時点ではキャラクター名は確定していません。Pilot 20 期間中の顧客フィードバックを経て、最も愛着が湧く呼称を確定します。<br><br>性格設定は確定しています：<strong>優しさより参謀視点を優先。イエス・ノーをはっきり言える参謀。</strong>「色々な可能性が」のような曖昧表現はせず、データに基づいて結論を言い切ります。厳しい結論（NO・撤退推奨）の場合も、必ず次の一手を具体的に提示します。</div>
       </details>
       <details class="faq-item">
         <summary>AIクレジットって、毎月足りなくなりませんか？</summary>
@@ -1330,7 +1322,7 @@
       </details>
       <details class="faq-item">
         <summary>Pilot 20 期間って、品質大丈夫ですか？</summary>
-        <div class="ans">1,741自治体のデータ基盤・AI構造化パイプライン・Opus対話エンジンは<strong>本番品質で稼働中</strong>です。Pilot 20 期間中に段階的に拡張するのは、即日対応の対象自治体数（主要200→Q4で全1,741）と、勝ちパターン転写エンジンの精度（御社のデータを学習しながら向上）の2点です。<br><br>3ヶ月以内に保守シナリオで回収できなければ、<strong>違約金なしで撤退いただける</strong>のがPilot 20 限定の安心オプションです。</div>
+        <div class="ans">1,741自治体のデータ基盤・AI構造化パイプライン・AI参謀対話エンジンは<strong>本番品質で稼働中</strong>です。Pilot 20 期間中に段階的に拡張するのは、即日対応の対象自治体数（主要200→Q4で全1,741）と、勝ちパターン転写エンジンの精度（御社のデータを学習しながら向上）の2点です。<br><br>3ヶ月以内に保守シナリオで回収できなければ、<strong>違約金なしで撤退いただける</strong>のがPilot 20 限定の安心オプションです。</div>
       </details>
       <details class="faq-item">
         <summary>コンサルとの違いを教えてください。</summary>
@@ -1382,7 +1374,7 @@
       </details>
       <details class="faq-item">
         <summary>サービスはいつから利用できますか？</summary>
-        <div class="ans"><strong>Pilot 20 は2026年7月より開始</strong>します。6月末までにお申し込みいただいた先着20社限定で、初期構築費0円・通常価格の半額・Opus対話無制限・クレジット単価固定保証でご提供いたします。<strong>本格運用への移行は2026年11月予定</strong>（月払い・1年契約構造へ自動切替）。</div>
+        <div class="ans"><strong>Pilot 20 は2026年7月より開始</strong>します。6月末までにお申し込みいただいた先着20社限定で、初期構築費0円・通常価格の半額・AI参謀対話無制限・クレジット単価固定保証でご提供いたします。<strong>本格運用への移行は2026年11月予定</strong>（月払い・1年契約構造へ自動切替）。</div>
       </details>
       <details class="faq-item">
         <summary>導入にどのくらい時間がかかりますか？</summary>

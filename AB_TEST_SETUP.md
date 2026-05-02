@@ -11,7 +11,7 @@
 ```
 47connect-lp/
 ├── index.html        ← A版（既存・コンシェルジュ訴求）
-├── index-b.html      ← B版（新規・AI参謀 / Pilot 20 / Opus 4.7 訴求）
+├── index-b.html      ← B版（新規・AI参謀 / Pilot 20 / 最上位Claude訴求）
 ├── ab-split.js       ← A/B振り分けスクリプト（共通）
 ├── images/           ← 画像素材（共通利用）
 └── AB_TEST_SETUP.md  ← 本書
