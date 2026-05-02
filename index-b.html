@@ -19,498 +19,1359 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<!-- CI: 和=ヒラギノ角ゴ / 英=Avenir。Windows等のフォールバックとしてNunito Sans（Avenir近似）+Noto Sans JPを併用 -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,500;0,700;0,800;0,900;1,900&family=Noto+Sans+JP:wght@300;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
 <style>
   :root{
-    --bg: #FAFAFA;
-    --bg-alt: #F4F4F4;
-    --bg-dark: #1A1A1A;
-    --ink: #1A1A1A;
-    --ink-2: #4A4A4A;
-    --ink-3: #8A8A8A;
-    --line: #D9D9D9;
-    --line-2: #ECECEC;
-    /* brand - main: 青色 #3071B9 */
-    --accent: #3071B9;
-    --accent-soft: #E8F0F9;
-    --accent-ink: #245593;
-    /* brand - sub: 朱色 #E9470B */
-    --warn: #E9470B;
-    --warn-soft: #FDECE3;
-    /* brand - sub: 緑色 #4CBBB4 */
-    --ok: #4CBBB4;
-    --ok-soft: #E5F5F4;
-    --sans: "Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Avenir Next",Avenir,"Nunito Sans",sans-serif;
-    --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
-    --radius: 14px;
-    --radius-sm: 8px;
-    --shadow: 0 1px 2px rgba(15,20,40,.04), 0 8px 28px -12px rgba(15,20,40,.08);
+    /* surfaces */
+    --bg: #FFFFFF;
+    --bg-soft: #F6F7FB;
+    --bg-tint: #EEF1F8;
+    --ink-0: #0A0F1F;        /* deep navy near-black */
+    --ink-1: #14192B;
+    --ink-2: #1F2540;
+    --line: #E5E8F0;
+    --line-2: #EFF1F7;
+    --line-dark: rgba(255,255,255,.10);
+    --line-dark-2: rgba(255,255,255,.06);
+
+    /* text */
+    --t-1: #0A0F1F;
+    --t-2: #424A66;
+    --t-3: #6B7390;
+    --t-inv-1: #FFFFFF;
+    --t-inv-2: rgba(255,255,255,.74);
+    --t-inv-3: rgba(255,255,255,.50);
+
+    /* brand */
+    --blue: #3071B9;
+    --blue-2: #4F8FD6;
+    --blue-soft: #E8F0FA;
+    --blue-deep: #1F4F87;
+    --orange: #E9470B;
+    --orange-soft: #FDECE3;
+    --teal: #4CBBB4;
+    --teal-soft: #E5F5F4;
+    --gold: #E8B86A;
+
+    /* accent for dark surfaces */
+    --glow: 0 0 0 1px rgba(255,255,255,.06), 0 30px 60px -20px rgba(48,113,185,.45);
+
+    /* CI Corporate Font: 英=Avenir / 和=ヒラギノ角ゴ */
+    --sans: "Avenir Next", "Avenir", "Nunito Sans", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
   }
+
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;background:var(--bg)}
   body{
     font-family:var(--sans);
+    color:var(--t-1);
     background:var(--bg);
-    color:var(--ink);
     line-height:1.7;
     font-feature-settings:"palt" 1;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
-    letter-spacing:.01em;
+    letter-spacing:.005em;
+    overflow-x:hidden;
   }
-  img{max-width:100%;display:block}
+  img,svg{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
-  button{font:inherit}
+  button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
 
-  /* ---- layout ---- */
-  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
-  section{padding:112px 0}
-  section + section{border-top:1px solid var(--line-2)}
+  ::selection{background:var(--blue);color:#fff}
 
+  /* ============ LAYOUT ============ */
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .wrap-narrow{max-width:1080px;margin:0 auto;padding:0 32px}
+  section{padding:140px 0;position:relative}
+  @media (max-width:860px){
+    section{padding:88px 0}
+    .wrap, .wrap-narrow{padding:0 20px}
+  }
+
+  /* ============ TYPE ============ */
   .eyebrow{
     display:inline-flex;align-items:center;gap:10px;
-    font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent-ink);
+    font-family:var(--mono);
+    font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--blue-deep);
   }
-  .eyebrow::before{
-    content:"";width:20px;height:1px;background:var(--accent);display:inline-block;
+  .eyebrow.on-dark{color:var(--blue-2)}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(233,71,11,.18)}
+
+  .h-display{
+    font-size:clamp(2.4rem, 5vw, 4.5rem);
+    font-weight:800;line-height:1.05;
+    letter-spacing:-.035em;
+    text-wrap:balance;
   }
+  .h-display .grad{
+    background:linear-gradient(120deg, #6BA3E6 0%, #3071B9 40%, #4CBBB4 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .h-display .underline{
+    position:relative;display:inline-block;white-space:nowrap;
+  }
+  .h-display .underline::after{
+    content:"";position:absolute;left:-2px;right:-2px;bottom:.04em;
+    height:.18em;background:var(--orange);opacity:.85;border-radius:2px;z-index:-1;
+  }
+
   .h-section{
-    font-size:clamp(1.7rem,2.4vw,2.2rem);font-weight:700;line-height:1.35;
-    letter-spacing:-.01em;text-wrap:pretty;margin:14px 0 16px;
-    color:var(--ink);
+    font-size:clamp(2rem, 3.8vw, 3.2rem);
+    font-weight:800;line-height:1.12;
+    letter-spacing:-.03em;
+    text-wrap:balance;
+    margin:18px 0 22px;
   }
-  .h-section em{font-style:normal;color:var(--accent-ink)}
+  .h-section em{font-style:normal;background:linear-gradient(120deg,#3071B9,#4CBBB4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .h-section .accent{color:var(--orange)}
+
+  .h-sub{
+    font-size:1.4rem;font-weight:700;line-height:1.4;letter-spacing:-.015em;
+  }
+
   .lede{
-    font-size:1rem;color:var(--ink-2);max-width:64ch;line-height:1.9;text-wrap:pretty;
+    font-size:1.08rem;color:var(--t-2);max-width:64ch;line-height:1.85;
   }
-  .section-head{margin-bottom:56px;max-width:820px}
+  .lede strong{color:var(--t-1);font-weight:700}
+
+  .section-head{margin-bottom:64px;max-width:880px}
   .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
   .section-head.center .lede{margin:0 auto}
+  .on-dark .h-section{color:var(--t-inv-1)}
+  .on-dark .lede{color:var(--t-inv-2)}
 
-  /* ---- header ---- */
-  .header{
-    position:sticky;top:0;z-index:50;
-    background:color-mix(in oklab, var(--bg) 88%, transparent);
-    backdrop-filter:saturate(1.2) blur(10px);
-    border-bottom:1px solid var(--line-2);
-  }
-  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
-  .logo span{color:var(--accent-ink)}
-  .nav{display:flex;gap:28px;font-size:.88rem;color:var(--ink-2)}
-  .nav a:hover{color:var(--ink)}
-  @media (max-width:760px){.nav{display:none}}
-
-  /* ---- buttons ---- */
+  /* ============ BUTTONS ============ */
   .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:13px 22px;border-radius:999px;font-weight:600;font-size:.92rem;
-    background:var(--accent);color:#fff;border:1px solid var(--accent);
-    transition:all .2s ease;cursor:pointer;white-space:nowrap;
-  }
-  .btn:hover{background:var(--accent-ink);border-color:var(--accent-ink);transform:translateY(-1px);box-shadow:0 6px 20px -8px rgba(48,113,185,.5)}
-  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink);transform:translateY(-1px);box-shadow:0 6px 20px -8px rgba(48,113,185,.5)}
-  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-  .btn .arrow{transition:transform .2s}
-  .btn:hover .arrow{transform:translateX(3px)}
-
-  /* ---- HERO ---- */
-  .hero{padding:88px 0 96px;position:relative;overflow:hidden}
-  .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-  .hero-kicker{
     display:inline-flex;align-items:center;gap:10px;
-    padding:6px 14px;border:1px solid var(--line);border-radius:999px;
-    font-size:.78rem;color:var(--ink-2);background:#fff;margin-bottom:24px;
+    padding:15px 26px;border-radius:999px;
+    font-family:var(--sans);font-weight:700;font-size:.95rem;
+    letter-spacing:-.005em;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    white-space:nowrap;border:1px solid transparent;cursor:pointer;
   }
-  .hero-kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .btn .arrow{transition:transform .2s; display:inline-block}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  .btn-primary{
+    background:linear-gradient(180deg, #3D85D2 0%, #2E69AE 100%);
+    color:#fff;
+    box-shadow:0 1px 0 rgba(255,255,255,.4) inset, 0 14px 28px -10px rgba(48,113,185,.55), 0 2px 0 rgba(15,40,90,.2);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 1px 0 rgba(255,255,255,.4) inset, 0 22px 40px -10px rgba(48,113,185,.6);
+  }
+
+  .btn-orange{
+    background:linear-gradient(180deg, #F56022 0%, #D43E08 100%);
+    color:#fff;
+    box-shadow:0 1px 0 rgba(255,255,255,.4) inset, 0 14px 28px -10px rgba(233,71,11,.55);
+  }
+  .btn-orange:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.4) inset, 0 22px 40px -10px rgba(233,71,11,.65)}
+
+  .btn-ghost{
+    background:transparent;color:var(--t-1);border-color:var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--ink-0);background:var(--bg-soft)}
+
+  .btn-ghost-dark{
+    background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.18);
+    backdrop-filter:blur(8px);
+  }
+  .btn-ghost-dark:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.32)}
+
+  .btn-light{
+    background:#fff;color:var(--ink-0);
+    box-shadow:0 14px 28px -10px rgba(0,0,0,.4);
+  }
+  .btn-light:hover{transform:translateY(-2px);box-shadow:0 22px 40px -10px rgba(0,0,0,.5)}
+
+  /* ============ HEADER ============ */
+  .header{
+    position:sticky;top:0;z-index:80;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:saturate(1.4) blur(16px);
+    -webkit-backdrop-filter:saturate(1.4) blur(16px);
+    border-bottom:1px solid rgba(229,232,240,.7);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink-0);
+  }
+  .logo-mark{
+    width:32px;height:32px;border-radius:8px;
+    background:linear-gradient(135deg, #3071B9 0%, #1F4F87 60%, #14192B 100%);
+    display:grid;place-items:center;color:#fff;
+    font-family:var(--mono);font-size:.7rem;font-weight:800;letter-spacing:0;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 6px 16px -6px rgba(48,113,185,.55);
+  }
+  .nav{display:flex;gap:32px;font-size:.92rem;color:var(--t-2);font-weight:500}
+  .nav a{position:relative}
+  .nav a:hover{color:var(--ink-0)}
+  .nav a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:-22px;height:2px;
+    background:var(--blue);border-radius:2px;transition:right .25s ease;
+  }
+  .nav a:hover::after{right:0}
+  .header-cta{display:flex;align-items:center;gap:12px}
+  .header-cta .btn{padding:10px 18px;font-size:.86rem}
+  @media (max-width:960px){.nav{display:none} .header-cta .ghost-mob{display:none}}
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:80px 0 120px;
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(48,113,185,.10) 0%, transparent 60%),
+      radial-gradient(900px 500px at 0% 30%, rgba(76,187,180,.07) 0%, transparent 60%),
+      linear-gradient(180deg, #FAFBFE 0%, #FFFFFF 100%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(15,20,40,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,20,40,.04) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;
+  }
+  .hero-pill{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:7px 14px 7px 12px;
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    font-size:.78rem;color:var(--t-2);font-weight:600;
+    box-shadow:0 6px 16px -8px rgba(15,20,40,.08);
+    margin-bottom:28px;
+  }
+  .hero-pill .live{
+    width:8px;height:8px;border-radius:50%;background:var(--orange);
+    box-shadow:0 0 0 4px rgba(233,71,11,.16);animation:pulse 2s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+  .hero-pill .sep{width:1px;height:12px;background:var(--line);display:inline-block}
+  .hero-pill strong{color:var(--orange);font-weight:700}
+
   .hero h1{
-    font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.28;
-    letter-spacing:-.025em;text-wrap:balance;margin-bottom:24px;color:var(--ink);
+    font-size:clamp(2.5rem, 5.4vw, 4.4rem);
+    font-weight:800;line-height:1.22;letter-spacing:-.03em;
+    color:var(--ink-0);margin-bottom:28px;text-wrap:balance;
   }
-  .hero h1 .mark{
-    position:relative;white-space:nowrap;
+  .hero h1 > span{display:inline-block;padding:.04em 0}
+  .hero h1 .accent{color:var(--orange)}
+  .hero h1 .grad{
+    background:linear-gradient(120deg, #3071B9 0%, #4CBBB4 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  .hero h1 .mark::after{
-    content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.32em;
-    background:var(--accent-soft);z-index:-1;border-radius:2px;
-  }
-  .hero p.lede{font-size:1.05rem;color:var(--ink-2);max-width:56ch;margin-bottom:32px}
-  .hero-bullets{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
-  .hero-bullets li{
-    display:flex;align-items:flex-start;gap:12px;font-size:.92rem;color:var(--ink);
-    list-style:none;
-  }
-  .hero-bullets li::before{
-    content:"✓";flex-shrink:0;width:18px;height:18px;border-radius:50%;
-    background:var(--accent);position:relative;margin-top:3px;
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;font-size:.68rem;font-weight:800;
-  }
-  .hero-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .hero-promo{
-    font-size:.78rem;color:var(--ink-3);margin-top:14px;
-  }
-  .hero-promo strong{color:var(--warn);font-weight:700}
-  .hero-visual{
-    position:relative;border-radius:var(--radius);overflow:hidden;
-    box-shadow:var(--shadow);border:1px solid var(--line-2);background:#fff;
-  }
-  .hero-visual img{width:100%;height:auto;display:block}
-  .hero-caption{
-    position:absolute;left:14px;bottom:14px;
-    font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
-    background:rgba(255,255,255,.94);padding:6px 10px;border-radius:6px;
-    border:1px solid var(--line-2);
-  }
+  .hero-sub{font-size:1.1rem;color:var(--t-2);max-width:48ch;margin-bottom:32px;line-height:1.85}
+  .hero-sub strong{color:var(--ink-0);font-weight:700}
 
-  /* HERO 限定バッジ群 */
-  .hero-badges{
-    display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;
-  }
-  .hero-badge{
-    font-size:.72rem;font-weight:600;color:var(--accent-ink);
-    background:var(--accent-soft);border:1px solid color-mix(in oklab, var(--accent) 20%, transparent);
-    padding:5px 11px;border-radius:999px;letter-spacing:.02em;
-  }
-
-  /* HERO 段階リリース注記 */
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+  .hero-meta{display:flex;align-items:center;gap:14px;font-size:.82rem;color:var(--t-3);flex-wrap:wrap}
+  .hero-meta .check{color:var(--teal);font-weight:700}
   .hero-notice{
-    margin-top:16px;padding:12px 16px;
-    background:var(--warn-soft);border-left:3px solid var(--warn);
+    margin-top:18px;padding:12px 16px;
+    background:var(--orange-soft);border-left:3px solid var(--orange);
     border-radius:0 6px 6px 0;
-    font-size:.82rem;color:var(--ink-2);line-height:1.7;
+    font-size:.82rem;color:var(--t-2);line-height:1.7;max-width:48ch;
   }
-  .hero-notice strong{color:var(--ink);font-weight:700}
-  .hero-notice a{color:var(--accent-ink);text-decoration:underline}
+  .hero-notice strong{color:var(--ink-0);font-weight:700}
+  .hero-notice a{color:var(--blue-deep);text-decoration:underline;font-weight:600}
 
-  @media (max-width:860px){
-    .hero{padding:48px 0 64px}
-    .hero-inner{grid-template-columns:1fr;gap:40px}
+  /* hero visual: product mock card */
+  .hero-visual{position:relative}
+  .mock{
+    position:relative;
+    border-radius:18px;background:#fff;
+    border:1px solid var(--line);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.6) inset,
+      0 30px 80px -30px rgba(20,30,60,.35),
+      0 60px 120px -30px rgba(48,113,185,.25);
+    overflow:hidden;
+  }
+  .mock-bar{
+    height:42px;background:linear-gradient(180deg,#FAFBFE,#F2F4FA);
+    border-bottom:1px solid var(--line-2);
+    display:flex;align-items:center;gap:8px;padding:0 16px;
+  }
+  .mock-bar .dot{width:11px;height:11px;border-radius:50%;background:#E5E8F0}
+  .mock-bar .dot:nth-child(1){background:#FF6258}
+  .mock-bar .dot:nth-child(2){background:#FFBE2E}
+  .mock-bar .dot:nth-child(3){background:#28C840}
+  .mock-bar .url{
+    margin-left:14px;flex:1;height:24px;border-radius:6px;
+    background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;padding:0 10px;
+    font-family:var(--mono);font-size:.7rem;color:var(--t-3);
+  }
+  .mock-bar .url::before{content:"●";color:var(--teal);margin-right:8px;font-size:.6rem}
+  .mock-body{padding:22px 22px 24px}
+  .mock-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+  .mock-title{font-size:.78rem;color:var(--t-3);text-transform:uppercase;letter-spacing:.14em;font-weight:600;font-family:var(--mono)}
+  .mock-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:.7rem;font-weight:700;color:#fff;
+    background:var(--orange);padding:4px 10px;border-radius:999px;letter-spacing:.04em;
+  }
+  .mock-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+
+  .mock-card{
+    border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;
+    background:linear-gradient(180deg,#fff,#F8FAFD);
+  }
+  .mock-card .ck-meta{font-size:.7rem;color:var(--t-3);font-family:var(--mono);margin-bottom:6px;display:flex;gap:10px;align-items:center}
+  .mock-card .ck-meta .badge{background:var(--blue-soft);color:var(--blue-deep);padding:2px 8px;border-radius:4px;font-weight:600;letter-spacing:.04em}
+  .mock-card .ck-title{font-size:.95rem;font-weight:700;color:var(--ink-0);margin-bottom:8px;line-height:1.5}
+  .mock-card .ck-quote{font-size:.78rem;color:var(--t-2);background:var(--bg-soft);padding:8px 12px;border-radius:6px;border-left:2px solid var(--blue);line-height:1.6}
+
+  .mock-chat{margin-top:14px;border-top:1px dashed var(--line);padding-top:16px}
+  .mock-bubble{
+    background:linear-gradient(180deg,#0F1530,#0A0F1F);color:#fff;border-radius:12px;padding:12px 14px;
+    font-size:.82rem;line-height:1.65;margin-bottom:10px;position:relative;
+  }
+  .mock-bubble.you{background:var(--bg-soft);color:var(--t-1);border:1px solid var(--line)}
+  .mock-bubble .who{font-size:.62rem;color:var(--t-3);text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:6px;font-family:var(--mono)}
+  .mock-bubble.you .who{color:var(--t-3)}
+  .mock-bubble strong{color:var(--blue-2)}
+  .mock-bubble.you strong{color:var(--blue-deep)}
+  .mock-cta{
+    display:flex;gap:8px;margin-top:6px;
+  }
+  .mock-cta .pill{
+    font-size:.7rem;color:var(--blue-deep);background:var(--blue-soft);padding:5px 10px;border-radius:6px;font-weight:600;
   }
 
-  /* ---- PROBLEMS ---- */
-  .problems{background:var(--bg-alt)}
-  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  /* hero floating badges */
+  .hero-floats{position:absolute;inset:0;pointer-events:none}
+  .float-card{
+    position:absolute;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;display:flex;align-items:center;gap:10px;
+    box-shadow:0 18px 40px -16px rgba(20,30,60,.25);font-size:.78rem;color:var(--t-1);
+    font-weight:600;
+  }
+  .float-card .ic{
+    width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.72rem;
+  }
+  .float-1{top:8%;right:-20px;animation:floaty 6s ease-in-out infinite}
+  .float-1 .ic{background:var(--teal)}
+  .float-2{bottom:8%;left:-30px;animation:floaty 7s 1s ease-in-out infinite reverse}
+  .float-2 .ic{background:var(--orange)}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  @media (max-width:960px){
+    .hero{padding:48px 0 80px}
+    .hero-inner{grid-template-columns:1fr;gap:48px}
+    .float-1,.float-2{display:none}
+  }
+
+  /* ============ STATS BAR ============ */
+  .stats{background:var(--ink-0);color:#fff;padding:28px 0;border-bottom:1px solid var(--line-dark)}
+  .stats-inner{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:center;
+  }
+  .stat{display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line-dark);padding-left:24px}
+  .stat:first-child{border-left:0;padding-left:0}
+  .stat .num{font-size:1.8rem;font-weight:800;letter-spacing:-.025em;color:#fff}
+  .stat .num em{font-style:normal;color:var(--blue-2);font-weight:800}
+  .stat .lbl{font-size:.78rem;color:var(--t-inv-3);font-family:var(--mono);letter-spacing:.06em}
+  @media (max-width:760px){
+    .stats-inner{grid-template-columns:1fr 1fr;gap:20px 16px}
+    .stat{border-left:0;padding-left:0}
+  }
+
+  /* ============ WORRIES ============ */
+  .worries{background:linear-gradient(180deg,#FFF7F0 0%, #FFFFFF 100%);position:relative}
+  .worries::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 30%, rgba(233,71,11,.04) 0, transparent 40%),radial-gradient(circle at 80% 70%, rgba(31,79,135,.04) 0, transparent 40%);pointer-events:none}
+  .worries .wrap{position:relative}
+  .worries-head{text-align:center;margin-bottom:32px}
+  .worries-pre{display:inline-block;font-size:13px;letter-spacing:.18em;color:var(--accent);font-weight:700;background:rgba(233,71,11,.08);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+  .worries-head h2{font-size:38px;line-height:1.4;font-weight:800;letter-spacing:.01em;color:var(--ink)}
+  .worries-head em{color:var(--accent);font-style:normal;background:linear-gradient(180deg,transparent 60%,rgba(233,71,11,.18) 60%)}
+
+  .role-tabs{display:flex;justify-content:center;gap:8px;margin:28px 0 24px;flex-wrap:wrap}
+  .role-tab{appearance:none;border:1px solid #E1D6CA;background:#fff;padding:10px 20px;border-radius:999px;cursor:pointer;font-family:inherit;font-weight:700;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;line-height:1.2;gap:2px;transition:all .2s ease}
+  .role-tab .role-en{font-size:10px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;font-weight:600}
+  .role-tab:hover{border-color:var(--accent);color:var(--ink)}
+  .role-tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .role-tab.active .role-en{color:rgba(255,255,255,.6)}
+
+  .role-pane{display:none}
+  .role-pane.active{display:block}
+  .worries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .worry-card{background:#fff;border:1px solid #ECE2D5;border-radius:16px;padding:22px;position:relative;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+  .worry-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:rgba(233,71,11,.09);padding:4px 10px;border-radius:6px;letter-spacing:.04em;margin-bottom:14px}
+  .worry-bubble{position:relative;background:#FAF6F0;border-radius:12px;padding:16px 16px 16px 44px;font-size:14px;line-height:1.7;color:var(--ink)}
+  .worry-bubble::before{content:"”";position:absolute;left:14px;top:8px;font-family:Georgia,serif;font-size:42px;line-height:1;color:var(--accent);opacity:.5}
+  .worry-bubble strong{color:var(--accent);font-weight:700}
+
+  .sambo-answer{margin-top:32px;background:linear-gradient(135deg,#1F4F87 0%, #2A6BA8 100%);border-radius:18px;padding:22px 26px;display:flex;align-items:center;gap:20px;color:#fff;box-shadow:0 8px 24px rgba(31,79,135,.18)}
+  .sambo-avatar{width:44px;height:44px;border-radius:50%;background:#1F4F87;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,.3)}
+  .sambo-avatar svg{width:100%;height:100%}
+  .sambo-avatar.lg{width:64px;height:64px}
+  .sambo-answer .lbl{font-size:11px;letter-spacing:.16em;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:4px;text-transform:uppercase}
+  .sambo-answer .msg{font-size:17px;line-height:1.65;font-weight:600}
+  .sambo-answer .msg em{color:#FFD27A;font-style:normal;font-weight:800}
+
+  /* ============ REALLY ============ */
+  .really{background:#0F1B2C;color:#fff;text-align:center;position:relative;overflow:hidden}
+  .really::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%, rgba(233,71,11,.18) 0, transparent 50%);pointer-events:none}
+  .really .wrap{position:relative}
+  .really-pre{display:inline-block;font-size:13px;letter-spacing:.18em;font-weight:700;color:#FFD27A;background:rgba(255,210,122,.12);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+  .really h2{font-size:42px;line-height:1.35;font-weight:800;letter-spacing:.01em}
+  .really h2 em{color:#FFD27A;font-style:normal}
+  .really-lede{margin-top:18px;color:rgba(255,255,255,.75);font-size:16px;line-height:1.85}
+  .really-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;text-align:left}
+  .really-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px;backdrop-filter:blur(8px)}
+  .really-icn{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#E9470B 0%, #FF6B2C 100%);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .really-icn svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .really-item h3{font-size:18px;font-weight:800;margin-bottom:8px;color:#fff}
+  .really-item p{font-size:14px;line-height:1.75;color:rgba(255,255,255,.7)}
+
+  .really-arrow{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.6)}
+  .really-arrow span{font-size:13px;letter-spacing:.12em;font-weight:700}
+  .really-arrow svg{width:14px;height:32px;color:#FFD27A}
+  .really-bottom{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#E9470B 0%, #FF6B2C 100%);padding:14px 28px;border-radius:999px;font-size:18px;font-weight:800;letter-spacing:.02em;box-shadow:0 8px 24px rgba(233,71,11,.4)}
+  .really-bottom .sambo-avatar{width:40px;height:40px;border:2px solid rgba(255,255,255,.4);background:#1F4F87}
+
+  @media (max-width: 920px){
+    .worries-head h2{font-size:28px}
+    .worries-grid,.really-grid{grid-template-columns:1fr}
+    .really h2{font-size:30px}
+    .role-tabs{gap:6px}
+    .role-tab{padding:8px 14px;font-size:13px}
+    .sambo-answer{flex-direction:column;text-align:center}
+  }
+
+  /* ============ PROBLEM ============ */
+  .problems{background:var(--bg)}
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
   .prob{
-    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:36px 32px;display:flex;flex-direction:column;gap:14px;
+    position:relative;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:38px 32px 32px;display:flex;flex-direction:column;gap:16px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
+  .prob:hover{transform:translateY(-4px);box-shadow:0 30px 60px -30px rgba(20,30,60,.18);border-color:#D7DCE8}
+  .prob::before{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:3px;
+    background:linear-gradient(90deg, var(--orange) 0%, transparent 100%);border-radius:2px;
+  }
+  .prob .row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
   .prob .no{
-    font-family:var(--sans);font-size:2.6rem;font-weight:500;
-    color:var(--accent-ink);line-height:1;letter-spacing:-.02em;
+    font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.1em;
+    background:var(--orange-soft);padding:4px 10px;border-radius:6px;
   }
-  .prob h3{font-size:1.15rem;font-weight:700;color:var(--ink)}
-  .prob h3 small{display:block;font-size:.72rem;font-weight:500;color:var(--ink-3);
-    letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
-  .prob p{font-size:.92rem;color:var(--ink-2);line-height:1.85}
+  .prob .en{font-family:var(--mono);font-size:.62rem;color:var(--t-3);letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-top:6px}
+  .prob h3{font-size:1.18rem;font-weight:800;color:var(--ink-0);line-height:1.45;letter-spacing:-.015em}
+  .prob p{font-size:.92rem;color:var(--t-2);line-height:1.85}
   .prob .tag{
-    display:inline-block;font-size:.75rem;color:var(--warn);
-    background:var(--warn-soft);border-radius:6px;padding:5px 10px;font-weight:600;
-    margin-top:auto;
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;color:var(--ink-0);font-weight:600;
+    background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:8px;padding:8px 12px;
   }
+  .prob .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}
   .prob blockquote{
-    font-size:.82rem;color:var(--ink-3);border-left:2px solid var(--line);
-    padding-left:12px;font-style:italic;margin-top:6px;line-height:1.7;
+    font-size:.85rem;color:var(--t-3);border-left:2px solid var(--line);
+    padding:4px 0 4px 14px;font-style:italic;line-height:1.7;margin-top:auto;
   }
   @media (max-width:860px){.prob-grid{grid-template-columns:1fr}}
 
-  /* ---- PROCUREMENT FLOW ---- */
+  /* ============ FLOW ============ */
+  .flow-section{background:var(--bg-soft)}
   .flow-viz{
-    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:32px;margin-top:40px;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:40px;margin-top:40px;
+    box-shadow:0 30px 60px -30px rgba(20,30,60,.10);
   }
   .flow-track{display:grid;grid-template-columns:3fr auto 2fr;gap:0;align-items:stretch}
-  .flow-zone{position:relative;border-radius:12px;padding:28px 24px}
-  .flow-zone.planning{background:var(--accent-soft);border:2px dashed var(--accent)}
-  .flow-zone.bidding{background:var(--bg-alt);border:1px solid var(--line)}
-  .flow-zone-label{
-    position:absolute;top:-12px;left:20px;
-    font-size:.72rem;font-weight:700;letter-spacing:.1em;
-    padding:4px 12px;border-radius:4px;text-transform:uppercase;
+  .flow-zone{position:relative;border-radius:14px;padding:34px 28px}
+  .flow-zone.planning{
+    background:linear-gradient(140deg, rgba(48,113,185,.08), rgba(76,187,180,.06));
+    border:1px dashed var(--blue);
   }
-  .flow-zone.planning .flow-zone-label{background:var(--accent);color:#fff}
-  .flow-zone.bidding .flow-zone-label{background:#fff;color:var(--ink-3);border:1px solid var(--line)}
-  .flow-steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:16px}
+  .flow-zone.bidding{background:var(--bg-soft);border:1px solid var(--line)}
+  .flow-zone-label{
+    position:absolute;top:-13px;left:24px;
+    font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.12em;
+    padding:5px 12px;border-radius:6px;text-transform:uppercase;
+  }
+  .flow-zone.planning .flow-zone-label{background:linear-gradient(180deg,#3D85D2,#2E69AE);color:#fff;box-shadow:0 8px 16px -8px rgba(48,113,185,.5)}
+  .flow-zone.bidding .flow-zone-label{background:#fff;color:var(--t-3);border:1px solid var(--line)}
+  .flow-steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:20px}
   .flow-step{padding:8px 0}
-  .flow-step .sn{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);letter-spacing:.1em;margin-bottom:8px}
-  .flow-step .st{font-size:.95rem;font-weight:700;margin-bottom:6px;line-height:1.4;color:var(--ink)}
-  .flow-step .sd{font-size:.78rem;color:var(--ink-3);line-height:1.6}
+  .flow-step .sn{font-family:var(--mono);font-size:.7rem;color:var(--t-3);letter-spacing:.1em;margin-bottom:8px;font-weight:600}
+  .flow-step .st{font-size:1rem;font-weight:700;margin-bottom:6px;line-height:1.4;color:var(--ink-0);letter-spacing:-.005em}
+  .flow-step .sd{font-size:.8rem;color:var(--t-3);line-height:1.65}
   .flow-gate{
     align-self:center;writing-mode:vertical-rl;text-orientation:mixed;
-    background:var(--ink);color:#fff;padding:22px 10px;border-radius:6px;
-    font-size:.82rem;font-weight:600;letter-spacing:.2em;margin:0 14px;
+    background:linear-gradient(180deg,#1F2540,#0A0F1F);color:#fff;
+    padding:24px 12px;border-radius:8px;
+    font-size:.82rem;font-weight:700;letter-spacing:.2em;margin:0 18px;
+    box-shadow:0 10px 30px -10px rgba(0,0,0,.4);
   }
-  .flow-periods{display:grid;grid-template-columns:3fr auto 2fr;gap:0;margin-top:20px}
+  .flow-periods{display:grid;grid-template-columns:3fr auto 2fr;gap:0;margin-top:22px}
   .flow-period{
-    text-align:center;padding:14px;font-size:.82rem;color:var(--ink-2);
-    border-top:2px solid var(--line);position:relative;
+    text-align:center;padding:16px;font-size:.82rem;color:var(--t-3);
+    border-top:2px solid var(--line);
   }
   .flow-period strong{
-    display:block;font-family:var(--sans);font-weight:500;
-    font-size:1.3rem;color:var(--ink);margin-top:4px;letter-spacing:-.01em;
+    display:block;font-weight:800;
+    font-size:1.4rem;color:var(--ink-0);margin-top:6px;letter-spacing:-.025em;
   }
-  .flow-period.planning{border-color:var(--accent)}
+  .flow-period.planning{border-color:var(--blue)}
+  .flow-period.planning strong{color:var(--blue-deep)}
   .flow-period.gap{border-color:transparent}
-  .flow-insight{margin-top:40px;padding:28px 32px;border-radius:var(--radius);background:var(--ink);color:#fff}
-  .flow-insight p{font-size:.88rem;color:rgba(255,255,255,.7);margin-bottom:10px}
-  .flow-insight strong{font-size:1.15rem;font-weight:600;color:#fff;display:block;line-height:1.6}
-  .flow-insight strong em{font-style:normal;color:oklch(0.75 0.15 258);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+
+  .flow-insight{
+    margin-top:36px;padding:36px 40px;border-radius:var(--radius);
+    background:linear-gradient(135deg,#0A0F1F 0%, #14192B 60%, #1F2540 100%);
+    color:#fff;position:relative;overflow:hidden;
+  }
+  .flow-insight::before{
+    content:"";position:absolute;right:-50px;top:-100px;width:360px;height:360px;border-radius:50%;
+    background:radial-gradient(circle, rgba(48,113,185,.35), transparent 60%);
+  }
+  .flow-insight p{font-size:.86rem;color:var(--t-inv-3);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;font-weight:600;position:relative}
+  .flow-insight strong{font-size:1.4rem;font-weight:700;color:#fff;display:block;line-height:1.55;letter-spacing:-.015em;position:relative}
+  .flow-insight strong em{font-style:normal;color:var(--orange);font-weight:800}
+
   @media (max-width:860px){
-    .flow-track{grid-template-columns:1fr;gap:16px}
-    .flow-gate{writing-mode:horizontal-tb;margin:0;padding:10px 16px}
-    .flow-steps{grid-auto-flow:row;grid-auto-columns:auto}
+    .flow-viz{padding:24px}
+    .flow-track{grid-template-columns:1fr;gap:18px}
+    .flow-gate{writing-mode:horizontal-tb;margin:0;padding:12px 18px;text-align:center}
+    .flow-steps{grid-auto-flow:row}
     .flow-periods{display:none}
   }
 
-  /* ---- 自治体AI参謀 4機能セクション ---- */
-  .sambo{background:#fff}
+  /* ============ SAMBO 4機能 ============ */
+  .sambo{background:var(--bg)}
+  .sambo-stage-notice{
+    margin:32px auto 0;max-width:760px;padding:18px 24px;
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;
+    font-size:.88rem;color:var(--t-2);line-height:1.85;text-align:left;
+  }
+  .sambo-stage-notice .lbl{display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--orange);background:var(--orange-soft);padding:3px 10px;border-radius:5px;letter-spacing:.06em;margin-right:10px}
+  .sambo-stage-notice strong{color:var(--ink-0);font-weight:700}
+
   .sambo-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;
   }
   .sambo-card{
-    background:var(--bg-alt);border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:36px 32px;display:flex;flex-direction:column;gap:14px;position:relative;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:36px 32px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  .sambo-card .icon{
-    width:48px;height:48px;border-radius:12px;
-    background:var(--accent-soft);color:var(--accent-ink);
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.4rem;font-weight:700;
+  .sambo-card:hover{transform:translateY(-4px);box-shadow:0 30px 60px -30px rgba(20,30,60,.18)}
+  .sambo-card::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--blue),var(--teal));
   }
-  .sambo-card h3{
-    font-size:1.15rem;font-weight:700;color:var(--ink);
+  .sambo-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+  .sambo-card .ic{
+    width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--blue-soft),#fff);
+    border:1px solid color-mix(in oklab,var(--blue) 20%, transparent);
+    color:var(--blue-deep);
   }
-  .sambo-card h3 small{
-    display:block;font-size:.7rem;font-weight:500;color:var(--ink-3);
-    letter-spacing:.14em;text-transform:uppercase;margin-top:4px;
-  }
-  .sambo-card p{font-size:.92rem;color:var(--ink-2);line-height:1.85}
+  .sambo-card .ic svg{width:22px;height:22px;stroke-width:2}
+  .sambo-card .num{font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--t-3);letter-spacing:.16em}
+  .sambo-card h3{font-size:1.25rem;font-weight:800;color:var(--ink-0);line-height:1.45;letter-spacing:-.02em}
+  .sambo-card h3 small{display:block;font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--t-3);letter-spacing:.16em;text-transform:uppercase;margin-top:4px}
+  .sambo-card p{font-size:.92rem;color:var(--t-2);line-height:1.85}
   .sambo-card .tagline{
-    font-size:.85rem;font-weight:600;color:var(--accent-ink);
-    background:var(--accent-soft);padding:8px 12px;border-radius:6px;margin-top:auto;
+    font-size:.84rem;font-weight:700;color:var(--blue-deep);
+    background:var(--blue-soft);padding:9px 14px;border-radius:8px;margin-top:auto;
+    border:1px solid color-mix(in oklab,var(--blue) 18%,transparent);
   }
-  /* 段階リリースタグ */
-  .sambo-stage-tag{
-    margin-top:10px;font-size:.72rem;font-weight:600;
-    color:var(--ok);background:var(--ok-soft);
-    padding:6px 10px;border-radius:4px;letter-spacing:.02em;
+  .stage-tag{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.06em;
+    padding:6px 11px;border-radius:6px;align-self:flex-start;
   }
-  .sambo-stage-tag.stage-q4{color:var(--accent-ink);background:var(--accent-soft)}
-  .sambo-stage-tag.stage-future{color:var(--ink-3);background:var(--bg-alt);border:1px dashed var(--line)}
-  /* セクション冒頭の段階リリース注記 */
-  .sambo-stage-notice{
-    margin:24px auto 0;max-width:680px;padding:14px 20px;
-    background:#fff;border:1px solid var(--line);border-radius:8px;
-    font-size:.85rem;color:var(--ink-2);line-height:1.8;text-align:left;
-  }
-  .sambo-stage-notice strong{color:var(--ink);font-weight:700}
+  .stage-tag.live{color:#1F6D63;background:var(--teal-soft);border:1px solid color-mix(in oklab,var(--teal) 25%, transparent)}
+  .stage-tag.q4{color:var(--blue-deep);background:var(--blue-soft);border:1px solid color-mix(in oklab,var(--blue) 22%, transparent)}
+  .stage-tag.future{color:var(--t-3);background:var(--bg-soft);border:1px dashed var(--line)}
+  .stage-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
   @media (max-width:860px){.sambo-grid{grid-template-columns:1fr}}
 
-  /* ---- TTP / SPEED 比較バー ---- */
-  .speed{background:var(--bg-alt)}
+  /* ============ TTP / SPEED ============ */
+  .speed{background:var(--bg-soft)}
   .ttp-bars{
-    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:40px 36px;margin-top:20px;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:48px 44px;margin-top:48px;
+    box-shadow:0 30px 60px -30px rgba(20,30,60,.10);
   }
   .ttp-row{
-    display:grid;grid-template-columns:180px 1fr 100px;gap:20px;align-items:center;
-    padding:14px 0;
+    display:grid;grid-template-columns:200px 1fr 120px;gap:24px;align-items:center;
+    padding:18px 0;
   }
-  .ttp-row + .ttp-row{border-top:1px dashed var(--line-2)}
-  .ttp-name{font-size:.95rem;font-weight:600;color:var(--ink-2)}
-  .ttp-name.us{color:var(--accent-ink)}
-  .ttp-bar-track{height:14px;border-radius:7px;background:var(--bg-alt);overflow:hidden;position:relative}
+  .ttp-row + .ttp-row{border-top:1px dashed var(--line)}
+  .ttp-name{font-size:.98rem;font-weight:700;color:var(--t-2);letter-spacing:-.01em}
+  .ttp-name.us{color:var(--ink-0)}
+  .ttp-bar-track{height:14px;border-radius:8px;background:var(--bg-soft);overflow:hidden;position:relative}
   .ttp-bar{
-    height:100%;border-radius:7px;background:var(--ink-3);
-    display:flex;align-items:center;justify-content:flex-end;
+    height:100%;border-radius:8px;background:linear-gradient(90deg,#9098AC,#6B7390);
+    position:relative;
   }
-  .ttp-bar.us{background:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
-  .ttp-time{font-size:.92rem;font-weight:600;color:var(--ink-2);text-align:right}
-  .ttp-time.us{color:var(--accent-ink);font-weight:700}
+  .ttp-bar.us{
+    background:linear-gradient(90deg,#3D85D2,#2E69AE);
+    box-shadow:0 0 0 2px rgba(48,113,185,.18), 0 6px 14px -4px rgba(48,113,185,.45);
+  }
+  .ttp-time{font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--t-2);text-align:right;letter-spacing:-.01em}
+  .ttp-time.us{color:var(--orange);font-weight:800;font-size:1.15rem}
+  .ttp-row.us .ttp-name::before{
+    content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--orange);
+    margin-right:10px;box-shadow:0 0 0 4px rgba(233,71,11,.18);vertical-align:middle;
+  }
   .ttp-note{
-    margin-top:24px;padding:16px 20px;background:var(--bg-alt);border-radius:8px;
-    font-size:.82rem;color:var(--ink-3);line-height:1.8;
+    margin-top:28px;padding:18px 22px;background:var(--bg-soft);border-radius:10px;
+    font-size:.84rem;color:var(--t-3);line-height:1.85;
   }
-  @media (max-width:560px){
+  @media (max-width:760px){
+    .ttp-bars{padding:32px 24px}
     .ttp-row{grid-template-columns:1fr;gap:8px}
     .ttp-time{text-align:left}
   }
 
-  /* ---- Why Opus セクション ---- */
-  .opus{background:var(--ink);color:#fff}
-  .opus .eyebrow{color:oklch(0.85 0.1 258)}
-  .opus .eyebrow::before{background:oklch(0.85 0.1 258)}
-  .opus .h-section{color:#fff}
-  .opus .h-section em{color:oklch(0.85 0.1 258)}
-  .opus .lede{color:rgba(255,255,255,.7);max-width:68ch}
-  .opus-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;
-  }
-  .opus-card{
-    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
-    border-radius:var(--radius);padding:32px 28px;display:flex;flex-direction:column;gap:14px;
-  }
-  .opus-card .icon-text{font-size:1.5rem}
-  .opus-card h3{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.5}
-  .opus-card p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.85}
-  .opus-card p strong{color:#fff;font-weight:600}
-  .opus-note{
-    margin-top:32px;padding:24px 28px;border-left:3px solid oklch(0.75 0.14 258);
-    background:rgba(255,255,255,.04);border-radius:0 8px 8px 0;
-    font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.85;
-  }
-  .opus-note strong{color:#fff;font-weight:600}
-  @media (max-width:860px){.opus-grid{grid-template-columns:1fr}}
-
-  /* ---- BEFORE / AFTER ---- */
-  .ba{background:var(--bg-alt)}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+  /* ============ BEFORE / AFTER ============ */
+  .ba{background:var(--bg)}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;margin-top:48px}
   .ba-card{
-    background:#fff;border-radius:var(--radius);padding:36px 32px;
-    border:1px solid var(--line-2);
+    background:#fff;border-radius:var(--radius-lg);padding:40px 36px;
+    border:1px solid var(--line);position:relative;overflow:hidden;
   }
-  .ba-card.before{border-top:3px solid var(--ink-3)}
-  .ba-card.after{border-top:3px solid var(--accent)}
+  .ba-card.before{border-top:5px solid var(--t-3)}
+  .ba-card.after{
+    border-top:5px solid var(--blue);
+    background:linear-gradient(180deg,#fff 0%, color-mix(in oklab, var(--blue-soft) 50%, #fff) 100%);
+    box-shadow:0 30px 60px -30px rgba(48,113,185,.25);
+  }
   .ba-label{
-    font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-3);margin-bottom:8px;
+    font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--t-3);margin-bottom:10px;
   }
-  .ba-card.after .ba-label{color:var(--accent-ink)}
-  .ba-title{font-size:1.15rem;font-weight:700;margin-bottom:24px;color:var(--ink)}
+  .ba-card.after .ba-label{color:var(--blue-deep)}
+  .ba-title{font-size:1.2rem;font-weight:800;margin-bottom:24px;color:var(--ink-0);letter-spacing:-.015em}
   .ba-step{
     display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
-    padding:14px 0;border-bottom:1px dashed var(--line);
+    padding:16px 0;border-bottom:1px dashed var(--line);
   }
-  .ba-step:last-child{border-bottom:none}
-  .ba-step-no{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.1em}
-  .ba-step-text{font-size:.92rem;color:var(--ink)}
-  .ba-step-time{font-family:var(--sans);font-weight:500;font-size:1rem;color:var(--ink-3);white-space:nowrap}
-  .ba-card.after .ba-step-time{color:var(--accent-ink)}
+  .ba-step:last-of-type{border-bottom:none}
+  .ba-step-no{font-family:var(--mono);font-size:.74rem;color:var(--t-3);letter-spacing:.1em;font-weight:700}
+  .ba-step-text{font-size:.94rem;color:var(--ink-0);font-weight:500}
+  .ba-step-time{font-family:var(--mono);font-weight:700;font-size:.95rem;color:var(--t-3);white-space:nowrap}
+  .ba-card.after .ba-step-time{color:var(--blue-deep)}
   .ba-total{
-    margin-top:20px;padding-top:20px;border-top:1px solid var(--line);
+    margin-top:22px;padding-top:22px;border-top:1px solid var(--line);
     display:flex;justify-content:space-between;align-items:baseline;
   }
-  .ba-total-label{font-size:.85rem;color:var(--ink-2);font-weight:600}
-  .ba-total-value{font-family:var(--sans);font-weight:500;font-size:1.8rem;letter-spacing:-.02em}
-  .ba-card.before .ba-total-value{color:var(--ink-3)}
-  .ba-card.after .ba-total-value{color:var(--accent-ink)}
-  .ba-note{font-size:.82rem;color:var(--ink-3);margin-top:8px;line-height:1.7}
+  .ba-total-label{font-size:.86rem;color:var(--t-2);font-weight:600;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em}
+  .ba-total-value{font-weight:800;font-size:1.9rem;letter-spacing:-.025em}
+  .ba-card.before .ba-total-value{color:var(--t-3)}
+  .ba-card.after .ba-total-value{color:var(--blue-deep)}
+  .ba-note{font-size:.82rem;color:var(--t-3);margin-top:8px;line-height:1.7}
   .ba-punchline{
-    text-align:center;padding:40px 32px;background:#fff;border:1px solid var(--line-2);
-    border-radius:var(--radius);margin-bottom:40px;
+    text-align:center;padding:64px 48px;
+    background:linear-gradient(135deg,#0A0F1F 0%, #14192B 100%);
+    color:#fff;border-radius:var(--radius-lg);position:relative;overflow:hidden;
   }
-  .ba-punchline p{font-size:.9rem;color:var(--ink-3);margin-bottom:6px}
-  .ba-punchline h3{font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:600;line-height:1.5;letter-spacing:-.01em;color:var(--ink)}
-  .ba-punchline h3 em{font-style:normal;color:var(--accent-ink);font-weight:700}
+  .ba-punchline::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(800px 300px at 50% 100%, rgba(48,113,185,.25), transparent 60%);
+  }
+  .ba-punchline > p{font-family:var(--mono);font-size:.78rem;color:var(--t-inv-3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:36px;position:relative;font-weight:600}
+  .ba-punchline h3{font-size:clamp(1.6rem, 3vw, 2.4rem);font-weight:800;line-height:1.4;letter-spacing:-.02em;color:#fff;position:relative;margin:0}
+  .ba-punchline h3 em{font-style:normal;background:linear-gradient(120deg,#6BA3E6,#4CBBB4);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+  .ratio{position:relative;display:inline-flex;align-items:center;gap:36px;justify-content:center;flex-wrap:wrap;text-align:left;margin-bottom:32px}
+  .ratio-block{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .ratio-num{display:flex;align-items:center;line-height:1;font-weight:900;letter-spacing:-.03em;color:#fff;
+    font-size:clamp(3.6rem, 8vw, 6.4rem);
+  }
+  .ratio-num .top{background:linear-gradient(120deg,#6BA3E6,#4CBBB4);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:.65em}
+  .ratio-num .slash{color:rgba(255,255,255,.35);margin:0 .04em;font-weight:300}
+  .ratio-num .bot{color:#fff}
+  .ratio-cap{font-family:var(--mono);font-size:.74rem;color:var(--t-inv-3);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .ratio-arrow{font-size:2rem;color:var(--orange);font-weight:300;line-height:1}
+  .ratio-text{text-align:left}
+  .ratio-eyebrow{display:inline-block;font-family:var(--mono);font-size:.74rem;color:var(--orange);letter-spacing:.12em;font-weight:700;background:rgba(233,71,11,.14);border:1px solid rgba(233,71,11,.4);padding:5px 11px;border-radius:6px;margin-bottom:14px}
+  .ratio-cta{position:relative;display:inline-flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:8px;padding-top:32px;border-top:1px dashed rgba(255,255,255,.15);width:100%;max-width:600px;margin-left:auto;margin-right:auto}
+  .ratio-tag{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;color:#fff}
+  .ratio-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(233,71,11,.22);animation:pulse 2s infinite}
+  @media (max-width:760px){
+    .ratio{gap:18px}
+    .ratio-arrow{transform:rotate(90deg)}
+    .ratio-text{text-align:center}
+  }
   @media (max-width:860px){.ba-grid{grid-template-columns:1fr}}
 
-  /* ---- UPCOMING ---- */
-  .coming{background:#fff}
-  .coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  /* ============ ROADMAP ============ */
+  .coming{background:var(--bg-soft)}
+  .coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
   .coming-card{
-    background:var(--bg-alt);border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:28px;position:relative;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 28px;position:relative;
   }
   .coming-badge{
-    display:inline-block;font-size:.68rem;font-weight:600;
-    color:var(--accent-ink);background:var(--accent-soft);
-    padding:3px 10px;border-radius:4px;letter-spacing:.08em;margin-bottom:16px;
+    display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:700;
+    color:#fff;background:linear-gradient(180deg,var(--orange),#C73B05);
+    padding:5px 12px;border-radius:6px;letter-spacing:.06em;margin-bottom:20px;
+    box-shadow:0 6px 14px -6px rgba(233,71,11,.5);
   }
-  .coming-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
-  .coming-card p{font-size:.88rem;color:var(--ink-2);line-height:1.8}
+  .coming-card h3{font-size:1.1rem;font-weight:800;margin-bottom:12px;letter-spacing:-.015em;color:var(--ink-0)}
+  .coming-card p{font-size:.9rem;color:var(--t-2);line-height:1.85}
   @media (max-width:860px){.coming-grid{grid-template-columns:1fr}}
 
-  /* ---- COMPARISON ---- */
-  .compare-tbl{width:100%;border-collapse:collapse;margin-top:32px;font-size:.92rem}
-  .compare-tbl th,.compare-tbl td{padding:18px 16px;text-align:center;border-bottom:1px solid var(--line-2)}
+  /* ============ COMPARISON ============ */
+  .compare{background:var(--bg)}
+  .compare-tbl{
+    width:100%;border-collapse:separate;border-spacing:0;margin-top:48px;font-size:.94rem;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
+    box-shadow:0 30px 60px -30px rgba(20,30,60,.1);
+  }
+  .compare-tbl th,.compare-tbl td{padding:20px 18px;text-align:center;border-bottom:1px solid var(--line-2)}
   .compare-tbl thead th{
-    font-size:.78rem;font-weight:600;color:var(--ink-3);
-    letter-spacing:.1em;text-transform:uppercase;background:var(--bg-alt);
+    font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--t-3);
+    letter-spacing:.1em;text-transform:uppercase;background:var(--bg-soft);
+    border-bottom:1px solid var(--line);
   }
   .compare-tbl thead th.us{
-    background:var(--ink);color:#fff;letter-spacing:.02em;text-transform:none;
-    font-size:.95rem;font-weight:700;border-radius:8px 8px 0 0;
+    background:linear-gradient(180deg,#1F2540,#0A0F1F);color:#fff;letter-spacing:.02em;text-transform:none;
+    font-family:var(--sans);font-size:1rem;font-weight:800;letter-spacing:-.01em;line-height:1.4;
+    position:relative;
   }
-  .compare-tbl tbody td:first-child{text-align:left;font-weight:600;color:var(--ink);width:30%}
-  .compare-tbl tbody td.us{background:var(--accent-soft);font-weight:600}
+  .compare-tbl thead th.us::after{
+    content:"BEST";position:absolute;top:8px;right:8px;
+    font-family:var(--mono);font-size:.6rem;font-weight:800;letter-spacing:.1em;
+    background:var(--orange);color:#fff;padding:3px 8px;border-radius:4px;
+  }
+  .compare-tbl tbody td:first-child{text-align:left;font-weight:700;color:var(--ink-0);width:26%;background:var(--bg-soft);font-size:.92rem}
+  .compare-tbl tbody td.us{background:linear-gradient(180deg,#fff,#F4F8FE);font-weight:700;color:var(--ink-0)}
   .compare-tbl tbody tr:last-child td{border-bottom:none}
-  .mark-yes{color:var(--ok);font-weight:700}
-  .mark-no{color:var(--ink-3);opacity:.6}
-  .mark-mid{color:var(--ink-3);font-size:.85rem}
+  .mark-yes{color:var(--teal);font-weight:800;display:inline-flex;align-items:center;gap:6px}
+  .mark-yes::before{content:"✓";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--teal);color:#fff;font-size:.72rem;font-weight:800}
+  .mark-no{color:var(--t-3);opacity:.55}
+  .mark-mid{color:var(--t-3);font-size:.85rem;font-style:italic}
   .compare-note{
-    margin-top:28px;padding:24px 28px;border-left:3px solid var(--accent);
-    background:var(--bg-alt);border-radius:0 8px 8px 0;font-size:.9rem;
-    color:var(--ink-2);line-height:1.9;
+    margin-top:32px;padding:28px 32px;
+    background:linear-gradient(135deg,var(--blue-soft),#fff);
+    border:1px solid color-mix(in oklab,var(--blue) 20%, transparent);border-radius:var(--radius);
+    font-size:.95rem;color:var(--t-2);line-height:1.95;
   }
-  .compare-note strong{color:var(--ink);font-weight:700}
+  .compare-note strong{color:var(--ink-0);font-weight:700}
+  @media (max-width:860px){
+    .compare-tbl{font-size:.78rem;display:block;overflow-x:auto;white-space:nowrap}
+    .compare-tbl th,.compare-tbl td{padding:14px 10px}
+  }
 
-  /* ---- WHY FROMTO ---- */
-  .why{background:var(--bg-alt)}
+  /* ============ WHY FROMTO ============ */
+  .why{
+    background:var(--ink-0);color:#fff;position:relative;overflow:hidden;
+  }
+  .why::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(700px 400px at 0% 0%, rgba(48,113,185,.18), transparent 60%),
+      radial-gradient(600px 400px at 100% 100%, rgba(76,187,180,.12), transparent 60%);
+    pointer-events:none;
+  }
+  .why .h-section{color:#fff}
+  .why .lede{color:var(--t-inv-2)}
   .why-pillars{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;margin-top:48px;
+    position:relative;
   }
   .why-pillar{
-    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:36px 32px;display:flex;flex-direction:column;gap:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.02) 100%);
+    border:1px solid var(--line-dark);border-radius:var(--radius);
+    padding:36px 32px;display:flex;flex-direction:column;gap:16px;
+    position:relative;overflow:hidden;backdrop-filter:blur(20px);
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .why-pillar:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.2)}
+  .why-pillar::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent 0%, var(--blue-2) 50%, transparent 100%);
   }
   .why-pillar .pillar-no{
-    font-family:var(--mono);font-size:.72rem;color:var(--accent-ink);
-    letter-spacing:.14em;font-weight:700;
+    font-family:var(--mono);font-size:.74rem;color:var(--blue-2);
+    letter-spacing:.16em;font-weight:700;
   }
-  .why-pillar h3{font-size:1.15rem;font-weight:700;line-height:1.5;color:var(--ink)}
-  .why-pillar h3 em{font-style:normal;color:var(--accent-ink)}
-  .why-pillar p{font-size:.9rem;color:var(--ink-2);line-height:1.85}
-  .why-pillar p strong{color:var(--ink);background:linear-gradient(transparent 60%, var(--accent-soft) 60%)}
+  .why-pillar h3{font-size:1.5rem;font-weight:800;line-height:1.4;color:#fff;letter-spacing:-.02em}
+  .why-pillar h3 em{font-style:normal;background:linear-gradient(120deg,#7DB3E8,#4CBBB4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .why-pillar p{font-size:.94rem;color:var(--t-inv-2);line-height:1.95}
+  .why-pillar p strong{color:#fff;font-weight:700;background:linear-gradient(transparent 60%, rgba(48,113,185,.45) 60%)}
   .why-pillar .pillar-tag{
-    margin-top:auto;font-size:.78rem;font-weight:600;color:var(--accent-ink);
-    border-top:1px solid var(--line-2);padding-top:14px;
+    margin-top:auto;font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--blue-2);
+    border-top:1px solid var(--line-dark);padding-top:16px;
   }
-  .why-main{background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);padding:48px}
-  .why-main h3{font-size:1.35rem;font-weight:700;margin-bottom:16px;line-height:1.5}
-  .why-main > p{font-size:.98rem;color:var(--ink-2);line-height:1.95;max-width:78ch;margin-bottom:0}
-  .why-main > p strong{color:var(--ink);background:linear-gradient(transparent 60%, var(--accent-soft) 60%)}
+
+  .why-main{
+    background:linear-gradient(135deg, rgba(48,113,185,.12), rgba(76,187,180,.06));
+    border:1px solid var(--line-dark);border-radius:var(--radius-lg);padding:48px 52px;
+    position:relative;
+  }
+  .why-main h3{font-size:1.6rem;font-weight:800;margin-bottom:18px;line-height:1.4;color:#fff;letter-spacing:-.02em}
+  .why-main > p{font-size:1.02rem;color:var(--t-inv-2);line-height:2;max-width:78ch;margin-bottom:0}
+  .why-main > p strong{color:#fff;font-weight:700;background:linear-gradient(transparent 62%, rgba(233,71,11,.5) 62%)}
   @media (max-width:860px){
     .why-pillars{grid-template-columns:1fr}
     .why-main{padding:32px 24px}
+    .why-main h3{font-size:1.3rem}
   }
 
-  /* ---- ROI by Numbers ---- */
+  /* ============ PRICING ============ */
+  .price{background:var(--bg-soft)}
+  .promo{
+    background:linear-gradient(135deg,#0A0F1F 0%, #14192B 50%, #1F2A50 100%);
+    color:#fff;border-radius:var(--radius-lg);
+    padding:64px 56px;margin-top:48px;position:relative;overflow:hidden;
+    box-shadow:0 60px 120px -40px rgba(20,30,60,.5);
+  }
+  .promo::before{
+    content:"";position:absolute;top:-40%;right:-15%;width:700px;height:700px;
+    background:radial-gradient(circle, rgba(48,113,185,.4), transparent 60%);
+    pointer-events:none;
+  }
+  .promo::after{
+    content:"";position:absolute;bottom:-40%;left:-10%;width:500px;height:500px;
+    background:radial-gradient(circle, rgba(76,187,180,.3), transparent 60%);
+    pointer-events:none;
+  }
+  .promo-inner{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+  .promo-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:#fff;background:linear-gradient(180deg,var(--orange),#C73B05);
+    padding:7px 16px;border-radius:999px;margin-bottom:24px;
+    box-shadow:0 10px 24px -8px rgba(233,71,11,.55);
+  }
+  .promo-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+  .promo h3{font-size:2rem;font-weight:800;margin-bottom:10px;line-height:1.3;letter-spacing:-.025em}
+  .promo-period{font-family:var(--mono);font-size:.88rem;color:var(--t-inv-3);margin-bottom:32px;letter-spacing:.04em}
+  .promo-pricing{display:flex;align-items:baseline;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+  .promo-strike{font-size:1rem;color:rgba(255,255,255,.5);text-decoration:line-through;font-family:var(--mono)}
+  .promo-price{font-weight:800;font-size:3.6rem;line-height:1;letter-spacing:-.04em;color:#fff}
+  .promo-price small{font-size:.95rem;font-weight:500;color:var(--t-inv-2);margin-left:10px;letter-spacing:0}
+  .promo-disc{
+    font-size:.92rem;font-weight:700;color:var(--gold);
+    background:rgba(232,184,106,.10);border:1px solid rgba(232,184,106,.3);
+    padding:10px 16px;border-radius:8px;display:inline-block;
+  }
+  .promo-incs{margin-top:32px;padding-top:32px;border-top:1px solid var(--line-dark)}
+  .promo-incs-lbl{font-family:var(--mono);font-size:.74rem;color:var(--t-inv-3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;font-weight:700}
+  .promo-incs ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .promo-incs li{font-size:.95rem;padding-left:26px;position:relative;color:var(--t-inv-2);line-height:1.6}
+  .promo-incs li::before{
+    content:"✓";position:absolute;left:0;top:.05em;
+    width:18px;height:18px;border-radius:50%;
+    background:linear-gradient(140deg,var(--blue-2),var(--blue));
+    color:#fff;font-size:.66rem;font-weight:800;display:grid;place-items:center;
+  }
+  .promo-incs li strong{color:#fff;font-weight:700}
+  .promo-cta{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+  .promo-cta .btn{padding:17px 32px;font-size:1rem;align-self:flex-start}
+  .promo-note{font-size:.78rem;color:var(--t-inv-3);line-height:1.7}
+
+  /* layered diagram */
+  .layer-diagram{
+    max-width:760px;margin:0 auto 48px;
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .ld-user{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 28px;
+    box-shadow:0 14px 30px -16px rgba(20,30,60,.18);
+  }
+  .ld-user-ic{font-size:1.5rem;line-height:1}
+  .ld-user-lbl{font-size:.84rem;font-weight:700;color:var(--ink-0)}
+  .ld-arrow{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--blue);height:80px;justify-content:center}
+  .ld-arrow svg{width:14px;height:42px}
+  .ld-arrow-lbl{font-family:var(--mono);font-size:.74rem;color:var(--blue-deep);background:#fff;padding:5px 12px;border:1px solid color-mix(in oklab,var(--blue) 30%, transparent);border-radius:999px;box-shadow:0 4px 12px -4px rgba(48,113,185,.25);font-weight:600}
+  .ld-stack{
+    width:100%;background:linear-gradient(180deg,#fff 0%, #F5F8FE 100%);
+    border:1px solid var(--line);border-radius:20px;padding:24px;
+    box-shadow:0 30px 60px -30px rgba(20,30,60,.18);
+  }
+  .ld-layer{border-radius:14px;padding:22px 26px;position:relative}
+  .ld-layer-2{
+    background:linear-gradient(135deg,#1F4F87 0%, #2E69AE 50%, #4CBBB4 100%);color:#fff;
+    box-shadow:0 18px 36px -16px rgba(48,113,185,.55), inset 0 1px 0 rgba(255,255,255,.2);
+  }
+  .ld-layer-1{background:#fff;border:1px solid var(--line);color:var(--ink-0)}
+  .ld-layer-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+  .ld-layer-num{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.16em}
+  .ld-layer-2 .ld-layer-num{color:#FFD7BE}
+  .ld-layer-1 .ld-layer-num{color:var(--orange)}
+  .ld-layer-name{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .ld-layer-cap{font-size:.86rem;opacity:.9;margin-bottom:14px;font-weight:500}
+  .ld-layer-1 .ld-layer-cap{color:var(--t-3);opacity:1}
+  .ld-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .ld-tag{font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:8px}
+  .ld-layer-2 .ld-tag{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.18)}
+  .ld-layer-1 .ld-tag{background:var(--bg-soft);color:var(--ink-0);border:1px solid var(--line)}
+  .ld-connector{height:36px;display:flex;align-items:center;justify-content:center;position:relative}
+  .ld-connector::before, .ld-connector::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--blue),var(--teal))}
+  .ld-connector::before{left:30%}
+  .ld-connector::after{right:30%}
+  .ld-connector span{background:#fff;padding:5px 12px;border:1px solid var(--line);border-radius:999px;font-family:var(--mono);font-size:.7rem;color:var(--blue-deep);letter-spacing:.06em;font-weight:600;box-shadow:0 4px 10px -4px rgba(20,30,60,.15);position:relative;z-index:1}
+  .ld-base{text-align:center;margin-top:14px;font-family:var(--mono);font-size:.74rem;color:var(--t-3);letter-spacing:.06em;font-weight:600}
+
+  /* 2層構造の説明 */
+  .layers-intro{margin-top:96px;margin-bottom:48px}
+  .layers-title{font-size:1.6rem;font-weight:800;text-align:center;margin-bottom:36px;letter-spacing:-.02em}
+  .layers-title em{font-style:normal;background:linear-gradient(120deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .layer-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:36px 32px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;
+  }
+  .layer-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px}
+  .layer-card.layer-1::before{background:linear-gradient(90deg,var(--teal),#7BD3CC)}
+  .layer-card.layer-2::before{background:linear-gradient(90deg,var(--blue),var(--teal))}
+  .layer-num{font-family:var(--mono);font-size:.72rem;color:var(--t-3);letter-spacing:.16em;font-weight:700}
+  .layer-card.layer-1 .layer-num{color:#1F6D63}
+  .layer-card.layer-2 .layer-num{color:var(--blue-deep)}
+  .layer-name{font-size:1.6rem;font-weight:800;color:var(--ink-0);letter-spacing:-.025em}
+  .layer-sub{font-size:.94rem;color:var(--t-3);margin-bottom:8px}
+  .layer-card p{font-size:.94rem;color:var(--t-2);line-height:1.85;flex:1}
+  .layer-tag{margin-top:14px;font-size:.88rem;font-weight:700;padding:10px 16px;border-radius:8px;text-align:center}
+  .layer-card.layer-1 .layer-tag{background:var(--teal-soft);color:#1F6D63}
+  .layer-card.layer-2 .layer-tag{background:var(--blue-soft);color:var(--blue-deep)}
+  @media (max-width:860px){.layers-grid{grid-template-columns:1fr}}
+
+  /* PLANS */
+  .plans-head{margin-top:64px;margin-bottom:36px;text-align:center}
+  .plans-head h3{font-size:1.5rem;font-weight:800;margin-bottom:12px;letter-spacing:-.02em}
+  .plans-head p{font-size:.94rem;color:var(--t-2);line-height:1.85;max-width:72ch;margin:0 auto}
+  .plans-head p strong{color:var(--ink-0)}
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .plan{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:40px 36px;display:flex;flex-direction:column;position:relative;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .plan:hover{transform:translateY(-4px)}
+  .plan.reco{
+    border:1px solid var(--ink-0);
+    box-shadow:0 30px 80px -20px rgba(20,30,60,.25);
+    background:linear-gradient(180deg,#fff,#FAFCFF);
+  }
+  .plan-pill{
+    position:absolute;top:-14px;left:32px;
+    background:linear-gradient(180deg,var(--orange),#C73B05);color:#fff;
+    font-family:var(--mono);font-size:.72rem;font-weight:800;
+    padding:6px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;
+    box-shadow:0 10px 20px -6px rgba(233,71,11,.45);
+  }
+  .plan-name{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;font-weight:700;color:var(--blue-deep);margin-bottom:12px;text-transform:uppercase}
+  .plan-title{font-size:1.3rem;font-weight:800;margin-bottom:18px;letter-spacing:-.02em;color:var(--ink-0)}
+  .plan-price{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+  .plan-price strong{font-weight:800;font-size:2.6rem;letter-spacing:-.035em;line-height:1;color:var(--ink-0)}
+  .plan-price span{font-size:.84rem;color:var(--t-3)}
+  .plan-note{font-size:.86rem;color:var(--t-2);margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line);line-height:1.7}
+  .plan-note strong{color:var(--ink-0)}
+  .plan-feat{display:flex;flex-direction:column;gap:11px;list-style:none;flex:1}
+  .plan-feat li{font-size:.9rem;color:var(--ink-0);padding-left:26px;position:relative;line-height:1.65}
+  .plan-feat li::before{
+    content:"";position:absolute;left:0;top:.4em;width:16px;height:16px;border-radius:50%;
+    background:var(--blue-soft);
+  }
+  .plan-feat li::after{
+    content:"";position:absolute;left:5px;top:.7em;width:6px;height:3px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg);
+  }
+  .plan-feat li.muted{color:var(--t-3)}
+  .plan-feat li.muted::before{background:var(--bg-soft)}
+  .plan-feat li.muted::after{border-color:var(--t-3)}
+  .plan-feat li.star{color:var(--ink-0);font-weight:700}
+  .plan-hl{
+    background:var(--blue-soft);border-radius:10px;padding:16px 18px;margin-bottom:20px;
+    border-left:3px solid var(--blue);
+  }
+  .plan-hl-title{font-size:.9rem;font-weight:800;color:var(--blue-deep);margin-bottom:6px;letter-spacing:-.005em}
+  .plan-hl-desc{font-size:.82rem;color:var(--t-2);line-height:1.75}
+  .plan-hl-desc strong{color:var(--ink-0)}
+  .plan-hl-light{background:var(--teal-soft) !important;border-left-color:var(--teal) !important}
+  .plan-hl-light .plan-hl-title{color:#1F6D63 !important}
+
+  /* CREDITS */
+  .credits{
+    margin-top:36px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:40px 44px;
+  }
+  .credits-head{margin-bottom:28px}
+  .credits-head h4{font-size:1.2rem;font-weight:800;margin-bottom:10px;letter-spacing:-.015em}
+  .credits-head p{font-size:.92rem;color:var(--t-2);line-height:1.85}
+  .credits-head p strong{color:var(--ink-0)}
+  .credits-tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:.94rem;margin-bottom:28px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .credits-tbl th,.credits-tbl td{padding:18px 16px;text-align:center;border-bottom:1px solid var(--line-2)}
+  .credits-tbl th{font-family:var(--mono);font-size:.74rem;color:var(--t-3);letter-spacing:.1em;text-transform:uppercase;font-weight:700;background:var(--bg-soft)}
+  .credits-tbl tbody td:first-child{text-align:left;font-weight:700;color:var(--ink-0)}
+  .credits-tbl tbody tr:last-child td{border-bottom:none}
+  .credits-tbl tbody tr.best td{background:linear-gradient(180deg,#fff,var(--blue-soft));position:relative}
+  .credits-tbl tbody tr.best td:first-child{color:var(--blue-deep)}
+  .credits-tbl .price-num{font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+  .credits-tbl .disc{display:inline-block;font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--orange);background:var(--orange-soft);padding:4px 10px;border-radius:6px;letter-spacing:.04em}
+  .credits-tbl .disc.base{color:var(--t-3);background:var(--bg-soft);font-weight:600}
+  .credits-tbl .badge-best{
+    display:inline-block;font-family:var(--mono);font-size:.62rem;font-weight:800;color:#fff;
+    background:linear-gradient(180deg,var(--ink-0),#000);padding:3px 9px;border-radius:5px;
+    letter-spacing:.1em;margin-left:8px;
+  }
+  .credits-usage h5{font-family:var(--mono);font-size:.78rem;color:var(--blue-deep);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:16px}
+  .credits-usage ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px}
+  .credits-usage li{display:flex;justify-content:space-between;font-size:.9rem;border-bottom:1px dashed var(--line);padding-bottom:10px;color:var(--t-2)}
+  .credits-usage li strong{color:var(--orange);font-weight:800;font-family:var(--mono)}
+  .credits-foot{
+    margin-top:24px;padding:16px 20px;background:var(--bg-soft);border-radius:10px;
+    font-size:.82rem;color:var(--t-2);line-height:1.85;
+  }
+  .credits-foot strong{color:var(--ink-0);font-weight:700}
+  @media (max-width:860px){
+    .promo{padding:44px 28px}
+    .promo-inner,.plans{grid-template-columns:1fr;gap:32px}
+    .promo h3{font-size:1.5rem}
+    .promo-price{font-size:2.6rem}
+    .credits{padding:32px 24px}
+    .credits-usage ul{grid-template-columns:1fr}
+    .credits-tbl th,.credits-tbl td{padding:14px 8px;font-size:.82rem}
+  }
+
+  /* ============ ASSURANCE ============ */
+  .assurance{background:var(--bg)}
+  .assurance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+  .assurance-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 28px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .assurance-card:hover{transform:translateY(-4px);border-color:#D7DCE8;box-shadow:0 20px 40px -20px rgba(20,30,60,.15)}
+  .assurance-card .ac-no{font-family:var(--mono);font-size:.7rem;color:var(--blue-deep);letter-spacing:.16em;font-weight:800;background:var(--blue-soft);padding:5px 10px;border-radius:5px;align-self:flex-start}
+  .assurance-card h3{font-size:1.06rem;font-weight:800;color:var(--ink-0);line-height:1.5;letter-spacing:-.01em}
+  .assurance-card p{font-size:.88rem;color:var(--t-2);line-height:1.85}
+  .assurance-card p strong{color:var(--ink-0);font-weight:700}
+  .assurance-note{margin-top:32px;text-align:center;font-size:.84rem;color:var(--t-3)}
+  @media (max-width:860px){.assurance-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.assurance-grid{grid-template-columns:1fr}}
+
+  .honest{
+    margin-top:56px;padding:44px 48px;
+    background:linear-gradient(135deg, var(--blue-soft) 0%, #fff 60%, var(--teal-soft) 100%);
+    border:1px solid color-mix(in oklab, var(--blue) 25%, transparent);border-radius:var(--radius-lg);
+  }
+  .honest-head{font-family:var(--mono);font-size:.76rem;color:var(--blue-deep);letter-spacing:.16em;text-transform:uppercase;font-weight:800;margin-bottom:18px}
+  .honest h3{font-size:1.4rem;font-weight:800;margin-bottom:28px;line-height:1.45;letter-spacing:-.02em}
+  .honest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .honest-item{padding:24px;background:#fff;border-radius:12px;border:1px solid var(--line)}
+  .honest-item .lbl{font-size:.92rem;font-weight:800;color:var(--ink-0);margin-bottom:10px;letter-spacing:-.005em;display:flex;align-items:center;gap:8px}
+  .honest-item p{font-size:.86rem;color:var(--t-2);line-height:1.85}
+  @media (max-width:860px){.honest{padding:32px 24px}.honest-grid{grid-template-columns:1fr}}
+
+  /* ============ FAQ ============ */
+  .faq{background:var(--bg-soft)}
+  .faq-list{max-width:880px;margin:48px auto 0;display:flex;flex-direction:column;gap:12px}
+  .faq-item{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    transition:border-color .2s ease, box-shadow .2s ease;overflow:hidden;
+  }
+  .faq-item[open]{border-color:#D0D6E5;box-shadow:0 14px 30px -16px rgba(20,30,60,.12)}
+  .faq-item summary{
+    list-style:none;cursor:pointer;padding:22px 26px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    font-size:1rem;font-weight:700;color:var(--ink-0);letter-spacing:-.005em;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{
+    content:"";width:24px;height:24px;border-radius:50%;
+    background:var(--bg-soft);border:1px solid var(--line);
+    background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor);
+    background-size:10px 2px,2px 10px;background-repeat:no-repeat;background-position:center;
+    color:var(--blue-deep);
+    transition:transform .25s ease, background-size .25s ease;flex-shrink:0;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg);background-size:10px 2px,0 0}
+  .faq-item .ans{padding:0 26px 24px;font-size:.94rem;color:var(--t-2);line-height:2;max-width:72ch}
+  .faq-item .ans strong{color:var(--ink-0);font-weight:700}
+
+  /* ============ END CTA ============ */
+  .end{
+    background:
+      radial-gradient(900px 500px at 50% 0%, rgba(48,113,185,.45), transparent 70%),
+      linear-gradient(180deg, #0A0F1F 0%, #050813 100%);
+    color:#fff;text-align:center;padding:140px 28px;position:relative;overflow:hidden;
+  }
+  .end::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:80px 80px;
+    mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 70%);
+    -webkit-mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 70%);
+  }
+  .end-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue-2);margin-bottom:24px;position:relative;
+  }
+  .end-tag::before, .end-tag::after{content:"";width:24px;height:1px;background:var(--blue-2);opacity:.6}
+  .end h2{
+    font-weight:800;font-size:clamp(2.2rem, 4.5vw, 3.6rem);
+    line-height:1.15;letter-spacing:-.035em;margin-bottom:24px;color:#fff;
+    position:relative;text-wrap:balance;
+  }
+  .end h2 .grad{
+    background:linear-gradient(120deg, #6BA3E6, #4CBBB4);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .end p{color:var(--t-inv-2);max-width:60ch;margin:0 auto 40px;line-height:1.95;position:relative;font-size:1.05rem}
+  .end .end-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative}
+  .end .end-cta .btn{padding:18px 36px;font-size:1.05rem}
+  .end small{display:block;margin-top:24px;color:var(--t-inv-3);font-size:.84rem;letter-spacing:.04em;font-family:var(--mono);position:relative}
+
+  /* ============ FOOTER ============ */
+  .foot{background:#03050C;color:rgba(255,255,255,.5);padding:48px 28px;font-size:.84rem;border-top:1px solid var(--line-dark)}
+  .foot-inner{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+  .foot .brand{display:flex;flex-direction:column;gap:6px}
+  .foot strong{color:#fff;font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+
+  /* ============ AI PARTICIPATION CHARACTER ============ */
+  /* コンサル風の参謀キャラ：シンプルなヘッドセット＋スーツのシルエット */
+  .sambo-avatar{
+    width:64px;height:64px;border-radius:50%;
+    background:linear-gradient(135deg,#3071B9 0%, #1F4F87 100%);
+    position:relative;flex-shrink:0;
+    box-shadow:0 8px 20px -8px rgba(48,113,185,.55), inset 0 2px 0 rgba(255,255,255,.18);
+  }
+  .sambo-avatar.sm{width:40px;height:40px}
+  .sambo-avatar.lg{width:96px;height:96px}
+  .sambo-avatar svg{position:absolute;inset:0;width:100%;height:100%}
+  .sambo-avatar::after{
+    content:"";position:absolute;bottom:4px;right:4px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--teal);border:2px solid #fff;
+  }
+  .sambo-avatar.lg::after{width:20px;height:20px;bottom:6px;right:6px}
+
+  /* ============ "こんなお悩み" SECTION ============ */
+  .worries{
+    background:linear-gradient(180deg, #FAFBFE 0%, #F2F6FC 100%);
+    position:relative;
+  }
+  .worries-head{margin-bottom:48px;text-align:center;max-width:880px;margin-left:auto;margin-right:auto}
+  .worries-pre{
+    display:inline-block;font-family:var(--mono);font-size:.78rem;font-weight:700;
+    color:var(--orange);background:#fff;border:1px solid color-mix(in oklab,var(--orange) 30%, transparent);
+    padding:6px 16px;border-radius:999px;letter-spacing:.12em;margin-bottom:18px;
+    box-shadow:0 6px 14px -6px rgba(233,71,11,.25);
+  }
+  .worries h2{
+    font-size:clamp(1.9rem, 3.6vw, 2.8rem);font-weight:800;
+    line-height:1.3;letter-spacing:-.025em;color:var(--ink-0);
+  }
+  .worries h2 em{font-style:normal;background:linear-gradient(120deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* タブ */
+  .role-tabs{
+    display:flex;justify-content:center;gap:8px;margin-bottom:36px;flex-wrap:wrap;
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:6px;max-width:680px;margin-left:auto;margin-right:auto;
+    box-shadow:0 14px 30px -16px rgba(20,30,60,.12);
+  }
+  .role-tab{
+    flex:1;min-width:140px;padding:14px 18px;border-radius:10px;
+    font-weight:700;font-size:.95rem;color:var(--t-3);letter-spacing:-.005em;
+    transition:all .2s ease;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+  }
+  .role-tab .role-en{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+  .role-tab.active{
+    background:linear-gradient(180deg,#3D85D2 0%, #2E69AE 100%);
+    color:#fff;
+    box-shadow:0 8px 18px -8px rgba(48,113,185,.5);
+  }
+  .role-tab.active .role-en{color:rgba(255,255,255,.85);opacity:1}
+  .role-tab:not(.active):hover{background:var(--bg-soft);color:var(--ink-0)}
+
+  .role-pane{display:none}
+  .role-pane.active{display:block;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  .worries-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;
+  }
+  .worry-card{
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:28px 26px;display:flex;flex-direction:column;gap:14px;
+    position:relative;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .worry-card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -22px rgba(20,30,60,.18)}
+  .worry-bubble{
+    position:relative;background:var(--bg-soft);border:1px dashed var(--line);
+    border-radius:12px;padding:14px 16px;font-size:.92rem;color:var(--t-2);
+    line-height:1.7;
+  }
+  .worry-bubble::before{content:"\201c";position:absolute;top:-2px;left:8px;font-size:1.6rem;color:var(--blue);font-family:Georgia,serif;line-height:1}
+  .worry-bubble strong{color:var(--ink-0);font-weight:700}
+  .worry-tag{
+    align-self:flex-start;
+    font-family:var(--mono);font-size:.7rem;font-weight:700;
+    color:var(--orange);background:var(--orange-soft);
+    padding:4px 10px;border-radius:6px;letter-spacing:.08em;
+  }
+
+  /* 参謀の答え */
+  .sambo-answer{
+    margin-top:8px;padding:32px 36px;
+    background:linear-gradient(135deg,#fff 0%, var(--blue-soft) 100%);
+    border:1px solid color-mix(in oklab, var(--blue) 25%, transparent);
+    border-radius:20px;
+    display:flex;align-items:center;gap:24px;
+    box-shadow:0 24px 48px -24px rgba(48,113,185,.25);
+  }
+  .sambo-answer .text{flex:1}
+  .sambo-answer .lbl{
+    display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:700;
+    color:var(--blue-deep);letter-spacing:.12em;margin-bottom:8px;
+  }
+  .sambo-answer .msg{
+    font-size:1.08rem;font-weight:700;color:var(--ink-0);line-height:1.55;letter-spacing:-.015em;
+  }
+  .sambo-answer .msg em{font-style:normal;color:var(--orange)}
+
+  @media (max-width:860px){
+    .worries-grid{grid-template-columns:1fr}
+    .sambo-answer{flex-direction:column;text-align:center;padding:28px 24px}
+    .role-tab{flex:1 1 calc(50% - 8px);min-width:0}
+  }
+
+  /* ============ "本当にほしい" SECTION ============ */
+  .really{background:var(--bg);text-align:center}
+  .really-pre{
+    display:inline-block;font-family:var(--mono);font-size:.78rem;font-weight:700;
+    color:var(--blue-deep);background:var(--blue-soft);
+    padding:6px 16px;border-radius:999px;letter-spacing:.12em;margin-bottom:20px;
+  }
+  .really h2{
+    font-size:clamp(2rem, 4vw, 3rem);font-weight:800;
+    line-height:1.3;letter-spacing:-.025em;color:var(--ink-0);
+    margin-bottom:18px;
+  }
+  .really h2 em{font-style:normal;color:var(--orange);position:relative;display:inline-block}
+  .really h2 em::after{
+    content:"";position:absolute;left:-2px;right:-2px;bottom:.04em;
+    height:.18em;background:var(--orange);opacity:.2;border-radius:2px;z-index:-1;
+  }
+  .really-lede{
+    font-size:1.05rem;color:var(--t-2);max-width:60ch;margin:0 auto 56px;line-height:1.85;
+  }
+  .really-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto 48px;
+  }
+  .really-item{
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:32px 24px;text-align:center;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .really-item:hover{transform:translateY(-4px);box-shadow:0 22px 44px -20px rgba(20,30,60,.15)}
+  .really-icn{
+    width:56px;height:56px;margin:0 auto 16px;border-radius:14px;
+    background:linear-gradient(135deg, var(--blue-soft), #fff);
+    border:1px solid color-mix(in oklab,var(--blue) 18%, transparent);
+    display:grid;place-items:center;color:var(--blue-deep);
+  }
+  .really-icn svg{width:26px;height:26px;stroke-width:2;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+  .really-item h3{font-size:1.05rem;font-weight:800;color:var(--ink-0);margin-bottom:8px;line-height:1.5;letter-spacing:-.01em}
+  .really-item p{font-size:.88rem;color:var(--t-2);line-height:1.75}
+
+  .really-arrow{
+    display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:8px;
+    font-family:var(--mono);font-size:.78rem;color:var(--t-3);font-weight:600;letter-spacing:.1em;
+  }
+  .really-arrow svg{width:20px;height:36px;color:var(--blue)}
+  .really-bottom{
+    display:inline-flex;align-items:center;gap:18px;
+    background:linear-gradient(135deg,#1F4F87 0%, #2E69AE 100%);
+    color:#fff;padding:20px 32px;border-radius:999px;
+    box-shadow:0 18px 36px -16px rgba(48,113,185,.55);
+    font-size:1.08rem;font-weight:800;letter-spacing:-.015em;
+  }
+  .really-bottom .sambo-avatar{box-shadow:none;border:2px solid rgba(255,255,255,.3)}
+
+  @media (max-width:860px){
+    .really-grid{grid-template-columns:1fr}
+    .really-bottom{flex-direction:column;text-align:center;padding:24px}
+  }
+
+  /* ============ SOLUTION (2層構造の独立セクション) ============ */
+  .solution-section{background:var(--bg-soft);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+  .solution-section .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+  .solution-section .layer-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:36px 32px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;
+  }
+  .solution-section .layer-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px}
+  .solution-section .layer-card.layer-1::before{background:linear-gradient(90deg,var(--teal),#7BD3CC)}
+  .solution-section .layer-card.layer-2::before{background:linear-gradient(90deg,var(--blue),var(--teal))}
+  .solution-section .layer-num{font-family:var(--mono);font-size:.72rem;color:var(--t-3);letter-spacing:.16em;font-weight:700}
+  .solution-section .layer-card.layer-1 .layer-num{color:#1F6D63}
+  .solution-section .layer-card.layer-2 .layer-num{color:var(--blue-deep)}
+  .solution-section .layer-name{font-size:1.6rem;font-weight:800;color:var(--ink-0);letter-spacing:-.025em}
+  .solution-section .layer-sub{font-size:.94rem;color:var(--t-3);margin-bottom:8px}
+  .solution-section .layer-card p{font-size:.94rem;color:var(--t-2);line-height:1.85;flex:1}
+  .solution-section .layer-tag{margin-top:14px;font-size:.88rem;font-weight:700;padding:10px 16px;border-radius:8px;text-align:center}
+  .solution-section .layer-card.layer-1 .layer-tag{background:var(--teal-soft);color:#1F6D63}
+  .solution-section .layer-card.layer-2 .layer-tag{background:var(--blue-soft);color:var(--blue-deep)}
+  @media (max-width:860px){.solution-section .layers-grid{grid-template-columns:1fr}}
+
+  /* ============ ROI by Numbers ============ */
   .roi-section{background:var(--bg)}
   .roi-compare{
     display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;
     margin-top:32px;
   }
   .roi-compare-card{
-    background:#fff;border:1px solid var(--line-2);border-radius:14px;
+    background:#fff;border:1px solid var(--line);border-radius:14px;
     padding:32px 28px;display:flex;flex-direction:column;gap:14px;
   }
-  .roi-compare-card.before{border-top:4px solid var(--ink-3)}
-  .roi-compare-card.after{border-top:4px solid var(--accent)}
+  .roi-compare-card.before{border-top:4px solid var(--t-3)}
+  .roi-compare-card.after{border-top:4px solid var(--blue)}
   .roi-compare-label{
-    font-size:.74rem;color:var(--ink-3);font-weight:600;
+    font-family:var(--mono);font-size:.74rem;color:var(--t-3);font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;
   }
-  .roi-compare-card.after .roi-compare-label{color:var(--accent-ink)}
+  .roi-compare-card.after .roi-compare-label{color:var(--blue-deep)}
   .roi-compare-stat{padding:12px 0}
   .roi-stat-num{
-    font-family:var(--sans);font-weight:700;font-size:3rem;
-    line-height:1.1;letter-spacing:-.03em;color:var(--ink);
+    font-weight:800;font-size:3rem;
+    line-height:1.1;letter-spacing:-.03em;color:var(--ink-0);
   }
-  .roi-compare-card.after .roi-stat-num{color:var(--accent-ink)}
-  .roi-stat-sub{font-size:.85rem;color:var(--ink-2);line-height:1.7;margin-top:6px}
+  .roi-compare-card.after .roi-stat-num{color:var(--blue-deep)}
+  .roi-stat-sub{font-size:.85rem;color:var(--t-2);line-height:1.7;margin-top:6px}
   .roi-compare-result{
-    margin-top:auto;padding:14px 16px;background:var(--bg-alt);border-radius:8px;
-    font-size:.92rem;font-weight:600;color:var(--ink);
+    margin-top:auto;padding:14px 16px;background:var(--bg-soft);border-radius:8px;
+    font-size:.92rem;font-weight:700;color:var(--ink-0);
   }
   .roi-compare-card.after .roi-compare-result{
-    background:var(--accent-soft);color:var(--accent-ink);
+    background:var(--blue-soft);color:var(--blue-deep);
   }
   .roi-compare-arrow{
-    align-self:center;font-size:2rem;color:var(--accent);font-weight:700;
+    align-self:center;font-size:2rem;color:var(--blue);font-weight:700;
   }
   @media (max-width:860px){
     .roi-compare{grid-template-columns:1fr;gap:16px}
@@ -518,48 +1379,48 @@
   }
 
   .roi-story{
-    margin:32px auto 32px;text-align:center;max-width:680px;
-    font-size:1.05rem;color:var(--ink);line-height:1.85;
-    padding:24px 28px;background:var(--accent-soft);border-radius:12px;
+    margin:32px auto;text-align:center;max-width:700px;
+    font-size:1.05rem;color:var(--ink-0);line-height:1.85;
+    padding:24px 28px;background:var(--blue-soft);border-radius:12px;
   }
-  .roi-story strong{color:var(--accent-ink);font-weight:700;font-size:1.15rem;display:block;margin-bottom:8px}
+  .roi-story strong{color:var(--blue-deep);font-weight:800;font-size:1.18rem;display:block;margin-bottom:8px}
 
-  /* ロジック3ステップ */
   .roi-logic{margin-bottom:48px}
-  .roi-logic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .roi-logic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
   .roi-logic-step{
-    background:#fff;border:1px solid var(--line-2);border-radius:12px;
+    background:#fff;border:1px solid var(--line);border-radius:12px;
     padding:24px 22px;display:flex;flex-direction:column;gap:10px;
-    border-top:3px solid var(--accent);
+    border-top:3px solid var(--blue);
   }
   .roi-logic-no{
-    font-family:var(--mono);font-size:.7rem;color:var(--accent-ink);
+    font-family:var(--mono);font-size:.7rem;color:var(--blue-deep);
     letter-spacing:.14em;font-weight:700;
   }
   .roi-logic-title{
-    font-size:1rem;font-weight:700;color:var(--ink);
+    font-size:1rem;font-weight:800;color:var(--ink-0);letter-spacing:-.01em;
   }
   .roi-logic-step p{
-    font-size:.86rem;color:var(--ink-2);line-height:1.85;
+    font-size:.88rem;color:var(--t-2);line-height:1.85;
   }
-  .roi-logic-step p strong{color:var(--ink);font-weight:700;background:linear-gradient(transparent 60%,var(--accent-soft) 60%)}
+  .roi-logic-step p strong{color:var(--ink-0);font-weight:700;background:linear-gradient(transparent 60%,var(--blue-soft) 60%)}
   @media (max-width:860px){.roi-logic-grid{grid-template-columns:1fr}}
 
   .roi-numbers{
     display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px;
   }
   .roi-num-card{
-    background:linear-gradient(135deg, var(--ink) 0%, oklch(0.25 0.02 260) 100%);
+    background:linear-gradient(135deg,#0A0F1F 0%, #14192B 60%, #1F2540 100%);
     color:#fff;border-radius:14px;padding:36px 28px;text-align:center;
+    box-shadow:0 18px 36px -16px rgba(20,30,60,.45);
   }
   .roi-num-big{
-    font-family:var(--sans);font-weight:700;font-size:3.5rem;
-    line-height:1;letter-spacing:-.03em;
+    font-weight:800;font-size:3.5rem;
+    line-height:1;letter-spacing:-.035em;
   }
-  .roi-num-big span{font-size:1.4rem;font-weight:600;margin-left:6px}
+  .roi-num-big span{font-size:1.4rem;font-weight:700;margin-left:6px;color:var(--blue-2)}
   .roi-num-label{
-    margin-top:10px;font-size:.84rem;color:rgba(255,255,255,.7);
-    letter-spacing:.06em;
+    margin-top:12px;font-family:var(--mono);font-size:.78rem;color:var(--t-inv-3);
+    letter-spacing:.06em;line-height:1.6;
   }
   @media (max-width:860px){
     .roi-numbers{grid-template-columns:1fr;gap:14px}
@@ -567,264 +1428,146 @@
   }
 
   .roi-sub-h3{
-    font-size:1.15rem;font-weight:700;margin:0 0 20px 0;color:var(--ink);
-    text-align:center;letter-spacing:-.01em;
+    font-size:1.2rem;font-weight:800;margin:0 0 20px 0;color:var(--ink-0);
+    text-align:center;letter-spacing:-.015em;
   }
 
   .roi-3benefit{margin-bottom:48px}
-  .roi-3benefit-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-  }
+  .roi-3benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .roi-benefit-card{
-    background:#fff;border:1px solid var(--line-2);border-radius:12px;
+    background:#fff;border:1px solid var(--line);border-radius:12px;
     padding:24px 22px;display:flex;flex-direction:column;gap:10px;
   }
   .roi-benefit-no{
-    font-size:1.4rem;color:var(--accent);font-weight:700;line-height:1;
+    font-size:1.6rem;color:var(--blue);font-weight:800;line-height:1;
   }
   .roi-benefit-card h4{
-    font-size:1rem;font-weight:700;color:var(--ink);
+    font-size:1rem;font-weight:800;color:var(--ink-0);letter-spacing:-.01em;
   }
   .roi-benefit-detail{
-    font-size:.86rem;color:var(--ink-2);line-height:1.7;
-    padding:10px 12px;background:var(--bg-alt);border-radius:6px;
+    font-size:.86rem;color:var(--t-2);line-height:1.7;
+    padding:10px 12px;background:var(--bg-soft);border-radius:6px;
   }
-  .roi-benefit-detail strong{color:var(--ink);font-weight:700}
+  .roi-benefit-detail strong{color:var(--ink-0);font-weight:700}
   .roi-benefit-result{
-    margin-top:auto;font-size:.86rem;font-weight:600;color:var(--accent-ink);
-    padding:10px 12px;background:var(--accent-soft);border-radius:6px;line-height:1.6;
+    margin-top:auto;font-size:.9rem;font-weight:700;color:var(--blue-deep);
+    padding:10px 12px;background:var(--blue-soft);border-radius:6px;line-height:1.6;
   }
-  @media (max-width:860px){
-    .roi-3benefit-grid{grid-template-columns:1fr}
-  }
+  @media (max-width:860px){.roi-3benefit-grid{grid-template-columns:1fr}}
 
   .roi-personas{margin-bottom:40px}
   .roi-personas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .roi-persona-card{
-    background:#fff;border:1px solid var(--line-2);border-radius:12px;
-    padding:24px;border-left:3px solid var(--accent);
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:24px;border-left:3px solid var(--blue);
   }
   .roi-persona-label{
-    font-size:.84rem;font-weight:700;color:var(--accent-ink);
+    font-size:.86rem;font-weight:800;color:var(--blue-deep);
     letter-spacing:.04em;margin-bottom:12px;
   }
   .roi-persona-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
   .roi-persona-card li{
-    font-size:.86rem;color:var(--ink-2);line-height:1.7;padding-left:18px;position:relative;
+    font-size:.86rem;color:var(--t-2);line-height:1.7;padding-left:18px;position:relative;
   }
   .roi-persona-card li::before{
-    content:"•";position:absolute;left:4px;top:0;color:var(--accent);font-weight:700;
+    content:"\2022";position:absolute;left:4px;top:0;color:var(--blue);font-weight:700;
   }
-  @media (max-width:860px){
-    .roi-personas-grid{grid-template-columns:1fr}
-  }
+  @media (max-width:860px){.roi-personas-grid{grid-template-columns:1fr}}
 
   .roi-stretch{
     margin:32px 0;padding:18px 24px;
-    background:var(--warn-soft);border-left:3px solid var(--warn);
-    border-radius:0 8px 8px 0;font-size:.9rem;color:var(--ink-2);line-height:1.85;
+    background:var(--orange-soft);border-left:3px solid var(--orange);
+    border-radius:0 8px 8px 0;font-size:.9rem;color:var(--t-2);line-height:1.85;
   }
-  .roi-stretch strong{color:var(--warn);font-weight:700;display:block;margin-bottom:4px}
+  .roi-stretch strong{color:var(--orange);font-weight:800;display:block;margin-bottom:4px}
 
   .roi-disclaimer{
-    margin:24px 0;padding:14px 18px;background:var(--bg-alt);
-    border-radius:6px;font-size:.74rem;color:var(--ink-3);line-height:1.85;
+    margin:24px 0;padding:14px 18px;background:var(--bg-soft);
+    border-radius:6px;font-size:.74rem;color:var(--t-3);line-height:1.85;
   }
 
   .roi-cta{margin-top:32px;text-align:center}
 
-  /* ---- PRICING ---- */
-  .price{background:var(--bg-alt)}
-  .promo{
-    background:var(--ink);color:#fff;border-radius:var(--radius);
-    padding:56px 48px;margin-top:20px;position:relative;overflow:hidden;
+  /* ============ ROI 3-step Flow ============ */
+  .roi-flow{
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:18px;
+    align-items:stretch;margin:32px 0 48px;
   }
-  .promo::before{
-    content:"";position:absolute;top:-60%;right:-10%;width:600px;height:600px;
-    background:radial-gradient(circle, oklch(0.35 0.16 258 / .4), transparent 60%);
-    pointer-events:none;
+  .roi-flow-step{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:28px 24px;display:flex;flex-direction:column;gap:12px;
+    text-align:center;
   }
-  .promo-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-  .promo-tag{
-    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;
-    color:oklch(0.85 0.1 258);background:rgba(255,255,255,.08);
-    padding:6px 14px;border-radius:999px;margin-bottom:20px;
-    border:1px solid rgba(255,255,255,.15);
+  .roi-flow-step.roi-flow-current{border-top:4px solid var(--t-3)}
+  .roi-flow-step.roi-flow-impl{border-top:4px solid var(--blue)}
+  .roi-flow-step.roi-flow-effect{border-top:4px solid var(--orange)}
+  .roi-flow-label{
+    font-size:.84rem;font-weight:700;color:var(--t-2);
+    letter-spacing:.04em;
   }
-  .promo h3{font-size:1.6rem;font-weight:700;margin-bottom:8px;line-height:1.5;letter-spacing:-.01em}
-  .promo-period{font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:28px}
-  .promo-pricing{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;flex-wrap:wrap}
-  .promo-strike{font-size:.92rem;color:rgba(255,255,255,.5);text-decoration:line-through}
-  .promo-price{font-family:var(--sans);font-weight:500;font-size:3rem;line-height:1;letter-spacing:-.02em}
-  .promo-price small{font-size:.92rem;font-weight:500;color:rgba(255,255,255,.7);margin-left:8px;font-family:var(--sans)}
-  .promo-disc{font-size:.85rem;color:oklch(0.8 0.14 60);font-weight:600}
-  .promo-incs{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
-  .promo-incs-lbl{font-size:.75rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
-  .promo-incs ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-  .promo-incs li{font-size:.92rem;padding-left:22px;position:relative}
-  .promo-incs li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:1px;background:oklch(0.75 0.14 258)}
-  .promo-incs li strong{color:#fff;font-weight:600}
-  .promo-cta{margin-top:32px}
-  .promo-cta .btn{background:#fff;color:var(--ink);border-color:#fff;padding:15px 28px;font-size:.95rem}
-  .promo-cta .btn:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft);box-shadow:none;transform:none}
-  .promo-note{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
-
-  /* Solution Section（独立化された2層構造） */
-  .solution-section{background:var(--bg-alt);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
-  .solution-section .layers-intro{margin-top:32px;margin-bottom:0}
-
-  /* 2層構造の説明 */
-  .layers-intro{margin-top:80px;margin-bottom:48px}
-  .layers-title{font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:32px;letter-spacing:-.01em}
-  .layers-title em{font-style:normal;color:var(--accent-ink)}
-  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .layer-card{background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:32px 28px;display:flex;flex-direction:column;gap:8px}
-  .layer-card.layer-1{border-top:4px solid var(--ok)}
-  .layer-card.layer-2{border-top:4px solid var(--accent)}
-  .layer-num{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.14em;font-weight:600}
-  .layer-card.layer-1 .layer-num{color:var(--ok)}
-  .layer-card.layer-2 .layer-num{color:var(--accent-ink)}
-  .layer-name{font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.02em}
-  .layer-sub{font-size:.92rem;color:var(--ink-3);margin-bottom:8px}
-  .layer-card p{font-size:.9rem;color:var(--ink-2);line-height:1.85;flex:1}
-  .layer-tag{margin-top:14px;font-size:.86rem;font-weight:600;padding:8px 14px;border-radius:6px;text-align:center}
-  .layer-card.layer-1 .layer-tag{background:var(--ok-soft);color:#1F6D63}
-  .layer-card.layer-2 .layer-tag{background:var(--accent-soft);color:var(--accent-ink)}
-  @media (max-width:860px){.layers-grid{grid-template-columns:1fr}}
-
-  /* ライトプラン用 highlight ボックス */
-  .plan-hl-light{background:var(--ok-soft) !important;border-left:3px solid var(--ok)}
-  .plan-hl-light .plan-hl-title{color:#1F6D63 !important}
-
-  .plans-head{margin-top:48px;margin-bottom:28px;text-align:center}
-  .plans-head h3{font-size:1.25rem;font-weight:700;margin-bottom:8px}
-  .plans-head p{font-size:.9rem;color:var(--ink-2)}
-  .plans{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .plan{
-    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:36px 32px;display:flex;flex-direction:column;position:relative;
+  .roi-flow-step.roi-flow-impl .roi-flow-label{color:var(--blue-deep)}
+  .roi-flow-step.roi-flow-effect .roi-flow-label{color:var(--orange)}
+  .roi-flow-stat{
+    font-weight:800;font-size:2.2rem;line-height:1.1;letter-spacing:-.025em;
+    color:var(--ink-0);padding:8px 0;
   }
-  .plan.reco{border-color:var(--ink);box-shadow:var(--shadow)}
-  .plan-pill{
-    position:absolute;top:-12px;left:32px;
-    background:var(--ink);color:#fff;font-size:.72rem;font-weight:600;
-    padding:4px 12px;border-radius:999px;letter-spacing:.05em;
+  .roi-flow-step.roi-flow-impl .roi-flow-stat{color:var(--blue-deep)}
+  .roi-flow-step.roi-flow-effect .roi-flow-stat{color:var(--orange)}
+  .roi-flow-sub{font-size:.84rem;color:var(--t-2);line-height:1.7}
+  .roi-flow-sub strong{color:var(--ink-0);font-weight:700}
+  .roi-flow-arrow{
+    align-self:center;font-size:1.6rem;color:var(--blue);font-weight:700;
   }
-  .plan-name{font-size:.78rem;letter-spacing:.14em;font-weight:600;color:var(--accent-ink);margin-bottom:10px;text-transform:uppercase}
-  .plan-title{font-size:1.15rem;font-weight:700;margin-bottom:16px}
-  .plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
-  .plan-price strong{font-family:var(--sans);font-weight:500;font-size:2.2rem;letter-spacing:-.02em;line-height:1}
-  .plan-price span{font-size:.82rem;color:var(--ink-3)}
-  .plan-note{font-size:.82rem;color:var(--ink-3);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line-2)}
-  .plan-feat{display:flex;flex-direction:column;gap:10px;list-style:none;flex:1}
-  .plan-feat li{font-size:.88rem;color:var(--ink);padding-left:22px;position:relative;line-height:1.7}
-  .plan-feat li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:1px;background:var(--accent)}
-  .plan-feat li.muted{color:var(--ink-3)}
-  .plan-feat li.muted::before{background:var(--line)}
-  .plan-feat li.star{color:var(--ink);font-weight:600}
-  .plan-feat li.star::before{background:var(--accent);height:3px;top:.52em;border-radius:2px}
-  .plan-hl{background:var(--accent-soft);border-radius:8px;padding:14px 16px;margin-bottom:18px}
-  .plan-hl-title{font-size:.85rem;font-weight:700;color:var(--accent-ink);margin-bottom:4px}
-  .plan-hl-desc{font-size:.78rem;color:var(--ink-2);line-height:1.7}
-
-  /* クレジット追加 4段階表 */
-  .credits{
-    margin-top:28px;background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:36px 40px;
-  }
-  .credits-head{margin-bottom:24px}
-  .credits-head h4{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-  .credits-head p{font-size:.88rem;color:var(--ink-2);line-height:1.8}
-  .credits-tbl{width:100%;border-collapse:collapse;font-size:.92rem;margin-bottom:28px}
-  .credits-tbl th,.credits-tbl td{padding:16px 14px;text-align:center;border-bottom:1px solid var(--line-2)}
-  .credits-tbl th{font-size:.74rem;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-weight:600;background:var(--bg-alt)}
-  .credits-tbl tbody td:first-child{text-align:left;font-weight:700;color:var(--ink)}
-  .credits-tbl tbody tr.best td{background:var(--accent-soft)}
-  .credits-tbl tbody tr.best td:first-child{color:var(--accent-ink)}
-  .credits-tbl .price-num{font-family:var(--sans);font-weight:500;font-size:1.1rem;letter-spacing:-.01em}
-  .credits-tbl .disc{display:inline-block;font-size:.78rem;font-weight:600;color:var(--warn);background:var(--warn-soft);padding:3px 9px;border-radius:4px}
-  .credits-tbl .disc.base{color:var(--ink-3);background:var(--bg-alt);font-weight:500}
-  .credits-tbl .badge-best{display:inline-block;font-size:.66rem;font-weight:700;color:#fff;background:var(--ink);padding:2px 8px;border-radius:4px;letter-spacing:.05em;margin-left:6px}
-  .credits-usage{margin-top:8px}
-  .credits-usage h5{font-size:.78rem;color:var(--accent-ink);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:14px}
-  .credits-usage ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
-  .credits-usage li{display:flex;justify-content:space-between;font-size:.88rem;border-bottom:1px dashed var(--line);padding-bottom:8px}
-  .credits-usage li strong{color:var(--ink);font-weight:600}
-  .credits-foot{
-    margin-top:20px;padding:14px 18px;background:var(--bg-alt);border-radius:8px;
-    font-size:.78rem;color:var(--ink-3);line-height:1.8;
-  }
-  .credits-foot strong{color:var(--ink-2);font-weight:600}
   @media (max-width:860px){
-    .promo{padding:40px 28px}
-    .promo-inner,.plans{grid-template-columns:1fr;gap:28px}
-    .promo-price{font-size:2.4rem}
-    .credits{padding:28px 24px}
-    .credits-usage ul{grid-template-columns:1fr}
-    .credits-tbl th,.credits-tbl td{padding:12px 8px;font-size:.82rem}
+    .roi-flow{grid-template-columns:1fr;gap:12px}
+    .roi-flow-arrow{transform:rotate(90deg);font-size:1.4rem;justify-self:center}
+    .roi-flow-stat{font-size:1.9rem}
   }
 
-  /* ---- ASSURANCE ---- */
-  .assurance{background:var(--bg)}
-  .assurance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px}
-  .assurance-card{
-    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
-    padding:32px 26px;display:flex;flex-direction:column;gap:12px;
+  /* ============ ROI Simulator CTA ============ */
+  .roi-simulator-cta{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:32px;
+    margin:48px 0 24px;padding:36px 40px;
+    background:linear-gradient(135deg,var(--blue-soft) 0%,#fff 100%);
+    border:1px solid var(--line);border-radius:16px;align-items:center;
   }
-  .assurance-card .ac-no{font-family:var(--mono);font-size:.7rem;color:var(--accent-ink);letter-spacing:.14em;font-weight:700}
-  .assurance-card h3{font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.5}
-  .assurance-card p{font-size:.86rem;color:var(--ink-2);line-height:1.85}
-  .assurance-card p strong{color:var(--ink);font-weight:600}
-  .assurance-note{margin-top:32px;text-align:center;font-size:.82rem;color:var(--ink-3)}
-  @media (max-width:860px){.assurance-grid{grid-template-columns:1fr 1fr}}
-  @media (max-width:560px){.assurance-grid{grid-template-columns:1fr}}
-
-  /* 期待値コントロール3行 */
-  .honest{
-    margin-top:48px;padding:36px 40px;
-    background:linear-gradient(135deg, var(--accent-soft) 0%, #fff 100%);
-    border:1px solid color-mix(in oklab, var(--accent) 25%, transparent);border-radius:var(--radius);
+  .roi-simulator-eyebrow{
+    font-family:var(--mono);font-size:.74rem;color:var(--blue-deep);
+    letter-spacing:.14em;font-weight:700;text-transform:uppercase;margin-bottom:10px;
   }
-  .honest-head{font-size:.74rem;color:var(--accent-ink);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:18px}
-  .honest h3{font-size:1.2rem;font-weight:700;margin-bottom:24px;line-height:1.5}
-  .honest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .honest-item{padding:20px;background:#fff;border-radius:8px;border:1px solid var(--line-2)}
-  .honest-item .lbl{font-size:.85rem;font-weight:700;color:var(--accent-ink);margin-bottom:8px}
-  .honest-item p{font-size:.84rem;color:var(--ink-2);line-height:1.85}
-  @media (max-width:860px){.honest-grid{grid-template-columns:1fr}}
-
-  /* ---- FAQ ---- */
-  .faq-list{max-width:820px;margin:40px auto 0;display:flex;flex-direction:column;gap:0}
-  .faq-item{border-bottom:1px solid var(--line-2)}
-  .faq-item summary{
-    list-style:none;cursor:pointer;padding:22px 0;
-    display:flex;justify-content:space-between;align-items:center;gap:16px;
-    font-size:1rem;font-weight:600;color:var(--ink);
+  .roi-simulator-h3{
+    font-size:1.5rem;font-weight:800;color:var(--ink-0);
+    letter-spacing:-.02em;line-height:1.4;margin:0 0 12px;
   }
-  .faq-item summary::-webkit-details-marker{display:none}
-  .faq-item summary::after{content:"+";font-family:var(--sans);font-size:1.4rem;color:var(--accent-ink);transition:transform .2s;flex-shrink:0;font-weight:300}
-  .faq-item[open] summary::after{content:"−"}
-  .faq-item .ans{padding:0 0 22px;font-size:.92rem;color:var(--ink-2);line-height:1.95;max-width:70ch}
-  .faq-item .ans strong{color:var(--ink)}
-
-  /* ---- CTA ---- */
-  .end{background:var(--ink);color:#fff;text-align:center;padding:112px 28px}
-  .end h2{font-family:var(--sans);font-weight:500;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.5;letter-spacing:-.01em;margin-bottom:20px;color:#fff}
-  .end p{color:rgba(255,255,255,.7);max-width:58ch;margin:0 auto 36px;line-height:1.9}
-  .end .btn{background:#fff;color:var(--ink);border-color:#fff;padding:16px 32px;font-size:1rem}
-  .end .btn:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft);box-shadow:none;transform:none}
-  .end small{display:block;margin-top:20px;color:rgba(255,255,255,.5);font-size:.8rem}
-
-  /* ---- FOOTER ---- */
-  .foot{background:oklch(0.18 0.02 260);color:rgba(255,255,255,.5);padding:40px 28px;font-size:.8rem}
-  .foot-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .foot strong{color:#fff;font-weight:600;font-size:.95rem;letter-spacing:-.01em}
-
+  .roi-simulator-text p{
+    font-size:.92rem;color:var(--t-2);line-height:1.85;margin:0;
+  }
+  .roi-simulator-actions{display:flex;flex-direction:column;gap:12px}
+  .roi-simulator-actions .btn{justify-content:center;text-align:center}
+  .btn.btn-ghost{
+    background:transparent;border:1px solid var(--line);color:var(--ink-0);
+    padding:13px 22px;font-weight:700;border-radius:10px;
+    text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+    transition:all .2s ease;font-size:.94rem;
+  }
+  .btn.btn-ghost:hover{background:var(--bg-soft);border-color:var(--blue)}
   @media (max-width:860px){
-    section{padding:72px 0}
-    .h-section{font-size:1.5rem}
-    .wrap{padding:0 20px}
+    .roi-simulator-cta{grid-template-columns:1fr;gap:20px;padding:28px 24px}
+    .roi-simulator-h3{font-size:1.25rem}
   }
+
+  /* ============ STICKY MOBILE CTA ============ */
+  .sticky-cta{
+    position:fixed;bottom:0;left:0;right:0;z-index:60;
+    background:rgba(10,15,31,.94);backdrop-filter:blur(14px);color:#fff;
+    padding:14px 16px;display:none;align-items:center;gap:12px;
+    border-top:1px solid var(--line-dark);
+  }
+  .sticky-cta .info{flex:1;font-size:.82rem;line-height:1.4}
+  .sticky-cta .info strong{display:block;font-size:.92rem;font-weight:800;letter-spacing:-.01em}
+  .sticky-cta .info small{color:var(--blue-2);font-family:var(--mono);font-size:.7rem}
+  .sticky-cta .btn{padding:11px 18px;font-size:.86rem}
+  @media (max-width:760px){.sticky-cta{display:flex} body{padding-bottom:84px}}
 </style>
 </head>
 <body>
@@ -832,275 +1575,435 @@
 <!-- HEADER -->
 <header class="header">
   <div class="wrap header-inner">
-    <div class="logo">47<span>Connect</span></div>
+    <a href="#top" class="logo">
+      <span class="logo-mark">47</span>
+      <span>47Connect</span>
+    </a>
     <nav class="nav">
+      <a href="#worries">お悩み</a>
       <a href="#problem">課題</a>
       <a href="#solution">解決策</a>
       <a href="#roi">ROI試算</a>
-      <a href="#sambo">自治体AI参謀</a>
-      <a href="#why">FromToについて</a>
+      <a href="#sambo">プロダクト</a>
+      <a href="#why">FromTo</a>
       <a href="#pricing">料金</a>
-      <a href="#assurance">契約条件</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a href="#contact" class="btn btn-primary">Pilot 20 に応募する<span class="arrow">→</span></a>
+    <div class="header-cta">
+      <a href="#sambo" class="btn btn-ghost ghost-mob">仕組みを見る</a>
+      <a href="#contact" class="btn btn-primary">無料相談<span class="arrow">→</span></a>
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="top" data-screen-label="01 Hero">
   <div class="wrap hero-inner">
     <div>
-      <div class="hero-kicker"><span class="dot"></span>Pilot 20 受付中・先着20社限定</div>
+      <div class="hero-pill">
+        <span class="live"></span>
+        Pilot 20 受付中
+        <span class="sep"></span>
+        <strong>先着20社限定</strong>
+        <span class="sep"></span>
+        6/30 締切
+      </div>
       <h1>
         予算書が出た日に、<br>
-        <span class="mark">自治体AI参謀が動き出す。</span>
+        <span class="grad">自治体AI参謀</span>が<br>
+        動き出す。
       </h1>
-      <p class="lede">
-        コンサル3週間 → AI参謀 即日。<br>
-        <strong>月20万円から、自治体ビジネスを毎日相談できる相棒に。</strong>
+      <p class="hero-sub">
+        コンサル<strong>3週間</strong> → AI参謀<strong>即日</strong>。<br>
+        月20万円から、<strong>自治体ビジネスを毎日相談できる相棒</strong>に。
       </p>
       <div class="hero-cta">
-        <a href="#pricing" class="btn btn-primary">Pilot 20 に応募する<span class="arrow">→</span></a>
+        <a href="#pricing" class="btn btn-orange">無料で相談してみる<span class="arrow">→</span></a>
         <a href="#sambo" class="btn btn-ghost">仕組みを見る</a>
       </div>
+      <div class="hero-meta">
+        <span><span class="check">✓</span> 初期構築費 無料</span>
+        <span><span class="check">✓</span> 50%OFF（半年30万円）</span>
+        <span><span class="check">✓</span> 3ヶ月撤退オプション</span>
+      </div>
+      <div class="hero-notice">
+        <strong>※ 段階リリース注記：</strong>2026年7月（β版開始）時点で稼働するのは <strong>① 自治体調査の参謀</strong> と <strong>② 戦略立案の参謀</strong>。<strong>③ 提案書作成の参謀</strong>は2026年Q4、<strong>④ 事業計画（ROI試算）の参謀</strong>は2027年Q1以降の順次リリース予定です。詳細は <a href="#sambo">プロダクト</a> ・ <a href="#faq">FAQ</a> をご確認ください。
+      </div>
     </div>
+
     <div class="hero-visual">
-      <img src="images/header_image.png" alt="47Connect 自治体AI参謀ダッシュボード" />
-      <div class="hero-caption">— 47Connect / AI Sambo Dashboard</div>
+      <div class="mock">
+        <div class="mock-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">app.47connect.jp / dashboard</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-row">
+            <div class="mock-title">Sambo Alert · 今日</div>
+            <div class="mock-badge">LIVE</div>
+          </div>
+
+          <div class="mock-card">
+            <div class="ck-meta"><span class="badge">補正予算</span><span>横浜市 / 公開 2h前</span></div>
+            <div class="ck-title">スマートシティ推進事業 ¥4.2億 — 御社事業との適合度 91%</div>
+            <div class="ck-quote">「データ連携基盤の整備と、住民サービスのDX化を最優先課題と位置付ける」 — 市長施政方針</div>
+          </div>
+
+          <div class="mock-chat">
+            <div class="mock-bubble you">
+              <div class="who">YOU</div>
+              次に攻めるべき類似自治体3つを教えて。
+            </div>
+            <div class="mock-bubble">
+              <div class="who">AI参謀</div>
+              <strong>川崎市・福岡市・神戸市</strong>の3自治体を推奨します。いずれも<strong>DX重点施策＋補正予算枠</strong>あり。提案書ドラフトも準備可能です。
+              <div class="mock-cta">
+                <span class="pill">提案書を生成</span>
+                <span class="pill">ROI試算</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-floats">
+        <div class="float-card float-1">
+          <div class="ic">●</div>
+          <div>TTP <strong>24h以内</strong></div>
+        </div>
+        <div class="float-card float-2">
+          <div class="ic">¥</div>
+          <div>コンサル比 <strong>1/5</strong></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 
+
+<!-- AI参謀キャラ用SVG（共通定義） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sambo-icon" viewBox="0 0 64 64">
+      <!-- ヘッドセット風コンサルアイコン -->
+      <!-- 頭 -->
+      <circle cx="32" cy="26" r="11" fill="#fff" opacity=".95"/>
+      <!-- スーツの肩 -->
+      <path d="M14 56 C14 44 22 39 32 39 C42 39 50 44 50 56 Z" fill="#fff" opacity=".95"/>
+      <!-- スーツの襟（V字） -->
+      <path d="M27 42 L32 50 L37 42" stroke="#1F4F87" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- ネクタイ -->
+      <path d="M32 50 L30 56 L32 60 L34 56 Z" fill="#E9470B"/>
+      <!-- ヘッドセット -->
+      <path d="M22 26 C22 19 26 15 32 15 C38 15 42 19 42 26" stroke="#1F4F87" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- ヘッドセット耳パッド -->
+      <ellipse cx="22" cy="27" rx="2" ry="3" fill="#1F4F87"/>
+      <ellipse cx="42" cy="27" rx="2" ry="3" fill="#1F4F87"/>
+      <!-- マイク -->
+      <path d="M22 30 Q19 33 23 36" stroke="#1F4F87" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <circle cx="24" cy="36.5" r="1.4" fill="#E9470B"/>
+      <!-- 目 -->
+      <circle cx="28" cy="26" r="1.2" fill="#1F4F87"/>
+      <circle cx="36" cy="26" r="1.2" fill="#1F4F87"/>
+      <!-- 口（自信あり気な笑み） -->
+      <path d="M29 31 Q32 33 35 31" stroke="#1F4F87" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- WORRIES（お悩みありませんか？） -->
+<section class="worries" id="worries" data-screen-label="02 Worries">
+  <div class="wrap">
+    <div class="worries-head">
+      <span class="worries-pre">こんなお悩みありませんか？</span>
+      <h2>自治体ビジネスの<em>「歩留まり」</em>、<br>本当に納得していますか？</h2>
+    </div>
+
+    <!-- 立場別タブ -->
+    <div class="role-tabs" role="tablist">
+      <button class="role-tab active" data-role="exec" role="tab">
+        <span class="role-en">Executive</span>
+        <span>経営者</span>
+      </button>
+      <button class="role-tab" data-role="manager" role="tab">
+        <span class="role-en">Sales Manager</span>
+        <span>営業責任者</span>
+      </button>
+      <button class="role-tab" data-role="field" role="tab">
+        <span class="role-en">Front Line</span>
+        <span>現場担当者</span>
+      </button>
+    </div>
+
+    <!-- 経営者 -->
+    <div class="role-pane active" data-pane="exec">
+      <div class="worries-grid">
+        <div class="worry-card">
+          <span class="worry-tag">投資効率が見えない</span>
+          <div class="worry-bubble">自治体営業に毎月100万円かけているが、<strong>どの自治体が筋いいのか</strong>経営として把握できない。</div>
+        </div>
+        <div class="worry-card">
+          <span class="worry-tag">気軽に聞ける相手がいない</span>
+          <div class="worry-bubble">コンサルは深く伴走してくれるが、<strong>接触頻度は月1〜2回・メール返信1〜2日</strong>。「今すぐ聞きたい」に応えられる相棒が手元にいない。</div>
+        </div>
+        <div class="worry-card">
+          <span class="worry-tag">機会損失</span>
+          <div class="worry-bubble">補正予算が動いた瞬間にアプローチできていれば取れていた案件、<strong>毎期いくつもある</strong>はず。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 営業責任者 -->
+    <div class="role-pane" data-pane="manager">
+      <div class="worries-grid">
+        <div class="worry-card">
+          <span class="worry-tag">優先順位の根拠</span>
+          <div class="worry-bubble">部下に「次はこの自治体を攻めろ」と言いたいが、<strong>根拠データを揃える時間</strong>がない。</div>
+        </div>
+        <div class="worry-card">
+          <span class="worry-tag">提案書のばらつき</span>
+          <div class="worry-bubble">担当者ごとに提案の質が違う。<strong>個別最適と量産</strong>を両立できない。</div>
+        </div>
+        <div class="worry-card">
+          <span class="worry-tag">予算編成期に動けない</span>
+          <div class="worry-bubble">入札情報が出てから動いていては遅い。<strong>半年前の予算編成期</strong>に入りたいのに手が回らない。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 現場担当者 -->
+    <div class="role-pane" data-pane="field">
+      <div class="worries-grid">
+        <div class="worry-card">
+          <span class="worry-tag">情報収集に時間がかかる</span>
+          <div class="worry-bubble">予算書と議事録を読み込むだけで<strong>1自治体に2〜3週間</strong>。担当する20自治体は到底無理。</div>
+        </div>
+        <div class="worry-card">
+          <span class="worry-tag">提案書ドラフトが大変</span>
+          <div class="worry-bubble">その自治体固有の議題を踏まえた提案書を書くと、<strong>1本に丸2日</strong>かかる。</div>
+        </div>
+        <div class="worry-card">
+          <span class="worry-tag">稟議資料が重い</span>
+          <div class="worry-bubble">役員会で説明できる<strong>ROIモデル</strong>を作るのが毎回しんどい。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 参謀の答え -->
+    <div class="sambo-answer">
+      <div class="sambo-avatar lg">
+        <svg><use href="#sambo-icon"/></svg>
+      </div>
+      <div class="text">
+        <div class="lbl">AI参謀より</div>
+        <div class="msg">そのお悩み、<em>すべて自治体AI参謀</em>がカバーします。<br>毎日相談できる相棒として、御社のチームに参画させてください。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REALLY WANT（本当にほしいのは） -->
+<section class="really" data-screen-label="03 Really">
+  <div class="wrap">
+    <span class="really-pre">本当にほしいのは？</span>
+    <h2>納品物ではなく、<em>毎日相談できる相棒</em>。</h2>
+    <p class="really-lede">コンサルもDBサービスも、それぞれ良いところはあります。<br>でも、御社が本当にほしいのはきっと、これです。</p>
+
+    <div class="really-grid">
+      <div class="really-item">
+        <div class="really-icn">
+          <svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>公開即日に動ける速度</h3>
+        <p>予算書が公開されたその日に、提案準備が整っていてほしい。</p>
+      </div>
+      <div class="really-item">
+        <div class="really-icn">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2 8 11.7 4 7.8l5.5-.8z"/></svg>
+        </div>
+        <h3>その自治体固有の提案</h3>
+        <p>テンプレではなく、議事録と公約を引用した個別最適提案がほしい。</p>
+      </div>
+      <div class="really-item">
+        <div class="really-icn">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+        </div>
+        <h3>毎日相談できる相棒</h3>
+        <p>月1〜2回のミーティング待ちではなく、思いついた瞬間に相談できる相棒でいてほしい。</p>
+      </div>
+    </div>
+
+    <div class="really-arrow">
+      <span>すべてを叶える</span>
+      <svg viewBox="0 0 12 36" preserveAspectRatio="none">
+        <path d="M6 0 V28 M2 24 L6 32 L10 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="really-bottom" style="margin-top:24px">
+      <div class="sambo-avatar">
+        <svg><use href="#sambo-icon"/></svg>
+      </div>
+      <span>それが、自治体AI参謀</span>
+    </div>
+  </div>
+</section>
+
 <!-- PROBLEM -->
-<section id="problem" class="problems">
+<section id="problem" class="problems" data-screen-label="04 Problem">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">The Problem</div>
-      <h2 class="h-section">自治体ビジネスの<em>「歩留まりが読めない」</em>3つの構造課題。</h2>
+      <div class="eyebrow"><span class="dot"></span>The Problem</div>
+      <h2 class="h-section">自治体ビジネスの<br><span class="accent">「歩留まりが読めない」</span>3つの構造課題。</h2>
       <p class="lede">コンサルを雇っても、自前で頑張っても、結局この3つで詰まる。</p>
     </div>
     <div class="prob-grid">
       <div class="prob">
-        <div class="no">01</div>
-        <h3>気づくのが遅い<small>Late to Notice</small></h3>
+        <div class="row">
+          <div class="no">01</div>
+          <div class="en">Late to Notice</div>
+        </div>
+        <h3>気づくのが遅い</h3>
         <p>予算書・議事録・パブコメが公開されてから、提案準備が整うまで数週間。気づいた時には競合が動いている。</p>
         <div class="tag">公開 → 提案準備に2〜4週間</div>
         <blockquote>「補正予算が出ているのに気づいたのが3週間後だった」</blockquote>
       </div>
       <div class="prob">
-        <div class="no">02</div>
-        <h3>個別最適できない<small>One-Size-Fits-All</small></h3>
+        <div class="row">
+          <div class="no">02</div>
+          <div class="en">One-Size-Fits-All</div>
+        </div>
+        <h3>個別最適できない</h3>
         <p>1,741自治体それぞれに異なる議題・予算・首長公約。テンプレ提案では刺さらず、個別カスタマイズには時間が足りない。</p>
         <div class="tag">1自治体の個別調査に2〜3週間</div>
         <blockquote>「テンプレで出すと差別化されず、個別対応すると時間が足りない」</blockquote>
       </div>
       <div class="prob">
-        <div class="no">03</div>
-        <h3>コンサルは納品して帰る<small>No Continuity</small></h3>
-        <p>コンサル月50〜100万円で攻略マップを作っても、3週間で納品されて関係終了。継続更新も日常相談もできない。</p>
-        <div class="tag">コンサル月50〜100万円・3週間プロジェクト</div>
-        <blockquote>「予算が動いた時に相談したくても、コンサル契約が終わっていた」</blockquote>
+        <div class="row">
+          <div class="no">03</div>
+          <div class="en">Low Touch Frequency</div>
+        </div>
+        <h3>気軽に聞ける相手がいない</h3>
+        <p>コンサルは深い伴走支援をしてくれる。ただし接触頻度は月1〜2回・メール返信は1〜2日。<strong>「予算が動いた今すぐ聞きたい」</strong>のに、気軽に相談できる相棒が手元にいない。</p>
+        <div class="tag">コンサル接触：月1〜2回 / メール返信：1〜2日</div>
+        <blockquote>「補正予算が出た瞬間に方向性を確認したいのに、次回ミーティングまで2週間あった」</blockquote>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOLUTION（2層構造の宣言） -->
-<section id="solution" class="solution-section">
+<!-- SOLUTION（2層構造の独立セクション） -->
+<section id="solution" class="solution-section" data-screen-label="04b Solution">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">The Solution</div>
+      <div class="eyebrow"><span class="dot"></span>The Solution</div>
       <h2 class="h-section">47Connect は <em>2層</em> で出来ています。</h2>
       <p class="lede">「データさえあれば自分で動ける」プロには Layer 1。「コンサル代替で毎日相談したい」企業には Layer 2。<strong>2層を組み合わせて、自治体ビジネスの歩留まりを構造から作り直します。</strong></p>
     </div>
-    <!-- 2層構造の説明 -->
-    <div class="layers-intro">
-      <div class="layers-grid">
-        <div class="layer-card layer-1">
-          <div class="layer-num">Layer 1</div>
-          <div class="layer-name">データ層</div>
-          <div class="layer-sub">自治体ビジネスの羅針盤</div>
-          <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
-          <div class="layer-tag">→ ライトプラン</div>
-        </div>
-        <div class="layer-card layer-2">
-          <div class="layer-num">Layer 2</div>
-          <div class="layer-name">AI参謀層</div>
-          <div class="layer-sub">データを使い切る相棒</div>
-          <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
-          <div class="layer-tag">→ スタンダードプラン</div>
-        </div>
+
+    <div class="layers-grid">
+      <div class="layer-card layer-1">
+        <div class="layer-num">LAYER 1</div>
+        <div class="layer-name">データ層</div>
+        <div class="layer-sub">自治体ビジネスの羅針盤</div>
+        <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
+        <div class="layer-tag">→ ライトプラン</div>
+      </div>
+      <div class="layer-card layer-2">
+        <div class="layer-num">LAYER 2</div>
+        <div class="layer-name">AI参謀層</div>
+        <div class="layer-sub">データを使い切る相棒</div>
+        <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
+        <div class="layer-tag">→ スタンダードプラン</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ROI by Numbers -->
-<section id="roi" class="roi-section">
+<section id="roi" class="roi-section" data-screen-label="04c ROI">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">ROI by Numbers</div>
-      <h2 class="h-section">月20万円が、御社にいくらの<em>経済効果</em>を生むか。</h2>
-      <p class="lede">価格ではなく、総合プロセスのROIで判断していただけます。<br>製造業・営業2名・年4件規模の試算ケース。<strong>実質2人で4件取っていた仕事を、1人で6件取れる構造へ。</strong></p>
+      <div class="eyebrow"><span class="dot"></span>ROI by Numbers</div>
+      <h2 class="h-section">月20万円が、御社にいくらの<em>追加効果</em>を生むか。</h2>
+      <p class="lede">営業3名・年4件・売上2,000万円規模の試算ケース。<br>自治体営業の工数を <strong>1/10</strong> に圧縮し、空いた時間で <strong>提案活動量を2倍</strong> へ。</p>
     </div>
 
-    <!-- Before / After 比較 -->
-    <div class="roi-compare">
-      <div class="roi-compare-card before">
-        <div class="roi-compare-label">Before — 導入前</div>
-        <div class="roi-compare-stat">
-          <div class="roi-stat-num">月80h</div>
-          <div class="roi-stat-sub">営業2名 × 月40h<br>を自治体情報整理に投入</div>
-        </div>
-        <div class="roi-compare-result">年4件・売上1.2億円</div>
+    <!-- 3ステップ・フロー（シミュレーター連動） -->
+    <div class="roi-flow">
+      <div class="roi-flow-step roi-flow-current">
+        <div class="roi-flow-label">📊 現状</div>
+        <div class="roi-flow-stat">年1,050時間</div>
+        <div class="roi-flow-sub">営業3名 × 月50h<br>を自治体営業に投下<br>（年4件・売上2,000万円）</div>
       </div>
-      <div class="roi-compare-arrow">→</div>
-      <div class="roi-compare-card after">
-        <div class="roi-compare-label">After — 導入後（基本シナリオ）</div>
-        <div class="roi-compare-stat">
-          <div class="roi-stat-num">月4h</div>
-          <div class="roi-stat-sub">1名 × 月4h（76h削減・90%以上効率化）<br>残った1人を新規提案へ</div>
-        </div>
-        <div class="roi-compare-result">年6件・売上1.8億円(1.5倍)</div>
+      <div class="roi-flow-arrow">→</div>
+      <div class="roi-flow-step roi-flow-impl">
+        <div class="roi-flow-label">⚡ 47Connect導入</div>
+        <div class="roi-flow-stat">年105時間</div>
+        <div class="roi-flow-sub">月5h × 3名（<strong>1/10削減</strong>）<br>空いた時間で<br><strong>提案活動量2倍</strong>に拡大</div>
       </div>
-    </div>
-
-    <p class="roi-story">
-      <strong>「実質2人で4件取っていた仕事が、1人で6件取れる。」</strong><br>
-      残った1人の工数を新規提案に振り向ければ、さらに増やせる余地が生まれます。
-    </p>
-
-    <!-- なぜ実現するのか（ロジック説明） -->
-    <div class="roi-logic">
-      <h3 class="roi-sub-h3">なぜ「2人で4件 → 1人で6件」が実現するのか？</h3>
-      <div class="roi-logic-grid">
-        <div class="roi-logic-step">
-          <div class="roi-logic-no">STEP 1</div>
-          <div class="roi-logic-title">情報整理の工数を圧縮</div>
-          <p>自治体情報整理に使っていた工数を、月80h（2名分）→ 月4h（1名分）に削減。<br><strong>月76時間が空く。</strong></p>
-        </div>
-        <div class="roi-logic-step">
-          <div class="roi-logic-no">STEP 2</div>
-          <div class="roi-logic-title">浮いた時間を「提案そのもの」へ</div>
-          <p>今まで情報整理に8割の時間を使っていた営業担当が、<strong>提案準備・顧客対応・戦略立案に集中できる。</strong>残った1人をフルに新規提案へ。</p>
-        </div>
-        <div class="roi-logic-step">
-          <div class="roi-logic-no">STEP 3</div>
-          <div class="roi-logic-title">質と量が同時に向上</div>
-          <p>タイミング最適化（首長任期×予算サイクル）と提案質向上（議事録引用・データ裏付け）が重なり、<strong>案件数 4件 → 6件・成約率も向上。</strong></p>
-        </div>
+      <div class="roi-flow-arrow">→</div>
+      <div class="roi-flow-step roi-flow-effect">
+        <div class="roi-flow-label">💡 年間効果</div>
+        <div class="roi-flow-stat">¥2,220万円</div>
+        <div class="roi-flow-sub">コスト削減 ¥220万円<br>+ 売上拡大見込 ¥2,000万円<br>（年間費用 ¥250万円）</div>
       </div>
     </div>
 
     <!-- ヒーロー数字 3カード -->
     <div class="roi-numbers">
       <div class="roi-num-card">
-        <div class="roi-num-big">17.4<span>倍</span></div>
-        <div class="roi-num-label">ROI 月次</div>
+        <div class="roi-num-big">7.9<span>倍</span></div>
+        <div class="roi-num-label">ROI（投資対効果）<br>投資 ¥1 → ¥7.9 のリターン</div>
       </div>
       <div class="roi-num-card">
-        <div class="roi-num-big">+2<span>件</span></div>
-        <div class="roi-num-label">年間 追加案件獲得（年6,000万円規模）</div>
+        <div class="roi-num-big">1.4<span>ヶ月</span></div>
+        <div class="roi-num-label">投資回収期間<br>（ペイバック）</div>
       </div>
       <div class="roi-num-card">
-        <div class="roi-num-big">0.7<span>ヶ月</span></div>
-        <div class="roi-num-label">ペイバック期間</div>
+        <div class="roi-num-big">2<span>倍</span></div>
+        <div class="roi-num-label">提案活動量<br>（年4件 → 年8件相当の余力）</div>
       </div>
     </div>
 
-    <!-- 3軸便益 -->
-    <div class="roi-3benefit">
-      <h3 class="roi-sub-h3">3軸の経済効果</h3>
-      <div class="roi-3benefit-grid">
-        <div class="roi-benefit-card">
-          <div class="roi-benefit-no">❶</div>
-          <h4>工数削減効果</h4>
-          <div class="roi-benefit-detail">月80h → 月4h<br><strong>76h削減</strong></div>
-          <div class="roi-benefit-result">月22.8万円<br>の人件費削減</div>
-        </div>
-        <div class="roi-benefit-card">
-          <div class="roi-benefit-no">❷</div>
-          <h4>提案件数増加</h4>
-          <div class="roi-benefit-detail">年4件 → 年6件<br><strong>1.5倍</strong></div>
-          <div class="roi-benefit-result">年6,000万円<br>の追加売上</div>
-        </div>
-        <div class="roi-benefit-card">
-          <div class="roi-benefit-no">❸</div>
-          <h4>コンバージョン改善</h4>
-          <div class="roi-benefit-detail">タイミング最適化<br>×提案質向上</div>
-          <div class="roi-benefit-result">成約率向上<br>（首長任期・予算サイクル連動）</div>
-        </div>
+    <!-- シミュレーター誘導 -->
+    <div class="roi-simulator-cta">
+      <div class="roi-simulator-text">
+        <div class="roi-simulator-eyebrow">御社の営業体制で試算</div>
+        <h3 class="roi-simulator-h3">人数・案件単価を入れるだけ。<br>御社専用ROIを30秒で。</h3>
+        <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた ROI・回収期間・年間効果が即座に算出されます。</p>
       </div>
-    </div>
-
-    <!-- 3層ペルソナ別便益 -->
-    <div class="roi-personas">
-      <h3 class="roi-sub-h3">3層ペルソナ別の便益（稟議資料そのもの）</h3>
-      <div class="roi-personas-grid">
-        <div class="roi-persona-card">
-          <div class="roi-persona-label">現場・営業担当者</div>
-          <ul>
-            <li>実質2人で月80時間 → 1人で月4時間</li>
-            <li>情報収集の8割が自動化</li>
-            <li>残った1人を新規提案に振り向け可能</li>
-          </ul>
-        </div>
-        <div class="roi-persona-card">
-          <div class="roi-persona-label">中間管理職（営業部長等）</div>
-          <ul>
-            <li>チーム生産性 1.5倍</li>
-            <li>属人化リスクの解消</li>
-            <li>成約率向上 × タイミング最適化</li>
-          </ul>
-        </div>
-        <div class="roi-persona-card">
-          <div class="roi-persona-label">経営層</div>
-          <ul>
-            <li>年6,000万円の追加売上効果（年2件の追加案件獲得）</li>
-            <li>ROI倍率 17.4倍・ペイバック0.7ヶ月</li>
-            <li>全1,741自治体への戦略リーチ</li>
-          </ul>
-        </div>
+      <div class="roi-simulator-actions">
+        <a href="./roi-simulator.html" class="btn btn-primary" target="_blank" rel="noopener">ROIシミュレーターを開く<span class="arrow">→</span></a>
+        <a href="#contact" class="btn btn-ghost">個別相談で詳しく聞く</a>
       </div>
-    </div>
-
-    <!-- 伸び代Box（控えめ） -->
-    <div class="roi-stretch">
-      <strong>★ さらなる伸び代 ★</strong>
-      削減工数（年912h）を全て新規提案に振り向けた場合、理論上の最大年間追加売上は <strong>数十億円規模まで拡張可能</strong>。業種・規模・営業体制により実現可能性は変動します。
     </div>
 
     <!-- 前提・注記 -->
     <div class="roi-disclaimer">
-      ※ 製造業（学校家具・防災製品）・営業2名・年4件・受注単価3,000万円規模での試算ケース／
-      年間費用 370万円（月額20万×12 + 初期費10万 + AIクレジット月10万×12）に対する試算／
-      47Connect ROIシミュレーター v7 に基づく／
-      業種・規模・営業体制により数値は変動します／
-      導入効果を保証するものではありません。
-    </div>
-
-    <div class="roi-cta">
-      <a href="#contact" class="btn btn-primary">御社業種・規模でROI試算を依頼する<span class="arrow">→</span></a>
+      ※ 営業3名・年4件・売上2,000万円規模での試算ケース／
+      年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／
+      47Connect ROIシミュレーターに基づく／
+      売上拡大効果は提案活動量増加により創出される売上見込み（種作り）であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／
+      業種・規模・営業体制により数値は変動します。
     </div>
   </div>
 </section>
 
-
 <!-- PROCUREMENT FLOW -->
-<section>
+<section class="flow-section" data-screen-label="05 Flow">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Timing Matters</div>
-      <h2 class="h-section">自治体の予算は、入札の<em>半年〜2年前</em>に決まっている。</h2>
+      <div class="eyebrow"><span class="dot"></span>Timing Matters</div>
+      <h2 class="h-section">自治体の予算は、入札の<br><em>半年〜2年前</em>に決まっている。</h2>
       <p class="lede">入札情報が出てからでは遅い。意思決定の上流——予算編成の段階にアプローチすることが、自治体への提案の勝ちパターンです。</p>
     </div>
 
     <div class="flow-viz">
       <div class="flow-track">
         <div class="flow-zone planning">
-          <div class="flow-zone-label">47Connect 自治体AI参謀がカバーする領域</div>
+          <div class="flow-zone-label">47Connect がカバーする領域</div>
           <div class="flow-steps">
             <div class="flow-step">
               <div class="sn">STEP 01</div>
@@ -1151,65 +2054,88 @@
     </div>
 
     <div class="flow-insight">
-      <p>だから 自治体AI参謀は、上流の <em>意思決定の瞬間</em> に動きます</p>
+      <p>だから 自治体AI参謀は、上流の意思決定の瞬間に動く</p>
       <strong>予算書・議事録・パブコメが公開された<em>その日</em>に、提案材料化。<br>競合が気づく前に、御社の提案を準備します。</strong>
     </div>
   </div>
 </section>
 
 <!-- 自治体AI参謀 4機能 -->
-<section id="sambo" class="sambo">
+<section id="sambo" class="sambo" data-screen-label="06 Sambo">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Your AI Strategic Advisor</div>
-      <h2 class="h-section">コンサルが3週間でやることを、<em>自治体AI参謀が対話の中で。</em></h2>
-      <p class="lede">自治体ビジネスのプロが3週間かけて作る成果物を、自治体AI参謀が分解して、毎日の対話の中で随時アウトプットします。納品して帰らない、常駐型。</p>
+      <div class="eyebrow"><span class="dot"></span>Your AI Strategic Advisor</div>
+      <h2 class="h-section">コンサルが3週間でやることを、<br><em>AI参謀が対話の中で。</em></h2>
+      <p class="lede">自治体ビジネスのプロが3週間かけて作る成果物を、自治体AI参謀が分解して、毎日の対話の中で随時アウトプットします。月1〜2回ではなく、毎日いつでも相談できる常駐型。</p>
       <div class="sambo-stage-notice">
-        <strong>📅 Pilot 20 期間中の段階リリース計画：</strong>
-        ① 自治体調査・② 戦略立案 = <strong>2026年7月リリース</strong>（β版開始時点） ／
-        ③ 提案書作成 = <strong>2026年Q4リリース</strong> ／
+        <span class="lbl">RELEASE PLAN</span>
+        ① 自治体調査・② 戦略立案 = <strong>2026年7月リリース</strong>（β版開始時点）／
+        ③ 提案書作成 = <strong>2026年Q4リリース</strong>／
         ④ 事業計画（ROI試算） = <strong>2027年Q1以降</strong>
       </div>
     </div>
 
     <div class="sambo-grid">
       <div class="sambo-card">
-        <div class="icon">🔍</div>
-        <h3>① 自治体調査の参謀<small>Research</small></h3>
+        <div class="top">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
+          </div>
+          <div class="num">FUNCTION 01</div>
+        </div>
+        <h3>自治体調査の参謀<small>RESEARCH</small></h3>
         <p>議事録・予算・首長公約・パブコメを公開当日に構造化。「この自治体、いま何が動いてる？」と聞けば、自治体AI参謀が論点を整理して即返答。</p>
         <div class="tagline">公開即日 × 1,741自治体 横断構造化</div>
-        <div class="sambo-stage-tag">✅ 2026年7月（β版開始）リリース予定</div>
+        <span class="stage-tag live">2026年7月リリース予定</span>
       </div>
+
       <div class="sambo-card">
-        <div class="icon">🎯</div>
-        <h3>② 戦略立案の参謀<small>Strategy</small></h3>
+        <div class="top">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <div class="num">FUNCTION 02</div>
+        </div>
+        <h3>戦略立案の参謀<small>STRATEGY</small></h3>
         <p>御社の勝ち実績10自治体を学習し、全国の類似プロファイル自治体を機械抽出。「次に攻めるべき自治体」を根拠つきで提示します。</p>
         <div class="tagline">勝ちパターン転写 × 全国レコメンド</div>
-        <div class="sambo-stage-tag">✅ 2026年7月（β版開始）リリース予定</div>
+        <span class="stage-tag live">2026年7月リリース予定</span>
       </div>
+
       <div class="sambo-card">
-        <div class="icon">📝</div>
-        <h3>③ 提案書作成の参謀<small>Drafting</small></h3>
+        <div class="top">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+          </div>
+          <div class="num">FUNCTION 03</div>
+        </div>
+        <h3>提案書作成の参謀<small>DRAFTING</small></h3>
         <p>その自治体固有の議題・予算項目・首長公約を引用した提案書ドラフトを共同編集。「この一文を強化して」と話せば、対話で書き上がる。</p>
         <div class="tagline">議事録引用 × 各自治体個別最適</div>
-        <div class="sambo-stage-tag stage-q4">🔜 2026年Q4リリース予定</div>
+        <span class="stage-tag q4">2026年Q4リリース予定</span>
       </div>
+
       <div class="sambo-card">
-        <div class="icon">📊</div>
-        <h3>④ 事業計画の参謀<small>Business Case</small></h3>
+        <div class="top">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="4" y2="10"/><line x1="10" y1="20" x2="10" y2="4"/><line x1="16" y1="20" x2="16" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+          </div>
+          <div class="num">FUNCTION 04</div>
+        </div>
+        <h3>事業計画の参謀<small>BUSINESS CASE</small></h3>
         <p>業種別ROIシミュレーターで稟議資料を即作成。「役員会で説明できる数字を出して」と頼めば、3層ペルソナ（現場/中間/経営）対応の試算が出る。</p>
         <div class="tagline">稟議資料 × 役員会対応の数字</div>
-        <div class="sambo-stage-tag stage-future">🔮 2027年Q1以降リリース予定</div>
+        <span class="stage-tag future">2027年Q1以降リリース予定</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TTP / SPEED 比較 -->
-<section class="speed">
+<section class="speed" data-screen-label="07 TTP">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">TTP — Time to Proposal</div>
+      <div class="eyebrow"><span class="dot"></span>TTP — Time to Proposal</div>
       <h2 class="h-section">予算書が出た当日、もう<em>提案できる</em>。</h2>
       <p class="lede">自治体の情報公開から、企業の提案準備が整うまでの時間（TTP）。自治体AI参謀は業界最速の即日対応を目指します。</p>
     </div>
@@ -1222,16 +2148,16 @@
       </div>
       <div class="ttp-row">
         <div class="ttp-name">自治体DBサービス</div>
-        <div class="ttp-bar-track"><div class="ttp-bar" style="width:60%;"></div></div>
+        <div class="ttp-bar-track"><div class="ttp-bar" style="width:65%;"></div></div>
         <div class="ttp-time">2〜4週間</div>
       </div>
       <div class="ttp-row">
         <div class="ttp-name">自前リサーチ</div>
-        <div class="ttp-bar-track"><div class="ttp-bar" style="width:75%;"></div></div>
+        <div class="ttp-bar-track"><div class="ttp-bar" style="width:80%;"></div></div>
         <div class="ttp-time">2〜4週間</div>
       </div>
-      <div class="ttp-row">
-        <div class="ttp-name us">47Connect 自治体AI参謀</div>
+      <div class="ttp-row us">
+        <div class="ttp-name us">47Connect AI参謀</div>
         <div class="ttp-bar-track"><div class="ttp-bar us" style="width:6%;"></div></div>
         <div class="ttp-time us">24時間以内</div>
       </div>
@@ -1244,11 +2170,11 @@
 </section>
 
 <!-- BEFORE / AFTER -->
-<section class="ba">
+<section class="ba" data-screen-label="08 BeforeAfter">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Before / After</div>
-      <h2 class="h-section">「公開〜提案準備」の数週間を、自治体AI参謀が<em>1日</em>に圧縮。</h2>
+      <div class="eyebrow"><span class="dot"></span>Before / After</div>
+      <h2 class="h-section">「公開〜提案準備」の数週間を、<br>AI参謀が<em>1日</em>に圧縮。</h2>
       <p class="lede">予算書公開後の準備プロセスを、自治体AI参謀が時間軸で塗り替えます。</p>
     </div>
 
@@ -1273,16 +2199,16 @@
         </div>
         <div class="ba-note">公開時点では誰も動けず、人手で読み込んでから初めてスタート。コンサル並走でも納品まで3週間。</div>
         <div class="ba-total">
-          <div class="ba-total-label">合計所要時間</div>
+          <div class="ba-total-label">合計</div>
           <div class="ba-total-value">約 3週間</div>
         </div>
       </div>
       <div class="ba-card after">
         <div class="ba-label">After — 47Connect 自治体AI参謀</div>
-        <div class="ba-title">公開した瞬間、自治体AI参謀が動く</div>
+        <div class="ba-title">公開した瞬間、AI参謀が動く</div>
         <div class="ba-step">
           <div class="ba-step-no">01</div>
-          <div class="ba-step-text">公開検知 → 自治体AI参謀が自動構造化</div>
+          <div class="ba-step-text">公開検知 → AI参謀が自動構造化</div>
           <div class="ba-step-time">数時間</div>
         </div>
         <div class="ba-step">
@@ -1297,7 +2223,7 @@
         </div>
         <div class="ba-note">「予算書が公開されました。御社の◯◯事業に関連する3項目を抽出。提案書ドラフトはこちら」を当日通知。</div>
         <div class="ba-total">
-          <div class="ba-total-label">合計所要時間</div>
+          <div class="ba-total-label">合計</div>
           <div class="ba-total-value">24時間以内</div>
         </div>
       </div>
@@ -1305,16 +2231,30 @@
 
     <div class="ba-punchline">
       <p>競合が公開に気づいた頃には、御社の提案はもう動き始めている</p>
-      <h3>先回りで動けるから、<em>勝率が変わる</em>。</h3>
+      <div class="ratio">
+        <div class="ratio-block">
+          <div class="ratio-num"><span class="top">1</span><span class="slash">/</span><span class="bot">21</span></div>
+          <div class="ratio-cap">作業工数 圧縮率</div>
+        </div>
+        <div class="ratio-arrow">→</div>
+        <div class="ratio-text">
+          <div class="ratio-eyebrow">3週間 → 24時間</div>
+          <h3>競合より、<em>3週間早く</em>提案が出せる。</h3>
+        </div>
+      </div>
+      <div class="ratio-cta">
+        <span class="ratio-tag">Pilot 20 β版特別キャンペーン</span>
+        <a href="#contact" class="btn btn-orange">無料で相談してみる<span class="arrow">→</span></a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- UPCOMING -->
-<section id="roadmap" class="coming">
+<!-- ROADMAP -->
+<section id="roadmap" class="coming" data-screen-label="09 Roadmap">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Roadmap</div>
+      <div class="eyebrow"><span class="dot"></span>Roadmap</div>
       <h2 class="h-section">Pilot 20 期間中に、順次リリース。</h2>
       <p class="lede">自治体AI参謀の4機能をコアに、自治体への提案をさらに加速させる機能を Pilot 20 参加企業のフィードバックを受けながら順次提供します。</p>
     </div>
@@ -1339,18 +2279,18 @@
 </section>
 
 <!-- COMPARE -->
-<section>
+<section class="compare" data-screen-label="10 Compare">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Comparison</div>
-      <h2 class="h-section">コンサルは納品して帰る。<br>自治体AI参謀は、<em>毎日相談できる</em>。</h2>
+      <div class="eyebrow"><span class="dot"></span>Comparison</div>
+      <h2 class="h-section">コンサルは月1〜2回。<br>AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
       <p class="lede">自治体コンサル・DB系ツール・自前リサーチ。それぞれの限界を、自治体AI参謀がどう超えるか。</p>
     </div>
     <table class="compare-tbl">
       <thead>
         <tr>
           <th></th>
-          <th class="us">47Connect<br>自治体AI参謀</th>
+          <th class="us">47Connect<br>AI参謀</th>
           <th>自治体<br>コンサル</th>
           <th>DB系<br>ツール</th>
           <th>自前<br>リサーチ</th>
@@ -1373,29 +2313,29 @@
         </tr>
         <tr>
           <td>公開即日対応</td>
-          <td class="us"><span class="mark-yes">●</span> TTP 24時間</td>
-          <td><span class="mark-no">—</span> 数週間</td>
+          <td class="us"><span class="mark-yes">TTP 24h</span></td>
+          <td><span class="mark-no">数週間</span></td>
           <td><span class="mark-mid">議事録のみ</span></td>
           <td><span class="mark-no">—</span></td>
         </tr>
         <tr>
           <td>個別自治体最適化</td>
-          <td class="us"><span class="mark-yes">●</span> 自治体AI参謀が個別生成</td>
-          <td><span class="mark-yes">●</span> 人手</td>
-          <td><span class="mark-no">—</span> テンプレ</td>
-          <td><span class="mark-yes">●</span> 人手</td>
+          <td class="us"><span class="mark-yes">AIが個別生成</span></td>
+          <td>人手</td>
+          <td><span class="mark-no">テンプレ</span></td>
+          <td>人手</td>
         </tr>
         <tr>
           <td>提案書ドラフト生成</td>
-          <td class="us"><span class="mark-yes">●</span> 議事録引用つき</td>
-          <td><span class="mark-yes">●</span></td>
+          <td class="us"><span class="mark-yes">議事録引用つき</span></td>
+          <td>あり（人手）</td>
           <td><span class="mark-no">—</span></td>
           <td><span class="mark-no">—</span></td>
         </tr>
         <tr>
           <td>ROIモデル / 稟議資料</td>
-          <td class="us"><span class="mark-yes">●</span> 業種別シミュレーター</td>
-          <td><span class="mark-yes">●</span> 人手</td>
+          <td class="us"><span class="mark-yes">業種別シミュレーター</span></td>
+          <td>あり（人手）</td>
           <td><span class="mark-no">—</span></td>
           <td><span class="mark-no">—</span></td>
         </tr>
@@ -1409,25 +2349,25 @@
       </tbody>
     </table>
     <div class="compare-note">
-      DB系ツールはツールを置いて去る。コンサルは3週間で納品して帰る。<strong>毎日相談できて、戦略を一緒に育てる自治体AI参謀は、国内でFromToだけ</strong>。コンサルが3週間で1自治体ぶん作る "良質な個別提案" を、自治体AI参謀は当日中に1,741自治体ぶん出せます。
+      DB系ツールはツールを置いて去る。コンサルは深く伴走するが接触頻度は月1〜2回。<strong>毎日いつでも相談できて、戦略を一緒に育てる自治体AI参謀は、国内でFromToだけ</strong>。コンサルが3週間で1自治体ぶん作る "良質な個別提案" を、自治体AI参謀は当日中に1,741自治体ぶん出せます。
     </div>
   </div>
 </section>
 
 <!-- WHY FROMTO -->
-<section id="why" class="why">
+<section id="why" class="why" data-screen-label="11 Why">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Why FromTo</div>
-      <h2 class="h-section">なぜFromToだけが、自治体AI参謀をやれるのか。</h2>
-      <p class="lede">「参謀」「データ」「鮮度」の3本柱。1本でも欠けると自治体AI参謀は成立しない。すべてを揃えているのは国内でFromToだけです。</p>
+      <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
+      <h2 class="h-section">なぜFromToだけが、<br>自治体AI参謀をやれるのか。</h2>
+      <p class="lede">「参謀」「データ」「鮮度」の3本柱。1本でも欠けるとAI参謀は成立しない。すべてを揃えているのは国内でFromToだけです。</p>
     </div>
 
     <div class="why-pillars">
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 01</div>
         <h3><em>参謀</em>の関係性</h3>
-        <p><strong>毎日相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルのように納品して帰らない。ツールのように置いて去らない。御社専属の参謀役として伴走します。</p>
+        <p><strong>毎日いつでも相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルの「月1〜2回・メール返信1〜2日」では拾えない瞬間に応える。ツールのように置いて去らない、御社専属の参謀役として伴走します。</p>
         <div class="pillar-tag">→ コンサル代替・常駐型</div>
       </div>
       <div class="why-pillar">
@@ -1453,11 +2393,11 @@
 
 
 <!-- PRICING -->
-<section id="pricing" class="price">
+<section id="pricing" class="price" data-screen-label="12 Pricing">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Pilot 20 Program</div>
-      <h2 class="h-section">創業期に参画する20社だけの、特別な条件。</h2>
+      <div class="eyebrow"><span class="dot"></span>Pilot 20 Program</div>
+      <h2 class="h-section">創業期に参画する20社だけの、<br><em>特別な条件。</em></h2>
       <p class="lede">2026年 Pilot 20 は、自治体AI参謀の精度向上を一緒に作る共創パートナーです。御社の勝ちパターンを学習させる期間として、特別価格と固定保証を提供します。</p>
     </div>
 
@@ -1469,12 +2409,12 @@
           <h3>自治体AI参謀 Pilot 20</h3>
           <div class="promo-period">2026年7月〜12月 / 6ヶ月間（半年一括前払い）</div>
           <div class="promo-pricing">
-            <span class="promo-strike">通常 60万円</span>
-            <span class="promo-price">30万円<small>／半年一括（税別）</small></span>
+            <span class="promo-strike">通常 ¥600,000</span>
+            <span class="promo-price">¥300,000<small>／半年一括（税別）</small></span>
           </div>
-          <div class="promo-disc">50%OFF + 初期構築費（通常10万円・税別）無料 + AI参謀対話 無制限</div>
+          <div class="promo-disc">50%OFF + 初期構築費 無料 + AI参謀対話 無制限</div>
           <div class="promo-cta">
-            <a href="#contact" class="btn">Pilot 20 に応募する<span class="arrow">→</span></a>
+            <a href="#contact" class="btn btn-orange">Pilot 20 に応募する<span class="arrow">→</span></a>
             <p class="promo-note">申込締切：2026年6月30日 ／ 先着20社限定 ／ Pilot 期間終了後（2026年11月予定）に本格運用へ移行（月払い・1年契約構造へ自動切替）</p>
           </div>
         </div>
@@ -1491,22 +2431,86 @@
       </div>
     </div>
 
-    <!-- PLANS AFTER LAUNCH -->
+    <!-- 2層構造 -->
+    <div class="layers-intro">
+      <h3 class="layers-title">47Connect は <em>2層</em> で出来ています。</h3>
+
+      <div class="layer-diagram">
+        <div class="ld-user">
+          <div class="ld-user-ic">👤</div>
+          <div class="ld-user-lbl">御社の担当者</div>
+        </div>
+        <div class="ld-arrow">
+          <span class="ld-arrow-lbl">「次に攻める自治体は？」</span>
+          <svg viewBox="0 0 12 40" preserveAspectRatio="none"><path d="M6 0 V32 M2 28 L6 36 L10 28" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="ld-stack">
+          <div class="ld-layer ld-layer-2">
+            <div class="ld-layer-head">
+              <div class="ld-layer-num">LAYER 2</div>
+              <div class="ld-layer-name">AI参謀層</div>
+            </div>
+            <div class="ld-layer-cap">データを使い切る相棒</div>
+            <div class="ld-tags">
+              <span class="ld-tag">対話型参謀</span>
+              <span class="ld-tag">提案書ドラフト</span>
+              <span class="ld-tag">ROI試算</span>
+              <span class="ld-tag">戦略立案</span>
+            </div>
+          </div>
+          <div class="ld-connector"><span>データをフル活用</span></div>
+          <div class="ld-layer ld-layer-1">
+            <div class="ld-layer-head">
+              <div class="ld-layer-num">LAYER 1</div>
+              <div class="ld-layer-name">データ層</div>
+            </div>
+            <div class="ld-layer-cap">自治体ビジネスの羅針盤</div>
+            <div class="ld-tags">
+              <span class="ld-tag">予算書</span>
+              <span class="ld-tag">議事録</span>
+              <span class="ld-tag">パブコメ</span>
+              <span class="ld-tag">首長動向</span>
+              <span class="ld-tag">組織図</span>
+            </div>
+          </div>
+          <div class="ld-base">× 1,741自治体 ・ 公開即日反映</div>
+        </div>
+      </div>
+
+      <div class="layers-grid">
+        <div class="layer-card layer-1">
+          <div class="layer-num">LAYER 1</div>
+          <div class="layer-name">データ層</div>
+          <div class="layer-sub">自治体ビジネスの羅針盤</div>
+          <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
+          <div class="layer-tag">→ ライトプラン</div>
+        </div>
+        <div class="layer-card layer-2">
+          <div class="layer-num">LAYER 2</div>
+          <div class="layer-name">AI参謀層</div>
+          <div class="layer-sub">データを使い切る相棒</div>
+          <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
+          <div class="layer-tag">→ スタンダードプラン</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANS -->
     <div class="plans-head">
       <h3>本格運用プラン（2026年11月以降）</h3>
       <p>全プラン共通：<strong>月払い・1年契約・13ヶ月目以降は月単位継続</strong>（30日予告でいつでも解約可）。1課単位、追加ユーザー課金なし。<br>Pilot 20 適用顧客は本格運用移行時に本プラン構造へ自動切替（クレジット単価は創業時固定保証）。</p>
     </div>
     <div class="plans">
       <div class="plan">
-        <div class="plan-name">Light（データプラン）</div>
+        <div class="plan-name">Light · データプラン</div>
         <div class="plan-title">ライトプラン</div>
         <div class="plan-price">
           <strong>¥100,000</strong><span>/月（税別・月払い）</span>
         </div>
         <div class="plan-note"><strong>自治体営業のプロフェッショナル・自治体コンサル業者向け</strong>。Layer 1（データ層）フル活用。</div>
         <div class="plan-hl plan-hl-light">
-          <div class="plan-hl-title">📚 Layer 1: データ層フル開放</div>
-          <div class="plan-hl-desc">コンサル相当の網羅データを検索・閲覧。御社事業との適合度を自動スコア化した簡易レコメンドまで含む。<strong>「データさえあれば自分で戦略を組める」</strong> 自治体営業に精通したプロチーム、または自治体コンサル業者が複数企業の営業に活用するデータプラットフォームとして最適。</div>
+          <div class="plan-hl-title">Layer 1: データ層フル開放</div>
+          <div class="plan-hl-desc">コンサル相当の網羅データを検索・閲覧。御社事業との適合度を自動スコア化した簡易レコメンドまで含む。<strong>「データさえあれば自分で戦略を組める」</strong>自治体営業に精通したプロチーム、または自治体コンサル業者が複数企業の営業に活用するデータプラットフォームとして最適。</div>
         </div>
         <ul class="plan-feat">
           <li class="star">1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</li>
@@ -1521,36 +2525,36 @@
         </ul>
       </div>
       <div class="plan reco">
-        <div class="plan-pill">オススメ・コンサル代替</div>
-        <div class="plan-name">Standard（AI参謀プラン）</div>
+        <div class="plan-pill">オススメ · コンサル代替</div>
+        <div class="plan-name">Standard · AI参謀プラン</div>
         <div class="plan-title">スタンダードプラン</div>
         <div class="plan-price">
           <strong>¥200,000</strong><span>/月（税別・月払い）</span>
         </div>
         <div class="plan-note"><strong>自治体ビジネスのコンサル知見がない企業向け</strong>。コンサル代替で毎日相談。Layer 1 + Layer 2 フル活用。</div>
         <div class="plan-hl">
-          <div class="plan-hl-title">🎖 Layer 2: AI参謀層フル開放</div>
-          <div class="plan-hl-desc">「自治体コンサルに何でも聞ける」体験。御社専属の自治体AI参謀が、データ層をフル活用して戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
+          <div class="plan-hl-title">Layer 2: AI参謀層フル開放</div>
+          <div class="plan-hl-desc">「自治体コンサルに何でも聞ける」体験。御社専属のAI参謀が、データ層をフル活用して戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
         </div>
         <ul class="plan-feat">
           <li class="star"><strong>ライトプラン（データ層）の全機能</strong></li>
-          <li class="star">自治体AI参謀との対話（月200ターン）</li>
+          <li class="star">AI参謀との対話（月200ターン）</li>
           <li class="star">提案書ドラフト自動生成（議事録引用つき）</li>
           <li class="star">業種別ROIシミュレーター</li>
           <li class="star">公開即日通知（主要200自治体）</li>
           <li class="star">クレジット同梱：月80クレジット</li>
           <li class="star">1年間の付帯オンボーディング（2ヶ月に1回・年6回）</li>
-          <li class="star">前半6ヶ月：集中支援フェーズ（自治体AI参謀の学習を集中加速）</li>
+          <li class="star">前半6ヶ月：集中支援フェーズ（学習を集中加速）</li>
           <li class="star">後半6ヶ月：運用最適化フェーズ（KPIレビュー・スケール提案）</li>
         </ul>
       </div>
     </div>
 
-    <!-- クレジット追加 4段階 -->
+    <!-- CREDITS -->
     <div class="credits">
       <div class="credits-head">
         <h4>クレジット追加プラン（買うほどお得・4段階）</h4>
-        <p>クレジットは "自治体AI参謀が本気を出す瞬間に使う稼働燃料"。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
+        <p>クレジットは "AI参謀が本気を出す瞬間に使う稼働燃料"。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
       </div>
 
       <table class="credits-tbl">
@@ -1604,38 +2608,37 @@
         <strong>※ クレジット単価について：</strong>クレジット単価は Pilot 20 期間中の利用データを基に確定します。Pilot 20 参加企業は、確定後の単価を「創業時固定保証」で永続適用いたします。
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ASSURANCE -->
-<section id="assurance" class="assurance">
+<section id="assurance" class="assurance" data-screen-label="13 Assurance">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow">Peace of Mind</div>
-      <h2 class="h-section">契約条件は、企業の<em>安心</em>を最優先に設計。</h2>
+      <div class="eyebrow"><span class="dot"></span>Peace of Mind</div>
+      <h2 class="h-section">契約条件は、企業の<br><em>安心</em>を最優先に設計。</h2>
       <p class="lede">縛りすぎず、突然の終了リスクもなく、データもクレジットも守る。長期に伴走するための仕組みを契約書で明文化しています。</p>
     </div>
     <div class="assurance-grid">
       <div class="assurance-card">
         <div class="ac-no">01 / FLEXIBLE</div>
         <h3>初年度はしっかり伴走、13ヶ月目以降は月単位で自由に。</h3>
-        <p><strong>初年度1年契約・月払い</strong>で初期負担を抑えつつ、年度予算サイクルに合わせた伴走を実現。<strong>13ヶ月目以降は月単位継続</strong>に自動移行し、30日予告でいつでも解約できます（残月分の支払義務なし）。</p>
+        <p><strong>初年度1年契約・月払い</strong>で初期負担を抑えつつ、年度予算サイクルに合わせた伴走を実現。<strong>13ヶ月目以降は月単位継続</strong>に自動移行し、30日予告でいつでも解約できます。</p>
       </div>
       <div class="assurance-card">
         <div class="ac-no">02 / RECOVERABLE</div>
         <h3>解約後もデータは6ヶ月間アーカイブ保持。</h3>
-        <p>解約から<strong>30日間のエクスポート猶予期間</strong>＋計<strong>6ヶ月間のアーカイブ保持期間</strong>を経て完全削除。アーカイブ保持期間内に再契約いただいた場合、初期構築費は<strong>50%減額（5万円・税別）</strong>でデータも復元します。</p>
+        <p>解約から<strong>30日間のエクスポート猶予期間</strong>＋計<strong>6ヶ月間のアーカイブ保持期間</strong>を経て完全削除。期間内に再契約いただいた場合、初期構築費は<strong>50%減額</strong>でデータも復元します。</p>
       </div>
       <div class="assurance-card">
         <div class="ac-no">03 / PAUSE-OK</div>
         <h3>3ヶ月の無料休会あり。BPO案件の谷間も安心。</h3>
-        <p>標準で<strong>3ヶ月までの無料休会</strong>が可能。基本月額は0円、データもクレジットもそのまま保持されます。さらに<strong>追加10万円（税別）で最大1年間まで延長</strong>可能。お申し込みはメール1通で。</p>
+        <p>標準で<strong>3ヶ月までの無料休会</strong>が可能。基本月額は0円、データもクレジットもそのまま保持。さらに<strong>追加10万円で最大1年間まで延長</strong>可能。お申し込みはメール1通で。</p>
       </div>
       <div class="assurance-card">
         <div class="ac-no">04 / EXIT-OK</div>
         <h3>3ヶ月以内なら、違約金なし撤退オプション。</h3>
-        <p>Pilot 20 適用顧客限定。<strong>3ヶ月以内に保守シナリオで回収できなければ違約金なしで撤退可能</strong>。自治体AI参謀の効果を、御社の数字で見極めてからの判断でOKです。</p>
+        <p>Pilot 20 適用顧客限定。<strong>3ヶ月以内に保守シナリオで回収できなければ違約金なしで撤退可能</strong>。AI参謀の効果を、御社の数字で見極めてからの判断でOKです。</p>
       </div>
     </div>
 
@@ -1645,37 +2648,35 @@
       <h3>Pilot 20 だから、正直にお伝えします。</h3>
       <div class="honest-grid">
         <div class="honest-item">
-          <div class="lbl">🌱 学習中の自治体AI参謀</div>
-          <p>自治体AI参謀は御社の勝ちパターンを学習することで、提案精度が段階的に向上します。完成形ではなく、一緒に育てるAI。</p>
+          <div class="lbl">学習中のAI参謀</div>
+          <p>AI参謀は御社の勝ちパターンを学習することで、提案精度が段階的に向上します。完成形ではなく、一緒に育てるAI。</p>
         </div>
         <div class="honest-item">
-          <div class="lbl">📍 カバー範囲明示</div>
+          <div class="lbl">カバー範囲明示</div>
           <p>Pilot 20 期間中の即日対応は主要200自治体。Q4までに全1,741自治体に拡大予定。透明にロードマップを共有します。</p>
         </div>
         <div class="honest-item">
-          <div class="lbl">🚪 撤退オプション</div>
+          <div class="lbl">撤退オプション</div>
           <p>3ヶ月以内に保守シナリオで回収できなければ、違約金なしで撤退可能。リスクを企業側で持ちすぎない設計です。</p>
         </div>
       </div>
     </div>
 
-    <p class="assurance-note">※ 詳細条件は契約書（v2.3.1）で明文化されています。お申し込み前に必ずご確認ください。</p>
+    <p class="assurance-note">※ 当社都合のサービス終了は <strong>3ヶ月以上前にご通知</strong>いたします。詳細条件は契約書（v2.4）で明文化されています。お申し込み前に必ずご確認ください。</p>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq">
-  <div class="wrap">
+<section id="faq" class="faq" data-screen-label="14 FAQ">
+  <div class="wrap-narrow">
     <div class="section-head center">
-      <div class="eyebrow">FAQ</div>
+      <div class="eyebrow"><span class="dot"></span>FAQ</div>
       <h2 class="h-section">よくいただくご質問。</h2>
     </div>
     <div class="faq-list">
-
-      <!-- 自治体AI参謀 -->
       <details class="faq-item" open>
         <summary>自治体AI参謀って、結局何ができますか？</summary>
-        <div class="ans">自治体ビジネスのプロのコンサルが3週間でやる4つの仕事——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「納品して帰らない」こと。常駐型・伴走型です。<br><br><strong>※ Pilot 20 期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong> リリース。③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供予定です。</div>
+        <div class="ans">自治体ビジネスのプロのコンサルが3週間でやる4つの仕事——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「月1〜2回ではなく、毎日いつでも相談できる」常駐型・伴走型であること。コンサルが届かない瞬間を埋める相棒です。<br><br><strong>※ Pilot 20 期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong> リリース。③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供予定です。</div>
       </details>
       <details class="faq-item">
         <summary>AI参謀は今すぐ全機能使えますか？</summary>
@@ -1695,10 +2696,8 @@
       </details>
       <details class="faq-item">
         <summary>コンサルとの違いを教えてください。</summary>
-        <div class="ans">コンサルは <strong>3週間で納品して帰る</strong>。自治体AI参謀は <strong>毎日相談できて、戦略を一緒に育てる</strong>。これが最大の違いです。<br><br>コンサル月50〜100万円が3週間で出す成果物（攻略マップ・提案書・ROIモデル）を、自治体AI参謀は月20万円で<strong>常駐型・即日対応</strong>で出します。価格は1/5、関係性は常駐型、という構造です。</div>
+        <div class="ans">コンサルは <strong>深く伴走してくれる</strong>専門家ですが、接触頻度は<strong>月1〜2回・メール返信1〜2日</strong>が標準。「予算が動いた今すぐ聞きたい」「役員会の朝に1点だけ確認したい」のような瞬間には応えにくい構造です。<br><br>AI参謀は <strong>毎日いつでも相談できて、戦略を一緒に育てる</strong>常駐型。コンサル月50〜100万円が3週間で出す成果物（攻略マップ・提案書・ROIモデル）を、AI参謀は月20万円で<strong>即日・無制限対話</strong>で出します。価格は1/5、関係性は常駐型、という構造です。コンサルの代替というより、コンサルの「届かない瞬間」を埋める相棒とお考えください。</div>
       </details>
-
-      <!-- 契約・支払 -->
       <details class="faq-item">
         <summary>契約期間と支払方法を教えてください。</summary>
         <div class="ans"><strong>初年度は1年契約、支払いは月払い</strong>です（毎月当社の請求書に基づきお振込み）。13ヶ月目以降は<strong>月単位の継続契約</strong>に自動移行し、<strong>30日前にご通知いただければいつでも解約可能</strong>です（残月分の支払義務なし）。<br><br>Pilot 20 適用顧客のみ、6ヶ月間は半年一括前払い（30万円・税別）を維持します。</div>
@@ -1711,8 +2710,6 @@
         <summary>13ヶ月目以降に解約したら違約金は発生しますか？</summary>
         <div class="ans">違約金は一切発生しません。<strong>30日前のご通知</strong>で、いつでも解約できます。解約月までの月額のみのお支払いで、それ以降の支払義務は発生しません。</div>
       </details>
-
-      <!-- データ・休会 -->
       <details class="faq-item">
         <summary>解約したら、登録したデータはどうなりますか？</summary>
         <div class="ans">①契約終了から<strong>30日間</strong>はデータを閲覧・エクスポート可能（エクスポート猶予期間）<br>②その後、計<strong>6ヶ月間</strong>は当社内アーカイブで保持<br>③6ヶ月経過後に完全削除<br><br>アーカイブ保持期間内に再契約いただいた場合、初期構築費は通常の半額（<strong>50,000円・税別</strong>）でデータも復元します。<br>※ 法令上保存が必要なデータ・匿名化済の学習データは除く。</div>
@@ -1725,17 +2722,13 @@
         <summary>未消費のクレジットはどうなりますか？</summary>
         <div class="ans">解約時は失効しますが、<strong>休会時は保持</strong>されます（再開時にそのままご利用いただけます）。<br>未消費クレジットを大切にしたい場合は、解約より休会を推奨します。</div>
       </details>
-
-      <!-- オンボーディング -->
       <details class="faq-item">
         <summary>オンボーディングはありますか？</summary>
-        <div class="ans"><strong>スタンダードプランには初年度1年間の付帯オンボーディングが含まれます</strong>。<br><br>・頻度: <strong>2ヶ月に1回</strong>（年間6回）の定期的な内容確認<br>・前半6ヶ月: <strong>集中支援フェーズ</strong> — 御社専属自治体AI参謀の学習データを集中的に更新<br>・後半6ヶ月: <strong>運用最適化フェーズ</strong> — 定着支援・KPIレビュー・スケール提案<br><br>確認方法はオンライン会議・メール・本サービス上のチャット等、貴社と協議のうえ決定します。</div>
+        <div class="ans"><strong>スタンダードプランには初年度1年間の付帯オンボーディングが含まれます</strong>。<br><br>・頻度: <strong>2ヶ月に1回</strong>（年間6回）の定期的な内容確認<br>・前半6ヶ月: <strong>集中支援フェーズ</strong> — 御社専属AI参謀の学習データを集中的に更新<br>・後半6ヶ月: <strong>運用最適化フェーズ</strong> — 定着支援・KPIレビュー・スケール提案<br><br>確認方法はオンライン会議・メール・本サービス上のチャット等、貴社と協議のうえ決定します。</div>
       </details>
-
-      <!-- 機能・サービス -->
       <details class="faq-item">
         <summary>47Connectはどのような企業に向いていますか？</summary>
-        <div class="ans">自治体ビジネス（BtoG）を真剣に展開している中堅〜大企業に最適です。とりわけ、すでに<strong>自治体コンサルを使っている / 使うか検討している</strong>企業や、<strong>予算書公開タイミングを逃して失注している</strong>営業組織において、自治体AI参謀のROIが最大化されます。<br><br>業種では、製造業・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材派遣・広告代理店等で実績・想定ROIを試算済です。</div>
+        <div class="ans">自治体ビジネス（BtoG）を真剣に展開している中堅〜大企業に最適です。とりわけ、すでに<strong>自治体コンサルを使っている / 使うか検討している</strong>企業や、<strong>予算書公開タイミングを逃して失注している</strong>営業組織において、AI参謀のROIが最大化されます。<br><br>業種では、製造業・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材派遣・広告代理店等で実績・想定ROIを試算済です。</div>
       </details>
       <details class="faq-item">
         <summary>レコメンドのスコアはどのように算出されますか？</summary>
@@ -1747,7 +2740,7 @@
       </details>
       <details class="faq-item">
         <summary>導入にどのくらい時間がかかりますか？</summary>
-        <div class="ans">お申し込みから最短2週間で利用開始いただけます。御社の企業情報・製品情報・勝ち実績自治体（過去取引先）の登録後、自治体AI参謀の初回ブリーフィングと自治体レコメンドの初回結果をお届けいたします。</div>
+        <div class="ans">お申し込みから最短2週間で利用開始いただけます。御社の企業情報・製品情報・勝ち実績自治体（過去取引先）の登録後、AI参謀の初回ブリーフィングと自治体レコメンドの初回結果をお届けいたします。</div>
       </details>
       <details class="faq-item">
         <summary>データのセキュリティ対策は？</summary>
@@ -1758,25 +2751,53 @@
 </section>
 
 <!-- END CTA -->
-<section id="contact" class="end">
-  <h2>予算書が出た日に、<br>自治体AI参謀が動き出す。</h2>
-  <p>自治体AI参謀が、御社の自治体への提案に毎日伴走します。<br>Pilot 20 への応募・申し込み前のご相談も大歓迎です。担当者より1営業日以内にご連絡いたします。</p>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" class="btn">Pilot 20 に応募する<span class="arrow">→</span></a>
-  <small>Pilot 20 受付中・6月末締切・先着20社限定 50%OFF</small>
+<section id="contact" class="end" data-screen-label="15 CTA">
+  <div class="end-tag">Pilot 20 受付中・先着20社</div>
+  <h2>予算書が出た日に、<br><span class="grad">AI参謀が動き出す。</span></h2>
+  <p>AI参謀が、御社の自治体への提案に毎日伴走します。<br>Pilot 20 への応募・申し込み前のご相談も大歓迎です。担当者より1営業日以内にご連絡いたします。</p>
+  <div class="end-cta">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" class="btn btn-orange">Pilot 20 に応募する<span class="arrow">→</span></a>
+    <a href="#sambo" class="btn btn-ghost-dark">資料を見る</a>
+  </div>
+  <small>Pilot 20 受付中 / 6月末締切 / 先着20社限定 / 50%OFF</small>
 </section>
 
 <!-- FOOTER -->
 <footer class="foot">
   <div class="foot-inner">
-    <div>
-      <strong>47Connect</strong><br>
-      自治体AI参謀 / コンサル代替AIサービス
+    <div class="brand">
+      <strong>47Connect</strong>
+      <span>自治体AI参謀 / コンサル代替AIサービス</span>
     </div>
     <div>
       © 2026 FromTo, Inc. All rights reserved.
     </div>
   </div>
 </footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <div class="info">
+    <strong>Pilot 20 受付中</strong>
+    <small>先着20社 · 50%OFF · 6/30締切</small>
+  </div>
+  <a href="#contact" class="btn btn-orange">応募<span class="arrow">→</span></a>
+</div>
+
+<script>
+  // Worries: role tabs
+  (function(){
+    const tabs = document.querySelectorAll('.role-tab');
+    const panes = document.querySelectorAll('.role-pane');
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        const r = t.dataset.role;
+        tabs.forEach(x => x.classList.toggle('active', x === t));
+        panes.forEach(p => p.classList.toggle('active', p.dataset.pane === r));
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
