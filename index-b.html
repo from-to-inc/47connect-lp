@@ -709,6 +709,10 @@
   .ratio-arrow{font-size:2rem;color:var(--orange);font-weight:300;line-height:1}
   .ratio-text{text-align:left}
   .ratio-eyebrow{display:inline-block;font-family:var(--mono);font-size:.74rem;color:var(--orange);letter-spacing:.12em;font-weight:700;background:rgba(233,71,11,.14);border:1px solid rgba(233,71,11,.4);padding:5px 11px;border-radius:6px;margin-bottom:14px}
+  .ratio-sub{margin-top:14px;font-size:.92rem;color:rgba(255,255,255,.78);line-height:1.75;max-width:520px}
+  .ratio-sub strong{color:#fff;font-weight:800}
+  .ratio-sub a{color:#6BA3E6;text-decoration:underline;text-underline-offset:3px;font-weight:700;margin-left:6px}
+  .ratio-sub a:hover{color:#90BFEA}
   .ratio-cta{position:relative;display:inline-flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:8px;padding-top:32px;border-top:1px dashed rgba(255,255,255,.15);width:100%;max-width:600px;margin-left:auto;margin-right:auto}
   .ratio-tag{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;color:#fff}
   .ratio-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(233,71,11,.22);animation:pulse 2s infinite}
@@ -766,11 +770,15 @@
   .mark-yes::before{content:"✓";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--teal);color:#fff;font-size:.72rem;font-weight:800}
   .mark-no{color:var(--t-3);opacity:.55}
   .mark-mid{color:var(--t-3);font-size:.85rem;font-style:italic}
+  .compare-tbl .cell-sub{font-size:.78rem;color:var(--t-3);font-weight:600;margin-top:6px;line-height:1.5}
+  .compare-tbl .compare-note-mark{font-size:.7rem;color:var(--orange);margin-left:2px;font-weight:700}
+  .compare-asterisk{margin-top:14px;font-size:.78rem;color:var(--t-3);line-height:1.7;text-align:left}
+  .compare-asterisk strong{color:var(--ink-0);font-weight:700}
   .compare-note{
-    margin-top:32px;padding:28px 32px;
+    margin-top:20px;padding:24px 28px;
     background:linear-gradient(135deg,var(--blue-soft),#fff);
     border:1px solid color-mix(in oklab,var(--blue) 20%, transparent);border-radius:var(--radius);
-    font-size:.95rem;color:var(--t-2);line-height:1.95;
+    font-size:.92rem;color:var(--t-2);line-height:1.9;
   }
   .compare-note strong{color:var(--ink-0);font-weight:700}
   @media (max-width:860px){
@@ -886,6 +894,33 @@
   .promo-cta{margin-top:36px;display:flex;flex-direction:column;gap:12px}
   .promo-cta .btn{padding:17px 32px;font-size:1rem;align-self:flex-start}
   .promo-note{font-size:.78rem;color:var(--t-inv-3);line-height:1.7}
+
+  /* ROIシミュレーター誘導（PROMO内） */
+  .promo-roi{
+    margin-top:28px;padding:24px 28px;
+    background:rgba(108,163,230,.08);border:1px solid rgba(108,163,230,.22);
+    border-radius:12px;
+    display:grid;grid-template-columns:1.5fr auto;gap:24px;align-items:center;
+  }
+  .promo-roi-eyebrow{
+    font-family:var(--mono);font-size:.72rem;color:#8FBDEF;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;
+  }
+  .promo-roi h4{
+    font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 10px;letter-spacing:-.015em;line-height:1.4;
+  }
+  .promo-roi p{font-size:.86rem;color:var(--t-inv-2);line-height:1.75;margin:0}
+  .promo-roi p strong{color:#fff;font-weight:800}
+  .btn.btn-ghost-light{
+    background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;
+    padding:13px 22px;font-weight:700;border-radius:10px;
+    text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+    transition:all .2s ease;font-size:.92rem;white-space:nowrap;
+  }
+  .btn.btn-ghost-light:hover{background:rgba(255,255,255,.08);border-color:#fff}
+  @media (max-width:760px){
+    .promo-roi{grid-template-columns:1fr;gap:14px}
+  }
 
   /* layered diagram */
   .layer-diagram{
@@ -1172,18 +1207,21 @@
     background:linear-gradient(180deg, #FAFBFE 0%, #F2F6FC 100%);
     position:relative;
   }
-  .worries-head{margin-bottom:48px;text-align:center;max-width:880px;margin-left:auto;margin-right:auto}
+  .worries-head{margin-bottom:56px;text-align:center;max-width:920px;margin-left:auto;margin-right:auto}
   .worries-pre{
-    display:inline-block;font-family:var(--mono);font-size:.78rem;font-weight:700;
-    color:var(--orange);background:#fff;border:1px solid color-mix(in oklab,var(--orange) 30%, transparent);
-    padding:6px 16px;border-radius:999px;letter-spacing:.12em;margin-bottom:18px;
-    box-shadow:0 6px 14px -6px rgba(233,71,11,.25);
+    display:inline-block;font-family:var(--sans);font-size:1.15rem;font-weight:800;
+    color:#fff;background:linear-gradient(135deg,var(--orange) 0%,#C53A07 100%);
+    padding:14px 32px;border-radius:999px;letter-spacing:.06em;margin-bottom:24px;
+    box-shadow:0 14px 30px -10px rgba(233,71,11,.45);
   }
   .worries h2{
-    font-size:clamp(1.9rem, 3.6vw, 2.8rem);font-weight:800;
+    font-size:clamp(2.2rem, 4vw, 3.2rem);font-weight:800;
     line-height:1.3;letter-spacing:-.025em;color:var(--ink-0);
   }
   .worries h2 em{font-style:normal;background:linear-gradient(120deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+  @media (max-width:760px){
+    .worries-pre{font-size:.95rem;padding:12px 24px}
+  }
 
   /* タブ */
   .role-tabs{
@@ -1223,16 +1261,22 @@
   .worry-card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -22px rgba(20,30,60,.18)}
   .worry-bubble{
     position:relative;background:var(--bg-soft);border:1px dashed var(--line);
-    border-radius:12px;padding:14px 16px;font-size:.92rem;color:var(--t-2);
-    line-height:1.7;
+    border-radius:12px;padding:16px 18px 16px 22px;font-size:1.0rem;color:var(--t-2);
+    line-height:1.75;
   }
-  .worry-bubble::before{content:"\201c";position:absolute;top:-2px;left:8px;font-size:1.6rem;color:var(--blue);font-family:Georgia,serif;line-height:1}
-  .worry-bubble strong{color:var(--ink-0);font-weight:700}
+  .worry-bubble::before{content:"\201c";position:absolute;top:0px;left:8px;font-size:1.8rem;color:var(--blue);font-family:Georgia,serif;line-height:1}
+  .worry-bubble strong{color:var(--ink-0);font-weight:800}
   .worry-tag{
     align-self:flex-start;
-    font-family:var(--mono);font-size:.7rem;font-weight:700;
-    color:var(--orange);background:var(--orange-soft);
-    padding:4px 10px;border-radius:6px;letter-spacing:.08em;
+    font-family:var(--sans);font-size:1.0rem;font-weight:800;
+    color:#fff;background:linear-gradient(135deg,var(--orange) 0%,#C53A07 100%);
+    padding:8px 16px;border-radius:8px;letter-spacing:.01em;
+    line-height:1.3;
+    box-shadow:0 6px 14px -6px rgba(233,71,11,.35);
+  }
+  @media (max-width:760px){
+    .worry-tag{font-size:.92rem;padding:7px 14px}
+    .worry-bubble{font-size:.95rem;padding:14px 16px 14px 20px}
   }
 
   /* 参謀の答え */
@@ -1250,9 +1294,18 @@
     color:var(--blue-deep);letter-spacing:.12em;margin-bottom:8px;
   }
   .sambo-answer .msg{
-    font-size:1.08rem;font-weight:700;color:var(--ink-0);line-height:1.55;letter-spacing:-.015em;
+    font-size:1.18rem;font-weight:800;color:var(--ink-0);line-height:1.55;letter-spacing:-.015em;
+    margin-bottom:12px;
   }
   .sambo-answer .msg em{font-style:normal;color:var(--orange)}
+  .sambo-answer .msg-sub{
+    font-size:1rem;font-weight:600;color:var(--t-2);line-height:1.75;letter-spacing:-.005em;
+  }
+  .sambo-answer .msg-sub strong{color:var(--ink-0);font-weight:800}
+  .sambo-answer .msg-sub strong.brand{
+    color:var(--blue-deep);background:linear-gradient(transparent 65%,var(--blue-soft) 65%);
+    padding:0 4px;
+  }
 
   @media (max-width:860px){
     .worries-grid{grid-template-columns:1fr}
@@ -1740,16 +1793,16 @@
     <div class="role-pane active" data-pane="exec">
       <div class="worries-grid">
         <div class="worry-card">
-          <span class="worry-tag">投資効率が見えない</span>
-          <div class="worry-bubble">自治体営業に毎月100万円かけているが、<strong>どの自治体が筋いいのか</strong>経営として把握できない。</div>
+          <span class="worry-tag">投資対効果が可視化できない</span>
+          <div class="worry-bubble">外部コンサルタントに <strong>30〜50万円/月以上</strong> を投じているが、<strong>どの自治体が投資対効果の高い対象か</strong>、経営として可視化できない。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">気軽に聞ける相手がいない</span>
-          <div class="worry-bubble">コンサルは深く伴走してくれるが、<strong>接触頻度は月1〜2回・メール返信1〜2日</strong>。「今すぐ聞きたい」に応えられる相棒が手元にいない。</div>
+          <span class="worry-tag">即応できる相談相手が不在</span>
+          <div class="worry-bubble">コンサルは深く伴走するが、<strong>接触頻度は1〜2回/月・メール返信は1〜2営業日/件</strong>。「今すぐ確認したい」瞬間に応えられる相棒が、社内に存在しない。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">機会損失</span>
-          <div class="worry-bubble">補正予算が動いた瞬間にアプローチできていれば取れていた案件、<strong>毎期いくつもある</strong>はず。</div>
+          <span class="worry-tag">機会損失の常態化</span>
+          <div class="worry-bubble">補正予算の動きを即時に把握できず、本来獲得できたはずの案件を<strong>毎期取りこぼしている</strong>。</div>
         </div>
       </div>
     </div>
@@ -1758,16 +1811,16 @@
     <div class="role-pane" data-pane="manager">
       <div class="worries-grid">
         <div class="worry-card">
-          <span class="worry-tag">優先順位の根拠</span>
-          <div class="worry-bubble">部下に「次はこの自治体を攻めろ」と言いたいが、<strong>根拠データを揃える時間</strong>がない。</div>
+          <span class="worry-tag">優先順位付けの根拠が不足</span>
+          <div class="worry-bubble">メンバーに「次はこの自治体を最優先で当たれ」と指示したいが、<strong>根拠データを揃える工数</strong>を確保できない。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">提案書のばらつき</span>
-          <div class="worry-bubble">担当者ごとに提案の質が違う。<strong>個別最適と量産</strong>を両立できない。</div>
+          <span class="worry-tag">提案品質の標準化が困難</span>
+          <div class="worry-bubble">担当者ごとに提案書の品質が異なる。<strong>個別最適化と提案量産の両立</strong>が実現できない。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">予算編成期に動けない</span>
-          <div class="worry-bubble">入札情報が出てから動いていては遅い。<strong>半年前の予算編成期</strong>に入りたいのに手が回らない。</div>
+          <span class="worry-tag">予算編成期への先回り不可</span>
+          <div class="worry-bubble">入札公示後の参戦では遅い。意思決定の上流——<strong>公示の半年前にあたる予算編成期</strong>へのアプローチに、リソースを割けない。</div>
         </div>
       </div>
     </div>
@@ -1776,16 +1829,16 @@
     <div class="role-pane" data-pane="field">
       <div class="worries-grid">
         <div class="worry-card">
-          <span class="worry-tag">情報収集に時間がかかる</span>
-          <div class="worry-bubble">予算書と議事録を読み込むだけで<strong>1自治体に2〜3週間</strong>。担当する20自治体は到底無理。</div>
+          <span class="worry-tag">情報収集の工数が膨大</span>
+          <div class="worry-bubble">予算書・議事録の読み込みだけで <strong>1自治体あたり2〜3週間</strong> を要する。担当20自治体の網羅は、現実的に不可能。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">提案書ドラフトが大変</span>
-          <div class="worry-bubble">その自治体固有の議題を踏まえた提案書を書くと、<strong>1本に丸2日</strong>かかる。</div>
+          <span class="worry-tag">提案書ドラフトの作成工数</span>
+          <div class="worry-bubble">自治体固有の議題を踏まえた提案書作成に <strong>1本あたり2営業日</strong> を要する。担当案件数とのトレードオフが常態化。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">稟議資料が重い</span>
-          <div class="worry-bubble">役員会で説明できる<strong>ROIモデル</strong>を作るのが毎回しんどい。</div>
+          <span class="worry-tag">稟議資料の作成負荷</span>
+          <div class="worry-bubble">役員会向けROIモデルを作成する際、<strong>情報の根拠を集めるだけで数時間〜1〜2営業日</strong> を要する。</div>
         </div>
       </div>
     </div>
@@ -1797,7 +1850,8 @@
       </div>
       <div class="text">
         <div class="lbl">AI参謀より</div>
-        <div class="msg">そのお悩み、<em>すべて自治体AI参謀</em>がカバーします。<br>毎日相談できる相棒として、御社のチームに参画させてください。</div>
+        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる相棒の不在」</em>。</div>
+        <div class="msg-sub">その相棒こそが <strong>自治体AI参謀</strong>。<br>そして、自治体AI参謀を御社のチームに実装するサービスソリューションが、<strong class="brand">47Connect（ヨンナナコネクト）</strong>です。</div>
       </div>
     </div>
   </div>
@@ -1830,7 +1884,7 @@
           <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
         </div>
         <h3>毎日相談できる相棒</h3>
-        <p>月1〜2回のミーティング待ちではなく、思いついた瞬間に相談できる相棒でいてほしい。</p>
+        <p>1〜2回/月のミーティング待ちではなく、必要な瞬間に即応できる相棒であってほしい。</p>
       </div>
     </div>
 
@@ -1885,8 +1939,8 @@
           <div class="en">Low Touch Frequency</div>
         </div>
         <h3>気軽に聞ける相手がいない</h3>
-        <p>コンサルは深い伴走支援をしてくれる。ただし接触頻度は月1〜2回・メール返信は1〜2日。<strong>「予算が動いた今すぐ聞きたい」</strong>のに、気軽に相談できる相棒が手元にいない。</p>
-        <div class="tag">コンサル接触：月1〜2回 / メール返信：1〜2日</div>
+        <p>コンサルは深い伴走支援をしてくれる。ただし接触頻度は1〜2回/月・メール返信は1〜2営業日/件。<strong>「予算が動いた今すぐ聞きたい」</strong>のに、気軽に相談できる相棒が手元にいない。</p>
+        <div class="tag">コンサル接触：1〜2回/月 ／ メール返信：1〜2営業日/件</div>
         <blockquote>「補正予算が出た瞬間に方向性を確認したいのに、次回ミーティングまで2週間あった」</blockquote>
       </div>
     </div>
@@ -2066,7 +2120,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Your AI Strategic Advisor</div>
       <h2 class="h-section">コンサルが3週間でやることを、<br><em>AI参謀が対話の中で。</em></h2>
-      <p class="lede">自治体ビジネスのプロが3週間かけて作る成果物を、自治体AI参謀が分解して、毎日の対話の中で随時アウトプットします。月1〜2回ではなく、毎日いつでも相談できる常駐型。</p>
+      <p class="lede">自治体ビジネスのプロが3週間かけて作る成果物を、自治体AI参謀が分解して、毎日の対話の中で随時アウトプットします。1〜2回/月ではなく、毎日いつでも相談できる常駐型。</p>
       <div class="sambo-stage-notice">
         <span class="lbl">RELEASE PLAN</span>
         ① 自治体調査・② 戦略立案 = <strong>2026年7月リリース</strong>（β版開始時点）／
@@ -2230,16 +2284,17 @@
     </div>
 
     <div class="ba-punchline">
-      <p>競合が公開に気づいた頃には、御社の提案はもう動き始めている</p>
+      <p>月40時間の自治体営業工数を、およそ4時間に圧縮。</p>
       <div class="ratio">
         <div class="ratio-block">
-          <div class="ratio-num"><span class="top">1</span><span class="slash">/</span><span class="bot">21</span></div>
+          <div class="ratio-num"><span class="top">1</span><span class="slash">/</span><span class="bot">10</span></div>
           <div class="ratio-cap">作業工数 圧縮率</div>
         </div>
         <div class="ratio-arrow">→</div>
         <div class="ratio-text">
-          <div class="ratio-eyebrow">3週間 → 24時間</div>
-          <h3>競合より、<em>3週間早く</em>提案が出せる。</h3>
+          <div class="ratio-eyebrow">40時間/月 → 4時間/月</div>
+          <h3>うちなら、<em>月40時間の作業工数</em>を、<br>およそ <em>4時間</em> に圧縮できます。</h3>
+          <p class="ratio-sub">削減した <strong>36時間/月</strong> を新規提案に振り向けることで、提案活動量を最大2倍に拡大。<a href="./roi-simulator.html" target="_blank" rel="noopener">ROIシミュレーターで御社版を試算 →</a></p>
         </div>
       </div>
       <div class="ratio-cta">
@@ -2278,121 +2333,7 @@
   </div>
 </section>
 
-<!-- COMPARE -->
-<section class="compare" data-screen-label="10 Compare">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Comparison</div>
-      <h2 class="h-section">コンサルは月1〜2回。<br>AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
-      <p class="lede">自治体コンサル・DB系ツール・自前リサーチ。それぞれの限界を、自治体AI参謀がどう超えるか。</p>
-    </div>
-    <table class="compare-tbl">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="us">47Connect<br>AI参謀</th>
-          <th>自治体<br>コンサル</th>
-          <th>DB系<br>ツール</th>
-          <th>自前<br>リサーチ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>月額の目安</td>
-          <td class="us"><strong>20万円〜</strong></td>
-          <td>50〜100万円</td>
-          <td>4〜15万円</td>
-          <td>人件費</td>
-        </tr>
-        <tr>
-          <td>関係性 / 継続伴走</td>
-          <td class="us">常駐型・毎日相談</td>
-          <td>3週間で納品終了</td>
-          <td>ツール提供のみ</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>公開即日対応</td>
-          <td class="us"><span class="mark-yes">TTP 24h</span></td>
-          <td><span class="mark-no">数週間</span></td>
-          <td><span class="mark-mid">議事録のみ</span></td>
-          <td><span class="mark-no">—</span></td>
-        </tr>
-        <tr>
-          <td>個別自治体最適化</td>
-          <td class="us"><span class="mark-yes">AIが個別生成</span></td>
-          <td>人手</td>
-          <td><span class="mark-no">テンプレ</span></td>
-          <td>人手</td>
-        </tr>
-        <tr>
-          <td>提案書ドラフト生成</td>
-          <td class="us"><span class="mark-yes">議事録引用つき</span></td>
-          <td>あり（人手）</td>
-          <td><span class="mark-no">—</span></td>
-          <td><span class="mark-no">—</span></td>
-        </tr>
-        <tr>
-          <td>ROIモデル / 稟議資料</td>
-          <td class="us"><span class="mark-yes">業種別シミュレーター</span></td>
-          <td>あり（人手）</td>
-          <td><span class="mark-no">—</span></td>
-          <td><span class="mark-no">—</span></td>
-        </tr>
-        <tr>
-          <td>御社事業文脈の学習</td>
-          <td class="us"><strong>御社専用に最適化</strong></td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="compare-note">
-      DB系ツールはツールを置いて去る。コンサルは深く伴走するが接触頻度は月1〜2回。<strong>毎日いつでも相談できて、戦略を一緒に育てる自治体AI参謀は、国内でFromToだけ</strong>。コンサルが3週間で1自治体ぶん作る "良質な個別提案" を、自治体AI参謀は当日中に1,741自治体ぶん出せます。
-    </div>
-  </div>
-</section>
-
-<!-- WHY FROMTO -->
-<section id="why" class="why" data-screen-label="11 Why">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
-      <h2 class="h-section">なぜFromToだけが、<br>自治体AI参謀をやれるのか。</h2>
-      <p class="lede">「参謀」「データ」「鮮度」の3本柱。1本でも欠けるとAI参謀は成立しない。すべてを揃えているのは国内でFromToだけです。</p>
-    </div>
-
-    <div class="why-pillars">
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 01</div>
-        <h3><em>参謀</em>の関係性</h3>
-        <p><strong>毎日いつでも相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルの「月1〜2回・メール返信1〜2日」では拾えない瞬間に応える。ツールのように置いて去らない、御社専属の参謀役として伴走します。</p>
-        <div class="pillar-tag">→ コンサル代替・常駐型</div>
-      </div>
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 02</div>
-        <h3><em>データ</em>の厚み</h3>
-        <p>1,741自治体の<strong>議事録 × 予算 × 首長公約 × パブコメ</strong>をAIで横断構造化。さらに112自治体との寄附仲介154件・総額2億円超の実取引で得た担当部局のニーズ情報を加味。</p>
-        <div class="pillar-tag">→ 横断構造化DB・実取引データ</div>
-      </div>
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 03</div>
-        <h3><em>鮮度</em>の速度</h3>
-        <p>予算書・議事録・パブコメが公開された<strong>当日中に提案材料化（TTP 24時間以内）</strong>。スクレイピング基盤×AI構造化パイプライン×AI参謀対話を3層で揃えるFromToだから可能な速度です。</p>
-        <div class="pillar-tag">→ 業界最速・公開即日対応</div>
-      </div>
-    </div>
-
-    <div class="why-main">
-      <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
-      <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>3本柱すべてを満たすのは国内でFromToだけ</strong>。寄附仲介の実績と、112自治体との信頼関係、そして1,741自治体のAI構造化基盤——FromToの過去すべてが、自治体AI参謀という形に結晶しました。</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- PRICING -->
+<!-- PRICING（Compareの前に配置：2026-05-04 CEO指示） -->
 <section id="pricing" class="price" data-screen-label="12 Pricing">
   <div class="wrap">
     <div class="section-head center">
@@ -2421,7 +2362,7 @@
         <div class="promo-incs">
           <div class="promo-incs-lbl">β版特別キャンペーン限定特典</div>
           <ul>
-            <li><strong>AI参謀対話 無制限利用</strong>（パイロット期間中）</li>
+            <li><strong>AI参謀対話 無制限利用</strong>（β版特別キャンペーン期間中）</li>
             <li><strong>クレジット単価 創業時固定保証</strong>（永続適用）</li>
             <li><strong>初期構築費 無料</strong>（通常 10万円）</li>
             <li><strong>β版顧客 称号</strong>（プロダクト内表示）</li>
@@ -2429,68 +2370,16 @@
           </ul>
         </div>
       </div>
-    </div>
 
-    <!-- 2層構造 -->
-    <div class="layers-intro">
-      <h3 class="layers-title">47Connect は <em>2層</em> で出来ています。</h3>
-
-      <div class="layer-diagram">
-        <div class="ld-user">
-          <div class="ld-user-ic">👤</div>
-          <div class="ld-user-lbl">御社の担当者</div>
+      <!-- ROIシミュレーター誘導（応募前判断材料） -->
+      <div class="promo-roi">
+        <div class="promo-roi-text">
+          <div class="promo-roi-eyebrow">応募前に試算</div>
+          <h4>御社では、月40時間がどこまで圧縮できるか。</h4>
+          <p><strong>月40時間 → 約4時間</strong>（10分の1への圧縮）の試算ケースをベースに、御社の営業体制（人数・案件単価）を入力すると、<strong>ROI・回収期間・年間効果</strong>が30秒で算出されます。応募前の判断材料としてご活用ください。</p>
         </div>
-        <div class="ld-arrow">
-          <span class="ld-arrow-lbl">「次に攻める自治体は？」</span>
-          <svg viewBox="0 0 12 40" preserveAspectRatio="none"><path d="M6 0 V32 M2 28 L6 36 L10 28" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="ld-stack">
-          <div class="ld-layer ld-layer-2">
-            <div class="ld-layer-head">
-              <div class="ld-layer-num">LAYER 2</div>
-              <div class="ld-layer-name">AI参謀層</div>
-            </div>
-            <div class="ld-layer-cap">データを使い切る相棒</div>
-            <div class="ld-tags">
-              <span class="ld-tag">対話型参謀</span>
-              <span class="ld-tag">提案書ドラフト</span>
-              <span class="ld-tag">ROI試算</span>
-              <span class="ld-tag">戦略立案</span>
-            </div>
-          </div>
-          <div class="ld-connector"><span>データをフル活用</span></div>
-          <div class="ld-layer ld-layer-1">
-            <div class="ld-layer-head">
-              <div class="ld-layer-num">LAYER 1</div>
-              <div class="ld-layer-name">データ層</div>
-            </div>
-            <div class="ld-layer-cap">自治体ビジネスの羅針盤</div>
-            <div class="ld-tags">
-              <span class="ld-tag">予算書</span>
-              <span class="ld-tag">議事録</span>
-              <span class="ld-tag">パブコメ</span>
-              <span class="ld-tag">首長動向</span>
-              <span class="ld-tag">組織図</span>
-            </div>
-          </div>
-          <div class="ld-base">× 1,741自治体 ・ 公開即日反映</div>
-        </div>
-      </div>
-
-      <div class="layers-grid">
-        <div class="layer-card layer-1">
-          <div class="layer-num">LAYER 1</div>
-          <div class="layer-name">データ層</div>
-          <div class="layer-sub">自治体ビジネスの羅針盤</div>
-          <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
-          <div class="layer-tag">→ ライトプラン</div>
-        </div>
-        <div class="layer-card layer-2">
-          <div class="layer-num">LAYER 2</div>
-          <div class="layer-name">AI参謀層</div>
-          <div class="layer-sub">データを使い切る相棒</div>
-          <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
-          <div class="layer-tag">→ スタンダードプラン</div>
+        <div class="promo-roi-action">
+          <a href="./roi-simulator.html" class="btn btn-ghost-light" target="_blank" rel="noopener">ROIシミュレーターを開く<span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -2554,7 +2443,7 @@
     <div class="credits">
       <div class="credits-head">
         <h4>クレジット追加プラン（買うほどお得・4段階）</h4>
-        <p>クレジットは "AI参謀が本気を出す瞬間に使う稼働燃料"。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
+        <p>クレジットは "AI参謀がフル稼働する瞬間に投入する稼働燃料"。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
       </div>
 
       <table class="credits-tbl">
@@ -2599,7 +2488,7 @@
         <ul>
           <li>全国1,741自治体一括スコアリング <strong>50 cr</strong></li>
           <li>深掘り戦略レビュー（役員稟議用） <strong>10 cr/回</strong></li>
-          <li>大型PDF一括処理（予算書セット） <strong>5 cr/件</strong></li>
+          <li>大型PDF一括処理(予算書セット) <strong>5 cr/件</strong></li>
           <li>業種別ROI 詳細レポート出力 <strong>3 cr/回</strong></li>
         </ul>
       </div>
@@ -2607,6 +2496,140 @@
       <div class="credits-foot">
         <strong>※ クレジット単価について：</strong>クレジット単価は β版特別キャンペーン期間中の利用データを基に確定します。β版参加企業は、確定後の単価を「創業時固定保証」で永続適用いたします。
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare" data-screen-label="10 Compare">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>Comparison</div>
+      <h2 class="h-section">コンサルは1〜2回/月。<br>AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
+      <p class="lede">自治体コンサル・DB系ツール・自前リサーチ。それぞれの限界を、自治体AI参謀がどう超えるか。</p>
+    </div>
+    <table class="compare-tbl">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="us">47Connect<br>AI参謀</th>
+          <th>自治体<br>コンサル</th>
+          <th>DB系<br>ツール</th>
+          <th>自前<br>リサーチ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>月額の目安</td>
+          <td class="us">
+            <strong>ライト ¥10万円〜</strong><br>
+            <strong>スタンダード ¥20万円〜</strong>
+          </td>
+          <td>50〜100万円</td>
+          <td>4〜15万円</td>
+          <td>人件費</td>
+        </tr>
+        <tr>
+          <td>関係性 / 継続伴走</td>
+          <td class="us">常駐型・毎日相談</td>
+          <td>3週間で納品終了</td>
+          <td>ツール提供のみ</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>公開即日対応<sup class="compare-note-mark">※1</sup></td>
+          <td class="us">
+            <span class="mark-yes">24時間</span>
+            <div class="cell-sub">AI参謀に相談可能</div>
+          </td>
+          <td><span class="mark-no">数週間</span></td>
+          <td><span class="mark-mid">議事録のみ</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>個別自治体最適化</td>
+          <td class="us"><span class="mark-yes">AIが個別生成</span></td>
+          <td>人手</td>
+          <td><span class="mark-no">テンプレ</span></td>
+          <td>人手</td>
+        </tr>
+        <tr>
+          <td>仲介実績に基づくスコアリング</td>
+          <td class="us"><span class="mark-yes">154件・¥2億超の実取引データ</span></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>提案書ドラフト生成</td>
+          <td class="us"><span class="mark-yes">議事録引用つき</span></td>
+          <td>あり（人手）</td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>ROIモデル / 稟議資料</td>
+          <td class="us"><span class="mark-yes">業種別シミュレーター</span></td>
+          <td>あり（人手）</td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>属人性リスク</td>
+          <td class="us"><span class="mark-yes">なし</span></td>
+          <td><span class="mark-no">高</span></td>
+          <td><span class="mark-yes">なし</span></td>
+          <td><span class="mark-no">高</span></td>
+        </tr>
+        <tr>
+          <td>御社事業文脈の学習</td>
+          <td class="us"><strong>御社専用に最適化</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="compare-asterisk">※1 公開即日対応（24時間以内・AI参謀との相談可能）は<strong>スタンダードプランのみ</strong>。ライトプランは公開即日のデータ反映までを提供。</p>
+    <div class="compare-note">
+      他社DBでも自治体は見つかります。しかし、<strong>公開情報だけのレコメンド</strong>と、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理・AI参謀対話の4つを一気通貫</strong>で提供——国内でFromToだけです。
+    </div>
+  </div>
+</section>
+
+<!-- WHY FROMTO -->
+<section id="why" class="why" data-screen-label="11 Why">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
+      <h2 class="h-section">なぜFromToだけが、<br>自治体AI参謀をやれるのか。</h2>
+      <p class="lede">「参謀」「データ」「鮮度」の3本柱。1本でも欠けるとAI参謀は成立しない。すべてを揃えているのは国内でFromToだけです。</p>
+    </div>
+
+    <div class="why-pillars">
+      <div class="why-pillar">
+        <div class="pillar-no">PILLAR 01</div>
+        <h3><em>参謀</em>の関係性</h3>
+        <p><strong>毎日いつでも相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルの「1〜2回/月・メール返信1〜2営業日/件」では拾えない瞬間に応える。ツールのように置いて去らない、御社専属の参謀役として伴走します。</p>
+        <div class="pillar-tag">→ コンサル代替・常駐型</div>
+      </div>
+      <div class="why-pillar">
+        <div class="pillar-no">PILLAR 02</div>
+        <h3><em>データ</em>の厚み</h3>
+        <p>1,741自治体の<strong>議事録 × 予算 × 首長公約 × パブコメ</strong>をAIで横断構造化。さらに112自治体との寄附仲介154件・総額2億円超の実取引で得た担当部局のニーズ情報を加味。</p>
+        <div class="pillar-tag">→ 横断構造化DB・実取引データ</div>
+      </div>
+      <div class="why-pillar">
+        <div class="pillar-no">PILLAR 03</div>
+        <h3><em>鮮度</em>の速度</h3>
+        <p>予算書・議事録・パブコメが公開された<strong>当日中に提案材料化（TTP 24時間以内）</strong>。スクレイピング基盤×AI構造化パイプライン×AI参謀対話を3層で揃えるFromToだから可能な速度です。</p>
+        <div class="pillar-tag">→ 業界最速・公開即日対応</div>
+      </div>
+    </div>
+
+    <div class="why-main">
+      <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
+      <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>3本柱すべてを満たすのは国内でFromToだけ</strong>。寄附仲介の実績と、112自治体との信頼関係、そして1,741自治体のAI構造化基盤——FromToの過去すべてが、自治体AI参謀という形に結晶しました。</p>
     </div>
   </div>
 </section>
@@ -2676,7 +2699,7 @@
     <div class="faq-list">
       <details class="faq-item" open>
         <summary>自治体AI参謀って、結局何ができますか？</summary>
-        <div class="ans">自治体ビジネスのプロのコンサルが3週間でやる4つの仕事——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「月1〜2回ではなく、毎日いつでも相談できる」常駐型・伴走型であること。コンサルが届かない瞬間を埋める相棒です。<br><br><strong>※ β版特別キャンペーン期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong> リリース。③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供予定です。</div>
+        <div class="ans">自治体ビジネスのプロのコンサルが3週間でやる4つの仕事——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。コンサルが届かない瞬間を埋める相棒です。<br><br><strong>※ β版特別キャンペーン期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong> リリース。③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供予定です。</div>
       </details>
       <details class="faq-item">
         <summary>AI参謀は今すぐ全機能使えますか？</summary>
@@ -2688,7 +2711,7 @@
       </details>
       <details class="faq-item">
         <summary>AIクレジットって、毎月足りなくなりませんか？</summary>
-        <div class="ans">日常の対話・調査・閲覧は<strong>使い放題（クレジット消費なし）</strong>。クレジットを使うのは「全国一括分析」「役員稟議用の深掘りレポート」「大型PDF一括処理」など、参謀が本気を出す瞬間にだけです。<br><br>スタンダードプランの月80クレジットで、想定的には月8〜10回程度の本気出動が可能。足りない場合は <strong>4段階のクレジット追加プラン（30,000円/50,000円/100,000円/300,000円）</strong> から購入可能で、多く購入するほどディスカウントが効きます（最大25%OFF）。</div>
+        <div class="ans">日常の対話・調査・閲覧は<strong>使い放題（クレジット消費なし）</strong>。クレジットを使うのは「全国一括分析」「役員稟議用の深掘りレポート」「大型PDF一括処理」など、参謀がフル稼働する瞬間にだけです。<br><br>スタンダードプランの月80クレジットで、想定的には8〜10回/月程度のフル稼働が可能。足りない場合は <strong>4段階のクレジット追加プラン（30,000円/50,000円/100,000円/300,000円）</strong> から購入可能で、多く購入するほどディスカウントが効きます（最大25%OFF）。</div>
       </details>
       <details class="faq-item">
         <summary>β版特別キャンペーン期間って、品質大丈夫ですか？</summary>
@@ -2696,7 +2719,7 @@
       </details>
       <details class="faq-item">
         <summary>コンサルとの違いを教えてください。</summary>
-        <div class="ans">コンサルは <strong>深く伴走してくれる</strong>専門家ですが、接触頻度は<strong>月1〜2回・メール返信1〜2日</strong>が標準。「予算が動いた今すぐ聞きたい」「役員会の朝に1点だけ確認したい」のような瞬間には応えにくい構造です。<br><br>AI参謀は <strong>毎日いつでも相談できて、戦略を一緒に育てる</strong>常駐型。コンサル月50〜100万円が3週間で出す成果物（攻略マップ・提案書・ROIモデル）を、AI参謀は月20万円で<strong>即日・無制限対話</strong>で出します。価格は1/5、関係性は常駐型、という構造です。コンサルの代替というより、コンサルの「届かない瞬間」を埋める相棒とお考えください。</div>
+        <div class="ans">コンサルは <strong>深く伴走してくれる</strong>専門家ですが、接触頻度は<strong>1〜2回/月・メール返信1〜2営業日/件</strong>が標準。「予算が動いた今すぐ聞きたい」「役員会の朝に1点だけ確認したい」のような瞬間には応えにくい構造です。<br><br>AI参謀は <strong>毎日いつでも相談できて、戦略を一緒に育てる</strong>常駐型。コンサル月50〜100万円が3週間で出す成果物（攻略マップ・提案書・ROIモデル）を、AI参謀は月20万円で<strong>即日・無制限対話</strong>で出します。価格は1/5、関係性は常駐型、という構造です。コンサルの代替というより、コンサルの「届かない瞬間」を埋める相棒とお考えください。</div>
       </details>
       <details class="faq-item">
         <summary>契約期間と支払方法を教えてください。</summary>
