@@ -505,6 +505,93 @@
   .layer-card.l1 .layer-tag{background:#fff;color:var(--blue-deep);border:1px solid var(--blue-100)}
   .layer-card.l2 .layer-tag{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18)}
 
+  /* Layer 1 features chips（SOLUTION内の3機能チップ） */
+  .layer-features{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .lf-chip{
+    display:inline-block;font-size:12px;font-weight:700;
+    padding:6px 12px;border-radius:999px;
+    background:#fff;color:var(--blue-deep);border:1px solid var(--blue-200);
+    letter-spacing:-.005em;
+  }
+
+  /* ============ Layer 1 Features Section（データ層3機能） ============ */
+  .l1feat{background:var(--bg-soft);padding-top:96px;padding-bottom:96px}
+  .l1f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .l1f-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+    padding:28px 28px 32px;display:flex;flex-direction:column;gap:18px;
+    box-shadow:var(--sh-1);transition:box-shadow .2s ease,transform .2s ease;
+  }
+  .l1f-card:hover{box-shadow:var(--sh-3);transform:translateY(-3px)}
+  .l1f-head{display:flex;flex-direction:column;gap:6px}
+  .l1f-num{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    letter-spacing:.16em;color:var(--blue-deep);
+  }
+  .l1f-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.015em;line-height:1.35}
+  .l1f-desc{font-size:14px;line-height:1.85;color:var(--ink-2);margin-top:auto}
+  .l1f-desc strong{color:var(--ink);font-weight:800}
+  .l1f-note{margin-top:24px;font-size:12px;color:var(--ink-4);text-align:center;line-height:1.7}
+
+  /* Mock UI shared */
+  .l1f-mock{
+    background:var(--bg-tint);border:1px solid var(--blue-100);border-radius:var(--r);
+    padding:14px 16px;font-family:var(--mono);font-size:12px;color:var(--ink);
+  }
+  .mock-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:10px;border-bottom:1px solid var(--blue-100);margin-bottom:10px;
+  }
+  .mock-h-title{font-weight:700;color:var(--blue-deep);font-size:11px;letter-spacing:.04em}
+  .mock-h-tag{font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--blue);color:#fff;letter-spacing:.04em}
+
+  /* Mock 1: Recommend rows */
+  .mock-row{
+    display:grid;grid-template-columns:auto 1fr 80px auto;gap:8px;align-items:center;
+    padding:7px 0;font-size:11px;
+  }
+  .mock-row + .mock-row{border-top:1px dashed var(--blue-100)}
+  .mock-rank{font-family:var(--mono);font-weight:800;color:var(--ink-4);font-size:10px}
+  .mock-muni{color:var(--ink);font-weight:700;font-family:var(--sans)}
+  .mock-muni small{font-size:9px;color:var(--ink-4);font-weight:500;margin-left:4px}
+  .mock-bar{display:block;width:80px;height:6px;border-radius:3px;background:var(--blue-100);overflow:hidden}
+  .mock-bar-fill{display:block;height:100%;background:var(--blue);border-radius:3px}
+  .mock-score{font-family:var(--mono);font-weight:800;font-size:13px;color:var(--blue-deep);text-align:right;min-width:24px}
+
+  /* Mock 2: Summarize dl */
+  .mock-dl{display:grid;grid-template-columns:80px 1fr;gap:6px 10px;font-size:11px}
+  .mock-dl dt{font-family:var(--mono);font-weight:700;color:var(--ink-4);font-size:10px;letter-spacing:.04em;align-self:start;padding-top:2px}
+  .mock-dl dd{color:var(--ink);font-family:var(--sans);font-weight:600;line-height:1.55}
+  .mock-foot{display:flex;gap:6px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--blue-100)}
+  .mock-tag{
+    font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;
+    background:#fff;color:var(--blue-deep);border:1px solid var(--blue-200);letter-spacing:.04em;
+  }
+
+  /* Mock 3: CRM table */
+  .mock-tbl{width:100%;border-collapse:collapse;font-size:11px;font-family:var(--sans)}
+  .mock-tbl th{
+    font-family:var(--mono);font-size:9px;font-weight:700;color:var(--ink-4);
+    text-align:left;padding:5px 6px;letter-spacing:.04em;border-bottom:1px solid var(--blue-100);
+  }
+  .mock-tbl td{padding:7px 6px;border-bottom:1px dashed var(--blue-100);color:var(--ink);font-weight:600}
+  .mock-tbl tbody tr:last-child td{border-bottom:none}
+  .mock-st{
+    display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;
+    padding:3px 7px;border-radius:4px;letter-spacing:.04em;
+  }
+  .mock-st-hot{background:var(--orange-50);color:var(--orange)}
+  .mock-st-mid{background:var(--blue-100);color:var(--blue-deep)}
+  .mock-st-win{background:#E5F4F2;color:#1F8077}
+  .mock-st-cool{background:var(--bg-tint);color:var(--ink-3);border:1px solid var(--line)}
+  .mock-term{font-family:var(--mono);font-size:9px;color:var(--ink-3);font-weight:700}
+
+  @media (max-width:980px){
+    .l1f-grid{grid-template-columns:1fr;gap:16px}
+    .l1feat{padding-top:64px;padding-bottom:64px}
+    .l1f-card{padding:24px 22px 28px}
+  }
+
   .layers-note{
     margin-top:32px;padding:24px 28px;background:var(--bg-soft);
     border:1px solid var(--line);border-radius:var(--r-lg);
@@ -1449,6 +1536,11 @@
         <div class="layer-name">データ層</div>
         <div class="layer-sub">自治体ビジネスの羅針盤</div>
         <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
+        <div class="layer-features">
+          <span class="lf-chip">自治体レコメンド</span>
+          <span class="lf-chip">自治体サマライズ</span>
+          <span class="lf-chip">提案管理CRM</span>
+        </div>
         <div class="layer-tag">→ ライトプラン</div>
       </div>
       <div class="layer-card l2">
@@ -1644,6 +1736,128 @@
         <span class="stage-tag future">2027年Q1以降リリース予定</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- DATA LAYER FEATURES (Layer 1の3機能・売り) -->
+<section class="l1feat" data-screen-label="08b DataLayer">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>Layer 1 Features</div>
+      <h2 class="h-section">データ層の<em>3機能</em>。<br>「自分で動ける営業」のための基盤。</h2>
+      <p class="lede">1,741自治体の公開情報を、毎日の意思決定に使える形に構造化。<strong>レコメンド・サマライズ・CRM</strong> の3機能で、自治体営業の "情報整理に使う8割の時間" を圧縮します。</p>
+    </div>
+
+    <div class="l1f-grid">
+      <!-- 機能01: 自治体レコメンド -->
+      <div class="l1f-card">
+        <div class="l1f-head">
+          <div class="l1f-num">FUNCTION 01</div>
+          <h3 class="l1f-title">自治体レコメンド</h3>
+        </div>
+        <div class="l1f-mock l1f-mock-reco">
+          <div class="mock-head">
+            <span class="mock-h-title">スコア順 自治体一覧</span>
+            <span class="mock-h-tag">ライト・スタンダード</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-rank">01</span>
+            <span class="mock-muni">浜松市 <small>静岡県</small></span>
+            <span class="mock-bar"><span class="mock-bar-fill" style="width:85%"></span></span>
+            <span class="mock-score">85</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-rank">02</span>
+            <span class="mock-muni">磐田市 <small>静岡県</small></span>
+            <span class="mock-bar"><span class="mock-bar-fill" style="width:72%"></span></span>
+            <span class="mock-score">72</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-rank">03</span>
+            <span class="mock-muni">袋井市 <small>静岡県</small></span>
+            <span class="mock-bar"><span class="mock-bar-fill" style="width:68%"></span></span>
+            <span class="mock-score">68</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-rank">04</span>
+            <span class="mock-muni">掛川市 <small>静岡県</small></span>
+            <span class="mock-bar"><span class="mock-bar-fill" style="width:61%"></span></span>
+            <span class="mock-score">61</span>
+          </div>
+        </div>
+        <p class="l1f-desc">議事録 × 予算 × 首長公約 × パブコメ をAIで横断スコアリング。御社の勝ち実績10自治体を学習し、<strong>「次に注力すべき自治体」</strong>を根拠つきで提示。</p>
+      </div>
+
+      <!-- 機能02: 自治体サマライズ -->
+      <div class="l1f-card">
+        <div class="l1f-head">
+          <div class="l1f-num">FUNCTION 02</div>
+          <h3 class="l1f-title">自治体サマライズ</h3>
+        </div>
+        <div class="l1f-mock l1f-mock-sum">
+          <div class="mock-head">
+            <span class="mock-h-title">浜松市 プロファイル</span>
+            <span class="mock-h-tag">ライト・スタンダード</span>
+          </div>
+          <dl class="mock-dl">
+            <dt>首長</dt><dd>中野 祐介（1期目／2027年4月迄）</dd>
+            <dt>予算規模</dt><dd>¥3,500億（R7当初）</dd>
+            <dt>重点施策</dt><dd>DX・防災・観光</dd>
+            <dt>直近議会</dt><dd>10/12 総務委員会で「物流DX」言及</dd>
+            <dt>補正予算</dt><dd>観光DX ¥3,000万・防災 ¥2,000万</dd>
+          </dl>
+          <div class="mock-foot">
+            <span class="mock-tag">議事録引用 24件</span>
+            <span class="mock-tag">公約3項目</span>
+          </div>
+        </div>
+        <p class="l1f-desc">公開情報を構造化し、<strong>1自治体の状況把握を数分で完了</strong>。首長任期・予算サイクル・直近議会の議論を1画面に集約。提案前のリサーチ工数を削減。</p>
+      </div>
+
+      <!-- 機能03: 提案管理CRM -->
+      <div class="l1f-card">
+        <div class="l1f-head">
+          <div class="l1f-num">FUNCTION 03</div>
+          <h3 class="l1f-title">提案管理CRM</h3>
+        </div>
+        <div class="l1f-mock l1f-mock-crm">
+          <div class="mock-head">
+            <span class="mock-h-title">案件管理ボード</span>
+            <span class="mock-h-tag">ライト・スタンダード</span>
+          </div>
+          <table class="mock-tbl">
+            <thead>
+              <tr><th>自治体</th><th>案件</th><th>状況</th><th>残任期</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>浜松市</td><td>防災DX</td>
+                <td><span class="mock-st mock-st-hot">商談中</span></td>
+                <td><span class="mock-term">残24mo</span></td>
+              </tr>
+              <tr>
+                <td>静岡市</td><td>観光DX</td>
+                <td><span class="mock-st mock-st-mid">提案済</span></td>
+                <td><span class="mock-term">残18mo</span></td>
+              </tr>
+              <tr>
+                <td>磐田市</td><td>教育情報化</td>
+                <td><span class="mock-st mock-st-win">受注</span></td>
+                <td><span class="mock-term">残12mo</span></td>
+              </tr>
+              <tr>
+                <td>袋井市</td><td>観光プロモ</td>
+                <td><span class="mock-st mock-st-cool">情報収集</span></td>
+                <td><span class="mock-term">残30mo</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="l1f-desc">自治体提案に特化したCRM。<strong>首長任期・予算サイクル・議会日程</strong>を統合管理し、提案タイミングのアラートを自動発火。属人化を防ぎ、組織知に。</p>
+      </div>
+    </div>
+
+    <p class="l1f-note">※ 上図はUIサンプルです。実際の画面構成・機能は実装フェーズにより異なる場合があります。</p>
   </div>
 </section>
 
