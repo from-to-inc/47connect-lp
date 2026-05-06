@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>47Connect — 自治体AI参謀。コンサル代替AIサービス｜β版特別キャンペーン受付中</title>
-<meta name="description" content="予算書が公開されたその日に、自治体AI参謀が動き出す。コンサルが3週間かけて完成させる成果物を、AI参謀が即日アウトプット。月20万円から、自治体ビジネスを毎日相談できる相棒に。先着20社限定のβ版特別キャンペーン受付中。" />
+<title>47Connect — コンサル級の調査・戦略立案を、1人から内製できる自治体営業AI参謀</title>
+<meta name="description" content="47Connectは、自治体営業を1人〜数名で担う企業向けのAI参謀サービスです。全国自治体データをAI参謀が使いこなし、営業先・提案切り口・次アクションまで導きます。β版特別キャンペーン受付中。" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
@@ -440,70 +440,131 @@
 
   /* ============ PROBLEM ============ */
   .problems{background:var(--bg-soft)}
-  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
   .prob{
     background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
-    padding:32px 28px;transition:all .2s ease;display:flex;flex-direction:column;gap:14px;
+    padding:30px 26px;transition:all .2s ease;display:flex;flex-direction:column;gap:16px;
+    min-height:100%;
   }
   .prob:hover{transform:translateY(-4px);box-shadow:var(--sh-3);border-color:var(--blue-200)}
-  .prob .row{display:flex;align-items:center;gap:14px}
-  .prob .no{
-    font-family:var(--mono);font-weight:800;font-size:18px;
-    width:44px;height:44px;border-radius:10px;
-    background:var(--blue-50);color:var(--blue-deep);
-    display:grid;place-items:center;
+  .prob-visual{
+    height:120px;border-radius:var(--r);background:var(--blue-50);
+    border:1px solid var(--blue-100);display:grid;place-items:center;position:relative;overflow:hidden;
   }
-  .prob .en{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase}
-  .prob h3{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.005em;line-height:1.5}
+  .prob-visual::before{
+    content:"";position:absolute;inset:14px;border:1px dashed var(--blue-200);border-radius:10px;
+  }
+  .prob-visual svg{
+    width:78px;height:78px;stroke:var(--blue-deep);stroke-width:1.7;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;position:relative;
+  }
+  .prob-visual .mini{
+    position:absolute;font-family:var(--mono);font-size:10px;font-weight:800;
+    color:var(--orange);background:#fff;border:1px solid var(--orange-50);
+    border-radius:6px;padding:4px 7px;box-shadow:var(--sh-1);
+  }
+  .prob-visual .mini.a{left:18px;top:18px}
+  .prob-visual .mini.b{right:18px;bottom:18px}
+  .prob .row{display:flex;align-items:center;gap:10px}
+  .prob .no{
+    font-family:var(--mono);font-weight:800;font-size:12px;
+    padding:5px 9px;border-radius:999px;background:#fff;color:var(--blue-deep);
+    border:1px solid var(--blue-100);
+  }
+  .prob .en{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase}
+  .prob h3{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.01em;line-height:1.4}
   .prob p{font-size:14px;color:var(--ink-2);line-height:1.95}
   .prob .tag{
     display:inline-block;align-self:flex-start;
     font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;
     color:var(--orange);background:var(--orange-50);padding:5px 10px;border-radius:6px;
   }
-  .prob blockquote{
-    margin-top:auto;padding:14px 16px;background:var(--bg-soft);
-    border-left:3px solid var(--blue-200);border-radius:0 8px 8px 0;
-    font-size:13px;color:var(--ink-3);line-height:1.7;font-style:italic;
-  }
+  .prob-points{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:4px}
+  .prob-points li{font-size:13px;color:var(--ink-3);line-height:1.65;padding-left:16px;position:relative}
+  .prob-points li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:var(--blue)}
   @media (max-width:920px){.prob-grid{grid-template-columns:1fr}}
 
   /* ============ SOLUTION (2-LAYER) ============ */
   .solution{background:#fff}
-  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
-  .layer-card{
-    border-radius:var(--r-lg);padding:36px 32px;
-    display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;
-    transition:transform .2s ease;
+  .layer-stack{
+    margin-top:42px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px;align-items:center;
   }
-  .layer-card:hover{transform:translateY(-4px)}
-  .layer-card.l1{
-    background:var(--blue-50);border:1px solid var(--blue-100);
+  .stack-diagram{
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-xl);
+    padding:34px;box-shadow:var(--sh-2);position:relative;overflow:hidden;
   }
-  .layer-card.l2{
-    background:var(--blue-deep);color:#fff;border:1px solid var(--blue-deep);
-    box-shadow:var(--sh-3);
+  .stack-diagram::before{
+    content:"";position:absolute;inset:0;background-image:
+      linear-gradient(rgba(48,113,185,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(48,113,185,.05) 1px, transparent 1px);
+    background-size:30px 30px;pointer-events:none;
   }
-  .layer-num{
-    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;
+  .stack-diagram > *{position:relative}
+  .stack-card{
+    border-radius:16px;padding:22px 24px;border:1px solid var(--line);
+    background:#fff;box-shadow:var(--sh-1);
   }
-  .layer-card.l1 .layer-num{color:var(--blue-deep)}
-  .layer-card.l2 .layer-num{color:var(--blue-3)}
-  .layer-name{font-size:28px;font-weight:800;letter-spacing:-.01em;line-height:1.3}
-  .layer-card.l1 .layer-name{color:var(--ink)}
-  .layer-card.l2 .layer-name{color:#fff}
-  .layer-sub{font-size:14px;font-weight:600}
-  .layer-card.l1 .layer-sub{color:var(--blue-deep)}
-  .layer-card.l2 .layer-sub{color:var(--blue-3)}
-  .layer-card p{font-size:14px;line-height:1.95;flex:1}
-  .layer-card.l1 p{color:var(--ink-2)}
-  .layer-card.l2 p{color:var(--t-inv-2)}
-  .layer-card .layer-tag{
-    margin-top:12px;font-size:13px;font-weight:700;
-    padding:10px 14px;border-radius:8px;text-align:center;
+  .stack-card + .stack-card{margin-top:18px}
+  .stack-output{
+    background:var(--blue-deep);color:#fff;border-color:var(--blue-deep);
+    transform:translateY(0);box-shadow:var(--sh-3);
   }
-  .layer-card.l1 .layer-tag{background:#fff;color:var(--blue-deep);border:1px solid var(--blue-100)}
-  .layer-card.l2 .layer-tag{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18)}
+  .stack-ai{
+    background:#fff;border:2px solid var(--blue);box-shadow:var(--sh-blue);
+    transform:translateX(22px);
+  }
+  .stack-data{
+    background:var(--blue-50);border-color:var(--blue-100);
+    transform:translateX(-22px);
+  }
+  .stack-label{
+    font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
+    color:var(--blue-deep);margin-bottom:8px;text-transform:uppercase;
+  }
+  .stack-output .stack-label{color:var(--blue-3)}
+  .stack-title{font-size:23px;font-weight:800;letter-spacing:-.01em;line-height:1.35;margin-bottom:12px}
+  .stack-card p{font-size:14px;color:var(--ink-2);line-height:1.85}
+  .stack-output p{color:var(--t-inv-2)}
+  .stack-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .stack-chip{
+    font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;
+    background:#fff;color:var(--blue-deep);border:1px solid var(--blue-100);
+  }
+  .stack-output .stack-chip{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.18)}
+  .stack-arrow{
+    display:flex;justify-content:center;align-items:center;height:34px;
+    color:var(--orange);font-family:var(--mono);font-weight:800;font-size:12px;letter-spacing:.08em;
+  }
+  .stack-side{display:flex;flex-direction:column;gap:14px}
+  .stack-side-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r);
+    padding:18px 18px;box-shadow:var(--sh-1);
+  }
+  .stack-side-card h3{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px}
+  .stack-side-card p{font-size:13px;color:var(--ink-3);line-height:1.75}
+  @media (max-width:920px){
+    .layer-stack{grid-template-columns:1fr}
+    .stack-ai,.stack-data{transform:none}
+    .stack-diagram{padding:24px}
+  }
+
+  /* ============ SCREEN TOUR ============ */
+  .screen-tour{background:var(--bg-soft)}
+  .screen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
+  .screen-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+    overflow:hidden;box-shadow:var(--sh-2);display:flex;flex-direction:column;
+  }
+  .screen-shot{
+    aspect-ratio:16/10;background:var(--blue-50);border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .screen-shot img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+  .screen-body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .screen-kicker{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);letter-spacing:.12em}
+  .screen-body h3{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .screen-body p{font-size:14px;line-height:1.85;color:var(--ink-2)}
+  @media (max-width:980px){.screen-grid{grid-template-columns:1fr}}
 
   /* Layer 1 features chips（SOLUTION内の3機能チップ） */
   .layer-features{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -1364,22 +1425,22 @@
         6/30 締切
       </div>
       <h1>
-        予算書が出た日に、<br>
-        <span class="grad">自治体AI参謀</span>が<br>
-        動き出す。
+        コンサル級の<br>
+        調査・戦略立案を、<br>
+        <span class="grad">1人から内製</span>できる。
       </h1>
       <p class="hero-sub">
-        コンサル<strong>3週間</strong> → AI参謀<strong>即日</strong>。<br>
-        月20万円から、<strong>自治体ビジネスを毎日相談できる相棒</strong>に。
+        データは集めるだけでは価値になりません。<br>
+        47Connectは、AI参謀が全国自治体データを使いこなし、<strong>営業先・提案切り口・次アクション</strong>まで導きます。
       </p>
       <div class="hero-cta">
-        <a href="#pricing" class="btn btn-orange btn-lg">無料で相談してみる<span class="arrow">→</span></a>
-        <a href="#sambo" class="btn btn-ghost-dark btn-lg">仕組みを見る</a>
+        <a href="#contact" class="btn btn-orange btn-lg">無料相談で、自社の自治体攻略を相談する<span class="arrow">→</span></a>
+        <a href="#screens" class="btn btn-ghost-dark btn-lg">3画面で仕組みを見る</a>
       </div>
       <div class="hero-meta">
-        <span><span class="check">✓</span> 初期構築費 無料</span>
-        <span><span class="check">✓</span> 50%OFF（半年30万円）</span>
-        <span><span class="check">✓</span> 3ヶ月撤退オプション</span>
+        <span><span class="check">✓</span> 自治体営業を1人〜数名で担う企業向け</span>
+        <span><span class="check">✓</span> 見つける・分かる・管理するを一気通貫</span>
+        <span><span class="check">✓</span> β版特別キャンペーン受付中</span>
       </div>
     </div>
 
@@ -1576,39 +1637,80 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Problem</div>
-      <h2 class="h-section">自治体ビジネスの<br><span class="accent">「歩留まりが読めない」</span>3つの構造課題。</h2>
-      <p class="lede">コンサルを起用しても、自前のリサーチで対応しても、最終的にこの3つの構造課題で行き詰まる。</p>
+      <h2 class="h-section">自治体営業は、<br><span class="accent">なぜ進めづらいのか。</span></h2>
+      <p class="lede">自治体への営業は、情報を集めるだけでは進みません。提案余地を見つけ、政策文脈を読み解き、接触状況まで管理する必要があります。</p>
     </div>
     <div class="prob-grid">
       <div class="prob">
+        <div class="prob-visual">
+          <span class="mini a">BUDGET</span>
+          <svg viewBox="0 0 96 96" aria-hidden="true">
+            <path d="M20 24h22l6 8h28v38H20z"/>
+            <path d="M27 42h16M27 52h28M27 62h20"/>
+            <circle cx="66" cy="63" r="13"/>
+            <path d="M76 73l8 8"/>
+          </svg>
+          <span class="mini b">1,741</span>
+        </div>
         <div class="row">
           <div class="no">01</div>
-          <div class="en">Late to Notice</div>
+          <div class="en">Hard to Find</div>
         </div>
-        <h3>気づくのが遅い</h3>
-        <p>予算書・議事録・パブコメが公開されてから、提案準備が整うまで数週間。気づいた時には競合が動いている。</p>
-        <div class="tag">公開 → 提案準備に2〜4週間</div>
-        <blockquote>「補正予算が出ているのに気づいたのが3週間後だった」</blockquote>
+        <h3>見つけられない</h3>
+        <p>予算・計画・地域課題が散らばり、どの自治体に提案余地があるかを見つけるだけで時間がかかる。</p>
+        <div class="tag">狙うべき自治体が定まらない</div>
+        <ul class="prob-points">
+          <li>予算書・総合計画・議事録が自治体ごとに散在</li>
+          <li>自社商材に合う自治体の優先順位を作りづらい</li>
+        </ul>
       </div>
       <div class="prob">
+        <div class="prob-visual">
+          <span class="mini a">POLICY</span>
+          <svg viewBox="0 0 96 96" aria-hidden="true">
+            <path d="M28 18h30l10 10v50H28z"/>
+            <path d="M58 18v12h12"/>
+            <path d="M36 42h24M36 52h18M36 62h12"/>
+            <path d="M65 58c4 3 6 6 6 10a9 9 0 0 1-18 0c0-4 3-7 6-10"/>
+            <path d="M62 70h.1"/>
+          </svg>
+          <span class="mini b">WHY?</span>
+        </div>
         <div class="row">
           <div class="no">02</div>
-          <div class="en">One-Size-Fits-All</div>
+          <div class="en">Hard to Read</div>
         </div>
-        <h3>個別最適できない</h3>
-        <p>1,741自治体それぞれに異なる議題・予算・首長公約。テンプレ提案では刺さらず、個別カスタマイズには時間が足りない。</p>
-        <div class="tag">1自治体の個別調査に2〜3週間</div>
-        <blockquote>「テンプレで出すと差別化されず、個別対応すると時間が足りない」</blockquote>
+        <h3>わからない</h3>
+        <p>予算書や総合計画を読んでも、自社商材の提案切り口や「なぜ今提案すべきか」まで落とし込めない。</p>
+        <div class="tag">情報はあるが、提案に変換できない</div>
+        <ul class="prob-points">
+          <li>政策文脈・担当課・提案余地の読み解きが重い</li>
+          <li>自治体ごとの仮説立案が担当者の経験に依存する</li>
+        </ul>
       </div>
       <div class="prob">
+        <div class="prob-visual">
+          <span class="mini a">CRM</span>
+          <svg viewBox="0 0 96 96" aria-hidden="true">
+            <path d="M22 24h52v46H22z"/>
+            <path d="M22 38h52M36 24v46"/>
+            <path d="M42 48h22M42 58h14"/>
+            <circle cx="67" cy="66" r="10"/>
+            <path d="M67 61v5l4 3"/>
+          </svg>
+          <span class="mini b">NEXT</span>
+        </div>
         <div class="row">
           <div class="no">03</div>
-          <div class="en">Low Touch Frequency</div>
+          <div class="en">Hard to Manage</div>
         </div>
-        <h3>気軽に聞ける相手がいない</h3>
-        <p>コンサルは深い伴走支援をしてくれる。ただし接触頻度は1〜2回/月・メール返信は1〜2営業日/件。<strong>「予算が動いた今すぐ聞きたい」</strong>のに、気軽に相談できる相棒が手元にいない。</p>
-        <div class="tag">コンサル接触：1〜2回/月 ／ メール返信：1〜2営業日/件</div>
-        <blockquote>「補正予算が出た瞬間に方向性を確認したいのに、次回ミーティングまで2週間あった」</blockquote>
+        <h3>管理ができない</h3>
+        <p>接触履歴や次アクションに加え、首長任期・選挙・方針転換まで追う必要があり、管理が属人化しやすい。</p>
+        <div class="tag">次に誰が何をするかが曖昧になる</div>
+        <ul class="prob-points">
+          <li>提案状況・メモ・優先度がExcelや個人管理に分散</li>
+          <li>自治体特有の政治・予算サイクルの変化を追いきれない</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1619,29 +1721,103 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Solution</div>
-      <h2 class="h-section">47Connect は <em>2層</em> で出来ています。</h2>
-      <p class="lede">「データさえあれば自分で動ける」プロには Layer 1。「コンサル代替で毎日相談したい」企業には Layer 2。<strong>2層を組み合わせて、自治体ビジネスの歩留まりを構造から作り直します。</strong></p>
+      <h2 class="h-section">データ、AI参謀、営業判断を<br><em>つなぐ3層構造。</em></h2>
+      <p class="lede">47Connectは、自治体データを集めて終わりません。予算・計画・議事録・担当課・提案履歴をAI参謀が横断して読み解き、営業先・提案切り口・次アクションへ変換します。</p>
     </div>
 
-    <div class="layers-grid">
-      <div class="layer-card l1">
-        <div class="layer-num">LAYER 1</div>
-        <div class="layer-name">データ層</div>
-        <div class="layer-sub">自治体ビジネスの羅針盤</div>
-        <p>1,741自治体の予算書・議事録・パブコメ・首長動向・組織図を常時収集・構造化。コンサルが3週間かけて集める情報が、検索・閲覧できる状態で常時揃っている。</p>
-        <div class="layer-features">
-          <span class="lf-chip">自治体レコメンド</span>
-          <span class="lf-chip">自治体サマライズ</span>
-          <span class="lf-chip">提案管理CRM</span>
+    <div class="layer-stack">
+      <div class="stack-diagram" aria-label="データ層をAI参謀層が使い切り、営業判断へ変換するレイヤー図">
+        <div class="stack-card stack-output">
+          <div class="stack-label">Output</div>
+          <div class="stack-title">営業判断</div>
+          <p>どの自治体に、何を、なぜ今提案するか。次に誰が何をするかまで整理します。</p>
+          <div class="stack-chips">
+            <span class="stack-chip">営業先</span>
+            <span class="stack-chip">提案切り口</span>
+            <span class="stack-chip">次アクション</span>
+          </div>
         </div>
-        <div class="layer-tag">→ ライトプラン</div>
+        <div class="stack-arrow">↑ AI参謀がデータを横断して使い切る</div>
+        <div class="stack-card stack-ai">
+          <div class="stack-label">Layer 2</div>
+          <div class="stack-title">AI参謀層</div>
+          <p>御社の業界・商材・過去取引を理解し、自治体データから提案余地と優先順位を組み立てます。</p>
+          <div class="stack-chips">
+            <span class="stack-chip">適合分析</span>
+            <span class="stack-chip">仮説立案</span>
+            <span class="stack-chip">優先順位づけ</span>
+          </div>
+        </div>
+        <div class="stack-arrow">↑ 構造化された自治体データ</div>
+        <div class="stack-card stack-data">
+          <div class="stack-label">Layer 1</div>
+          <div class="stack-title">データ層</div>
+          <p>1,741自治体の公開情報と営業管理情報を、日々の判断に使える形で構造化します。</p>
+          <div class="stack-chips">
+            <span class="stack-chip">予算</span>
+            <span class="stack-chip">総合計画</span>
+            <span class="stack-chip">議事録</span>
+            <span class="stack-chip">担当課</span>
+            <span class="stack-chip">CRM</span>
+          </div>
+        </div>
       </div>
-      <div class="layer-card l2">
-        <div class="layer-num">LAYER 2</div>
-        <div class="layer-name">AI参謀層</div>
-        <div class="layer-sub">データを使い切る相棒</div>
-        <p>御社のプロファイル（業界・商材・過去取引）を学習。データ層をフル活用して、対話で戦略・提案を出す。「自治体コンサルに何でも聞ける」体験。</p>
-        <div class="layer-tag">→ スタンダードプラン</div>
+      <div class="stack-side">
+        <div class="stack-side-card">
+          <h3>データベースで終わらない</h3>
+          <p>情報を置くだけでは、営業判断にはつながりません。47ConnectはAI参謀がデータを読み解き、判断材料へ変換します。</p>
+        </div>
+        <div class="stack-side-card">
+          <h3>1人から営業基盤を持てる</h3>
+          <p>外部コンサルタントに毎回頼らず、初動調査・仮説整理・案件管理を社内で回せる状態を作ります。</p>
+        </div>
+        <div class="stack-side-card">
+          <h3>自治体特有の変化も追える</h3>
+          <p>首長任期、選挙、方針転換、予算サイクルまで含めて、次に動くべきタイミングを見逃しにくくします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN TOUR -->
+<section class="screen-tour" id="screens" data-screen-label="05b Screens">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>Product Screens</div>
+      <h2 class="h-section">サクッと見つけて、サクッと分かって、<br><em>キチンと管理。</em></h2>
+      <p class="lede">実画面では、自治体営業の「見つけられない」「わからない」「管理ができない」を、営業判断に直結する3つの流れで解決します。</p>
+    </div>
+    <div class="screen-grid">
+      <div class="screen-card">
+        <div class="screen-shot">
+          <img src="images/recommend-screen.png" alt="47Connectの自治体レコメンド画面" />
+        </div>
+        <div class="screen-body">
+          <div class="screen-kicker">01 FIND</div>
+          <h3>見つける</h3>
+          <p>自社商材に合う自治体を、スコアと根拠つきで抽出。どこから営業すべきかを判断しやすくします。</p>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-shot">
+          <img src="images/image.png" alt="47Connectの自治体サマライズ画面" />
+        </div>
+        <div class="screen-body">
+          <div class="screen-kicker">02 UNDERSTAND</div>
+          <h3>分かる</h3>
+          <p>予算・政策・担当課・提案余地を1自治体ごとに要約。なぜ提案すべきかまで読み解きます。</p>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-shot">
+          <img src="images/crm_list.png" alt="47Connectの提案管理CRM画面" />
+        </div>
+        <div class="screen-body">
+          <div class="screen-kicker">03 MANAGE</div>
+          <h3>管理する</h3>
+          <p>提案状況・メモ・優先度・次アクションをCRMで管理。属人的な自治体営業をチーム資産に変えます。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2005,7 +2181,7 @@
     </div>
     <div class="ttp-bars">
       <div class="ttp-row">
-        <div class="ttp-name">自治体コンサル</div>
+        <div class="ttp-name">外部コンサルタント</div>
         <div class="ttp-bar-track"><div class="ttp-bar" style="width:100%;"></div></div>
         <div class="ttp-time">約3週間</div>
       </div>
@@ -2151,10 +2327,10 @@
         <div class="plan-price">
           <strong>¥100,000</strong><span>/月（税別・月払い）</span>
         </div>
-        <div class="plan-note"><strong>自治体営業のプロフェッショナル・自治体コンサル業者向け</strong>。Layer 1（データ層）フル活用。</div>
+        <div class="plan-note"><strong>自治体営業のプロフェッショナル・外部コンサルタント向け</strong>。Layer 1（データ層）フル活用。</div>
         <div class="plan-hl">
           <div class="plan-hl-title">Layer 1: データ層フル開放</div>
-          <div class="plan-hl-desc">コンサル相当の網羅データを検索・閲覧。御社事業との適合度を自動スコア化した簡易レコメンドまで含む。<strong>「データさえあれば自分で戦略を組める」</strong>自治体営業に精通したプロチーム、または自治体コンサル業者が複数企業の営業に活用するデータプラットフォームとして最適。</div>
+          <div class="plan-hl-desc">外部コンサルタントが調査で扱うような網羅データを検索・閲覧。御社事業との適合度をスコア化した簡易レコメンドまで含む。<strong>「データさえあれば自分で戦略を組める」</strong>自治体営業に精通したプロチーム、または外部コンサルタントが複数企業の営業に活用するデータプラットフォームとして最適。</div>
         </div>
         <ul class="plan-feat">
           <li>1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</li>
@@ -2166,16 +2342,16 @@
         </ul>
       </div>
       <div class="plan reco">
-        <div class="plan-pill">オススメ · コンサル代替</div>
+        <div class="plan-pill">オススメ · AI参謀つき</div>
         <div class="plan-name">Standard · AI参謀プラン</div>
         <div class="plan-title">スタンダードプラン</div>
         <div class="plan-price">
           <strong>¥200,000</strong><span>/月（税別・月払い）</span>
         </div>
-        <div class="plan-note"><strong>自治体ビジネスのコンサル知見がない企業向け</strong>。コンサル代替で毎日相談。Layer 1 + Layer 2 フル活用。</div>
+        <div class="plan-note"><strong>自治体ビジネスの専門知見を社内に蓄積したい企業向け</strong>。AI参謀に毎日相談しながら、Layer 1 + Layer 2 をフル活用。</div>
         <div class="plan-hl">
           <div class="plan-hl-title">Layer 2: AI参謀層フル開放</div>
-          <div class="plan-hl-desc">「自治体コンサルに何でも聞ける」体験。御社専属のAI参謀が、データ層をフル活用して戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
+          <div class="plan-hl-desc">外部コンサルタントに相談するような感覚で、御社専属のAI参謀がデータ層をフル活用し、戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
         </div>
         <ul class="plan-feat">
           <li><strong>ライトプラン（データ層）の全機能</strong></li>
@@ -2244,14 +2420,14 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Comparison</div>
       <h2 class="h-section">コンサルは1〜2回/月。<br>AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
-      <p class="lede">自治体コンサル・DB系ツール・自前リサーチ。それぞれの限界を、自治体AI参謀がどう超えるか。</p>
+      <p class="lede">外部コンサルタント・DB系ツール・自前リサーチ。それぞれの限界を、自治体AI参謀がどう超えるか。</p>
     </div>
     <table class="compare-tbl">
       <thead>
         <tr>
           <th></th>
           <th class="us">47Connect<br>AI参謀</th>
-          <th>自治体<br>コンサル</th>
+          <th>外部<br>コンサル</th>
           <th>DB系<br>ツール</th>
           <th>自前<br>リサーチ</th>
         </tr>
@@ -2342,7 +2518,7 @@
         <div class="pillar-no">PILLAR 01</div>
         <h3><em>参謀</em>の関係性</h3>
         <p><strong>毎日いつでも相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルの「1〜2回/月・メール返信1〜2営業日/件」では拾えない瞬間に応える。ツールのように置いて去らない、御社専属の参謀役として伴走します。</p>
-        <div class="pillar-tag">→ コンサル代替・常駐型</div>
+        <div class="pillar-tag">→ 常駐型のAI参謀</div>
       </div>
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 02</div>
@@ -2440,7 +2616,7 @@
       </details>
       <details class="faq-item">
         <summary>47Connectはどのような企業に向いていますか？</summary>
-        <div class="ans">自治体ビジネス（BtoG）を真剣に展開している中堅〜大企業に最適です。とりわけ、すでに<strong>自治体コンサルを使っている / 使うか検討している</strong>企業や、<strong>予算書公開タイミングを逃して失注している</strong>営業組織において、AI参謀のROIが最大化されます。<br><br>業種では、製造業・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材派遣・広告代理店等で実績・想定ROIを試算済です。</div>
+        <div class="ans">自治体ビジネス（BtoG）を真剣に展開している中堅〜大企業に最適です。とりわけ、自治体営業を1人〜数名で担っている企業や、<strong>予算書公開タイミングを逃して失注している</strong>営業組織において、AI参謀のROIが最大化されます。<br><br>業種では、製造業・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材派遣・広告代理店等で実績・想定ROIを試算済です。</div>
       </details>
       <details class="faq-item">
         <summary>レコメンドのスコアはどのように算出されますか？</summary>
@@ -2475,7 +2651,7 @@
   <div class="foot-inner">
     <div class="brand">
       <strong>47Connect</strong>
-      <span>自治体AI参謀 / コンサル代替AIサービス</span>
+      <span>自治体営業AI参謀 / 1人から内製できる営業判断基盤</span>
     </div>
     <div>© 2026 FromTo, Inc. All rights reserved.</div>
   </div>
