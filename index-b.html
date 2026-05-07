@@ -302,37 +302,6 @@
     .mock{transform:none}
   }
 
-  /* ============ HERO STAGE NOTICE ============ */
-  .stage-notice{
-    background:var(--blue-50);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:28px 0;
-  }
-  .stage-notice .wrap{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap}
-  .stage-notice .lbl{
-    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
-    color:#fff;background:var(--blue);padding:6px 12px;border-radius:5px;flex-shrink:0;
-    margin-top:2px;
-  }
-  .stage-content{flex:1;min-width:280px;display:flex;flex-direction:column;gap:10px}
-  .stage-intro{font-size:13px;font-weight:800;color:var(--ink);line-height:1.6}
-  .stage-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-  .stage-list li{
-    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
-    padding:8px 14px;background:#fff;border-radius:var(--r-sm);border-left:3px solid var(--blue);
-    font-size:13px;line-height:1.6;
-  }
-  .stage-when{
-    font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);
-    letter-spacing:.04em;flex-shrink:0;min-width:148px;
-  }
-  .stage-what{color:var(--ink-2);font-weight:600}
-  .stage-foot{font-size:12px;color:var(--ink-3);line-height:1.7;margin-top:2px}
-  .stage-foot a{color:var(--blue);font-weight:700;border-bottom:1px solid var(--blue-200)}
-  @media (max-width:760px){
-    .stage-list li{flex-direction:column;gap:2px;align-items:flex-start}
-    .stage-when{min-width:0}
-  }
-
   /* ============ WORRIES ============ */
   .worries{background:var(--bg-soft)}
   .worries-head{text-align:center;margin-bottom:40px}
@@ -1319,6 +1288,23 @@
   .faq-item[open] summary::after{transform:rotate(45deg);background:var(--blue);color:#fff;border-color:var(--blue)}
   .faq-item .ans{padding:0 26px 24px;font-size:14px;color:var(--ink-2);line-height:2;max-width:72ch}
   .faq-item .ans strong{color:var(--ink);font-weight:700}
+  .faq-item .ans-sub{font-size:13px;font-weight:800;color:var(--ink);margin:14px 0 8px;line-height:1.6}
+  .faq-item .ans-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+  .faq-item .ans-list li{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:8px 14px;background:var(--blue-50);border-radius:var(--r-sm);border-left:3px solid var(--blue);
+    font-size:13px;line-height:1.6;
+  }
+  .faq-item .ans-when{
+    font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);
+    letter-spacing:.04em;flex-shrink:0;min-width:148px;
+  }
+  .faq-item .ans-what{color:var(--ink-2);font-weight:600}
+  .faq-item .ans-foot{font-size:13px;color:var(--ink-2);line-height:1.85;margin-top:4px}
+  @media (max-width:760px){
+    .faq-item .ans-list li{flex-direction:column;gap:2px;align-items:flex-start}
+    .faq-item .ans-when{min-width:0}
+  }
 
   /* ============ END CTA ============ */
   .end{
@@ -1504,22 +1490,6 @@
     </div>
   </div>
 </section>
-
-<!-- STAGE NOTICE -->
-<div class="stage-notice">
-  <div class="wrap">
-    <span class="lbl">RELEASE PLAN</span>
-    <div class="stage-content">
-      <p class="stage-intro"><strong>※ 段階リリース注記</strong></p>
-      <ul class="stage-list">
-        <li><span class="stage-when">2026年7月（β版開始）</span><span class="stage-what">① 自治体調査の参謀／② 戦略立案の参謀</span></li>
-        <li><span class="stage-when">2026年Q4</span><span class="stage-what">③ 提案書作成の参謀</span></li>
-        <li><span class="stage-when">2027年Q1以降</span><span class="stage-what">④ 事業計画（ROI試算）の参謀</span></li>
-      </ul>
-      <p class="stage-foot">詳細は <a href="#sambo">プロダクト</a>・<a href="#faq">FAQ</a> をご確認ください。</p>
-    </div>
-  </div>
-</div>
 
 <!-- WORRIES -->
 <section class="worries" id="worries" data-screen-label="02 Worries">
@@ -2472,7 +2442,15 @@
     <div class="faq-list">
       <details class="faq-item" open>
         <summary>自治体AI参謀って、結局何ができますか？（β版段階リリース含む）</summary>
-        <div class="ans">プロのコンサルが3週間かけて完成させる4つの成果物——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプット。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。<br><br><strong>※ β版特別キャンペーン期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong>、③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供。β版顧客は各段階で<strong>最初の利用権</strong>＋月次フィードバック反映権を得られます。</div>
+        <div class="ans">プロのコンサルが3週間かけて完成させる4つの成果物——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプット。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。
+          <p class="ans-sub"><strong>※ β版特別キャンペーン期間中の段階リリース</strong></p>
+          <ul class="ans-list">
+            <li><span class="ans-when">2026年7月（β版開始）</span><span class="ans-what">① 自治体調査の参謀／② 戦略立案の参謀</span></li>
+            <li><span class="ans-when">2026年Q4</span><span class="ans-what">③ 提案書作成の参謀</span></li>
+            <li><span class="ans-when">2027年Q1以降</span><span class="ans-what">④ 事業計画（ROI試算）の参謀</span></li>
+          </ul>
+          <p class="ans-foot">β版顧客は各段階で <strong>最初の利用権</strong> ＋ <strong>月次フィードバック反映権</strong> を得られます。</p>
+        </div>
       </details>
       <details class="faq-item">
         <summary>AIクレジットって、毎月足りなくなりませんか？</summary>
