@@ -305,20 +305,52 @@
   /* ============ HERO STAGE NOTICE ============ */
   .stage-notice{
     background:var(--blue-50);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:24px 0;
+    padding:28px 0;
   }
-  .stage-notice .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .stage-notice .wrap{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap}
   .stage-notice .lbl{
     font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
-    color:#fff;background:var(--blue);padding:5px 10px;border-radius:5px;flex-shrink:0;
+    color:#fff;background:var(--blue);padding:6px 12px;border-radius:5px;flex-shrink:0;
+    margin-top:2px;
   }
-  .stage-notice p{font-size:13px;color:var(--ink-2);line-height:1.85;flex:1;min-width:280px}
-  .stage-notice strong{color:var(--ink);font-weight:800}
-  .stage-notice a{color:var(--blue);font-weight:700;border-bottom:1px solid var(--blue-200)}
+  .stage-content{flex:1;min-width:280px;display:flex;flex-direction:column;gap:10px}
+  .stage-intro{font-size:13px;font-weight:800;color:var(--ink);line-height:1.6}
+  .stage-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .stage-list li{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:8px 14px;background:#fff;border-radius:var(--r-sm);border-left:3px solid var(--blue);
+    font-size:13px;line-height:1.6;
+  }
+  .stage-when{
+    font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);
+    letter-spacing:.04em;flex-shrink:0;min-width:148px;
+  }
+  .stage-what{color:var(--ink-2);font-weight:600}
+  .stage-foot{font-size:12px;color:var(--ink-3);line-height:1.7;margin-top:2px}
+  .stage-foot a{color:var(--blue);font-weight:700;border-bottom:1px solid var(--blue-200)}
+  @media (max-width:760px){
+    .stage-list li{flex-direction:column;gap:2px;align-items:flex-start}
+    .stage-when{min-width:0}
+  }
 
   /* ============ WORRIES ============ */
   .worries{background:var(--bg-soft)}
   .worries-head{text-align:center;margin-bottom:40px}
+
+  /* WORRIES お悩み見出し（フックを目立たせる） */
+  .worries .eyebrow{
+    font-size:18px;font-weight:800;letter-spacing:-.005em;
+    color:var(--orange);text-transform:none;
+    font-family:var(--sans);
+    padding:8px 18px;border-radius:999px;
+    background:var(--orange-50);border:1px solid color-mix(in oklab,var(--orange) 28%, transparent);
+    margin-bottom:24px;box-shadow:var(--sh-1);
+  }
+  .worries .eyebrow .dot{width:8px;height:8px;background:var(--orange);box-shadow:0 0 0 4px rgba(233,71,11,.18);animation:wPulse 2.4s ease-in-out infinite}
+  @keyframes wPulse{0%,100%{opacity:1}50%{opacity:.55}}
+  @media (max-width:760px){
+    .worries .eyebrow{font-size:15px;padding:6px 14px}
+  }
 
   .role-tabs{
     display:flex;justify-content:center;gap:6px;margin:0 auto 32px;
@@ -1477,9 +1509,15 @@
 <div class="stage-notice">
   <div class="wrap">
     <span class="lbl">RELEASE PLAN</span>
-    <p>
-      <strong>※ 段階リリース注記：</strong>2026年7月（β版開始）時点で稼働するのは <strong>① 自治体調査の参謀</strong> と <strong>② 戦略立案の参謀</strong>。<strong>③ 提案書作成の参謀</strong>は2026年Q4、<strong>④ 事業計画（ROI試算）の参謀</strong>は2027年Q1以降の順次リリース予定です。詳細は <a href="#sambo">プロダクト</a> ・ <a href="#faq">FAQ</a> をご確認ください。
-    </p>
+    <div class="stage-content">
+      <p class="stage-intro"><strong>※ 段階リリース注記</strong></p>
+      <ul class="stage-list">
+        <li><span class="stage-when">2026年7月（β版開始）</span><span class="stage-what">① 自治体調査の参謀／② 戦略立案の参謀</span></li>
+        <li><span class="stage-when">2026年Q4</span><span class="stage-what">③ 提案書作成の参謀</span></li>
+        <li><span class="stage-when">2027年Q1以降</span><span class="stage-what">④ 事業計画（ROI試算）の参謀</span></li>
+      </ul>
+      <p class="stage-foot">詳細は <a href="#sambo">プロダクト</a>・<a href="#faq">FAQ</a> をご確認ください。</p>
+    </div>
   </div>
 </div>
 
@@ -1563,7 +1601,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Problem</div>
       <h2 class="h-section">自治体営業は、<br><span class="accent">なぜ進めづらいのか。</span></h2>
-      <p class="lede">自治体への営業は、情報を集めるだけでは進みません。提案余地を見つけ、政策文脈を読み解き、接触状況まで管理する必要があります。</p>
+      <p class="lede">自治体への営業は、情報を集めるだけでは進みません。<br>提案余地を見つけ、政策文脈を読み解き、接触状況まで管理する必要があります。</p>
     </div>
     <div class="prob-grid">
       <div class="prob">
@@ -1647,7 +1685,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Solution</div>
       <h2 class="h-section">データ、AI参謀、営業判断を<br><em>つなぐ3層構造。</em></h2>
-      <p class="lede">47Connectは、自治体データを集めて終わりません。予算・計画・議事録・担当課・提案履歴をAI参謀が横断して読み解き、営業先・提案切り口・次アクションへ変換します。</p>
+      <p class="lede">47Connectは、自治体データを集めて終わりません。<br>予算・計画・議事録・担当課・提案履歴をAI参謀が横断して読み解き、<br><strong>営業先・提案切り口・次アクション</strong>へ変換します。</p>
     </div>
 
     <div class="layer-stack">
@@ -1813,7 +1851,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Timing Matters</div>
       <h2 class="h-section">自治体の予算は、入札の<br><em>半年〜2年前</em>に決まっている。</h2>
-      <p class="lede">入札情報が出てからでは遅い。意思決定の上流——予算編成の段階にアプローチすることが、自治体への提案の勝ちパターンです。</p>
+      <p class="lede">入札情報が出てからでは遅い。<br>意思決定の上流——<strong>予算編成の段階</strong>にアプローチすることが、自治体への提案の勝ちパターンです。</p>
     </div>
 
     <div class="flow-track">
@@ -1873,7 +1911,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Layer 1 — Foundation</div>
       <h2 class="h-section">データ層の<em>3機能</em>。<br>これは"土台"です。</h2>
-      <p class="lede">1,741自治体の公開情報を、毎日の意思決定に使える形に構造化。<strong>レコメンド・サマライズ・CRM</strong> の3機能で、自治体営業の "情報整理に使う8割の時間" を圧縮します。</p>
+      <p class="lede">1,741自治体の公開情報を、毎日の意思決定に使える形に構造化。<br><strong>レコメンド・サマライズ・CRM</strong> の3機能で、自治体営業の "情報整理に使う8割の時間" を圧縮します。</p>
     </div>
 
     <div class="l1f-grid">
@@ -1955,7 +1993,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Your AI Strategic Advisor</div>
       <h2 class="h-section">コンサルが3週間かけて行う業務を、<br><em>AI参謀が対話の中で。</em></h2>
-      <p class="lede">プロが3週間で作る4つの成果物を、毎日の対話で随時アウトプット。常駐型・伴走型のAI参謀。</p>
+      <p class="lede">プロが3週間で作る4つの成果物を、毎日の対話で随時アウトプット。<br>常駐型・伴走型のAI参謀。</p>
     </div>
     <div class="sambo-grid">
       <div class="sambo-card">
@@ -1992,7 +2030,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>FromTo Vision</div>
       <h2 class="h-section">47Connectは、<em>「地域AI参謀」</em>ビジョンの<br>"自治体参謀モード" 実装。</h2>
-      <p class="lede">FromToが目指すのは、自治体を起点に地域へ広がる<strong>AI戦略パートナー</strong>。「地域AI参謀」という構想の中で、47Connectは <strong>"自治体参謀モード"</strong> の主力プロダクトとして稼働しています。</p>
+      <p class="lede">FromToが目指すのは、<strong>自治体を起点に地域へ広がる AI戦略パートナー</strong>。<br>「地域AI参謀」という構想の中で、47Connectは <strong>"自治体参謀モード"</strong> の主力プロダクトとして稼働しています。</p>
     </div>
 
     <!-- 2モード並列 -->
