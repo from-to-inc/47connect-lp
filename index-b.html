@@ -339,7 +339,7 @@
   .role-pane.active{display:block;animation:fadeIn .25s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-  .worries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .worries-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:880px;margin:0 auto}
   .worry-card{
     background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
     padding:28px 26px;transition:all .18s ease;
@@ -385,57 +385,6 @@
     .role-tabs{flex-direction:row;flex-wrap:wrap}
     .role-tab{flex:1 1 calc(50% - 6px);padding:10px 12px}
     .sambo-answer{flex-direction:column;text-align:center}
-  }
-
-  /* ============ REALLY ============ */
-  .really{background:#fff;text-align:center}
-  .really h2{
-    font-size:clamp(28px,3.8vw,42px);font-weight:800;
-    line-height:1.4;letter-spacing:-.01em;margin-bottom:16px;color:var(--ink);
-    text-wrap:balance;
-  }
-  .really h2 em{font-style:normal;color:var(--orange)}
-  .really-lede{
-    font-size:16px;color:var(--ink-3);line-height:1.95;max-width:60ch;margin:0 auto 56px;
-  }
-  .really-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-    max-width:960px;margin:0 auto 40px;text-align:left;
-  }
-  .really-item{
-    background:var(--blue-50);border:1px solid var(--blue-100);
-    border-radius:var(--r-lg);padding:28px 26px;transition:all .18s ease;
-  }
-  .really-item:hover{transform:translateY(-3px);box-shadow:var(--sh-3);border-color:var(--blue-200)}
-  .really-icn{
-    width:44px;height:44px;border-radius:10px;
-    background:var(--blue);color:#fff;
-    display:grid;place-items:center;margin-bottom:16px;
-    box-shadow:var(--sh-blue);
-  }
-  .really-icn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-  .really-item h3{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
-  .really-item p{font-size:13px;line-height:1.85;color:var(--ink-3)}
-
-  .really-arrow{
-    display:flex;flex-direction:column;align-items:center;gap:10px;
-    margin:36px 0 24px;color:var(--ink-3);
-  }
-  .really-arrow span{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em}
-  .really-arrow svg{width:14px;height:36px;color:var(--blue)}
-  .really-bottom{
-    display:inline-flex;align-items:center;gap:14px;
-    background:var(--blue-deep);color:#fff;
-    padding:18px 32px;border-radius:999px;
-    font-size:17px;font-weight:800;letter-spacing:-.005em;
-    box-shadow:var(--sh-blue);
-  }
-  .really-bottom .sambo-avatar{width:40px;height:40px;box-shadow:none;border:2px solid rgba(255,255,255,.3)}
-  .really-bottom .sambo-avatar::after{display:none}
-
-  @media (max-width:860px){
-    .really-grid{grid-template-columns:1fr}
-    .really-bottom{flex-direction:column;text-align:center;border-radius:18px;padding:20px}
   }
 
   /* ============ PROBLEM ============ */
@@ -653,97 +602,31 @@
     .l1f-card{padding:24px 22px 28px}
   }
 
-  /* ============ Bridge Section（差別化の打ち出し） ============ */
-  .bridge{background:#fff;padding-top:0;padding-bottom:96px}
-  .bridge-card{
-    background:var(--blue-deep);color:#fff;border-radius:var(--r-xl);
-    padding:56px 48px 48px;text-align:center;
-    box-shadow:var(--sh-3);
-    position:relative;overflow:hidden;
+  /* ============ Bridge Section（1段落差別化） ============ */
+  .bridge{background:#fff;padding:0 0 64px}
+  .bridge-line{
+    background:var(--blue-deep);color:#fff;border-radius:var(--r-lg);
+    padding:32px 36px;text-align:center;display:flex;flex-direction:column;
+    gap:14px;align-items:center;box-shadow:var(--sh-3);
   }
-  .bridge-card::before{
-    content:"";position:absolute;inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size:32px 32px;pointer-events:none;
+  .bridge-line strong{
+    font-size:clamp(18px, 2.2vw, 26px);font-weight:800;
+    line-height:1.55;letter-spacing:-.015em;color:#fff;
   }
-  .bridge-card > *{position:relative}
-  .bridge-eyebrow{
-    display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;
-    letter-spacing:.14em;color:var(--orange-2);
-    padding:6px 14px;border-radius:999px;
-    background:rgba(233,71,11,.12);border:1px solid rgba(233,71,11,.4);
-    margin-bottom:24px;
-  }
-  .bridge-title{
-    font-size:clamp(26px, 3.2vw, 38px);font-weight:800;
-    line-height:1.5;letter-spacing:-.02em;color:#fff;margin-bottom:24px;
-  }
-  .bridge-title .strike{
-    color:rgba(255,255,255,.42);text-decoration:line-through;
-    text-decoration-color:rgba(255,255,255,.32);text-decoration-thickness:2px;
-    font-weight:600;
-  }
-  .bridge-title .strike em{font-style:normal;color:rgba(255,255,255,.55)}
-  .bridge-title strong{color:#fff;font-weight:800}
-  .bridge-title em.hl{
+  .bridge-line em.hl{
     font-style:normal;color:var(--orange-2);font-weight:900;
     background:linear-gradient(transparent 65%, rgba(233,71,11,.28) 65%);
     padding:0 4px;
   }
-  .bridge-lede{
-    font-size:15px;color:var(--t-inv-2);line-height:1.95;
-    max-width:820px;margin:0 auto 36px;
-  }
-  .bridge-lede strong{color:#fff;font-weight:700}
-
-  .bridge-contrast{
-    display:grid;grid-template-columns:1fr auto 1fr;gap:24px;
-    max-width:780px;margin:0 auto 32px;align-items:stretch;
-  }
-  .bc-col{
-    padding:24px 22px;border-radius:var(--r);text-align:left;
-    display:flex;flex-direction:column;gap:14px;
-  }
-  .bc-db{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
-  .bc-ai{background:#fff;color:var(--ink);border:1px solid #fff;box-shadow:var(--sh-2)}
-  .bc-label{
-    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;
-    text-transform:uppercase;
-  }
-  .bc-db .bc-label{color:var(--t-inv-3)}
-  .bc-ai .bc-label{color:var(--blue-deep)}
-  .bc-list{list-style:none;display:flex;flex-direction:column;gap:8px;padding:0}
-  .bc-list li{
-    font-size:13px;line-height:1.6;padding-left:18px;position:relative;
-  }
-  .bc-db .bc-list li{color:var(--t-inv-2)}
-  .bc-ai .bc-list li{color:var(--ink-2)}
-  .bc-list li::before{
-    content:"";position:absolute;left:0;top:.55em;width:8px;height:1px;
-  }
-  .bc-db .bc-list li::before{background:rgba(255,255,255,.4)}
-  .bc-ai .bc-list li::before{background:var(--blue)}
-  .bc-list li strong{font-weight:800}
-  .bc-db .bc-list li strong{color:#fff}
-  .bc-ai .bc-list li strong{color:var(--ink)}
-  .bc-vs{
-    align-self:center;font-family:var(--mono);font-size:14px;font-weight:800;
-    color:var(--orange-2);letter-spacing:.1em;
-  }
-  .bridge-arrow{margin-top:8px}
   .bridge-arrow-label{
-    display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;
-    color:var(--blue-3);letter-spacing:.06em;
-    padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.06);
+    display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;
+    color:var(--blue-3);letter-spacing:.08em;
+    padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.06);
     border:1px dashed rgba(255,255,255,.2);
   }
   @media (max-width:760px){
-    .bridge{padding-bottom:64px}
-    .bridge-card{padding:40px 24px 32px;border-radius:var(--r-lg)}
-    .bridge-contrast{grid-template-columns:1fr;gap:14px}
-    .bc-vs{font-size:12px}
+    .bridge{padding-bottom:48px}
+    .bridge-line{padding:24px 20px;border-radius:var(--r)}
   }
 
   /* ============ Vision Section（地域AI参謀ビジョン） ============ */
@@ -1631,11 +1514,7 @@
         </div>
         <div class="worry-card">
           <span class="worry-tag">即応できる相談相手が不在</span>
-          <div class="worry-bubble">コンサルは深く伴走するが、<strong>接触頻度は1〜2回/月・メール返信は1〜2営業日/件</strong>。「今すぐ確認したい」瞬間に応えられる相棒が、社内に存在しない。</div>
-        </div>
-        <div class="worry-card">
-          <span class="worry-tag">機会損失の常態化</span>
-          <div class="worry-bubble">補正予算の動きを即時に把握できず、本来獲得できたはずの案件を<strong>毎期取りこぼしている</strong>。</div>
+          <div class="worry-bubble">コンサル接触頻度は1〜2回/月・メール返信は1〜2営業日/件。<strong>「今すぐ確認したい」瞬間に応えられる相棒</strong>が社内に存在しない。</div>
         </div>
       </div>
     </div>
@@ -1647,12 +1526,8 @@
           <div class="worry-bubble">メンバーに「次はこの自治体を最優先で当たれ」と指示したいが、<strong>根拠データを揃える工数</strong>を確保できない。</div>
         </div>
         <div class="worry-card">
-          <span class="worry-tag">提案品質の標準化が困難</span>
-          <div class="worry-bubble">担当者ごとに提案書の品質が異なる。<strong>個別最適化と提案量産の両立</strong>が実現できない。</div>
-        </div>
-        <div class="worry-card">
           <span class="worry-tag">予算編成期への先回り不可</span>
-          <div class="worry-bubble">入札公示後の参戦では遅い。意思決定の上流——<strong>公示の半年前にあたる予算編成期</strong>へのアプローチに、リソースを割けない。</div>
+          <div class="worry-bubble">入札公示後では遅い。<strong>公示の半年前にあたる予算編成期</strong>へのアプローチにリソースを割けない。</div>
         </div>
       </div>
     </div>
@@ -1667,10 +1542,6 @@
           <span class="worry-tag">提案書ドラフトの作成工数</span>
           <div class="worry-bubble">自治体固有の議題を踏まえた提案書作成に <strong>1本あたり2営業日</strong> を要する。担当案件数とのトレードオフが常態化。</div>
         </div>
-        <div class="worry-card">
-          <span class="worry-tag">稟議資料の作成負荷</span>
-          <div class="worry-bubble">役員会向けROIモデルを作成する際、<strong>情報の根拠を集めるだけで数時間〜1〜2営業日</strong> を要する。</div>
-        </div>
       </div>
     </div>
 
@@ -1680,54 +1551,8 @@
       </div>
       <div class="text">
         <div class="lbl">AI参謀より</div>
-        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる相棒の不在」</em>。<br>その相棒こそが <strong>自治体AI参謀</strong>。そして、自治体AI参謀を御社のチームに実装するサービスソリューションが、<strong>47Connect（ヨンナナコネクト）</strong>です。</div>
+        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる相棒の不在」</em>。<br>御社チームに常駐する <strong>自治体AI参謀</strong>、それが <strong>47Connect（ヨンナナコネクト）</strong>です。</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- REALLY -->
-<section class="really" data-screen-label="03 Really">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>本当にほしいのは？</div>
-      <h2>納品物ではなく、<em>毎日相談できる相棒</em>。</h2>
-      <p class="really-lede">コンサルもDBサービスも、それぞれの強みはあります。<br>しかし、御社が本当に必要としているのは——これです。</p>
-    </div>
-    <div class="really-grid">
-      <div class="really-item">
-        <div class="really-icn">
-          <svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
-        </div>
-        <h3>公開即日に動ける速度</h3>
-        <p>予算書が公開されたその日に、提案準備が整っていてほしい。</p>
-      </div>
-      <div class="really-item">
-        <div class="really-icn">
-          <svg viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2 8 11.7 4 7.8l5.5-.8z"/></svg>
-        </div>
-        <h3>その自治体固有の提案</h3>
-        <p>テンプレではなく、議事録と公約を引用した個別最適提案がほしい。</p>
-      </div>
-      <div class="really-item">
-        <div class="really-icn">
-          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
-        </div>
-        <h3>毎日相談できる相棒</h3>
-        <p>1〜2回/月のミーティング待ちではなく、必要な瞬間に即応できる相棒であってほしい。</p>
-      </div>
-    </div>
-    <div class="really-arrow">
-      <span>すべてを叶える</span>
-      <svg viewBox="0 0 12 36" preserveAspectRatio="none">
-        <path d="M6 0 V28 M2 24 L6 32 L10 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="really-bottom">
-      <div class="sambo-avatar">
-        <svg><use href="#sambo-icon"/></svg>
-      </div>
-      <span>それが、自治体AI参謀</span>
     </div>
   </div>
 </section>
@@ -2037,8 +1862,7 @@
     </div>
 
     <div class="flow-insight">
-      <p>だからこそ自治体AI参謀は、上流の意思決定の瞬間に動く</p>
-      <strong>予算書・議事録・パブコメが公開された<em>その日</em>に、提案材料化。<br>競合が気づく前に、御社の提案を準備します。</strong>
+      <p>だからこそ自治体AI参謀は、上流の意思決定の瞬間に動く。</p>
     </div>
   </div>
 </section>
@@ -2092,72 +1916,22 @@
         <p class="l1f-desc">議事録 × 予算 × 首長公約 × パブコメ をAIで横断スコアリング。御社の勝ち実績10自治体を学習し、<strong>「次に注力すべき自治体」</strong>を根拠つきで提示。</p>
       </div>
 
-      <!-- 機能02: 自治体サマライズ -->
-      <div class="l1f-card">
+      <!-- 機能02: 自治体サマライズ（テキストのみ） -->
+      <div class="l1f-card l1f-card-textonly">
         <div class="l1f-head">
           <div class="l1f-num">FUNCTION 02</div>
           <h3 class="l1f-title">自治体サマライズ</h3>
         </div>
-        <div class="l1f-mock l1f-mock-sum">
-          <div class="mock-head">
-            <span class="mock-h-title">浜松市 プロファイル</span>
-            <span class="mock-h-tag">ライト・スタンダード</span>
-          </div>
-          <dl class="mock-dl">
-            <dt>首長</dt><dd>中野 祐介(1期目／2027年4月迄)</dd>
-            <dt>予算規模</dt><dd>¥3,500億(R7当初)</dd>
-            <dt>重点施策</dt><dd>DX・防災・観光</dd>
-            <dt>直近議会</dt><dd>10/12 総務委員会で「物流DX」言及</dd>
-            <dt>補正予算</dt><dd>観光DX ¥3,000万・防災 ¥2,000万</dd>
-          </dl>
-          <div class="mock-foot">
-            <span class="mock-tag">議事録引用 24件</span>
-            <span class="mock-tag">公約3項目</span>
-          </div>
-        </div>
-        <p class="l1f-desc">公開情報を構造化し、<strong>1自治体の状況把握を数分で完了</strong>。首長任期・予算サイクル・直近議会の議論を1画面に集約。提案前のリサーチ工数を削減。</p>
+        <p class="l1f-desc">首長・予算規模・重点施策・直近議会・補正予算を1画面に集約。<strong>1自治体の状況把握を数分で完了</strong>し、提案前のリサーチ工数を削減。</p>
       </div>
 
-      <!-- 機能03: 提案管理CRM -->
-      <div class="l1f-card">
+      <!-- 機能03: 提案管理CRM（テキストのみ） -->
+      <div class="l1f-card l1f-card-textonly">
         <div class="l1f-head">
           <div class="l1f-num">FUNCTION 03</div>
           <h3 class="l1f-title">提案管理CRM</h3>
         </div>
-        <div class="l1f-mock l1f-mock-crm">
-          <div class="mock-head">
-            <span class="mock-h-title">案件管理ボード</span>
-            <span class="mock-h-tag">ライト・スタンダード</span>
-          </div>
-          <table class="mock-tbl">
-            <thead>
-              <tr><th>自治体</th><th>案件</th><th>状況</th><th>残任期</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>浜松市</td><td>防災DX</td>
-                <td><span class="mock-st mock-st-hot">商談中</span></td>
-                <td><span class="mock-term">残24mo</span></td>
-              </tr>
-              <tr>
-                <td>静岡市</td><td>観光DX</td>
-                <td><span class="mock-st mock-st-mid">提案済</span></td>
-                <td><span class="mock-term">残18mo</span></td>
-              </tr>
-              <tr>
-                <td>磐田市</td><td>教育情報化</td>
-                <td><span class="mock-st mock-st-win">受注</span></td>
-                <td><span class="mock-term">残12mo</span></td>
-              </tr>
-              <tr>
-                <td>袋井市</td><td>観光プロモ</td>
-                <td><span class="mock-st mock-st-cool">情報収集</span></td>
-                <td><span class="mock-term">残30mo</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="l1f-desc">自治体提案に特化したCRM。<strong>首長任期・予算サイクル・議会日程</strong>を統合管理し、提案タイミングのアラートを自動発火。属人化を防ぎ、組織知に。</p>
+        <p class="l1f-desc">自治体提案特化CRM。<strong>首長任期・予算サイクル・議会日程</strong>を統合管理し、提案タイミングのアラートを自動発火。属人化を防ぎ、組織知に。</p>
       </div>
     </div>
 
@@ -2165,42 +1939,12 @@
   </div>
 </section>
 
-<!-- BRIDGE: 単なるDBではない（差別化の打ち出し） -->
+<!-- BRIDGE: 単なるDBではない（DataLayer→SAMBOへの1段落差別化） -->
 <section class="bridge" data-screen-label="07c Bridge">
   <div class="wrap">
-    <div class="bridge-card">
-      <div class="bridge-eyebrow">But — 47Connectの本領は、ここから。</div>
-      <h2 class="bridge-title">
-        <span class="strike">DBサービスは、情報を <em>"置く"</em> だけ。</span><br>
-        47Connectは、<strong>AI参謀がそれらを <em class="hl">"使い切る"</em></strong>。
-      </h2>
-      <p class="bridge-lede">
-        レコメンド・サマライズ・CRM——他社のDBサービスと類似の機能ですが、47Connectでは
-        <strong>御社の業界・商材・過去取引を学習したAI参謀(Layer 2)</strong>が、これらのデータを毎日の対話で使い切ります。
-        <strong>単なるDBサービスではなく、"使い切る相棒"がいる</strong>——これが47Connectの本領です。
-      </p>
-      <div class="bridge-contrast">
-        <div class="bc-col bc-db">
-          <div class="bc-label">DBサービス(他社)</div>
-          <ul class="bc-list">
-            <li>情報を <strong>置いて去る</strong></li>
-            <li><strong>検索</strong>するだけ</li>
-            <li>全社共通・<strong>御社理解なし</strong></li>
-          </ul>
-        </div>
-        <div class="bc-vs">vs</div>
-        <div class="bc-col bc-ai">
-          <div class="bc-label">47Connect (AI参謀つき)</div>
-          <ul class="bc-list">
-            <li>情報を <strong>使い切る</strong></li>
-            <li><strong>対話</strong>で答えを出す</li>
-            <li><strong>チーム専属に学習</strong>する</li>
-          </ul>
-        </div>
-      </div>
-      <div class="bridge-arrow">
-        <span class="bridge-arrow-label">↓ AI参謀層 (Layer 2) の4機能</span>
-      </div>
+    <div class="bridge-line">
+      <strong>DBサービスは情報を "置く" だけ。47Connectは、<em class="hl">AI参謀がそれらを "使い切る"</em>。</strong>
+      <span class="bridge-arrow-label">↓ AI参謀層（Layer 2）の4機能</span>
     </div>
   </div>
 </section>
@@ -2211,60 +1955,32 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Your AI Strategic Advisor</div>
       <h2 class="h-section">コンサルが3週間かけて行う業務を、<br><em>AI参謀が対話の中で。</em></h2>
-      <p class="lede">自治体ビジネスのプロが3週間かけて作る成果物を、自治体AI参謀が分解して、毎日の対話の中で随時アウトプットします。1〜2回/月ではなく、毎日いつでも相談できる常駐型。</p>
-      <div class="release-plan">
-        <span class="lbl">RELEASE PLAN</span>
-        <span>① 自治体調査・② 戦略立案 = <strong>2026年7月リリース</strong>（β版開始時点）／③ 提案書作成 = <strong>2026年Q4リリース</strong>／④ 事業計画（ROI試算） = <strong>2027年Q1以降</strong></span>
-      </div>
+      <p class="lede">プロが3週間で作る4つの成果物を、毎日の対話で随時アウトプット。常駐型・伴走型のAI参謀。</p>
     </div>
     <div class="sambo-grid">
       <div class="sambo-card">
-        <div class="top">
-          <div class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
-          </div>
-          <div class="num">FUNCTION 01</div>
-        </div>
-        <h3>自治体調査の参謀<small>RESEARCH</small></h3>
-        <p>議事録・予算・首長公約・パブコメを公開当日に構造化。「この自治体、いま何が動いてる？」と聞けば、自治体AI参謀が論点を整理して即返答。</p>
-        <div class="tagline">公開即日 × 1,741自治体 横断構造化</div>
-        <span class="stage-tag live">2026年7月リリース予定</span>
+        <div class="num">FUNCTION 01 · RESEARCH</div>
+        <h3>自治体調査の参謀</h3>
+        <p>議事録・予算・首長公約・パブコメを公開当日に構造化。論点を整理して即返答。</p>
+        <span class="stage-tag live">2026年7月リリース</span>
       </div>
       <div class="sambo-card">
-        <div class="top">
-          <div class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
-          </div>
-          <div class="num">FUNCTION 02</div>
-        </div>
-        <h3>戦略立案の参謀<small>STRATEGY</small></h3>
-        <p>御社の勝ち実績10自治体を学習し、全国の類似プロファイル自治体を機械抽出。「次に注力すべき自治体」を根拠つきで提示します。</p>
-        <div class="tagline">勝ちパターン転写 × 全国レコメンド</div>
-        <span class="stage-tag live">2026年7月リリース予定</span>
+        <div class="num">FUNCTION 02 · STRATEGY</div>
+        <h3>戦略立案の参謀</h3>
+        <p>御社の勝ち実績10自治体を学習し、全国の類似プロファイル自治体を根拠つきで提示。</p>
+        <span class="stage-tag live">2026年7月リリース</span>
       </div>
       <div class="sambo-card">
-        <div class="top">
-          <div class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
-          </div>
-          <div class="num">FUNCTION 03</div>
-        </div>
-        <h3>提案書作成の参謀<small>DRAFTING</small></h3>
-        <p>その自治体固有の議題・予算項目・首長公約を引用した提案書ドラフトを共同編集。「この一文を強化して」と話せば、対話で書き上がる。</p>
-        <div class="tagline">議事録引用 × 各自治体個別最適</div>
-        <span class="stage-tag q4">2026年Q4リリース予定</span>
+        <div class="num">FUNCTION 03 · DRAFTING</div>
+        <h3>提案書作成の参謀</h3>
+        <p>各自治体固有の議題・予算・公約を引用した提案書ドラフトを共同編集。</p>
+        <span class="stage-tag q4">2026年Q4リリース</span>
       </div>
       <div class="sambo-card">
-        <div class="top">
-          <div class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="4" y2="10"/><line x1="10" y1="20" x2="10" y2="4"/><line x1="16" y1="20" x2="16" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
-          </div>
-          <div class="num">FUNCTION 04</div>
-        </div>
-        <h3>事業計画の参謀<small>BUSINESS CASE</small></h3>
-        <p>業種別ROIシミュレーターで稟議資料を即作成。「役員会で説明できる数字を出して」と頼めば、3層ペルソナ（現場/中間/経営）対応の試算が出る。</p>
-        <div class="tagline">稟議資料 × 役員会対応の数字</div>
-        <span class="stage-tag future">2027年Q1以降リリース予定</span>
+        <div class="num">FUNCTION 04 · BUSINESS CASE</div>
+        <h3>事業計画の参謀</h3>
+        <p>業種別ROIシミュレーターで稟議資料を即作成。役員会対応の数字を出力。</p>
+        <span class="stage-tag future">2027年Q1以降リリース</span>
       </div>
     </div>
   </div>
@@ -2492,7 +2208,7 @@
         <div class="plan-note"><strong>自治体営業のプロフェッショナル・外部コンサルタント向け</strong>。Layer 1（データ層）フル活用。</div>
         <div class="plan-hl">
           <div class="plan-hl-title">Layer 1: データ層フル開放</div>
-          <div class="plan-hl-desc">外部コンサルタントが調査で扱うような網羅データを検索・閲覧。御社事業との適合度をスコア化した簡易レコメンドまで含む。<strong>「データさえあれば自分で戦略を組める」</strong>自治体営業に精通したプロチーム、または外部コンサルタントが複数企業の営業に活用するデータプラットフォームとして最適。</div>
+          <div class="plan-hl-desc">網羅データを検索・閲覧＋簡易レコメンド。<strong>「データさえあれば自分で戦略を組める」</strong>自治体営業のプロチーム向け。</div>
         </div>
         <ul class="plan-feat">
           <li>1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</li>
@@ -2513,7 +2229,7 @@
         <div class="plan-note"><strong>自治体ビジネスの専門知見を社内に蓄積したい企業向け</strong>。AI参謀に毎日相談しながら、Layer 1 + Layer 2 をフル活用。</div>
         <div class="plan-hl">
           <div class="plan-hl-title">Layer 2: AI参謀層フル開放</div>
-          <div class="plan-hl-desc">外部コンサルタントに相談するような感覚で、1チーム1専属のAI参謀がデータ層をフル活用し、戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
+          <div class="plan-hl-desc">1チーム1専属のAI参謀が戦略・提案を対話で組み立て。提案書ドラフト・稟議資料・ROI試算まで毎日の対話の中で。</div>
         </div>
         <ul class="plan-feat">
           <li><strong>ライトプラン（データ層）の全機能</strong></li>
@@ -2597,7 +2313,7 @@
       <tbody>
         <tr>
           <td>月額の目安</td>
-          <td class="us"><strong>ライト ¥10万円〜</strong><br><strong>スタンダード ¥20万円〜</strong></td>
+          <td class="us"><strong>ライト ¥10万円〜<br>スタンダード ¥20万円〜</strong></td>
           <td>50〜100万円</td>
           <td>4〜15万円</td>
           <td>人件費</td>
@@ -2617,39 +2333,11 @@
           <td><span class="mark-no">—</span></td>
         </tr>
         <tr>
-          <td>個別自治体最適化</td>
-          <td class="us"><span class="mark-yes">AIが個別生成</span></td>
-          <td>人手</td>
-          <td><span class="mark-no">テンプレ</span></td>
-          <td>人手</td>
-        </tr>
-        <tr>
-          <td>仲介実績に基づくスコアリング</td>
-          <td class="us"><span class="mark-yes">154件・¥2億超の実取引データ</span></td>
+          <td>仲介実績スコアリング</td>
+          <td class="us"><span class="mark-yes">154件・¥2億超の実取引</span></td>
           <td>—</td>
           <td>—</td>
           <td>—</td>
-        </tr>
-        <tr>
-          <td>提案書ドラフト生成</td>
-          <td class="us"><span class="mark-yes">議事録引用つき</span></td>
-          <td>あり（人手）</td>
-          <td><span class="mark-no">—</span></td>
-          <td><span class="mark-no">—</span></td>
-        </tr>
-        <tr>
-          <td>ROIモデル / 稟議資料</td>
-          <td class="us"><span class="mark-yes">業種別シミュレーター</span></td>
-          <td>あり（人手）</td>
-          <td><span class="mark-no">—</span></td>
-          <td><span class="mark-no">—</span></td>
-        </tr>
-        <tr>
-          <td>属人性リスク</td>
-          <td class="us"><span class="mark-yes">なし</span></td>
-          <td><span class="mark-no">高</span></td>
-          <td><span class="mark-yes">なし</span></td>
-          <td><span class="mark-no">高</span></td>
         </tr>
         <tr>
           <td>御社事業文脈の学習</td>
@@ -2745,12 +2433,8 @@
     </div>
     <div class="faq-list">
       <details class="faq-item" open>
-        <summary>自治体AI参謀って、結局何ができますか？</summary>
-        <div class="ans">自治体ビジネスのプロのコンサルが3週間かけて完成させる4つの成果物——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプットします。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。コンサルが届かない瞬間を埋める相棒です。<br><br><strong>※ β版特別キャンペーン期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong> リリース。③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供予定です。</div>
-      </details>
-      <details class="faq-item">
-        <summary>AI参謀は今すぐ全機能使えますか？</summary>
-        <div class="ans"><strong>結論：いいえ。β版特別キャンペーン期間中は段階的にリリースします。</strong><br><br>2026年7月（β版特別キャンペーン開始）時点で即日提供されるのは：<br>① <strong>自治体調査の参謀</strong>（チャット型・データ引用つき回答・自治体プロファイルとの連動）<br>② <strong>戦略立案の参謀</strong>（御社プロファイルを学習した自治体レコメンド・優先順位提示）<br><br>2026年Q4以降に追加：<br>③ <strong>提案書作成の参謀</strong>（議事録引用つき提案書ドラフト共同編集）<br><br>2027年Q1以降：<br>④ <strong>事業計画の参謀</strong>（業種別ROIシミュレーター・稟議資料自動生成）<br><br>β版顧客は段階リリースの各段階で <strong>最初の利用権</strong> を得ます。また、リリース計画自体に対する月次フィードバックを反映する権利もあります。</div>
+        <summary>自治体AI参謀って、結局何ができますか？（β版段階リリース含む）</summary>
+        <div class="ans">プロのコンサルが3週間かけて完成させる4つの成果物——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプット。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。<br><br><strong>※ β版特別キャンペーン期間中の段階リリース</strong>：①自治体調査・②戦略立案は <strong>2026年7月（β版開始）</strong>、③提案書作成は <strong>2026年Q4</strong>、④ROI試算は <strong>2027年Q1以降</strong> 順次提供。β版顧客は各段階で<strong>最初の利用権</strong>＋月次フィードバック反映権を得られます。</div>
       </details>
       <details class="faq-item">
         <summary>AIクレジットって、毎月足りなくなりませんか？</summary>
