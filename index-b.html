@@ -646,6 +646,13 @@
 
   /* ============ Vision Section（地域AI参謀ビジョン） ============ */
   .vision{background:var(--bg-soft);padding-top:96px;padding-bottom:96px}
+  .vision-position{
+    margin-top:18px;display:inline-block;
+    padding:14px 22px;background:#fff;border:1px solid var(--blue-200);
+    border-radius:var(--r);font-size:15px;color:var(--ink);line-height:1.7;
+    box-shadow:var(--sh-1);
+  }
+  .vision-position strong{color:var(--blue-deep);font-weight:800}
 
   /* 2モード並列カード */
   .vision-modes{
@@ -1752,64 +1759,6 @@
     </div>
   </div>
 </section>
-<!-- ROI -->
-<section class="roi" id="roi" data-screen-label="06 ROI">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>ROI by Numbers</div>
-      <h2 class="h-section">月20万円が、御社にいくらの<em>追加効果</em>を生むか。</h2>
-      <p class="lede">営業3名・年4件・売上2,000万円規模の試算ケース。<br>自治体営業の工数を <strong>1/10</strong> に圧縮し、空いた時間で <strong>提案活動量を2倍</strong> へ。</p>
-    </div>
-
-    <div class="roi-grid">
-      <div class="roi-card now">
-        <div class="roi-lbl">現状</div>
-        <div class="roi-num">年1,050時間</div>
-        <div class="roi-cap">営業3名 × 月50h<br>を自治体営業に投下<br>（年4件・売上2,000万円）</div>
-      </div>
-      <div class="roi-arrow">→</div>
-      <div class="roi-card after">
-        <div class="roi-lbl">47Connect導入</div>
-        <div class="roi-num">年105時間</div>
-        <div class="roi-cap">月5h × 3名（<strong>1/10削減</strong>）<br>空いた時間で<br><strong>提案活動量2倍</strong>に拡大</div>
-      </div>
-      <div class="roi-arrow">→</div>
-      <div class="roi-card effect">
-        <div class="roi-lbl">年間効果</div>
-        <div class="roi-num">¥2,220万円</div>
-        <div class="roi-cap">コスト削減 ¥220万円<br>+ 売上拡大見込 ¥2,000万円<br>（年間費用 ¥250万円）</div>
-      </div>
-    </div>
-
-    <div class="roi-stats">
-      <div class="roi-stat">
-        <div class="n">7.9倍</div>
-        <div class="l">ROI（投資対効果）<br>投資 ¥1 → ¥7.9 のリターン</div>
-      </div>
-      <div class="roi-stat">
-        <div class="n">1.4ヶ月</div>
-        <div class="l">投資回収期間<br>（ペイバック）</div>
-      </div>
-      <div class="roi-stat">
-        <div class="n">2倍</div>
-        <div class="l">提案活動量<br>（年4件 → 年8件相当の余力）</div>
-      </div>
-    </div>
-
-    <div class="roi-cta">
-      <div>
-        <div class="roi-cta-eyebrow">御社の営業体制で試算</div>
-        <h3>人数・案件単価を入れるだけ。<br>御社専用ROIを30秒で。</h3>
-        <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた ROI・回収期間・年間効果が即座に算出されます。</p>
-      </div>
-      <div class="roi-cta-btns">
-        <a href="./roi-simulator.html" class="btn btn-primary btn-lg">ROIシミュレーターを開く<span class="arrow">→</span></a>
-        <a href="#contact" class="btn btn-ghost btn-lg">個別相談で詳しく聞く</a>
-      </div>
-    </div>
-    <p class="roi-note">※ 営業3名・年4件・売上2,000万円規模での試算ケース／年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／47Connect ROIシミュレーターに基づく／売上拡大効果は提案活動量増加により創出される売上見込み（種作り）であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／業種・規模・営業体制により数値は変動します。</p>
-  </div>
-</section>
 
 <!-- FLOW -->
 <section class="flow" data-screen-label="07 Flow">
@@ -1871,132 +1820,14 @@
   </div>
 </section>
 
-<!-- DATA LAYER FEATURES (Layer 1の3機能・土台) -->
-<section class="l1feat" data-screen-label="07b DataLayer">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Layer 1 — Foundation</div>
-      <h2 class="h-section">データ層の<em>3機能</em>。<br>これは"土台"です。</h2>
-      <p class="lede">1,741自治体の公開情報を、毎日の意思決定に使える形に構造化。<br><strong>レコメンド・サマライズ・CRM</strong> の3機能で、自治体営業の "情報整理に使う8割の時間" を圧縮します。</p>
-    </div>
-
-    <div class="l1f-grid">
-      <!-- 機能01: 自治体レコメンド -->
-      <div class="l1f-card">
-        <div class="l1f-head">
-          <div class="l1f-num">FUNCTION 01</div>
-          <h3 class="l1f-title">自治体レコメンド</h3>
-        </div>
-        <div class="l1f-mock l1f-mock-reco">
-          <div class="mock-head">
-            <span class="mock-h-title">スコア順 自治体一覧</span>
-            <span class="mock-h-tag">ライト・スタンダード</span>
-          </div>
-          <div class="mock-row">
-            <span class="mock-rank">01</span>
-            <span class="mock-muni">浜松市 <small>静岡県</small></span>
-            <span class="mock-bar"><span class="mock-bar-fill" style="width:85%"></span></span>
-            <span class="mock-score">85</span>
-          </div>
-          <div class="mock-row">
-            <span class="mock-rank">02</span>
-            <span class="mock-muni">磐田市 <small>静岡県</small></span>
-            <span class="mock-bar"><span class="mock-bar-fill" style="width:72%"></span></span>
-            <span class="mock-score">72</span>
-          </div>
-          <div class="mock-row">
-            <span class="mock-rank">03</span>
-            <span class="mock-muni">袋井市 <small>静岡県</small></span>
-            <span class="mock-bar"><span class="mock-bar-fill" style="width:68%"></span></span>
-            <span class="mock-score">68</span>
-          </div>
-          <div class="mock-row">
-            <span class="mock-rank">04</span>
-            <span class="mock-muni">掛川市 <small>静岡県</small></span>
-            <span class="mock-bar"><span class="mock-bar-fill" style="width:61%"></span></span>
-            <span class="mock-score">61</span>
-          </div>
-        </div>
-        <p class="l1f-desc">議事録 × 予算 × 首長公約 × パブコメ をAIで横断スコアリング。御社の勝ち実績10自治体を学習し、<strong>「次に注力すべき自治体」</strong>を根拠つきで提示。</p>
-      </div>
-
-      <!-- 機能02: 自治体サマライズ（テキストのみ） -->
-      <div class="l1f-card l1f-card-textonly">
-        <div class="l1f-head">
-          <div class="l1f-num">FUNCTION 02</div>
-          <h3 class="l1f-title">自治体サマライズ</h3>
-        </div>
-        <p class="l1f-desc">首長・予算規模・重点施策・直近議会・補正予算を1画面に集約。<strong>1自治体の状況把握を数分で完了</strong>し、提案前のリサーチ工数を削減。</p>
-      </div>
-
-      <!-- 機能03: 提案管理CRM（テキストのみ） -->
-      <div class="l1f-card l1f-card-textonly">
-        <div class="l1f-head">
-          <div class="l1f-num">FUNCTION 03</div>
-          <h3 class="l1f-title">提案管理CRM</h3>
-        </div>
-        <p class="l1f-desc">自治体提案特化CRM。<strong>首長任期・予算サイクル・議会日程</strong>を統合管理し、提案タイミングのアラートを自動発火。属人化を防ぎ、組織知に。</p>
-      </div>
-    </div>
-
-    <p class="l1f-note">※ 上図はUIサンプルです。実際の画面構成・機能は実装フェーズにより異なる場合があります。</p>
-  </div>
-</section>
-
-<!-- BRIDGE: 単なるDBではない（DataLayer→SAMBOへの1段落差別化） -->
-<section class="bridge" data-screen-label="07c Bridge">
-  <div class="wrap">
-    <div class="bridge-line">
-      <strong>DBサービスは情報を "置く" だけ。47Connectは、<em class="hl">AI参謀がそれらを "使い切る"</em>。</strong>
-      <span class="bridge-arrow-label">↓ AI参謀層（Layer 2）の4機能</span>
-    </div>
-  </div>
-</section>
-
-<!-- SAMBO -->
-<section class="sambo" id="sambo" data-screen-label="08 Sambo">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Your AI Strategic Advisor</div>
-      <h2 class="h-section">コンサルが3週間かけて行う業務を、<br><em>AI参謀が対話の中で。</em></h2>
-      <p class="lede">プロが3週間で作る4つの成果物を、毎日の対話で随時アウトプット。<br>常駐型・伴走型のAI参謀。</p>
-    </div>
-    <div class="sambo-grid">
-      <div class="sambo-card">
-        <div class="num">FUNCTION 01 · RESEARCH</div>
-        <h3>自治体調査の参謀</h3>
-        <p>議事録・予算・首長公約・パブコメを公開当日に構造化。論点を整理して即返答。</p>
-        <span class="stage-tag live">2026年7月リリース</span>
-      </div>
-      <div class="sambo-card">
-        <div class="num">FUNCTION 02 · STRATEGY</div>
-        <h3>戦略立案の参謀</h3>
-        <p>御社の勝ち実績10自治体を学習し、全国の類似プロファイル自治体を根拠つきで提示。</p>
-        <span class="stage-tag live">2026年7月リリース</span>
-      </div>
-      <div class="sambo-card">
-        <div class="num">FUNCTION 03 · DRAFTING</div>
-        <h3>提案書作成の参謀</h3>
-        <p>各自治体固有の議題・予算・公約を引用した提案書ドラフトを共同編集。</p>
-        <span class="stage-tag q4">2026年Q4リリース</span>
-      </div>
-      <div class="sambo-card">
-        <div class="num">FUNCTION 04 · BUSINESS CASE</div>
-        <h3>事業計画の参謀</h3>
-        <p>業種別ROIシミュレーターで稟議資料を即作成。役員会対応の数字を出力。</p>
-        <span class="stage-tag future">2027年Q1以降リリース</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VISION: 地域AI参謀（FromTo全社のビジョン軸・47Connectの位置づけ提示） -->
-<section class="vision" data-screen-label="08c Vision">
+<!-- VISION: 地域AI参謀とは？（FromTo全社のビジョン軸・47Connectの位置づけ提示） -->
+<section class="vision" data-screen-label="08 Vision">
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>FromTo Vision</div>
-      <h2 class="h-section">47Connectは、<em>「地域AI参謀」</em>ビジョンの<br>"自治体参謀モード" 実装。</h2>
-      <p class="lede">FromToが目指すのは、<strong>自治体を起点に地域へ広がる AI戦略パートナー</strong>。<br>「地域AI参謀」という構想の中で、47Connectは <strong>"自治体参謀モード"</strong> の主力プロダクトとして稼働しています。</p>
+      <h2 class="h-section"><em>「地域AI参謀」</em>とは？</h2>
+      <p class="lede">FromToが目指すのは、<strong>自治体を起点に、地域へ広がる AI戦略パートナー</strong>。<br><strong>"自治体参謀モード"</strong>（今）と <strong>"地域展開モード"</strong>（次）の2モード構成で、自治体のみならず地域企業・住民まで段階的に支援していく構想です。</p>
+      <p class="vision-position"><strong>47Connect</strong> は、この構想の <strong>"自治体参謀モード"</strong> 実装として現在稼働中。</p>
     </div>
 
     <!-- 2モード並列 -->
@@ -2050,6 +1881,16 @@
     </div>
 
     <p class="vision-note">※「地域AI参謀」はFromTo全社のビジョン軸。47Connect（自治体AI参謀）はその中で最初に実装された主力プロダクトです。地域展開モードは段階的に拡張予定。</p>
+  </div>
+</section>
+
+<!-- BRIDGE: 単なるDBではない（VISION の後・47Connectの差別化打ち出し） -->
+<section class="bridge" data-screen-label="08b Bridge">
+  <div class="wrap">
+    <div class="bridge-line">
+      <strong>DBサービスは情報を "置く" だけ。47Connectは、<em class="hl">AI参謀がそれらを "使い切る"</em>。</strong>
+      <span class="bridge-arrow-label">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用</span>
+    </div>
   </div>
 </section>
 
@@ -2293,6 +2134,65 @@
         ※ クレジット単価は β版特別キャンペーン期間中の利用データを基に確定。β版参加企業は確定後の単価を「創業時固定保証」で永続適用。
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ROI（PRICINGの直後に配置：CEO指示2026-05-07） -->
+<section class="roi" id="roi" data-screen-label="12b ROI">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>ROI by Numbers</div>
+      <h2 class="h-section">月20万円が、御社にいくらの<em>追加効果</em>を生むか。</h2>
+      <p class="lede">営業3名・年4件・売上2,000万円規模の試算ケース。<br>自治体営業の工数を <strong>1/10</strong> に圧縮し、空いた時間で <strong>提案活動量を2倍</strong> へ。</p>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-card now">
+        <div class="roi-lbl">現状</div>
+        <div class="roi-num">年1,050時間</div>
+        <div class="roi-cap">営業3名 × 月50h<br>を自治体営業に投下<br>（年4件・売上2,000万円）</div>
+      </div>
+      <div class="roi-arrow">→</div>
+      <div class="roi-card after">
+        <div class="roi-lbl">47Connect導入</div>
+        <div class="roi-num">年105時間</div>
+        <div class="roi-cap">月5h × 3名（<strong>1/10削減</strong>）<br>空いた時間で<br><strong>提案活動量2倍</strong>に拡大</div>
+      </div>
+      <div class="roi-arrow">→</div>
+      <div class="roi-card effect">
+        <div class="roi-lbl">年間効果</div>
+        <div class="roi-num">¥2,220万円</div>
+        <div class="roi-cap">コスト削減 ¥220万円<br>+ 売上拡大見込 ¥2,000万円<br>（年間費用 ¥250万円）</div>
+      </div>
+    </div>
+
+    <div class="roi-stats">
+      <div class="roi-stat">
+        <div class="n">7.9倍</div>
+        <div class="l">ROI(投資対効果)<br>投資 ¥1 → ¥7.9 のリターン</div>
+      </div>
+      <div class="roi-stat">
+        <div class="n">1.4ヶ月</div>
+        <div class="l">投資回収期間<br>(ペイバック)</div>
+      </div>
+      <div class="roi-stat">
+        <div class="n">2倍</div>
+        <div class="l">提案活動量<br>(年4件 → 年8件相当の余力)</div>
+      </div>
+    </div>
+
+    <div class="roi-cta">
+      <div>
+        <div class="roi-cta-eyebrow">御社の営業体制で試算</div>
+        <h3>人数・案件単価を入れるだけ。<br>御社専用ROIを30秒で。</h3>
+        <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた ROI・回収期間・年間効果が即座に算出されます。</p>
+      </div>
+      <div class="roi-cta-btns">
+        <a href="./roi-simulator.html" class="btn btn-primary btn-lg">ROIシミュレーターを開く<span class="arrow">→</span></a>
+        <a href="#contact" class="btn btn-ghost btn-lg">個別相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="roi-note">※ 営業3名・年4件・売上2,000万円規模での試算ケース／年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／47Connect ROIシミュレーターに基づく／売上拡大効果は提案活動量増加により創出される売上見込み(種作り)であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／業種・規模・営業体制により数値は変動します。</p>
   </div>
 </section>
 
