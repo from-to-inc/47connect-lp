@@ -434,7 +434,7 @@
   }
   .prob-visual .mini.a{left:14px;top:14px}
   .prob-visual .mini.b{right:14px;bottom:14px}
-  .prob .row{display:flex;align-items:center;gap:10px}
+  .prob .row{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
   .prob .no{
     font-family:var(--mono);font-weight:800;font-size:12px;
     padding:5px 9px;border-radius:999px;background:#fff;color:var(--blue-deep);
@@ -446,11 +446,37 @@
   .prob .tag{
     display:inline-block;align-self:flex-start;
     font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;
-    color:var(--orange);background:var(--orange-50);padding:5px 10px;border-radius:6px;
+    color:var(--orange);background:var(--orange-50);padding:6px 12px;border-radius:6px;
   }
-  .prob-points{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:4px}
+  .prob-points{
+    list-style:none;display:flex;flex-direction:column;gap:8px;
+    margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);
+  }
   .prob-points li{font-size:13px;color:var(--ink-3);line-height:1.65;padding-left:16px;position:relative}
   .prob-points li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:var(--blue)}
+
+  /* カードごとの色分け（CI 3色を活用：青/朱/ティール） */
+  /* 01 見つけられない = 朱（散らばり・警戒） */
+  .prob-grid > .prob:nth-child(1){border-top:5px solid var(--orange)}
+  .prob-grid > .prob:nth-child(1) .no{color:var(--orange);background:var(--orange-50);border-color:color-mix(in oklab,var(--orange) 30%, transparent)}
+  .prob-grid > .prob:nth-child(1) .tag{color:var(--orange);background:var(--orange-50)}
+  .prob-grid > .prob:nth-child(1) .prob-points li::before{background:var(--orange)}
+  .prob-grid > .prob:nth-child(1) .prob-visual.prob-visual-img .mini{color:var(--orange)}
+
+  /* 02 わからない = 青（情報・読み解き） */
+  .prob-grid > .prob:nth-child(2){border-top:5px solid var(--blue)}
+  .prob-grid > .prob:nth-child(2) .no{color:var(--blue-deep);background:var(--blue-50);border-color:var(--blue-200)}
+  .prob-grid > .prob:nth-child(2) .tag{color:var(--blue-deep);background:var(--blue-50)}
+  .prob-grid > .prob:nth-child(2) .prob-points li::before{background:var(--blue)}
+  .prob-grid > .prob:nth-child(2) .prob-visual.prob-visual-img .mini{color:var(--blue-deep);border-color:var(--blue-200)}
+
+  /* 03 管理ができない = ティール（混沌・複雑性） */
+  .prob-grid > .prob:nth-child(3){border-top:5px solid var(--teal)}
+  .prob-grid > .prob:nth-child(3) .no{color:#1F8077;background:#E5F4F2;border-color:color-mix(in oklab,var(--teal) 25%, transparent)}
+  .prob-grid > .prob:nth-child(3) .tag{color:#1F8077;background:#E5F4F2}
+  .prob-grid > .prob:nth-child(3) .prob-points li::before{background:var(--teal)}
+  .prob-grid > .prob:nth-child(3) .prob-visual.prob-visual-img .mini{color:#1F8077;border-color:color-mix(in oklab,var(--teal) 25%, transparent)}
+
   @media (max-width:920px){.prob-grid{grid-template-columns:1fr}}
 
   /* ============ SOLUTION (2-LAYER) ============ */
@@ -1596,7 +1622,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Problem</div>
-      <h2 class="h-section">自治体営業は、<br><span class="accent">なぜ進めづらいのか。</span></h2>
+      <h2 class="h-section">自治体営業は、<span class="accent">なぜ進めづらいのか。</span></h2>
       <p class="lede">自治体への営業は、情報を集めるだけでは進みません。<br>提案余地を見つけ、政策文脈を読み解き、接触状況まで管理する必要があります。</p>
     </div>
     <div class="prob-grid">
@@ -1674,7 +1700,7 @@
         <div class="screen-body">
           <div class="screen-kicker">01 FIND</div>
           <h3>見つける</h3>
-          <p>自社商材に合う自治体を、スコアと根拠つきで抽出。どこから営業すべきかを判断しやすくします。</p>
+          <p>自社商材に合う自治体を、スコアと根拠つきでレコメンド。どこから営業すべきかを判断しやすくします。</p>
         </div>
       </div>
       <div class="screen-card">
@@ -1706,7 +1732,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Solution</div>
-      <h2 class="h-section">データ、AI参謀、営業判断を<br><em>つなぐ3層構造。</em></h2>
+      <h2 class="h-section">データ、AI参謀、営業判断を<em>つなぐ3層構造。</em></h2>
       <p class="lede">47Connectは、自治体データを集めて終わりません。<br>予算・計画・議事録・担当課・提案履歴をAI参謀が横断して読み解き、<br><strong>営業先・提案切り口・次アクション</strong>へ変換します。</p>
     </div>
 
@@ -1999,7 +2025,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>β版特別キャンペーン</div>
-      <h2 class="h-section">創業期に参画する20社だけの、<br><em>特別な条件。</em></h2>
+      <h2 class="h-section">β版特別キャンペーンに参画する20社だけの、<em>特別な条件。</em></h2>
       <p class="lede">2026年 β版特別キャンペーンは、自治体AI参謀の精度向上を一緒に作る共創パートナーです。御社の勝ちパターンを学習させる期間として、特別価格と固定保証を提供します。</p>
     </div>
 
