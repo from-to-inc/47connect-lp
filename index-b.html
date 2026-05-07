@@ -777,6 +777,20 @@
     background:var(--blue-50);color:var(--blue-deep);border:1px solid var(--blue-100);
   }
 
+  /* WHY（深青背景）内に置かれた3事業ブロック用ダーク変奏 */
+  .why-3biz{margin-top:40px}
+  .why-3biz .v3biz-label{color:var(--blue-3)}
+  .why-3biz .v3biz-card{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+    box-shadow:none;
+  }
+  .why-3biz .v3biz-num{color:var(--blue-3)}
+  .why-3biz .v3biz-card h4{color:#fff}
+  .why-3biz .v3biz-card p{color:var(--t-inv-2)}
+  .why-3biz .v3biz-mode{
+    background:rgba(48,113,185,.18);color:#fff;border-color:rgba(108,163,230,.28);
+  }
+
   .vision-note{
     margin-top:32px;font-size:12px;color:var(--ink-4);
     text-align:center;line-height:1.85;
@@ -1860,31 +1874,6 @@
       <p>絵に描いた政策で終わらせないAI。</p>
     </div>
 
-    <!-- 3事業統合 -->
-    <div class="vision-3biz">
-      <div class="v3biz-label">FromToの3事業が「地域AI参謀」を構成する</div>
-      <div class="v3biz-grid">
-        <div class="v3biz-card">
-          <div class="v3biz-num">事業 01</div>
-          <h4>47Connect（自治体AI参謀）</h4>
-          <p>情報・戦略導線。自治体ビジネスの提案を支援する常駐型AI参謀。</p>
-          <span class="v3biz-mode">自治体参謀モード</span>
-        </div>
-        <div class="v3biz-card">
-          <div class="v3biz-num">事業 02</div>
-          <h4>製品寄附仲介</h4>
-          <p>物資導線。企業版ふるさと納税で144件・106自治体の実取引実績。</p>
-          <span class="v3biz-mode">地域展開モード（初期実装）</span>
-        </div>
-        <div class="v3biz-card">
-          <div class="v3biz-num">事業 03</div>
-          <h4>R&D型越境派遣</h4>
-          <p>人材導線。地域企業と都市部人材の中長期マッチング。</p>
-          <span class="v3biz-mode">地域展開モード（深層実装）</span>
-        </div>
-      </div>
-    </div>
-
     <p class="vision-note">※「地域AI参謀」はFromTo全社のビジョン軸。47Connect（自治体AI参謀）はその中で最初に実装された主力プロダクトです。地域展開モードは段階的に拡張予定。</p>
   </div>
 </section>
@@ -2295,6 +2284,31 @@
     <div class="why-main">
       <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
       <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>3本柱すべてを満たすのは国内でFromToだけ</strong>。寄附仲介の実績と、112自治体との信頼関係、そして1,741自治体のAI構造化基盤——FromToの過去すべてが、自治体AI参謀という形に結晶しました。</p>
+    </div>
+
+    <!-- 3事業の積み重ねがFromToだけの強み（旧VISION-3bizから移動） -->
+    <div class="vision-3biz why-3biz">
+      <div class="v3biz-label">3事業の積み重ねが、FromToだけの強み</div>
+      <div class="v3biz-grid">
+        <div class="v3biz-card">
+          <div class="v3biz-num">事業 01</div>
+          <h4>47Connect（自治体AI参謀）</h4>
+          <p>情報・戦略導線。自治体ビジネスの提案を支援する常駐型AI参謀。</p>
+          <span class="v3biz-mode">自治体参謀モード</span>
+        </div>
+        <div class="v3biz-card">
+          <div class="v3biz-num">事業 02</div>
+          <h4>製品寄附仲介</h4>
+          <p>物資導線。企業版ふるさと納税で144件・106自治体の実取引実績。</p>
+          <span class="v3biz-mode">地域展開モード（初期実装）</span>
+        </div>
+        <div class="v3biz-card">
+          <div class="v3biz-num">事業 03</div>
+          <h4>R&D型越境派遣</h4>
+          <p>人材導線。地域企業と都市部人材の中長期マッチング。</p>
+          <span class="v3biz-mode">地域展開モード（深層実装）</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
