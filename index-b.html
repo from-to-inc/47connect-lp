@@ -484,6 +484,13 @@
   .layer-stack{
     margin-top:42px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px;align-items:center;
   }
+  .stack-image{
+    border-radius:var(--r-lg);overflow:hidden;
+    background:var(--bg-soft);
+  }
+  .stack-image img{
+    display:block;width:100%;height:auto;
+  }
   .stack-diagram{
     background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-xl);
     padding:34px;box-shadow:var(--sh-2);position:relative;overflow:hidden;
@@ -1727,72 +1734,8 @@
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="solution" id="solution" data-screen-label="05 Solution">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>The Solution</div>
-      <h2 class="h-section">データ、AI参謀、営業判断を<em>つなぐ3層構造。</em></h2>
-      <p class="lede">47Connectは、自治体データを集めて終わりません。<br>予算・計画・議事録・担当課・提案履歴をAI参謀が横断して読み解き、<br><strong>営業先・提案切り口・次アクション</strong>へ変換します。</p>
-    </div>
-
-    <div class="layer-stack">
-      <div class="stack-diagram" aria-label="データ層をAI参謀層が使い切り、営業判断へ変換するレイヤー図">
-        <div class="stack-card stack-output">
-          <div class="stack-label">Output</div>
-          <div class="stack-title">営業判断</div>
-          <p>どの自治体に、何を、なぜ今提案するか。次に誰が何をするかまで整理します。</p>
-          <div class="stack-chips">
-            <span class="stack-chip">営業先</span>
-            <span class="stack-chip">提案切り口</span>
-            <span class="stack-chip">次アクション</span>
-          </div>
-        </div>
-        <div class="stack-arrow">↑ AI参謀がデータを横断して使い切る</div>
-        <div class="stack-card stack-ai">
-          <div class="stack-label">Layer 2</div>
-          <div class="stack-title">AI参謀層</div>
-          <p>御社の業界・商材・過去取引を理解し、自治体データから提案余地と優先順位を組み立てます。</p>
-          <div class="stack-chips">
-            <span class="stack-chip">適合分析</span>
-            <span class="stack-chip">仮説立案</span>
-            <span class="stack-chip">優先順位づけ</span>
-          </div>
-        </div>
-        <div class="stack-arrow">↑ 構造化された自治体データ</div>
-        <div class="stack-card stack-data">
-          <div class="stack-label">Layer 1</div>
-          <div class="stack-title">データ層</div>
-          <p>1,741自治体の公開情報と営業管理情報を、日々の判断に使える形で構造化します。</p>
-          <div class="stack-chips">
-            <span class="stack-chip">予算</span>
-            <span class="stack-chip">総合計画</span>
-            <span class="stack-chip">議事録</span>
-            <span class="stack-chip">担当課</span>
-            <span class="stack-chip">CRM</span>
-          </div>
-        </div>
-      </div>
-      <div class="stack-side">
-        <div class="stack-side-card">
-          <h3>データベースで終わらない</h3>
-          <p>情報を置くだけでは、営業判断にはつながりません。47ConnectはAI参謀がデータを読み解き、判断材料へ変換します。</p>
-        </div>
-        <div class="stack-side-card">
-          <h3>1人から営業基盤を持てる</h3>
-          <p>外部コンサルタントに毎回頼らず、初動調査・仮説整理・案件管理を社内で回せる状態を作ります。</p>
-        </div>
-        <div class="stack-side-card">
-          <h3>自治体特有の変化も追える</h3>
-          <p>首長任期、選挙、方針転換、予算サイクルまで含めて、次に動くべきタイミングを見逃しにくくします。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FLOW -->
-<section class="flow" data-screen-label="07 Flow">
+<!-- FLOW（SCREEN TOURの直後に配置：CEO指示2026-05-07） -->
+<section class="flow" data-screen-label="04c Flow">
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Timing Matters</div>
@@ -1847,6 +1790,37 @@
 
     <div class="flow-insight">
       <p>だからこそ自治体AI参謀は、上流の意思決定の瞬間に動く。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution" data-screen-label="05 Solution">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>The Solution</div>
+      <h2 class="h-section">データ、AI参謀、営業判断を<em>つなぐ3層構造。</em></h2>
+      <p class="lede">47Connectは、自治体データを集めて終わりません。<br>予算・計画・議事録・担当課・提案履歴をAI参謀が横断して読み解き、<br><strong>営業先・提案切り口・次アクション</strong>へ変換します。</p>
+    </div>
+
+    <div class="layer-stack">
+      <div class="stack-image" aria-label="データ層 → AI参謀層 → 営業判断 へと変換する3層構造の図解">
+        <img src="images/layer.png" alt="47Connectの3層構造：データ層（予算・総合計画・議事録・担当課・CRM）→ AI参謀層（適合分析・仮説立案・優先順位づけ）→ 営業判断（営業先・提案切り口・次アクション）" loading="lazy" />
+      </div>
+      <div class="stack-side">
+        <div class="stack-side-card">
+          <h3>データベースで終わらない</h3>
+          <p>情報を置くだけでは、営業判断にはつながりません。47ConnectはAI参謀がデータを読み解き、判断材料へ変換します。</p>
+        </div>
+        <div class="stack-side-card">
+          <h3>1人から営業基盤を持てる</h3>
+          <p>外部コンサルタントに毎回頼らず、初動調査・仮説整理・案件管理を社内で回せる状態を作ります。</p>
+        </div>
+        <div class="stack-side-card">
+          <h3>自治体特有の変化も追える</h3>
+          <p>首長任期、選挙、方針転換、予算サイクルまで含めて、次に動くべきタイミングを見逃しにくくします。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
