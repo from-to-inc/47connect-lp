@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>地域AI参謀 — 自治体を起点に地域へ広がるAI戦略パートナー｜FromTo</title>
+<meta name="description" content="「地域AI参謀」は、自治体を起点に地域企業・住民へ広がるAI戦略パートナーというFromToの構想です。自治体・地域企業・メディア・投資家の皆様との対話の入口です。" />
+<link rel="canonical" href="https://from-to-inc.github.io/47connect-lp/chiiki-ai-sambo.html" />
+<meta name="robots" content="index, follow" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:title" content="地域AI参謀 — 自治体を起点に地域へ広がるAI戦略パートナー｜FromTo" />
+<meta property="og:description" content="自治体を起点に地域へ広がるAI戦略パートナーという、FromToの中長期ビジョン。" />
+<meta property="og:url" content="https://from-to-inc.github.io/47connect-lp/chiiki-ai-sambo.html" />
+<meta property="og:image" content="https://from-to-inc.github.io/47connect-lp/images/ogp-chiiki-ai-sambo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"FromTo, Inc.","url":"https://from-to.biz/","logo":"https://from-to-inc.github.io/47connect-lp/images/logo.png","description":"自治体を起点に地域へ広がるAI戦略パートナー「地域AI参謀」を掲げる、地域創生スタートアップ。"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"地域AI参謀","url":"https://from-to-inc.github.io/47connect-lp/chiiki-ai-sambo.html","inLanguage":"ja-JP","publisher":{"@type":"Organization","name":"FromTo, Inc."}}
+</script>
+
+<style>
+  :root{
+    --blue:#3071B9;--blue-2:#5B95D2;--blue-3:#87B3DF;--blue-deep:#1F4F87;--blue-ink:#0E1F3A;
+    --blue-50:#EEF3FB;--blue-100:#DCE6F4;--blue-200:#C5D6EC;--blue-300:#A4BFE0;
+    --orange:#E9470B;--orange-2:#FF6B33;--orange-50:#FDEBE3;
+    --teal:#4CBBB4;
+    --bg:#FFFFFF;--bg-soft:#F7F9FC;--bg-tint:#EEF3FB;
+    --ink:#0E1F3A;--ink-2:#2C3E5E;--ink-3:#5C6E8E;--ink-4:#8898B5;
+    --line:#E2E8F2;--line-2:#EFF2F8;--line-dark:rgba(255,255,255,.10);
+    --t-inv:#FFFFFF;--t-inv-2:rgba(255,255,255,.78);--t-inv-3:rgba(255,255,255,.55);
+    --sans:"Avenir Next","Avenir","Nunito Sans","ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+    --mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,monospace;
+    --r-sm:8px;--r:12px;--r-lg:18px;--r-xl:24px;
+    --sh-1:0 1px 2px rgba(14,31,58,.04),0 1px 1px rgba(14,31,58,.03);
+    --sh-2:0 4px 12px rgba(14,31,58,.06),0 2px 4px rgba(14,31,58,.04);
+    --sh-3:0 12px 28px rgba(14,31,58,.10),0 4px 8px rgba(14,31,58,.05);
+    --sh-4:0 24px 56px rgba(14,31,58,.14),0 8px 16px rgba(14,31,58,.06);
+    --sh-blue:0 12px 24px rgba(48,113,185,.20),0 4px 8px rgba(48,113,185,.10);
+    --sh-orange:0 10px 22px rgba(233,71,11,.28),0 4px 8px rgba(233,71,11,.14);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"palt";line-height:1.7;font-size:16px}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  .wrap-narrow{max-width:880px;margin:0 auto;padding:0 28px}
+  section{padding:120px 0;position:relative}
+  @media (max-width:760px){section{padding:80px 0}}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-deep);margin-bottom:18px}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .eyebrow.on-dark{color:var(--blue-3)}
+  .eyebrow.on-dark .dot{background:var(--orange-2)}
+
+  .h-section{font-size:clamp(28px,3.8vw,44px);font-weight:800;line-height:1.35;letter-spacing:-.01em;color:var(--ink);margin-bottom:18px;text-wrap:balance}
+  .h-section em{font-style:normal;color:var(--blue);font-weight:800}
+  .on-dark .h-section{color:#fff}
+  .on-dark .h-section em{color:var(--blue-3)}
+
+  .lede{font-size:16px;color:var(--ink-3);line-height:1.95;max-width:64ch;margin:0 auto}
+  .on-dark .lede{color:var(--t-inv-2)}
+  .section-head.center{text-align:center;margin-bottom:64px}
+  .section-head.center .lede{margin-left:auto;margin-right:auto}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:var(--r);font-weight:700;font-size:15px;letter-spacing:.01em;transition:all .18s ease;white-space:nowrap;border:1px solid transparent}
+  .btn .arrow{display:inline-block;transition:transform .18s ease}
+  .btn:hover .arrow{transform:translateX(3px)}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:var(--sh-blue)}
+  .btn-primary:hover{background:var(--blue-deep);box-shadow:0 16px 32px rgba(48,113,185,.28)}
+  .btn-orange{background:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
+  .btn-orange:hover{background:#C73B05;box-shadow:0 14px 28px rgba(233,71,11,.36)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--bg-soft);border-color:var(--blue-200)}
+  .btn-ghost-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28)}
+  .btn-ghost-light:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.5)}
+  .btn-lg{padding:18px 32px;font-size:16px}
+
+  .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+  .logo-mark{width:32px;height:32px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:800;letter-spacing:.02em}
+  .nav{display:flex;gap:24px;font-size:14px;color:var(--ink-2);font-weight:600}
+  .nav a:hover{color:var(--blue)}
+  .header-cta{display:flex;align-items:center;gap:10px}
+  .header-cta .btn{padding:10px 18px;font-size:13px}
+  .header-sublink{font-size:12px;color:var(--ink-3);font-weight:600}
+  .header-sublink a{color:var(--blue);border-bottom:1px solid var(--blue-200);font-weight:700}
+  .header-sublink a:hover{color:var(--blue-deep)}
+  @media (max-width:980px){.nav{display:none}.header-sublink{display:none}.ghost-mob{display:none}}
+
+  .hero{background:var(--blue-ink);color:#fff;padding:100px 0 80px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at 30% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 30% 50%,#000 30%,transparent 75%);pointer-events:none}
+  .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;position:relative}
+  .hero h1{font-size:clamp(38px,5.2vw,62px);font-weight:800;line-height:1.32;letter-spacing:-.015em;margin-bottom:20px;text-wrap:balance}
+  .hero h1 .grad{color:var(--blue-3)}
+  .hero h2.hero-subhead{font-size:clamp(18px,2.2vw,24px);font-weight:700;color:#fff;line-height:1.6;margin-bottom:24px;letter-spacing:-.005em}
+  .hero-sub{font-size:16px;line-height:2;color:var(--t-inv-2);max-width:48ch;margin-bottom:32px}
+  .hero-sub strong{color:#fff;font-weight:700}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-visual{position:relative;display:grid;place-items:center}
+  .concept-svg{width:100%;max-width:480px;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.18))}
+
+  @media (max-width:960px){.hero-inner{grid-template-columns:1fr;gap:48px}.concept-svg{max-width:380px}}
+
+  .ph{padding:80px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ph .wrap{text-align:center}
+  .ph .ph-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--ink-3);background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:5px;margin-bottom:12px}
+  .ph h3{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px}
+  .ph p{font-size:14px;color:var(--ink-3)}
+
+  .foot{background:#0A1628;color:rgba(255,255,255,.55);padding:48px 28px;font-size:13px;border-top:1px solid rgba(255,255,255,.10)}
+  .foot-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-end}
+  .foot .brand{display:flex;flex-direction:column;gap:6px}
+  .foot strong{color:#fff;font-weight:800;font-size:16px;letter-spacing:-.005em}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap;font-size:13px}
+  .foot-links a{color:rgba(255,255,255,.7);font-weight:600}
+  .foot-links a:hover{color:#fff}
+  .foot-copy{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.45)}
+
+  /* ============ S03 INTRO（Why Now） ============ */
+  .intro{background:#fff}
+  .intro .wrap{max-width:880px}
+  .intro-paragraphs{display:flex;flex-direction:column;gap:24px;margin-top:48px}
+  .intro-paragraphs p{font-size:16px;line-height:1.95;color:var(--ink-2)}
+  .intro-paragraphs p strong{color:var(--ink);font-weight:800}
+  .intro-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;
+    padding:32px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);
+  }
+  .intro-stat{text-align:center;padding:0 12px}
+  .intro-stat .val{
+    font-family:var(--mono);font-size:clamp(24px,3vw,32px);font-weight:800;color:var(--blue-deep);
+    letter-spacing:-.01em;line-height:1.2;margin-bottom:6px
+  }
+  .intro-stat .lbl{font-size:12px;color:var(--ink-3);font-weight:600;line-height:1.6}
+  .intro-stat .src{display:block;margin-top:8px;font-size:10px;color:var(--ink-4);font-family:var(--mono);letter-spacing:.04em}
+  @media (max-width:760px){.intro-stats{grid-template-columns:1fr;gap:24px;padding:24px}}
+
+  /* ============ S04 CONCEPT（地域AI参謀の定義） ============ */
+  .concept{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .concept .keycopy{
+    font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--blue-deep);
+    line-height:1.6;text-align:center;margin:8px auto 56px;max-width:32ch;letter-spacing:-.005em
+  }
+  .concept-diagram{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r-xl);
+    padding:48px 32px;margin:0 auto;max-width:920px;box-shadow:var(--sh-2);
+    display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center
+  }
+  .concept-diagram .desc h3{
+    font-size:18px;font-weight:800;color:var(--ink);margin-bottom:12px;letter-spacing:-.005em
+  }
+  .concept-diagram .desc p{font-size:14px;color:var(--ink-2);line-height:1.95;margin-bottom:14px}
+  .concept-diagram .desc .layer{
+    display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-top:1px solid var(--line-2)
+  }
+  .concept-diagram .desc .layer:first-of-type{border-top:none}
+  .concept-diagram .desc .layer .badge{
+    font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;
+    background:var(--blue-50);color:var(--blue-deep);padding:5px 10px;border-radius:5px;flex-shrink:0
+  }
+  .concept-diagram .desc .layer .txt strong{display:block;font-size:14px;font-weight:800;color:var(--ink);margin-bottom:4px}
+  .concept-diagram .desc .layer .txt span{font-size:13px;color:var(--ink-3);line-height:1.7}
+  .concept-svg-2{width:100%;max-width:380px;height:auto;margin:0 auto;display:block}
+  .concept-mode-preview{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:48px;max-width:920px;margin-left:auto;margin-right:auto
+  }
+  .concept-mode-preview .pv{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 24px;
+    display:flex;flex-direction:column;gap:8px
+  }
+  .concept-mode-preview .pv .lbl{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--blue-deep)
+  }
+  .concept-mode-preview .pv h4{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.005em}
+  .concept-mode-preview .pv p{font-size:13px;color:var(--ink-3);line-height:1.7}
+  .concept-bridge{
+    margin-top:40px;padding:20px 28px;background:#fff;border:1px dashed var(--blue-200);border-radius:var(--r);
+    text-align:center;font-size:13px;color:var(--ink-2);line-height:1.85;max-width:760px;margin-left:auto;margin-right:auto
+  }
+  .concept-bridge strong{color:var(--blue-deep);font-weight:800}
+  .concept-bridge a{color:var(--blue-deep);font-weight:700;border-bottom:1px solid var(--blue-200)}
+  .concept-bridge a:hover{color:var(--blue)}
+  @media (max-width:860px){
+    .concept-diagram{grid-template-columns:1fr;padding:32px 24px;gap:32px}
+    .concept-mode-preview{grid-template-columns:1fr}
+  }
+
+  /* ============ S05/S06 MODE カード ============ */
+  .modes{background:#fff}
+  .mode-block{margin-top:64px;padding-top:64px;border-top:1px solid var(--line)}
+  .mode-block:first-of-type{margin-top:0;padding-top:0;border-top:none}
+  .mode-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+  .mode-badge{
+    font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.18em;
+    background:var(--blue-deep);color:#fff;padding:7px 14px;border-radius:5px
+  }
+  .mode-badge.alt{background:var(--orange);color:#fff}
+  .mode-title{font-size:clamp(24px,3vw,32px);font-weight:800;color:var(--ink);letter-spacing:-.005em;line-height:1.4}
+  .mode-tagline{
+    font-size:18px;font-weight:800;color:var(--blue-deep);
+    margin-bottom:12px;letter-spacing:-.005em
+  }
+  .mode-tagline.alt{color:var(--orange)}
+  .mode-desc{font-size:15px;color:var(--ink-2);line-height:1.95;max-width:60ch;margin-bottom:36px}
+  .mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .mode-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+    padding:24px 22px;display:flex;flex-direction:column;gap:10px;
+    transition:all .2s ease;position:relative
+  }
+  .mode-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--blue-200)}
+  .mode-card .num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--ink-4)}
+  .mode-card h4{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.005em;line-height:1.4}
+  .mode-card p{font-size:13px;color:var(--ink-3);line-height:1.85}
+  .mode-bridge{
+    margin-top:32px;padding:18px 24px;background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:var(--r);font-size:14px;color:var(--ink-2);line-height:1.85
+  }
+  .mode-bridge strong{color:var(--blue-deep);font-weight:800}
+  .mode-bridge.alt strong{color:var(--orange)}
+  .mode-bridge a{color:var(--blue-deep);font-weight:700;border-bottom:1px solid var(--blue-200)}
+  .mode-bridge a:hover{color:var(--blue)}
+  @media (max-width:980px){.mode-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:660px){.mode-grid{grid-template-columns:1fr}}
+
+  /* ============ S07 NARRATIVE FLOW ============ */
+  .narrative{background:var(--blue-ink);color:#fff;position:relative;overflow:hidden}
+  .narrative::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at 70% 50%,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at 70% 50%,#000 30%,transparent 75%);
+    pointer-events:none
+  }
+  .narrative .wrap{position:relative}
+  .narrative .keycopy{
+    font-size:clamp(24px,3.4vw,38px);font-weight:800;line-height:1.5;text-align:center;
+    color:#fff;letter-spacing:-.01em;text-wrap:balance;margin-bottom:14px
+  }
+  .narrative .keycopy em{font-style:normal;color:var(--orange-2)}
+  .narrative-lede{
+    font-size:15px;line-height:1.95;color:var(--t-inv-2);text-align:center;
+    max-width:60ch;margin:0 auto 56px
+  }
+  .narrative-flow{
+    display:grid;grid-template-columns:1fr 80px 1fr;gap:24px;align-items:stretch;margin-top:32px
+  }
+  .narrative-zone{
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-lg);
+    padding:32px 28px;backdrop-filter:blur(4px)
+  }
+  .narrative-zone .lbl{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;
+    color:var(--blue-3);margin-bottom:12px
+  }
+  .narrative-zone.right .lbl{color:var(--orange-2)}
+  .narrative-zone h4{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.005em;line-height:1.4;margin-bottom:8px}
+  .narrative-zone .one-liner{font-size:14px;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:-.005em}
+  .narrative-zone p{font-size:13px;line-height:1.9;color:var(--t-inv-2)}
+  .narrative-zone .ph-tag{
+    display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;
+    background:rgba(255,255,255,.08);color:var(--blue-3);padding:5px 10px;border-radius:5px;margin-top:14px
+  }
+  .narrative-zone.right .ph-tag{background:rgba(233,71,11,.16);color:var(--orange-2)}
+  .narrative-arrow{
+    display:grid;place-items:center;color:var(--blue-3);
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em
+  }
+  .narrative-arrow svg{width:48px;height:48px;display:block;margin:0 auto 8px}
+  @media (max-width:860px){
+    .narrative-flow{grid-template-columns:1fr;gap:16px}
+    .narrative-arrow{padding:8px 0}
+    .narrative-arrow svg{transform:rotate(90deg);width:36px;height:36px;margin-bottom:4px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo" aria-label="FromToのトップへ">
+      <span class="logo-mark">FT</span>
+      <span>FromTo</span>
+    </a>
+    <nav class="nav" aria-label="グローバルナビゲーション">
+      <a href="#concept">コンセプト</a>
+      <a href="#modes">2モード</a>
+      <a href="#business">既存事業</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+    <div class="header-sublink" aria-label="47Connectをご検討の方へ">
+      <span>47Connectをご検討の方は</span> <a href="./index-b.html">こちら</a>
+    </div>
+    <div class="header-cta">
+      <a href="#contact" class="btn btn-orange">ご相談・お問い合わせ<span class="arrow">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- S02 HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow on-dark"><span class="dot"></span>FROMTO VISION</span>
+      <h1>地域<span class="grad">AI参謀</span></h1>
+      <h2 class="hero-subhead">自治体を起点に、地域へ広がるAI戦略パートナー</h2>
+      <p class="hero-sub">
+        FromToは、自治体・地域企業・メディア・投資家の皆様と<strong>「地域AI参謀」という構想</strong>を共有したいと考えています。<br>
+        AIを地域の戦略パートナーとして実装し、絵に描いた政策で終わらせない。その対話の入口がこのページです。
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-orange btn-lg">ご相談・お問い合わせ<span class="arrow">→</span></a>
+        <a href="#concept" class="btn btn-ghost-light btn-lg">コンセプトを読む</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <!-- 抽象コンセプト図: 自治体を起点に地域企業・住民へ広がる同心円 -->
+      <svg class="concept-svg" viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="自治体を起点に地域へ広がる同心円のコンセプト図">
+        <!-- 外側の点線円: 住民 -->
+        <circle cx="240" cy="210" r="190" fill="none" stroke="rgba(135,179,223,.28)" stroke-width="1" stroke-dasharray="3 6"/>
+        <circle cx="240" cy="210" r="140" fill="none" stroke="rgba(135,179,223,.4)" stroke-width="1.2" stroke-dasharray="4 5"/>
+        <!-- 中間円: 地域企業 -->
+        <circle cx="240" cy="210" r="92" fill="rgba(48,113,185,.08)" stroke="rgba(135,179,223,.55)" stroke-width="1.4"/>
+        <!-- 中心円: 自治体 -->
+        <circle cx="240" cy="210" r="56" fill="rgba(31,79,135,.92)" stroke="#3071B9" stroke-width="1.5"/>
+        <!-- 中心ラベル -->
+        <text x="240" y="206" text-anchor="middle" fill="#fff" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="13" font-weight="800" letter-spacing="0.04em">自治体</text>
+        <text x="240" y="225" text-anchor="middle" fill="#87B3DF" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" letter-spacing="0.2em">STARTING POINT</text>
+        <!-- 地域企業のラベル -->
+        <text x="240" y="135" text-anchor="middle" fill="#C5D6EC" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="11" font-weight="700">地域企業</text>
+        <!-- 住民のラベル -->
+        <text x="240" y="58" text-anchor="middle" fill="rgba(255,255,255,.55)" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="10" font-weight="600">住民・地域社会</text>
+        <!-- 広がりライン -->
+        <line x1="240" y1="154" x2="240" y2="118" stroke="rgba(135,179,223,.4)" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="240" y1="70" x2="240" y2="46" stroke="rgba(135,179,223,.3)" stroke-width="1" stroke-dasharray="2 3"/>
+        <!-- 中心からの放射ノード -->
+        <circle cx="148" cy="210" r="4" fill="#87B3DF"/>
+        <circle cx="332" cy="210" r="4" fill="#87B3DF"/>
+        <circle cx="180" cy="120" r="3" fill="#87B3DF" opacity=".75"/>
+        <circle cx="300" cy="120" r="3" fill="#87B3DF" opacity=".75"/>
+        <circle cx="180" cy="300" r="3" fill="#87B3DF" opacity=".75"/>
+        <circle cx="300" cy="300" r="3" fill="#87B3DF" opacity=".75"/>
+        <!-- アクセント: オレンジドット -->
+        <circle cx="240" cy="210" r="3.5" fill="#E9470B"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- S03 INTRO（Why Now） -->
+<section class="intro">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Why Now</span>
+      <h2 class="h-section">なぜ今、地域に <em>"AI参謀"</em> が必要なのか。</h2>
+    </div>
+    <div class="intro-paragraphs">
+      <p>
+        日本の地域は、いま静かに、しかし確実に縮んでいます。<strong>人口減少と高齢化</strong>が進み、自治体の税収は伸びず、社会保障や公共インフラの維持コストは増え続ける。職員数は抑制され、デジタル化やDXは「やるべきこと」のリストの中で順番待ちのまま、地域経済は緩やかに痩せていきます。
+      </p>
+      <p>
+        この状況のなかで、自治体は<strong>外部の知見と実装力</strong>を求めています。総合計画、産業振興、子育て、観光、ふるさと納税、官民連携——それぞれに高い専門性が必要で、職員の方々はその現場で日々誠実に向き合っておられます。けれど、外部に依頼する一回限りの提言は、報告書が綺麗に仕上がっても、地域に根付かないまま終わってしまうことがあります。
+      </p>
+      <p>
+        その結果として何が起きるか。<strong>「絵に描いた政策」</strong>が増える、ということです。立派な計画書、詳細なロードマップ、各種戦略文書。それらが議会で承認され、ホームページに掲載され、しかし数年後、当初描いた絵と現場の現実との間に、静かな乖離が広がっていく——多くの地域が経験している景色ではないでしょうか。
+      </p>
+      <p>
+        だからこそFromToは、<strong>「地域AI参謀」</strong>という構想を掲げています。AIを単なる業務効率化ツールとしてではなく、自治体の隣に立ち、地域の現場まで一緒に歩く戦略パートナーとして実装する。設計と実装を切り離さず、政策と地域経済を地続きで支える。それが、今この時代に必要な参謀のかたちだと考えています。
+      </p>
+    </div>
+    <div class="intro-stats" aria-label="社会的文脈の数字根拠">
+      <div class="intro-stat">
+        <div class="val">▲30%</div>
+        <div class="lbl">2050年までに想定される<br>地方圏人口の減少幅</div>
+        <span class="src">国立社会保障・人口問題研究所 将来推計人口より</span>
+      </div>
+      <div class="intro-stat">
+        <div class="val">1,718</div>
+        <div class="lbl">日本の市町村数<br>（地域固有の課題を抱える単位）</div>
+        <span class="src">総務省 地方公共団体一覧</span>
+      </div>
+      <div class="intro-stat">
+        <div class="val">744</div>
+        <div class="lbl">2050年に「消滅可能性」が<br>指摘されている自治体数</div>
+        <span class="src">人口戦略会議 2024年公表分析</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S04 CONCEPT（地域AI参謀の定義） -->
+<section class="concept" id="concept">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow"><span class="dot"></span>Concept</span>
+      <h2 class="h-section"><em>地域AI参謀</em> とは。</h2>
+      <p class="lede">
+        「地域AI参謀」は、FromToが掲げる中長期ビジョンの名前です。プロダクトひとつの呼び名ではなく、自治体・地域企業・住民までを貫く、地域戦略パートナーの構想を指しています。
+      </p>
+    </div>
+
+    <p class="keycopy">自治体を起点に、地域へ広がるAI戦略パートナー。</p>
+
+    <div class="concept-diagram">
+      <div class="visual" aria-hidden="true">
+        <svg class="concept-svg-2" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="自治体を中心に、地域企業・住民へと波及する3層同心円ダイアグラム">
+          <!-- 外側点線円: 住民・地域社会 (Layer C) -->
+          <circle cx="190" cy="190" r="170" fill="rgba(48,113,185,.04)" stroke="rgba(135,179,223,.45)" stroke-width="1" stroke-dasharray="3 5"/>
+          <!-- 中間円: 地域企業 (Layer B) -->
+          <circle cx="190" cy="190" r="110" fill="rgba(48,113,185,.10)" stroke="rgba(48,113,185,.5)" stroke-width="1.4"/>
+          <!-- 中心円: 自治体 (Layer A) -->
+          <circle cx="190" cy="190" r="56" fill="rgba(31,79,135,.95)" stroke="#3071B9" stroke-width="1.5"/>
+
+          <!-- 中心ラベル -->
+          <text x="190" y="186" text-anchor="middle" fill="#fff" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="13" font-weight="800">自治体</text>
+          <text x="190" y="204" text-anchor="middle" fill="#87B3DF" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" letter-spacing="0.16em">LAYER A</text>
+
+          <!-- 中間ラベル -->
+          <text x="190" y="105" text-anchor="middle" fill="#1F4F87" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="12" font-weight="800">地域企業</text>
+          <text x="190" y="120" text-anchor="middle" fill="#5C6E8E" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" letter-spacing="0.16em">LAYER B</text>
+
+          <!-- 外側ラベル -->
+          <text x="190" y="42" text-anchor="middle" fill="#2C3E5E" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="11" font-weight="700">住民・地域社会</text>
+          <text x="190" y="56" text-anchor="middle" fill="#8898B5" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" letter-spacing="0.16em">LAYER C</text>
+
+          <!-- 波及矢印（中心から外へ）4方向 -->
+          <g stroke="#E9470B" stroke-width="1.3" fill="none">
+            <line x1="190" y1="138" x2="190" y2="84" stroke-dasharray="3 3"/>
+            <polygon points="190,78 186,86 194,86" fill="#E9470B" stroke="none"/>
+            <line x1="240" y1="190" x2="294" y2="190" stroke-dasharray="3 3"/>
+            <polygon points="300,190 292,186 292,194" fill="#E9470B" stroke="none"/>
+            <line x1="190" y1="242" x2="190" y2="296" stroke-dasharray="3 3"/>
+            <polygon points="190,302 186,294 194,294" fill="#E9470B" stroke="none"/>
+            <line x1="140" y1="190" x2="86" y2="190" stroke-dasharray="3 3"/>
+            <polygon points="80,190 88,186 88,194" fill="#E9470B" stroke="none"/>
+          </g>
+
+          <!-- 中心ハイライト -->
+          <circle cx="190" cy="190" r="3.5" fill="#E9470B"/>
+        </svg>
+      </div>
+      <div class="desc">
+        <h3>3つの層をつなぐ、ひとつのビジョン</h3>
+        <p>自治体を戦略の起点に置き、地域企業・住民へと波及する。AIは中央に集約された道具ではなく、3層を貫く参謀として機能します。</p>
+        <div class="layer">
+          <span class="badge">LAYER A</span>
+          <div class="txt">
+            <strong>自治体</strong>
+            <span>政策・施策の意思決定主体。地域戦略の起点。</span>
+          </div>
+        </div>
+        <div class="layer">
+          <span class="badge">LAYER B</span>
+          <div class="txt">
+            <strong>地域企業</strong>
+            <span>政策の実装を担うパートナー。地銀・地域商社・地場企業。</span>
+          </div>
+        </div>
+        <div class="layer">
+          <span class="badge">LAYER C</span>
+          <div class="txt">
+            <strong>住民・地域社会</strong>
+            <span>サービスを受け取り、地域経済を循環させる主役。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-mode-preview" aria-label="2モードの概観">
+      <div class="pv">
+        <span class="lbl">MODE 01</span>
+        <h4>自治体参謀モード</h4>
+        <p>政策の<strong>設計</strong>を支える、自治体の右腕。</p>
+      </div>
+      <div class="pv">
+        <span class="lbl">MODE 02</span>
+        <h4>地域展開モード</h4>
+        <p>地域への<strong>実装</strong>を広げる、波及エンジン。</p>
+      </div>
+    </div>
+
+    <div class="concept-bridge">
+      現在、<strong>自治体参謀モード</strong>は「<strong>自治体AI参謀</strong>」というプロダクト名で <a href="./index-b.html">47Connect</a> として実装中です。地域AI参謀は、その先まで含めた中長期ビジョンの呼称です。
+    </div>
+  </div>
+</section>
+
+<!-- S05/S06 MODES -->
+<section class="modes" id="modes">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow"><span class="dot"></span>2 Modes</span>
+      <h2 class="h-section">設計と実装を、ひとつの参謀で。</h2>
+      <p class="lede">
+        地域AI参謀は、性質の異なる2つのモードによって構成されています。一方は政策の「設計」を担い、もう一方は地域への「実装」を担います。
+      </p>
+    </div>
+
+    <!-- S05 MODE-1 自治体参謀モード -->
+    <div class="mode-block">
+      <div class="mode-head">
+        <span class="mode-badge">MODE 01</span>
+        <h3 class="mode-title">自治体参謀モード</h3>
+      </div>
+      <p class="mode-tagline">「自治体の右腕」</p>
+      <p class="mode-desc">
+        自治体の政策・施策の<strong>設計フェーズ</strong>に伴走するモード。総合計画から議会対応、KPI設計までを支援し、職員の方々が本来注力すべき判断と対話に集中できる時間をつくります。
+      </p>
+      <div class="mode-grid" role="list">
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-01</span>
+          <h4>政策立案</h4>
+          <p>地域課題の構造化、上位計画との整合性チェック、政策仮説の壁打ちを支援。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-02</span>
+          <h4>施策設計</h4>
+          <p>政策を具体施策に落とすステップ、ロジックモデル、所管部署の連携設計を支援。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-03</span>
+          <h4>議会資料・企画書作成</h4>
+          <p>議会答弁・委員会資料・首長レクの構成案づくりを下書きレベルで参謀。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-04</span>
+          <h4>他自治体事例分析</h4>
+          <p>類似自治体の先行事例を横断的に集約し、自地域の文脈に翻訳する分析を支援。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-05</span>
+          <h4>民間連携提案</h4>
+          <p>地域企業・パートナー候補との連携の論点整理、提案書の骨子づくりを支援。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-06</span>
+          <h4>KPI設計</h4>
+          <p>政策効果を測る指標体系、ロジックツリー、評価サイクルの設計を支援。</p>
+        </div>
+      </div>
+      <div class="mode-bridge">
+        このモードを実装している主力プロダクトが、<strong>47Connect</strong>（自治体AI参謀）です。導入をご検討の自治体・支援企業の皆様は <a href="./index-b.html">47Connect プロダクトサイト</a> をご覧ください。
+      </div>
+    </div>
+
+    <!-- S06 MODE-2 地域展開モード -->
+    <div class="mode-block">
+      <div class="mode-head">
+        <span class="mode-badge alt">MODE 02</span>
+        <h3 class="mode-title">地域展開モード</h3>
+      </div>
+      <p class="mode-tagline alt">「地域に広げるエンジン」</p>
+      <p class="mode-desc">
+        自治体の参謀として描いた政策・施策を、地域企業・住民に波及させる<strong>実装フェーズ</strong>のモード。物資・人材・サービス導線を組み合わせ、地域経済の循環をつくります。
+      </p>
+      <div class="mode-grid" role="list">
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-07</span>
+          <h4>地域企業向け施策展開</h4>
+          <p>政策に呼応する地域企業の動きを設計し、参加プログラムまで具体化。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-08</span>
+          <h4>B2G2Bスキーム構築</h4>
+          <p>自治体を経由して地域企業同士をつなぐ官民連携モデルを企画・運用。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-09</span>
+          <h4>住民向けサービス導線設計</h4>
+          <p>政策成果が住民に届くまでのサービス導線・申請動線・コミュニケーションを設計。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-10</span>
+          <h4>利用促進支援</h4>
+          <p>導入された制度・サービスの利用率を高めるための運用・改善サイクルを伴走。</p>
+        </div>
+        <div class="mode-card" role="listitem">
+          <span class="num">FN-11</span>
+          <h4>地域経済活性化支援</h4>
+          <p>政策と地域経済をつなぐ視点で、循環の太さ・速さを高める仕組みを設計。</p>
+        </div>
+      </div>
+      <div class="mode-bridge alt">
+        このモードの<strong>初期実装</strong>が <strong>製品寄附仲介</strong>（物資導線）、<strong>深層実装</strong>が <strong>R&amp;D型越境派遣</strong>（人材導線）として既に動いています。3事業の関係はこの先のセクションで詳しくご紹介します。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S07 NARRATIVE FLOW（2モード統合ストーリー） -->
+<section class="narrative" aria-labelledby="narrative-title">
+  <div class="wrap">
+    <span class="eyebrow on-dark"><span class="dot"></span>Narrative</span>
+    <h2 class="keycopy" id="narrative-title">絵に描いた政策で<em>終わらせない</em>AI。</h2>
+    <p class="narrative-lede">
+      設計と実装を別々の作業にしない。自治体の隣で考え、地域の現場まで一緒に歩く。それが、地域AI参謀のかたちです。
+    </p>
+    <div class="narrative-flow">
+      <div class="narrative-zone left">
+        <div class="lbl">PHASE 01 — DESIGN</div>
+        <h4>自治体参謀モード</h4>
+        <p class="one-liner">政策・施策を <em>設計</em> する。</p>
+        <p>政策立案・施策設計・議会資料・事例分析・民間連携・KPI設計。自治体の意思決定の質と速さを、隣で支える。</p>
+        <span class="ph-tag">MODE 01</span>
+      </div>
+      <div class="narrative-arrow" aria-hidden="true">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="6" y1="24" x2="40" y2="24"/>
+          <polyline points="32,16 42,24 32,32"/>
+        </svg>
+        <span>FLOW</span>
+      </div>
+      <div class="narrative-zone right">
+        <div class="lbl">PHASE 02 — DEPLOY</div>
+        <h4>地域展開モード</h4>
+        <p class="one-liner">地域へ <em>実装</em> する。</p>
+        <p>地域企業の参加、B2G2Bスキーム、住民向け導線、利用促進、地域経済の循環。設計図を、地域の現場まで届ける。</p>
+        <span class="ph-tag">MODE 02</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ph" id="business">
+  <div class="wrap">
+    <span class="ph-tag">EXISTING BUSINESS — Sprint 3</span>
+    <h3>すでに動いている3事業</h3>
+    <p>47Connect・製品寄附仲介・R&D型越境派遣との関係は、Sprint 3で実装されます。</p>
+  </div>
+</section>
+
+<section class="ph" id="contact">
+  <div class="wrap">
+    <span class="ph-tag">CONTACT — Sprint 4</span>
+    <h3>ご相談・対話の入口</h3>
+    <p>お問い合わせフォームへの導線は、Sprint 4で実装されます。</p>
+  </div>
+</section>
+
+<!-- S14 FOOTER -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="brand">
+      <strong>FromTo, Inc.</strong>
+      <span>自治体を起点に、地域へ広がるAI戦略パートナー</span>
+    </div>
+    <nav class="foot-links" aria-label="事業一覧">
+      <a href="./index-b.html">47Connect</a>
+      <span>製品寄附仲介</span>
+      <span>R&amp;D型越境派遣</span>
+    </nav>
+    <div class="foot-copy">© 2026 FromTo, Inc.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -746,6 +746,106 @@
     .bc-vs{font-size:12px}
   }
 
+  /* ============ Vision Section（地域AI参謀ビジョン） ============ */
+  .vision{background:var(--bg-soft);padding-top:96px;padding-bottom:96px}
+
+  /* 2モード並列カード */
+  .vision-modes{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;
+  }
+  .vmode{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+    padding:32px 30px;display:flex;flex-direction:column;gap:12px;
+    box-shadow:var(--sh-1);transition:box-shadow .2s ease,transform .2s ease;
+    position:relative;
+  }
+  .vmode:hover{box-shadow:var(--sh-3);transform:translateY(-3px)}
+  .vmode-now{border-top:4px solid var(--blue)}
+  .vmode-future{border-top:4px solid var(--orange-2)}
+  .vmode-status{
+    display:inline-block;align-self:flex-start;
+    font-family:var(--mono);font-size:10px;font-weight:700;
+    letter-spacing:.14em;padding:5px 11px;border-radius:4px;
+  }
+  .vmode-now .vmode-status{background:var(--blue-100);color:var(--blue-deep)}
+  .vmode-future .vmode-status{background:var(--orange-50);color:var(--orange)}
+  .vmode-num{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    letter-spacing:.16em;color:var(--ink-3);margin-top:6px;
+  }
+  .vmode-title{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.015em;line-height:1.35}
+  .vmode-tag{
+    font-size:13px;font-weight:800;letter-spacing:-.005em;
+    padding:8px 14px;border-radius:6px;display:inline-block;align-self:flex-start;
+  }
+  .vmode-now .vmode-tag{background:var(--blue-50);color:var(--blue-deep)}
+  .vmode-future .vmode-tag{background:var(--orange-50);color:var(--orange)}
+  .vmode-desc{font-size:14px;line-height:1.85;color:var(--ink-2);flex:1}
+  .vmode-impl{
+    margin-top:8px;padding:12px 14px;border-radius:var(--r-sm);
+    font-size:12px;color:var(--ink-2);line-height:1.7;
+    background:var(--bg-soft);border:1px dashed var(--line);
+  }
+  .vmode-impl strong{color:var(--ink);font-weight:800}
+
+  /* キーコピー */
+  .vision-keycopy{
+    margin:48px auto;max-width:760px;text-align:center;
+    padding:36px 32px;background:var(--blue-deep);color:#fff;
+    border-radius:var(--r-lg);box-shadow:var(--sh-3);position:relative;overflow:hidden;
+  }
+  .vision-keycopy::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:32px 32px;pointer-events:none;
+  }
+  .vision-keycopy p{
+    position:relative;font-size:clamp(22px, 2.6vw, 32px);font-weight:800;
+    letter-spacing:-.02em;line-height:1.55;color:#fff;
+  }
+
+  /* 3事業統合 */
+  .vision-3biz{margin-top:48px}
+  .v3biz-label{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;
+    text-align:center;margin-bottom:24px;
+  }
+  .v3biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .v3biz-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--r);
+    padding:24px 22px;display:flex;flex-direction:column;gap:10px;
+    box-shadow:var(--sh-1);
+  }
+  .v3biz-num{
+    font-family:var(--mono);font-size:10px;font-weight:700;
+    letter-spacing:.14em;color:var(--blue-deep);
+  }
+  .v3biz-card h4{
+    font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.015em;line-height:1.4;
+  }
+  .v3biz-card p{font-size:13px;line-height:1.75;color:var(--ink-2);flex:1}
+  .v3biz-mode{
+    display:inline-block;align-self:flex-start;
+    font-family:var(--mono);font-size:10px;font-weight:700;
+    letter-spacing:.04em;padding:4px 10px;border-radius:4px;
+    background:var(--blue-50);color:var(--blue-deep);border:1px solid var(--blue-100);
+  }
+
+  .vision-note{
+    margin-top:32px;font-size:12px;color:var(--ink-4);
+    text-align:center;line-height:1.85;
+  }
+
+  @media (max-width:860px){
+    .vision-modes{grid-template-columns:1fr;gap:16px}
+    .v3biz-grid{grid-template-columns:1fr;gap:14px}
+    .vision{padding-top:64px;padding-bottom:64px}
+    .vision-keycopy{padding:28px 22px;margin:36px auto}
+  }
+
   .layers-note{
     margin-top:32px;padding:24px 28px;background:var(--bg-soft);
     border:1px solid var(--line);border-radius:var(--r-lg);
@@ -2094,7 +2194,7 @@
           <ul class="bc-list">
             <li>情報を <strong>使い切る</strong></li>
             <li><strong>対話</strong>で答えを出す</li>
-            <li><strong>御社専属に学習</strong>する</li>
+            <li><strong>チーム専属に学習</strong>する</li>
           </ul>
         </div>
       </div>
@@ -2170,6 +2270,68 @@
   </div>
 </section>
 
+<!-- VISION: 地域AI参謀（FromTo全社のビジョン軸・47Connectの位置づけ提示） -->
+<section class="vision" data-screen-label="08c Vision">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>FromTo Vision</div>
+      <h2 class="h-section">47Connectは、<em>「地域AI参謀」</em>ビジョンの<br>"自治体参謀モード" 実装。</h2>
+      <p class="lede">FromToが目指すのは、自治体を起点に地域へ広がる<strong>AI戦略パートナー</strong>。「地域AI参謀」という構想の中で、47Connectは <strong>"自治体参謀モード"</strong> の主力プロダクトとして稼働しています。</p>
+    </div>
+
+    <!-- 2モード並列 -->
+    <div class="vision-modes">
+      <div class="vmode vmode-now">
+        <div class="vmode-status">NOW · 実装中</div>
+        <div class="vmode-num">MODE 01</div>
+        <h3 class="vmode-title">自治体参謀モード</h3>
+        <p class="vmode-tag">自治体の右腕</p>
+        <p class="vmode-desc">政策立案・施策設計・議会資料・他自治体事例分析・民間連携提案・KPI設計を、毎日の対話で支援。</p>
+        <div class="vmode-impl">→ <strong>47Connect</strong>（自治体AI参謀）として現在提供中</div>
+      </div>
+      <div class="vmode vmode-future">
+        <div class="vmode-status">NEXT · 構想〜段階展開</div>
+        <div class="vmode-num">MODE 02</div>
+        <h3 class="vmode-title">地域展開モード</h3>
+        <p class="vmode-tag">地域に広げるエンジン</p>
+        <p class="vmode-desc">自治体参謀モードで設計した施策を、地域企業・住民へ実装・展開。地域経済活性化までを射程に。</p>
+        <div class="vmode-impl">→ 既存3事業（製品寄附仲介・R&D型越境派遣 等）で段階実装</div>
+      </div>
+    </div>
+
+    <!-- キーコピー -->
+    <div class="vision-keycopy">
+      <p>絵に描いた政策で終わらせないAI。</p>
+    </div>
+
+    <!-- 3事業統合 -->
+    <div class="vision-3biz">
+      <div class="v3biz-label">FromToの3事業が「地域AI参謀」を構成する</div>
+      <div class="v3biz-grid">
+        <div class="v3biz-card">
+          <div class="v3biz-num">事業 01</div>
+          <h4>47Connect（自治体AI参謀）</h4>
+          <p>情報・戦略導線。自治体ビジネスの提案を支援する常駐型AI参謀。</p>
+          <span class="v3biz-mode">自治体参謀モード</span>
+        </div>
+        <div class="v3biz-card">
+          <div class="v3biz-num">事業 02</div>
+          <h4>製品寄附仲介</h4>
+          <p>物資導線。企業版ふるさと納税で144件・106自治体の実取引実績。</p>
+          <span class="v3biz-mode">地域展開モード（初期実装）</span>
+        </div>
+        <div class="v3biz-card">
+          <div class="v3biz-num">事業 03</div>
+          <h4>R&D型越境派遣</h4>
+          <p>人材導線。地域企業と都市部人材の中長期マッチング。</p>
+          <span class="v3biz-mode">地域展開モード（深層実装）</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="vision-note">※「地域AI参謀」はFromTo全社のビジョン軸。47Connect（自治体AI参謀）はその中で最初に実装された主力プロダクトです。地域展開モードは段階的に拡張予定。</p>
+  </div>
+</section>
 
 <!-- TTP -->
 <section class="ttp" data-screen-label="09 TTP">
@@ -2318,7 +2480,7 @@
 
     <div class="plans-head">
       <h3>本格運用プラン（2026年11月以降）</h3>
-      <p>全プラン共通：<strong>月払い・1年契約・13ヶ月目以降は月単位継続</strong>（30日予告でいつでも解約可）。1課単位、追加ユーザー課金なし。<br>β版適用顧客は本格運用移行時に本プラン構造へ自動切替（クレジット単価は創業時固定保証）。</p>
+      <p>全プラン共通：<strong>月払い・1年契約・13ヶ月目以降は月単位継続</strong>（30日予告でいつでも解約可）。1 Team Workspace単位、追加ユーザー課金なし。2チーム目以降も同額。<br>β版適用顧客は本格運用移行時に本プラン構造へ自動切替（クレジット単価は創業時固定保証）。</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -2337,7 +2499,7 @@
           <li>御社事業との適合度を自動スコア化（簡易レコメンド・自動アラート）</li>
           <li>自治体提案特化CRM（首長任期・予算サイクル・議会日程の統合管理）</li>
           <li>公開即日のデータ反映（主要200自治体・Q4で全1,741に拡大）</li>
-          <li>1課単位・追加ユーザー課金なし</li>
+          <li>1 Team Workspace単位・追加ユーザー課金なし</li>
           <li>月払い・1年契約・13ヶ月目以降は月単位継続</li>
         </ul>
       </div>
@@ -2351,7 +2513,7 @@
         <div class="plan-note"><strong>自治体ビジネスの専門知見を社内に蓄積したい企業向け</strong>。AI参謀に毎日相談しながら、Layer 1 + Layer 2 をフル活用。</div>
         <div class="plan-hl">
           <div class="plan-hl-title">Layer 2: AI参謀層フル開放</div>
-          <div class="plan-hl-desc">外部コンサルタントに相談するような感覚で、御社専属のAI参謀がデータ層をフル活用し、戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
+          <div class="plan-hl-desc">外部コンサルタントに相談するような感覚で、1チーム1専属のAI参謀がデータ層をフル活用し、戦略・提案を対話で組み立てる。提案書ドラフト・稟議資料・ROI試算まで、毎日の対話の中で。</div>
         </div>
         <ul class="plan-feat">
           <li><strong>ライトプラン（データ層）の全機能</strong></li>
@@ -2517,7 +2679,7 @@
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 01</div>
         <h3><em>参謀</em>の関係性</h3>
-        <p><strong>毎日いつでも相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルの「1〜2回/月・メール返信1〜2営業日/件」では拾えない瞬間に応える。ツールのように置いて去らない、御社専属の参謀役として伴走します。</p>
+        <p><strong>毎日いつでも相談できて、戦略を一緒に組み立てる</strong>常駐型のAI。コンサルの「1〜2回/月・メール返信1〜2営業日/件」では拾えない瞬間に応える。ツールのように置いて去らない、1チーム1専属の参謀役として伴走します。</p>
         <div class="pillar-tag">→ 常駐型のAI参謀</div>
       </div>
       <div class="why-pillar">
@@ -2612,7 +2774,7 @@
       </details>
       <details class="faq-item">
         <summary>オンボーディングはありますか？</summary>
-        <div class="ans"><strong>スタンダードプランには初年度1年間の付帯オンボーディングが含まれます</strong>。<br><br>・頻度: <strong>2ヶ月に1回</strong>（年間6回）の定期的な内容確認<br>・前半6ヶ月: <strong>集中支援フェーズ</strong> — 御社専属AI参謀の学習データを集中的に更新<br>・後半6ヶ月: <strong>運用最適化フェーズ</strong> — 定着支援・KPIレビュー・スケール提案<br><br>確認方法はオンライン会議・メール・本サービス上のチャット等、貴社と協議のうえ決定します。</div>
+        <div class="ans"><strong>スタンダードプランには初年度1年間の付帯オンボーディングが含まれます</strong>。<br><br>・頻度: <strong>2ヶ月に1回</strong>（年間6回）の定期的な内容確認<br>・前半6ヶ月: <strong>集中支援フェーズ</strong> — 1チーム1専属AI参謀の学習データを集中的に更新<br>・後半6ヶ月: <strong>運用最適化フェーズ</strong> — 定着支援・KPIレビュー・スケール提案<br><br>確認方法はオンライン会議・メール・本サービス上のチャット等、貴社と協議のうえ決定します。</div>
       </details>
       <details class="faq-item">
         <summary>47Connectはどのような企業に向いていますか？</summary>
