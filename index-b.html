@@ -408,13 +408,27 @@
     width:78px;height:78px;stroke:var(--blue-deep);stroke-width:1.7;fill:none;
     stroke-linecap:round;stroke-linejoin:round;position:relative;
   }
+  /* 画像差し替え版（リアル感を出す。痛みの可視化） */
+  .prob-visual.prob-visual-img{
+    height:200px;background:#fff;border-color:var(--line);
+  }
+  .prob-visual.prob-visual-img::before{display:none}
+  .prob-visual.prob-visual-img img{
+    width:100%;height:100%;object-fit:cover;object-position:center top;
+    filter:saturate(.85) contrast(.95);
+  }
+  .prob-visual.prob-visual-img::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(14,31,58,.0) 60%, rgba(14,31,58,.18) 100%);
+    pointer-events:none;
+  }
   .prob-visual .mini{
     position:absolute;font-family:var(--mono);font-size:10px;font-weight:800;
     color:var(--orange);background:#fff;border:1px solid var(--orange-50);
-    border-radius:6px;padding:4px 7px;box-shadow:var(--sh-1);
+    border-radius:6px;padding:4px 7px;box-shadow:var(--sh-1);z-index:1;
   }
-  .prob-visual .mini.a{left:18px;top:18px}
-  .prob-visual .mini.b{right:18px;bottom:18px}
+  .prob-visual .mini.a{left:14px;top:14px}
+  .prob-visual .mini.b{right:14px;bottom:14px}
   .prob .row{display:flex;align-items:center;gap:10px}
   .prob .no{
     font-family:var(--mono);font-weight:800;font-size:12px;
@@ -1575,14 +1589,9 @@
     </div>
     <div class="prob-grid">
       <div class="prob">
-        <div class="prob-visual">
+        <div class="prob-visual prob-visual-img">
+          <img src="images/problem-01-find.png" alt="自治体公式サイトに散在する予算書・議案書PDFの実例" loading="lazy" />
           <span class="mini a">BUDGET</span>
-          <svg viewBox="0 0 96 96" aria-hidden="true">
-            <path d="M20 24h22l6 8h28v38H20z"/>
-            <path d="M27 42h16M27 52h28M27 62h20"/>
-            <circle cx="66" cy="63" r="13"/>
-            <path d="M76 73l8 8"/>
-          </svg>
           <span class="mini b">1,741</span>
         </div>
         <div class="row">
@@ -1598,15 +1607,9 @@
         </ul>
       </div>
       <div class="prob">
-        <div class="prob-visual">
+        <div class="prob-visual prob-visual-img">
+          <img src="images/problem-02-understand.png" alt="自治体補助金の申請書類・対象経費表など複雑な書類の実例" loading="lazy" />
           <span class="mini a">POLICY</span>
-          <svg viewBox="0 0 96 96" aria-hidden="true">
-            <path d="M28 18h30l10 10v50H28z"/>
-            <path d="M58 18v12h12"/>
-            <path d="M36 42h24M36 52h18M36 62h12"/>
-            <path d="M65 58c4 3 6 6 6 10a9 9 0 0 1-18 0c0-4 3-7 6-10"/>
-            <path d="M62 70h.1"/>
-          </svg>
           <span class="mini b">WHY?</span>
         </div>
         <div class="row">
@@ -1644,6 +1647,49 @@
           <li>提案状況・メモ・優先度がExcelや個人管理に分散</li>
           <li>自治体特有の政治・予算サイクルの変化を追いきれない</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN TOUR（PROBLEM の直後に配置：CEO指示2026-05-07） -->
+<section class="screen-tour" id="screens" data-screen-label="04b Screens">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>Product Screens</div>
+      <h2 class="h-section">サクッと見つけて、サクッと分かって、<br><em>キチンと管理。</em></h2>
+      <p class="lede">実画面では、自治体営業の「見つけられない」「わからない」「管理ができない」を、営業判断に直結する3つの流れで解決します。</p>
+    </div>
+    <div class="screen-grid">
+      <div class="screen-card">
+        <div class="screen-shot">
+          <img src="images/recommend-screen.png" alt="47Connectの自治体レコメンド画面" />
+        </div>
+        <div class="screen-body">
+          <div class="screen-kicker">01 FIND</div>
+          <h3>見つける</h3>
+          <p>自社商材に合う自治体を、スコアと根拠つきで抽出。どこから営業すべきかを判断しやすくします。</p>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-shot">
+          <img src="images/image.png" alt="47Connectの自治体サマライズ画面" />
+        </div>
+        <div class="screen-body">
+          <div class="screen-kicker">02 UNDERSTAND</div>
+          <h3>分かる</h3>
+          <p>予算・政策・担当課・提案余地を1自治体ごとに要約。なぜ提案すべきかまで読み解きます。</p>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-shot">
+          <img src="images/crm_list.png" alt="47Connectの提案管理CRM画面" />
+        </div>
+        <div class="screen-body">
+          <div class="screen-kicker">03 MANAGE</div>
+          <h3>管理する</h3>
+          <p>提案状況・メモ・優先度・次アクションをCRMで管理。属人的な自治体営業をチーム資産に変えます。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1712,50 +1758,6 @@
     </div>
   </div>
 </section>
-
-<!-- SCREEN TOUR -->
-<section class="screen-tour" id="screens" data-screen-label="05b Screens">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Product Screens</div>
-      <h2 class="h-section">サクッと見つけて、サクッと分かって、<br><em>キチンと管理。</em></h2>
-      <p class="lede">実画面では、自治体営業の「見つけられない」「わからない」「管理ができない」を、営業判断に直結する3つの流れで解決します。</p>
-    </div>
-    <div class="screen-grid">
-      <div class="screen-card">
-        <div class="screen-shot">
-          <img src="images/recommend-screen.png" alt="47Connectの自治体レコメンド画面" />
-        </div>
-        <div class="screen-body">
-          <div class="screen-kicker">01 FIND</div>
-          <h3>見つける</h3>
-          <p>自社商材に合う自治体を、スコアと根拠つきで抽出。どこから営業すべきかを判断しやすくします。</p>
-        </div>
-      </div>
-      <div class="screen-card">
-        <div class="screen-shot">
-          <img src="images/image.png" alt="47Connectの自治体サマライズ画面" />
-        </div>
-        <div class="screen-body">
-          <div class="screen-kicker">02 UNDERSTAND</div>
-          <h3>分かる</h3>
-          <p>予算・政策・担当課・提案余地を1自治体ごとに要約。なぜ提案すべきかまで読み解きます。</p>
-        </div>
-      </div>
-      <div class="screen-card">
-        <div class="screen-shot">
-          <img src="images/crm_list.png" alt="47Connectの提案管理CRM画面" />
-        </div>
-        <div class="screen-body">
-          <div class="screen-kicker">03 MANAGE</div>
-          <h3>管理する</h3>
-          <p>提案状況・メモ・優先度・次アクションをCRMで管理。属人的な自治体営業をチーム資産に変えます。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ROI -->
 <section class="roi" id="roi" data-screen-label="06 ROI">
   <div class="wrap">
