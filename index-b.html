@@ -394,7 +394,7 @@
   .prob{
     background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
     padding:30px 26px;transition:all .2s ease;display:flex;flex-direction:column;gap:16px;
-    min-height:100%;
+    min-height:100%;overflow:hidden;
   }
   .prob:hover{transform:translateY(-4px);box-shadow:var(--sh-3);border-color:var(--blue-200)}
   .prob-visual{
@@ -408,9 +408,14 @@
     width:78px;height:78px;stroke:var(--blue-deep);stroke-width:1.7;fill:none;
     stroke-linecap:round;stroke-linejoin:round;position:relative;
   }
-  /* 画像差し替え版（リアル感を出す。痛みの可視化） */
+  /* 画像差し替え版（リアル感を出す。痛みの可視化）— 親パネル幅いっぱいに展開 */
   .prob-visual.prob-visual-img{
-    height:200px;background:#fff;border-color:var(--line);
+    height:220px;background:#fff;
+    /* .prob の padding(30px 26px) を打ち消して親パネル幅いっぱいに広げる */
+    margin:-30px -26px 4px;
+    border-radius:var(--r-lg) var(--r-lg) 0 0;  /* 上だけ親カードに合わせて角丸 */
+    border:none;
+    border-bottom:1px solid var(--line);
   }
   .prob-visual.prob-visual-img::before{display:none}
   .prob-visual.prob-visual-img img{
