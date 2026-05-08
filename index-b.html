@@ -372,18 +372,24 @@
   .sambo-answer .msg{font-size:17px;line-height:1.7;font-weight:600}
   .sambo-answer .msg em{font-style:normal;color:#FFB991;font-weight:800}
 
-  /* AI参謀 アバター */
+  /* AI参謀 アバター（実画像版） */
   .sambo-avatar{
-    width:56px;height:56px;border-radius:50%;
-    background:#fff;flex-shrink:0;position:relative;
+    width:80px;height:80px;border-radius:50%;
+    background:#fff;flex-shrink:0;position:relative;overflow:hidden;
     box-shadow:var(--sh-2);
+    border:2px solid rgba(255,255,255,.85);
   }
-  .sambo-avatar.lg{width:72px;height:72px}
-  .sambo-avatar svg{width:100%;height:100%}
+  .sambo-avatar.lg{width:96px;height:96px}
+  .sambo-avatar svg,
+  .sambo-avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .sambo-avatar::after{
-    content:"";position:absolute;bottom:2px;right:2px;
+    content:"";position:absolute;bottom:4px;right:4px;
     width:14px;height:14px;border-radius:50%;background:var(--orange);
-    border:2px solid #fff;
+    border:2px solid #fff;z-index:1;
+  }
+  @media (max-width:760px){
+    .sambo-avatar{width:64px;height:64px}
+    .sambo-avatar.lg{width:78px;height:78px}
   }
 
   @media (max-width:860px){
@@ -1437,36 +1443,6 @@
 </head>
 <body>
 
-<!-- AI参謀キャラ用SVG（共通定義） -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="sambo-icon" viewBox="0 0 64 64">
-      <!-- ヘッドセット風コンサルアイコン -->
-      <!-- 頭 -->
-      <circle cx="32" cy="26" r="11" fill="#fff" opacity=".95"/>
-      <!-- スーツの肩 -->
-      <path d="M14 56 C14 44 22 39 32 39 C42 39 50 44 50 56 Z" fill="#fff" opacity=".95"/>
-      <!-- スーツの襟（V字） -->
-      <path d="M27 42 L32 50 L37 42" stroke="#1F4F87" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- ネクタイ -->
-      <path d="M32 50 L30 56 L32 60 L34 56 Z" fill="#E9470B"/>
-      <!-- ヘッドセット -->
-      <path d="M22 26 C22 19 26 15 32 15 C38 15 42 19 42 26" stroke="#1F4F87" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <!-- ヘッドセット耳パッド -->
-      <ellipse cx="22" cy="27" rx="2" ry="3" fill="#1F4F87"/>
-      <ellipse cx="42" cy="27" rx="2" ry="3" fill="#1F4F87"/>
-      <!-- マイク -->
-      <path d="M22 30 Q19 33 23 36" stroke="#1F4F87" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <circle cx="24" cy="36.5" r="1.4" fill="#E9470B"/>
-      <!-- 目 -->
-      <circle cx="28" cy="26" r="1.2" fill="#1F4F87"/>
-      <circle cx="36" cy="26" r="1.2" fill="#1F4F87"/>
-      <!-- 口（自信あり気な笑み） -->
-      <path d="M29 31 Q32 33 35 31" stroke="#1F4F87" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-    </symbol>
-  </defs>
-</svg>
-
 <!-- HEADER -->
 <header class="header">
   <div class="wrap header-inner">
@@ -1633,7 +1609,7 @@
 
     <div class="sambo-answer">
       <div class="sambo-avatar lg">
-        <svg><use href="#sambo-icon"/></svg>
+        <img src="images/ai_sanbo.png" alt="自治体AI参謀キャラクター" />
       </div>
       <div class="text">
         <div class="lbl">AI参謀より</div>
