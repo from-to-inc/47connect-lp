@@ -108,11 +108,12 @@
 
   /* ============ TYPOGRAPHY ============ */
   .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--mono);font-size:12px;font-weight:600;
-    letter-spacing:.16em;text-transform:uppercase;
-    color:var(--blue-deep);margin-bottom:18px;
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:15px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--blue-deep);margin-bottom:22px;
   }
+  .eyebrow .dot{width:8px;height:8px}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
   .eyebrow.on-dark{color:var(--blue-3)}
   .eyebrow.on-dark .dot{background:var(--orange-2)}
@@ -507,7 +508,7 @@
   }
   /* SOLUTION 強烈キャッチコピー（旧BRIDGE統合・CEO指示2026-05-08） */
   .solution-punch{
-    margin-top:48px;padding:44px 48px;text-align:center;
+    margin-top:48px;padding:48px 48px 40px;text-align:center;
     background:var(--blue-deep);color:#fff;border-radius:var(--r-lg);
     box-shadow:var(--sh-3);position:relative;overflow:hidden;
   }
@@ -519,9 +520,20 @@
     background-size:32px 32px;pointer-events:none;
   }
   .solution-punch > *{position:relative}
+  /* AI参謀アバター（共通） */
+  .punch-avatar{
+    width:88px;height:88px;border-radius:50%;overflow:hidden;
+    background:#fff;border:3px solid rgba(255,255,255,.3);
+    margin:0 auto 14px;box-shadow:var(--sh-2);
+  }
+  .punch-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .punch-label{
+    font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;
+    color:var(--blue-3);text-transform:uppercase;margin-bottom:14px;
+  }
   .solution-punch .punch-strong{
-    font-size:clamp(20px, 2.4vw, 30px);font-weight:800;
-    line-height:1.6;letter-spacing:-.015em;color:#fff;margin-bottom:16px;
+    font-size:clamp(24px, 2.8vw, 34px);font-weight:800;
+    line-height:1.6;letter-spacing:-.015em;color:#fff;margin-bottom:18px;
   }
   .solution-punch .punch-quote{
     font-style:normal;color:rgba(255,255,255,.55);font-weight:600;
@@ -533,12 +545,15 @@
   }
   .solution-punch .punch-hl .punch-quote{color:rgba(255,107,51,.85)}
   .solution-punch .punch-sub{
-    font-size:14px;color:var(--t-inv-2);line-height:1.85;
-    padding:10px 18px;border:1px dashed rgba(255,255,255,.2);
-    border-radius:999px;display:inline-block;
+    font-size:16px;color:var(--t-inv-2);line-height:1.85;
+    padding:12px 22px;border:1px dashed rgba(255,255,255,.2);
+    border-radius:999px;display:inline-block;font-weight:500;
   }
   @media (max-width:760px){
-    .solution-punch{padding:32px 24px;border-radius:var(--r)}
+    .solution-punch{padding:36px 24px 28px;border-radius:var(--r)}
+    .solution-punch .punch-strong{font-size:20px}
+    .solution-punch .punch-sub{font-size:14px}
+    .punch-avatar{width:72px;height:72px}
   }
   .stack-diagram{
     background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-xl);
@@ -979,13 +994,27 @@
   .flow-period.gap{background:transparent;border:none;padding:0}
 
   .flow-insight{
-    margin-top:40px;padding:32px 36px;border-radius:var(--r-lg);
-    background:var(--blue-deep);color:#fff;text-align:center;
+    margin-top:40px;padding:36px 40px;border-radius:var(--r-lg);
+    background:var(--blue-deep);color:#fff;
     box-shadow:var(--sh-3);
+    display:flex;align-items:center;gap:28px;
   }
-  .flow-insight p{font-size:14px;color:var(--blue-3);font-weight:700;letter-spacing:.04em;margin-bottom:10px;font-family:var(--mono);text-transform:uppercase;font-size:12px}
-  .flow-insight strong{font-size:20px;font-weight:800;line-height:1.6;letter-spacing:-.005em;display:block}
-  .flow-insight strong em{font-style:normal;color:#FFB991}
+  /* AI参謀コールアウト共通（FLOW insight にも適用） */
+  .ai-callout-avatar{flex-shrink:0;width:96px;height:96px;border-radius:50%;overflow:hidden;background:#fff;border:2px solid rgba(255,255,255,.3);box-shadow:var(--sh-2)}
+  .ai-callout-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .ai-callout-body{flex:1;text-align:left;min-width:0}
+  .ai-callout-label{
+    font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;
+    color:var(--blue-3);text-transform:uppercase;margin-bottom:10px;
+  }
+  .ai-callout-body p{font-size:22px;font-weight:800;line-height:1.6;letter-spacing:-.015em;color:#fff}
+  .ai-callout-body p strong{color:var(--orange-2);font-weight:900}
+  @media (max-width:760px){
+    .flow-insight{flex-direction:column;text-align:center;padding:28px 24px;gap:16px}
+    .ai-callout-avatar{width:80px;height:80px}
+    .ai-callout-body{text-align:center}
+    .ai-callout-body p{font-size:18px}
+  }
 
   @media (max-width:860px){
     .flow-track,.flow-periods{grid-template-columns:1fr}
@@ -1082,18 +1111,18 @@
   .ba-card.after .ba-label{color:var(--blue-deep)}
   .ba-title{font-size:18px;font-weight:800;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
   .ba-step{
-    display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;
-    padding:12px 0;border-bottom:1px solid var(--line);
+    display:flex;gap:16px;align-items:flex-start;
+    padding:14px 0;border-bottom:1px solid var(--line);
   }
   .ba-card.after .ba-step{border-color:var(--blue-100)}
   .ba-step:last-of-type{border-bottom:none}
   /* 番号バッジは非表示（CEO指示2026-05-08：邪魔だから削除） */
   .ba-step-no{display:none}
-  .ba-step-text{font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.5;flex:1}
+  .ba-step-text{font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.5;flex:1;min-width:0}
   .ba-step-text strong{display:block;font-size:21px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;line-height:1.35}
   .ba-card.after .ba-step-text strong{color:var(--blue-deep)}
   .ba-step-text small{display:block;font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.75}
-  .ba-step-time{font-family:var(--num);font-size:14px;font-weight:800;color:var(--ink-2);flex-shrink:0;font-feature-settings:"tnum" 1;letter-spacing:-.005em}
+  .ba-step-time{font-family:var(--num);font-size:14px;font-weight:800;color:var(--ink-2);flex-shrink:0;font-feature-settings:"tnum" 1;letter-spacing:-.005em;align-self:center;white-space:nowrap}
   .ba-card.after .ba-step-time{color:var(--blue-deep)}
 
   /* 3軸カラー差別化（番号バッジ削除に伴い、step全体の左borderで軸色を表現） */
@@ -1121,12 +1150,14 @@
 
   .ba-punchline{
     margin-top:48px;background:var(--blue-deep);color:#fff;
-    border-radius:var(--r-xl);padding:48px 52px;
-    box-shadow:var(--sh-3);
+    border-radius:var(--r-xl);padding:48px 52px 44px;
+    box-shadow:var(--sh-3);text-align:center;
   }
+  .ba-punchline .punch-avatar{margin:0 auto 12px}
+  .ba-punchline .punch-label{margin-bottom:14px}
   .ba-punchline > p{
-    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;
-    color:var(--blue-3);text-transform:uppercase;margin-bottom:18px;
+    font-size:22px;font-weight:800;letter-spacing:-.015em;
+    color:#fff;margin-bottom:24px;line-height:1.55;
   }
   .ratio{display:grid;grid-template-columns:auto auto 1fr;gap:32px;align-items:center;margin-bottom:32px}
   .ratio-block{text-align:center}
@@ -1831,8 +1862,12 @@
       <div class="flow-period">入札後の競争<strong>1〜3ヶ月</strong></div>
     </div>
 
-    <div class="flow-insight">
-      <p>だからこそ自治体AI参謀は、上流の意思決定の瞬間に動く。</p>
+    <div class="flow-insight ai-callout">
+      <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
+      <div class="ai-callout-body">
+        <div class="ai-callout-label">AI参謀より</div>
+        <p>だからこそ <strong>自治体AI参謀</strong> は、<br>上流の意思決定の瞬間に動く。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1854,6 +1889,8 @@
 
     <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08） -->
     <div class="solution-punch">
+      <div class="punch-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
+      <div class="punch-label">AI参謀より</div>
       <p class="punch-strong">DBサービスは情報を <span class="punch-quote">"置く"</span> だけ。<br>47Connectは、<em class="punch-hl">AI参謀がそれらを <span class="punch-quote">"使い切る"</span></em>。</p>
       <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
     </div>
@@ -1921,6 +1958,8 @@
     </div>
 
     <div class="ba-punchline">
+      <div class="punch-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
+      <div class="punch-label">AI参謀より</div>
       <p>月40時間の自治体営業工数を、およそ4時間に圧縮。</p>
       <div class="ratio">
         <div class="ratio-block">
