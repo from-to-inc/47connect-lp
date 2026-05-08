@@ -502,6 +502,41 @@
   .stack-image img{
     display:block;width:100%;height:auto;
   }
+  /* SOLUTION 強烈キャッチコピー（旧BRIDGE統合・CEO指示2026-05-08） */
+  .solution-punch{
+    margin-top:48px;padding:44px 48px;text-align:center;
+    background:var(--blue-deep);color:#fff;border-radius:var(--r-lg);
+    box-shadow:var(--sh-3);position:relative;overflow:hidden;
+  }
+  .solution-punch::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:32px 32px;pointer-events:none;
+  }
+  .solution-punch > *{position:relative}
+  .solution-punch .punch-strong{
+    font-size:clamp(20px, 2.4vw, 30px);font-weight:800;
+    line-height:1.6;letter-spacing:-.015em;color:#fff;margin-bottom:16px;
+  }
+  .solution-punch .punch-quote{
+    font-style:normal;color:rgba(255,255,255,.55);font-weight:600;
+  }
+  .solution-punch .punch-hl{
+    font-style:normal;color:var(--orange-2);font-weight:900;
+    background:linear-gradient(transparent 65%, rgba(233,71,11,.28) 65%);
+    padding:0 4px;
+  }
+  .solution-punch .punch-hl .punch-quote{color:rgba(255,107,51,.85)}
+  .solution-punch .punch-sub{
+    font-size:14px;color:var(--t-inv-2);line-height:1.85;
+    padding:10px 18px;border:1px dashed rgba(255,255,255,.2);
+    border-radius:999px;display:inline-block;
+  }
+  @media (max-width:760px){
+    .solution-punch{padding:32px 24px;border-radius:var(--r)}
+  }
   .stack-diagram{
     background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-xl);
     padding:34px;box-shadow:var(--sh-2);position:relative;overflow:hidden;
@@ -1056,9 +1091,20 @@
     display:grid;place-items:center;
   }
   .ba-card.after .ba-step-no{background:var(--blue);color:#fff}
-  .ba-step-text{font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.5}
-  .ba-step-time{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3)}
+  .ba-step-text{font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.5;flex:1}
+  .ba-step-text strong{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+  .ba-card.after .ba-step-text strong{color:var(--blue-deep)}
+  .ba-step-text small{display:block;font-size:12px;font-weight:500;color:var(--ink-3);line-height:1.7}
+  .ba-step-time{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3);flex-shrink:0}
   .ba-card.after .ba-step-time{color:var(--blue-deep)}
+
+  /* 3軸カラー差別化：見つける(朱)・分かる(青)・管理する(ティール) */
+  .ba-axis-find .ba-step-no{box-shadow:inset 3px 0 0 var(--orange)}
+  .ba-axis-read .ba-step-no{box-shadow:inset 3px 0 0 var(--blue)}
+  .ba-axis-manage .ba-step-no{box-shadow:inset 3px 0 0 var(--teal)}
+  .ba-card.after .ba-axis-find .ba-step-text strong{color:var(--orange)}
+  .ba-card.after .ba-axis-read .ba-step-text strong{color:var(--blue-deep)}
+  .ba-card.after .ba-axis-manage .ba-step-text strong{color:#1F8077}
   .ba-note{font-size:12px;color:var(--ink-3);line-height:1.85;padding:14px;background:var(--bg-soft);border-radius:8px;margin-top:auto}
   .ba-card.after .ba-note{background:#fff;border:1px solid var(--blue-100)}
   .ba-total{
@@ -1691,7 +1737,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Product Screens</div>
-      <h2 class="h-section">サクッと見つけて、サクッと分かって、<br><em>キチンと管理。</em></h2>
+      <h2 class="h-section"><em>サクッ</em>と見つけて、<em>サクッ</em>と分かって、<br><em>キチン</em>と管理。</h2>
       <p class="lede">実画面では、自治体営業の「見つけられない」「わからない」「管理ができない」を、営業判断に直結する3つの流れで解決します。</p>
     </div>
     <div class="screen-grid">
@@ -1802,20 +1848,12 @@
       <div class="stack-image" aria-label="データ層 → AI参謀層 → 営業判断 へと変換する3層構造の図解">
         <img src="images/layer.png" alt="47Connectの3層構造：データ層（予算・総合計画・議事録・担当課・CRM）→ AI参謀層（適合分析・仮説立案・優先順位づけ）→ 営業判断（営業先・提案切り口・次アクション）" loading="lazy" />
       </div>
-      <div class="stack-side">
-        <div class="stack-side-card">
-          <h3>データベースで終わらない</h3>
-          <p>情報を置くだけでは、営業判断にはつながりません。47ConnectはAI参謀がデータを読み解き、判断材料へ変換します。</p>
-        </div>
-        <div class="stack-side-card">
-          <h3>1人から営業基盤を持てる</h3>
-          <p>外部コンサルタントに毎回頼らず、初動調査・仮説整理・案件管理を社内で回せる状態を作ります。</p>
-        </div>
-        <div class="stack-side-card">
-          <h3>自治体特有の変化も追える</h3>
-          <p>首長任期、選挙、方針転換、予算サイクルまで含めて、次に動くべきタイミングを見逃しにくくします。</p>
-        </div>
-      </div>
+    </div>
+
+    <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08） -->
+    <div class="solution-punch">
+      <p class="punch-strong">DBサービスは情報を <span class="punch-quote">"置く"</span> だけ。<br>47Connectは、<em class="punch-hl">AI参謀がそれらを <span class="punch-quote">"使い切る"</span></em>。</p>
+      <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
     </div>
   </div>
 </section>
@@ -1850,59 +1888,7 @@
       </div>
     </div>
 
-    <!-- キーコピー -->
-    <div class="vision-keycopy">
-      <p>絵に描いた政策で終わらせないAI。</p>
-    </div>
-
     <p class="vision-note">※「地域AI参謀」はFromTo全社のビジョン軸。47Connect（自治体AI参謀）はその中で最初に実装された主力プロダクトです。地域展開モードは段階的に拡張予定。</p>
-  </div>
-</section>
-
-<!-- BRIDGE: 単なるDBではない（VISION の後・47Connectの差別化打ち出し） -->
-<section class="bridge" data-screen-label="08b Bridge">
-  <div class="wrap">
-    <div class="bridge-line">
-      <strong>DBサービスは情報を "置く" だけ。47Connectは、<em class="hl">AI参謀がそれらを "使い切る"</em>。</strong>
-      <span class="bridge-arrow-label">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用</span>
-    </div>
-  </div>
-</section>
-
-<!-- TTP -->
-<section class="ttp" data-screen-label="09 TTP">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>TTP — Time to Proposal</div>
-      <h2 class="h-section">公開された情報から、提案準備までを<em>"その日"</em>に。</h2>
-      <p class="lede">自治体の情報公開から、企業の提案準備が整うまでの時間（TTP）。自治体AI参謀は業界最速の即日対応を目指します。</p>
-    </div>
-    <div class="ttp-bars">
-      <div class="ttp-row">
-        <div class="ttp-name">外部コンサルタント</div>
-        <div class="ttp-bar-track"><div class="ttp-bar" style="width:100%;"></div></div>
-        <div class="ttp-time">約3週間</div>
-      </div>
-      <div class="ttp-row">
-        <div class="ttp-name">自治体DBサービス</div>
-        <div class="ttp-bar-track"><div class="ttp-bar" style="width:65%;"></div></div>
-        <div class="ttp-time">2〜4週間</div>
-      </div>
-      <div class="ttp-row">
-        <div class="ttp-name">自前リサーチ</div>
-        <div class="ttp-bar-track"><div class="ttp-bar" style="width:80%;"></div></div>
-        <div class="ttp-time">2〜4週間</div>
-      </div>
-      <div class="ttp-row">
-        <div class="ttp-name us">47Connect AI参謀</div>
-        <div class="ttp-bar-track"><div class="ttp-bar us" style="width:6%;"></div></div>
-        <div class="ttp-time us">24時間以内</div>
-      </div>
-    </div>
-    <div class="ttp-note">
-      ※ TTP（Time to Proposal）= 自治体の情報公開から、企業の提案準備が整うまでの時間。<br>
-      ※ β版特別キャンペーン期間中は主要200自治体で運用、Q4までに全1,741自治体に拡大予定。
-    </div>
   </div>
 </section>
 
@@ -1911,30 +1897,54 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Before / After</div>
-      <h2 class="h-section">「公開〜提案準備」の数週間を、<br>AI参謀が<em>1日</em>に圧縮。</h2>
-      <p class="lede">予算書・総合計画・議事録・パブコメ——あらゆる公開情報の<br>準備プロセスを、自治体AI参謀が時間軸で塗り替えます。</p>
+      <h2 class="h-section">3つの課題を、3つの機能で。<br>「情報収集〜提案準備」の数週間を、AI参謀が<em>1日</em>に圧縮。</h2>
+      <p class="lede"><strong>見つけられない・わからない・管理できない</strong>——<br>3つの課題を、47Connectの<strong>レコメンド・サマライズ・シェア管理</strong>でまるごと解決します。</p>
     </div>
 
     <div class="ba-grid">
       <div class="ba-card before">
         <div class="ba-label">Before — コンサル/自前リサーチ</div>
-        <div class="ba-title">公開後に手作業で動き始める</div>
-        <div class="ba-step"><div class="ba-step-no">01</div><div class="ba-step-text">予算書PDF入手・読み込み</div><div class="ba-step-time">3〜5日</div></div>
-        <div class="ba-step"><div class="ba-step-no">02</div><div class="ba-step-text">関連項目抽出・自社事業との照合</div><div class="ba-step-time">3〜5日</div></div>
-        <div class="ba-step"><div class="ba-step-no">03</div><div class="ba-step-text">提案書ドラフト作成</div><div class="ba-step-time">5〜10日</div></div>
-        <div class="ba-note">公開時点では誰も動けず、人手で読み込んでから初めてスタート。納品まで2〜3週間が標準。</div>
+        <div class="ba-title">情報収集から手作業で動き始める</div>
+        <div class="ba-step ba-axis-find">
+          <div class="ba-step-no">01</div>
+          <div class="ba-step-text"><strong>見つけられない</strong><br><small>全自治体を網羅できず、人手リサーチで漏れ多発。情報収集の起点から数日かかる。</small></div>
+          <div class="ba-step-time">最長1週間</div>
+        </div>
+        <div class="ba-step ba-axis-read">
+          <div class="ba-step-no">02</div>
+          <div class="ba-step-text"><strong>わからない</strong><br><small>PDFを読み解けず、自社商材の提案切り口が立てられない。属人化した経験頼り。</small></div>
+          <div class="ba-step-time">6〜10日</div>
+        </div>
+        <div class="ba-step ba-axis-manage">
+          <div class="ba-step-no">03</div>
+          <div class="ba-step-text"><strong>管理ができない</strong><br><small>Excel・個人メモで属人管理。抜け漏れ・引き継ぎ不可・首長任期や方針転換も追えない。</small></div>
+          <div class="ba-step-time">5〜10日</div>
+        </div>
+        <div class="ba-note">情報収集の起点から人手で動き、3つの課題が積み重なる。納品まで3〜4週間が標準。</div>
         <div class="ba-total">
           <div class="ba-total-label">合計</div>
-          <div class="ba-total-value">約 3週間</div>
+          <div class="ba-total-value">約 4週間</div>
         </div>
       </div>
       <div class="ba-card after">
         <div class="ba-label">After — 47Connect 自治体AI参謀</div>
-        <div class="ba-title">公開した瞬間、AI参謀が動く</div>
-        <div class="ba-step"><div class="ba-step-no">01</div><div class="ba-step-text">公開検知 → AI参謀が自動構造化</div><div class="ba-step-time">数時間</div></div>
-        <div class="ba-step"><div class="ba-step-no">02</div><div class="ba-step-text">関連項目を御社事業と照合・通知</div><div class="ba-step-time">同日中</div></div>
-        <div class="ba-step"><div class="ba-step-no">03</div><div class="ba-step-text">提案書ドラフトを参謀と共同編集</div><div class="ba-step-time">数時間</div></div>
-        <div class="ba-note">「予算書が公開されました。御社の◯◯事業に関連する3項目を抽出。提案書ドラフトはこちら」を当日通知。</div>
+        <div class="ba-title">3機能が、3課題をまるごと解決</div>
+        <div class="ba-step ba-axis-find">
+          <div class="ba-step-no">01</div>
+          <div class="ba-step-text"><strong>レコメンド</strong><br><small>議事録 × 予算 × 首長公約 × パブコメをAIで横断スコアリング。御社商材に合う自治体を「次に注力すべき順」で提示。</small></div>
+          <div class="ba-step-time">数時間</div>
+        </div>
+        <div class="ba-step ba-axis-read">
+          <div class="ba-step-no">02</div>
+          <div class="ba-step-text"><strong>サマライズ</strong><br><small>首長・予算規模・重点施策・直近議会・補正予算を1自治体ごとに要約。提案切り口を即把握。</small></div>
+          <div class="ba-step-time">同日中</div>
+        </div>
+        <div class="ba-step ba-axis-manage">
+          <div class="ba-step-no">03</div>
+          <div class="ba-step-text"><strong>シェア管理</strong><br><small>提案状況・メモ・優先度・次アクションをチーム共通CRMで共有。首長任期・予算サイクルのアラートも自動。</small></div>
+          <div class="ba-step-time">即時共有</div>
+        </div>
+        <div class="ba-note">3課題に対し、3機能が同時並行で動き出す。「見つける・分かる・管理する」を24時間以内にまるごと解決。</div>
         <div class="ba-total">
           <div class="ba-total-label">合計</div>
           <div class="ba-total-value">24時間以内</div>
