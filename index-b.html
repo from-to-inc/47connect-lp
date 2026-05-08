@@ -542,7 +542,7 @@
   }
   /* SOLUTION 強烈キャッチコピー（旧BRIDGE統合・CEO指示2026-05-08） */
   .solution-punch{
-    margin-top:48px;padding:48px 48px 40px;text-align:center;
+    margin-top:48px;padding:36px 40px;
     background:var(--blue-deep);color:#fff;border-radius:var(--r-lg);
     box-shadow:var(--sh-3);position:relative;overflow:hidden;
   }
@@ -554,20 +554,9 @@
     background-size:32px 32px;pointer-events:none;
   }
   .solution-punch > *{position:relative}
-  /* AI参謀アバター（共通） */
-  .punch-avatar{
-    width:88px;height:88px;border-radius:50%;overflow:hidden;
-    background:#fff;border:3px solid rgba(255,255,255,.3);
-    margin:0 auto 14px;box-shadow:var(--sh-2);
-  }
-  .punch-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  .punch-label{
-    font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;
-    color:var(--blue-3);text-transform:uppercase;margin-bottom:14px;
-  }
   .solution-punch .punch-strong{
-    font-size:clamp(24px, 2.8vw, 34px);font-weight:800;
-    line-height:1.6;letter-spacing:-.015em;color:#fff;margin-bottom:18px;
+    font-size:clamp(20px, 2.4vw, 28px);font-weight:800;
+    line-height:1.65;letter-spacing:-.015em;color:#fff;margin-bottom:14px;
   }
   .solution-punch .punch-quote{
     font-style:normal;color:rgba(255,255,255,.55);font-weight:600;
@@ -579,15 +568,7 @@
   }
   .solution-punch .punch-hl .punch-quote{color:rgba(255,107,51,.85)}
   .solution-punch .punch-sub{
-    font-size:16px;color:var(--t-inv-2);line-height:1.85;
-    padding:12px 22px;border:1px dashed rgba(255,255,255,.2);
-    border-radius:999px;display:inline-block;font-weight:500;
-  }
-  @media (max-width:760px){
-    .solution-punch{padding:36px 24px 28px;border-radius:var(--r)}
-    .solution-punch .punch-strong{font-size:20px}
-    .solution-punch .punch-sub{font-size:14px}
-    .punch-avatar{width:72px;height:72px}
+    font-size:15px;color:var(--t-inv-2);line-height:1.85;font-weight:500;
   }
   .stack-diagram{
     background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-xl);
@@ -987,13 +968,21 @@
     border-radius:var(--r-lg);padding:24px;
     display:flex;flex-direction:column;gap:12px;
   }
-  .flow-zone.planning{background:var(--blue-deep);color:#fff;box-shadow:var(--sh-3)}
+  .flow-zone.planning{
+    background:var(--blue-deep);color:#fff;box-shadow:var(--sh-3);
+    border:3px solid var(--orange);position:relative;
+  }
   .flow-zone.bidding{background:var(--bg-soft);border:1px solid var(--line);color:var(--ink)}
   .flow-zone-label{
-    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
+    font-family:var(--mono);font-size:14px;font-weight:800;letter-spacing:.1em;
     text-transform:uppercase;
   }
-  .flow-zone.planning .flow-zone-label{color:var(--blue-3)}
+  .flow-zone.planning .flow-zone-label{
+    display:inline-block;align-self:flex-start;
+    padding:6px 14px;border-radius:6px;
+    background:var(--orange);color:#fff;letter-spacing:.06em;font-size:13px;
+    box-shadow:var(--sh-1);
+  }
   .flow-zone.bidding .flow-zone-label{color:var(--ink-4)}
   .flow-steps{display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:10px}
   .flow-step{
@@ -1031,20 +1020,25 @@
     margin-top:40px;padding:36px 40px;border-radius:var(--r-lg);
     background:var(--blue-deep);color:#fff;
     box-shadow:var(--sh-3);
+  }
+  /* AI参謀コールアウト共通フォーマット（左アイコン+右テキスト・横幅いっぱい） */
+  .ai-callout{
     display:flex;align-items:center;gap:28px;
   }
-  /* AI参謀コールアウト共通（FLOW insight にも適用） */
-  .ai-callout-avatar{flex-shrink:0;width:96px;height:96px;border-radius:50%;overflow:hidden;background:#fff;border:2px solid rgba(255,255,255,.3);box-shadow:var(--sh-2)}
+  .ai-callout-avatar{
+    flex-shrink:0;width:96px;height:96px;border-radius:50%;overflow:hidden;
+    background:#fff;border:2px solid rgba(255,255,255,.3);box-shadow:var(--sh-2);
+  }
   .ai-callout-avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .ai-callout-body{flex:1;text-align:left;min-width:0}
   .ai-callout-label{
     font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;
-    color:var(--blue-3);text-transform:uppercase;margin-bottom:10px;
+    color:var(--blue-3);text-transform:uppercase;margin-bottom:12px;
   }
-  .ai-callout-body p{font-size:22px;font-weight:800;line-height:1.6;letter-spacing:-.015em;color:#fff}
+  .ai-callout-body p{font-size:22px;font-weight:800;line-height:1.65;letter-spacing:-.015em;color:#fff}
   .ai-callout-body p strong{color:var(--orange-2);font-weight:900}
   @media (max-width:760px){
-    .flow-insight{flex-direction:column;text-align:center;padding:28px 24px;gap:16px}
+    .ai-callout{flex-direction:column;text-align:center;gap:16px}
     .ai-callout-avatar{width:80px;height:80px}
     .ai-callout-body{text-align:center}
     .ai-callout-body p{font-size:18px}
@@ -1184,14 +1178,17 @@
 
   .ba-punchline{
     margin-top:48px;background:var(--blue-deep);color:#fff;
-    border-radius:var(--r-xl);padding:48px 52px 44px;
-    box-shadow:var(--sh-3);text-align:center;
+    border-radius:var(--r-lg);padding:36px 40px;
+    box-shadow:var(--sh-3);
   }
-  .ba-punchline .punch-avatar{margin:0 auto 12px}
-  .ba-punchline .punch-label{margin-bottom:14px}
-  .ba-punchline > p{
-    font-size:22px;font-weight:800;letter-spacing:-.015em;
-    color:#fff;margin-bottom:24px;line-height:1.55;
+  .ba-punchline .punch-headline{
+    font-size:clamp(22px, 2.6vw, 30px);font-weight:800;letter-spacing:-.015em;
+    color:#fff;line-height:1.65;
+  }
+  .ba-punchline-extras{
+    margin-top:32px;background:var(--blue-deep);color:#fff;
+    border-radius:var(--r-lg);padding:40px 44px;
+    box-shadow:var(--sh-3);
   }
   .ratio{display:grid;grid-template-columns:auto auto 1fr;gap:32px;align-items:center;margin-bottom:32px}
   .ratio-block{text-align:center}
@@ -1928,11 +1925,13 @@
     </div>
 
     <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08） -->
-    <div class="solution-punch">
-      <div class="punch-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
-      <div class="punch-label">AI参謀より</div>
-      <p class="punch-strong">DBサービスは情報を <span class="punch-quote">"置く"</span> だけ。<br>47Connectは、<em class="punch-hl">AI参謀がそれらを <span class="punch-quote">"使い切る"</span></em>。</p>
-      <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
+    <div class="solution-punch ai-callout">
+      <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
+      <div class="ai-callout-body">
+        <div class="ai-callout-label">AI参謀より</div>
+        <p class="punch-strong">DBサービスは情報を <span class="punch-quote">"置く"</span> だけ。47Connectは、<em class="punch-hl">AI参謀がそれらを <span class="punch-quote">"使い切る"</span></em>。</p>
+        <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1997,10 +1996,14 @@
       </div>
     </div>
 
-    <div class="ba-punchline">
-      <div class="punch-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
-      <div class="punch-label">AI参謀より</div>
-      <p>月40時間の自治体営業工数を、およそ4時間に圧縮。</p>
+    <div class="ba-punchline ai-callout">
+      <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
+      <div class="ai-callout-body">
+        <div class="ai-callout-label">AI参謀より</div>
+        <p class="punch-headline">月40時間の自治体営業工数を、およそ4時間に圧縮。</p>
+      </div>
+    </div>
+    <div class="ba-punchline-extras">
       <div class="ratio">
         <div class="ratio-block">
           <div class="ratio-num"><span class="top">1</span><span class="slash">/</span><span class="bot">10</span></div>
