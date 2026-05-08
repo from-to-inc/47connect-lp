@@ -493,11 +493,12 @@
   /* ============ SOLUTION (2-LAYER) ============ */
   .solution{background:var(--bg)}  /* 戦略構造1：白 */
   .layer-stack{
-    margin-top:42px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px;align-items:center;
+    margin-top:42px;display:flex;justify-content:center;
   }
   .stack-image{
     border-radius:var(--r-lg);overflow:hidden;
     background:var(--bg-soft);
+    max-width:880px;width:100%;
   }
   .stack-image img{
     display:block;width:100%;height:auto;
@@ -1084,27 +1085,26 @@
   }
   .ba-card.after .ba-step{border-color:var(--blue-100)}
   .ba-step:last-of-type{border-bottom:none}
-  .ba-step-no{
-    font-family:var(--mono);font-size:13px;font-weight:800;
-    width:32px;height:32px;border-radius:8px;
-    background:var(--bg-soft);color:var(--ink-3);
-    display:grid;place-items:center;
-  }
-  .ba-card.after .ba-step-no{background:var(--blue);color:#fff}
+  /* 番号バッジは非表示（CEO指示2026-05-08：邪魔だから削除） */
+  .ba-step-no{display:none}
   .ba-step-text{font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.5;flex:1}
-  .ba-step-text strong{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+  .ba-step-text strong{display:block;font-size:21px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;line-height:1.35}
   .ba-card.after .ba-step-text strong{color:var(--blue-deep)}
-  .ba-step-text small{display:block;font-size:12px;font-weight:500;color:var(--ink-3);line-height:1.7}
+  .ba-step-text small{display:block;font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.75}
   .ba-step-time{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3);flex-shrink:0}
   .ba-card.after .ba-step-time{color:var(--blue-deep)}
 
-  /* 3軸カラー差別化：見つける(朱)・分かる(青)・管理する(ティール) */
-  .ba-axis-find .ba-step-no{box-shadow:inset 3px 0 0 var(--orange)}
-  .ba-axis-read .ba-step-no{box-shadow:inset 3px 0 0 var(--blue)}
-  .ba-axis-manage .ba-step-no{box-shadow:inset 3px 0 0 var(--teal)}
+  /* 3軸カラー差別化（番号バッジ削除に伴い、step全体の左borderで軸色を表現） */
+  .ba-step{padding-left:14px;border-left:3px solid transparent}
+  .ba-axis-find{border-left-color:var(--orange)}
+  .ba-axis-read{border-left-color:var(--blue)}
+  .ba-axis-manage{border-left-color:var(--teal)}
   .ba-card.after .ba-axis-find .ba-step-text strong{color:var(--orange)}
   .ba-card.after .ba-axis-read .ba-step-text strong{color:var(--blue-deep)}
   .ba-card.after .ba-axis-manage .ba-step-text strong{color:#1F8077}
+  @media (max-width:760px){
+    .ba-step-text strong{font-size:18px}
+  }
   .ba-note{font-size:12px;color:var(--ink-3);line-height:1.85;padding:14px;background:var(--bg-soft);border-radius:8px;margin-top:auto}
   .ba-card.after .ba-note{background:#fff;border:1px solid var(--blue-100)}
   .ba-total{
@@ -1855,40 +1855,6 @@
       <p class="punch-strong">DBサービスは情報を <span class="punch-quote">"置く"</span> だけ。<br>47Connectは、<em class="punch-hl">AI参謀がそれらを <span class="punch-quote">"使い切る"</span></em>。</p>
       <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
     </div>
-  </div>
-</section>
-
-<!-- VISION: 地域AI参謀とは？（FromTo全社のビジョン軸・47Connectの位置づけ提示） -->
-<section class="vision" data-screen-label="08 Vision">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>FromTo Vision</div>
-      <h2 class="h-section"><em>「地域AI参謀」</em>とは？</h2>
-      <p class="lede">FromToが目指すのは、<strong>自治体を起点に、地域へ広がる AI戦略パートナー</strong>。<br><strong>"自治体参謀モード"</strong>（今）と <strong>"地域展開モード"</strong>（次）の2モード構成で、自治体のみならず地域企業・住民まで段階的に支援していく構想です。</p>
-      <p class="vision-position"><strong>47Connect</strong> は、この構想の <strong>"自治体参謀モード"</strong> 実装として現在稼働中。</p>
-    </div>
-
-    <!-- 2モード並列 -->
-    <div class="vision-modes">
-      <div class="vmode vmode-now">
-        <div class="vmode-status">NOW · 実装中</div>
-        <div class="vmode-num">MODE 01</div>
-        <h3 class="vmode-title">自治体参謀モード</h3>
-        <p class="vmode-tag">自治体の右腕</p>
-        <p class="vmode-desc">政策立案・施策設計・議会資料・他自治体事例分析・民間連携提案・KPI設計を、毎日の対話で支援。</p>
-        <div class="vmode-impl">→ <strong>47Connect</strong>（自治体AI参謀）として現在提供中</div>
-      </div>
-      <div class="vmode vmode-future">
-        <div class="vmode-status">NEXT · 構想〜段階展開</div>
-        <div class="vmode-num">MODE 02</div>
-        <h3 class="vmode-title">地域展開モード</h3>
-        <p class="vmode-tag">地域に広げるエンジン</p>
-        <p class="vmode-desc">自治体参謀モードで設計した施策を、地域企業・住民へ実装・展開。地域経済活性化までを射程に。</p>
-        <div class="vmode-impl">→ 既存3事業（製品寄附仲介・R&D型越境派遣 等）で段階実装</div>
-      </div>
-    </div>
-
-    <p class="vision-note">※「地域AI参謀」はFromTo全社のビジョン軸。47Connect（自治体AI参謀）はその中で最初に実装された主力プロダクトです。地域展開モードは段階的に拡張予定。</p>
   </div>
 </section>
 
