@@ -207,9 +207,10 @@
   .fz-switcher button[data-fz="md"]{font-size:12px}
   .fz-switcher button[data-fz="lg"]{font-size:14px}
 
-  /* zoomで全体スケール（Safari/Chrome/Edge/Firefox126+ サポート） */
-  html[data-fz="sm"] body{zoom:0.92}
-  html[data-fz="lg"] body{zoom:1.12}
+  /* zoomで全体スケール（CEO指示2026-05-09・全体的に大きく）
+     小 = 1.00 (旧「中」相当) / 中 = 1.12 / 大 = 1.25 */
+  html[data-fz="md"] body{zoom:1.12}
+  html[data-fz="lg"] body{zoom:1.25}
 
   @media (max-width:760px){
     .fz-switcher{padding:2px 4px 2px 6px}
