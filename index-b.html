@@ -1334,9 +1334,24 @@
     padding:40px 44px;
   }
   .credits-head{margin-bottom:24px}
-  .credits-head h4{font-size:18px;font-weight:800;letter-spacing:-.005em;margin-bottom:8px;color:var(--ink)}
-  .credits-head p{font-size:13px;color:var(--ink-3);line-height:1.85}
+  .credits-head h4{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+  .credits-head p{font-size:14px;color:var(--ink-2);line-height:1.85}
   .credits-head strong{color:var(--ink);font-weight:700}
+
+  /* TBA（本番ローンチ時公開）プレースホルダ */
+  .credits-tba{
+    margin-bottom:20px;padding:24px 28px;
+    background:var(--bg-tint);border:1px dashed var(--blue-200);border-radius:var(--r);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .credits-tba-label{
+    display:inline-block;align-self:flex-start;
+    font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
+    color:#fff;background:var(--blue-deep);padding:5px 12px;border-radius:6px;
+    text-transform:uppercase;
+  }
+  .credits-tba p{font-size:14px;color:var(--ink-2);line-height:1.85}
+  .credits-tba strong{color:var(--ink);font-weight:800}
   .credits-tbl{
     width:100%;border-collapse:separate;border-spacing:0;font-size:14px;
     border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:24px;
@@ -2117,7 +2132,7 @@
         </div>
         <ul class="plan-feat">
           <li><strong>ライトプラン（データ層）の全機能</strong></li>
-          <li>AI参謀との対話（月200ターン）+ クレジット同梱：月80クレジット</li>
+          <li>AI参謀との対話（月間枠あり）+ AIクレジット同梱（<strong>別途チャージ料金あり</strong>）<br><small>※クレジット消費量・チャージ料金プランの詳細は本番ローンチ時に公開予定</small></li>
           <li>提案書ドラフト自動生成（議事録引用つき）</li>
           <li><strong>書類の即時通知機能</strong>（スタンダード限定）— 公開と同時にAI参謀が御社事業との関連を自動照合・通知（主要200自治体）</li>
           <li>1年間の付帯オンボーディング（前半：集中支援／後半：運用最適化・年6回）</li>
@@ -2127,49 +2142,15 @@
 
     <div class="credits">
       <div class="credits-head">
-        <h4>クレジット追加プラン（買うほどお得・4段階）</h4>
-        <p>クレジットは "AI参謀がフル稼働する瞬間に投入する稼働燃料"。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
+        <h4>AIクレジット（チャージ料金は別途発生）</h4>
+        <p>AIクレジットは <strong>"AI参謀がフル稼働する瞬間"</strong> に投入する稼働燃料です。全国一括分析・深掘り戦略レポート・大型PDF処理など、勝負どころで投入します。<strong>日常の対話・調査・閲覧は使い放題（消費なし）</strong>。</p>
       </div>
-      <table class="credits-tbl">
-        <thead>
-          <tr><th>プラン</th><th>金額（税別）</th><th>クレジット数</th><th>ディスカウント</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Starter</td>
-            <td><span class="price-num">¥30,000</span></td>
-            <td>30 cr</td>
-            <td><span class="disc base">標準価格</span></td>
-          </tr>
-          <tr>
-            <td>Pro</td>
-            <td><span class="price-num">¥50,000</span></td>
-            <td>55 cr</td>
-            <td><span class="disc">約10%OFF</span></td>
-          </tr>
-          <tr>
-            <td>Business</td>
-            <td><span class="price-num">¥100,000</span></td>
-            <td>120 cr</td>
-            <td><span class="disc">約17%OFF</span></td>
-          </tr>
-          <tr class="best">
-            <td>Enterprise<span class="badge-best">BEST</span></td>
-            <td><span class="price-num">¥300,000</span></td>
-            <td>400 cr</td>
-            <td><span class="disc">約25%OFF</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="credits-usage">
-        <h5>クレジット消費の目安</h5>
-        <ul>
-          <li>全国1,741自治体一括スコアリング <strong>50 cr</strong></li>
-          <li>深掘り戦略レビュー（役員稟議用） <strong>10 cr/回</strong></li>
-        </ul>
+      <div class="credits-tba">
+        <div class="credits-tba-label">本番ローンチ時に公開</div>
+        <p>クレジットチャージ料金プラン・クレジット消費量の詳細は、<strong>本番ローンチ時（2026年11月予定）</strong> に公開いたします。買うほどお得な4段階のチャージプラン（最大25%OFF想定）を準備中です。</p>
       </div>
       <div class="credits-foot">
-        ※ クレジット単価は β版特別キャンペーン期間中の利用データを基に確定。β版参加企業は確定後の単価を「創業時固定保証」で永続適用。
+        ※ β版特別キャンペーン期間中は、<strong>AI参謀対話 無制限ご利用</strong> + <strong>クレジット単価 創業時固定保証</strong>（β版確定単価を永続適用）。
       </div>
     </div>
   </div>
