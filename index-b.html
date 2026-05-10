@@ -34,9 +34,21 @@
     --blue-200:    #C5D6EC;
     --blue-300:    #A4BFE0;
 
-    --orange:      #E9470B;   /* accent / CTA */
+    --orange:      #E9470B;   /* accent / CTA（白背景・ボタン用） */
     --orange-2:    #FF6B33;
     --orange-50:   #FDEBE3;
+
+    /* Warm accent on dark — 濃い青背景上で使う暖色（橙の彩度を抑えた琥珀色系） */
+    --amber:       #FFB991;   /* 暖アンバー：濃い青上の文字色 */
+    --amber-soft:  #FFD4B8;   /* やわらかいクリーム：濃い青上の見出し色 */
+    --amber-bg-1:  rgba(255,185,145,.10);  /* レベル1：薄い暖背景 */
+    --amber-bg-2:  rgba(255,185,145,.16);  /* レベル2：標準暖背景 */
+    --amber-line:  rgba(255,185,145,.36);  /* 暖ボーダー */
+
+    /* Surfaces on dark — 濃い青背景上の階層パネル */
+    --on-dark-1:   rgba(255,255,255,.07);  /* レベル1パネル背景 */
+    --on-dark-2:   rgba(255,255,255,.20);  /* レベル1ボーダー */
+    --on-dark-3:   rgba(255,255,255,.10);  /* レベル2パネル背景（より目立つ） */
 
     --teal:        #4CBBB4;   /* sub accent (limited use) */
 
@@ -179,23 +191,34 @@
     display:grid;place-items:center;font-family:var(--mono);
     font-size:13px;font-weight:800;letter-spacing:.02em;
   }
-  .nav{display:flex;gap:24px;font-size:14px;color:var(--ink-2);font-weight:600}
+  .nav{display:flex;gap:20px;font-size:14px;color:var(--ink-2);font-weight:600;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0}
+  .nav a{white-space:nowrap}
   .nav a:hover{color:var(--blue)}
+  .header-inner{flex-wrap:nowrap}
+  .logo{flex-shrink:0;white-space:nowrap}
+  @media (max-width:1100px){
+    .nav{gap:14px;font-size:13px}
+  }
+  @media (max-width:960px){
+    .nav{display:none}
+  }
   .header-cta{display:flex;align-items:center;gap:10px}
   .header-cta .btn{padding:10px 18px;font-size:13px}
 
-  /* 文字サイズ切替スイッチャー */
+  /* 文字サイズ切替スイッチャー（独立フローティング・右下固定・CEO指示2026-05-10） */
   .fz-switcher{
+    position:fixed;bottom:20px;right:20px;z-index:55;
     display:inline-flex;align-items:center;gap:2px;
     border:1px solid var(--line);border-radius:999px;
-    padding:3px 4px 3px 10px;background:#fff;
+    padding:5px 6px 5px 12px;background:#fff;
+    box-shadow:0 8px 24px rgba(14,31,58,.12), 0 2px 6px rgba(14,31,58,.06);
   }
   .fz-switcher .fz-label{
     font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;
-    color:var(--ink-3);margin-right:4px;
+    color:var(--ink-3);margin-right:6px;
   }
   .fz-switcher button{
-    padding:5px 10px;font-size:12px;font-weight:800;
+    padding:6px 11px;font-size:12px;font-weight:800;
     border-radius:999px;color:var(--ink-3);cursor:pointer;
     transition:all .15s ease;line-height:1;background:transparent;border:none;
     font-family:var(--sans);
@@ -207,6 +230,12 @@
   .fz-switcher button[data-fz="sm"]{font-size:11px}
   .fz-switcher button[data-fz="md"]{font-size:12px}
   .fz-switcher button[data-fz="lg"]{font-size:14px}
+  /* モバイルではsticky-cta（下固定）と被らないよう、スイッチャーを上に逃がす */
+  @media (max-width:760px){
+    .fz-switcher{bottom:auto;top:84px;right:12px;padding:3px 4px 3px 10px}
+    .fz-switcher .fz-label{display:none}
+    .fz-switcher button{padding:5px 9px}
+  }
 
   /* zoomで全体スケール（CEO指示2026-05-09・全体的に大きく）
      小 = 1.00 (旧「中」相当) / 中 = 1.12 / 大 = 1.25 */
@@ -1019,7 +1048,7 @@
   }
   .flow-zone.planning{
     background:var(--blue-deep);color:#fff;box-shadow:var(--sh-3);
-    border:3px solid var(--orange);position:relative;
+    border:1.5px solid var(--amber-line);position:relative;
   }
   .flow-zone.bidding{background:var(--bg-soft);border:1px solid var(--line);color:var(--ink)}
   .flow-zone-label{
@@ -1029,8 +1058,8 @@
   .flow-zone.planning .flow-zone-label{
     display:inline-block;align-self:flex-start;
     padding:6px 14px;border-radius:6px;
-    background:var(--orange);color:#fff;letter-spacing:.06em;font-size:13px;
-    box-shadow:var(--sh-1);
+    background:var(--amber-bg-2);color:var(--amber-soft);
+    border:1px solid var(--amber-line);letter-spacing:.06em;font-size:13px;
   }
   .flow-zone.bidding .flow-zone-label{color:var(--ink-4)}
   .flow-steps{display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:10px}
@@ -1248,7 +1277,9 @@
   .ratio-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,.10)}
   .ratio-tag{
     font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
-    color:#fff;background:var(--orange);padding:6px 12px;border-radius:5px;text-transform:uppercase;
+    color:var(--amber-soft);background:var(--amber-bg-2);
+    border:1px solid var(--amber-line);
+    padding:6px 12px;border-radius:5px;text-transform:uppercase;
   }
   .ratio-cta-text{font-size:14px;color:var(--blue-3);flex:1;line-height:1.7}
   .ratio-cta-text a{color:#fff;font-weight:800;border-bottom:1px solid rgba(255,255,255,.4)}
@@ -1275,8 +1306,10 @@
   .pilot-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
   .pilot-tag{
     display:inline-block;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
-    color:#fff;background:var(--orange);padding:6px 14px;border-radius:5px;text-transform:uppercase;
-    margin-bottom:20px;box-shadow:var(--sh-orange);
+    color:var(--amber-soft);background:var(--amber-bg-2);
+    border:1px solid var(--amber-line);
+    padding:6px 14px;border-radius:5px;text-transform:uppercase;
+    margin-bottom:20px;
   }
   .pilot h3{font-size:30px;font-weight:800;line-height:1.4;letter-spacing:-.01em;color:#fff;margin-bottom:6px}
   .pilot-period{font-family:var(--mono);font-size:13px;color:var(--blue-3);margin-bottom:24px}
@@ -1286,13 +1319,13 @@
   .pilot-price{font-size:48px;font-weight:800;color:#fff;line-height:1;letter-spacing:-.025em;font-family:var(--mono)}
   .pilot-price small{font-size:13px;font-weight:500;color:var(--t-inv-2);margin-left:8px;font-family:var(--sans)}
   .pilot-disc{
-    display:inline-block;font-size:13px;font-weight:700;color:#FFB991;
-    background:rgba(233,71,11,.18);border:1px solid rgba(233,71,11,.4);
+    display:inline-block;font-size:13px;font-weight:700;color:var(--amber-soft);
+    background:var(--amber-bg-1);border:1px solid var(--amber-line);
     padding:8px 14px;border-radius:8px;margin-top:6px;
   }
   .pilot-cta{margin-top:28px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
   .pilot-note{font-size:12px;color:var(--t-inv-3);line-height:1.85}
-  .pilot-incs{padding:24px 28px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-lg)}
+  .pilot-incs{padding:24px 28px;background:var(--on-dark-1);border:1px solid var(--on-dark-2);border-radius:var(--r-lg)}
   .pilot-incs-lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--blue-3);margin-bottom:14px;text-transform:uppercase}
   .pilot-incs ul{list-style:none;display:flex;flex-direction:column;gap:10px}
   .pilot-incs li{font-size:13px;padding-left:24px;position:relative;color:var(--t-inv-2);line-height:1.7}
@@ -1309,7 +1342,7 @@
   /* PROMO ROI block (β版枠内の応募前試算誘導) */
   .promo-roi{
     margin-top:32px;padding:28px 32px;
-    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    background:var(--on-dark-1);border:1px solid var(--on-dark-2);
     border-radius:var(--r-lg);
     display:grid;grid-template-columns:1.4fr auto;gap:24px;align-items:center;
   }
@@ -1639,13 +1672,13 @@
   }
   .end-stage{
     flex:1;min-width:240px;max-width:320px;
-    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    background:var(--on-dark-1);border:1px solid var(--on-dark-2);
     border-radius:14px;padding:20px 22px;text-align:left;
     backdrop-filter:blur(8px);
   }
   .end-stage-no{
     font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.12em;
-    color:var(--orange);margin-bottom:8px;
+    color:var(--amber);margin-bottom:8px;
   }
   .end-stage-title{font-size:15px;font-weight:800;color:#fff;line-height:1.5;margin-bottom:6px;letter-spacing:-.005em}
   .end-stage-desc{font-size:13px;color:var(--t-inv-2);line-height:1.75;font-weight:500}
@@ -1703,17 +1736,19 @@
       <a href="#faq">FAQ</a>
     </nav>
     <div class="header-cta">
-      <div class="fz-switcher" role="group" aria-label="文字サイズの切替">
-        <span class="fz-label" aria-hidden="true">文字</span>
-        <button type="button" data-fz="sm" aria-label="小さい文字">小</button>
-        <button type="button" data-fz="md" class="active" aria-label="標準の文字">中</button>
-        <button type="button" data-fz="lg" aria-label="大きい文字">大</button>
-      </div>
       <a href="#screens" class="btn btn-ghost ghost-mob">仕組みを見る</a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">個別デモを見る<span class="arrow">→</span></a>
     </div>
   </div>
 </header>
+
+<!-- 文字サイズ切替（独立フローティング・右下固定） -->
+<div class="fz-switcher" role="group" aria-label="文字サイズの切替">
+  <span class="fz-label" aria-hidden="true">文字</span>
+  <button type="button" data-fz="sm" aria-label="小さい文字">小</button>
+  <button type="button" data-fz="md" class="active" aria-label="標準の文字">中</button>
+  <button type="button" data-fz="lg" aria-label="大きい文字">大</button>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="top" data-screen-label="01 Hero">
