@@ -1225,32 +1225,26 @@
   .ba-total-value{font-size:28px;font-weight:900;color:var(--ink);font-family:var(--num);letter-spacing:-.025em;font-feature-settings:"tnum" 1}
   .ba-card.after .ba-total-value{color:#fff}
 
-  /* BA-punchline 統合版（AI参謀コールアウト + 1/10比率 + CTA を1ボックスに） */
+  /* BA-punchline 統合版 v3（CEO指示2026-05-10: 中央ratio強調・コールアウト削除） */
   .ba-punchline{
     margin-top:48px;background:var(--blue-deep);color:#fff;
-    border-radius:var(--r-lg);padding:36px 40px;
+    border-radius:var(--r-lg);padding:48px 48px 36px;
     box-shadow:var(--sh-3);
     display:flex;flex-direction:column;gap:32px;
   }
-  .ba-punchline-callout{margin-bottom:0}
-  .ba-punchline .punch-headline{
-    font-size:clamp(22px, 2.6vw, 30px);font-weight:800;letter-spacing:-.015em;
-    color:#fff;line-height:1.65;
-  }
-  .ba-punchline-divider{
-    height:1px;background:rgba(255,255,255,.14);margin:0;
-  }
-  .ratio{display:grid;grid-template-columns:auto auto 1fr;gap:32px;align-items:center}
+  .ratio{display:grid;grid-template-columns:auto auto 1fr;gap:36px;align-items:center}
   .ratio-block{text-align:center}
   .ratio-num{display:flex;align-items:center;color:#FFB991;font-family:var(--num);font-weight:900;line-height:1;font-feature-settings:"tnum" 1;letter-spacing:-.03em}
-  .ratio-num .top{font-size:36px}
-  .ratio-num .slash{font-size:48px;margin:0 4px;opacity:.5}
-  .ratio-num .bot{font-size:64px}
-  .ratio-cap{font-size:11px;color:var(--blue-3);margin-top:6px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-  .ratio-arrow{font-size:32px;color:var(--blue-3)}
-  .ratio-eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:#FFB991;margin-bottom:6px;text-transform:uppercase}
-  .ratio-text h3{font-size:24px;font-weight:800;line-height:1.5;color:#fff;letter-spacing:-.005em}
+  .ratio-num .top{font-size:48px}
+  .ratio-num .slash{font-size:64px;margin:0 6px;opacity:.5}
+  .ratio-num .bot{font-size:88px}
+  .ratio-cap{font-size:11px;color:var(--blue-3);margin-top:10px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .ratio-arrow{font-size:36px;color:var(--blue-3)}
+  .ratio-eyebrow{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.12em;color:#FFB991;margin-bottom:10px;text-transform:uppercase}
+  .ratio-text h3{font-size:28px;font-weight:800;line-height:1.5;color:#fff;letter-spacing:-.005em;margin-bottom:14px}
   .ratio-text h3 em{font-style:normal;color:#FFB991}
+  .ratio-sub{font-size:14px;color:var(--blue-3);line-height:1.85;margin:0}
+  .ratio-sub strong{color:#fff;font-weight:700}
   .ratio-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,.10)}
   .ratio-tag{
     font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
@@ -1261,9 +1255,14 @@
 
   @media (max-width:860px){
     .ba-grid{grid-template-columns:1fr}
-    .ba-punchline{padding:32px 24px}
-    .ratio{grid-template-columns:1fr;gap:16px;text-align:center}
+    .ba-punchline{padding:36px 24px 28px}
+    .ratio{grid-template-columns:1fr;gap:18px;text-align:center}
     .ratio-arrow{transform:rotate(90deg)}
+    .ratio-num .top{font-size:36px}
+    .ratio-num .slash{font-size:48px}
+    .ratio-num .bot{font-size:64px}
+    .ratio-text h3{font-size:22px}
+    .ratio-sub{text-align:left}
   }
 
   /* ============ PRICING ============ */
@@ -2139,16 +2138,8 @@
       </div>
     </div>
 
-    <!-- 統合版（CEO指示2026-05-09: AI参謀コールアウト + 1/10比率 + CTA を1ボックスに） -->
+    <!-- 統合版 v3（CEO指示2026-05-10: 中央ratio強調・AI参謀コールアウト削除・ROI誘導に変更） -->
     <div class="ba-punchline">
-      <div class="ba-punchline-callout ai-callout">
-        <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
-        <div class="ai-callout-body">
-          <div class="ai-callout-label">AI参謀より</div>
-          <p class="punch-headline">月40時間の自治体営業工数を、およそ4時間に圧縮。（1/10の工数削減）</p>
-        </div>
-      </div>
-      <div class="ba-punchline-divider"></div>
       <div class="ratio">
         <div class="ratio-block">
           <div class="ratio-num"><span class="top">1</span><span class="slash">/</span><span class="bot">10</span></div>
@@ -2156,14 +2147,15 @@
         </div>
         <div class="ratio-arrow">→</div>
         <div class="ratio-text">
-          <div class="ratio-eyebrow">40時間/月 → 4時間/月</div>
-          <h3>47Connectなら、<em>月40時間の作業工数</em>を、<br>およそ <em>4時間</em> に圧縮できます。</h3>
+          <div class="ratio-eyebrow">月40時間 → 約4時間</div>
+          <h3>47Connectなら、<em>月40時間</em> の自治体営業工数が、<br>およそ <em>4時間</em> に圧縮できます。</h3>
+          <p class="ratio-sub">削減した <strong>36時間/月</strong> を新規提案に振り向けることで、<strong>提案活動量を最大2倍</strong> に拡大できます。</p>
         </div>
       </div>
       <div class="ratio-cta">
         <span class="ratio-tag">β版特別キャンペーン（先着20社）</span>
-        <p class="ratio-cta-text">削減した <strong>36時間/月</strong> を新規提案に振り向けることで、提案活動量を最大2倍に拡大。<a href="./roi-simulator.html" target="_blank" rel="noopener">ROIシミュレーターで御社版を試算 →</a></p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">個別デモを予約する<span class="arrow">→</span></a>
+        <p class="ratio-cta-text">御社の営業人数・案件単価を入れるだけ。<strong>御社専用ROI・回収期間・年間効果</strong> を30秒で算出します。</p>
+        <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-orange">ROIシミュレーターで御社専用の試算を出す<span class="arrow">→</span></a>
       </div>
     </div>
   </div>
