@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>47Connect — 自治体AI参謀。御社チームに常駐する戦略パートナー｜β版特別キャンペーン受付中</title>
-<meta name="description" content="47Connectは、自治体ビジネス企業の営業組織に常駐する自治体AI参謀。レコメンド・サマライズ・CRM・AI参謀対話で「毎日相談できる相棒」を実装。FromTo「地域AI参謀」構想の第1実装プロダクト。先着20社限定のβ版特別キャンペーン受付中。" />
+<meta name="description" content="47Connectは、自治体ビジネス企業の営業組織に常駐する自治体AI参謀。レコメンド・サマライズ・CRM・AI参謀対話で「毎日相談できる判断支援基盤」を実装。FromTo「地域AI参謀」構想の第1実装プロダクト。先着20社限定のβ版特別キャンペーン受付中。" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
@@ -172,6 +172,7 @@
     height:68px;gap:16px;
   }
   .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+  .logo-sub{font-size:11px;font-weight:500;color:var(--ink-3);letter-spacing:0;margin-left:4px}
   .logo-mark{
     width:32px;height:32px;border-radius:8px;
     background:var(--blue);color:#fff;
@@ -893,6 +894,33 @@
 
   /* ============ ROI ============ */
   .roi{background:var(--bg)}  /* 決断カテゴリ：白 */
+  .roi-cases{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;
+    margin-top:24px;margin-bottom:8px;
+  }
+  .roi-case{
+    border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+    background:#fff;text-align:center;
+  }
+  .roi-case-tag{font-size:13px;font-weight:800;color:var(--ink-2);letter-spacing:.02em}
+  .roi-case-pin{
+    display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;
+    background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;
+  }
+  .roi-case-num{
+    font-size:28px;font-weight:900;color:var(--ink);font-family:var(--num);
+    letter-spacing:-.02em;line-height:1.2;margin-top:8px;font-feature-settings:"tnum" 1;
+  }
+  .roi-case-desc{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.7;font-weight:500}
+  .roi-case.is-active{
+    background:linear-gradient(180deg,#fff,#fff8f3);border-color:var(--orange);
+    box-shadow:0 6px 20px -8px rgba(255,107,0,.25);
+  }
+  .roi-case.is-active .roi-case-num{color:var(--orange)}
+  @media (max-width:860px){
+    .roi-cases{grid-template-columns:1fr;gap:10px}
+    .roi-case-num{font-size:24px}
+  }
   .roi-grid{
     display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
     gap:16px;align-items:stretch;margin-top:32px;
@@ -1575,13 +1603,13 @@
   <div class="wrap header-inner">
     <a href="#top" class="logo">
       <span class="logo-mark">47</span>
-      <span>47Connect</span>
+      <span>自治体AI参謀<small class="logo-sub"> by 47Connect</small></span>
     </a>
     <nav class="nav">
       <a href="#worries">お悩み</a>
       <a href="#problem">課題</a>
       <a href="#solution">解決策</a>
-      <a href="#roi">ROI試算</a>
+      <a href="#roi">投資効果</a>
       <a href="#screens">プロダクト</a>
       <a href="#why">FromTo</a>
       <a href="#pricing">料金</a>
@@ -1595,7 +1623,7 @@
         <button type="button" data-fz="lg" aria-label="大きい文字">大</button>
       </div>
       <a href="#screens" class="btn btn-ghost ghost-mob">仕組みを見る</a>
-      <a href="#contact" class="btn btn-primary">無料相談<span class="arrow">→</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">無料相談<span class="arrow">→</span></a>
     </div>
   </div>
 </header>
@@ -1622,8 +1650,8 @@
         47Connectは、AI参謀が全国自治体データを横断して読み解き、<strong>営業先・提案切り口・次アクション</strong>まで毎日伴走します。
       </p>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-orange btn-lg">無料相談で、自社の自治体攻略を相談する<span class="arrow">→</span></a>
-        <a href="#screens" class="btn btn-ghost-dark btn-lg">3画面で仕組みを見る</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">無料相談で、自社の自治体攻略を相談する<span class="arrow">→</span></a>
+        <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg">まずROI試算を見る</a>
       </div>
       <div class="hero-meta">
         <span><span class="check">✓</span> 自治体ビジネス企業の営業組織向け</span>
@@ -1657,8 +1685,8 @@
               <div class="who">AI参謀</div>
               <strong>川崎市・福岡市・神戸市</strong>の3自治体を推奨します。いずれも<strong>DX重点施策＋補正予算枠</strong>あり。提案書ドラフトも準備可能です。
               <div class="mock-cta">
-                <span class="pill">提案書を生成</span>
-                <span class="pill">ROI試算</span>
+                <span class="pill">提案書ドラフトを生成</span>
+                <span class="pill">議事録引用つき</span>
               </div>
             </div>
           </div>
@@ -1709,7 +1737,7 @@
         </div>
         <div class="worry-card">
           <span class="worry-tag">即応できる相談相手が不在</span>
-          <div class="worry-bubble">コンサル接触頻度は1〜2回/月・メール返信は1〜2営業日/件。<strong>「今すぐ確認したい」瞬間に応えられる相棒</strong>が社内に存在しない。</div>
+          <div class="worry-bubble">コンサル接触頻度は1〜2回/月・メール返信は1〜2営業日/件。<strong>「今すぐ確認したい」瞬間に応えられる判断支援</strong>が社内に存在しない。</div>
         </div>
       </div>
     </div>
@@ -1746,7 +1774,7 @@
       </div>
       <div class="text">
         <div class="lbl">AI参謀より</div>
-        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる相棒の不在」</em>。<br>御社チームに常駐する <strong>自治体AI参謀</strong>、それが <strong>47Connect（ヨンナナコネクト）</strong>です。</div>
+        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる判断支援基盤の不在」</em>。<br>御社チームに常駐する <strong>自治体AI参謀</strong>、それが <strong>47Connect（ヨンナナコネクト）</strong>です。</div>
       </div>
     </div>
   </div>
@@ -1824,7 +1852,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Product Screens</div>
-      <h2 class="h-section"><em>サクッ</em>と見つけて、<em>サクッ</em>と分かって、<br><em>キチン</em>と管理。</h2>
+      <h2 class="h-section"><em>すばやく</em>見つけ、<em>根拠まで</em>読み解き、<br><em>チームで</em>管理する。</h2>
       <p class="lede">実画面では、自治体営業の「見つけられない」「わからない」「管理ができない」を、営業判断に直結する3つの流れで解決します。</p>
     </div>
     <div class="screen-grid">
@@ -2037,7 +2065,7 @@
       <div class="ratio-cta">
         <span class="ratio-tag">β版特別キャンペーン（先着20社）</span>
         <p class="ratio-cta-text">削減した <strong>36時間/月</strong> を新規提案に振り向けることで、提案活動量を最大2倍に拡大。<a href="./roi-simulator.html" target="_blank" rel="noopener">ROIシミュレーターで御社版を試算 →</a></p>
-        <a href="#contact" class="btn btn-orange">無料で相談してみる<span class="arrow">→</span></a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">無料で相談してみる<span class="arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -2057,14 +2085,14 @@
         <div>
           <span class="pilot-tag">先着20社限定 / 6月末締切</span>
           <h3>自治体AI参謀 β版（先着20社）</h3>
-          <div class="pilot-period">2026年7月〜12月 / 6ヶ月間（半年一括前払い）</div>
+          <div class="pilot-period">2026年7月〜10月 / 4ヶ月間（一括前払い）</div>
           <div class="pilot-pricing">
-            <span class="pilot-strike">通常 ¥600,000</span>
-            <span class="pilot-price">¥300,000<small>／半年一括（税別）</small></span>
+            <span class="pilot-strike">通常 ¥400,000</span>
+            <span class="pilot-price">¥200,000<small>／4ヶ月一括（税別）</small></span>
           </div>
           <div class="pilot-disc">50%OFF + 初期構築費 無料 + AI参謀対話 無制限</div>
           <div class="pilot-cta">
-            <a href="#contact" class="btn btn-orange btn-lg">β版特別キャンペーンに応募する<span class="arrow">→</span></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">β版特別キャンペーンに応募する<span class="arrow">→</span></a>
             <p class="pilot-note">申込締切：2026年6月30日 ／ 先着20社限定 ／ β版特別キャンペーン期間終了後（2026年11月予定）に本格運用へ移行（月払い・1年契約構造へ自動切替）</p>
           </div>
         </div>
@@ -2128,7 +2156,7 @@
         <div class="plan-note"><strong>自治体ビジネスの専門知見を社内に蓄積したい企業向け</strong>。AI参謀に毎日相談しながら、Layer 1 + Layer 2 をフル活用。</div>
         <div class="plan-hl">
           <div class="plan-hl-title">Layer 2: AI参謀層フル開放</div>
-          <div class="plan-hl-desc">1チーム1専属のAI参謀が戦略・提案を対話で組み立て。提案書ドラフト・稟議資料・ROI試算まで毎日の対話の中で。</div>
+          <div class="plan-hl-desc">1チーム1専属のAI参謀が戦略・提案を対話で組み立て。<strong>β開始時点：自治体調査・戦略立案</strong>／<strong>2026年Q4予定：提案書ドラフト</strong>を毎日の対話の中で。</div>
         </div>
         <ul class="plan-feat">
           <li><strong>ライトプラン（データ層）の全機能</strong></li>
@@ -2162,12 +2190,31 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>ROI by Numbers</div>
       <h2 class="h-section">月20万円が、御社にいくらの<em>追加効果</em>を生むか。</h2>
-      <p class="lede">営業3名・年4件・売上2,000万円規模の試算ケース。<br>自治体営業の工数を <strong>1/10</strong> に圧縮し、空いた時間で <strong>提案活動量を2倍</strong> へ。</p>
+      <p class="lede">営業3名・年4件・売上2,000万円規模での3ケース試算。<br><strong>保守ケース</strong>では工数削減のみで投資回収、<strong>標準ケース</strong>で工数削減＋提案活動量2倍、<strong>攻めケース</strong>でさらに案件単価向上を見込みます。</p>
     </div>
 
-    <!-- 計算式エリア（投資対効果の試算） -->
+    <!-- 3ケース見出し帯 -->
+    <div class="roi-cases">
+      <div class="roi-case roi-case-conservative">
+        <div class="roi-case-tag">保守ケース</div>
+        <div class="roi-case-num">ROI 0.9倍</div>
+        <div class="roi-case-desc">工数削減効果のみ（売上拡大効果ゼロを仮定）</div>
+      </div>
+      <div class="roi-case roi-case-standard is-active">
+        <div class="roi-case-tag">標準ケース<span class="roi-case-pin">基準</span></div>
+        <div class="roi-case-num">ROI 7.9倍</div>
+        <div class="roi-case-desc">工数1/10削減＋提案活動量2倍（下記詳細）</div>
+      </div>
+      <div class="roi-case roi-case-aggressive">
+        <div class="roi-case-tag">攻めケース</div>
+        <div class="roi-case-num">ROI 11.9倍超</div>
+        <div class="roi-case-desc">提案活動量2倍＋案件単価向上を併せて見込む場合</div>
+      </div>
+    </div>
+
+    <!-- 計算式エリア（投資対効果の試算・標準ケース） -->
     <div class="roi-calc">
-      <div class="roi-calc-label">試算ケース：営業3名・年4件・売上2,000万円規模</div>
+      <div class="roi-calc-label">標準ケース 詳細：営業3名・年4件・売上2,000万円規模</div>
       <div class="roi-grid">
         <div class="roi-card now">
           <div class="roi-lbl">現状</div>
@@ -2202,7 +2249,7 @@
           <div class="l">提案活動量<br>(年4件 → 年8件相当の余力)</div>
         </div>
       </div>
-      <p class="roi-note">※ 営業3名・年4件・売上2,000万円規模での試算ケース／年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／47Connect ROIシミュレーターに基づく／売上拡大効果は提案活動量増加により創出される売上見込み(種作り)であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／業種・規模・営業体制により数値は変動します。</p>
+      <p class="roi-note">※ 営業3名・年4件・売上2,000万円規模での標準ケース試算／年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／47Connect ROIシミュレーターに基づく／<strong>保守ケース</strong>は工数削減効果のみ（年220万円相当）でROI 0.9倍・回収14ヶ月、<strong>攻めケース</strong>は標準＋案件単価向上を含めROI 11.9倍超を想定／売上拡大効果は提案活動量増加により創出される売上見込み(種作り)であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／業種・規模・営業体制により数値は変動します。</p>
     </div>
 
     <!-- 区切りディバイダー -->
@@ -2278,7 +2325,7 @@
     </table>
     <p class="compare-foot">※1 公開即日対応（即日通知＋24時間以内・AI参謀との相談可能）は<strong>スタンダードプランのみ</strong>。ライトプランは公開即日のデータ反映までを提供（即日通知は行いません）。</p>
     <div class="compare-note">
-      他社DBでも自治体は見つかります。しかし、<strong>公開情報だけのレコメンド</strong>と、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理・AI参謀対話の4つを一気通貫</strong>で提供——国内でFromToだけです。
+      他社DBでも自治体は見つかります。しかし、<strong>公開情報だけのレコメンド</strong>と、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理・AI参謀対話の4つを一気通貫</strong>で提供する独自ポジションです（当社調べ）。
     </div>
   </div>
 </section>
@@ -2288,8 +2335,8 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
-      <h2 class="h-section">なぜFromToだけが、<br>自治体AI参謀を提供できるのか。</h2>
-      <p class="lede">「参謀」「データ」「鮮度」の3本柱。1本でも欠けるとAI参謀は成立しない。すべてを揃えているのは国内でFromToだけです。</p>
+      <h2 class="h-section">なぜFromToが、<br>自治体AI参謀を提供できるのか。</h2>
+      <p class="lede">「参謀」「データ」「鮮度」の3本柱。1本でも欠けるとAI参謀は成立しない。3本柱すべてを揃えるのが、FromToの独自ポジションです（当社調べ）。</p>
     </div>
     <div class="why-pillars">
       <div class="why-pillar">
@@ -2301,7 +2348,7 @@
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 02</div>
         <h3><em>データ</em>の厚み</h3>
-        <p>1,741自治体の<strong>議事録 × 予算 × 首長公約 × パブコメ</strong>をAIで横断構造化。さらに112自治体との寄附仲介154件・総額2億円超の実取引で得た担当部局のニーズ情報を加味。</p>
+        <p>1,741自治体の<strong>議事録 × 予算 × 首長公約 × パブコメ</strong>をAIで横断構造化。さらに112自治体との寄附仲介154件・総額2億円超の実取引（2026年5月時点・当社調べ）で得た担当部局のニーズ情報を加味。</p>
         <div class="pillar-tag">→ 横断構造化DB・実取引データ</div>
       </div>
       <div class="why-pillar">
@@ -2313,7 +2360,7 @@
     </div>
     <div class="why-main">
       <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
-      <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>3本柱すべてを満たすのは国内でFromToだけ</strong>。寄附仲介の実績と、112自治体との信頼関係、そして1,741自治体のAI構造化基盤——FromToの過去すべてが、自治体AI参謀という形に結晶しました。</p>
+      <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>公開情報・実取引データ・AI参謀対話を一体提供する点で、独自のポジション</strong>です（当社調べ）。寄附仲介の実績と、112自治体との信頼関係、そして1,741自治体のAI構造化基盤——FromToの過去すべてが、自治体AI参謀という形に結晶しました。</p>
     </div>
 
     <!-- 3事業の積み重ねがFromToだけの強み（旧VISION-3bizから移動） -->
@@ -2329,7 +2376,7 @@
         <div class="v3biz-card">
           <div class="v3biz-num">事業 02</div>
           <h4>製品寄附仲介</h4>
-          <p>物資導線。企業版ふるさと納税で144件・106自治体の実取引実績。</p>
+          <p>物資導線。企業版ふるさと納税で154件・112自治体の実取引実績。</p>
           <span class="v3biz-mode">地域展開モード（初期実装）</span>
         </div>
         <div class="v3biz-card">
@@ -2387,19 +2434,18 @@
     <div class="faq-list">
       <details class="faq-item" open>
         <summary>自治体AI参謀って、結局何ができますか？（β版段階リリース含む）</summary>
-        <div class="ans">プロのコンサルが3週間かけて完成させる4つの成果物——<strong>① 自治体調査・② 戦略立案・③ 提案書作成・④ ROI試算</strong>——を、対話を重ねながら毎日アウトプット。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。
+        <div class="ans">プロのコンサルが3週間かけて完成させる3つの成果物——<strong>① 自治体調査・② 戦略立案・③ 提案書作成</strong>——を、対話を重ねながら毎日アウトプット。コンサルとの違いは「1〜2回/月ではなく、毎日いつでも相談できる」常駐型・伴走型であること。
           <p class="ans-sub"><strong>※ β版特別キャンペーン期間中の段階リリース</strong></p>
           <ul class="ans-list">
             <li><span class="ans-when">2026年7月（β版開始）</span><span class="ans-what">① 自治体調査の参謀／② 戦略立案の参謀</span></li>
-            <li><span class="ans-when">2026年Q4</span><span class="ans-what">③ 提案書作成の参謀</span></li>
-            <li><span class="ans-when">2027年Q1以降</span><span class="ans-what">④ 事業計画（ROI試算）の参謀</span></li>
+            <li><span class="ans-when">2026年Q4予定</span><span class="ans-what">③ 提案書作成の参謀</span></li>
           </ul>
           <p class="ans-foot">β版顧客は各段階で <strong>最初の利用権</strong> ＋ <strong>月次フィードバック反映権</strong> を得られます。</p>
         </div>
       </details>
       <details class="faq-item">
         <summary>AIクレジットって、毎月足りなくなりませんか？</summary>
-        <div class="ans">日常の対話・調査・閲覧は<strong>使い放題（クレジット消費なし）</strong>。クレジットを使うのは「全国一括分析」「役員稟議用の深掘りレポート」「大型PDF一括処理」など、参謀がフル稼働する瞬間にだけです。<br><br>スタンダードプランの月80クレジットで、想定的には8〜10回/月程度のフル稼働が可能。足りない場合は <strong>4段階のクレジット追加プラン（30,000円/50,000円/100,000円/300,000円）</strong> から購入可能で、多く購入するほどディスカウントが効きます（最大25%OFF）。</div>
+        <div class="ans">日常の対話・調査・閲覧は<strong>使い放題（クレジット消費なし）</strong>。クレジットを使うのは「全国一括分析」「役員稟議用の深掘りレポート」「大型PDF一括処理」など、参謀がフル稼働する瞬間にだけです。<br><br><strong>クレジット消費量・チャージ料金プランの詳細は、本番ローンチ時（2026年11月予定）に公開いたします</strong>。β版特別キャンペーン期間中は、AI参謀対話は<strong>無制限ご利用</strong>いただけます（β版の固定特典）。本番運用移行時のクレジット単価は、β版顧客にのみ <strong>創業時固定保証</strong>（永続適用）を提供します。</div>
       </details>
       <details class="faq-item">
         <summary>β版特別キャンペーン期間って、品質大丈夫ですか？</summary>
@@ -2407,11 +2453,11 @@
       </details>
       <details class="faq-item">
         <summary>コンサルとの違いを教えてください。</summary>
-        <div class="ans">コンサルは <strong>深く伴走してくれる</strong>専門家ですが、接触頻度は<strong>1〜2回/月・メール返信1〜2営業日/件</strong>が標準。「予算が動いた今すぐ聞きたい」「役員会の朝に1点だけ確認したい」のような瞬間には応えにくい構造です。<br><br>AI参謀は <strong>毎日いつでも相談できて、戦略を一緒に育てる</strong>常駐型。コンサル月50〜100万円が3週間で出す成果物（攻略マップ・提案書・ROIモデル）を、AI参謀は月20万円で<strong>即日・無制限対話</strong>で出します。価格は1/5、関係性は常駐型、という構造です。コンサルの代替というより、コンサルの「届かない瞬間」を埋める相棒とお考えください。</div>
+        <div class="ans">コンサルは <strong>深く伴走してくれる</strong>専門家ですが、接触頻度は<strong>1〜2回/月・メール返信1〜2営業日/件</strong>が標準。「予算が動いた今すぐ聞きたい」「役員会の朝に1点だけ確認したい」のような瞬間には応えにくい構造です。<br><br>AI参謀は <strong>毎日いつでも相談できて、戦略を一緒に育てる</strong>常駐型。コンサル月50〜100万円が3週間で出す成果物（自治体調査・戦略立案・提案書ドラフト）を、AI参謀は月20万円で<strong>即日・無制限対話</strong>で出します。価格は1/5、関係性は常駐型、という構造です。コンサルの代替というより、コンサルの「届かない瞬間」を埋める判断支援基盤とお考えください。</div>
       </details>
       <details class="faq-item">
         <summary>契約・支払い・撤退オプションは？</summary>
-        <div class="ans"><strong>初年度1年契約・月払い</strong>（毎月請求書ベース）。13ヶ月目以降は <strong>月単位継続</strong> に自動移行、<strong>30日前通知でいつでも解約可</strong>（残月支払義務なし・違約金なし）。β版適用顧客のみ6ヶ月間は半年一括前払い（30万円・税別）を維持。<br><br><strong>撤退オプション（β版限定）</strong>：契約から3ヶ月以内に投資回収不可と判断された場合、違約金なしで撤退可能。データはエクスポート猶予期間内にダウンロード可能。</div>
+        <div class="ans"><strong>初年度1年契約・月払い</strong>（毎月請求書ベース）。13ヶ月目以降は <strong>月単位継続</strong> に自動移行、<strong>30日前通知でいつでも解約可</strong>（残月支払義務なし・違約金なし）。β版適用顧客のみβ版期間中は4ヶ月一括前払い（20万円・税別）を維持。<br><br><strong>撤退オプション（β版限定）</strong>：契約から3ヶ月以内に投資回収不可と判断された場合、違約金なしで撤退可能。データはエクスポート猶予期間内にダウンロード可能。</div>
       </details>
       <details class="faq-item">
         <summary>解約・休会・データ保持・未消費クレジットは？</summary>
@@ -2435,7 +2481,7 @@
       </details>
       <details class="faq-item">
         <summary>データのセキュリティ対策は？</summary>
-        <div class="ans">御社の企業情報・利用データは暗号化して管理しており、第三者への提供は一切行いません。アクセス権限はアカウント単位で管理され、課外への情報漏洩を防止しています。詳細は契約書および当社プライバシーポリシーで明文化しています。</div>
+        <div class="ans">御社の企業情報・利用データは暗号化して管理しており、第三者への提供は一切行いません。アクセス権限はアカウント単位で管理され、社外への情報漏洩を防止しています。詳細は契約書および当社プライバシーポリシーで明文化しています。</div>
       </details>
     </div>
   </div>
@@ -2457,8 +2503,8 @@
 <footer class="foot">
   <div class="foot-inner">
     <div class="brand">
-      <strong>47Connect</strong>
-      <span>自治体AI参謀 / FromTo「地域AI参謀」構想 第1実装</span>
+      <strong>自治体AI参謀</strong>
+      <span>by 47Connect / FromTo「地域AI参謀」構想 第1実装</span>
     </div>
     <div>© 2026 FromTo, Inc. All rights reserved.</div>
   </div>
@@ -2470,7 +2516,7 @@
     <strong>β版特別キャンペーン受付中</strong>
     <small>先着20社 · 50%OFF · 6/30締切</small>
   </div>
-  <a href="#contact" class="btn btn-orange">応募<span class="arrow">→</span></a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">応募<span class="arrow">→</span></a>
 </div>
 
 <script>
