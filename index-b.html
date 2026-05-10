@@ -990,6 +990,26 @@
 
   /* ============ FLOW ============ */
   .flow{background:var(--bg-soft)}  /* タイミング：薄グレー */
+  .flow-stakes{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    max-width:760px;margin:24px auto 0;
+  }
+  .flow-stake{
+    display:flex;gap:16px;align-items:center;
+    padding:18px 22px;border-radius:14px;
+    background:#fff;border:1px solid var(--line);
+    box-shadow:0 4px 12px -6px rgba(0,0,0,.08);
+  }
+  .flow-stake-num{
+    font-family:var(--num);font-size:32px;font-weight:900;
+    color:var(--orange);letter-spacing:-.02em;line-height:1;
+    font-feature-settings:"tnum" 1;flex-shrink:0;min-width:88px;
+  }
+  .flow-stake-text{font-size:14px;color:var(--ink);line-height:1.7;font-weight:500;text-align:left}
+  @media (max-width:760px){
+    .flow-stakes{grid-template-columns:1fr;gap:10px}
+    .flow-stake-num{font-size:26px;min-width:70px}
+  }
   .flow-track{
     display:grid;grid-template-columns:3fr auto 2fr;gap:14px;align-items:stretch;margin-top:24px;
   }
@@ -1444,6 +1464,47 @@
     .compare-tbl th,.compare-tbl td{padding:12px 8px}
   }
 
+  /* ============ FOUNDER STORY ============ */
+  .founder{background:var(--bg-soft)}
+  .founder-card{
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:36px;margin-top:24px;box-shadow:0 8px 28px -12px rgba(0,0,0,.10);
+  }
+  .founder-meta{display:flex;gap:18px;align-items:center;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .founder-photo{
+    width:72px;height:72px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--blue),var(--blue-deep));
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;
+    letter-spacing:.04em;font-family:var(--mono);
+  }
+  .founder-photo-mark{display:block}
+  .founder-meta-text{flex:1}
+  .founder-name{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.005em;line-height:1.4}
+  .founder-name .founder-role{font-size:13px;font-weight:500;color:var(--ink-2);margin-left:4px}
+  .founder-tag{font-size:12px;color:var(--ink-3);margin-top:4px;font-weight:500;letter-spacing:.02em}
+  .founder-acts{display:flex;flex-direction:column;gap:24px}
+  .founder-act{display:grid;grid-template-columns:80px 1fr;gap:20px;align-items:start}
+  .founder-act-no{
+    font-size:13px;font-weight:800;letter-spacing:.06em;
+    color:var(--orange);text-align:center;
+    padding:8px 0;border-top:2px solid var(--orange);border-bottom:2px solid var(--orange);
+  }
+  .founder-act p{font-size:15px;line-height:1.95;color:var(--ink);margin:0;font-weight:500}
+  .founder-promise{
+    margin-top:28px;padding:22px 26px;border-radius:14px;
+    background:linear-gradient(180deg,#fff,#fff8f3);border:1.5px solid var(--orange);
+  }
+  .founder-promise-tag{
+    display:inline-block;padding:4px 12px;border-radius:999px;
+    background:var(--orange);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;margin-bottom:10px;
+  }
+  .founder-promise p{font-size:15px;line-height:1.85;color:var(--ink);margin:0;font-weight:500}
+  @media (max-width:760px){
+    .founder-card{padding:24px}
+    .founder-act{grid-template-columns:1fr;gap:8px}
+    .founder-act-no{display:inline-block;width:auto;padding:6px 14px;border:none;background:var(--orange);color:#fff;border-radius:999px;font-size:11px}
+  }
+
   /* ============ WHY ============ */
   .why{background:var(--blue-ink);color:#fff;position:relative;overflow:hidden}
   .why::before{
@@ -1611,6 +1672,7 @@
       <a href="#solution">解決策</a>
       <a href="#roi">投資効果</a>
       <a href="#screens">プロダクト</a>
+      <a href="#founder">CEO</a>
       <a href="#why">FromTo</a>
       <a href="#pricing">料金</a>
       <a href="#faq">FAQ</a>
@@ -1897,6 +1959,16 @@
       <div class="eyebrow"><span class="dot"></span>Timing Matters</div>
       <h2 class="h-section">自治体の予算は、入札の<br><em>半年〜2年前</em>に決まっている。</h2>
       <p class="lede">入札情報が出てからでは遅い。<br>意思決定の上流——<strong>予算編成の段階</strong>にアプローチすることが、自治体への提案の勝ちパターンです。</p>
+      <div class="flow-stakes">
+        <div class="flow-stake">
+          <div class="flow-stake-num">年1回</div>
+          <div class="flow-stake-text">予算編成期は<strong>年に1度</strong>。<br>逃すと <strong>次は12ヶ月後</strong>。</div>
+        </div>
+        <div class="flow-stake">
+          <div class="flow-stake-num">3%以下</div>
+          <div class="flow-stake-text">自治体予算 <strong>約100兆円</strong> のうち、<br>上流接続できている企業は<strong>3%以下</strong>（当社推計）。</div>
+        </div>
+      </div>
     </div>
 
     <div class="flow-track">
@@ -2083,7 +2155,7 @@
     <div class="pilot">
       <div class="pilot-inner">
         <div>
-          <span class="pilot-tag">先着20社限定 / 6月末締切</span>
+          <span class="pilot-tag">先着20社限定 / 6月末締切 / 50%OFFは今期のみ</span>
           <h3>自治体AI参謀 β版（先着20社）</h3>
           <div class="pilot-period">2026年7月〜10月 / 4ヶ月間（一括前払い）</div>
           <div class="pilot-pricing">
@@ -2093,7 +2165,7 @@
           <div class="pilot-disc">50%OFF + 初期構築費 無料 + AI参謀対話 無制限</div>
           <div class="pilot-cta">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">β版特別キャンペーンに応募する<span class="arrow">→</span></a>
-            <p class="pilot-note">申込締切：2026年6月30日 ／ 先着20社限定 ／ β版特別キャンペーン期間終了後（2026年11月予定）に本格運用へ移行（月払い・1年契約構造へ自動切替）</p>
+            <p class="pilot-note"><strong>申込締切：2026年6月30日</strong> ／ 先着20社限定。<strong>7月以降は通常価格 ¥400,000 に戻ります（半額キャンペーンの再開予定はありません）</strong>。β版期間終了後（2026年11月予定）は本格運用へ移行（月払い・1年契約構造へ自動切替）。</p>
           </div>
         </div>
         <div class="pilot-incs">
@@ -2262,9 +2334,9 @@
     <div class="roi-cta">
       <div class="roi-cta-decor"></div>
       <div class="roi-cta-content">
-        <div class="roi-cta-eyebrow">御社の営業体制で試算</div>
+        <div class="roi-cta-eyebrow">役員会・稟議資料に、そのまま使える</div>
         <h3>人数・案件単価を入れるだけ。<br><span class="roi-cta-hl">御社専用ROIを30秒で。</span></h3>
-        <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた <strong>ROI・回収期間・年間効果</strong>が即座に算出されます。</p>
+        <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた <strong>ROI・回収期間・年間効果</strong>が即座に算出されます。試算結果は <strong>役員会・稟議資料にそのまま貼れる形式</strong> で出力。「上司に共有」「役員に説明」の最初の1枚として、そのまま使えます。</p>
       </div>
       <div class="roi-cta-btns">
         <a href="./roi-simulator.html" class="btn btn-orange btn-lg roi-sim-btn" target="_blank" rel="noopener">ROIシミュレーターを開く<span class="arrow">→</span></a>
@@ -2326,6 +2398,48 @@
     <p class="compare-foot">※1 公開即日対応（即日通知＋24時間以内・AI参謀との相談可能）は<strong>スタンダードプランのみ</strong>。ライトプランは公開即日のデータ反映までを提供（即日通知は行いません）。</p>
     <div class="compare-note">
       他社DBでも自治体は見つかります。しかし、<strong>公開情報だけのレコメンド</strong>と、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理・AI参謀対話の4つを一気通貫</strong>で提供する独自ポジションです（当社調べ）。
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER STORY -->
+<section class="founder" id="founder" data-screen-label="11b Founder">
+  <div class="wrap-narrow">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>Founder's Story</div>
+      <h2 class="h-section">「沖縄だからしょうがない」を、<br><em>変えたかった。</em></h2>
+    </div>
+
+    <div class="founder-card">
+      <div class="founder-meta">
+        <div class="founder-photo" aria-hidden="true">
+          <span class="founder-photo-mark">CEO</span>
+        </div>
+        <div class="founder-meta-text">
+          <div class="founder-name">宮城 浩 <span class="founder-role">／ FromTo, Inc. 代表取締役</span></div>
+          <div class="founder-tag">沖縄県出身 ／ 浜松拠点 ／ SIer・SE出身のエンジニアCEO</div>
+        </div>
+      </div>
+
+      <div class="founder-acts">
+        <div class="founder-act">
+          <div class="founder-act-no">原点</div>
+          <p>沖縄で生まれ育った僕にとって、新しいサービスや製品の情報は<strong>数年遅れ</strong>でやってくるのが当たり前でした。「沖縄だからしょうがない」——その諦めを、ずっと違和感として持っていた。<br><strong>地方の課題は、解決策がないことではない。情報の時差と、地域内で完結しようとする姿勢が本当の壁だ</strong>と気づいたのが原点です。</p>
+        </div>
+        <div class="founder-act">
+          <div class="founder-act-no">構想</div>
+          <p>浜松に拠点を移し、企業版ふるさと納税という制度に出会ったのが7年前。それから <strong>112自治体に足を運び、154件・¥2億超</strong> の取引を一件ずつ積み上げてきました。<br>分かったのは、<strong>自治体は「攻略する相手」ではなく、一緒に地域を作る共創パートナー</strong>だということ。企業（B）が自治体（G）を共創パートナーに据え、地域の企業（B）と住民（C）に価値を届ける——僕はこの構造を「<strong>地方BtoGtoB／BtoGtoC</strong>」と呼び、提唱しています。</p>
+        </div>
+        <div class="founder-act">
+          <div class="founder-act-no">突破</div>
+          <p>2児の父として育児に向き合いたい。一方でスタートアップCEOは、営業・開発・採用・経営すべてを1人で回す必要がある。この矛盾を突破させてくれたのが <strong>AI（Claude Code）</strong> でした。<br>SIer・SE出身の素地が、AI時代に開花した。<strong>112自治体で積み上げた信頼関係と、1,741自治体ぶんの公開情報を、AIで御社の営業組織に届ける</strong>——それが「自治体AI参謀（47Connect）」です。</p>
+        </div>
+      </div>
+
+      <div class="founder-promise">
+        <div class="founder-promise-tag">CEO直接の約束</div>
+        <p>β版にご参画いただく20社には、<strong>僕（CEO）が月次レビューで直接お会いし、御社の勝ちパターンの実装に責任を持ちます</strong>。地方と都市、企業と自治体をつなぐインターフェースであり続ける——それが FromTo の北極星です。</p>
+      </div>
     </div>
   </div>
 </section>
