@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>47Connect — 自治体への提案を、もう一人でやらなくていい。自治体AI参謀 + 自治体提案特化CRM</title>
+<meta name="description" content="1チーム1専属の自治体AI参謀が自治体への提案に伴走（β版段階提供）。1,741自治体の予算・方針・担当課まで把握できる、自治体提案特化CRM。月払い・1年契約・13ヶ月目以降は月単位継続。" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5YLJ2SZ9ZR');
+</script>
+
+<!-- A/B Split Router -->
+<script src="ab-split.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: #FAFAFA;
+    --bg-alt: #F4F4F4;
+    --bg-dark: #1A1A1A;
+    --ink: #1A1A1A;
+    --ink-2: #4A4A4A;
+    --ink-3: #8A8A8A;
+    --line: #D9D9D9;
+    --line-2: #ECECEC;
+    /* brand - main: 青色 #3071B9 */
+    --accent: #3071B9;
+    --accent-soft: #E8F0F9;
+    --accent-ink: #245593;
+    /* brand - sub: 朱色 #E9470B */
+    --warn: #E9470B;
+    --warn-soft: #FDECE3;
+    /* brand - sub: 緑色 #4CBBB4 */
+    --ok: #4CBBB4;
+    --ok-soft: #E5F5F4;
+    --sans: "Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Avenir Next",Avenir,"Nunito Sans",sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 2px rgba(15,20,40,.04), 0 8px 28px -12px rgba(15,20,40,.08);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    font-feature-settings:"palt" 1;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    letter-spacing:.01em;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit}
+
+  /* ---- layout ---- */
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  section{padding:112px 0}
+  section + section{border-top:1px solid var(--line-2)}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .eyebrow::before{
+    content:"";width:20px;height:1px;background:var(--accent);display:inline-block;
+  }
+  .h-section{
+    font-size:clamp(1.7rem,2.4vw,2.2rem);font-weight:700;line-height:1.35;
+    letter-spacing:-.01em;text-wrap:pretty;margin:14px 0 16px;
+    color:var(--ink);
+  }
+  .h-section em{font-style:normal;color:var(--accent-ink)}
+  .lede{
+    font-size:1rem;color:var(--ink-2);max-width:64ch;line-height:1.9;text-wrap:pretty;
+  }
+  .section-head{margin-bottom:56px;max-width:820px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head.center .lede{margin:0 auto}
+
+  /* ---- header ---- */
+  .header{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter:saturate(1.2) blur(10px);
+    border-bottom:1px solid var(--line-2);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+  .logo span{color:var(--accent-ink)}
+  .nav{display:flex;gap:28px;font-size:.88rem;color:var(--ink-2)}
+  .nav a:hover{color:var(--ink)}
+  @media (max-width:760px){.nav{display:none}}
+
+  /* ---- buttons ---- */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 22px;border-radius:999px;font-weight:600;font-size:.92rem;
+    background:var(--accent);color:#fff;border:1px solid var(--accent);
+    transition:all .2s ease;cursor:pointer;white-space:nowrap;
+  }
+  .btn:hover{background:var(--accent-ink);border-color:var(--accent-ink);transform:translateY(-1px);box-shadow:0 6px 20px -8px rgba(48,113,185,.5)}
+  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink);transform:translateY(-1px);box-shadow:0 6px 20px -8px rgba(48,113,185,.5)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(3px)}
+
+  /* ---- HERO ---- */
+  .hero{padding:88px 0 96px;position:relative;overflow:hidden}
+  .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .hero-kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:6px 14px;border:1px solid var(--line);border-radius:999px;
+    font-size:.78rem;color:var(--ink-2);background:#fff;margin-bottom:24px;
+  }
+  .hero-kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{
+    font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.28;
+    letter-spacing:-.025em;text-wrap:balance;margin-bottom:24px;color:var(--ink);
+  }
+  .hero h1 .mark{
+    position:relative;white-space:nowrap;
+  }
+  .hero h1 .mark::after{
+    content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.32em;
+    background:var(--accent-soft);z-index:-1;border-radius:2px;
+  }
+  .hero p.lede{font-size:1.05rem;color:var(--ink-2);max-width:56ch;margin-bottom:32px}
+  .hero-bullets{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+  .hero-bullets li{
+    display:flex;align-items:flex-start;gap:12px;font-size:.92rem;color:var(--ink);
+    list-style:none;
+  }
+  .hero-bullets li::before{
+    content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;
+    background:var(--accent);position:relative;margin-top:3px;
+    background-image:
+      linear-gradient(45deg,transparent 46%,#fff 46%,#fff 54%,transparent 54%),
+      linear-gradient(-45deg,transparent 46%,#fff 46%,#fff 54%,transparent 54%);
+    background-size:10px 2px,10px 2px;
+    background-repeat:no-repeat;
+    background-position:5px 9px,9px 9px;
+    transform:rotate(-45deg) scale(.8);
+  }
+  .hero-bullets li::before{
+    content:"✓";display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:.68rem;font-weight:800;
+    background-image:none;transform:none;
+  }
+  .hero-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .hero-promo{
+    font-size:.78rem;color:var(--ink-3);margin-top:14px;
+  }
+  .hero-promo strong{color:var(--warn);font-weight:700}
+  .hero-visual{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);border:1px solid var(--line-2);background:#fff;
+  }
+  .hero-visual img{width:100%;height:auto;display:block}
+  .hero-caption{
+    position:absolute;left:14px;bottom:14px;
+    font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
+    background:rgba(255,255,255,.94);padding:6px 10px;border-radius:6px;
+    border:1px solid var(--line-2);
+  }
+
+  @media (max-width:860px){
+    .hero{padding:48px 0 64px}
+    .hero-inner{grid-template-columns:1fr;gap:40px}
+  }
+
+  /* ---- PROBLEMS ---- */
+  .problems{background:var(--bg-alt)}
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .prob{
+    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:36px 32px;display:flex;flex-direction:column;gap:14px;
+  }
+  .prob .no{
+    font-family:var(--sans);font-size:2.6rem;font-weight:500;
+    color:var(--accent-ink);line-height:1;letter-spacing:-.02em;
+  }
+  .prob h3{font-size:1.15rem;font-weight:700;color:var(--ink)}
+  .prob h3 small{display:block;font-size:.72rem;font-weight:500;color:var(--ink-3);
+    letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+  .prob p{font-size:.92rem;color:var(--ink-2);line-height:1.85}
+  .prob .tag{
+    display:inline-block;font-size:.75rem;color:var(--warn);
+    background:var(--warn-soft);border-radius:6px;padding:5px 10px;font-weight:600;
+    margin-top:auto;
+  }
+  .prob blockquote{
+    font-size:.82rem;color:var(--ink-3);border-left:2px solid var(--line);
+    padding-left:12px;font-style:italic;margin-top:6px;line-height:1.7;
+  }
+  @media (max-width:860px){.prob-grid{grid-template-columns:1fr}}
+
+  /* ---- PROCUREMENT FLOW ---- */
+  .flow-viz{
+    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:32px;margin-top:40px;
+  }
+  .flow-track{
+    display:grid;grid-template-columns:3fr auto 2fr;gap:0;align-items:stretch;
+  }
+  .flow-zone{
+    position:relative;border-radius:12px;padding:28px 24px;
+  }
+  .flow-zone.planning{
+    background:var(--accent-soft);border:2px dashed var(--accent);
+  }
+  .flow-zone.bidding{
+    background:var(--bg-alt);border:1px solid var(--line);
+  }
+  .flow-zone-label{
+    position:absolute;top:-12px;left:20px;
+    font-size:.72rem;font-weight:700;letter-spacing:.1em;
+    padding:4px 12px;border-radius:4px;text-transform:uppercase;
+  }
+  .flow-zone.planning .flow-zone-label{background:var(--accent);color:#fff}
+  .flow-zone.bidding .flow-zone-label{background:#fff;color:var(--ink-3);border:1px solid var(--line)}
+  .flow-steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:16px}
+  .flow-step{padding:8px 0}
+  .flow-step .sn{
+    font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
+    letter-spacing:.1em;margin-bottom:8px;
+  }
+  .flow-step .st{font-size:.95rem;font-weight:700;margin-bottom:6px;line-height:1.4;color:var(--ink)}
+  .flow-step .sd{font-size:.78rem;color:var(--ink-3);line-height:1.6}
+  .flow-gate{
+    align-self:center;writing-mode:vertical-rl;text-orientation:mixed;
+    background:var(--ink);color:#fff;padding:22px 10px;border-radius:6px;
+    font-size:.82rem;font-weight:600;letter-spacing:.2em;margin:0 14px;
+  }
+  .flow-periods{display:grid;grid-template-columns:3fr auto 2fr;gap:0;margin-top:20px}
+  .flow-period{
+    text-align:center;padding:14px;font-size:.82rem;color:var(--ink-2);
+    border-top:2px solid var(--line);position:relative;
+  }
+  .flow-period strong{
+    display:block;font-family:var(--sans);font-weight:500;
+    font-size:1.3rem;color:var(--ink);margin-top:4px;letter-spacing:-.01em;
+  }
+  .flow-period.planning{border-color:var(--accent)}
+  .flow-period.gap{border-color:transparent}
+  .flow-insight{
+    margin-top:40px;padding:28px 32px;border-radius:var(--radius);
+    background:var(--ink);color:#fff;
+  }
+  .flow-insight p{font-size:.88rem;color:rgba(255,255,255,.7);margin-bottom:10px}
+  .flow-insight strong{font-size:1.15rem;font-weight:600;color:#fff;display:block;line-height:1.6}
+  .flow-insight strong em{font-style:normal;color:oklch(0.75 0.15 258);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+
+  @media (max-width:860px){
+    .flow-track{grid-template-columns:1fr;gap:16px}
+    .flow-gate{writing-mode:horizontal-tb;margin:0;padding:10px 16px}
+    .flow-steps{grid-auto-flow:row;grid-auto-columns:auto}
+    .flow-periods{display:none}
+  }
+
+  /* ---- BEFORE / AFTER ---- */
+  .ba{background:var(--bg-alt)}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+  .ba-card{
+    background:#fff;border-radius:var(--radius);padding:36px 32px;
+    border:1px solid var(--line-2);
+  }
+  .ba-card.before{border-top:3px solid var(--ink-3)}
+  .ba-card.after{border-top:3px solid var(--accent)}
+  .ba-label{
+    font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);margin-bottom:8px;
+  }
+  .ba-card.after .ba-label{color:var(--accent-ink)}
+  .ba-title{font-size:1.15rem;font-weight:700;margin-bottom:24px;color:var(--ink)}
+  .ba-step{
+    display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
+    padding:14px 0;border-bottom:1px dashed var(--line);
+  }
+  .ba-step:last-child{border-bottom:none}
+  .ba-step-no{
+    font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.1em;
+  }
+  .ba-step-text{font-size:.92rem;color:var(--ink)}
+  .ba-step-time{
+    font-family:var(--sans);font-weight:500;font-size:1rem;
+    color:var(--ink-3);white-space:nowrap;
+  }
+  .ba-card.after .ba-step-time{color:var(--accent-ink)}
+  .ba-total{
+    margin-top:20px;padding-top:20px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .ba-total-label{font-size:.85rem;color:var(--ink-2);font-weight:600}
+  .ba-total-value{
+    font-family:var(--sans);font-weight:500;font-size:1.8rem;letter-spacing:-.02em;
+  }
+  .ba-card.before .ba-total-value{color:var(--ink-3)}
+  .ba-card.after .ba-total-value{color:var(--accent-ink)}
+  .ba-note{font-size:.82rem;color:var(--ink-3);margin-top:8px;line-height:1.7}
+
+  .ba-punchline{
+    text-align:center;padding:40px 32px;background:#fff;border:1px solid var(--line-2);
+    border-radius:var(--radius);margin-bottom:40px;
+  }
+  .ba-punchline p{font-size:.9rem;color:var(--ink-3);margin-bottom:6px}
+  .ba-punchline h3{
+    font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:600;line-height:1.5;
+    letter-spacing:-.01em;color:var(--ink);
+  }
+  .ba-punchline h3 em{font-style:normal;color:var(--accent-ink);font-weight:700}
+
+  .ba-screens{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .ba-screen{background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden}
+  .ba-screen-head{
+    padding:14px 18px;border-bottom:1px solid var(--line-2);
+    display:flex;align-items:center;gap:10px;
+  }
+  .ba-screen-head .tag{
+    font-family:var(--mono);font-size:.68rem;color:var(--accent-ink);
+    background:var(--accent-soft);padding:3px 8px;border-radius:4px;letter-spacing:.05em;
+  }
+  .ba-screen-head .title{font-size:.88rem;font-weight:600;color:var(--ink)}
+  .ba-screen img{width:100%;height:auto;display:block}
+  @media (max-width:860px){
+    .ba-grid,.ba-screens{grid-template-columns:1fr}
+  }
+
+  /* ---- STEPS ---- */
+  .steps-list{display:flex;flex-direction:column;gap:0;margin-top:16px}
+  .step{
+    display:grid;grid-template-columns:120px 1fr 1.1fr;gap:48px;align-items:center;
+    padding:56px 0;border-top:1px solid var(--line-2);
+  }
+  .step:last-child{border-bottom:1px solid var(--line-2)}
+  .step-n{
+    font-family:var(--sans);font-weight:500;font-size:4.5rem;color:var(--accent-ink);
+    line-height:.9;letter-spacing:-.03em;
+  }
+  .step-n small{
+    display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+    color:var(--ink-3);letter-spacing:.2em;margin-top:8px;
+  }
+  .step-body h3{
+    font-size:1.5rem;font-weight:700;letter-spacing:-.01em;
+    line-height:1.4;margin-bottom:12px;color:var(--ink);
+  }
+  .step-body p{font-size:.95rem;color:var(--ink-2);line-height:1.9;margin-bottom:16px}
+  .step-body p strong{color:var(--ink);font-weight:700;background:linear-gradient(transparent 60%, var(--accent-soft) 60%)}
+  .step-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .step-tag{
+    font-size:.75rem;font-weight:500;color:var(--ink-2);
+    padding:4px 10px;border:1px solid var(--line);border-radius:999px;
+  }
+  .step-visual{
+    border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-2);
+    box-shadow:var(--shadow);background:#fff;
+  }
+  @media (max-width:860px){
+    .step{grid-template-columns:1fr;gap:20px;padding:40px 0}
+    .step-n{font-size:3rem}
+  }
+
+  /* ---- UPCOMING ---- */
+  .coming{background:var(--bg-alt)}
+  .coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .coming-card{
+    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:28px;position:relative;
+  }
+  .coming-badge{
+    display:inline-block;font-size:.68rem;font-weight:600;
+    color:var(--accent-ink);background:var(--accent-soft);
+    padding:3px 10px;border-radius:4px;letter-spacing:.08em;margin-bottom:16px;
+  }
+  .coming-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
+  .coming-card p{font-size:.88rem;color:var(--ink-2);line-height:1.8}
+  @media (max-width:860px){.coming-grid{grid-template-columns:1fr}}
+
+  /* ---- COMPARISON ---- */
+  .compare-tbl{width:100%;border-collapse:collapse;margin-top:32px;font-size:.92rem}
+  .compare-tbl th,.compare-tbl td{
+    padding:18px 16px;text-align:center;border-bottom:1px solid var(--line-2);
+  }
+  .compare-tbl thead th{
+    font-size:.78rem;font-weight:600;color:var(--ink-3);
+    letter-spacing:.1em;text-transform:uppercase;
+    background:var(--bg-alt);
+  }
+  .compare-tbl thead th.us{
+    background:var(--ink);color:#fff;letter-spacing:.02em;text-transform:none;
+    font-size:.95rem;font-weight:700;border-radius:8px 8px 0 0;
+  }
+  .compare-tbl tbody td:first-child{
+    text-align:left;font-weight:600;color:var(--ink);width:30%;
+  }
+  .compare-tbl tbody td.us{background:var(--accent-soft);font-weight:600}
+  .compare-tbl tbody tr:last-child td{border-bottom:none}
+  .mark-yes{color:var(--ok);font-weight:700}
+  .mark-no{color:var(--ink-3);opacity:.6}
+  .mark-mid{color:var(--ink-3);font-size:.85rem}
+  .compare-note{
+    margin-top:28px;padding:24px 28px;border-left:3px solid var(--accent);
+    background:var(--bg-alt);border-radius:0 8px 8px 0;font-size:.9rem;
+    color:var(--ink-2);line-height:1.9;
+  }
+  .compare-note strong{color:var(--ink);font-weight:700}
+
+  /* ---- WHY FROMTO ---- */
+  .why{background:var(--bg-alt)}
+  .why-main{
+    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:48px;margin-bottom:20px;
+  }
+  .why-main h3{font-size:1.35rem;font-weight:700;margin-bottom:16px;line-height:1.5}
+  .why-main > p{font-size:.98rem;color:var(--ink-2);line-height:1.95;max-width:78ch;margin-bottom:28px}
+  .why-main > p strong{color:var(--ink);background:linear-gradient(transparent 60%, var(--accent-soft) 60%)}
+  .why-sub{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+  .why-sub-item{padding:24px;background:var(--bg-alt);border-radius:var(--radius-sm)}
+  .why-sub-item h4{font-size:1rem;font-weight:700;margin-bottom:10px}
+  .why-sub-item p{font-size:.88rem;color:var(--ink-2);line-height:1.85}
+  .why-result{
+    font-family:var(--sans);font-weight:500;font-size:1rem;
+    color:var(--accent-ink);display:inline-block;margin-top:20px;
+    border-top:2px solid var(--accent);padding-top:10px;
+  }
+  .why-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .why-row .why-main{margin-bottom:0;padding:36px}
+  .why-row .why-main h3{font-size:1.15rem}
+  .why-row .why-main p{font-size:.92rem}
+  @media (max-width:860px){
+    .why-main{padding:32px 24px}
+    .why-sub,.why-row{grid-template-columns:1fr}
+  }
+
+  /* ---- PRICING ---- */
+  .price{background:var(--bg-alt)}
+  .promo{
+    background:var(--ink);color:#fff;border-radius:var(--radius);
+    padding:56px 48px;margin-top:20px;position:relative;overflow:hidden;
+  }
+  .promo::before{
+    content:"";position:absolute;top:-60%;right:-10%;width:600px;height:600px;
+    background:radial-gradient(circle, oklch(0.35 0.16 258 / .4), transparent 60%);
+    pointer-events:none;
+  }
+  .promo-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .promo-tag{
+    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+    color:oklch(0.85 0.1 258);background:rgba(255,255,255,.08);
+    padding:6px 14px;border-radius:999px;margin-bottom:20px;
+    border:1px solid rgba(255,255,255,.15);
+  }
+  .promo h3{font-size:1.6rem;font-weight:700;margin-bottom:8px;line-height:1.5;letter-spacing:-.01em}
+  .promo-period{font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:28px}
+  .promo-pricing{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+  .promo-strike{font-size:.92rem;color:rgba(255,255,255,.5);text-decoration:line-through}
+  .promo-price{font-family:var(--sans);font-weight:500;font-size:3rem;line-height:1;letter-spacing:-.02em}
+  .promo-price small{font-size:.92rem;font-weight:500;color:rgba(255,255,255,.7);margin-left:8px;font-family:var(--sans)}
+  .promo-disc{font-size:.85rem;color:oklch(0.8 0.14 60);font-weight:600}
+  .promo-incs{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+  .promo-incs-lbl{font-size:.75rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+  .promo-incs ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .promo-incs li{font-size:.92rem;padding-left:22px;position:relative}
+  .promo-incs li::before{
+    content:"";position:absolute;left:0;top:.5em;width:12px;height:1px;background:oklch(0.75 0.14 258);
+  }
+  .promo-incs li strong{color:#fff;font-weight:600}
+  .promo-cta{margin-top:32px}
+  .promo-cta .btn{background:#fff;color:var(--ink);border-color:#fff;padding:15px 28px;font-size:.95rem}
+  .promo-cta .btn:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft);box-shadow:none;transform:none}
+  .promo-note{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
+
+  /* Plans after launch */
+  .plans-head{margin-top:80px;margin-bottom:28px;text-align:center}
+  .plans-head h3{font-size:1.25rem;font-weight:700;margin-bottom:8px}
+  .plans-head p{font-size:.9rem;color:var(--ink-2)}
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .plan{
+    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:36px 32px;display:flex;flex-direction:column;position:relative;
+  }
+  .plan.reco{border-color:var(--ink);box-shadow:var(--shadow)}
+  .plan-pill{
+    position:absolute;top:-12px;left:32px;
+    background:var(--ink);color:#fff;font-size:.72rem;font-weight:600;
+    padding:4px 12px;border-radius:999px;letter-spacing:.05em;
+  }
+  .plan-name{font-size:.78rem;letter-spacing:.14em;font-weight:600;color:var(--accent-ink);margin-bottom:10px;text-transform:uppercase}
+  .plan-title{font-size:1.15rem;font-weight:700;margin-bottom:16px}
+  .plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
+  .plan-price strong{font-family:var(--sans);font-weight:500;font-size:2.2rem;letter-spacing:-.02em;line-height:1}
+  .plan-price span{font-size:.82rem;color:var(--ink-3)}
+  .plan-note{font-size:.82rem;color:var(--ink-3);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line-2)}
+  .plan-feat{display:flex;flex-direction:column;gap:10px;list-style:none;flex:1}
+  .plan-feat li{font-size:.88rem;color:var(--ink);padding-left:22px;position:relative;line-height:1.7}
+  .plan-feat li::before{
+    content:"";position:absolute;left:0;top:.55em;width:12px;height:1px;background:var(--accent);
+  }
+  .plan-feat li.muted{color:var(--ink-3)}
+  .plan-feat li.muted::before{background:var(--line)}
+  .plan-feat li.star{color:var(--ink);font-weight:600}
+  .plan-feat li.star::before{background:var(--accent);height:3px;top:.52em;border-radius:2px}
+  .plan-hl{
+    background:var(--accent-soft);border-radius:8px;padding:14px 16px;margin-bottom:18px;
+  }
+  .plan-hl-title{font-size:.85rem;font-weight:700;color:var(--accent-ink);margin-bottom:4px}
+  .plan-hl-desc{font-size:.78rem;color:var(--ink-2);line-height:1.7}
+
+  .credits{
+    margin-top:28px;background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:32px 36px;
+  }
+  .credits h4{font-size:1.05rem;font-weight:700;margin-bottom:20px}
+  .credits-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .credits-grid h5{font-size:.78rem;color:var(--accent-ink);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:12px}
+  .credits-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .credits-grid li{display:flex;justify-content:space-between;font-size:.88rem;border-bottom:1px dashed var(--line);padding-bottom:8px}
+  .credits-grid li strong{color:var(--ink);font-weight:600}
+  @media (max-width:860px){
+    .promo{padding:40px 28px}
+    .promo-inner,.plans,.credits-grid{grid-template-columns:1fr;gap:28px}
+    .promo-price{font-size:2.4rem}
+  }
+
+  /* ---- ASSURANCE (リテンション安心訴求) ---- */
+  .assurance{background:var(--bg)}
+  .assurance-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px;
+  }
+  .assurance-card{
+    background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);
+    padding:32px 26px;display:flex;flex-direction:column;gap:12px;
+  }
+  .assurance-card .ac-no{
+    font-family:var(--mono);font-size:.7rem;color:var(--accent-ink);
+    letter-spacing:.14em;font-weight:700;
+  }
+  .assurance-card h3{
+    font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.5;
+  }
+  .assurance-card p{
+    font-size:.86rem;color:var(--ink-2);line-height:1.85;
+  }
+  .assurance-card p strong{color:var(--ink);font-weight:600}
+  .assurance-note{
+    margin-top:32px;text-align:center;font-size:.82rem;color:var(--ink-3);
+  }
+  @media (max-width:860px){
+    .assurance-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:560px){
+    .assurance-grid{grid-template-columns:1fr}
+  }
+
+  /* ---- FAQ ---- */
+  .faq-list{max-width:820px;margin:40px auto 0;display:flex;flex-direction:column;gap:0}
+  .faq-item{border-bottom:1px solid var(--line-2)}
+  .faq-item summary{
+    list-style:none;cursor:pointer;padding:22px 0;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    font-size:1rem;font-weight:600;color:var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{
+    content:"+";font-family:var(--sans);font-size:1.4rem;color:var(--accent-ink);
+    transition:transform .2s;flex-shrink:0;font-weight:300;
+  }
+  .faq-item[open] summary::after{content:"−"}
+  .faq-item .ans{
+    padding:0 0 22px;font-size:.92rem;color:var(--ink-2);line-height:1.95;max-width:70ch;
+  }
+  .faq-item .ans strong{color:var(--ink)}
+
+  /* ---- CTA ---- */
+  .end{
+    background:var(--ink);color:#fff;text-align:center;padding:112px 28px;
+  }
+  .end h2{
+    font-family:var(--sans);font-weight:500;font-size:clamp(1.8rem,3vw,2.6rem);
+    line-height:1.5;letter-spacing:-.01em;margin-bottom:20px;color:#fff;
+  }
+  .end p{color:rgba(255,255,255,.7);max-width:58ch;margin:0 auto 36px;line-height:1.9}
+  .end .btn{background:#fff;color:var(--ink);border-color:#fff;padding:16px 32px;font-size:1rem}
+  .end .btn:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft);box-shadow:none;transform:none}
+  .end small{display:block;margin-top:20px;color:rgba(255,255,255,.5);font-size:.8rem}
+
+  /* ---- FOOTER ---- */
+  .foot{background:oklch(0.18 0.02 260);color:rgba(255,255,255,.5);padding:40px 28px;font-size:.8rem}
+  .foot-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .foot strong{color:#fff;font-weight:600;font-size:.95rem;letter-spacing:-.01em}
+
+  /* ---- Solution Section（独立化された2層構造） ---- */
+  .solution-section{background:var(--bg-alt);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+  .solution-section .layers-intro{margin-top:32px;margin-bottom:0}
+
+  /* 2層構造の説明 */
+  .layers-intro{margin-top:80px;margin-bottom:48px}
+  .layers-title{font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:32px;letter-spacing:-.01em}
+  .layers-title em{font-style:normal;color:var(--accent-ink)}
+  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .layer-card{background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:32px 28px;display:flex;flex-direction:column;gap:8px}
+  .layer-card.layer-1{border-top:4px solid var(--ok)}
+  .layer-card.layer-2{border-top:4px solid var(--accent)}
+  .layer-num{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.14em;font-weight:600}
+  .layer-card.layer-1 .layer-num{color:var(--ok)}
+  .layer-card.layer-2 .layer-num{color:var(--accent-ink)}
+  .layer-name{font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .layer-sub{font-size:.92rem;color:var(--ink-3);margin-bottom:8px}
+  .layer-card p{font-size:.9rem;color:var(--ink-2);line-height:1.85;flex:1}
+  .layer-tag{margin-top:14px;font-size:.86rem;font-weight:600;padding:8px 14px;border-radius:6px;text-align:center}
+  .layer-card.layer-1 .layer-tag{background:var(--ok-soft);color:#1F6D63}
+  .layer-card.layer-2 .layer-tag{background:var(--accent-soft);color:var(--accent-ink)}
+  @media (max-width:860px){.layers-grid{grid-template-columns:1fr}}
+
+  /* ---- ROI by Numbers ---- */
+  .roi-section{background:var(--bg)}
+  .roi-compare{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;
+    margin-top:32px;
+  }
+  .roi-compare-card{
+    background:#fff;border:1px solid var(--line-2);border-radius:14px;
+    padding:32px 28px;display:flex;flex-direction:column;gap:14px;
+  }
+  .roi-compare-card.before{border-top:4px solid var(--ink-3)}
+  .roi-compare-card.after{border-top:4px solid var(--accent)}
+  .roi-compare-label{
+    font-size:.74rem;color:var(--ink-3);font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;
+  }
+  .roi-compare-card.after .roi-compare-label{color:var(--accent-ink)}
+  .roi-compare-stat{padding:12px 0}
+  .roi-stat-num{
+    font-family:var(--sans);font-weight:700;font-size:3rem;
+    line-height:1.1;letter-spacing:-.03em;color:var(--ink);
+  }
+  .roi-compare-card.after .roi-stat-num{color:var(--accent-ink)}
+  .roi-stat-sub{font-size:.85rem;color:var(--ink-2);line-height:1.7;margin-top:6px}
+  .roi-compare-result{
+    margin-top:auto;padding:14px 16px;background:var(--bg-alt);border-radius:8px;
+    font-size:.92rem;font-weight:600;color:var(--ink);
+  }
+  .roi-compare-card.after .roi-compare-result{
+    background:var(--accent-soft);color:var(--accent-ink);
+  }
+  .roi-compare-arrow{
+    align-self:center;font-size:2rem;color:var(--accent);font-weight:700;
+  }
+  @media (max-width:860px){
+    .roi-compare{grid-template-columns:1fr;gap:16px}
+    .roi-compare-arrow{transform:rotate(90deg);font-size:1.6rem}
+  }
+
+  .roi-story{
+    margin:32px auto 32px;text-align:center;max-width:680px;
+    font-size:1.05rem;color:var(--ink);line-height:1.85;
+    padding:24px 28px;background:var(--accent-soft);border-radius:12px;
+  }
+  .roi-story strong{color:var(--accent-ink);font-weight:700;font-size:1.15rem;display:block;margin-bottom:8px}
+
+  /* ロジック3ステップ */
+  .roi-logic{margin-bottom:48px}
+  .roi-logic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .roi-logic-step{
+    background:#fff;border:1px solid var(--line-2);border-radius:12px;
+    padding:24px 22px;display:flex;flex-direction:column;gap:10px;
+    border-top:3px solid var(--accent);
+  }
+  .roi-logic-no{
+    font-family:var(--mono);font-size:.7rem;color:var(--accent-ink);
+    letter-spacing:.14em;font-weight:700;
+  }
+  .roi-logic-title{
+    font-size:1rem;font-weight:700;color:var(--ink);
+  }
+  .roi-logic-step p{
+    font-size:.86rem;color:var(--ink-2);line-height:1.85;
+  }
+  .roi-logic-step p strong{color:var(--ink);font-weight:700;background:linear-gradient(transparent 60%,var(--accent-soft) 60%)}
+  @media (max-width:860px){.roi-logic-grid{grid-template-columns:1fr}}
+
+  .roi-numbers{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px;
+  }
+  .roi-num-card{
+    background:linear-gradient(135deg, var(--ink) 0%, oklch(0.25 0.02 260) 100%);
+    color:#fff;border-radius:14px;padding:36px 28px;text-align:center;
+  }
+  .roi-num-big{
+    font-family:var(--sans);font-weight:700;font-size:3.5rem;
+    line-height:1;letter-spacing:-.03em;
+  }
+  .roi-num-big span{font-size:1.4rem;font-weight:600;margin-left:6px}
+  .roi-num-label{
+    margin-top:10px;font-size:.84rem;color:rgba(255,255,255,.7);
+    letter-spacing:.06em;
+  }
+  @media (max-width:860px){
+    .roi-numbers{grid-template-columns:1fr;gap:14px}
+    .roi-num-big{font-size:2.6rem}
+  }
+
+  .roi-sub-h3{
+    font-size:1.15rem;font-weight:700;margin:0 0 20px 0;color:var(--ink);
+    text-align:center;letter-spacing:-.01em;
+  }
+
+  .roi-3benefit{margin-bottom:48px}
+  .roi-3benefit-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  .roi-benefit-card{
+    background:#fff;border:1px solid var(--line-2);border-radius:12px;
+    padding:24px 22px;display:flex;flex-direction:column;gap:10px;
+  }
+  .roi-benefit-no{
+    font-size:1.4rem;color:var(--accent);font-weight:700;line-height:1;
+  }
+  .roi-benefit-card h4{
+    font-size:1rem;font-weight:700;color:var(--ink);
+  }
+  .roi-benefit-detail{
+    font-size:.86rem;color:var(--ink-2);line-height:1.7;
+    padding:10px 12px;background:var(--bg-alt);border-radius:6px;
+  }
+  .roi-benefit-detail strong{color:var(--ink);font-weight:700}
+  .roi-benefit-result{
+    margin-top:auto;font-size:.86rem;font-weight:600;color:var(--accent-ink);
+    padding:10px 12px;background:var(--accent-soft);border-radius:6px;line-height:1.6;
+  }
+  @media (max-width:860px){
+    .roi-3benefit-grid{grid-template-columns:1fr}
+  }
+
+  .roi-personas{margin-bottom:40px}
+  .roi-personas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .roi-persona-card{
+    background:#fff;border:1px solid var(--line-2);border-radius:12px;
+    padding:24px;border-left:3px solid var(--accent);
+  }
+  .roi-persona-label{
+    font-size:.84rem;font-weight:700;color:var(--accent-ink);
+    letter-spacing:.04em;margin-bottom:12px;
+  }
+  .roi-persona-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .roi-persona-card li{
+    font-size:.86rem;color:var(--ink-2);line-height:1.7;padding-left:18px;position:relative;
+  }
+  .roi-persona-card li::before{
+    content:"\2022";position:absolute;left:4px;top:0;color:var(--accent);font-weight:700;
+  }
+  @media (max-width:860px){
+    .roi-personas-grid{grid-template-columns:1fr}
+  }
+
+  .roi-stretch{
+    margin:32px 0;padding:18px 24px;
+    background:var(--warn-soft);border-left:3px solid var(--warn);
+    border-radius:0 8px 8px 0;font-size:.9rem;color:var(--ink-2);line-height:1.85;
+  }
+  .roi-stretch strong{color:var(--warn);font-weight:700;display:block;margin-bottom:4px}
+
+  .roi-disclaimer{
+    margin:24px 0;padding:14px 18px;background:var(--bg-alt);
+    border-radius:6px;font-size:.74rem;color:var(--ink-3);line-height:1.85;
+  }
+
+  .roi-cta{margin-top:32px;text-align:center}
+
+  /* small screens global */
+  @media (max-width:860px){
+    section{padding:72px 0}
+    .h-section{font-size:1.5rem}
+    .wrap{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <div class="logo">47<span>Connect</span></div>
+    <nav class="nav">
+      <a href="#problem">課題</a>
+      <a href="#solution">解決策</a>
+      <a href="#roi">ROI試算</a>
+      <a href="#how">仕組み</a>
+      <a href="#why">FromToについて</a>
+      <a href="#pricing">料金</a>
+      <a href="#assurance">契約条件</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary">無料相談・資料請求<span class="arrow">→</span></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-kicker"><span class="dot"></span>β版特別キャンペーン受付中・6月末締切・先行20社限定</div>
+      <h1>
+        自治体への提案を、<br>
+        <span class="mark">もう一人でやらなくていい。</span><br>
+        自治体AI参謀が隣で考え、<br>進捗が一目で分かる。
+      </h1>
+      <p class="lede">
+        1チーム1専属の自治体AI参謀が、自治体への提案に伴走（β版期間中は段階的にロールアウト）。<br>
+        1,741自治体の予算・方針・担当課を、自治体提案特化CRMで一元管理。<br>
+        112自治体との寄附仲介実績で裏打ちされた精度。
+      </p>
+      <ul class="hero-bullets">
+        <li>1チーム1専属の自治体AI参謀（β版段階提供）+ 自治体提案特化CRM</li>
+        <li>1 Team Workspace単位 / 追加ID課金なし — 同一チーム内のメンバーが追加料金なしで利用可能</li>
+        <li>月払い・1年契約・13ヶ月目以降は月単位継続（30日予告でいつでも解約可）</li>
+        <li>スタンダードプランは1年間の付帯オンボーディング付き（2ヶ月に1回・前半6ヶ月集中支援）</li>
+      </ul>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn btn-primary">β版特別キャンペーン価格で予約<span class="arrow">→</span></a>
+        <a href="#how" class="btn btn-ghost">仕組みを見る</a>
+      </div>
+      <p class="hero-promo">β版特別キャンペーン特例 ／ 通常 60万円 → <strong>30万円</strong>／6ヶ月一括（税別）・初期構築費無料・AIクレジット付与（数量・詳細は未確定）</p>
+    </div>
+    <div class="hero-visual">
+      <img src="images/header_image.png" alt="47Connect 自治体提案特化CRMダッシュボード" />
+      <div class="hero-caption">&mdash; 47Connect / CRM Dashboard</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROBLEM -->
+<section id="problem" class="problems">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">The Problem</div>
+      <h2 class="h-section">1,741の自治体市場。企業からは<em>「見えない市場」</em>。</h2>
+      <p class="lede">見えないからこそ生まれる、自治体への提案における3つの構造的な課題。</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob">
+        <div class="no">01</div>
+        <h3>知らない<small>Discovery</small></h3>
+        <p>全国1,741自治体から、自社製品と政策課題が一致する自治体を特定できない。</p>
+        <div class="tag">候補絞り込みに2〜3週間</div>
+        <blockquote>「調べても、どの自治体が自社製品を必要としているのかわからない」</blockquote>
+      </div>
+      <div class="prob">
+        <div class="no">02</div>
+        <h3>わからない<small>Understanding</small></h3>
+        <p>予算書、総合計画、施政方針、議会議事録——情報は公開されているが散在し、全体像が掴めない。</p>
+        <div class="tag">1自治体の情報収集に2〜3週間</div>
+        <blockquote>「予算書を読んでも、結局この自治体が何を求めているのかわからない」</blockquote>
+      </div>
+      <div class="prob">
+        <div class="no">03</div>
+        <h3>管理できない<small>Management</small></h3>
+        <p>予算サイクル、人事異動、議会日程——自治体への提案は長期戦。スプレッドシートでは追いきれない。</p>
+        <div class="tag">平均リードタイム6〜18ヶ月</div>
+        <blockquote>「担当者が異動していた。いつの間にか予算化の時期が過ぎていた」</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION（2層構造の宣言） -->
+<section id="solution" class="solution-section">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">The Solution</div>
+      <h2 class="h-section">47Connect は <em>2層</em> で出来ています。</h2>
+      <p class="lede">「自治体提案特化CRMでデータを自分で活かす」プロには Layer 1。「1チーム1専属の自治体AI参謀に毎日相談したい」企業には Layer 2。<strong>2層を組み合わせて、自治体への提案を一人で抱える状態から解放します。</strong></p>
+    </div>
+    <!-- 2層構造の説明 -->
+    <div class="layers-intro">
+      <div class="layers-grid">
+        <div class="layer-card layer-1">
+          <div class="layer-num">Layer 1</div>
+          <div class="layer-name">データ層</div>
+          <div class="layer-sub">自治体提案特化CRM × 1,741自治体DB</div>
+          <p>1,741自治体の予算書・総合計画・首長公約・議会日程を構造化。自治体提案特化CRMで予算サイクル・人事異動・担当課を一元管理。「データさえあれば自分で動ける」プロチーム向け。</p>
+          <div class="layer-tag">→ ライトプラン</div>
+        </div>
+        <div class="layer-card layer-2">
+          <div class="layer-num">Layer 2</div>
+          <div class="layer-name">自治体AI参謀層</div>
+          <div class="layer-sub">1チーム1専属の伴走相棒</div>
+          <p>Team Workspace専用にパーソナライズ学習する1チーム1専属の自治体AI参謀（β版段階提供）。データ層をフル活用し、自治体への提案を毎日の対話で一緒に組み立てる。1年間の付帯オンボーディング付き。</p>
+          <div class="layer-tag">→ スタンダードプラン</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI by Numbers -->
+<section id="roi" class="roi-section">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">ROI by Numbers</div>
+      <h2 class="h-section">月20万円が、御社にいくらの<em>経済効果</em>を生むか。</h2>
+      <p class="lede">価格ではなく、総合プロセスのROIで判断していただけます。<br>製造業・営業2名・年4件規模の試算ケース。<strong>実質2人で4件取っていた仕事を、1人で6件取れる構造へ。</strong></p>
+    </div>
+
+    <!-- Before / After 比較 -->
+    <div class="roi-compare">
+      <div class="roi-compare-card before">
+        <div class="roi-compare-label">Before — 導入前</div>
+        <div class="roi-compare-stat">
+          <div class="roi-stat-num">月80h</div>
+          <div class="roi-stat-sub">営業2名 × 月40h<br>を自治体情報整理に投入</div>
+        </div>
+        <div class="roi-compare-result">年4件・売上1.2億円</div>
+      </div>
+      <div class="roi-compare-arrow">→</div>
+      <div class="roi-compare-card after">
+        <div class="roi-compare-label">After — 導入後（基本シナリオ）</div>
+        <div class="roi-compare-stat">
+          <div class="roi-stat-num">月4h</div>
+          <div class="roi-stat-sub">1名 × 月4h（76h削減・90%以上効率化）<br>残った1人を新規提案へ</div>
+        </div>
+        <div class="roi-compare-result">年6件・売上1.8億円（1.5倍）</div>
+      </div>
+    </div>
+
+    <p class="roi-story">
+      <strong>「実質2人で4件取っていた仕事が、1人で6件取れる。」</strong><br>
+      残った1人の工数を新規提案に振り向ければ、さらに増やせる余地が生まれます。
+    </p>
+
+    <!-- なぜ実現するのか（ロジック説明） -->
+    <div class="roi-logic">
+      <h3 class="roi-sub-h3">なぜ「2人で4件 → 1人で6件」が実現するのか？</h3>
+      <div class="roi-logic-grid">
+        <div class="roi-logic-step">
+          <div class="roi-logic-no">STEP 1</div>
+          <div class="roi-logic-title">情報整理の工数を圧縮</div>
+          <p>自治体情報整理に使っていた工数を、月80h（2名分）→ 月4h（1名分）に削減。<br><strong>月76時間が空く。</strong></p>
+        </div>
+        <div class="roi-logic-step">
+          <div class="roi-logic-no">STEP 2</div>
+          <div class="roi-logic-title">浮いた時間を「提案そのもの」へ</div>
+          <p>今まで情報整理に8割の時間を使っていた営業担当が、<strong>提案準備・顧客対応・戦略立案に集中できる。</strong>残った1人をフルに新規提案へ。</p>
+        </div>
+        <div class="roi-logic-step">
+          <div class="roi-logic-no">STEP 3</div>
+          <div class="roi-logic-title">質と量が同時に向上</div>
+          <p>タイミング最適化（首長任期×予算サイクル）と提案質向上（議事録引用・データ裏付け）が重なり、<strong>案件数 4件 → 6件・成約率も向上。</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ヒーロー数字 3カード -->
+    <div class="roi-numbers">
+      <div class="roi-num-card">
+        <div class="roi-num-big">17.4<span>倍</span></div>
+        <div class="roi-num-label">ROI 月次</div>
+      </div>
+      <div class="roi-num-card">
+        <div class="roi-num-big">+2<span>件</span></div>
+        <div class="roi-num-label">年間 追加案件獲得（年6,000万円規模）</div>
+      </div>
+      <div class="roi-num-card">
+        <div class="roi-num-big">0.7<span>ヶ月</span></div>
+        <div class="roi-num-label">ペイバック期間</div>
+      </div>
+    </div>
+
+    <!-- 3軸便益 -->
+    <div class="roi-3benefit">
+      <h3 class="roi-sub-h3">3軸の経済効果</h3>
+      <div class="roi-3benefit-grid">
+        <div class="roi-benefit-card">
+          <div class="roi-benefit-no">❶</div>
+          <h4>工数削減効果</h4>
+          <div class="roi-benefit-detail">月80h → 月4h<br><strong>76h削減</strong></div>
+          <div class="roi-benefit-result">月22.8万円<br>の人件費削減</div>
+        </div>
+        <div class="roi-benefit-card">
+          <div class="roi-benefit-no">❷</div>
+          <h4>提案件数増加</h4>
+          <div class="roi-benefit-detail">年4件 → 年6件<br><strong>1.5倍</strong></div>
+          <div class="roi-benefit-result">年6,000万円<br>の追加売上</div>
+        </div>
+        <div class="roi-benefit-card">
+          <div class="roi-benefit-no">❸</div>
+          <h4>コンバージョン改善</h4>
+          <div class="roi-benefit-detail">タイミング最適化<br>×提案質向上</div>
+          <div class="roi-benefit-result">成約率向上<br>（首長任期・予算サイクル連動）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3層ペルソナ別便益 -->
+    <div class="roi-personas">
+      <h3 class="roi-sub-h3">3層ペルソナ別の便益（稟議資料そのもの）</h3>
+      <div class="roi-personas-grid">
+        <div class="roi-persona-card">
+          <div class="roi-persona-label">現場・営業担当者</div>
+          <ul>
+            <li>実質2人で月80時間 → 1人で月4時間</li>
+            <li>情報収集の8割が自動化</li>
+            <li>残った1人を新規提案に振り向け可能</li>
+          </ul>
+        </div>
+        <div class="roi-persona-card">
+          <div class="roi-persona-label">中間管理職（営業部長等）</div>
+          <ul>
+            <li>チーム生産性 1.5倍</li>
+            <li>属人化リスクの解消</li>
+            <li>成約率向上 × タイミング最適化</li>
+          </ul>
+        </div>
+        <div class="roi-persona-card">
+          <div class="roi-persona-label">経営層</div>
+          <ul>
+            <li>年6,000万円の追加売上効果（年2件の追加案件獲得）</li>
+            <li>ROI倍率 17.4倍・ペイバック0.7ヶ月</li>
+            <li>全1,741自治体への戦略リーチ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 伸び代Box（控えめ） -->
+    <div class="roi-stretch">
+      <strong>★ さらなる伸び代 ★</strong>
+      削減工数（年912h）を全て新規提案に振り向けた場合、理論上の最大年間追加売上は <strong>数十億円規模まで拡張可能</strong>。業種・規模・営業体制により実現可能性は変動します。
+    </div>
+
+    <!-- 前提・注記 -->
+    <div class="roi-disclaimer">
+      ※ 製造業（学校家具・防災製品）・営業2名・年4件・受注単価3,000万円規模での試算ケース／
+      年間費用 370万円（月額20万×12 + 初期費10万 + AIクレジット月10万×12）に対する試算／
+      47Connect ROIシミュレーター v7 に基づく／
+      業種・規模・営業体制により数値は変動します／
+      導入効果を保証するものではありません。
+    </div>
+
+    <div class="roi-cta">
+      <a href="#contact" class="btn btn-primary">御社業種・規模でROI試算を依頼する<span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROCUREMENT FLOW -->
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Timing Matters</div>
+      <h2 class="h-section">自治体の予算は、入札の<em>半年〜2年前</em>に決まっている。</h2>
+      <p class="lede">入札情報が出てからでは遅い。意思決定の上流にアプローチすることが、自治体への提案の勝ちパターンです。</p>
+    </div>
+
+    <div class="flow-viz">
+      <div class="flow-track">
+        <div class="flow-zone planning">
+          <div class="flow-zone-label">47Connect がカバーする領域</div>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="sn">STEP 01</div>
+              <div class="st">事業の方向性決定</div>
+              <div class="sd">首長 / 課題抽出・方向性の決定</div>
+            </div>
+            <div class="flow-step">
+              <div class="sn">STEP 02</div>
+              <div class="st">政策内容決定</div>
+              <div class="sd">政策企画課 / 政策立案</div>
+            </div>
+            <div class="flow-step">
+              <div class="sn">STEP 03</div>
+              <div class="st">予算編成</div>
+              <div class="sd">各部署 / 参考見積取得・予算編成</div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-gate">議会承認</div>
+        <div class="flow-zone bidding">
+          <div class="flow-zone-label">入札・落札</div>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="sn">STEP 04</div>
+              <div class="st">入札情報開示</div>
+              <div class="sd">入札参加者募集</div>
+            </div>
+            <div class="flow-step">
+              <div class="sn">STEP 05</div>
+              <div class="st">入札・落札</div>
+              <div class="sd">事業者決定・実施</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flow-periods">
+        <div class="flow-period planning">企画検討期間 <strong>約半年〜2年</strong></div>
+        <div class="flow-period gap"></div>
+        <div class="flow-period">募集期間 <strong>平均2週間</strong></div>
+      </div>
+    </div>
+
+    <div class="flow-insight">
+      <p>多くの企業が入札情報(④⑤)を見てから動くが、その時点で予算と仕様は確定済み。</p>
+      <strong>47Connectは企画段階(①②③)の情報を可視化し、<em>「入札の前に選ばれる企業」</em>になるための武器を提供します。</strong>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="ba">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Before / After</div>
+      <h2 class="h-section">「探す・調べる」を、AIが<em>一瞬</em>で終わらせる。</h2>
+      <p class="lede">ターゲット選定から自治体理解まで。1ヶ月かかっていた準備工数が、わずか30分に。</p>
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba-card before">
+        <div class="ba-label">Before — 従来の自治体への提案準備</div>
+        <div class="ba-title">手作業でのリサーチと読み込み</div>
+        <div class="ba-step">
+          <div class="ba-step-no">01</div>
+          <div class="ba-step-text">ターゲット自治体の選定</div>
+          <div class="ba-step-time">2〜3週間</div>
+        </div>
+        <div class="ba-step">
+          <div class="ba-step-no">02</div>
+          <div class="ba-step-text">自治体ごとの情報収集・分析</div>
+          <div class="ba-step-time">2〜3週間</div>
+        </div>
+        <div class="ba-note">1,741自治体から候補を手作業でリサーチ。予算書・総合計画・議事録を1つずつ読み込み……</div>
+        <div class="ba-total">
+          <div class="ba-total-label">合計所要時間</div>
+          <div class="ba-total-value">約 1ヶ月</div>
+        </div>
+      </div>
+      <div class="ba-card after">
+        <div class="ba-label">After — 47Connect</div>
+        <div class="ba-title">AIが選定から分析まで自動化</div>
+        <div class="ba-step">
+          <div class="ba-step-no">01</div>
+          <div class="ba-step-text">AIレコメンドで自治体を自動選定</div>
+          <div class="ba-step-time">登録後すぐ</div>
+        </div>
+        <div class="ba-step">
+          <div class="ba-step-no">02</div>
+          <div class="ba-step-text">AIサマライズで全貌を即座に把握</div>
+          <div class="ba-step-time">30分</div>
+        </div>
+        <div class="ba-note">企業情報を登録するだけでAIが最適な自治体を選定。各自治体の予算・方針・担当課を1画面でサマライズ。</div>
+        <div class="ba-total">
+          <div class="ba-total-label">合計所要時間</div>
+          <div class="ba-total-value">約 30分</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ba-punchline">
+      <p>提案担当者1人分の準備工数が30分で完了するから</p>
+      <h3>空いた時間で、<em>より多く</em>の自治体に提案できる。</h3>
+    </div>
+
+    <div class="ba-screens">
+      <div class="ba-screen">
+        <div class="ba-screen-head">
+          <span class="tag">Screen 01</span>
+          <span class="title">AIレコメンド画面</span>
+        </div>
+        <img src="images/recommend-screen.png" alt="AIレコメンド画面" />
+      </div>
+      <div class="ba-screen">
+        <div class="ba-screen-head">
+          <span class="tag">Screen 02</span>
+          <span class="title">AIサマライズ画面</span>
+        </div>
+        <img src="images/image.png" alt="AIサマライズ画面" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW / STEPS -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">How it works</div>
+      <h2 class="h-section">サクッと見つけて、サクッと理解して、キチンと管理。</h2>
+      <p class="lede">探索・分析・管理。数週間を要していた自治体への提案プロセスを、47Connectが根本から効率化します。</p>
+    </div>
+
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-n">01<small>DISCOVER</small></div>
+        <div class="step-body">
+          <h3>AIが最適な自治体を自動選定。</h3>
+          <p>御社の企業情報・製品情報を登録いただくだけ。国の政策方針 × 都道府県の重点施策 × 自治体の予算・課題をAIが3層で分析し、<strong>提案適合度の高い自治体をスコア付きで自動抽出</strong>します。</p>
+          <div class="step-tags">
+            <span class="step-tag">3層AIスコアリング</span>
+            <span class="step-tag">寄附仲介実績ベース</span>
+            <span class="step-tag">1,741自治体対応</span>
+          </div>
+        </div>
+        <div class="step-visual">
+          <img src="images/recommend-screen.png" alt="AIレコメンド" />
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">02<small>UNDERSTAND</small></div>
+        <div class="step-body">
+          <h3>自治体の全貌を、30分で把握。</h3>
+          <p>予算・重点施策・首長方針・AIが分析した想定担当課・議会議事録——レコメンドされた自治体の情報をAIが構造化・サマライズし、1画面に集約。<strong>「この自治体に提案すべきか」を即座に判断</strong>できます。</p>
+          <div class="step-tags">
+            <span class="step-tag">予算構造の可視化</span>
+            <span class="step-tag">首長方針サマリー</span>
+            <span class="step-tag">提案適合性判定</span>
+            <span class="step-tag">議会議事録要約</span>
+          </div>
+        </div>
+        <div class="step-visual">
+          <img src="images/image.png" alt="AIサマライズ" />
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">03<small>MANAGE</small></div>
+        <div class="step-body">
+          <h3>レコメンド先を、そのまま追跡・管理。</h3>
+          <p>AIがレコメンドした自治体をそのままCRMリストに追加。ステータス管理・メモ・フラグ付けで<strong>提案パイプラインを可視化</strong>。予算サイクルや人事異動の時期に合わせたアラート機能も今後対応予定。</p>
+          <div class="step-tags">
+            <span class="step-tag">パイプライン管理</span>
+            <span class="step-tag">ステータス管理</span>
+            <span class="step-tag">メモ・フラグ付け</span>
+            <span class="step-tag">課内共有</span>
+          </div>
+        </div>
+        <div class="step-visual">
+          <img src="images/crm_list.png" alt="CRM管理" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING -->
+<section class="coming">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Roadmap</div>
+      <h2 class="h-section">今後追加予定の機能。</h2>
+      <p class="lede">レコメンド・サマライズ・CRM管理の3コア機能に加え、自治体への提案をさらに加速させる機能を順次リリース。</p>
+    </div>
+    <div class="coming-grid">
+      <div class="coming-card">
+        <div class="coming-badge">DEVELOPING</div>
+        <h3>提案メール自動生成</h3>
+        <p>レコメンド結果とサマライズ情報をもとに、自治体の担当部局向け提案メールをAIが自動で生成。AIクレジット消費。</p>
+      </div>
+      <div class="coming-card">
+        <div class="coming-badge">DEVELOPING</div>
+        <h3>提案メール一括配信</h3>
+        <p>生成した提案メールを、該当する自治体の担当部局へ一括配信。別途有料オプション。</p>
+      </div>
+      <div class="coming-card">
+        <div class="coming-badge">DEVELOPING</div>
+        <h3>AIエージェント分析</h3>
+        <p>予算書・総合計画・議会議事録をAIエージェントが深掘り分析。対話形式で情報を取得。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Comparison</div>
+      <h2 class="h-section">「同じレコメンド」でも、データの深さが違う。</h2>
+      <p class="lede">公開情報だけの分析と、寄附仲介の実績に裏付けられた分析。精度の差は歴然です。</p>
+    </div>
+    <table class="compare-tbl">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="us">47Connect</th>
+          <th>自治体情報DB</th>
+          <th>コンサル</th>
+          <th>自力</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>全国1,741自治体カバー</td>
+          <td class="us"><span class="mark-yes">●</span></td>
+          <td><span class="mark-yes">●</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>AIレコメンド</td>
+          <td class="us"><span class="mark-yes">●</span></td>
+          <td><span class="mark-mid">キーワードマッチのみ</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>仲介実績に基づくスコアリング</td>
+          <td class="us"><span class="mark-yes">●</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>自治体サマライズ</td>
+          <td class="us"><span class="mark-yes">●</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>CRM・提案管理</td>
+          <td class="us"><span class="mark-yes">●</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+          <td><span class="mark-no">—</span></td>
+        </tr>
+        <tr>
+          <td>属人性リスク</td>
+          <td class="us">なし</td>
+          <td>なし</td>
+          <td>高</td>
+          <td>高</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="compare-note">
+      他社DBでも自治体は見つかる。しかし、公開情報だけのレコメンドと、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理の3つを一気通貫</strong>で提供。
+    </div>
+  </div>
+</section>
+
+<!-- WHY FROMTO -->
+<section id="why" class="why">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Why FromTo</div>
+      <h2 class="h-section">なぜFromToに、これができるのか。</h2>
+      <p class="lede">自治体と企業の間に立ち続けてきた実績と基盤。</p>
+    </div>
+
+    <div class="why-main">
+      <h3>寄附仲介の実績が生んだ、他社にはないデータ資産。</h3>
+      <p>FromToは企業版ふるさと納税の寄附仲介を<strong>154件・総額2億円以上</strong>にわたり手がけ、<strong>112を超える自治体と直接の信頼関係</strong>を構築してきました。この関係があるからこそ、担当部局が実際に求めているニーズ情報を蓄積しています。</p>
+      <div class="why-sub">
+        <div class="why-sub-item">
+          <h4>担当部局のニーズ情報が、レコメンド精度を決める</h4>
+          <p>公開情報だけでは、自治体の実態は見えません。担当部局が何を求めているか——寄附仲介の実取引がなければ得られない情報を、AIスコアリングに反映しています。</p>
+        </div>
+        <div class="why-sub-item">
+          <h4>自治体の「今」を、正確にサマライズできる理由</h4>
+          <p>予算書の数字だけでは、自治体が何を求めているかはわかりません。実取引の中で得た<strong>担当課の本音・優先度・実際の課題感</strong>が、サマライズの精度を支えています。</p>
+        </div>
+      </div>
+      <div class="why-result">→ 寄附仲介の実績に裏打ちされた、圧倒的な精度</div>
+    </div>
+
+    <div class="why-row">
+      <div class="why-main">
+        <h3>1,741全自治体のデータを構造化するAI基盤。</h3>
+        <p>予算書・総合計画・首長方針・議会議事録——自治体が公開する膨大な情報を、AIが自動で収集・構造化・更新。47都道府県を網羅し、国の政策方針から各自治体の個別課題まで3層で分析可能な基盤を構築しています。</p>
+        <div class="why-result">→ 全国規模での最適マッチング</div>
+      </div>
+      <div class="why-main">
+        <h3>企業と自治体をつなぐ双方向プラットフォーム。</h3>
+        <p>寄附仲介で自治体との信頼関係を深化させ、そこで得たニーズ情報を47Connectのレコメンド精度に還元。契約企業が増えるほど自治体側の価値も高まる——データ分析だけのツールでは実現できない「つなげる力」が基盤です。</p>
+        <div class="why-result">→ 参入障壁の高い双方向プラットフォーム</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section id="pricing" class="price">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Pricing</div>
+      <h2 class="h-section">1チーム単位で利用できる料金体系。</h2>
+      <p class="lede">月払い・1年契約。13ヶ月目以降は月単位継続で、30日予告でいつでも解約可能。1 Team Workspace単位の利用で、同一チーム内のメンバーは追加課金なし。2チーム目以降も同額です。</p>
+    </div>
+
+    <!-- PROMO -->
+    <div class="promo">
+      <div class="promo-inner">
+        <div>
+          <div class="promo-tag">先行20社限定 / 6月末締切</div>
+          <h3>β版特別キャンペーン</h3>
+          <div class="promo-period">2026年7月〜12月 / 6ヶ月間（β版特例：半年一括前払い）</div>
+          <div class="promo-pricing">
+            <span class="promo-strike">通常 60万円</span>
+            <span class="promo-price">30万円<small>／半年一括（税別）</small></span>
+          </div>
+          <div class="promo-disc">50%OFF + 初期構築費（通常10万円・税別）無料 + AIクレジット付与（数量・詳細は未確定）</div>
+          <div class="promo-cta">
+            <a href="#contact" class="btn">β版特別キャンペーン価格で申し込む<span class="arrow">→</span></a>
+            <p class="promo-note">申込締切：2026年6月30日 ／ 先行20社限定 ／ β版期間終了後（2026年11月予定）に本格運用へ移行（月払い・1年契約構造へ自動切替）</p>
+          </div>
+        </div>
+        <div class="promo-incs">
+          <div class="promo-incs-lbl">すぐに使える (0cr・使い放題)</div>
+          <ul>
+            <li><strong>自治体AIレコメンド</strong>(3層スコアリング)</li>
+            <li><strong>自治体情報サマライズ</strong></li>
+            <li><strong>自治体提案特化CRM</strong></li>
+            <li><strong>1契約で1 Team Workspace単位のご利用</strong></li>
+            <li>ご要望を製品に優先反映</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANS AFTER LAUNCH -->
+    <div class="plans-head">
+      <h3>本格運用プラン（2026年11月以降）</h3>
+      <p>全プラン共通：<strong>月払い・1年契約・13ヶ月目以降は月単位継続</strong>（30日予告でいつでも解約可）。1 Team Workspace単位、追加ユーザー課金なし。2チーム目以降も同額。<br>β版特別キャンペーン適用顧客は本格運用移行時に本プラン構造へ自動切替。</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Light</div>
+        <div class="plan-title">ライトプラン</div>
+        <div class="plan-price">
+          <strong>¥100,000</strong><span>/月（税別・月払い）</span>
+        </div>
+        <div class="plan-note">データ分析に特化したセルフサービスプラン</div>
+        <ul class="plan-feat">
+          <li class="star">自治体AIレコメンド</li>
+          <li class="star">自治体情報サマライズ</li>
+          <li class="star">自治体提案特化CRM</li>
+          <li class="star">1契約で1 Team Workspace単位のご利用</li>
+          <li class="star">月払い・1年契約・13ヶ月目以降は月単位継続</li>
+          <li>提案メール 月3件まで（4件目以降は追加クレジット購入で対応可）</li>
+          <li class="muted">AIクレジットを使う機能（提案メール生成・AIエージェント等）</li>
+          <li class="muted">AIエージェント深掘り・フル分析</li>
+          <li class="muted">付帯オンボーディング（標準提供範囲外）</li>
+        </ul>
+      </div>
+      <div class="plan reco">
+        <div class="plan-pill">オススメ</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-title">スタンダードプラン</div>
+        <div class="plan-price">
+          <strong>¥200,000</strong><span>/月（税別・月払い）</span>
+        </div>
+        <div class="plan-note">1チーム1専属自治体AI参謀 + 1年間付帯オンボーディング付きのフルサポートプラン</div>
+        <div class="plan-hl">
+          <div class="plan-hl-title">★ 1チーム1専属の自治体AI参謀</div>
+          <div class="plan-hl-desc">Team Workspace専用にパーソナライズ学習する、自治体への提案の専属参謀。β版期間中は段階的にロールアウト。月30万円の個人コンサルと同等機能を67%コストで。</div>
+        </div>
+        <ul class="plan-feat">
+          <li class="star">ライトプランの全機能</li>
+          <li class="star">月払い・1年契約・13ヶ月目以降は月単位継続</li>
+          <li class="star">1年間の付帯オンボーディング（2ヶ月に1回・年6回の定期内容確認）</li>
+          <li class="star">前半6ヶ月：集中支援フェーズ（自治体AI参謀の学習を集中加速）</li>
+          <li class="star">後半6ヶ月：運用最適化フェーズ（KPIレビュー・スケール提案）</li>
+          <li class="star">13ヶ月目以降：メールで質問・相談・運用相談を随時受付</li>
+          <li>提案メール生成 <small>（AIクレジット消費）</small></li>
+          <li>AIエージェント深掘り質問 <small>（AIクレジット消費）</small></li>
+          <li>AIエージェントフル分析 <small>（AIクレジット消費）</small></li>
+          <li>提案メール一括配信（別途有料）</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ASSURANCE / 契約条件は安心を最優先に設計 -->
+<section id="assurance" class="assurance">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Peace of Mind</div>
+      <h2 class="h-section">契約条件は、企業の<em>安心</em>を最優先に設計。</h2>
+      <p class="lede">縛りすぎず、突然の終了リスクもなく、データもAIクレジットも守る。長期に伴走するための仕組みを契約書で明文化しています。</p>
+    </div>
+    <div class="assurance-grid">
+      <div class="assurance-card">
+        <div class="ac-no">01 / FLEXIBLE</div>
+        <h3>初年度は徹底伴走、13ヶ月目以降は月単位の柔軟な継続契約に。</h3>
+        <p><strong>初年度1年契約・月払い</strong>で初期負担を抑えつつ、年度予算サイクルに合わせた伴走を実現。<strong>13ヶ月目以降は月単位継続</strong>に自動移行し、30日予告でいつでも解約できます（残月分の支払義務なし）。</p>
+      </div>
+      <div class="assurance-card">
+        <div class="ac-no">02 / RECOVERABLE</div>
+        <h3>解約後もデータは6ヶ月間アーカイブ保持。</h3>
+        <p>解約から<strong>30日間のエクスポート猶予期間</strong>＋計<strong>6ヶ月間のアーカイブ保持期間</strong>を経て完全削除。アーカイブ保持期間内に再契約いただいた場合、初期構築費は<strong>50%減額（5万円・税別）</strong>でデータも復元します。</p>
+      </div>
+      <div class="assurance-card">
+        <div class="ac-no">03 / PAUSE-OK</div>
+        <h3>3ヶ月の無料休会あり。BPO案件の谷間も安心。</h3>
+        <p>標準で<strong>3ヶ月までの無料休会</strong>が可能。基本月額は0円、データもAIクレジットもそのまま保持されます。さらに<strong>追加10万円（税別）で最大1年間まで延長</strong>可能。お申し込みはメール1通で。</p>
+      </div>
+      <div class="assurance-card">
+        <div class="ac-no">04 / STABLE</div>
+        <h3>当社都合のサービス終了も、3ヶ月以上前に必ず通知。</h3>
+        <p>万が一、当社都合で本サービスを終了する場合も、<strong>3ヶ月以上前に書面通知</strong>。未消化のAIクレジットは換算レートに基づき清算します。御社の提案計画を、当社の都合で突然止めることはありません。</p>
+      </div>
+    </div>
+    <p class="assurance-note">※ 詳細条件は契約書（v2.3.1）で明文化されています。お申し込み前に必ずご確認ください。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="h-section">よくいただくご質問。</h2>
+    </div>
+    <div class="faq-list">
+
+      <!-- 契約構造・支払 -->
+      <details class="faq-item">
+        <summary>契約期間と支払方法を教えてください。</summary>
+        <div class="ans"><strong>初年度は1年契約、支払いは月払い</strong>です（毎月当社の請求書に基づきお振込み）。13ヶ月目以降は<strong>月単位の継続契約</strong>に自動移行し、<strong>30日前にご通知いただければいつでも解約可能</strong>です（残月分の支払義務なし）。<br><br>β版特別キャンペーン適用顧客のみ、6ヶ月間は半年一括前払い（30万円・税別）を維持します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>1年経たずに解約することはできますか？</summary>
+        <div class="ans">解約のお申し出はいつでも可能ですが、<strong>初年度は1年契約のため、12ヶ月目までの月額は月払いでお支払いいただきます</strong>（一括徴収はしません）。本サービスの利用停止時期は、解約意思表示の内容に応じて協議のうえ決定します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>13ヶ月目以降に解約したら違約金は発生しますか？</summary>
+        <div class="ans">違約金は一切発生しません。<strong>30日前のご通知</strong>で、いつでも解約できます。解約月までの月額のみのお支払いで、それ以降の支払義務は発生しません。</div>
+      </details>
+
+      <!-- 解約後のデータ・休会 -->
+      <details class="faq-item">
+        <summary>解約したら、登録したデータはどうなりますか？</summary>
+        <div class="ans">①契約終了から<strong>30日間</strong>はデータを閲覧・エクスポート可能（エクスポート猶予期間）<br>②その後、計<strong>6ヶ月間</strong>は当社内アーカイブで保持<br>③6ヶ月経過後に完全削除<br><br>アーカイブ保持期間内に再契約いただいた場合、初期構築費は通常の半額（<strong>50,000円・税別</strong>）でデータも復元します。<br>※ 法令上保存が必要なデータ・匿名化済の学習データは除く。</div>
+      </details>
+      <details class="faq-item">
+        <summary>一時的に休止したい場合は休会できますか？</summary>
+        <div class="ans">はい。<strong>標準で3ヶ月までの無料休会</strong>が可能です。基本月額は0円、データ・購入済みのAIクレジット・初期構築データはそのまま保持されます。<br><br>さらに延長が必要な場合は、<strong>追加100,000円（税別）で最大1年間まで延長</strong>可能。お申し込みは当社カスタマーサポートへ電子メール1通で対応します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>休会中も月額はかかりますか？</summary>
+        <div class="ans">かかりません。休会期間中は<strong>基本月額0円</strong>で、契約期間の進行も停止します。再開時は休会前の残契約期間が継続されます。</div>
+      </details>
+      <details class="faq-item">
+        <summary>未消費のAIクレジットはどうなりますか？</summary>
+        <div class="ans">解約時は失効しますが、<strong>休会時は保持</strong>されます（再開時にそのままご利用いただけます）。<br>未消費クレジットを大切にしたい場合は、解約より休会を推奨します。</div>
+      </details>
+
+      <!-- オンボーディング -->
+      <details class="faq-item">
+        <summary>オンボーディングはありますか？</summary>
+        <div class="ans"><strong>スタンダードプランには初年度1年間の付帯オンボーディングが含まれます</strong>。<br><br>・頻度: <strong>2ヶ月に1回</strong>（年間6回）の定期的な内容確認<br>・前半6ヶ月: <strong>集中支援フェーズ</strong> — 1チーム1専属自治体AI参謀の学習データを集中的に更新し、Team Workspace固有のコンテキストに最適化<br>・後半6ヶ月: <strong>運用最適化フェーズ</strong> — 定着支援・KPIレビュー・スケール提案<br><br>確認方法はオンライン会議・メール・本サービス上のチャット等、貴社と協議のうえ決定します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>13ヶ月目以降のサポートは？</summary>
+        <div class="ans">スタンダードプランの場合、13ヶ月目以降は付帯オンボーディングは終了しますが、当社カスタマーサポート（電子メール）にて<strong>質問・相談・運用相談を随時受け付けます</strong>。長期顧客との継続的な関係性を維持します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>ライトプランにもオンボーディングはつきますか？</summary>
+        <div class="ans">標準提供範囲には含まれません。必要な場合は個別協議にて対応を検討します。</div>
+      </details>
+
+      <!-- 機能・サービス -->
+      <details class="faq-item">
+        <summary>47Connectはどのような企業に向いていますか？</summary>
+        <div class="ans">自治体に提案したい製品・サービスがあるが、どの自治体にアプローチすべきかわからない企業に最適です。業種・規模を問わず、防災・福祉・教育・DX・環境など幅広い分野でご利用いただけます。</div>
+      </details>
+      <details class="faq-item">
+        <summary>レコメンドのスコアはどのように算出されますか？</summary>
+        <div class="ans">国の政策方針・都道府県の重点施策・自治体の個別課題（予算書・総合計画・首長方針）の3層を掛け合わせてAIがスコアリングします。さらに、112自治体との寄附仲介で得た担当部局のニーズ情報を加味することで、公開情報だけでは得られない精度を実現しています。</div>
+      </details>
+      <details class="faq-item">
+        <summary>自治体プロファイルのサマライズにはどんな情報が含まれますか？</summary>
+        <div class="ans">予算概要（一般会計・分野別予算・前年比）、総合計画の重点施策、首長の方針・公約、AIが分析した想定担当課、関連する議会議事録の要約などが含まれます。従来数週間かかっていた1自治体の情報収集が、30分で完了します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>他社の自治体DBサービスとの違いは？</summary>
+        <div class="ans">他社DBは公開情報に基づくキーワードマッチングが中心です。47Connectは公開情報に加え、112自治体との寄附仲介で得た担当部局のニーズ情報をスコアリングに活用。さらに<strong>レコメンド・サマライズ・自治体提案特化CRM・1チーム1専属自治体AI参謀</strong>まで一気通貫で提供し、自治体への提案の意思決定基盤をワンストップでカバーします。</div>
+      </details>
+      <details class="faq-item">
+        <summary>1チーム1専属自治体AI参謀とは？</summary>
+        <div class="ans">スタンダードプランに含まれる、<strong>Team Workspace専用にパーソナライズ学習するAIエージェント</strong>です。チームの業界・商材・自治体ターゲットを学習し、チーム固有のコンテキストに最適化した提案・分析を出力します。<br><br>※ β版期間中（2026年7月〜12月）は段階的にロールアウトし、正式版（2026年11月以降）で本格提供します。</div>
+      </details>
+      <details class="faq-item">
+        <summary>ユーザー数に制限はありますか？</summary>
+        <div class="ans">基本的に<strong>1 Team Workspace単位</strong>でご利用いただけます。1契約で同一チームのメンバー様（提案ご担当・マーケティング・企画等）にアカウントを発行でき、追加ユーザー課金は発生しません。<br><br>同一法人の2チーム目以降も別契約・同額です。Year 1では顧客向けCompany Owner横断ビューは提供しません。</div>
+      </details>
+      <details class="faq-item">
+        <summary>AIクレジットとは何ですか？</summary>
+        <div class="ans">提案メール生成やAIエージェントなど、AI機能の利用量を計測する単位です（スタンダードプランのみ対応）。AIレコメンド・サマライズ・CRMはクレジット消費なしでご利用いただけます。<br><br><strong>※ 具体的な単価・消費量・付与量などは、現時点ではすべて未確定</strong>です。β版期間にベータ参加企業様と対話しながら詳細を検討し、正式リリース時に確定いたします。</div>
+      </details>
+      <details class="faq-item">
+        <summary>クレジットは繰り越せますか？</summary>
+        <div class="ans">AIクレジットは月次でリセットされ、未消費分の翌月繰越および現金返還は行いません。ただし、当社の責に帰すべきサービス停止・障害等により当月のクレジットを使い切れなかった場合、当社の判断により補填クレジットを翌月以降に繰り越して付与することがあります。</div>
+      </details>
+      <details class="faq-item">
+        <summary>サービスはいつから利用できますか？</summary>
+        <div class="ans"><strong>β版特別キャンペーンは2026年7月より開始</strong>します。6月末までにお申し込みいただいた先行20社限定で、初期構築費0円・通常価格の半額でご提供いたします。<strong>本格運用への移行は2026年11月予定</strong>（月払い・1年契約構造へ自動切替）。</div>
+      </details>
+      <details class="faq-item">
+        <summary>導入にどのくらい時間がかかりますか？</summary>
+        <div class="ans">お申し込みから最短2週間で利用開始いただけます。御社の企業情報・製品情報の登録後、AIレコメンドの初回結果をお届けいたします。</div>
+      </details>
+      <details class="faq-item">
+        <summary>データのセキュリティ対策は？</summary>
+        <div class="ans">御社の企業情報・利用データは暗号化して管理しており、第三者への提供は一切行いません。アクセス権限はアカウント単位で管理され、課外への情報漏洩を防止しています。詳細は契約書および当社プライバシーポリシーで明文化しています。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- END CTA -->
+<section id="contact" class="end">
+  <h2>自治体への提案を、<br>もう一人でやらなくていい。</h2>
+  <p>自治体AI参謀と自治体提案特化CRMが、自治体への提案に伴走します。<br>申し込み前のご相談も大歓迎です。担当者より1営業日以内にご連絡いたします。</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" class="btn">お問い合わせ・お申し込みフォーム<span class="arrow">→</span></a>
+  <small>β版特別キャンペーン受付中・6月末締切・先行20社限定 50%OFF</small>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div>
+      <strong>47Connect</strong><br>
+      自治体AI参謀 + 自治体提案特化CRM
+    </div>
+    <div>
+      © 2026 FromTo, Inc. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
