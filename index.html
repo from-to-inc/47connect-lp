@@ -1105,7 +1105,7 @@
     .flow-stake-num{font-size:26px;min-width:70px}
   }
   .flow-track{
-    display:grid;grid-template-columns:3fr auto 2fr;gap:14px;align-items:stretch;margin-top:24px;
+    display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:24px;
   }
   .flow-zone{
     border-radius:var(--r-lg);padding:24px;
@@ -1121,10 +1121,14 @@
     text-transform:uppercase;
   }
   .flow-zone.planning .flow-zone-label{
-    display:inline-block;align-self:flex-start;
-    padding:6px 14px;border-radius:6px;
-    background:var(--amber-bg-2);color:var(--amber-soft);
-    border:1px solid var(--amber-line);letter-spacing:.06em;font-size:13px;
+    display:block;align-self:center;text-align:center;width:100%;
+    padding:0;background:transparent;border:none;
+    color:var(--orange);letter-spacing:.03em;
+    font-size:22px;font-weight:900;text-transform:none;
+    margin-bottom:8px;line-height:1.4;
+  }
+  @media (max-width:760px){
+    .flow-zone.planning .flow-zone-label{font-size:17px}
   }
   .flow-zone.bidding .flow-zone-label{color:var(--ink-4)}
   .flow-steps{display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:10px}
@@ -1801,7 +1805,7 @@
   .plan-compare-table th,.plan-compare-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
   .plan-compare-table tr:last-child td{border-bottom:none}
   .plan-compare-table th.feat-head{width:auto;background:#FAFAFA;font-size:13px;color:var(--ink-3);font-weight:700;letter-spacing:.04em;vertical-align:bottom;padding-bottom:18px}
-  .plan-compare-table th.plan-col{width:300px;text-align:center;padding:24px 20px 18px;vertical-align:top;background:#F4F8FF;position:relative}
+  .plan-compare-table th.plan-col{width:380px;text-align:center;padding:42px 24px 20px;vertical-align:top;background:#F4F8FF;position:relative}
   .plan-compare-table th.plan-col-standard{background:linear-gradient(180deg,var(--blue-50),#fff);border-left:2px solid var(--orange)}
   .plan-compare-table .plan-name{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--blue-deep);margin-bottom:6px;text-transform:uppercase}
   .plan-compare-table .plan-title{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px;line-height:1.3}
@@ -1809,8 +1813,8 @@
   .plan-compare-table .plan-price strong{display:block;font-size:24px;font-weight:800;color:var(--blue-deep);letter-spacing:-.01em;margin-bottom:2px}
   .plan-compare-table .plan-price span{display:block}
   .plan-compare-table .plan-tag{font-size:11px;color:var(--ink-3);line-height:1.5}
-  .plan-compare-table .plan-pill{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 14px;border-radius:6px;box-shadow:var(--sh-orange);white-space:nowrap}
-  .plan-compare-table tbody td:nth-child(2),.plan-compare-table tbody td:nth-child(3){text-align:center;font-size:20px;font-weight:700;color:var(--blue-deep);width:300px;line-height:1.3}
+  .plan-compare-table .plan-pill{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 14px;border-radius:6px;box-shadow:var(--sh-orange);white-space:nowrap}
+  .plan-compare-table tbody td:nth-child(2),.plan-compare-table tbody td:nth-child(3){text-align:center;font-size:20px;font-weight:700;color:var(--blue-deep);width:380px;line-height:1.3}
   .plan-compare-table tbody td:nth-child(3){background:rgba(244,248,255,.45)}
   .plan-compare-table tbody td small{display:block;font-size:11px;font-weight:500;color:var(--ink-3);margin-top:4px}
   .plan-compare-table tbody tr.section-row td{background:var(--blue-deep);color:#fff;font-weight:800;font-size:13px;letter-spacing:.06em;padding:10px 16px;text-align:left}
@@ -2228,7 +2232,7 @@
       </div>
       <div class="flow-gate">入札公示</div>
       <div class="flow-zone bidding">
-        <div class="flow-zone-label">レッドオーシャン</div>
+        <div class="flow-zone-label">予算化後</div>
         <div class="flow-steps">
           <div class="flow-step">
             <div class="sn">STEP 04</div>
