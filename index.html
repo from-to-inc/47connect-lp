@@ -1796,7 +1796,7 @@
   .plan-compare-table th,.plan-compare-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
   .plan-compare-table tr:last-child td{border-bottom:none}
   .plan-compare-table th.feat-head{width:auto;background:#FAFAFA;font-size:13px;color:var(--ink-3);font-weight:700;letter-spacing:.04em;vertical-align:bottom;padding-bottom:18px}
-  .plan-compare-table th.plan-col{width:220px;text-align:center;padding:24px 16px 18px;vertical-align:top;background:#F4F8FF;position:relative}
+  .plan-compare-table th.plan-col{width:300px;text-align:center;padding:24px 20px 18px;vertical-align:top;background:#F4F8FF;position:relative}
   .plan-compare-table th.plan-col-standard{background:linear-gradient(180deg,var(--blue-50),#fff);border-left:2px solid var(--orange)}
   .plan-compare-table .plan-name{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--blue-deep);margin-bottom:6px;text-transform:uppercase}
   .plan-compare-table .plan-title{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px;line-height:1.3}
@@ -1805,7 +1805,7 @@
   .plan-compare-table .plan-price span{display:block}
   .plan-compare-table .plan-tag{font-size:11px;color:var(--ink-3);line-height:1.5}
   .plan-compare-table .plan-pill{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 14px;border-radius:6px;box-shadow:var(--sh-orange);white-space:nowrap}
-  .plan-compare-table tbody td:nth-child(2),.plan-compare-table tbody td:nth-child(3){text-align:center;font-size:20px;font-weight:700;color:var(--blue-deep);width:220px;line-height:1.3}
+  .plan-compare-table tbody td:nth-child(2),.plan-compare-table tbody td:nth-child(3){text-align:center;font-size:20px;font-weight:700;color:var(--blue-deep);width:300px;line-height:1.3}
   .plan-compare-table tbody td:nth-child(3){background:rgba(244,248,255,.45)}
   .plan-compare-table tbody td small{display:block;font-size:11px;font-weight:500;color:var(--ink-3);margin-top:4px}
   .plan-compare-table tbody tr.section-row td{background:var(--blue-deep);color:#fff;font-weight:800;font-size:13px;letter-spacing:.06em;padding:10px 16px;text-align:left}
@@ -2422,14 +2422,12 @@
           <tr>
             <th class="feat-head">機能</th>
             <th class="plan-col plan-col-light">
-              <div class="plan-name">LIGHT · データプラン</div>
               <div class="plan-title">ライトプラン</div>
               <div class="plan-price"><strong>¥100,000</strong><span>/月（税別）</span></div>
               <div class="plan-tag">自治体営業のプロ・外部コンサル向け</div>
             </th>
             <th class="plan-col plan-col-standard">
               <div class="plan-pill">オススメ</div>
-              <div class="plan-name">STANDARD · AI参謀プラン</div>
               <div class="plan-title">スタンダードプラン</div>
               <div class="plan-price"><strong>¥200,000</strong><span>/月（税別）</span></div>
               <div class="plan-tag">AI参謀フル活用・自治体ビジネス専門知見を社内に蓄積</div>
@@ -2439,19 +2437,19 @@
         <tbody>
           <tr class="section-row"><td colspan="3">Layer 1: データ層</td></tr>
           <tr><td>1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</td><td>○</td><td>○</td></tr>
-          <tr><td>御社事業との適合度を自動スコア化（簡易レコメンド・自動アラート）</td><td>○</td><td>○</td></tr>
-          <tr><td>自治体提案特化CRM（首長任期・予算サイクル・議会日程の統合管理）</td><td>○</td><td>○</td></tr>
-          <tr><td>公開即日のデータ反映（主要200自治体・Q4で全1,741に拡大）</td><td>○</td><td>○</td></tr>
+          <tr><td><strong>自治体レコメンド</strong>（御社事業との適合度を自動スコア化・自動アラート）</td><td>○</td><td>○</td></tr>
+          <tr><td><strong>自治体サマライズ</strong>（公開情報の要約・主要論点・提案余地の整理）</td><td>○</td><td>○</td></tr>
+          <tr><td><strong>CRM管理</strong>（自治体提案特化・首長任期・予算サイクル・議会日程の統合管理）</td><td>○</td><td>○</td></tr>
           <tr class="section-row"><td colspan="3">Layer 2: AI参謀層</td></tr>
           <tr><td>1チーム1専属のAI参謀との対話（戦略・提案を対話で組み立て）</td><td>×</td><td>○<small>月間枠あり</small></td></tr>
           <tr><td>AIクレジット同梱（別途チャージ料金あり ※）</td><td>×</td><td>○</td></tr>
-          <tr><td>提案書ドラフト自動生成（議事録引用つき）</td><td>×</td><td>○</td></tr>
-          <tr><td>書類の即時通知機能（公開と同時にAI参謀が自動照合・通知／主要200自治体）</td><td>×</td><td>◎<small>スタンダード限定</small></td></tr>
+          <tr><td>提案メールドラフト自動生成</td><td>×</td><td>○</td></tr>
+          <tr><td>書類の即時通知機能（公開と同時にAI参謀が自動照合・通知）</td><td>×</td><td>◎<small>スタンダード限定</small></td></tr>
           <tr class="section-row"><td colspan="3">サポート</td></tr>
           <tr><td>1年間の付帯オンボーディング（前半：集中支援／後半：運用最適化・年6回）</td><td>×</td><td>○</td></tr>
           <tr class="section-row"><td colspan="3">契約・利用範囲</td></tr>
-          <tr><td>1 Team Workspace単位・追加ユーザー課金なし</td><td>○</td><td>○</td></tr>
-          <tr><td>月払い・1年契約・13ヶ月目以降は月単位継続</td><td>○</td><td>○</td></tr>
+          <tr><td>チーム単位・追加ユーザー（ID）課金なし</td><td>○</td><td>○</td></tr>
+          <tr><td>1年契約（月払い可）・13ヶ月目以降は月単位継続</td><td>○</td><td>○</td></tr>
         </tbody>
       </table>
       <p class="plan-compare-foot">※ AIクレジットのチャージ料金プラン・消費量の詳細は本番ローンチ時（2027年1月予定）に公開予定。</p>
