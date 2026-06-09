@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+._*
+
+# gstack / ツール生成物（公開ページには含めない）
+.gstack/
+.claude/
