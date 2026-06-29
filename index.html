@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>47Connect — 自治体AI参謀。御社チームに常駐する戦略パートナー｜ベータ版特別キャンペーン受付中</title>
-<meta name="description" content="47Connectは、自治体ビジネス企業の営業組織に常駐する自治体AI参謀。レコメンド・サマライズ・CRM・AI参謀対話で「毎日相談できる判断支援基盤」を実装。FromTo「地域AI参謀」構想の第1実装プロダクト。先着10社限定のベータ版特別キャンペーン受付中。" />
+<meta name="description" content="47Connectは、自治体ビジネス企業の営業組織に常駐する自治体AI参謀。レコメンド・サマライズ・CRM・AI参謀対話で「毎日相談できる判断支援基盤」を実装。FromTo「地域AI参謀」構想の第1実装プロダクト。先着5社限定のベータ版特別キャンペーン受付中。" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
@@ -295,7 +295,7 @@
     pointer-events:none;
   }
   .hero-inner{
-    display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;
+    display:grid;grid-template-columns:1fr 1.22fr;gap:44px;align-items:center;
     position:relative;
   }
   .hero-pill{
@@ -332,6 +332,49 @@
 
   /* HERO mock */
   .hero-visual{position:relative}
+  .hero-shot{
+    display:block;width:112%;max-width:none;height:auto;margin-left:-6%;
+    filter:drop-shadow(0 26px 50px rgba(7,26,51,.20)) drop-shadow(0 6px 16px rgba(7,26,51,.10));
+  }
+
+  /* HERO — PCモニターモック（システム画面をモニター内に表示） */
+  .monitor{
+    position:relative;width:100%;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .monitor-screen{
+    width:100%;position:relative;
+    background:linear-gradient(180deg,#2b2f37 0%,#16181d 100%);
+    border-radius:18px;
+    padding:16px 16px 24px;
+    box-shadow:
+      0 36px 70px rgba(7,26,51,.30),
+      0 12px 26px rgba(7,26,51,.18),
+      inset 0 1px 0 rgba(255,255,255,.12),
+      inset 0 0 0 1px rgba(0,0,0,.35);
+  }
+  .monitor-screen .hero-shot{
+    display:block;width:100%;max-width:100%;height:auto;margin:0;
+    border-radius:6px;
+    box-shadow:0 0 0 1px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.35);
+    filter:none;
+  }
+  /* 下部ベゼルのブランドドット */
+  .monitor-screen::after{
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    bottom:9px;width:7px;height:7px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #6b7280, #3a3f47);
+  }
+  .monitor-neck{
+    width:96px;height:36px;margin-top:-1px;
+    background:linear-gradient(180deg,#cfd4dd 0%,#a9afba 100%);
+    clip-path:polygon(26% 0, 74% 0, 100% 100%, 0 100%);
+  }
+  .monitor-base{
+    width:236px;height:15px;border-radius:0 0 10px 10px;
+    background:linear-gradient(180deg,#b9bfc9 0%,#969da9 100%);
+    box-shadow:0 10px 22px rgba(7,26,51,.20);
+  }
   .mock{
     background:#fff;border-radius:var(--r-lg);
     box-shadow:0 34px 78px rgba(0,0,0,.28), 0 14px 32px rgba(40,111,183,.20);
@@ -401,6 +444,7 @@
 
   @media (max-width:960px){
     .hero-inner{grid-template-columns:1fr;gap:48px}
+    .hero-shot{width:100%;margin-left:0}
     .float-1,.float-2{display:none}
     .mock{transform:none}
   }
@@ -493,8 +537,10 @@
 
   @media (max-width:860px){
     .worries-grid{grid-template-columns:1fr}
-    .role-tabs{flex-direction:row;flex-wrap:wrap}
-    .role-tab{flex:1 1 calc(50% - 6px);padding:10px 12px}
+    /* 経営者タブ：スマホでも3つを横1行・英字ラベルは非表示 */
+    .role-tabs{flex-direction:row;flex-wrap:nowrap;gap:4px;padding:5px;max-width:none}
+    .role-tab{flex:1 1 0;min-width:0;padding:11px 6px;font-size:13.5px;white-space:nowrap}
+    .role-tab .role-en{display:none}
     .sambo-answer{flex-direction:column;text-align:center}
   }
 
@@ -1154,6 +1200,18 @@
   .flow-periods{
     display:grid;grid-template-columns:3fr auto 2fr;gap:14px;margin-top:14px;
   }
+  .flow-zone-period{
+    text-align:center;font-size:13px;font-weight:600;color:var(--ink-3);line-height:1.5;
+  }
+  .flow-zone-period strong{font-size:19px;font-weight:800;color:var(--blue-deep);margin-left:8px;letter-spacing:-.005em}
+  .flow-zone.planning .flow-zone-period{color:var(--ink-2)}
+  .flow-zone.planning .flow-zone-period strong{color:var(--orange)}
+  .flow-zone.bidding .flow-zone-period strong{color:var(--ink)}
+  /* 区切り線（パネルヘッダとステップの間） */
+  .flow-zone-div{height:1px;width:100%;margin:2px 0}
+  .flow-zone.planning .flow-zone-div{background:var(--amber-line)}
+  .flow-zone.bidding .flow-zone-div{background:var(--line)}
+
   .flow-period{
     background:var(--blue-50);border:1px solid var(--blue-100);
     border-radius:var(--r);padding:14px;text-align:center;
@@ -1850,6 +1908,339 @@
     .db-compare{grid-template-columns:1fr;gap:16px}
     .db-arrow{transform:rotate(90deg);padding:4px 0;font-size:26px}
   }
+
+  /* ============================================================
+     MOBILE BRUSH-UP — 2026-06（スマホ表示最適化 / iPhone 390px 基準）
+     既存ルールの後に配置し、同詳細度で上書き。内容は変更せず見せ方のみ最適化。
+     ============================================================ */
+
+  /* 横はみ出しの安全網 */
+  html,body{overflow-x:hidden}
+  /* 横スクロール用ラッパ（料金表・比較表） */
+  .tscroll{width:100%}
+
+  /* ---- ハンバーガーボタン ---- */
+  .nav-toggle{
+    display:none;width:44px;height:44px;flex-shrink:0;
+    border:1px solid var(--line);border-radius:10px;background:#fff;
+    flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    box-shadow:var(--sh-1);transition:border-color .18s ease;
+  }
+  .nav-toggle span{
+    display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .nav-toggle.open{border-color:var(--blue-200)}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* ---- モバイルメニュー（右からスライドイン） ---- */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:70;
+    background:rgba(7,26,51,.48);backdrop-filter:blur(2px);
+    opacity:0;visibility:hidden;transition:opacity .25s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible}
+  .mobile-menu-panel{
+    position:absolute;top:0;right:0;height:100%;
+    width:min(86vw,360px);background:#fff;
+    box-shadow:-24px 0 60px rgba(7,26,51,.28);
+    transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;overflow-y:auto;
+  }
+  .mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+  .mm-top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 20px;border-bottom:1px solid var(--line);
+  }
+  .mm-title{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+  .mm-close{
+    width:40px;height:40px;border-radius:10px;border:1px solid var(--line);
+    background:#fff;display:grid;place-items:center;color:var(--ink-2);
+    font-size:22px;line-height:1;
+  }
+  .mm-close:active{background:var(--bg-soft)}
+  .mm-links{display:flex;flex-direction:column;padding:8px 12px}
+  .mm-links a{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:15px 12px;border-radius:10px;
+    font-size:16px;font-weight:700;color:var(--ink);
+    border-bottom:1px solid var(--line-2);
+  }
+  .mm-links a:last-child{border-bottom:none}
+  .mm-links a:active{background:var(--bg-tint)}
+  .mm-links a .en{
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
+    color:var(--ink-4);text-transform:uppercase;
+  }
+  .mm-cta{
+    margin-top:auto;display:flex;flex-direction:column;gap:10px;
+    padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--line);background:var(--bg-soft);
+  }
+  .mm-cta .btn{width:100%;white-space:normal;text-align:center}
+
+  @media (max-width:960px){
+    .nav-toggle{display:flex}
+  }
+
+  /* ===== ≤760px：スマホ最適化 ===== */
+  @media (max-width:760px){
+    /* 文字サイズ切替はスマホ非表示 */
+    .fz-switcher{display:none}
+
+    /* 余白・本文の間延び解消 */
+    section{padding:56px 0}
+    .wrap,.wrap-narrow{padding:0 18px}
+    .section-head.center{margin-bottom:34px}
+    .eyebrow{margin-bottom:16px}
+    .h-section{font-size:clamp(25px,6.6vw,32px);line-height:1.42;margin-bottom:16px}
+    .lede{font-size:15.5px;line-height:1.85}
+    body{font-size:16px}
+
+    /* ヘッダー */
+    .header-cta{gap:8px}
+
+    /* HERO */
+    .hero{padding:64px 0 52px}
+    .hero-pill{flex-wrap:wrap;row-gap:6px;padding:8px 13px;font-size:11.5px}
+    .hero h1{font-size:clamp(29px,8.4vw,40px);line-height:1.34;margin-bottom:18px}
+    .hero-sub{font-size:15.5px;line-height:1.9;margin-bottom:22px}
+    .hero-cta{gap:10px;margin-bottom:24px}
+    .hero-meta{flex-direction:column;gap:9px;font-size:12.5px;padding-top:20px}
+
+    /* PROBLEM（負マージンを padding に合わせて再調整し画像を端まで） */
+    .prob{padding:24px 22px;gap:14px}
+    .prob-visual.prob-visual-img{height:184px;margin:-24px -22px 2px}
+    .prob h3{font-size:23px}
+    .prob p{font-size:15px}
+
+    /* WORRIES */
+    .worry-card{padding:22px 20px}
+    .worry-bubble{font-size:15px}
+    .sambo-answer{padding:24px 22px;gap:16px}
+    .sambo-answer .msg{font-size:15.5px}
+
+    /* SOLUTION / DB-VS */
+    .solution-punch{padding:24px 20px}
+    .db-col{padding:24px 22px}
+
+    /* SCREEN TOUR */
+    .screen-body{padding:20px 20px 22px}
+    .screen-body h3{font-size:20px}
+
+    /* FLOW */
+    .flow-insight{padding:24px 20px}
+
+    /* ROI */
+    .roi-calc{padding:22px 18px 24px}
+    .roi-card .roi-num{font-size:32px}
+    .roi-card.effect .roi-num{font-size:36px}
+    .roi-stat .n{font-size:34px}
+    .roi-cta{padding:24px 20px}
+    .roi-cta h3{font-size:21px}
+
+    /* PRICING */
+    .pilot{padding:28px 20px}
+    .pilot h3{font-size:23px}
+    .pilot-price{font-size:38px}
+    .pilot-incs{padding:20px 18px}
+    .promo-roi{padding:22px 18px}
+
+    /* WHY */
+    .why-pillar{padding:24px 22px}
+    .why-pillar h3{font-size:22px}
+
+    /* BEFORE / AFTER */
+    .ba-card{padding:24px 22px}
+
+    /* FAQ */
+    .faq-item summary{padding:18px 18px;font-size:15.5px}
+    .faq-item .ans{padding:0 18px 20px;font-size:15px;line-height:1.85}
+
+    /* END / FOOTER */
+    .end{padding:64px 18px}
+    .end p{font-size:15px}
+    .foot-inner{flex-direction:column;align-items:flex-start;gap:10px}
+
+    /* ===== 表：横スクロールで読めるように ===== */
+    .tscroll{
+      overflow-x:auto;-webkit-overflow-scrolling:touch;
+      border:1px solid var(--line);border-radius:var(--r-lg);
+    }
+    .tscroll::before{
+      content:"← 横にスクロールできます →";
+      position:sticky;left:0;display:block;
+      padding:9px 14px;font-family:var(--mono);font-size:10px;font-weight:700;
+      letter-spacing:.06em;color:var(--ink-4);background:var(--bg-soft);
+      border-bottom:1px solid var(--line-2);text-align:center;
+    }
+    /* 料金比較表（枠線はラッパ側に集約） */
+    .plan-compare-table{min-width:540px;border:none;border-radius:0;box-shadow:none}
+    .plan-compare-table th,.plan-compare-table td{padding:11px 12px}
+    .plan-compare-table th.plan-col{width:170px;padding:30px 12px 14px}
+    .plan-compare-table .plan-title{font-size:16px}
+    .plan-compare-table .plan-price strong{font-size:20px}
+    .plan-compare-table .plan-tag{font-size:11px}
+    .plan-compare-table tbody td:nth-child(2),
+    .plan-compare-table tbody td:nth-child(3){font-size:18px}
+    .plan-compare-table tbody td:first-child{font-size:13px}
+    /* 比較表（5列） */
+    .compare-tbl{display:table;width:100%;min-width:560px;white-space:normal;
+      border:none;border-radius:0;box-shadow:none;font-size:13px}
+    .compare-tbl th,.compare-tbl td{padding:12px 10px}
+  }
+
+  /* ===== ≤430px：小型 iPhone 微調整 ===== */
+  @media (max-width:430px){
+    .header-demo-btn{display:none}   /* 小画面ではハンバーガー＋下部固定CTAに集約 */
+    .h-section{font-size:clamp(23px,7vw,29px)}
+    .hero h1{font-size:clamp(27px,9vw,34px)}
+    .logo-sub{display:none}
+  }
+
+  /* ============================================================
+     MOBILE UX v2 — 2026-06（縦長感の解消・アイキャッチ・タイポ階層）
+     UI/UX視点でスマホの「常にスクロールしないと見えない」状態を改善。
+     デスクトップ(>760px)には一切影響しない。内容は変更しない。
+     ============================================================ */
+  @media (max-width:760px){
+
+    /* ---- 縦リズムを締める（間延び解消） ---- */
+    section{padding:48px 0}
+    .section-head.center{margin-bottom:26px}
+    .worries-head{margin-bottom:26px}
+    .eyebrow{margin-bottom:12px;font-size:11px;letter-spacing:.14em}
+
+    /* ---- タイポ階層を整理（見やすさ最優先） ---- */
+    .h-section{font-size:clamp(24px,6.2vw,30px);line-height:1.4;letter-spacing:-.01em;margin-bottom:14px;text-wrap:balance}
+    .lede{font-size:14.5px;line-height:1.8;text-wrap:pretty}
+    body{font-size:15.5px}
+
+    /* ---- HERO：余白を締めて要素を上へ ---- */
+    .hero{padding:32px 0 0}
+    /* スマホ順番：ピル→キャッチコピー→アイキャッチ画像→本文→CTA */
+    .hero-inner{display:flex;flex-direction:column;gap:18px}
+    .hero-inner > div:first-child{display:contents}
+    .hero-pill{order:1;font-size:11px;padding:7px 12px;align-self:flex-start}
+    .hero h1{order:2}
+    .hero-visual{order:3}
+    .hero-sub{order:4}
+    .hero-cta{order:5}
+    .hero-meta{order:6}
+    /* デスクトップの固定幅・大きめフォントのインライン指定をモバイルだけ打ち消し */
+    .hero h1{
+      width:auto !important;max-width:100% !important;
+      font-size:clamp(27px,7.8vw,31px) !important;  /* 2行に収まるサイズ */
+      line-height:1.34;letter-spacing:-.012em;margin:0 !important;text-wrap:balance;
+    }
+    .hero-sub{
+      width:auto !important;max-width:100% !important;
+      font-size:14.5px;line-height:1.85;margin:0 !important;
+    }
+    .hero-cta{gap:9px;margin:0}
+
+    /* ---- HERO アイキャッチ：MacBook画像を画面いっぱいに（潰れさせない） ---- */
+    .hero-visual{position:relative;margin:0;width:100%}
+    .hero-shot{
+      width:100% !important;max-width:100% !important;height:auto !important;
+      margin:0 !important;
+      filter:drop-shadow(0 16px 32px rgba(7,26,51,.18));
+    }
+
+    /* ---- カードグリッドのギャップを締める ---- */
+    .worries-grid{gap:12px}
+    .prob-grid{gap:14px}
+    .sambo-grid{gap:14px;margin-top:28px}
+    .ba-grid{gap:14px}
+    .why-pillars{gap:14px}
+
+    /* ---- 各カードの内側余白を一段締める ---- */
+    .worry-card{padding:20px 18px}
+    .prob{padding:22px 20px;gap:12px}
+    .prob-visual.prob-visual-img{height:172px;margin:-22px -20px 2px}
+    .prob h3{font-size:21px;line-height:1.4}
+    .prob p{font-size:14.5px;line-height:1.78}
+    .why-pillar{padding:22px 20px}
+    .why-pillar h3{font-size:20px}
+    .ba-card{padding:22px 20px}
+    .sambo-answer{margin-top:24px;padding:22px 20px}
+    .ai-callout{gap:14px}
+    .ai-callout-body p{font-size:18px;line-height:1.55}
+    .flow-insight{padding:22px 18px}
+    .solution-punch{padding:22px 18px}
+
+    /* ---- ボタンの可読性（小さすぎ/大きすぎを是正） ---- */
+    .btn{font-size:14.5px}
+    .btn-lg{padding:15px 22px;font-size:15.5px}
+    .hero-cta .btn{width:100%;white-space:normal;text-align:center}
+
+    /* ---- セクション区切りの上罫線を少し控えめに ---- */
+    section{border-top-width:1px}
+  }
+
+  /* ===== ≤390px：標準iPhoneでの最終調整 ===== */
+  @media (max-width:390px){
+    .wrap,.wrap-narrow{padding:0 16px}
+    .h-section{font-size:clamp(22px,6.6vw,27px)}
+    .hero h1{font-size:clamp(26px,8.6vw,32px)}
+    .prob h3{font-size:20px}
+  }
+
+  /* ============================================================
+     COMMENT FIXES — チームレビュー反映（スマホのみ）
+     ①ROIパネル群3組をそれぞれ3列横並び ②プロダクト見出しを3行
+     ③問題見出しを1行に ④ヒーローCTAを横並び
+     ============================================================ */
+  @media (max-width:760px){
+    /* ①-a 保守／標準／攻めケース：3列横並び */
+    .roi-cases{grid-template-columns:1fr 1fr 1fr !important;gap:7px}
+    .roi-case{padding:13px 8px}
+    .roi-case-tag{font-size:11px;flex-direction:column;gap:2px}
+    .roi-case-pin{display:none}
+    .roi-case-num{font-size:16px;margin-top:5px}
+    .roi-case-desc{font-size:10px;margin-top:5px;line-height:1.5}
+
+    /* ①-b 現状／47Connect導入／年間効果：3列横並び（矢印は非表示） */
+    .roi-grid{grid-template-columns:1fr 1fr 1fr !important;gap:7px}
+    .roi-arrow{display:none}
+    .roi-card{padding:14px 8px;gap:5px}
+    .roi-card .roi-lbl{font-size:9px;letter-spacing:.04em;margin-bottom:2px}
+    .roi-card .roi-num,
+    .roi-card.effect .roi-num{font-size:15.5px;line-height:1.2}
+    .roi-card .roi-cap{font-size:10.5px;line-height:1.55}
+
+    /* ①-c 効果指標（7.9倍／1.4ヶ月／2倍）：3列横並び */
+    .roi-stats{grid-template-columns:1fr 1fr 1fr !important;gap:7px}
+    .roi-stat{padding:14px 8px}
+    .roi-stat .n{font-size:22px}
+    .roi-stat .l{font-size:10px;margin-top:5px;line-height:1.5}
+
+    /* ② プロダクト見出し：3行で表示 */
+    .prod-h .ph{display:block}
+    .prod-h br{display:none}
+
+    /* ③ 「自治体営業はなぜ進めづらいのか」：1行に収める */
+    .prob-h{font-size:21px !important;letter-spacing:-.02em;white-space:nowrap}
+
+    /* ④ ヒーローのCTAボタンを横並び */
+    .hero-cta{flex-direction:row !important;flex-wrap:nowrap;gap:8px}
+    .hero-cta .btn{
+      width:auto !important;height:auto !important;flex:1 1 0;min-width:0;
+      white-space:nowrap;padding-left:10px;padding-right:10px;font-size:13px;
+    }
+  }
+  @media (max-width:390px){
+    .prob-h{font-size:18.5px !important}
+    .roi-case-num{font-size:15px}
+    .roi-card .roi-num,.roi-card.effect .roi-num{font-size:14.5px}
+    .roi-stat .n{font-size:20px}
+    .hero-cta .btn{font-size:12.5px;padding-left:8px;padding-right:8px}
+  }
 </style>
 </head>
 <body>
@@ -1874,10 +2265,37 @@
     </nav>
     <div class="header-cta">
       <a href="#screens" class="btn btn-ghost ghost-mob">仕組みを見る</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">個別デモを見る<span class="arrow">→</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary header-demo-btn">個別デモを見る<span class="arrow">→</span></a>
+      <button type="button" class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- MOBILE MENU（スマホ用ナビ：≤960px で表示） -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="メニュー">
+  <div class="mobile-menu-panel">
+    <div class="mm-top">
+      <span class="mm-title">Menu</span>
+      <button type="button" class="mm-close" data-close aria-label="メニューを閉じる">×</button>
+    </div>
+    <nav class="mm-links">
+      <a href="#worries">お悩み<span class="en">Worries</span></a>
+      <a href="#problem">課題<span class="en">Problem</span></a>
+      <a href="#solution">解決策<span class="en">Solution</span></a>
+      <a href="#roi">投資効果<span class="en">ROI</span></a>
+      <a href="#screens">プロダクト<span class="en">Product</span></a>
+      <a href="#why">FromTo<span class="en">Why</span></a>
+      <a href="#pricing">料金<span class="en">Pricing</span></a>
+      <a href="#faq">FAQ<span class="en">FAQ</span></a>
+    </nav>
+    <div class="mm-cta">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">個別デモを予約する<span class="arrow">→</span></a>
+      <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-light">ROIを試算する</a>
+    </div>
+  </div>
+</div>
 
 <!-- 文字サイズ切替（独立フローティング・右下固定） -->
 <div class="fz-switcher" role="group" aria-label="文字サイズの切替">
@@ -1888,79 +2306,30 @@
 </div>
 
 <!-- HERO -->
-<section class="hero" id="top" data-screen-label="01 Hero">
+<section class="hero" id="top" data-screen-label="01 Hero" style="padding: 20px 0px">
   <div class="wrap hero-inner">
     <div>
       <div class="hero-pill">
         <span class="live"></span>
         ベータ版特別キャンペーン受付中
         <span class="sep"></span>
-        <strong>先着10社限定</strong>
+        <strong>先着5社限定</strong>
         <span class="sep"></span>
         6/30 締切
       </div>
-      <h1>
-        自治体提案、毎日<br>
-        AIに相談する<br>
-        <span class="grad">時代へ</span>。
-      </h1>
-      <p class="hero-sub">
-        全国1,741自治体の <strong>予算・議事録・首長動向</strong> を、御社専属のAI参謀が毎日読み解く。
-        <strong>営業先・提案切り口・次アクション</strong> まで、24時間いつでも対話で。
-      </p>
+      <h1 style="font-weight: 900; width: 450px; font-size: 40px">自治体提案、 
+毎日 AIに相談する時代へ</h1>
+      <p class="hero-sub" style="width: 473px">全国1,741自治体の 予算・議事録・首長動向 を、
+御社専属のAI参謀が毎日読み解く。   
+営業先・提案切り口・次アクション まで、24時間いつでも対話で。</p>
       <div class="hero-cta">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">個別デモで、御社専用の自治体マップを見る<span class="arrow">→</span></a>
-        <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg">まずROI試算を見る</a>
-      </div>
-      <div class="hero-meta">
-        <span><span class="check">✓</span> 自治体ビジネス企業の営業組織向け</span>
-        <span><span class="check">✓</span> 個別デモ60分（無料）→ ベータ版検討（6ヶ月）の2段階</span>
-        <span><span class="check">✓</span> ベータ版特別キャンペーン受付中（先着10社・6月末締切）</span>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">相談する<span class="arrow">→</span></a>
+        <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg">ROI試算を見る</a>
       </div>
     </div>
 
     <div class="hero-visual">
-      <div class="mock">
-        <div class="mock-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <div class="url">app.47connect.jp / dashboard</div>
-        </div>
-        <div class="mock-body">
-          <div class="mock-row">
-            <div class="mock-title">Sambo Alert · 今日</div>
-            <div class="mock-badge">LIVE</div>
-          </div>
-          <div class="mock-card">
-            <div class="ck-meta"><span class="badge">補正予算</span><span>横浜市 / 公開 2h前</span></div>
-            <div class="ck-title">スマートシティ推進事業 ¥4.2億 — 御社事業との適合度 91%</div>
-            <div class="ck-quote">「データ連携基盤の整備と、住民サービスのDX化を最優先課題と位置付ける」 — 市長施政方針</div>
-          </div>
-          <div class="mock-chat">
-            <div class="mock-bubble you">
-              <div class="who">YOU</div>
-              次に注力すべき類似自治体3つを教えて。
-            </div>
-            <div class="mock-bubble">
-              <div class="who">AI参謀</div>
-              <strong>川崎市・福岡市・神戸市</strong>の3自治体を推奨します。いずれも<strong>DX重点施策＋補正予算枠</strong>あり。提案書ドラフトも準備可能です。
-              <div class="mock-cta">
-                <span class="pill">提案書ドラフトを生成</span>
-                <span class="pill">議事録引用つき</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-floats">
-        <div class="float-card float-1">
-          <div class="ic">●</div>
-          <div>TTP <strong>24h以内</strong></div>
-        </div>
-        <div class="float-card float-2">
-          <div class="ic">¥</div>
-          <div>コンサル比 <strong>1/5</strong></div>
-        </div>
-      </div>
+      <img class="hero-shot" src="images/header_app.png" alt="FromTo 自治体管理 — 自治体分析詳細・分野別総合性マップ画面" />
     </div>
   </div>
 </section>
@@ -2044,7 +2413,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Problem</div>
-      <h2 class="h-section">自治体営業は、<span class="accent">なぜ進めづらいのか。</span></h2>
+      <h2 class="h-section prob-h">自治体営業は<span class="accent">なぜ進めづらいのか</span></h2>
       <p class="lede">自治体への営業は、情報を集めるだけでは進みません。提案余地を見つけ、政策文脈を読み解き、接触状況まで管理する必要があります。</p>
     </div>
     <div class="prob-grid">
@@ -2111,7 +2480,7 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Product Screens</div>
-      <h2 class="h-section"><em>すばやく</em>見つけ、<em>根拠まで</em>読み解き、<br><em>チームで</em>管理する。</h2>
+      <h2 class="h-section prod-h"><span class="ph"><em>すばやく</em>見つけ、</span><span class="ph"><em>根拠まで</em>読みとき、</span><br><span class="ph"><em>チームで</em>管理する。</span></h2>
       <p class="lede">実画面では、自治体営業の「見つけられない」「わからない」「管理ができない」を、営業判断に直結する3つの流れで解決します。</p>
     </div>
     <div class="screen-grid">
@@ -2196,7 +2565,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Timing Matters</div>
       <h2 class="h-section">自治体の予算は、入札の<br><em>半年〜2年前</em>に決まっている。</h2>
-      <p class="lede">入札情報が出てからでは遅い。意思決定の上流——<strong>予算編成の段階</strong>にアプローチすることが、自治体への提案の勝ちパターンです。</p>
+      <p class="lede">入札情報が出てからでは遅い。意思決定の上流——<strong>予算編成の前段階</strong>にアプローチすることが、自治体への提案の勝ちパターンです。</p>
       <div class="flow-stakes">
         <div class="flow-stake">
           <div class="flow-stake-num">年1回</div>
@@ -2212,6 +2581,8 @@
     <div class="flow-track">
       <div class="flow-zone planning">
         <div class="flow-zone-label">47Connect がカバーする領域</div>
+        <div class="flow-zone-period">意思決定上流期間<strong>半年〜2年前</strong></div>
+        <div class="flow-zone-div"></div>
         <div class="flow-steps">
           <div class="flow-step">
             <div class="sn">STEP 01</div>
@@ -2233,6 +2604,8 @@
       <div class="flow-gate">入札公示</div>
       <div class="flow-zone bidding">
         <div class="flow-zone-label">予算化後</div>
+        <div class="flow-zone-period">入札後の競争<strong>1〜3ヶ月</strong></div>
+        <div class="flow-zone-div"></div>
         <div class="flow-steps">
           <div class="flow-step">
             <div class="sn">STEP 04</div>
@@ -2246,12 +2619,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="flow-periods">
-      <div class="flow-period">意思決定上流期間<strong>半年〜2年前</strong></div>
-      <div class="flow-period gap"></div>
-      <div class="flow-period">入札後の競争<strong>1〜3ヶ月</strong></div>
     </div>
 
     <div class="flow-insight ai-callout">
@@ -2284,7 +2651,8 @@
       <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
       <div class="ai-callout-body">
         <div class="ai-callout-label">AI参謀より</div>
-        <p class="punch-strong">DBサービスは情報を <span class="punch-quote">"置く"</span> だけ。47Connectは、<em class="punch-hl">AI参謀がそれらを <span class="punch-quote">"使い切る"</span></em>。</p>
+        <p class="punch-strong">DBサービスは情報を "置く" だけ。
+47Connectは、AI参謀がそれらを "使い切る"。</p>
         <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
       </div>
     </div>
@@ -2296,7 +2664,8 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Before / After</div>
-      <h2 class="h-section">3つの課題を、3つの機能で。「情報収集〜提案準備」の数週間を、AI参謀が<em>1日</em>で。</h2>
+      <h2 class="h-section">3つの課題を、3つの機能で。
+「情報収集〜提案準備」の数週間を、AI参謀が1日で。</h2>
       <p class="lede"><strong>見つけられない・わからない・管理できない</strong>——<br>3つの課題を、47Connectの<strong>レコメンド・サマライズ・CRM管理</strong>でまるごと解決します。</p>
     </div>
 
@@ -2378,15 +2747,15 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>ベータ版特別キャンペーン</div>
-      <h2 class="h-section">ベータ版特別キャンペーンに参画する10社だけの、<em>特別な条件。</em></h2>
+      <h2 class="h-section">ベータ版特別キャンペーンに参画する5社だけの、<em>特別な条件。</em></h2>
       <p class="lede">2026年 ベータ版特別キャンペーンは、自治体AI参謀の精度向上を一緒に作る共創パートナーです。御社の勝ちパターンを学習させる期間として、特別価格と固定保証を提供します。</p>
     </div>
 
     <div class="pilot">
       <div class="pilot-inner">
         <div>
-          <span class="pilot-tag">先着10社限定 / 6月末締切 / 本キャンペーンは今期のみ</span>
-          <h3>自治体AI参謀 ベータ版（先着10社）</h3>
+          <span class="pilot-tag">先着5社限定 / 6月末締切 / 本キャンペーンは今期のみ</span>
+          <h3>自治体AI参謀 ベータ版（先着5社）</h3>
           <div class="pilot-period">2026年7月〜12月 / 6ヶ月間（半年一括前払い）</div>
           <div class="pilot-pricing">
             <span class="pilot-price">¥300,000<small>／6ヶ月一括（税別）</small></span>
@@ -2394,12 +2763,12 @@
           </div>
           <div class="pilot-disc">✓ 初期構築費 無料<br>✓ AI参謀対話 無制限<br>✓ クレジット単価 創業時固定保証</div>
           <div class="pilot-cta">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">先着10社限定枠を確保する<span class="arrow">→</span></a>
-            <p class="pilot-note"><strong>申込締切：2026年6月30日</strong> ／ 先着10社限定<br><strong>本キャンペーン条件の再開予定はありません</strong><br><small>※ ベータ版期間終了後（2027年1月予定）は本格運用へ自動移行</small></p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">先着5社限定枠を確保する<span class="arrow">→</span></a>
+            <p class="pilot-note"><strong>申込締切：2026年6月30日</strong> ／ 先着5社限定<br><strong>本キャンペーン条件の再開予定はありません</strong><br><small>※ ベータ版期間終了後（2027年1月予定）は本格運用へ自動移行</small></p>
           </div>
         </div>
         <div class="pilot-incs">
-          <div class="pilot-incs-lbl">ベータ版10社にしか与えない、3つの権利</div>
+          <div class="pilot-incs-lbl">ベータ版5社にしか与えない、3つの権利</div>
           <ul>
             <li><strong>① 先行アクセス</strong> — ベータ版期間中、スタンダードプラン機能を順次解放。ライト相当価格で先行体験。</li>
             <li><strong>② 機能要望反映優先権</strong> — 月次FBで、御社の声が次の機能に直接反映。</li>
@@ -2426,14 +2795,15 @@
       <p>全プラン共通：<strong>月払い・1年契約・13ヶ月目以降は月単位継続</strong>（30日予告でいつでも解約可）。1 Team Workspace単位、追加ユーザー課金なし。2チーム目以降も同額。ベータ版適用顧客は本格運用移行時に本プラン構造へ自動切替（クレジット単価は創業時固定保証）。</p>
     </div>
     <div class="plan-compare">
+      <div class="tscroll">
       <table class="plan-compare-table">
         <thead>
           <tr>
             <th class="feat-head">機能</th>
             <th class="plan-col plan-col-light">
-              <div class="plan-title">ライトプラン</div>
-              <div class="plan-price"><strong>¥100,000</strong><span>/月（税別）</span></div>
-              <div class="plan-tag">自治体営業のプロ・外部コンサル向け</div>
+              <div class="plan-title" style="text-align: center">ライトプラン</div>
+              <div class="plan-price" style="text-align: center"><strong style="text-align: right">¥100,000</strong><span>/月（税別）</span></div>
+              <div class="plan-tag" style="text-align: center">自治体営業のプロ・外部コンサル向け</div>
             </th>
             <th class="plan-col plan-col-standard">
               <div class="plan-pill">オススメ</div>
@@ -2446,9 +2816,12 @@
         <tbody>
           <tr class="section-row"><td colspan="3">Layer 1: データ層</td></tr>
           <tr><td>1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</td><td>○</td><td>○</td></tr>
-          <tr><td><strong>自治体レコメンド</strong>（御社事業との適合度を自動スコア化・自動アラート）</td><td>○</td><td>○</td></tr>
-          <tr><td><strong>自治体サマライズ</strong>（公開情報の要約・主要論点・提案余地の整理）</td><td>○</td><td>○</td></tr>
-          <tr><td><strong>CRM管理</strong>（自治体提案特化・首長任期・予算サイクル・議会日程の統合管理）</td><td>○</td><td>○</td></tr>
+          <tr><td>自治体レコメンド
+（御社事業との適合度を自動スコア化・自動アラート）</td><td>○</td><td>○</td></tr>
+          <tr><td>自治体サマライズ
+（公開情報の要約・主要論点・提案余地の整理）</td><td>○</td><td>○</td></tr>
+          <tr><td>CRM管理
+（自治体提案特化・首長任期・予算サイクル・議会日程の統合管理）</td><td>○</td><td>○</td></tr>
           <tr class="section-row"><td colspan="3">Layer 2: AI参謀層</td></tr>
           <tr><td>1チーム1専属のAI参謀との対話（戦略・提案を対話で組み立て）</td><td>×</td><td>○<small>月間枠あり</small></td></tr>
           <tr><td>AIクレジット同梱（別途チャージ料金あり ※）</td><td>×</td><td>○</td></tr>
@@ -2461,6 +2834,7 @@
           <tr><td>1年契約（月払い可）・13ヶ月目以降は月単位継続</td><td>○</td><td>○</td></tr>
         </tbody>
       </table>
+      </div>
       <p class="plan-compare-foot">※ AIクレジットのチャージ料金プラン・消費量の詳細は本番ローンチ時（2027年1月予定）に公開予定。</p>
     </div>
 
@@ -2578,6 +2952,7 @@
       <h2 class="h-section">コンサルは1〜2回/月。AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
       <p class="lede">外部コンサルタント・DB系ツール・自前リサーチ。それぞれの限界を、自治体AI参謀がどう超えるか。</p>
     </div>
+    <div class="tscroll">
     <table class="compare-tbl">
       <thead>
         <tr>
@@ -2619,6 +2994,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <p class="compare-foot">※1 公開即日対応（即日通知＋24時間以内・AI参謀との相談可能）は<strong>スタンダードプランのみ</strong>。ライトプランは公開即日のデータ反映までを提供（即日通知は行いません）。</p>
     <div class="compare-note">
       他社DBでも自治体は見つかります。しかし、<strong>公開情報だけのレコメンド</strong>と、<strong>寄附仲介の実取引で得た担当部局のニーズ情報に基づくレコメンド</strong>では、精度が根本的に違います。さらに47Connectは、<strong>レコメンド・サマライズ・CRM管理・AI参謀対話の4つを一気通貫</strong>で提供する独自ポジションです（当社調べ）。
@@ -2764,7 +3140,7 @@
       </details>
       <details class="faq-item">
         <summary>いつから利用開始でき、導入にどのくらいかかりますか？</summary>
-        <div class="ans"><strong>ベータ版特別キャンペーンは2026年7月開始</strong>（6月末までにお申し込み・先着10社限定）。本格運用への移行は2027年1月予定。<br>お申し込みから <strong>最短2週間</strong> で利用開始可能。御社の企業情報・製品情報・勝ち実績自治体（過去取引先）の登録後、AI参謀の初回ブリーフィングと自治体レコメンドの初回結果をお届けします。</div>
+        <div class="ans"><strong>ベータ版特別キャンペーンは2026年7月開始</strong>（6月末までにお申し込み・先着5社限定）。本格運用への移行は2027年1月予定。<br>お申し込みから <strong>最短2週間</strong> で利用開始可能。御社の企業情報・製品情報・勝ち実績自治体（過去取引先）の登録後、AI参謀の初回ブリーフィングと自治体レコメンドの初回結果をお届けします。</div>
       </details>
       <details class="faq-item">
         <summary>AIクレジットって、毎月足りなくなりませんか？</summary>
@@ -2796,7 +3172,7 @@
 
 <!-- END CTA -->
 <section class="end" id="contact" data-screen-label="16 CTA">
-  <div class="end-tag">先着10社 · 6月末締切</div>
+  <div class="end-tag">先着5社 · 6月末締切</div>
   <h2>まずは <span class="grad">個別デモ</span>。納得してから、ベータ版へ。</h2>
   <p>無理に申込までの大ジャンプはお願いしません。まず <strong>60分の個別デモ</strong> で、御社専用の自治体マップとROI試算を実画面でお見せします。デモ視聴 → 社内検討期間 → ベータ版応募、の3段階で進められます。</p>
   <div class="end-stages">
@@ -2815,7 +3191,7 @@
     <div class="end-stage">
       <div class="end-stage-no">STEP 3</div>
       <div class="end-stage-title">ベータ版応募（6ヶ月）</div>
-      <div class="end-stage-desc">先着10社・¥300,000/6ヶ月一括。3ヶ月以内なら違約金なしで撤退可能</div>
+      <div class="end-stage-desc">先着5社・¥300,000/6ヶ月一括。3ヶ月以内なら違約金なしで撤退可能</div>
     </div>
   </div>
   <div class="end-cta">
@@ -2841,7 +3217,7 @@
 <div class="sticky-cta">
   <div class="info">
     <strong>ベータ版特別キャンペーン受付中</strong>
-    <small>先着10社 · 50%OFF · 6/30締切</small>
+    <small>先着5社 · 50%OFF · 6/30締切</small>
   </div>
   <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">応募<span class="arrow">→</span></a>
 </div>
@@ -2879,6 +3255,32 @@
     buttons.forEach(btn => {
       btn.addEventListener('click', () => apply(btn.dataset.fz));
     });
+  })();
+</script>
+
+<script>
+  // モバイルメニュー（ハンバーガー開閉）
+  (function(){
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+    function openMenu(){
+      menu.classList.add('open'); toggle.classList.add('open');
+      toggle.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open'); toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function(){
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    menu.addEventListener('click', function(e){
+      if (e.target === menu || e.target.closest('[data-close]') || e.target.closest('a')) closeMenu();
+    });
+    window.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
   })();
 </script>
 
