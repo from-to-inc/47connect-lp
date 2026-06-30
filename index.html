@@ -106,7 +106,7 @@
     line-height:1.85;
     font-size:17px;
   }
-  img,svg{display:block;max-width:100%}
+  img,svg{display:block;max-width:100%;height:auto}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
@@ -1877,7 +1877,7 @@
   .plan-compare-table tbody td small{display:block;font-size:11px;font-weight:500;color:var(--ink-3);margin-top:4px}
   .plan-compare-table tbody tr.section-row td{background:var(--blue-deep);color:#fff;font-weight:800;font-size:13px;letter-spacing:.06em;padding:10px 16px;text-align:left}
   .plan-compare-table tbody td:first-child{font-size:14px;color:var(--ink-2);line-height:1.6}
-  .plan-compare-foot{margin-top:14px;font-size:12px;color:var(--ink-3);text-align:center}
+  .plan-compare-foot{margin-top:14px;font-size:12px;color:var(--ink-3);text-align:center;line-height:1.85}
   @media (max-width:860px){
     .plan-compare-table th,.plan-compare-table td{padding:10px;font-size:13px}
     .plan-compare-table th.plan-col{width:120px;padding:18px 6px 14px}
@@ -1886,6 +1886,74 @@
     .plan-compare-table .plan-tag{font-size:10px}
     .plan-compare-table tbody td:nth-child(2),.plan-compare-table tbody td:nth-child(3){width:auto;font-size:16px}
     .plan-compare-table tbody td:first-child{font-size:12px}
+  }
+
+  /* ============ 機能マトリックス（6列・2026-06-30 刷新） ============ */
+  .plan-matrix{
+    width:100%;border-collapse:separate;border-spacing:0;background:#fff;
+    border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+    box-shadow:var(--sh-2);table-layout:fixed;
+  }
+  .plan-matrix col.mx-cat{width:9%}
+  .plan-matrix col.mx-feat{width:15%}
+  .plan-matrix col.mx-desc{width:34%}
+  .plan-matrix col.mx-plan{width:14%}
+  .plan-matrix th,.plan-matrix td{
+    padding:13px 15px;border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);vertical-align:middle;
+  }
+  .plan-matrix tr td:last-child,.plan-matrix tr th:last-child{border-right:none}
+  .plan-matrix tbody tr:last-child td,
+  .plan-matrix tbody tr:last-child th{border-bottom:none}
+  /* ヘッダー行 */
+  .plan-matrix thead th{font-size:13px;line-height:1.4;vertical-align:middle}
+  .plan-matrix .mx-h-cat{
+    background:var(--blue-deep);color:#fff;font-weight:800;
+    text-align:center;letter-spacing:.02em;
+  }
+  .plan-matrix .mx-h-light{
+    background:#EAF3FE;color:var(--blue-deep);font-weight:800;text-align:center;
+  }
+  .plan-matrix thead th.mx-h-light strong{
+    display:block;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:3px;
+  }
+  .plan-matrix thead th.mx-h-light span{
+    display:block;font-size:11px;font-weight:600;color:var(--ink-3);line-height:1.45;
+  }
+  /* カテゴリ結合セル */
+  .plan-matrix .mx-cat-cell{
+    text-align:center;font-weight:800;font-size:13px;line-height:1.4;
+    letter-spacing:.02em;color:#fff;
+  }
+  .plan-matrix .mx-cat-navy{background:var(--blue-deep)}
+  .plan-matrix .mx-cat-orange{background:var(--orange)}
+  /* 機能名・機能内容 */
+  .plan-matrix .mx-feat-cell{font-size:14px;font-weight:700;color:var(--ink);line-height:1.5}
+  .plan-matrix .mx-desc-cell{font-size:13px;color:var(--ink-2);line-height:1.7}
+  /* マーク */
+  .plan-matrix .mx-mark{text-align:center;font-size:20px;font-weight:700;line-height:1.2}
+  .plan-matrix .mx-yes{color:var(--blue)}
+  .plan-matrix .mx-no{color:var(--ink-4);font-weight:600}
+  .plan-matrix .mx-beta{color:var(--orange)}
+  .plan-matrix .mx-beta sup{font-size:10px;font-weight:700;margin-left:1px}
+  /* 行のゼブラ（マークセルの読みやすさ） */
+  .plan-matrix tbody td.mx-desc-cell,
+  .plan-matrix tbody td.mx-feat-cell{background:#fff}
+
+  @media (max-width:860px){
+    .plan-matrix{min-width:680px;border:none;border-radius:0;box-shadow:none}
+    .plan-matrix th,.plan-matrix td{padding:10px 11px}
+    .plan-matrix col.mx-cat{width:auto}
+    .plan-matrix col.mx-feat{width:auto}
+    .plan-matrix col.mx-desc{width:auto}
+    .plan-matrix col.mx-plan{width:auto}
+    .plan-matrix .mx-feat-cell{font-size:13px}
+    .plan-matrix .mx-desc-cell{font-size:12px;line-height:1.6}
+    .plan-matrix thead th{font-size:12px}
+    .plan-matrix thead th.mx-h-light strong{font-size:13px}
+    .plan-matrix thead th.mx-h-light span{font-size:10px}
+    .plan-matrix .mx-mark{font-size:18px}
+    .plan-matrix .mx-cat-cell{font-size:12px}
   }
 
   /* DATABASE vs AI参謀 セクション（2026-05-15 追加） */
@@ -2316,9 +2384,9 @@
         <span class="sep"></span>
         6/30 締切
       </div>
-      <h1 style="font-weight: 900; width: 450px; font-size: 40px">自治体提案、<br>
+      <h1 style="font-weight: 900; max-width: 100%; font-size: clamp(28px, 7vw, 40px)">自治体提案、<br>
 毎日 AIに相談する時代へ</h1>
-      <p class="hero-sub" style="width: 473px"><strong>全国1,741自治体を、御社専属のAI参謀が毎日読み解く。</strong><br>
+      <p class="hero-sub" style="max-width: 100%"><strong>全国1,741自治体を、御社専属のAI参謀が毎日読み解く。</strong><br>
 「次にどこへ、何を提案すべきか」を、必要なときにすぐお答えします。</p>
       <div class="hero-cta">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">相談する<span class="arrow">→</span></a>
@@ -2762,46 +2830,104 @@
     </div>
     <div class="plan-compare">
       <div class="tscroll">
-      <table class="plan-compare-table">
+      <table class="plan-matrix">
+        <colgroup>
+          <col class="mx-cat" />
+          <col class="mx-feat" />
+          <col class="mx-desc" />
+          <col class="mx-plan" />
+          <col class="mx-plan" />
+          <col class="mx-plan" />
+        </colgroup>
         <thead>
           <tr>
-            <th class="feat-head">機能</th>
-            <th class="plan-col plan-col-light">
-              <div class="plan-title" style="text-align: center">ライトプラン</div>
-              <div class="plan-price" style="text-align: center"><strong style="text-align: right">¥100,000</strong><span>/月（税別）</span></div>
-              <div class="plan-tag" style="text-align: center">自治体営業のプロ・外部コンサル向け</div>
+            <th class="mx-h-cat" scope="col">カテゴリ</th>
+            <th class="mx-h-light" scope="col">機能</th>
+            <th class="mx-h-light" scope="col">機能内容</th>
+            <th class="mx-h-light" scope="col">
+              <strong>ライト</strong>
+              <span>¥100,000<br>/月（税別）</span>
             </th>
-            <th class="plan-col plan-col-standard">
-              <div class="plan-pill">オススメ</div>
-              <div class="plan-title">スタンダードプラン</div>
-              <div class="plan-price"><strong>¥200,000</strong><span>/月（税別）</span></div>
-              <div class="plan-tag">AI参謀フル活用・自治体ビジネス専門知見を社内に蓄積</div>
+            <th class="mx-h-light" scope="col">
+              <strong>スタンダード</strong>
+              <span>¥200,000<br>/月（税別）</span>
+            </th>
+            <th class="mx-h-light" scope="col">
+              <strong>β版</strong>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr class="section-row"><td colspan="3">Layer 1: データ層</td></tr>
-          <tr><td>1,741自治体の予算書・議事録・パブコメ・首長動向の網羅データ</td><td>○</td><td>○</td></tr>
-          <tr><td>自治体レコメンド
-（御社事業との適合度を自動スコア化・自動アラート）</td><td>○</td><td>○</td></tr>
-          <tr><td>自治体サマライズ
-（公開情報の要約・主要論点・提案余地の整理）</td><td>○</td><td>○</td></tr>
-          <tr><td>CRM管理
-（自治体提案特化・首長任期・予算サイクル・議会日程の統合管理）</td><td>○</td><td>○</td></tr>
-          <tr class="section-row"><td colspan="3">Layer 2: AI参謀層</td></tr>
-          <tr><td>1チーム1専属のAI参謀との対話（戦略・提案を対話で組み立て）</td><td>×</td><td>○<small>月間枠あり</small></td></tr>
-          <tr><td>AIクレジット同梱（別途チャージ料金あり ※）</td><td>×</td><td>○</td></tr>
-          <tr><td>提案メールドラフト自動生成</td><td>×</td><td>○</td></tr>
-          <tr><td>書類の即時通知機能（公開と同時にAI参謀が自動照合・通知）</td><td>×</td><td>◎<small>スタンダード限定</small></td></tr>
-          <tr class="section-row"><td colspan="3">サポート</td></tr>
-          <tr><td>1年間の付帯オンボーディング（前半：集中支援／後半：運用最適化・年6回）</td><td>×</td><td>○</td></tr>
-          <tr class="section-row"><td colspan="3">契約・利用範囲</td></tr>
-          <tr><td>チーム単位・追加ユーザー（ID）課金なし</td><td>○</td><td>○</td></tr>
-          <tr><td>1年契約（月払い可）・13ヶ月目以降は月単位継続</td><td>○</td><td>○</td></tr>
+          <tr>
+            <th class="mx-cat-cell mx-cat-navy" rowspan="4" scope="rowgroup">Layer 1<br>データ層</th>
+            <td class="mx-feat-cell">自治体網羅データ</td>
+            <td class="mx-desc-cell">1,741自治体の予算書・議事録・パブコメ・首長動向</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+          </tr>
+          <tr>
+            <td class="mx-feat-cell">自治体レコメンド</td>
+            <td class="mx-desc-cell">御社事業との適合度を自動スコア化・自動アラート</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+          </tr>
+          <tr>
+            <td class="mx-feat-cell">自治体サマライズ</td>
+            <td class="mx-desc-cell">公開情報の要約・主要論点・提案余地の整理</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+          </tr>
+          <tr>
+            <td class="mx-feat-cell">CRM管理</td>
+            <td class="mx-desc-cell">自治体提案特化・首長任期・予算サイクル・議会日程の統合管理</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes">○</td>
+          </tr>
+          <tr>
+            <th class="mx-cat-cell mx-cat-navy" rowspan="4" scope="rowgroup">Layer 2<br>AI参謀層</th>
+            <td class="mx-feat-cell">AI参謀との対話</td>
+            <td class="mx-desc-cell">1チーム1専属・戦略・提案を対話で組み立て（別途チャージ料金 ※）</td>
+            <td class="mx-mark mx-no">×</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta">○<sup>(※)</sup></td>
+          </tr>
+          <tr>
+            <td class="mx-feat-cell">提案メール自動生成</td>
+            <td class="mx-desc-cell">自社情報や自治体の課題に合わせてメール生成</td>
+            <td class="mx-mark mx-no">×</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta">○<sup>(※)</sup></td>
+          </tr>
+          <tr>
+            <td class="mx-feat-cell">提案資料自動生成</td>
+            <td class="mx-desc-cell">自社情報や自治体の課題に合わせて提案資料生成</td>
+            <td class="mx-mark mx-no">×</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta">○<sup>(※)</sup></td>
+          </tr>
+          <tr>
+            <td class="mx-feat-cell">書類の即時通知機能</td>
+            <td class="mx-desc-cell">公開と同時にAI参謀が自動照合・通知</td>
+            <td class="mx-mark mx-no">×</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta">○<sup>(※)</sup></td>
+          </tr>
+          <tr>
+            <th class="mx-cat-cell mx-cat-orange" rowspan="1" scope="rowgroup">サポート</th>
+            <td class="mx-feat-cell">付帯オンボーディング</td>
+            <td class="mx-desc-cell">1年間／前半：集中支援・後半：運用最適化（年6回）</td>
+            <td class="mx-mark mx-no">×</td>
+            <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta">○<sup>(※)</sup></td>
+          </tr>
         </tbody>
       </table>
       </div>
-      <p class="plan-compare-foot">※ AIクレジットのチャージ料金プラン・消費量の詳細は本番ローンチ時（2027年1月予定）に公開予定。</p>
+      <p class="plan-compare-foot">※ AIクレジットのチャージ料金は別途発生します（消費量・料金プランの詳細は本番ローンチ時／2027年1月に公開）。β版特別キャンペーン期間中は、AI参謀対話 無制限ご利用＋クレジット単価 創業時固定保証。</p>
     </div>
 
     <div class="credits">
@@ -3051,11 +3177,6 @@
         <h3>3ヶ月の無料休会あり。BPO案件の谷間も安心。</h3>
         <p>標準で<strong>3ヶ月までの無料休会</strong>が可能。基本月額は0円、データもクレジットもそのまま保持。さらに<strong>追加10万円で最大1年間まで延長</strong>可能。お申し込みはメール1通で。</p>
       </div>
-      <div class="assurance-card">
-        <div class="ac-no">04 / EXIT-OK</div>
-        <h3>3ヶ月以内なら、違約金なし撤退オプション。</h3>
-        <p>β版適用顧客限定。<strong>3ヶ月以内に保守シナリオで回収できなければ違約金なしで撤退可能</strong>。AI参謀の効果を、御社の数字で見極めてからの判断でOKです。</p>
-      </div>
     </div>
     <p class="assurance-note">※ 当社都合のサービス終了は <strong>3ヶ月以上前にご通知</strong>いたします。詳細条件は契約書（v1.0）で明文化されています。お申し込み前に必ずご確認ください。</p>
   </div>
@@ -3063,7 +3184,7 @@
 
 <!-- FAQ -->
 <section class="faq" id="faq" data-screen-label="15 FAQ">
-  <div class="wrap-narrow">
+  <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>FAQ</div>
       <h2 class="h-section">よくある質問</h2>
@@ -3071,31 +3192,27 @@
     <div class="faq-list">
       <details class="faq-item" open>
         <summary>自社の業界・体制でも活用できますか？</summary>
-        <div class="ans">自治体ビジネス（BtoG）を本格的に展開する中堅〜大企業、特に自治体営業を1人〜数名で担う組織でROIが最大化します。製造・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材・広告等で、実績・想定ROIを試算済みです。</div>
+        <div class="ans">自治体ビジネス（BtoG）を本格的に展開する中堅〜大企業、特に自治体営業を1人〜数名で担う組織でROIが最大化します。<br>製造・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材・広告等で、実績・想定ROIを試算済みです。</div>
       </details>
       <details class="faq-item">
         <summary>データのセキュリティ・ガバナンスは万全ですか？</summary>
-        <div class="ans">御社の企業情報・営業データは暗号化して管理し、第三者への提供および<strong>AI学習への利用は一切行いません</strong>。アクセス権限はアカウント単位で管理します。詳細は契約書・プライバシーポリシーで明文化しています。</div>
+        <div class="ans">御社の企業情報・営業データは暗号化して管理し、第三者への提供および<strong>AI学習への利用は一切行いません</strong>。<br>アクセス権限はアカウント単位で管理します。<br>詳細は契約書・プライバシーポリシーで明文化しています。</div>
       </details>
       <details class="faq-item">
         <summary>公開情報やWikipediaの取り扱いは適法ですか？</summary>
-        <div class="ans">はい。自治体の公開情報（予算書・議会会議録・総合計画等）は<strong>出典リンクを明記</strong>のうえAIが分析し、原典ファイルの<strong>再配布は行いません</strong>（著作権法第30条の4「情報解析」に基づく適法な利用）。Wikipedia等も全文・部分のコピーはせず、出典（CC BY-SA）を明記します。なお分析結果は正確性・完全性を確約するものではないため、重要なご判断の際は原典・一次情報をご確認ください。</div>
+        <div class="ans">はい。<br>自治体の公開情報（予算書・議会会議録・総合計画等）は<strong>出典リンクを明記</strong>のうえAIが分析し、原典ファイルの<strong>再配布は行いません</strong>（著作権法第30条の4「情報解析」に基づく適法な利用）。<br>Wikipedia等も全文・部分のコピーはせず、出典（CC BY-SA）を明記します。<br>なお分析結果は正確性・完全性を確約するものではないため、重要なご判断の際は原典・一次情報をご確認ください。</div>
       </details>
       <details class="faq-item">
         <summary>コンサルや他社DBツールと何が違いますか？</summary>
-        <div class="ans">コンサルは月1〜2回の伴走が標準ですが、AI参謀は<strong>毎日いつでも相談できる常駐型</strong>です。コンサルが3週間で出す成果を即日・対話で提供し、価格は約1/5。DB系ツールとの違いは、<strong>レコメンド・サマライズ・CRM・AI参謀対話を一気通貫</strong>で備える点です（当社調べ）。詳細は上記の比較表をご覧ください。</div>
+        <div class="ans">コンサルは月1〜2回の伴走が標準ですが、AI参謀は<strong>毎日いつでも相談できる常駐型</strong>です。<br>コンサルが3週間で出す成果を即日・対話で提供し、価格は約1/5。<br>DB系ツールとの違いは、<strong>レコメンド・サマライズ・CRM・AI参謀対話を一気通貫</strong>で備える点です（当社調べ）。<br>詳細は上記の比較表をご覧ください。</div>
       </details>
       <details class="faq-item">
         <summary>いつから利用でき、現時点で何が使えますか？</summary>
-        <div class="ans"><strong>β版は2026年7月開始・先着5社限定・お申し込みから最短2週間</strong>で利用開始いただけます。7月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働し、「提案書作成の参謀」は2026年Q4に提供予定です。本格運用への移行は2027年1月を予定しています。</div>
-      </details>
-      <details class="faq-item">
-        <summary>β版で開始し、合わなければ中止できますか？</summary>
-        <div class="ans">1,741自治体のデータ基盤・AI参謀エンジンは<strong>本番品質で稼働中</strong>で、β版期間に拡張するのは対応自治体数と精度の2点です。万一、契約から<strong>3ヶ月以内に投資回収不可と判断された場合は、違約金なしで撤退</strong>いただけます（β版限定の安心オプション）。</div>
+        <div class="ans"><strong>β版は2026年7月開始・先着5社限定・お申し込みから最短2週間</strong>で利用開始いただけます。<br>7月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働し、「提案書作成の参謀」は2026年Q4に提供予定です。<br>本格運用への移行は2027年1月を予定しています。</div>
       </details>
       <details class="faq-item">
         <summary>複数の事業部・チームで利用できますか？</summary>
-        <div class="ans">事業部・チームごとに<strong>別の Team Workspace</strong> をご契約いただけます。レコメンド・CRM・AIクレジットは独立し、事業ごとに異なる自治体・提案戦略を並行して走らせられます。<strong>2契約目以降も同額</strong>で、β版特典も各 Team に個別適用可能です。</div>
+        <div class="ans">事業部・チームごとに<strong>別の Team Workspace</strong> をご契約いただけます。<br>レコメンド・CRM・AIクレジットは独立し、事業ごとに異なる自治体・提案戦略を並行して走らせられます。<br><strong>2契約目以降も同額</strong>で、β版特典も各 Team に個別適用可能です。</div>
       </details>
     </div>
   </div>
@@ -3122,7 +3239,7 @@
     <div class="end-stage">
       <div class="end-stage-no">STEP 3</div>
       <div class="end-stage-title">β版応募（6ヶ月）</div>
-      <div class="end-stage-desc">先着5社・¥300,000/6ヶ月一括。3ヶ月以内なら違約金なしで撤退可能</div>
+      <div class="end-stage-desc">先着5社・¥300,000/6ヶ月一括（半年分前払い）</div>
     </div>
   </div>
   <div class="end-cta">
