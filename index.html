@@ -254,11 +254,14 @@
   .fz-switcher button[data-fz="sm"]{font-size:11px}
   .fz-switcher button[data-fz="md"]{font-size:12px}
   .fz-switcher button[data-fz="lg"]{font-size:14px}
-  /* モバイルではsticky-cta（下固定）と被らないよう、スイッチャーを上に逃がす */
+  /* モバイル：折りたたみ式（「文字」タップで小中大を展開・2026-07-24 被り解消） */
   @media (max-width:760px){
-    .fz-switcher{bottom:auto;top:84px;right:12px;padding:3px 4px 3px 10px}
-    .fz-switcher .fz-label{display:none}
-    .fz-switcher button{padding:5px 9px}
+    .fz-switcher{bottom:auto;top:84px;right:12px;padding:5px 10px}
+    .fz-switcher .fz-label{display:inline;margin-right:0;cursor:pointer;padding:4px 2px}
+    .fz-switcher button{display:none;padding:5px 9px}
+    .fz-switcher.open{padding:3px 4px 3px 10px}
+    .fz-switcher.open .fz-label{margin-right:6px}
+    .fz-switcher.open button{display:inline-block}
   }
 
   /* zoomで全体スケール（CEO指示2026-05-09・全体的に大きく）
@@ -308,19 +311,15 @@
     display:grid;grid-template-columns:1fr 1.22fr;gap:44px;align-items:center;
     position:relative;
   }
-  .hero-pill{
-    display:inline-flex;align-items:center;gap:10px;
-    background:rgba(255,255,255,.08);border:1px solid var(--amber-line);
-    padding:8px 15px;border-radius:999px;font-size:12px;color:rgba(255,255,255,.88);
-    margin-bottom:28px;font-weight:600;letter-spacing:.02em;
-    box-shadow:0 10px 26px rgba(0,0,0,.16);
+  /* ヒーロー内キャンペーンリンク（告知一本化・旧hero-pill置換 2026-07-24） */
+  .hero-campaign-link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13px;font-weight:700;color:var(--blue-3);
+    margin-bottom:24px;letter-spacing:.01em;
   }
-  .hero-pill .live{
-    width:7px;height:7px;border-radius:50%;background:var(--orange-2);
-    box-shadow:0 0 0 4px rgba(240,90,40,.20);
-  }
-  .hero-pill strong{color:#fff;font-weight:800}
-  .hero-pill .sep{width:1px;height:12px;background:rgba(255,255,255,.18)}
+  .hero-campaign-link:hover{color:#fff}
+  .hero-campaign-link .arrow{transition:transform .18s}
+  .hero-campaign-link:hover .arrow{transform:translateX(3px)}
   .hero h1{
     font-size:clamp(36px,5vw,60px);font-weight:800;line-height:1.4;
     letter-spacing:-.015em;margin-bottom:24px;text-wrap:balance;
@@ -671,12 +670,26 @@
   .stack-image img{
     display:block;width:100%;height:auto;
   }
-  /* 3層構造ダイアグラム（HTML版・2026-07-24 レイヤー再定義） */
-  .l3-diagram{margin:42px auto 0;max-width:900px;display:flex;flex-direction:column}
+  /* 3層構造ダイアグラム（下から積み上げ・Layer1土台・2026-07-24 CEO指示） */
+  .l3-diagram{margin:42px auto 0;max-width:900px;display:flex;flex-direction:column;align-items:center}
   .l3-layer{position:relative;border-radius:var(--r-lg);padding:24px 28px;border:1px solid var(--line);box-shadow:var(--sh-2);background:#fff}
   .l3-layer + .l3-layer{margin-top:36px}
-  .l3-layer:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-36px;width:2px;height:36px;background:linear-gradient(var(--blue-3),transparent);transform:translateX(-50%);z-index:1}
-  .l3-layer:not(:last-child)::before{content:"▼";position:absolute;left:50%;bottom:-31px;transform:translateX(-50%);color:var(--blue-3);font-size:14px;z-index:2;line-height:1}
+  /* DOM順は L3→L2→L1（視覚上、頂上がL3・土台がL1）。矢印は下の層から上の層へ */
+  .l3-layer:not(:first-child)::after{content:"";position:absolute;left:50%;top:-36px;width:2px;height:36px;background:linear-gradient(transparent,var(--blue-3));transform:translateX(-50%);z-index:1}
+  .l3-layer:not(:first-child)::before{content:"▲";position:absolute;left:50%;top:-31px;transform:translateX(-50%);color:var(--blue-3);font-size:14px;z-index:2;line-height:1}
+  /* 台形スタック：土台(L1)ほど幅広 */
+  .l3-layer.l3-l1{width:100%}
+  .l3-layer.l3-l2{width:92%}
+  .l3-layer.l3-l3{width:84%}
+  @media(max-width:640px){.l3-layer.l3-l1{width:100%}.l3-layer.l3-l2{width:96%}.l3-layer.l3-l3{width:92%}}
+
+  /* 圧縮メトリクスバンド（旧Before/Afterの要点1指標） */
+  .metric-band{background:var(--blue-ink);padding:44px 0;border-top:none}
+  .mband{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center}
+  .mband-before{font-size:17px;font-weight:700;color:var(--blue-3);text-decoration:line-through;text-decoration-color:rgba(240,90,40,.6);text-decoration-thickness:2px}
+  .mband-arrow{font-size:22px;font-weight:900;color:var(--orange-2)}
+  .mband-after{font-size:24px;font-weight:900;color:#fff;letter-spacing:-.01em}
+  @media(max-width:640px){.mband{flex-direction:column;gap:8px}.mband-before{font-size:15px}.mband-after{font-size:20px}}
   .l3-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
   .l3-badge{flex-shrink:0;width:64px;height:64px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:700;line-height:1.15;text-align:center;font-size:10px;letter-spacing:.06em}
   .l3-badge b{display:block;font-size:24px;letter-spacing:0}
@@ -1162,6 +1175,19 @@
   .roi-note{
     margin-top:20px;font-size:11px;color:var(--ink-4);line-height:1.85;
   }
+  /* ROI詳細の折りたたみ（2026-07-24 簡素化） */
+  .roi-details{margin-top:36px}
+  .roi-details > summary{
+    list-style:none;cursor:pointer;text-align:center;
+    font-size:14px;font-weight:800;color:var(--blue);
+    padding:14px 20px;border:1px solid var(--blue-200);border-radius:12px;
+    background:var(--blue-50);transition:.18s;
+  }
+  .roi-details > summary::-webkit-details-marker{display:none}
+  .roi-details > summary::after{content:" ▾";font-size:12px}
+  .roi-details[open] > summary::after{content:" ▴"}
+  .roi-details > summary:hover{background:#DCEBFB}
+  .roi-details[open] > summary{margin-bottom:8px}
 
   @media (max-width:980px){
     .roi-grid{grid-template-columns:1fr;gap:12px}
@@ -1505,6 +1531,8 @@
   }
   .pilot-cta{margin-top:28px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
   .pilot-note{font-size:12px;color:var(--t-inv-3);line-height:1.85}
+  .pilot-roi-link{font-size:13px;font-weight:700;color:var(--blue-3);display:inline-flex;align-items:center;gap:5px}
+  .pilot-roi-link:hover{color:#fff}
   .pilot-incs{padding:24px 28px;background:var(--on-dark-1);border:1px solid var(--on-dark-2);border-radius:var(--r-lg)}
   .pilot-incs-lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--blue-3);margin-bottom:14px;text-transform:uppercase}
   .pilot-incs ul{list-style:none;display:flex;flex-direction:column;gap:10px}
@@ -1992,20 +2020,26 @@
   .plan-matrix tbody td.mx-desc-cell,
   .plan-matrix tbody td.mx-feat-cell{background:#fff}
 
+  /* 料金マトリクス：スマホはカード型（横スクロール廃止・2026-07-24 赤ペンQ4=A） */
   @media (max-width:860px){
-    .plan-matrix{min-width:680px;border:none;border-radius:0;box-shadow:none}
-    .plan-matrix th,.plan-matrix td{padding:10px 11px}
-    .plan-matrix col.mx-cat{width:auto}
-    .plan-matrix col.mx-feat{width:auto}
-    .plan-matrix col.mx-desc{width:auto}
-    .plan-matrix col.mx-plan{width:auto}
-    .plan-matrix .mx-feat-cell{font-size:13px}
-    .plan-matrix .mx-desc-cell{font-size:12px;line-height:1.6}
-    .plan-matrix thead th{font-size:12px}
-    .plan-matrix thead th.mx-h-light strong{font-size:13px}
-    .plan-matrix thead th.mx-h-light span{font-size:10px}
-    .plan-matrix .mx-mark{font-size:18px}
-    .plan-matrix .mx-cat-cell{font-size:12px}
+    .plan-compare .tscroll{overflow:visible;border:none;border-radius:0}
+    .plan-compare .tscroll::before{display:none}
+    .plan-matrix,.plan-matrix tbody,.plan-matrix tr,
+    .plan-matrix td,.plan-matrix th[scope="rowgroup"]{display:block;width:100%}
+    .plan-matrix{min-width:0;border:none;border-radius:0;box-shadow:none;table-layout:auto}
+    .plan-matrix colgroup,.plan-matrix thead{display:none}
+    .plan-matrix .mx-mark{display:none}
+    .plan-matrix td,.plan-matrix th{border-right:none}
+    .plan-matrix .mx-cat-cell{
+      border-radius:10px;margin:18px 0 8px;padding:9px 14px;
+      text-align:left;font-size:13px;border-bottom:none;
+    }
+    .plan-matrix .mx-cat-cell br{content:"";display:inline-block;width:.5em}
+    .plan-matrix tbody tr:first-child .mx-cat-cell{margin-top:0}
+    .plan-matrix .mx-feat-cell{font-size:14px;padding:10px 4px 2px;border-bottom:none;background:transparent}
+    .plan-matrix .mx-desc-cell{font-size:12.5px;line-height:1.7;padding:0 4px 10px;border-bottom:1px solid var(--line-2);background:transparent}
+    .plan-matrix tbody tr:last-child .mx-desc-cell{border-bottom:none}
+    .plan-matrix .mx-span{display:block;border-radius:8px;margin:2px 0 6px;padding:9px 12px;text-align:left;border-bottom:none}
   }
 
   /* DATABASE vs AI参謀 セクション（2026-05-15 追加） */
@@ -2127,7 +2161,7 @@
 
     /* HERO */
     .hero{padding:64px 0 52px}
-    .hero-pill{flex-wrap:wrap;row-gap:6px;padding:8px 13px;font-size:11.5px}
+    .hero-campaign-link{font-size:12px}
     .hero h1{font-size:clamp(29px,8.4vw,40px);line-height:1.34;margin-bottom:18px}
     .hero-sub{font-size:15.5px;line-height:1.9;margin-bottom:22px}
     .hero-cta{gap:10px;margin-bottom:24px}
@@ -2243,10 +2277,10 @@
 
     /* ---- HERO：余白を締めて要素を上へ ---- */
     .hero{padding:32px 0 0}
-    /* スマホ順番：ピル→キャッチコピー→アイキャッチ画像→本文→CTA */
+    /* スマホ順番：リンク→キャッチコピー→アイキャッチ画像→本文→CTA */
     .hero-inner{display:flex;flex-direction:column;gap:18px}
     .hero-inner > div:first-child{display:contents}
-    .hero-pill{order:1;font-size:11px;padding:7px 12px;align-self:flex-start}
+    .hero-campaign-link{order:1;font-size:12px;align-self:flex-start}
     .hero h1{order:2}
     .hero-visual{order:3}
     .hero-sub{order:4}
@@ -2381,12 +2415,11 @@
     </a>
     <nav class="nav">
       <a href="#worries">お悩み</a>
-      <a href="#problem">課題</a>
       <a href="#solution">解決策</a>
-      <a href="#roi">投資効果</a>
       <a href="#screens">プロダクト</a>
-      <a href="#why">FromTo</a>
       <a href="#pricing">料金</a>
+      <a href="#roi">投資効果</a>
+      <a href="#why">FromTo</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="header-cta">
@@ -2408,12 +2441,11 @@
     </div>
     <nav class="mm-links">
       <a href="#worries">お悩み<span class="en">Worries</span></a>
-      <a href="#problem">課題<span class="en">Problem</span></a>
       <a href="#solution">解決策<span class="en">Solution</span></a>
-      <a href="#roi">投資効果<span class="en">ROI</span></a>
       <a href="#screens">プロダクト<span class="en">Product</span></a>
-      <a href="#why">FromTo<span class="en">Why</span></a>
       <a href="#pricing">料金<span class="en">Pricing</span></a>
+      <a href="#roi">投資効果<span class="en">ROI</span></a>
+      <a href="#why">FromTo<span class="en">Why</span></a>
       <a href="#faq">FAQ<span class="en">FAQ</span></a>
     </nav>
     <div class="mm-cta">
@@ -2435,14 +2467,7 @@
 <section class="hero" id="top" data-screen-label="01 Hero" style="padding: 56px 0px 64px">
   <div class="wrap hero-inner">
     <div>
-      <div class="hero-pill">
-        <span class="live"></span>
-        β版特別キャンペーン受付中
-        <span class="sep"></span>
-        <strong>先着5社限定</strong>
-        <span class="sep"></span>
-        8月末締切
-      </div>
+      <a class="hero-campaign-link" href="#pricing">β版特別キャンペーン実施中<span class="arrow">→</span></a>
       <h1 style="font-weight: 900; max-width: 100%; font-size: clamp(28px, 7vw, 40px)">自治体提案、<br>
 毎日 AIに相談する時代へ</h1>
       <p class="hero-sub" style="max-width: 100%"><strong>全国1,788自治体を、御社専属のAI参謀が毎日読み解く。</strong><br>
@@ -2456,7 +2481,7 @@
     <div class="hero-visual">
       <img class="hero-shot" src="images/header_app.png" alt="FromTo 自治体管理 — 自治体分析詳細・分野別総合性マップ画面" />
       <div class="hero-chip a"><span class="ic">★</span><span><span class="n">1,788</span><br><span class="t">自治体を分析</span></span></div>
-      <div class="hero-chip b"><span class="ic">↓</span><span><span class="n">4週間→30分</span><br><span class="t">調査工数を圧縮</span></span></div>
+      <div class="hero-chip b"><span class="ic">↓</span><span><span class="n">40h→4h</span><br><span class="t">営業工数を圧縮</span></span></div>
     </div>
   </div>
 </section>
@@ -2478,80 +2503,6 @@
       </ul>
     </div>
 
-    <div class="role-tabs" role="tablist">
-      <button class="role-tab active" data-role="exec" role="tab">
-        <span class="role-en">Executive</span>
-        <span>経営者</span>
-      </button>
-      <button class="role-tab" data-role="manager" role="tab">
-        <span class="role-en">Sales Manager</span>
-        <span>営業責任者</span>
-      </button>
-      <button class="role-tab" data-role="field" role="tab">
-        <span class="role-en">Front Line</span>
-        <span>現場担当者</span>
-      </button>
-    </div>
-
-    <div class="role-pane active" data-pane="exec">
-      <div class="worries-grid">
-        <div class="worry-card">
-          <span class="worry-tag">コンサル費の効果が見えない</span>
-          <div class="worry-bubble">月50万円規模のコンサルティング費用を継続的に投じているが、その効果を明確に説明できる経営者は多くない。<strong>どの自治体が、いくらの売上につながったのか</strong>——投資対効果が、経営の手元で可視化できていない。</div>
-        </div>
-        <div class="worry-card">
-          <span class="worry-tag">即応できる相談相手が不在</span>
-          <div class="worry-bubble">役員会の直前に1点だけ確認したくても、コンサルの返信は<strong>1〜2営業日後</strong>。<strong>判断したいその瞬間に応えられる参謀</strong>が、社内に存在しない。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="role-pane" data-pane="manager">
-      <div class="worries-grid">
-        <div class="worry-card">
-          <span class="worry-tag">優先順位の根拠を示せない</span>
-          <div class="worry-bubble">「次はこの自治体を最優先で」と指示したくても、根拠を問われると答えに詰まる。勘では組織は動かない。だが<strong>全自治体を比較し、根拠を揃える工数</strong>が確保できない。</div>
-        </div>
-        <div class="worry-card">
-          <span class="worry-tag">予算編成期に先回りできない</span>
-          <div class="worry-bubble">入札公示を見てから動くのでは、毎回もう遅い。予算は<strong>公示の半年〜2年前</strong>に決まっている。先回りすべきと分かっていながら、そこにリソースを割けない。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="role-pane" data-pane="field">
-      <div class="worries-grid">
-        <div class="worry-card">
-          <span class="worry-tag">情報収集の工数が膨大</span>
-          <div class="worry-bubble">予算書・議事録の読み込みだけで <strong>1自治体あたり2〜3週間</strong>。担当する20自治体すべてを追いきるのは、現実的に不可能です。</div>
-        </div>
-        <div class="worry-card">
-          <span class="worry-tag">提案書作成の時間が取れない</span>
-          <div class="worry-bubble">自治体ごとに刺さる提案書を作ろうにも、<strong>1本あたり丸2日</strong>。案件は増え、時間は増えない。<strong>提案の「数」と「質」のどちらか</strong>を、常に諦めている。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sambo-answer">
-      <div class="sambo-avatar lg">
-        <img src="images/ai_sanbo.png" alt="自治体AI参謀キャラクター" />
-      </div>
-      <div class="text">
-        <div class="lbl">AI参謀より</div>
-        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる判断支援基盤の不在」</em>。御社チームに常駐する <strong>自治体AI参謀</strong>、それが <strong>47Connect（ヨンナナコネクト）</strong>です。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEM -->
-<section class="problems" id="problem" data-screen-label="04 Problem">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>The Problem</div>
-      <h2 class="h-section prob-h">自治体営業は<span class="accent">なぜ進めづらいのか</span></h2>
-      <p class="lede">自治体への営業は、情報を集めるだけでは進みません。提案余地を見つけ、政策文脈を読み解き、接触状況まで管理する必要があります。</p>
-    </div>
     <div class="prob-grid">
       <div class="prob">
         <div class="prob-visual prob-visual-img">
@@ -2608,10 +2559,90 @@
         </ul>
       </div>
     </div>
+
+    <div class="sambo-answer">
+      <div class="sambo-avatar lg">
+        <img src="images/ai_sanbo.png" alt="自治体AI参謀キャラクター" />
+      </div>
+      <div class="text">
+        <div class="lbl">AI参謀より</div>
+        <div class="msg">これらのお悩みの本質は、<em>「毎日相談できる判断支援基盤の不在」</em>。御社チームに常駐する <strong>自治体AI参謀</strong>、それが <strong>47Connect（ヨンナナコネクト）</strong>です。</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- SCREEN TOUR（PROBLEM の直後に配置：CEO指示2026-05-07） -->
+<!-- SOLUTION -->
+<section class="solution" id="solution" data-screen-label="05 Solution">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow"><span class="dot"></span>The Solution</div>
+      <h2 class="h-section">基本機能、企業別分析、AI参謀を<em>つなぐ3層構造。</em></h2>
+      <p class="lede">47Connectは、自治体データを集めて終わりません。全国の公開情報を基盤に、御社の事業文脈で自治体を分析し、<br><strong>提案の切り口・提案書・次アクション</strong>へ変換します。</p>
+    </div>
+
+    <div class="l3-diagram" aria-label="47Connectの3層構造：土台のLayer1 基本機能の上に、Layer2 企業別レイヤー、Layer3 AI参謀が積み上がる">
+      <div class="l3-layer l3-l3">
+        <div class="l3-head">
+          <div class="l3-badge">LAYER<b>3</b></div>
+          <div>
+            <div class="l3-ttl">AI参謀</div>
+            <div class="l3-sub">具体的な提案・資料・次アクションへ変換する</div>
+          </div>
+        </div>
+        <div class="l3-chips">
+          <span class="l3-chip">提案の切り口の提示</span>
+          <span class="l3-chip">提案書（資料）の作成</span>
+          <span class="l3-chip">提案メール（文書）の作成</span>
+          <span class="l3-chip">実際の深掘り分析</span>
+        </div>
+      </div>
+      <div class="l3-layer l3-l2">
+        <div class="l3-head">
+          <div class="l3-badge">LAYER<b>2</b></div>
+          <div>
+            <div class="l3-ttl">企業別レイヤー</div>
+            <div class="l3-sub">御社の事業文脈で、自治体を分析する</div>
+          </div>
+        </div>
+        <div class="l3-chips">
+          <span class="l3-chip">企業ごとの分析</span>
+          <span class="l3-chip">企業×自治体の相性分析</span>
+          <span class="l3-chip">フォーカス自治体の深掘り分析</span>
+          <span class="l3-chip">情報通知機能</span>
+        </div>
+      </div>
+      <div class="l3-layer l3-l1">
+        <div class="l3-head">
+          <div class="l3-badge">LAYER<b>1</b></div>
+          <div>
+            <div class="l3-ttl">基本機能（データ層）— 土台</div>
+            <div class="l3-sub">全国1,788自治体の公開情報を、AIが構造化して基盤にする</div>
+          </div>
+        </div>
+        <div class="l3-chips">
+          <span class="l3-chip">自治体網羅データ</span>
+          <span class="l3-chip">自治体レコメンド</span>
+          <span class="l3-chip">自治体サマライズ</span>
+          <span class="l3-chip">CRM管理</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08） -->
+    <div class="solution-punch ai-callout">
+      <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
+      <div class="ai-callout-body">
+        <div class="ai-callout-label">AI参謀より</div>
+        <p class="punch-strong">DBサービスは情報を "置く" だけ。
+47Connectは、AI参謀がそれらを "使い切る"。</p>
+        <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN TOUR -->
 <section class="screen-tour" id="screens" data-screen-label="04b Screens">
   <div class="wrap">
     <div class="section-head center">
@@ -2650,6 +2681,17 @@
           <p>提案状況・優先度・次アクションをCRMに集約。属人的な自治体営業を、抜けない「チームの資産」に変えます。</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 圧縮メトリクスバンド（旧Before/Afterの要点・2026-07-24統合） -->
+<section class="metric-band" data-screen-label="04x Metric">
+  <div class="wrap">
+    <div class="mband">
+      <span class="mband-before">情報収集〜提案準備の数週間</span>
+      <span class="mband-arrow">→</span>
+      <span class="mband-after">AI参謀が1日で</span>
     </div>
   </div>
 </section>
@@ -2726,155 +2768,9 @@
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="solution" id="solution" data-screen-label="05 Solution">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>The Solution</div>
-      <h2 class="h-section">基本機能、企業別分析、AI参謀を<em>つなぐ3層構造。</em></h2>
-      <p class="lede">47Connectは、自治体データを集めて終わりません。全国の公開情報を基盤に、御社の事業文脈で自治体を分析し、<br><strong>提案の切り口・提案書・次アクション</strong>へ変換します。</p>
-    </div>
 
-    <div class="l3-diagram" aria-label="47Connectの3層構造：Layer1 基本機能 → Layer2 企業別レイヤー → Layer3 AI参謀">
-      <div class="l3-layer l3-l1">
-        <div class="l3-head">
-          <div class="l3-badge">LAYER<b>1</b></div>
-          <div>
-            <div class="l3-ttl">基本機能（データ層）</div>
-            <div class="l3-sub">全国1,788自治体の公開情報を、AIが構造化して基盤にする</div>
-          </div>
-        </div>
-        <div class="l3-chips">
-          <span class="l3-chip">自治体網羅データ</span>
-          <span class="l3-chip">自治体レコメンド</span>
-          <span class="l3-chip">自治体サマライズ</span>
-          <span class="l3-chip">CRM管理</span>
-        </div>
-      </div>
-      <div class="l3-layer l3-l2">
-        <div class="l3-head">
-          <div class="l3-badge">LAYER<b>2</b></div>
-          <div>
-            <div class="l3-ttl">企業別レイヤー</div>
-            <div class="l3-sub">御社の事業文脈で、自治体を分析する</div>
-          </div>
-        </div>
-        <div class="l3-chips">
-          <span class="l3-chip">企業ごとの分析</span>
-          <span class="l3-chip">企業×自治体の相性分析</span>
-          <span class="l3-chip">フォーカス自治体の深掘り分析</span>
-          <span class="l3-chip">情報通知機能</span>
-        </div>
-      </div>
-      <div class="l3-layer l3-l3">
-        <div class="l3-head">
-          <div class="l3-badge">LAYER<b>3</b></div>
-          <div>
-            <div class="l3-ttl">AI参謀</div>
-            <div class="l3-sub">具体的な提案・資料・次アクションへ変換する</div>
-          </div>
-        </div>
-        <div class="l3-chips">
-          <span class="l3-chip">提案の切り口の提示</span>
-          <span class="l3-chip">提案書（資料）の作成</span>
-          <span class="l3-chip">提案メール（文書）の作成</span>
-          <span class="l3-chip">実際の深掘り分析</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08） -->
-    <div class="solution-punch ai-callout">
-      <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
-      <div class="ai-callout-body">
-        <div class="ai-callout-label">AI参謀より</div>
-        <p class="punch-strong">DBサービスは情報を "置く" だけ。
-47Connectは、AI参謀がそれらを "使い切る"。</p>
-        <p class="punch-sub">レコメンド・サマライズ・CRMを、御社専属AI参謀が毎日の対話で活用。</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- BEFORE / AFTER -->
-<section class="ba" data-screen-label="10 BeforeAfter">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Before / After</div>
-      <h2 class="h-section">3つの課題を、3つの機能で。<br>
-「情報収集〜提案準備」の数週間を、AI参謀が1日で。</h2>
-      <p class="lede"><strong>情報収集から提案準備までの数週間</strong>を、<br>47Connectの<strong>レコメンド・サマライズ・CRM管理</strong>でまるごと圧縮します。</p>
-    </div>
-
-    <div class="ba-grid">
-      <div class="ba-card before">
-        <div class="ba-label">Before — コンサル/自前リサーチ</div>
-        <div class="ba-title">情報収集から手作業で動き始める</div>
-        <div class="ba-step ba-axis-find">
-          <div class="ba-step-no">01</div>
-          <div class="ba-step-text"><strong>見つけられない</strong><br><small>全自治体を網羅できず、人手リサーチで漏れ多発。情報収集の起点から数日かかる。</small></div>
-          <div class="ba-step-time">最長1週間</div>
-        </div>
-        <div class="ba-step ba-axis-read">
-          <div class="ba-step-no">02</div>
-          <div class="ba-step-text"><strong>わからない</strong><br><small>PDFを読み解けず、自社商材の提案切り口が立てられない。属人化した経験頼り。</small></div>
-          <div class="ba-step-time">6〜10日</div>
-        </div>
-        <div class="ba-step ba-axis-manage">
-          <div class="ba-step-no">03</div>
-          <div class="ba-step-text"><strong>管理ができない</strong><br><small>Excel・個人メモで属人管理。抜け漏れ・引き継ぎ不可・首長任期や方針転換も追えない。</small></div>
-          <div class="ba-step-time">5〜10日</div>
-        </div>
-        <div class="ba-note">情報収集の起点から人手で動き、3つの課題が積み重なる。納品まで3〜4週間が標準。</div>
-        <div class="ba-total">
-          <div class="ba-total-label">合計</div>
-          <div class="ba-total-value">約 4週間</div>
-        </div>
-      </div>
-      <div class="ba-card after">
-        <div class="ba-label">After — 47Connect 自治体AI参謀</div>
-        <div class="ba-title">3機能が、3課題をまるごと解決</div>
-        <div class="ba-step ba-axis-find">
-          <div class="ba-step-no">01</div>
-          <div class="ba-step-text"><strong>レコメンド</strong><br><small>議事録 × 予算 × 首長公約 × パブコメをAIで横断スコアリング。御社商材に合う自治体を「次に注力すべき順」で提示。</small></div>
-          <div class="ba-step-time">数時間</div>
-        </div>
-        <div class="ba-step ba-axis-read">
-          <div class="ba-step-no">02</div>
-          <div class="ba-step-text"><strong>サマライズ</strong><br><small>首長・予算規模・重点施策・直近議会・補正予算を1自治体ごとに要約。提案切り口を即把握。</small></div>
-          <div class="ba-step-time">同日中</div>
-        </div>
-        <div class="ba-step ba-axis-manage">
-          <div class="ba-step-no">03</div>
-          <div class="ba-step-text"><strong>CRM管理</strong><br><small>提案状況・メモ・優先度・次アクションをチーム共通CRMで共有。首長任期・予算サイクルのアラートも自動。</small></div>
-          <div class="ba-step-time">即時共有</div>
-        </div>
-        <div class="ba-note">3つの課題に対し、3つの機能が同時並行で動き出し、24時間以内にまるごと解決します。</div>
-        <div class="ba-total">
-          <div class="ba-total-label">合計</div>
-          <div class="ba-total-value">24時間以内</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 統合版 v3（CEO指示2026-05-10: 中央ratio強調・AI参謀コールアウト削除・ROI誘導に変更） -->
-    <div class="ba-punchline">
-      <div class="ratio">
-        <div class="ratio-block">
-          <div class="ratio-num"><span class="top">1</span><span class="slash">/</span><span class="bot">10</span></div>
-          <div class="ratio-cap">作業工数 圧縮率</div>
-        </div>
-        <div class="ratio-arrow">→</div>
-        <div class="ratio-text">
-          <div class="ratio-eyebrow">月40時間 → 約4時間</div>
-          <h3>47Connectなら、<em>月40時間</em> の自治体営業工数が、<br>およそ <em>4時間</em> に圧縮できます。</h3>
-          <h3>削減した <em>36時間/月</em> を新規提案に振り向けることで、<em>提案活動量を最大2倍</em> に拡大できます。</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PRICING -->
 <section class="pricing" id="pricing" data-screen-label="13 Pricing">
   <div class="wrap">
@@ -2896,6 +2792,7 @@
           </div>
           <div class="pilot-cta">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">先着5社限定枠を確保する<span class="arrow">→</span></a>
+            <a href="#roi" class="pilot-roi-link">御社専用のROI試算はこちら<span class="arrow">→</span></a>
           </div>
         </div>
         <div class="pilot-incs">
@@ -2908,19 +2805,6 @@
         </div>
       </div>
 
-      <!-- ROIシミュレーター誘導（応募前判断材料・roi-cta統一デザイン） -->
-      <div class="roi-cta">
-        <div class="roi-cta-decor"></div>
-        <div class="roi-cta-content">
-          <div class="roi-cta-eyebrow">役員会・稟議資料に、そのまま使える</div>
-          <h3>人数・案件単価を入れるだけ。<span class="roi-cta-hl">御社専用ROIを30秒で。</span></h3>
-          <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた <strong>ROI・回収期間・年間効果</strong>が即座に算出されます。試算結果は <strong>役員会・稟議資料にそのまま貼れる形式</strong> で出力。「上司に共有」「役員に説明」の最初の1枚として、そのまま使えます。</p>
-        </div>
-        <div class="roi-cta-btns">
-          <a href="./roi-simulator.html" class="btn btn-orange btn-lg roi-sim-btn" target="_blank" rel="noopener">ROIシミュレーターを開く<span class="arrow">→</span></a>
-          <a href="#contact" class="btn btn-ghost-light btn-lg">個別相談で詳しく聞く</a>
-        </div>
-      </div>
     </div>
 
     <div class="plans-head">
@@ -3055,7 +2939,9 @@
       </div>
     </div>
 
-    <!-- 計算式エリア（投資対効果の試算・標準ケース） -->
+    <!-- 計算式エリア（投資対効果の試算・標準ケース）：初期は折りたたみ（2026-07-24 簡素化） -->
+    <details class="roi-details">
+      <summary>標準ケースの詳細内訳を見る（現状→導入後→年間効果）</summary>
     <div class="roi-calc">
       <div class="roi-calc-label">標準ケース 詳細：営業3名・年4件・売上2,000万円規模（500万円/案件の場合）</div>
       <div class="roi-grid">
@@ -3094,6 +2980,7 @@
       </div>
       <p class="roi-note">※ 営業3名・年4件・売上2,000万円規模（500万円/案件の場合）での標準ケース試算／年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／47Connect ROIシミュレーターに基づく／<strong>保守ケース</strong>は工数削減効果のみ（年220万円相当）でROI 0.9倍・回収14ヶ月、<strong>攻めケース</strong>は標準＋案件単価向上を含めROI 11.9倍超を想定／売上拡大効果は提案活動量増加により創出される売上見込み(種作り)であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／業種・規模・営業体制により数値は変動します。</p>
     </div>
+    </details>
 
     <!-- 区切りディバイダー -->
     <div class="roi-divider">
@@ -3117,6 +3004,43 @@
   </div>
 </section>
 
+<section class="why" id="why" data-screen-label="12 Why">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
+      <h2 class="h-section">なぜFromToが、<br>自治体AI参謀を提供できるのか。</h2>
+      <p class="lede"><strong>他社が真似できないのは、機能ではなく実績です。</strong>企業版ふるさと納税の寄附仲介で <strong>150件以上・112自治体</strong> の実取引、自治体担当部局との <strong>直接パイプ</strong>、現場で得た <strong>一次情報</strong>。これらの実績の上に、47Connect の自治体AI参謀は構築されています。</p>
+    </div>
+    <div class="why-pillars">
+      <div class="why-pillar">
+        <div class="pillar-no">PILLAR 01</div>
+        <h3><em>実取引</em>の重み</h3>
+        <p>企業版ふるさと納税の寄附仲介で <strong>150件以上・112自治体</strong> の実取引を積み上げてきました。机上の調査ではなく、<strong>実際にお金が動いた取引データ</strong>が判断材料の源泉です。</p>
+        <div class="pillar-tag">→ 150件超・112自治体の実取引実績</div>
+      </div>
+      <div class="why-pillar">
+        <div class="pillar-no">PILLAR 02</div>
+        <h3><em>自治体</em>との信頼パイプ</h3>
+        <p><strong>112自治体の担当部局と直接取引</strong>で築いた信頼関係。広告でもインタビューでもなく、寄附仲介の現場で積み上げた人脈と知見が、AI参謀の判断精度を支えます。</p>
+        <div class="pillar-tag">→ 112自治体との直接パイプ</div>
+      </div>
+      <div class="why-pillar">
+        <div class="pillar-no">PILLAR 03</div>
+        <h3><em>公開情報</em>＋一次情報</h3>
+        <p>公開情報だけでは見えない、<strong>担当者から直接聞いた予算編成の温度感・政策の優先度・部局のニーズ</strong>。寄附仲介の現場で得た <strong>一次情報</strong> を、AI参謀の知見として組み込みます。</p>
+        <div class="pillar-tag">→ 公開情報 × 一次情報</div>
+      </div>
+    </div>
+    <div class="why-main">
+      <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
+      <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>公開情報・実取引データ・AI参謀対話を一体提供する点で、独自のポジション</strong>です（当社調べ）。<strong>御社の自治体提案を、3本柱の組み合わせで支える</strong>——それが自治体AI参謀の役割です。</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WHY -->
 <!-- COMPARE -->
 <section class="compare" data-screen-label="11 Compare">
   <div class="wrap">
@@ -3169,43 +3093,6 @@
     </table>
     </div>
     <p class="compare-foot">※1 公開即日対応（即日通知＋24時間以内・AI参謀との相談可能）は、月20万円プランの標準機能です。</p>
-  </div>
-</section>
-
-
-<!-- WHY -->
-<section class="why" id="why" data-screen-label="12 Why">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
-      <h2 class="h-section">なぜFromToが、<br>自治体AI参謀を提供できるのか。</h2>
-      <p class="lede"><strong>他社が真似できないのは、機能ではなく実績です。</strong>企業版ふるさと納税の寄附仲介で <strong>150件以上・112自治体</strong> の実取引、自治体担当部局との <strong>直接パイプ</strong>、現場で得た <strong>一次情報</strong>。これらの実績の上に、47Connect の自治体AI参謀は構築されています。</p>
-    </div>
-    <div class="why-pillars">
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 01</div>
-        <h3><em>実取引</em>の重み</h3>
-        <p>企業版ふるさと納税の寄附仲介で <strong>150件以上・112自治体</strong> の実取引を積み上げてきました。机上の調査ではなく、<strong>実際にお金が動いた取引データ</strong>が判断材料の源泉です。</p>
-        <div class="pillar-tag">→ 150件超・112自治体の実取引実績</div>
-      </div>
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 02</div>
-        <h3><em>自治体</em>との信頼パイプ</h3>
-        <p><strong>112自治体の担当部局と直接取引</strong>で築いた信頼関係。広告でもインタビューでもなく、寄附仲介の現場で積み上げた人脈と知見が、AI参謀の判断精度を支えます。</p>
-        <div class="pillar-tag">→ 112自治体との直接パイプ</div>
-      </div>
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 03</div>
-        <h3><em>公開情報</em>＋一次情報</h3>
-        <p>公開情報だけでは見えない、<strong>担当者から直接聞いた予算編成の温度感・政策の優先度・部局のニーズ</strong>。寄附仲介の現場で得た <strong>一次情報</strong> を、AI参謀の知見として組み込みます。</p>
-        <div class="pillar-tag">→ 公開情報 × 一次情報</div>
-      </div>
-    </div>
-    <div class="why-main">
-      <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
-      <p>参謀だけ持っていても中身がない。データだけ持っていてもDBに過ぎない。鮮度だけ持っていてもニュース通知になる。<strong>公開情報・実取引データ・AI参謀対話を一体提供する点で、独自のポジション</strong>です（当社調べ）。<strong>御社の自治体提案を、3本柱の組み合わせで支える</strong>——それが自治体AI参謀の役割です。</p>
-    </div>
-
   </div>
 </section>
 
@@ -3292,26 +3179,12 @@
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
   <div class="info">
-    <strong>β版特別キャンペーン受付中</strong>
-    <small>先着5社 · 特別価格 · 8月末締切</small>
+    <strong>2週間 無料トライアル</strong>
   </div>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">応募<span class="arrow">→</span></a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">相談を予約<span class="arrow">→</span></a>
 </div>
 
 <script>
-  // Worries: role tabs
-  (function(){
-    const tabs = document.querySelectorAll('.role-tab');
-    const panes = document.querySelectorAll('.role-pane');
-    tabs.forEach(t => {
-      t.addEventListener('click', () => {
-        const r = t.dataset.role;
-        tabs.forEach(x => x.classList.toggle('active', x === t));
-        panes.forEach(p => p.classList.toggle('active', p.dataset.pane === r));
-      });
-    });
-  })();
-
   // 文字サイズスイッチャー（小/中/大・localStorage保存）
   (function(){
     const html = document.documentElement;
@@ -3331,6 +3204,13 @@
     buttons.forEach(btn => {
       btn.addEventListener('click', () => apply(btn.dataset.fz));
     });
+
+    // モバイル：「文字」ラベルのタップで小中大を開閉（被り解消）
+    const sw = document.querySelector('.fz-switcher');
+    const label = sw && sw.querySelector('.fz-label');
+    if (label) {
+      label.addEventListener('click', () => sw.classList.toggle('open'));
+    }
   })();
 </script>
 
