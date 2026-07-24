@@ -1154,6 +1154,8 @@
     color:var(--blue-deep);margin-bottom:8px;text-transform:uppercase;
   }
   .roi-cta h3{font-size:24px;font-weight:800;line-height:1.5;color:var(--ink);letter-spacing:-.01em;margin-bottom:8px}
+  /* roi-ctaは白背景カード。.pilot（暗色）内に置かれても見出しが白抜けしないよう固定 */
+  .pilot .roi-cta h3{color:var(--ink)}
   .roi-cta-hl{color:var(--orange)}
   .roi-cta p{font-size:15px;color:var(--ink-2);line-height:1.85}
   .roi-cta-btns{display:flex;flex-direction:column;gap:10px;min-width:240px}
