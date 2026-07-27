@@ -1283,7 +1283,15 @@
     .flow-stake-num{font-size:26px;min-width:70px}
   }
   .flow-track{
-    display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:24px;
+    display:grid;grid-template-columns:1fr auto auto auto 1fr;gap:14px;align-items:stretch;margin-top:24px;
+  }
+  /* 予算化前 → 入札公示 → 予算化後 の流れ矢印（2026-07-27 CEO指示） */
+  .flow-arrow{
+    align-self:center;justify-self:center;
+    width:34px;height:34px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--orange-50);border:1.5px solid var(--amber-line);
+    color:var(--orange);font-size:16px;font-weight:900;line-height:1;
   }
   .flow-zone{
     border-radius:var(--r-lg);padding:24px;
@@ -1386,6 +1394,16 @@
     .flow-track,.flow-periods{grid-template-columns:1fr}
     .flow-gate{writing-mode:initial;text-orientation:initial;justify-self:stretch;text-align:center}
     .flow-period.gap{display:none}
+    /* スマホ：STEPを1カラム縦積み＋↓コネクタ（2026-07-27 CEO指示） */
+    .flow-steps{grid-template-columns:1fr}
+    .flow-step + .flow-step{position:relative;margin-top:18px}
+    .flow-step + .flow-step::before{
+      content:"↓";position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+      font-size:14px;font-weight:900;color:var(--ink-4);line-height:1;
+    }
+    .flow-zone.planning .flow-step + .flow-step::before{color:var(--orange)}
+    /* 流れ矢印は縦向きに */
+    .flow-arrow{transform:rotate(90deg)}
   }
 
   /* ============ SAMBO ============ */
@@ -1964,6 +1982,22 @@
     .end-stage{max-width:none}
     .end-stage-arrow{transform:rotate(90deg)}
   }
+  /* β特典の別枠ボックス（通常価格と分別・2026-07-27 CEO指示） */
+  .end-tokuten{
+    position:relative;max-width:640px;margin:28px auto 32px;
+    padding:18px 22px;border:1px dashed rgba(255,122,61,.55);border-radius:14px;
+    background:rgba(240,90,40,.08);text-align:center;
+  }
+  .end-tokuten .tk-badge{
+    position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+    background:var(--orange);color:#fff;font-size:11px;font-weight:800;
+    letter-spacing:.04em;padding:4px 14px;border-radius:999px;white-space:nowrap;
+  }
+  .end-tokuten p{font-size:13.5px;color:var(--t-inv-2);line-height:1.9;margin:6px 0 0}
+  .end-tokuten strong{color:#fff}
+  .end-tokuten a{color:var(--orange-2);font-weight:800;margin-left:8px;display:inline-flex;align-items:center;gap:4px}
+  .end-tokuten a:hover{color:#fff}
+  @media (max-width:560px){.end-tokuten{padding:18px 14px}.end-tokuten p{font-size:12.5px}}
   .end .end-cta{position:relative;display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center}
   .end-cta .btn{padding:16px 32px;font-size:15px}
   .end small{position:relative;display:block;margin-top:24px;color:var(--t-inv-3);font-size:12px;letter-spacing:.04em;font-family:var(--mono)}
@@ -2774,7 +2808,7 @@
         <figcaption class="ba2-body">
           <span class="ba2-label">Before — 従来のやり方</span>
           <ul class="ba2-rows">
-            <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">情報収集</span><span class="ba2-val">数週間</span></li>
+            <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">情報収集</span><span class="ba2-val">自治体HP・担当者に自ら確認＝数週間</span></li>
             <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">提案の根拠</span><span class="ba2-val">担当者の勘と経験</span></li>
             <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">管理</span><span class="ba2-val">Excel・属人化</span></li>
           </ul>
@@ -2783,13 +2817,13 @@
       <div class="ba2-arrow" aria-hidden="true">→</div>
       <figure class="ba2-card ba2-after">
         <div class="ba2-shot">
-          <img src="images/recommend-screen.png" alt="47Connect導入後：AIが毎日自動で情報収集するレコメンド画面" loading="lazy" />
+          <img src="images/recommend-screen.png" alt="47Connect導入後：47Connectが毎週自動収集し、AIが提案を組み立てるレコメンド画面" loading="lazy" />
         </div>
         <figcaption class="ba2-body">
           <span class="ba2-label">After — 47Connect</span>
           <ul class="ba2-rows">
-            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">情報収集</span><span class="ba2-val">AIが毎日自動で</span></li>
-            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">提案の根拠</span><span class="ba2-val">1,788自治体のデータ</span></li>
+            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">情報収集</span><span class="ba2-val">すべて47Connectが毎週収集</span></li>
+            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">提案の根拠</span><span class="ba2-val">自治体データ×御社情報をAIが組み合わせ提案</span></li>
             <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">管理</span><span class="ba2-val">チームで共有・即引き継ぎ</span></li>
           </ul>
         </figcaption>
@@ -2840,7 +2874,9 @@
           </div>
         </div>
       </div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
       <div class="flow-gate">入札公示</div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
       <div class="flow-zone bidding">
         <div class="flow-zone-label">予算化後</div>
         <div class="flow-zone-period">入札後の競争<strong>1〜3ヶ月</strong></div>
@@ -2885,7 +2921,7 @@
     <div class="pilot">
       <div class="pilot-inner">
         <div>
-          <span class="pilot-tag">先着10社限定 / 8月末締切 / 本キャンペーンは今期のみ</span>
+          <span class="pilot-tag">〜2026年8月末までの特典 / 先着10社限定 / 本キャンペーンは今期のみ</span>
           <h3>自治体AI参謀 β版（先着10社）</h3>
           <div class="pilot-period">2026年8月〜12月 / 4ヶ月間（一括前払い）</div>
           <div class="pilot-pricing">
@@ -2911,7 +2947,7 @@
 
     <div class="plans-head">
       <h3>すべての機能を、通常 月20万円（税別）で。</h3>
-      <p>プランは一つ。下記 Layer 1〜3 とサポートの全機能が <strong>月20万円（税別）</strong> に含まれます。月払い・1年契約・13ヶ月目以降は月単位継続（30日予告でいつでも解約可）。1 Team Workspace単位、追加ユーザー課金なし。<strong>いまなら8月末まで、β版特別キャンペーンとして4ヶ月30万円（実質 月7.5万円相当）で先行利用可能。</strong>まずは <strong>2週間の無料トライアル</strong> でお試しいただけます。</p>
+      <p>プランは一つ。下記 Layer 1〜3 とサポートの全機能が、通常価格 <strong>月20万円（税別）</strong> に含まれます。月払い・1年契約・13ヶ月目以降は月単位継続（30日予告でいつでも解約可）。1 Team Workspace単位、追加ユーザー課金なし。まずは <strong>2週間の無料トライアル</strong> でお試しいただけます。<br><small>※ 2026年8月末までは、別枠の「β版特別キャンペーン」（上記）で先行利用いただけます。</small></p>
     </div>
     <div class="plan-compare">
       <div class="tscroll">
@@ -3007,7 +3043,7 @@
       </table>
       </div>
       <p class="plan-compare-foot">※ 基本100自治体を超える深堀り分析には追加費用が発生します（+100／+300／+500の追加パックをご用意しています）。</p>
-      <p class="plan-compare-foot">※ 上記の全機能が、月20万円（税別）に含まれます（β版特別キャンペーン期間中は先行価格で提供）。AI参謀対話・提案生成などのAI利用分は、別途チャージ料金の対象です。</p>
+      <p class="plan-compare-foot">※ 上記の全機能が、通常価格 月20万円（税別）に含まれます。AI参謀対話・提案生成などのAI利用分は、別途チャージ料金の対象です。</p>
     </div>
 
   </div>
@@ -3256,8 +3292,12 @@
     <div class="end-stage">
       <div class="end-stage-no">STEP 3</div>
       <div class="end-stage-title">本契約（月20万円・税別）</div>
-      <div class="end-stage-desc">通常 月20万円。8月末まではβ版特別キャンペーンとして4ヶ月30万円（実質 月7.5万）で先行利用可</div>
+      <div class="end-stage-desc">通常価格 月20万円（税別）・月払い1年契約。全機能が含まれます</div>
     </div>
+  </div>
+  <div class="end-tokuten">
+    <span class="tk-badge">〜2026年8月末までの特典</span>
+    <p><strong>β版特別キャンペーン</strong>：先着10社限定、4ヶ月 ¥300,000（実質 月¥75,000相当）で先行利用いただけます。<a href="#pricing">詳細を見る<span class="arrow">→</span></a></p>
   </div>
   <div class="end-cta">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" class="btn btn-orange btn-lg">個別デモを予約する<span class="arrow">→</span></a>
