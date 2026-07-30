@@ -2060,7 +2060,7 @@
     const roiText = isFinite(yearlyROI) ? yearlyROI.toFixed(1) : '—';
     if (yearlyROI >= 10) judgment = `💡 ROI ${roiText}倍 — 強くおすすめできます`;
     else if (yearlyROI >= 1) judgment = `✅ ROI ${roiText}倍 — スタンダードプラン適正`;
-    else if (yearlyROI >= 0.5) judgment = `⚠️ ROI ${roiText}倍 — ライトプラン（月10万円）も検討`;
+    else if (yearlyROI >= 0.5) judgment = `⚠️ ROI ${roiText}倍 — 導入範囲・形態は個別にご相談ください`;
     else judgment = `❌ ROI ${roiText}倍 — 見直しが必要`;
     document.getElementById('judgmentText').textContent = judgment;
   }
