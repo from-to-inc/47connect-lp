@@ -2065,8 +2065,9 @@
   }
   .plan-matrix col.mx-cat{width:9%}
   .plan-matrix col.mx-feat{width:15%}
-  .plan-matrix col.mx-desc{width:34%}
+  .plan-matrix col.mx-desc{width:30%}
   .plan-matrix col.mx-plan{width:14%}
+  .plan-matrix col.mx-plan-beta{width:14%}
   .plan-matrix th,.plan-matrix td{
     padding:13px 15px;border-bottom:1px solid var(--line);
     border-right:1px solid var(--line);vertical-align:middle;
@@ -2107,6 +2108,10 @@
   .plan-matrix .mx-no{color:var(--ink-4);font-weight:600}
   .plan-matrix .mx-beta{color:var(--orange)}
   .plan-matrix .mx-beta sup{font-size:10px;font-weight:700;margin-left:1px}
+  .plan-matrix .mx-beta-note{display:none}
+  .plan-matrix thead th.mx-h-beta{background:#FFF3EC;color:var(--orange)}
+  .plan-matrix thead th.mx-h-beta strong{color:var(--orange)}
+  .plan-matrix tbody td.mx-col-beta{background:rgba(255,243,236,.55)}
   /* 深堀り分析行（★NEW・全プラン共通の横断セル） */
   .plan-matrix .mx-feat-cell .mx-star{color:var(--orange);margin-right:2px}
   .plan-matrix .mx-feat-cell .mx-new{display:inline-block;margin-left:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;letter-spacing:.05em;padding:2px 6px;border-radius:5px;vertical-align:middle}
@@ -2135,6 +2140,17 @@
     .plan-matrix .mx-feat-cell{font-size:14px;padding:10px 4px 2px;border-bottom:none;background:transparent}
     .plan-matrix .mx-desc-cell{font-size:12.5px;line-height:1.7;padding:0 4px 10px;border-bottom:1px solid var(--line-2);background:transparent}
     .plan-matrix tbody tr:last-child .mx-desc-cell{border-bottom:none}
+    /* β版が「完成後に順次公開」の機能は、スマホでも注記を残す */
+    .plan-matrix tr:has(td.mx-beta) .mx-desc-cell{border-bottom:none;padding-bottom:3px}
+    .plan-matrix .mx-mark.mx-beta{
+      display:block;font-size:0;text-align:left;background:transparent;
+      padding:0 4px 10px;border-bottom:1px solid var(--line-2);
+    }
+    .plan-matrix .mx-mark.mx-beta sup{display:none}
+    .plan-matrix .mx-beta-note{
+      display:inline-block;font-size:11.5px;font-weight:700;
+      color:var(--orange);line-height:1.5;
+    }
     .plan-matrix .mx-span{display:block;border-radius:8px;margin:2px 0 6px;padding:9px 12px;text-align:left;border-bottom:none}
   }
 
@@ -2686,7 +2702,7 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>The Solution</div>
       <h2 class="h-section">基本機能、企業別分析、AI参謀を<em>つなぐ3層構造。</em></h2>
-      <p class="lede">47Connectは、自治体データを集めて終わりません。全国の公開情報を基盤に、御社の事業文脈で自治体を分析し、<br><strong>提案の切り口・提案書・次アクション</strong>へ変換します。</p>
+      <p class="lede">47Connectは、自治体データを集めて終わりません。全国の公開情報を基盤に、御社の事業文脈で自治体を分析し、<br><strong>提案の切り口・提案メール・次アクション</strong>へ変換します。</p>
     </div>
 
     <div class="l3-diagram" aria-label="47Connectの3層構造：土台のLayer1 基本機能の上に、Layer2 企業別レイヤー、Layer3 AI参謀が積み上がる">
@@ -2695,12 +2711,11 @@
           <div class="l3-badge">LAYER<b>3</b></div>
           <div>
             <div class="l3-ttl">AI参謀</div>
-            <div class="l3-sub">具体的な提案・資料・次アクションへ変換する</div>
+            <div class="l3-sub">具体的な提案・次アクションへ変換する</div>
           </div>
         </div>
         <div class="l3-chips">
           <span class="l3-chip">提案の切り口の提示</span>
-          <span class="l3-chip">提案書（資料）の作成</span>
           <span class="l3-chip">提案メール（文書）の作成</span>
           <span class="l3-chip">実際の深掘り分析</span>
         </div>
@@ -2714,7 +2729,6 @@
           </div>
         </div>
         <div class="l3-chips">
-          <span class="l3-chip">企業ごとの分析</span>
           <span class="l3-chip">企業×自治体の相性分析</span>
           <span class="l3-chip">フォーカス自治体の深掘り分析</span>
           <span class="l3-chip">情報通知機能</span>
@@ -2957,6 +2971,7 @@
           <col class="mx-feat" />
           <col class="mx-desc" />
           <col class="mx-plan" />
+          <col class="mx-plan-beta" />
         </colgroup>
         <thead>
           <tr>
@@ -2967,6 +2982,10 @@
               <strong>月20万円プラン</strong>
               <span>標準搭載（税別）</span>
             </th>
+            <th class="mx-h-light mx-h-beta" scope="col">
+              <strong>β版</strong>
+              <span>先着10社／2026年8月〜</span>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -2975,63 +2994,75 @@
             <td class="mx-feat-cell">自治体網羅データ</td>
             <td class="mx-desc-cell">1,788自治体の予算書・議事録・パブコメ・首長動向</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes mx-col-beta">○</td>
           </tr>
           <tr>
             <td class="mx-feat-cell">自治体レコメンド</td>
             <td class="mx-desc-cell">御社事業との適合度を自動スコア化・自動アラート</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes mx-col-beta">○</td>
           </tr>
           <tr>
             <td class="mx-feat-cell">自治体サマライズ</td>
             <td class="mx-desc-cell">公開情報の要約・主要論点・提案余地の整理</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes mx-col-beta">○</td>
           </tr>
           <tr>
             <td class="mx-feat-cell">CRM管理</td>
             <td class="mx-desc-cell">自治体提案特化・首長任期・予算サイクル・議会日程の統合管理</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-yes mx-col-beta">○</td>
           </tr>
           <tr>
             <th class="mx-cat-cell mx-cat-blue" rowspan="3" scope="rowgroup">Layer 2<br>企業別</th>
             <td class="mx-feat-cell">企業×自治体の相性分析</td>
             <td class="mx-desc-cell">御社事業と各自治体の課題・予算の適合度をスコア化し、狙うべき自治体を提示</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
           <tr>
             <td class="mx-feat-cell"><span class="mx-star">★</span>フォーカス自治体の深掘り分析【100自治体】<span class="mx-new">NEW</span></td>
             <td class="mx-desc-cell">注力自治体の課題×御社商材の事業機会を毎月AI生成（基本100自治体）</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
           <tr>
             <td class="mx-feat-cell">情報通知機能</td>
             <td class="mx-desc-cell">予算・議会・公募などの公開情報をAIが自動照合し、動くべきタイミングを即通知</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
           <tr>
             <th class="mx-cat-cell mx-cat-orange" rowspan="3" scope="rowgroup">Layer 3<br>AI参謀</th>
             <td class="mx-feat-cell">提案の切り口の提示</td>
             <td class="mx-desc-cell">自治体ごとに刺さる提案アングル・論点をAIが提示</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
           <tr>
             <td class="mx-feat-cell">提案メール（文書）の作成</td>
             <td class="mx-desc-cell">提案先に合わせたメールの下書きを自動生成</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
           <tr>
             <td class="mx-feat-cell">実際の深掘り分析</td>
             <td class="mx-desc-cell">AI参謀と対話しながら、戦略・提案を具体化する深掘り分析</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
           <tr>
             <th class="mx-cat-cell mx-cat-navy2" rowspan="1" scope="rowgroup">サポート</th>
             <td class="mx-feat-cell">付帯オンボーディング</td>
             <td class="mx-desc-cell">1年間／前半：集中支援・後半：運用最適化（年6回）</td>
             <td class="mx-mark mx-yes">○</td>
+            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
           </tr>
         </tbody>
       </table>
       </div>
+      <p class="plan-compare-foot">※ β版の「○（※）」の機能は、完成後に随時公開します。</p>
       <p class="plan-compare-foot">※ 基本100自治体を超える深堀り分析には追加費用が発生します（+100／+300／+500の追加パックをご用意しています）。</p>
       <p class="plan-compare-foot">※ 上記の全機能が、通常価格 月20万円（税別）に含まれます。AI参謀対話・提案生成などのAI利用分は、別途チャージ料金の対象です。</p>
     </div>
@@ -3251,7 +3282,7 @@
       </details>
       <details class="faq-item">
         <summary>いつから利用でき、現時点で何が使えますか？</summary>
-        <div class="ans"><strong>β版は2026年8月開始・先着10社限定・お申し込みから最短2週間</strong>で利用開始いただけます。8月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働し、「提案書作成の参謀」は2026年Q4に提供予定です。本格運用への移行は2027年1月を予定しています。</div>
+        <div class="ans"><strong>β版は2026年8月開始・先着10社限定・お申し込みから最短2週間</strong>で利用開始いただけます。8月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働します。本格運用への移行は2027年1月を予定しています。</div>
       </details>
       <details class="faq-item">
         <summary>複数の事業部・チームで利用できますか？</summary>
