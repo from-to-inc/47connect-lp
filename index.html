@@ -156,9 +156,12 @@
   }
 
   .lede{
-    font-size:18px;color:var(--ink-2);line-height:1.95;max-width:64ch;margin:0 auto;font-weight:500;
-  }
+    font-size:18px;color:var(--ink-2);line-height:1.95;max-width:none;margin:0 auto;font-weight:500;
+  }   /* 2026-08-09 64ch(768px)だと見出し1281pxに対し狭すぎ、句点改行した文が途中で折れていたため撤廃 */
   .why .lede, .end .lede{color:var(--t-inv-2)}
+  /* PC限定の強制改行（スマホでは自然折り返しに任せる）・2026-08-09 */
+  .br-pc{display:inline}
+  @media (max-width:760px){ .br-pc{display:none} }
 
   .section-head.center{text-align:center;margin-bottom:64px}
   .section-head.center .lede{margin-left:auto;margin-right:auto}
@@ -1971,7 +1974,7 @@
     font-weight:900;font-size:clamp(21px,3.4vw,30px);letter-spacing:-.02em;color:#fff;
   }
   .end-tagline .grad{color:var(--blue-3)}
-  .end p{position:relative;color:var(--t-inv-2);max-width:60ch;margin:0 auto 36px;line-height:1.95;font-size:16px}
+  .end p{position:relative;color:var(--t-inv-2);max-width:76ch;margin:0 auto 36px;line-height:1.95;font-size:16px}
   .end-stages{
     position:relative;display:flex;align-items:stretch;justify-content:center;
     gap:14px;flex-wrap:wrap;max-width:1080px;margin:0 auto 36px;
@@ -2656,7 +2659,8 @@
           <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Hard to Find</div>
         </div>
         <h3>見つけられない</h3>
-        <p><strong>1,788自治体のうち、どこに勝ち目があるのか。</strong>予算書も総合計画も公開されてはいるが、掲載場所も様式も自治体ごとにバラバラで、絞り込みの作業だけが積み上がる。</p>
+        <p><strong>1,788自治体のうち、どこに勝ち目があるのか。</strong><br>
+予算書も総合計画も公開されてはいるが、掲載場所も様式も自治体ごとにバラバラで、絞り込みの作業だけが積み上がる。</p>
         <div class="tag">狙うべき自治体が、定まらないまま</div>
         <ul class="prob-points">
           <li>予算書・総合計画・議事録の在りかが、自治体ごとに違う</li>
@@ -2674,7 +2678,8 @@
           <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Hard to Read</div>
         </div>
         <h3>わからない</h3>
-        <p><strong>読み込んでも、提案書の1行にならない。</strong>どの課が何に困っていて、自社商材をどの切り口で当て、なぜ今なのか——予算書や総合計画を開いても、そこが書けない。</p>
+        <p><strong>読み込んでも、提案書の1行にならない。</strong><br>
+どの課が何に困っていて、自社商材をどの切り口で当て、なぜ今なのか——予算書や総合計画を開いても、そこが書けない。</p>
         <div class="tag">情報はあるのに、提案に変換できないまま</div>
         <ul class="prob-points">
           <li>担当課・政策文脈・提案余地の読み解きに、そのつど時間を取られる</li>
@@ -2692,7 +2697,8 @@
           <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>Hard to Manage</div>
         </div>
         <h3>管理ができない</h3>
-        <p><strong>誰がどの自治体を持っていて、今どこまで進んでいるのか。</strong>接触履歴も次アクションも個人のExcelとメールの中にあり、異動のたびに文脈が消え、上長は進捗を聞いて回るしかない。</p>
+        <p><strong>誰がどの自治体を持っていて、今どこまで進んでいるのか。</strong><br>
+接触履歴も次アクションも個人のExcelとメールの中にあり、異動のたびに文脈が消え、上長は進捗を聞いて回るしかない。</p>
         <div class="tag">チームの進捗も引き継ぎも、個人任せのまま</div>
         <ul class="prob-points">
           <li>提案状況・メモ・優先度が個人のExcelに散らばり、チームから見えない</li>
@@ -2733,7 +2739,8 @@
         <div class="screen-body">
           <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>01 FIND</div>
           <h3>探す</h3>
-          <p>御社の商材が刺さる自治体を、勝てる順に。根拠（スコア）つきだから、上司にもそのまま説明できます。</p>
+          <p>御社の商材が刺さる自治体を、勝てる順に。<br>
+根拠（スコア）つきだから、上司にもそのまま説明できます。</p>
         </div>
       </div>
       <div class="screen-card">
@@ -2743,7 +2750,8 @@
         <div class="screen-body">
           <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>02 UNDERSTAND</div>
           <h3>読む</h3>
-          <p>予算・政策・担当課・提案余地を1自治体ごとに要約。「なぜ今、ここなのか」が一目で腑に落ちます。</p>
+          <p>予算・政策・担当課・提案余地を1自治体ごとに要約。<br>
+「なぜ今、ここなのか」が一目で腑に落ちます。</p>
         </div>
       </div>
       <div class="screen-card">
@@ -2753,7 +2761,9 @@
         <div class="screen-body">
           <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>03 MANAGE</div>
           <h3>続ける</h3>
-          <p>提案状況・優先度・次アクションをCRMに集約。<strong>担当者が代わっても引き継げる</strong>し、チーム全体の進捗も一目で分かる。属人的な自治体営業が、抜けない「チームの資産」に変わります。</p>
+          <p>提案状況・優先度・次アクションをCRMに集約。<br>
+<strong>担当者が代わっても引き継げる</strong>し、チーム全体の進捗も一目で分かる。<br>
+属人的な自治体営業が、抜けない「チームの資産」に変わります。</p>
         </div>
       </div>
     </div>
@@ -2830,7 +2840,8 @@
       <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
       <div class="ai-callout-body">
         <div class="ai-callout-label">AI参謀より</div>
-        <p>だからこそ <strong>自治体AI参謀</strong> は、公示を待ちません。予算・議会・公募の動きを毎日見て、<strong>「今、この自治体のこの課へ」</strong>をお知らせします。</p>
+        <p>だからこそ <strong>自治体AI参謀</strong> は、公示を待ちません。<br>
+予算・議会・公募の動きを毎日見て、<strong>「今、この自治体のこの課へ」</strong>をお知らせします。</p>
       </div>
     </div>
   </div>
@@ -2935,7 +2946,8 @@
                      ②社内語の平易化に伴い文言を改稿（"使い切る"→"次の一手に変える" 等）。
                      対比構造（置く／変える）は維持。★CEO指示2026-05-08 由来のため要CEO確認 -->
     <div class="solution-punch">
-      <p class="punch-strong">DBサービスは情報を "置く" だけ。
+      <p class="punch-strong">DBサービスは情報を "置く" だけ。<br>
+
 47Connectは、AI参謀がそれを "次の一手" に変える。</p>
       <p class="punch-sub">レコメンド・サマライズ・CRMの中身を、御社専属AI参謀との毎日の対話で引き出せます。</p>
     </div>
@@ -3012,19 +3024,22 @@
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 01</div>
         <h3><em>実取引</em>の重み</h3>
-        <p>企業版ふるさと納税の寄附仲介で <strong>210件以上・139自治体</strong> の実取引を積み上げてきました。机上の調査ではなく、<strong>実際にお金が動いた取引データ</strong>が判断材料の源泉です。</p>
+        <p>企業版ふるさと納税の寄附仲介で <strong>210件以上・139自治体</strong> の実取引を積み上げてきました。<br>
+机上の調査ではなく、<strong>実際にお金が動いた取引データ</strong>が判断材料の源泉です。</p>
         <div class="pillar-tag">→ 210件超・139自治体の実取引実績</div>
       </div>
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 02</div>
         <h3><em>自治体</em>との信頼パイプ</h3>
-        <p><strong>139自治体の担当部局と直接取引</strong>で築いた信頼関係。広告でもインタビューでもなく、寄附仲介の現場で積み上げた人脈と知見が、AI参謀の判断精度を支えます。</p>
+        <p><strong>139自治体の担当部局と直接取引</strong>で築いた信頼関係。<br>
+広告でもインタビューでもなく、寄附仲介の現場で積み上げた人脈と知見が、AI参謀の判断精度を支えます。</p>
         <div class="pillar-tag">→ 139自治体との直接パイプ</div>
       </div>
       <div class="why-pillar">
         <div class="pillar-no">PILLAR 03</div>
         <h3><em>公開情報</em>＋一次情報</h3>
-        <p>公開情報だけでは見えない、<strong>担当者から直接聞いた予算編成の温度感・政策の優先度・部局のニーズ</strong>。寄附仲介の現場で得た <strong>一次情報</strong> を、AI参謀の知見として組み込みます。</p>
+        <p>公開情報だけでは見えない、<strong>担当者から直接聞いた予算編成の温度感・政策の優先度・部局のニーズ</strong>。<br>
+寄附仲介の現場で得た <strong>一次情報</strong> を、AI参謀の知見として組み込みます。</p>
         <div class="pillar-tag">→ 公開情報 × 一次情報</div>
       </div>
     </div>
@@ -3282,7 +3297,8 @@
       </div>
       <p class="plan-compare-foot">※ β版の「○（※）」の機能は、完成後に随時公開します。</p>
       <p class="plan-compare-foot">※ 基本100自治体を超える深堀り分析には追加費用が発生します（+100／+300／+500の追加パックをご用意しています）。</p>
-      <p class="plan-compare-foot">※ 上記の全機能が、通常価格 月20万円（税別）に含まれます。AI参謀対話・提案生成などのAI利用分は、別途チャージ料金の対象です。</p>
+      <p class="plan-compare-foot">※ 上記の全機能が、通常価格 月20万円（税別）に含まれます。<br>
+AI参謀対話・提案生成などのAI利用分は、別途チャージ料金の対象です。</p>
     </div>
 
   </div>
@@ -3352,8 +3368,10 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
 <!-- END CTA -->
 <section class="end" id="contact" data-screen-label="16 CTA">
   <div class="end-tag">2週間 無料トライアル</div>
-  <h2>まずは <span class="grad">打ち合わせ</span>。2週間の無料トライアルで、御社専用画面をお試しください。</h2>
-  <p>無理に申込までの大ジャンプはお願いしません。まず <strong>60分の打ち合わせ</strong> で御社の課題を伺い、専用のデモアカウントを発行。<strong>2週間の無料トライアル</strong>で実際の画面を体験してから、本契約（月20万円）をご判断いただけます。</p>
+  <h2>まずは <span class="grad">打ち合わせ</span>。<br>2週間の無料トライアルで、<br class="br-pc">御社専用画面をお試しください。</h2>
+  <p>無理に申込までの大ジャンプはお願いしません。<br>
+まず <strong>60分の打ち合わせ</strong> で御社の課題を伺い、専用のデモアカウントを発行。<br>
+<strong>2週間の無料トライアル</strong>で実際の画面を体験してから、本契約（月20万円）をご判断いただけます。</p>
   <div class="end-stages">
     <div class="end-stage">
       <div class="end-stage-no">STEP 1</div>
