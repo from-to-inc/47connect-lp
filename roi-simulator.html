@@ -466,6 +466,7 @@
   }
   .result-card .metric-breakdown .breakdown-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 8px;
     align-items: baseline;
@@ -590,6 +591,7 @@
     background: rgba(255,255,255,0.85);
     border-radius: 8px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 14px;
@@ -1290,6 +1292,8 @@
     .result-card .metrics { grid-template-columns: 1fr; }
     .result-card .metric-value.big { font-size: 24px; }
     .result-judgment .judgment-text { font-size: 18px; }
+    .before-after { grid-template-columns: 1fr; }
+    .before-after .ba-arrow { transform: rotate(90deg); padding: 4px 0; }
   }
 </style>
 </head>
@@ -1421,7 +1425,7 @@
     <div class="premise" style="margin-bottom: 18px;">
       <div class="premise-title">📌 計算の前提</div>
       <ul>
-        <li>47Connectスタンダードプラン：<strong>月額20万円</strong>（初期構築費10万円・AIクレジットは別途）</li>
+        <li>47Connect 月20万円プラン：<strong>月額20万円</strong>（初期構築費10万円・AIクレジットは別途）</li>
         <li>導入後の工数：<strong>1/10に削減</strong>（90%削減目標）</li>
         <li>
           提案活動量：<strong>2倍に増加</strong>を想定（工数1/10で空いた時間を提案活動に振り向け）
@@ -1762,7 +1766,7 @@
       <div class="feature">相談だけでもOK</div>
     </div>
 
-    <a href="./#contact" class="btn">
+    <a href="index.html#contact" class="btn">
       無料で個別相談を申し込む
       <span class="btn-arrow">→</span>
     </a>
@@ -1771,7 +1775,7 @@
 
   <div class="footnote">
     ※ 本シミュレーションは仮置き値に基づく概算試算です。実際の効果はお客様の営業状況により異なります。<br>
-    47Connect スタンダードプラン｜月額20万円｜初期構築費10万円｜AIクレジット別途
+    47Connect 月20万円プラン｜月額20万円｜初期構築費10万円｜AIクレジット別途
   </div>
 
 </div>
@@ -2055,12 +2059,13 @@
 
     document.getElementById('paybackMonths').textContent = isFinite(paybackMonths) ? paybackMonths.toFixed(1) : '—';
 
-    // 判定
+    // 判定（表示は小数第1位に丸めるため、判定も同じ丸め値で行い「同じ表示なのに判定が違う」を防ぐ）
     let judgment;
     const roiText = isFinite(yearlyROI) ? yearlyROI.toFixed(1) : '—';
-    if (yearlyROI >= 10) judgment = `💡 ROI ${roiText}倍 — 強くおすすめできます`;
-    else if (yearlyROI >= 1) judgment = `✅ ROI ${roiText}倍 — スタンダードプラン適正`;
-    else if (yearlyROI >= 0.5) judgment = `⚠️ ROI ${roiText}倍 — 導入範囲・形態は個別にご相談ください`;
+    const roiRounded = isFinite(yearlyROI) ? Math.round(yearlyROI * 10) / 10 : NaN;
+    if (roiRounded >= 10) judgment = `💡 ROI ${roiText}倍 — 強くおすすめできます`;
+    else if (roiRounded >= 1) judgment = `✅ ROI ${roiText}倍 — 月20万円プラン適正`;
+    else if (roiRounded >= 0.5) judgment = `⚠️ ROI ${roiText}倍 — 導入範囲・形態は個別にご相談ください`;
     else judgment = `❌ ROI ${roiText}倍 — 見直しが必要`;
     document.getElementById('judgmentText').textContent = judgment;
   }
