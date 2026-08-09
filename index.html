@@ -1293,6 +1293,13 @@
     .flow-stakes{grid-template-columns:1fr;gap:10px}
     .flow-stake-num{font-size:26px;min-width:70px}
   }
+  /* カバー領域の図（2026-08-09 画像化）: 横長のためモバイルは横スクロールで可読性を確保 */
+  .flow-figure{margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r-card)}
+  .flow-figure img{display:block;width:100%;height:auto}
+  @media (max-width:760px){
+    .flow-figure img{width:auto;max-width:none}   /* 原寸1672pxのまま横スクロール。縮小すると図中の文字が判読不能になるため */
+    .flow-figure::after{content:"→ 横にスクロールできます";display:block;font-size:11px;color:var(--ink-4);padding:6px 2px 0}
+  }
   .flow-track{
     display:grid;grid-template-columns:1fr auto auto auto 1fr;gap:14px;align-items:stretch;margin-top:24px;
   }
@@ -2779,62 +2786,17 @@
       <p class="lede"><strong>入札公示を見てから動くと、価格競争に巻き込まれます。</strong><br>
 勝負がつくのは<strong>予算に書き込まれる前</strong>。課題設定から予算要求までの間に、担当課と話せているかどうかです。<br>
 <strong>次の予算編成に間に合わなければ、提案は次年度送り。</strong></p>
-      <div class="flow-stakes">
-        <div class="flow-stake">
-          <div class="flow-stake-num">年1回</div>
-          <div class="flow-stake-text">予算編成期は<strong>年に1度</strong>。逃すと <strong>次は12ヶ月後</strong>。</div>
-        </div>
-        <div class="flow-stake">
-          <div class="flow-stake-num">3%以下</div>
-          <div class="flow-stake-text">自治体予算 <strong>約100兆円</strong> のうち、<br>上流接続できている企業は<strong>3%以下</strong>（当社推計）。</div>
-        </div>
-      </div>
+      
     </div>
 
-    <div class="flow-track">
-      <div class="flow-zone planning">
-        <div class="flow-zone-label">47Connect がカバーする領域</div>
-        <div class="flow-zone-period">意思決定上流期間<strong>半年〜2年前</strong></div>
-        <div class="flow-zone-div"></div>
-        <div class="flow-steps">
-          <div class="flow-step">
-            <div class="sn">STEP 01</div>
-            <div class="st">事業の方向性決定</div>
-            <div class="sd">首長 / 課題抽出・方向性の決定</div>
-          </div>
-          <div class="flow-step">
-            <div class="sn">STEP 02</div>
-            <div class="st">政策内容決定</div>
-            <div class="sd">政策企画課 / 政策立案</div>
-          </div>
-          <div class="flow-step">
-            <div class="sn">STEP 03</div>
-            <div class="st">予算編成</div>
-            <div class="sd">各部署 / 参考見積取得・予算編成</div>
-          </div>
-        </div>
-      </div>
-      <div class="flow-arrow" aria-hidden="true">→</div>
-      <div class="flow-gate">入札公示</div>
-      <div class="flow-arrow" aria-hidden="true">→</div>
-      <div class="flow-zone bidding">
-        <div class="flow-zone-label">予算化後</div>
-        <div class="flow-zone-period">入札後の競争<strong>1〜3ヶ月</strong></div>
-        <div class="flow-zone-div"></div>
-        <div class="flow-steps">
-          <div class="flow-step">
-            <div class="sn">STEP 04</div>
-            <div class="st">入札公示</div>
-            <div class="sd">価格競争・複数社競合</div>
-          </div>
-          <div class="flow-step">
-            <div class="sn">STEP 05</div>
-            <div class="st">落札・契約</div>
-            <div class="sd">最低価格落札方式が中心</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- 47Connectがカバーする領域の図（2026-08-09 PO提供画像へ差し替え。旧HTML版のSTEP/統計カードは git 履歴を参照） -->
+    <figure class="flow-figure">
+      <picture>
+        <source srcset="images/flow-coverage.webp" type="image/webp">
+        <img src="images/flow-coverage.png" width="1672" height="941" loading="lazy" decoding="async"
+             alt="自治体の意思決定フロー図。47Connectがカバーするのは入札公示より前の上流3ステップで、意思決定上流期間は半年〜2年前。STEP01 事業の方向性決定（首長／課題抽出・方向性の決定）、STEP02 政策内容決定（政策企画課／政策立案）、STEP03 予算編成（各部署／参考見積取得・予算編成）。入札公示を挟んだ予算化後は入札後の競争1〜3ヶ月で、STEP04 入札公示（価格競争・複数社競合）、STEP05 落札・契約（最低価格落札方式が中心）。あわせて、予算編成期は年に1度で逃すと次は12ヶ月後。自治体予算 約100兆円のうち上流接続できている企業は3%以下（当社推計）。" />
+      </picture>
+    </figure>
 
     <div class="flow-insight ai-callout">
       <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
