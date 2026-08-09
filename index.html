@@ -94,9 +94,9 @@
     --sh-orange: 0 12px 24px rgba(240,90,40,.30), 0 5px 10px rgba(240,90,40,.16);
 
     /* Unified card texture（2026-07-27 プレミアム統一トークン） */
-    --r-card:      16px;
-    --sh-card:       0 1px 2px rgba(7,26,51,.05), 0 8px 24px rgba(7,26,51,.06);
-    --sh-card-hover: 0 2px 4px rgba(7,26,51,.06), 0 16px 40px rgba(7,26,51,.12);
+    --r-card:      20px;   /* 2026-08-09 Labid型: 16→20px */
+    --sh-card:       0 2px 6px rgba(7,26,51,.05), 0 24px 56px -22px rgba(7,26,51,.28);   /* 2026-08-09 長く拡散させ、境界線なしでも浮くように */
+    --sh-card-hover: 0 4px 10px rgba(7,26,51,.06), 0 34px 74px -26px rgba(7,26,51,.36);
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -166,7 +166,7 @@
   /* ============ BUTTONS ============ */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:14px 26px;border-radius:var(--r);font-weight:700;font-size:15px;
+    padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;   /* 2026-08-09 Labid型: 完全ピル */
     letter-spacing:.01em;transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;white-space:nowrap;
     border:1px solid transparent;
   }
@@ -365,7 +365,7 @@
   }
   /* 根拠セクションへ飛べるチップ（2026-08-07：Above the Fold の数字を検証可能にする） */
   a.hero-chip:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(7,26,51,.36)}
-  .hero-chip .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:15px;flex-shrink:0}
+  .hero-chip .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:15px;flex-shrink:0}
   .hero-chip .n{font-size:20px;font-weight:900;letter-spacing:-.02em;line-height:1;color:var(--ink)}
   .hero-chip .t{font-size:10.5px;color:var(--ink-3);font-weight:700}
   .hero-chip.a{top:-16px;left:-8px}.hero-chip.a .ic{background:var(--orange)}
@@ -587,11 +587,11 @@
   .problems{background:#FFF9F5}  /* 痛みカテゴリ：極薄朱（連続） */
   .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
   .prob{
-    background:#fff;border:1px solid var(--line);border-radius:var(--r-card);
+    background:#fff;border:none;border-radius:var(--r-card);
     padding:30px 26px;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;display:flex;flex-direction:column;gap:16px;
     min-height:100%;overflow:hidden;box-shadow:var(--sh-card);
   }
-  .prob:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover);border-color:var(--blue-200)}
+  .prob:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .prob-visual{
     height:120px;border-radius:var(--r);background:var(--blue-50);
     border:1px solid var(--blue-100);display:grid;place-items:center;position:relative;overflow:hidden;
@@ -635,7 +635,7 @@
     padding:5px 9px;border-radius:999px;background:#fff;color:var(--blue-deep);
     border:1px solid var(--blue-100);
   }
-  .prob .en{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase}
+  .prob .en{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
   .prob h3{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.015em;line-height:1.4}
   .prob p{font-size:16px;color:var(--ink-2);line-height:1.95}
   .prob .tag{
@@ -690,7 +690,7 @@
   }
   /* 3層構造ダイアグラム（下から積み上げ・Layer1土台・2026-07-24 CEO指示） */
   .l3-diagram{margin:42px auto 0;max-width:900px;display:flex;flex-direction:column;align-items:center}
-  .l3-layer{position:relative;border-radius:var(--r-card);padding:24px 28px;border:1px solid var(--line);box-shadow:var(--sh-card);background:#fff;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease}
+  .l3-layer{position:relative;border-radius:var(--r-card);padding:24px 28px;border:none;box-shadow:var(--sh-card);background:#fff;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease}
   .l3-layer:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .l3-layer + .l3-layer{margin-top:36px}
   /* DOM順は L3→L2→L1（視覚上、頂上がL3・土台がL1）。矢印は下の層から上の層へ */
@@ -710,7 +710,7 @@
   }
   .ba2-card{
     display:flex;flex-direction:column;overflow:hidden;
-    border-radius:var(--r-card);border:1px solid var(--line);
+    border-radius:var(--r-card);border:none;
     background:#fff;box-shadow:var(--sh-card);
     transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
@@ -862,18 +862,22 @@
   .screen-tour{background:var(--bg)}  /* 解決画面開始：白で痛み→解決の切替を強調 */
   .screen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
   .screen-card{
-    background:#fff;border:1px solid var(--line);border-radius:var(--r-card);
+    background:#fff;border:none;border-radius:var(--r-card);
     overflow:hidden;box-shadow:var(--sh-card);display:flex;flex-direction:column;
     transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
-  .screen-card:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover);border-color:var(--blue-200)}
+  .screen-card:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .screen-shot{
     aspect-ratio:16/10;background:var(--blue-50);border-bottom:1px solid var(--line);
     overflow:hidden;
   }
   .screen-shot img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
   .screen-body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
-  .screen-kicker{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);letter-spacing:.12em}
+  .screen-kicker{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);letter-spacing:.12em;display:inline-flex;align-items:center;gap:7px}
+  /* ラインアイコン（Labid型・2026-08-09）: currentColor で親の色に追従 */
+  .screen-kicker svg{width:15px;height:15px;flex-shrink:0}
+  .prob .en svg{width:14px;height:14px;flex-shrink:0}
+  .hero-chip .ic svg{width:19px;height:19px}
   .screen-body h3{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
   .screen-body p{font-size:14px;line-height:1.85;color:var(--ink-2)}
   @media (max-width:980px){.screen-grid{grid-template-columns:1fr}}
@@ -1897,10 +1901,10 @@
   .faq{background:var(--bg-cool)}  /* 信頼カテゴリ：薄グレー */
   .faq-list{margin-top:32px;display:flex;flex-direction:column;gap:10px}
   .faq-item{
-    background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-card);
+    background:var(--bg-soft);border:none;border-radius:var(--r-card);
     transition:background .2s ease, border-color .2s ease, box-shadow .2s ease;overflow:hidden;
   }
-  .faq-item[open]{background:#fff;border-color:var(--blue-200);box-shadow:var(--sh-card)}
+  .faq-item[open]{background:#fff;box-shadow:var(--sh-card)}
   .faq-item summary{
     list-style:none;cursor:pointer;padding:24px 26px;
     display:flex;justify-content:space-between;align-items:center;gap:16px;
@@ -2617,8 +2621,8 @@
 
     <div class="hero-visual">
       <img class="hero-shot" src="images/header_app.png" alt="FromTo 自治体管理 — 自治体分析詳細・分野別総合性マップ画面" />
-      <div class="hero-chip a"><span class="ic">★</span><span><span class="n">1,788</span><br><span class="t">自治体を分析</span></span></div>
-      <a class="hero-chip b" href="#roi" aria-label="営業工数の圧縮効果。投資効果セクションで根拠を見る"><span class="ic">↓</span><span><span class="n">40h→4h</span><br><span class="t">営業工数を圧縮 — 根拠を見る</span></span></a>
+      <div class="hero-chip a"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span><span><span class="n">1,788</span><br><span class="t">自治体を分析</span></span></div>
+      <a class="hero-chip b" href="#roi" aria-label="営業工数の圧縮効果。投資効果セクションで根拠を見る"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 17v-5h-5"/></svg></span><span><span class="n">40h→4h</span><br><span class="t">営業工数を圧縮 — 根拠を見る</span></span></a>
     </div>
   </div>
 </section>
@@ -2649,7 +2653,7 @@
         </div>
         <div class="row">
           <div class="no">01</div>
-          <div class="en">Hard to Find</div>
+          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Hard to Find</div>
         </div>
         <h3>見つけられない</h3>
         <p><strong>1,788自治体のうち、どこに勝ち目があるのか。</strong>予算書も総合計画も公開されてはいるが、掲載場所も様式も自治体ごとにバラバラで、絞り込みの作業だけが積み上がる。</p>
@@ -2667,7 +2671,7 @@
         </div>
         <div class="row">
           <div class="no">02</div>
-          <div class="en">Hard to Read</div>
+          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Hard to Read</div>
         </div>
         <h3>わからない</h3>
         <p><strong>読み込んでも、提案書の1行にならない。</strong>どの課が何に困っていて、自社商材をどの切り口で当て、なぜ今なのか——予算書や総合計画を開いても、そこが書けない。</p>
@@ -2685,7 +2689,7 @@
         </div>
         <div class="row">
           <div class="no">03</div>
-          <div class="en">Hard to Manage</div>
+          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>Hard to Manage</div>
         </div>
         <h3>管理ができない</h3>
         <p><strong>誰がどの自治体を持っていて、今どこまで進んでいるのか。</strong>接触履歴も次アクションも個人のExcelとメールの中にあり、異動のたびに文脈が消え、上長は進捗を聞いて回るしかない。</p>
@@ -2727,7 +2731,7 @@
           <img src="images/recommend-screen.png" alt="47Connectの自治体レコメンド画面" />
         </div>
         <div class="screen-body">
-          <div class="screen-kicker">01 FIND</div>
+          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>01 FIND</div>
           <h3>探す</h3>
           <p>御社の商材が刺さる自治体を、勝てる順に。根拠（スコア）つきだから、上司にもそのまま説明できます。</p>
         </div>
@@ -2737,7 +2741,7 @@
           <img src="images/image.png" alt="47Connectの自治体サマライズ画面" />
         </div>
         <div class="screen-body">
-          <div class="screen-kicker">02 UNDERSTAND</div>
+          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>02 UNDERSTAND</div>
           <h3>読む</h3>
           <p>予算・政策・担当課・提案余地を1自治体ごとに要約。「なぜ今、ここなのか」が一目で腑に落ちます。</p>
         </div>
@@ -2747,7 +2751,7 @@
           <img src="images/crm_list.png" alt="47Connectの提案管理CRM画面" />
         </div>
         <div class="screen-body">
-          <div class="screen-kicker">03 MANAGE</div>
+          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>03 MANAGE</div>
           <h3>続ける</h3>
           <p>提案状況・優先度・次アクションをCRMに集約。<strong>担当者が代わっても引き継げる</strong>し、チーム全体の進捗も一目で分かる。属人的な自治体営業が、抜けない「チームの資産」に変わります。</p>
         </div>
