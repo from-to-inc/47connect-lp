@@ -131,6 +131,8 @@
     letter-spacing:.14em;text-transform:uppercase;
     color:var(--blue-deep);margin-bottom:22px;
   }
+  /* 2026-08-09: text-transform:uppercase親内で「β」がΒ（大文字ベータ）化するのを防ぐ */
+  .no-uc{text-transform:none}
   .eyebrow .dot{width:8px;height:8px}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
   .eyebrow.on-dark{color:var(--blue-3)}
@@ -211,6 +213,8 @@
     backdrop-filter:saturate(180%) blur(12px);
     border-bottom:1px solid var(--line);
   }
+  /* 2026-08-09: sticky header復活に伴い、#アンカー着地点がヘッダーに隠れないよう余白を確保 */
+  section[id]{scroll-margin-top:100px}
   .header-inner{
     display:flex;align-items:center;justify-content:space-between;
     height:68px;gap:16px;
@@ -1298,7 +1302,8 @@
   .flow-figure img{display:block;width:100%;height:auto}
   @media (max-width:760px){
     .flow-figure img{width:auto;max-width:none}   /* 原寸1672pxのまま横スクロール。縮小すると図中の文字が判読不能になるため */
-    .flow-figure::after{content:"→ 横にスクロールできます";display:block;font-size:11px;color:var(--ink-4);padding:6px 2px 0}
+    /* 2026-08-09: 図の高さが941pxあり下端ヒントが初回表示で画面外だったため、スクロール前から見える図の直前(上)に移動 */
+    .flow-figure::before{content:"→ 横にスクロールできます";display:block;font-size:11px;font-weight:700;color:var(--ink-2);background:var(--bg-soft);padding:7px 12px;border-radius:var(--r-card) var(--r-card) 0 0}
   }
   .flow-track{
     display:grid;grid-template-columns:1fr auto auto auto 1fr;gap:14px;align-items:stretch;margin-top:24px;
@@ -2207,8 +2212,8 @@
      既存ルールの後に配置し、同詳細度で上書き。内容は変更せず見せ方のみ最適化。
      ============================================================ */
 
-  /* 横はみ出しの安全網 */
-  html,body{overflow-x:hidden}
+  /* 横はみ出しの安全網（2026-08-09: hiddenだとoverflow-yがautoに強制変換されhtml/bodyがスクロールコンテナ化 → smooth scroll/#anchor遷移とsticky headerが機能しなくなる。clipなら強制変換されない） */
+  html,body{overflow-x:clip}
   /* 横スクロール用ラッパ（料金表・比較表） */
   .tscroll{width:100%}
 
@@ -3081,7 +3086,7 @@
 <section class="pricing" id="pricing" data-screen-label="13 Pricing">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>β版特別キャンペーン</div>
+      <div class="eyebrow"><span class="dot"></span><span class="no-uc">β</span>版特別キャンペーン</div>
       <h2 class="h-section">β版特別キャンペーンに参画する10社だけの、<em>特別な条件。</em></h2>
       <p class="lede">自治体AI参謀の精度を一緒に磨いていただく<strong>共創パートナー枠</strong>です。<br>
 御社の勝ちパターンをAIに学習させる立ち上げ期間として、通常価格より低い特別価格でご提供します。</p>
@@ -3103,7 +3108,7 @@
           </div>
         </div>
         <div class="pilot-incs">
-          <div class="pilot-incs-lbl">β版10社にしか与えない、3つの権利</div>
+          <div class="pilot-incs-lbl"><span class="no-uc">β</span>版10社にしか与えない、3つの権利</div>
           <ul>
             <li><strong>① 先行アクセス</strong> — β版期間中、全機能を順次解放。通常価格より特別価格で先行体験。</li>
             <li><strong>② 機能要望反映優先権</strong> — 月次FBで、御社の声が次の機能に直接反映。</li>
