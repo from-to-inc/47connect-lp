@@ -94,9 +94,9 @@
     --sh-orange: 0 12px 24px rgba(240,90,40,.30), 0 5px 10px rgba(240,90,40,.16);
 
     /* Unified card texture（2026-07-27 プレミアム統一トークン） */
-    --r-card:      16px;
-    --sh-card:       0 1px 2px rgba(7,26,51,.05), 0 8px 24px rgba(7,26,51,.06);
-    --sh-card-hover: 0 2px 4px rgba(7,26,51,.06), 0 16px 40px rgba(7,26,51,.12);
+    --r-card:      20px;   /* 2026-08-09 Labid型: 16→20px */
+    --sh-card:       0 2px 6px rgba(7,26,51,.05), 0 24px 56px -22px rgba(7,26,51,.28);   /* 2026-08-09 長く拡散させ、境界線なしでも浮くように */
+    --sh-card-hover: 0 4px 10px rgba(7,26,51,.06), 0 34px 74px -26px rgba(7,26,51,.36);
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -166,7 +166,7 @@
   /* ============ BUTTONS ============ */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:14px 26px;border-radius:var(--r);font-weight:700;font-size:15px;
+    padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;   /* 2026-08-09 Labid型: 完全ピル */
     letter-spacing:.01em;transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;white-space:nowrap;
     border:1px solid transparent;
   }
@@ -365,7 +365,7 @@
   }
   /* 根拠セクションへ飛べるチップ（2026-08-07：Above the Fold の数字を検証可能にする） */
   a.hero-chip:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(7,26,51,.36)}
-  .hero-chip .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:15px;flex-shrink:0}
+  .hero-chip .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:15px;flex-shrink:0}
   .hero-chip .n{font-size:20px;font-weight:900;letter-spacing:-.02em;line-height:1;color:var(--ink)}
   .hero-chip .t{font-size:10.5px;color:var(--ink-3);font-weight:700}
   .hero-chip.a{top:-16px;left:-8px}.hero-chip.a .ic{background:var(--orange)}
@@ -587,11 +587,11 @@
   .problems{background:#FFF9F5}  /* 痛みカテゴリ：極薄朱（連続） */
   .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
   .prob{
-    background:#fff;border:1px solid var(--line);border-radius:var(--r-card);
+    background:#fff;border:none;border-radius:var(--r-card);
     padding:30px 26px;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;display:flex;flex-direction:column;gap:16px;
     min-height:100%;overflow:hidden;box-shadow:var(--sh-card);
   }
-  .prob:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover);border-color:var(--blue-200)}
+  .prob:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .prob-visual{
     height:120px;border-radius:var(--r);background:var(--blue-50);
     border:1px solid var(--blue-100);display:grid;place-items:center;position:relative;overflow:hidden;
@@ -635,7 +635,7 @@
     padding:5px 9px;border-radius:999px;background:#fff;color:var(--blue-deep);
     border:1px solid var(--blue-100);
   }
-  .prob .en{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase}
+  .prob .en{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
   .prob h3{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.015em;line-height:1.4}
   .prob p{font-size:16px;color:var(--ink-2);line-height:1.95}
   .prob .tag{
@@ -690,7 +690,7 @@
   }
   /* 3層構造ダイアグラム（下から積み上げ・Layer1土台・2026-07-24 CEO指示） */
   .l3-diagram{margin:42px auto 0;max-width:900px;display:flex;flex-direction:column;align-items:center}
-  .l3-layer{position:relative;border-radius:var(--r-card);padding:24px 28px;border:1px solid var(--line);box-shadow:var(--sh-card);background:#fff;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease}
+  .l3-layer{position:relative;border-radius:var(--r-card);padding:24px 28px;border:none;box-shadow:var(--sh-card);background:#fff;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease}
   .l3-layer:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .l3-layer + .l3-layer{margin-top:36px}
   /* DOM順は L3→L2→L1（視覚上、頂上がL3・土台がL1）。矢印は下の層から上の層へ */
@@ -710,7 +710,7 @@
   }
   .ba2-card{
     display:flex;flex-direction:column;overflow:hidden;
-    border-radius:var(--r-card);border:1px solid var(--line);
+    border-radius:var(--r-card);border:none;
     background:#fff;box-shadow:var(--sh-card);
     transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
@@ -862,18 +862,22 @@
   .screen-tour{background:var(--bg)}  /* 解決画面開始：白で痛み→解決の切替を強調 */
   .screen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
   .screen-card{
-    background:#fff;border:1px solid var(--line);border-radius:var(--r-card);
+    background:#fff;border:none;border-radius:var(--r-card);
     overflow:hidden;box-shadow:var(--sh-card);display:flex;flex-direction:column;
     transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
-  .screen-card:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover);border-color:var(--blue-200)}
+  .screen-card:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .screen-shot{
     aspect-ratio:16/10;background:var(--blue-50);border-bottom:1px solid var(--line);
     overflow:hidden;
   }
   .screen-shot img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
   .screen-body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
-  .screen-kicker{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);letter-spacing:.12em}
+  .screen-kicker{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);letter-spacing:.12em;display:inline-flex;align-items:center;gap:7px}
+  /* ラインアイコン（Labid型・2026-08-09）: currentColor で親の色に追従 */
+  .screen-kicker svg{width:15px;height:15px;flex-shrink:0}
+  .prob .en svg{width:14px;height:14px;flex-shrink:0}
+  .hero-chip .ic svg{width:19px;height:19px}
   .screen-body h3{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
   .screen-body p{font-size:14px;line-height:1.85;color:var(--ink-2)}
   @media (max-width:980px){.screen-grid{grid-template-columns:1fr}}
@@ -1897,10 +1901,10 @@
   .faq{background:var(--bg-cool)}  /* 信頼カテゴリ：薄グレー */
   .faq-list{margin-top:32px;display:flex;flex-direction:column;gap:10px}
   .faq-item{
-    background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-card);
+    background:var(--bg-soft);border:none;border-radius:var(--r-card);
     transition:background .2s ease, border-color .2s ease, box-shadow .2s ease;overflow:hidden;
   }
-  .faq-item[open]{background:#fff;border-color:var(--blue-200);box-shadow:var(--sh-card)}
+  .faq-item[open]{background:#fff;box-shadow:var(--sh-card)}
   .faq-item summary{
     list-style:none;cursor:pointer;padding:24px 26px;
     display:flex;justify-content:space-between;align-items:center;gap:16px;
@@ -2617,8 +2621,8 @@
 
     <div class="hero-visual">
       <img class="hero-shot" src="images/header_app.png" alt="FromTo 自治体管理 — 自治体分析詳細・分野別総合性マップ画面" />
-      <div class="hero-chip a"><span class="ic">★</span><span><span class="n">1,788</span><br><span class="t">自治体を分析</span></span></div>
-      <a class="hero-chip b" href="#roi" aria-label="営業工数の圧縮効果。投資効果セクションで根拠を見る"><span class="ic">↓</span><span><span class="n">40h→4h</span><br><span class="t">営業工数を圧縮 — 根拠を見る</span></span></a>
+      <div class="hero-chip a"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span><span><span class="n">1,788</span><br><span class="t">自治体を分析</span></span></div>
+      <a class="hero-chip b" href="#roi" aria-label="営業工数の圧縮効果。投資効果セクションで根拠を見る"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 17v-5h-5"/></svg></span><span><span class="n">40h→4h</span><br><span class="t">営業工数を圧縮 — 根拠を見る</span></span></a>
     </div>
   </div>
 </section>
@@ -2649,7 +2653,7 @@
         </div>
         <div class="row">
           <div class="no">01</div>
-          <div class="en">Hard to Find</div>
+          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Hard to Find</div>
         </div>
         <h3>見つけられない</h3>
         <p><strong>1,788自治体のうち、どこに勝ち目があるのか。</strong>予算書も総合計画も公開されてはいるが、掲載場所も様式も自治体ごとにバラバラで、絞り込みの作業だけが積み上がる。</p>
@@ -2667,7 +2671,7 @@
         </div>
         <div class="row">
           <div class="no">02</div>
-          <div class="en">Hard to Read</div>
+          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Hard to Read</div>
         </div>
         <h3>わからない</h3>
         <p><strong>読み込んでも、提案書の1行にならない。</strong>どの課が何に困っていて、自社商材をどの切り口で当て、なぜ今なのか——予算書や総合計画を開いても、そこが書けない。</p>
@@ -2685,7 +2689,7 @@
         </div>
         <div class="row">
           <div class="no">03</div>
-          <div class="en">Hard to Manage</div>
+          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>Hard to Manage</div>
         </div>
         <h3>管理ができない</h3>
         <p><strong>誰がどの自治体を持っていて、今どこまで進んでいるのか。</strong>接触履歴も次アクションも個人のExcelとメールの中にあり、異動のたびに文脈が消え、上長は進捗を聞いて回るしかない。</p>
@@ -2703,7 +2707,10 @@
       </div>
       <div class="text">
         <div class="lbl">AI参謀より</div>
-        <div class="msg">稟議の「現状の課題」欄には、こう書けます——<strong>自治体向けの売上が、担当者個人の当たり外れに依存している。</strong>原因は担当者の力不足ではなく、<em>「どこへ・なぜ・いつ提案すべきか」を毎日相談できる相手が、社内にいないこと</em>です。御社チームに常駐する <strong>自治体AI参謀</strong>、それが <strong>47Connect（ヨンナナコネクト）</strong>です。</div>
+        <div class="msg"><strong>稟議の「現状の課題」欄に、こう書けます。</strong><br>
+——自治体向けの売上が、担当者個人の当たり外れに依存している。<br>
+原因は力不足ではなく、<em>「どこへ・なぜ・いつ」を毎日相談できる相手が社内にいないこと</em>。<br>
+それを埋めるのが <strong>47Connect</strong>（ヨンナナコネクト）です。</div>
       </div>
     </div>
   </div>
@@ -2715,7 +2722,8 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Product Screens</div>
       <h2 class="h-section prod-h"><span class="ph"><em>すばやく</em>探し、</span><span class="ph"><em>根拠まで</em>読み、</span><br><span class="ph"><em>チームで</em>続ける。</span></h2>
-      <p class="lede">実際の画面でご覧ください。<strong>探す・読む・続ける</strong>の3工程を、そのまま提案判断に使える画面にしました。4つ目の<strong>動く</strong>＝提案タイミングは、次のセクションで。</p>
+      <p class="lede">実際の画面でご覧ください。<strong>探す・読む・続ける</strong>の3工程を、そのまま提案判断に使える画面にしました。<br>
+4つ目の<strong>動く</strong>＝提案タイミングは、次のセクションで。</p>
     </div>
     <div class="screen-grid">
       <div class="screen-card">
@@ -2723,7 +2731,7 @@
           <img src="images/recommend-screen.png" alt="47Connectの自治体レコメンド画面" />
         </div>
         <div class="screen-body">
-          <div class="screen-kicker">01 FIND</div>
+          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>01 FIND</div>
           <h3>探す</h3>
           <p>御社の商材が刺さる自治体を、勝てる順に。根拠（スコア）つきだから、上司にもそのまま説明できます。</p>
         </div>
@@ -2733,7 +2741,7 @@
           <img src="images/image.png" alt="47Connectの自治体サマライズ画面" />
         </div>
         <div class="screen-body">
-          <div class="screen-kicker">02 UNDERSTAND</div>
+          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>02 UNDERSTAND</div>
           <h3>読む</h3>
           <p>予算・政策・担当課・提案余地を1自治体ごとに要約。「なぜ今、ここなのか」が一目で腑に落ちます。</p>
         </div>
@@ -2743,7 +2751,7 @@
           <img src="images/crm_list.png" alt="47Connectの提案管理CRM画面" />
         </div>
         <div class="screen-body">
-          <div class="screen-kicker">03 MANAGE</div>
+          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>03 MANAGE</div>
           <h3>続ける</h3>
           <p>提案状況・優先度・次アクションをCRMに集約。<strong>担当者が代わっても引き継げる</strong>し、チーム全体の進捗も一目で分かる。属人的な自治体営業が、抜けない「チームの資産」に変わります。</p>
         </div>
@@ -2758,7 +2766,9 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>動く — Timing Matters</div>
       <h2 class="h-section">自治体の予算は、入札の<br><em>半年〜2年前</em>に決まっている。</h2>
-      <p class="lede">入札公示を見てから動くと、価格競争に巻き込まれます。勝負がつくのは<strong>予算に事業として書き込まれる前</strong>——課題設定から予算要求までの間に、担当課と話せているかどうかです。稟議の「なぜ今か」欄に書けるのは、この一点です。<strong>次の予算編成に間に合わなければ、提案そのものが次の年度送りになる。</strong></p>
+      <p class="lede"><strong>入札公示を見てから動くと、価格競争に巻き込まれます。</strong><br>
+勝負がつくのは<strong>予算に書き込まれる前</strong>。課題設定から予算要求までの間に、担当課と話せているかどうかです。<br>
+<strong>次の予算編成に間に合わなければ、提案は次年度送り。</strong></p>
       <div class="flow-stakes">
         <div class="flow-stake">
           <div class="flow-stake-num">年1回</div>
@@ -2938,7 +2948,9 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>Comparison</div>
       <h2 class="h-section">コンサルは1〜2回/月。AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
-      <p class="lede">稟議の「他社比較」欄に、そのまま書ける4項目で並べました。<strong>月額・相談できる頻度・公開情報への反応速度・御社事業文脈の学習</strong>——外部コンサル、DB系ツール、自前リサーチとの違いです。とくに4つ目は、学習が担当者個人ではなく<strong>チーム側に蓄積される</strong>という違いでもあります。担当者が代わっても、判断の土台は御社に残ります。</p>
+      <p class="lede"><strong>稟議の「他社比較」欄に、そのまま書ける4項目。</strong><br>
+<strong>月額 / 相談頻度 / 公開情報への反応速度 / 御社事業文脈の学習</strong>で、外部コンサル・DB系ツール・自前リサーチと比べました。<br>
+4つ目は<strong>学習がチーム側に貯まる</strong>ということ。担当者が代わっても、判断の土台は残ります。</p>
     </div>
     <div class="tscroll">
     <table class="compare-tbl">
@@ -2993,7 +3005,8 @@
     <div class="section-head center">
       <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
       <h2 class="h-section">なぜFromToが、<br>自治体AI参謀を提供できるのか。</h2>
-      <p class="lede"><strong>他社が真似できないのは、機能ではなく実績です。</strong>企業版ふるさと納税の寄附仲介で <strong>210件以上・139自治体</strong> の実取引、自治体担当部局との <strong>直接パイプ</strong>、現場で得た <strong>一次情報</strong>。これらの実績の上に、47Connect の自治体AI参謀は構築されています。</p>
+      <p class="lede"><strong>他社が真似できないのは、機能ではなく実績です。</strong><br>
+企業版ふるさと納税の寄附仲介で <strong>210件以上・139自治体</strong> の実取引、担当部局との <strong>直接パイプ</strong>、現場で得た <strong>一次情報</strong>。この上に構築しています。</p>
     </div>
     <div class="why-pillars">
       <div class="why-pillar">
@@ -3017,7 +3030,11 @@
     </div>
     <div class="why-main">
       <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
-      <p>対話だけあっても、答えの根拠がありません。データだけあっても、DBのままです。鮮度だけあっても、ニュース通知で終わります。この3本柱を支えているのは、机上の調査ではなく<strong>実際にお金が動いた取引と、担当部局との直接のやりとり</strong>です。その上で<strong>公開情報・実取引データ・AI参謀対話を一体提供する点で、独自のポジション</strong>です（当社調べ）。だから御社は、<strong>「なぜこの自治体か」「なぜ今か」「誰に何を出すか」</strong>を、同じ画面の中で確かめられます。</p>
+      <p>対話だけでは、答えの根拠がありません。<br>
+データだけでは、DBのままです。<br>
+鮮度だけでは、ニュース通知で終わります。<br>
+支えているのは<strong>実際にお金が動いた取引と、担当部局との直接のやりとり</strong>。<strong>3つを一体で提供する点が、独自のポジション</strong>です（当社調べ）。<br>
+<strong>「なぜこの自治体か」「なぜ今か」「誰に何を出すか」</strong>を、同じ画面で確かめられます。</p>
     </div>
 
   </div>
@@ -3029,7 +3046,10 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>ROI by Numbers</div>
       <h2 class="h-section">月20万円が、御社にいくらの<em>追加効果</em>を生むか。</h2>
-      <p class="lede">稟議の「導入効果」欄には、この1行が書けます——<strong>情報収集に消えていた時間を提案活動へ振り替え、提案活動量を2倍に（標準ケース試算）。</strong>以下は営業3名・年4件・売上2,000万円規模（500万円/案件の場合）での3ケース試算です。<strong>保守ケース</strong>では工数削減のみで投資回収、<strong>標準ケース</strong>で工数削減＋提案活動量の拡大、<strong>攻めケース</strong>でさらに案件単価向上を見込みます。増えるのは、<strong>属人的な当たり外れではなく、チームとして積み上がる提案本数</strong>です。</p>
+      <p class="lede"><strong>稟議の「導入効果」欄に、この1行が書けます。</strong><br>
+——情報収集の時間を提案活動へ振り替え、提案活動量を2倍に（標準ケース試算）。<br>
+増えるのは<strong>当たり外れではなく、チームで積み上がる提案本数</strong>です。<br>
+下は営業3名・年4件・売上2,000万円規模での試算。</p>
     </div>
 
     <!-- 3ケース見出し帯 -->
@@ -3106,7 +3126,8 @@
       <div class="roi-cta-content">
         <div class="roi-cta-eyebrow">役員会・稟議資料に、そのまま使える</div>
         <h3><span class="roi-cta-hl">人数・案件単価を入れるだけ。ROIを30秒で。</span></h3>
-        <p>営業人数・年間案件数・受注単価を入力すると、御社の業種・規模に合わせた <strong>ROI・回収期間・年間効果</strong>が即座に算出されます。試算結果は <strong>役員会・稟議資料にそのまま貼れる形式</strong> で出力。<br>「上司に共有」「役員に説明」の最初の1枚として、そのまま使えます。</p>
+        <p>営業人数・年間案件数・受注単価を入れると、<strong>ROI・回収期間・年間効果</strong>が即座に出ます。<br>
+結果は <strong>役員会・稟議資料にそのまま貼れる形式</strong>。「上司に共有」の最初の1枚に使えます。</p>
       </div>
       <div class="roi-cta-btns">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">個別デモを予約する<span class="arrow">→</span></a>
@@ -3122,7 +3143,8 @@
     <div class="section-head center">
       <div class="eyebrow"><span class="dot"></span>β版特別キャンペーン</div>
       <h2 class="h-section">β版特別キャンペーンに参画する10社だけの、<em>特別な条件。</em></h2>
-      <p class="lede">2026年 β版特別キャンペーンは、自治体AI参謀の精度を一緒に磨いていただく共創パートナー枠です。御社の勝ちパターンをAIに学習させる立ち上げ期間として、通常価格より低い特別価格でご提供します。</p>
+      <p class="lede">自治体AI参謀の精度を一緒に磨いていただく<strong>共創パートナー枠</strong>です。<br>
+御社の勝ちパターンをAIに学習させる立ち上げ期間として、通常価格より低い特別価格でご提供します。</p>
     </div>
 
     <div class="pilot">
@@ -3154,7 +3176,10 @@
 
     <div class="plans-head">
       <h3>すべての機能を、通常 月20万円（税別）で。</h3>
-      <p>プランは一つ、通常価格 <strong>月20万円（税別）</strong>。下記 Layer 1〜3 とサポートの全機能が、この中に含まれます。契約条件は <strong>月払い・1年契約</strong>、13ヶ月目以降は月単位継続（30日予告でいつでも解約可）。1 Team Workspace単位のため、<strong>利用者が増えても追加課金はありません</strong>。メンバーを増やしても、異動で引き継いでも費用は変わらないので、個人ではなく<strong>チームの標準ツール</strong>として申請できます。まずは <strong>2週間の無料トライアル</strong> で、稟議にかける前にお試しください。<br><small>※ 2026年8月末までにお申し込みの場合は、別枠の「β版特別キャンペーン」（上記）で先行利用いただけます。</small></p>
+      <p><strong>プランは一つ。月20万円（税別）</strong>で全機能を含みます。<br>
+<strong>月払い・1年契約</strong>。13ヶ月目以降は月単位継続、30日予告でいつでも解約可。<br>
+1 Team Workspace 単位で、<strong>人が増えても異動で引き継いでも費用は変わりません</strong>。<strong>チームの標準ツール</strong>として申請できます。<br>
+まずは <strong>2週間の無料トライアル</strong> を。<br><small>※ 2026年8月末までのお申し込みは、別枠の「β版特別キャンペーン」（上記）が適用されます。</small></p>
     </div>
     <div class="plan-compare">
       <div class="tscroll">
@@ -3273,35 +3298,52 @@
     <div class="faq-list">
       <details class="faq-item" open>
         <summary>自社の業界・体制でも活用できますか？</summary>
-        <div class="ans"><strong>自治体営業を1人〜数名で担っている組織</strong>であれば、業種を問わず効果が出やすい設計です。自治体ビジネス（BtoG）を本格的に展開する中堅〜大企業を想定しており、製造・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材・広告等で、実績・想定ROIを試算済みです。</div>
+        <div class="ans"><strong>自治体営業を1人〜数名で担う組織なら、業種を問わず効果が出やすい設計です。</strong><br>
+製造・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材・広告等で実績・想定ROIを試算済み。自治体ビジネス（BtoG）を本格展開する中堅〜大企業を想定しています。</div>
       </details>
       <details class="faq-item">
         <summary>データのセキュリティ・ガバナンスは万全ですか？</summary>
-        <div class="ans">御社の企業情報・営業データは暗号化して管理し、第三者への提供および<strong>AI学習への利用は一切行いません</strong>。アクセス権限はアカウント単位で管理します。情報システム部門・法務部門のご確認用に、これらの取り扱いは契約書・プライバシーポリシーで明文化しています。</div>
+        <div class="ans">御社の企業情報・営業データは暗号化して管理し、第三者への提供および<strong>AI学習への利用は一切行いません</strong>。<br>
+アクセス権限はアカウント単位で管理します。<br>
+情報システム部門・法務部門のご確認用に、これらの取り扱いは契約書・プライバシーポリシーで明文化しています。</div>
       </details>
       <details class="faq-item">
         <summary>公開情報やWikipediaの取り扱いは適法ですか？</summary>
-        <div class="ans">はい。自治体の公開情報（予算書・議会会議録・総合計画等）は<strong>出典リンクを明記</strong>のうえAIが分析し、原典ファイルの<strong>再配布は行いません</strong>（著作権法第30条の4「情報解析」に基づく適法な利用）。Wikipedia等も全文・部分のコピーはせず、出典（CC BY-SA）を明記します。なお分析結果は正確性・完全性を確約するものではないため、重要なご判断の際は原典・一次情報をご確認ください。</div>
+        <div class="ans">はい。自治体の公開情報（予算書・議会会議録・総合計画等）は<strong>出典リンクを明記</strong>のうえAIが分析し、原典ファイルの<strong>再配布は行いません</strong>（著作権法第30条の4「情報解析」に基づく適法な利用）。<br>
+Wikipedia等も全文・部分のコピーはせず、出典（CC BY-SA）を明記します。<br>
+なお分析結果は正確性・完全性を確約するものではないため、重要なご判断の際は原典・一次情報をご確認ください。</div>
       </details>
       <details class="faq-item">
         <summary>コンサルや他社DBツールと何が違いますか？</summary>
-        <div class="ans">違いは<strong>相談できる頻度</strong>と<strong>相談できる中身</strong>です。コンサルは月1〜2回の伴走が標準ですが、AI参謀は<strong>毎日いつでも相談できる常駐型</strong>。コンサルが3週間で出す成果を即日・対話で提供し、価格は約1/5です。DB系ツールとの違いは、レコメンド・サマライズ・CRMに加えて、<strong>その中身をAI参謀と対話しながら提案に変えられる</strong>点です（当社調べ）。詳細は上記の比較表をご覧ください。</div>
+        <div class="ans"><strong>違いは、相談できる頻度と中身です。</strong><br>
+コンサルは月1〜2回の伴走。AI参謀は<strong>毎日いつでも相談できる常駐型</strong>で、3週間かかる成果を即日・対話で出し、価格は約1/5です。<br>
+DB系ツールとの違いは、その中身を<strong>対話しながら提案に変えられる</strong>点です（当社調べ）。</div>
       </details>
       <details class="faq-item">
         <summary>いつから利用でき、現時点で何が使えますか？</summary>
-        <div class="ans"><strong>β版は2026年9月開始・先着10社限定</strong>です。2026年8月末までにお申し込みいただき、<strong>9月から12月までの4ヶ月間</strong>ご利用いただけます。9月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働します。本格運用への移行は2027年1月を予定しています。</div>
+        <div class="ans"><strong>β版は2026年9月開始・先着10社限定</strong>です。<br>
+2026年8月末までにお申し込みいただき、<strong>9月から12月までの4ヶ月間</strong>ご利用いただけます。<br>
+9月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働します。<br>
+本格運用への移行は2027年1月を予定しています。</div>
       </details>
       <details class="faq-item">
         <summary>導入してみて合わなかった場合は、どうなりますか？</summary>
-        <div class="ans">まず<strong>2週間の無料トライアル</strong>で実際の画面をお試しいただき、その結果を見てから本契約をご判断いただけます。トライアル期間中の費用は発生せず、本契約に進まないご判断も可能です。本契約は月払い・1年契約で、<strong>13ヶ月目以降は月単位の継続（30日前の予告でいつでも解約可）</strong>となります。解約時のデータの取り扱いを含む詳細は、契約書でご確認いただけます。</div>
+        <div class="ans">まず<strong>2週間の無料トライアル</strong>で実際の画面をお試しいただき、その結果を見てから本契約をご判断いただけます。<br>
+トライアル期間中の費用は発生せず、本契約に進まないご判断も可能です。<br>
+本契約は月払い・1年契約で、<strong>13ヶ月目以降は月単位の継続（30日前の予告でいつでも解約可）</strong>となります。<br>
+解約時のデータの取り扱いを含む詳細は、契約書でご確認いただけます。</div>
       </details>
       <details class="faq-item">
         <summary>担当者が異動しても引き継げますか？上長はチームの進捗をどう把握しますか？</summary>
-        <div class="ans">提案状況・優先度・次アクション・メモは<strong>CRMに集約</strong>され、個人のExcelやメールではなく<strong>チームで共有</strong>されます。どの自治体がどこまで進んでいるかを、チームの誰もが同じ画面で確認できます。ご契約は 1 Team Workspace 単位で<strong>利用者が増えても追加課金はありません</strong>ので、後任の方をチームに加えれば、これまでの文脈をそのまま引き継げます。</div>
+        <div class="ans">提案状況・優先度・次アクション・メモは<strong>CRMに集約</strong>され、個人のExcelではなく<strong>チームで共有</strong>されます。<br>
+どの自治体がどこまで進んでいるかを、誰もが同じ画面で確認できます。<br>
+1 Team Workspace 単位で<strong>追加課金がない</strong>ため、後任の方を加えれば文脈ごと引き継げます。</div>
       </details>
       <details class="faq-item">
         <summary>複数の事業部・チームで利用できますか？</summary>
-        <div class="ans">はい。事業部・チームごとに<strong>別の Team Workspace</strong> をご契約いただけます。レコメンド・CRM・AIクレジットは Workspace ごとに独立するため、事業ごとに異なる自治体・提案戦略を並行して走らせられます。<strong>2契約目以降も同額</strong>で、β版特典も各 Team に個別適用可能です。</div>
+        <div class="ans">はい。事業部・チームごとに<strong>別の Team Workspace</strong> をご契約いただけます。<br>
+レコメンド・CRM・AIクレジットは Workspace ごとに独立し、事業ごとに異なる戦略を並行できます。<br>
+<strong>2契約目以降も同額</strong>で、β版特典も各 Team に個別適用可能です。</div>
       </details>
     </div>
   </div>
