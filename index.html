@@ -1667,7 +1667,7 @@
   /* PLANS */
   .plans-head{margin-top:64px;text-align:center;margin-bottom:32px}
   .plans-head h3{font-size:24px;font-weight:800;letter-spacing:-.005em;margin-bottom:10px;color:var(--ink)}
-  .plans-head p{font-size:14px;color:var(--ink-3);line-height:1.95;max-width:72ch;margin:0 auto}
+  .plans-head p{font-size:14px;color:var(--ink-3);line-height:1.95;max-width:none;margin:0 auto}
   .plans-head strong{color:var(--ink);font-weight:700}
   .plans{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .plan{
@@ -1882,7 +1882,8 @@
     border-radius:var(--r-xl);padding:40px 48px;
   }
   .why-main h3{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.005em;line-height:1.5;margin-bottom:14px}
-  .why-main p{font-size:15px;color:var(--t-inv-2);line-height:2;max-width:78ch}
+  .why-main p{font-size:15px;color:var(--t-inv-2);line-height:2;max-width:none}   /* 2026-08-09 78ch(678px)だとコンテナ1281pxに対し狭く不自然な位置で折れていた */
+  .why-main p + p{margin-top:18px}
   .why-main p strong{color:#fff;font-weight:700;background:rgba(233,71,11,.5);padding:1px 4px;border-radius:3px}
   @media (max-width:860px){
     .why-pillars{grid-template-columns:1fr}
@@ -1981,7 +1982,7 @@
     font-weight:900;font-size:clamp(21px,3.4vw,30px);letter-spacing:-.02em;color:#fff;
   }
   .end-tagline .grad{color:var(--blue-3)}
-  .end p{position:relative;color:var(--t-inv-2);max-width:76ch;margin:0 auto 36px;line-height:1.95;font-size:16px}
+  .end p{position:relative;color:var(--t-inv-2);max-width:none;margin:0 auto 36px;line-height:1.95;font-size:16px}
   .end-stages{
     position:relative;display:flex;align-items:stretch;justify-content:center;
     gap:14px;flex-wrap:wrap;max-width:1080px;margin:0 auto 36px;
@@ -2857,51 +2858,14 @@
       <p class="lede">御社が受け取るのは、データではありません。<strong>提案の切り口・提案メールの下書き・次アクション</strong>です。<br>全国の公開情報を土台に、御社の事業文脈で読み替えるところまでを、この3層が担います。</p>
     </div>
 
-    <div class="l3-diagram" aria-label="47Connectの3層構造：土台のLayer1 基本機能の上に、Layer2 企業別レイヤー、Layer3 AI参謀が積み上がる">
-      <div class="l3-layer l3-l3">
-        <div class="l3-head">
-          <div class="l3-badge">LAYER<b>3</b></div>
-          <div>
-            <div class="l3-ttl">AI参謀</div>
-            <div class="l3-sub">具体的な提案・次アクションへ変換する</div>
-          </div>
-        </div>
-        <div class="l3-chips">
-          <span class="l3-chip">提案の切り口の提示</span>
-          <span class="l3-chip">提案メール（文書）の作成</span>
-          <span class="l3-chip">実際の深掘り分析</span>
-        </div>
-      </div>
-      <div class="l3-layer l3-l2">
-        <div class="l3-head">
-          <div class="l3-badge">LAYER<b>2</b></div>
-          <div>
-            <div class="l3-ttl">企業別レイヤー</div>
-            <div class="l3-sub">御社の事業文脈で、自治体を分析する</div>
-          </div>
-        </div>
-        <div class="l3-chips">
-          <span class="l3-chip">企業×自治体の相性分析</span>
-          <span class="l3-chip">フォーカス自治体の深掘り分析</span>
-          <span class="l3-chip">情報通知機能</span>
-        </div>
-      </div>
-      <div class="l3-layer l3-l1">
-        <div class="l3-head">
-          <div class="l3-badge">LAYER<b>1</b></div>
-          <div>
-            <div class="l3-ttl">基本機能（データ層）— 土台</div>
-            <div class="l3-sub">全国1,788自治体の公開情報を、AIが構造化して基盤にする</div>
-          </div>
-        </div>
-        <div class="l3-chips">
-          <span class="l3-chip">自治体網羅データ</span>
-          <span class="l3-chip">自治体レコメンド</span>
-          <span class="l3-chip">自治体サマライズ</span>
-          <span class="l3-chip">CRM管理</span>
-        </div>
-      </div>
-    </div>
+    <!-- 3層構造の図（2026-08-09 PO提供画像へ差し替え。旧HTML版の l3-layer/l3-chip は git 履歴を参照） -->
+    <figure class="flow-figure l3-figure">
+      <picture>
+        <source srcset="images/layer3-structure.webp" type="image/webp">
+        <img src="images/layer3-structure.png" width="1672" height="941" loading="lazy" decoding="async"
+             alt="47Connectの3層構造。土台のLAYER1 基本機能（データ層）は全国1,788自治体の公開情報をAIが構造化して基盤にするもので、自治体網羅データ・自治体レコメンド・自治体サマライズ・CRM管理を含む。その上のLAYER2 企業別レイヤーは御社の事業文脈で自治体を分析するもので、企業×自治体の相性分析・フォーカス自治体の深掘り分析・情報通知機能を含む。最上位のLAYER3 AI参謀は具体的な提案・次アクションへ変換するもので、提案の切り口の提示・提案メール（文書）の作成・実際の深掘り分析を含む。" />
+      </picture>
+    </figure>
 
     <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08）
          2026-08-07: ①「AI参謀より」吹き出しが3連発だったため本箇所のみ地の文へ変更
@@ -3007,11 +2971,10 @@
     </div>
     <div class="why-main">
       <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
-      <p>対話だけでは、答えの根拠がありません。<br>
-データだけでは、DBのままです。<br>
-鮮度だけでは、ニュース通知で終わります。<br>
-支えているのは<strong>実際にお金が動いた取引と、担当部局との直接のやりとり</strong>。<strong>3つを一体で提供する点が、独自のポジション</strong>です（当社調べ）。<br>
-<strong>「なぜこの自治体か」「なぜ今か」「誰に何を出すか」</strong>を、同じ画面で確かめられます。</p>
+      <p>対話だけでは、答えの根拠がありません。データだけでは、DBのままです。鮮度だけでは、ニュース通知で終わります。</p>
+      <p>支えているのは<strong>実際にお金が動いた取引と、担当部局との直接のやりとり</strong>。<br>
+<strong>3つを一体で提供する点が、独自のポジション</strong>です（当社調べ）。<br>
+<strong>「なぜこの自治体か」「なぜ今か」「誰に何を出すか」</strong>を、同じ画面で確かめることができます。</p>
     </div>
 
   </div>
@@ -3155,7 +3118,7 @@
       <h3>すべての機能を、通常 月20万円（税別）で。</h3>
       <p><strong>プランは一つ。月20万円（税別）</strong>で全機能を含みます。<br>
 <strong>月払い・1年契約</strong>。13ヶ月目以降は月単位継続、30日予告でいつでも解約可。<br>
-1 Team Workspace 単位で、<strong>人が増えても異動で引き継いでも費用は変わりません</strong>。<strong>チームの標準ツール</strong>として申請できます。<br>
+<strong>1チーム単位</strong>で、人が増えても異動で引き継いでも費用は変わりません。<strong>チームの標準ツール</strong>として申請できます。<br>
 まずは <strong>2週間の無料トライアル</strong> を。<br><small>※ 2026年8月末までのお申し込みは、別枠の「β版特別キャンペーン」（上記）が適用されます。</small></p>
     </div>
     <div class="plan-compare">
@@ -3315,13 +3278,13 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
         <summary>担当者が異動しても引き継げますか？上長はチームの進捗をどう把握しますか？</summary>
         <div class="ans">提案状況・優先度・次アクション・メモは<strong>CRMに集約</strong>され、個人のExcelではなく<strong>チームで共有</strong>されます。<br>
 どの自治体がどこまで進んでいるかを、誰もが同じ画面で確認できます。<br>
-1 Team Workspace 単位で<strong>追加課金がない</strong>ため、後任の方を加えれば文脈ごと引き継げます。</div>
+<strong>1チーム単位</strong>で追加課金がないため、後任の方を加えれば文脈ごと引き継げます。</div>
       </details>
       <details class="faq-item">
         <summary>複数の事業部・チームで利用できますか？</summary>
-        <div class="ans">はい。事業部・チームごとに<strong>別の Team Workspace</strong> をご契約いただけます。<br>
-レコメンド・CRM・AIクレジットは Workspace ごとに独立し、事業ごとに異なる戦略を並行できます。<br>
-<strong>2契約目以降も同額</strong>で、β版特典も各 Team に個別適用可能です。</div>
+        <div class="ans">はい。事業部ごとに<strong>別のチーム</strong>としてご契約いただけます。<br>
+レコメンド・CRM・AIクレジットは<strong>チームごとに独立</strong>し、事業ごとに異なる戦略を並行できます。<br>
+<strong>2契約目以降も同額</strong>で、β版特典も各チームに個別適用可能です。</div>
       </details>
     </div>
   </div>
