@@ -3447,6 +3447,22 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
     els.forEach(function(el){ io.observe(el); });
   })();
 </script>
+<script>
+  // 2026-08-10: 別ドキュメント(roi-simulator.html等)からの#アンカー付き遷移で、
+  // ブラウザネイティブの初回ジャンプがscroll-behavior:smoothや画像読込中のレイアウト
+  // 変動と競合し着地に失敗する既知の挙動があるための保険。window.load後に再実行する。
+  (function(){
+    if (!location.hash) return;
+    var target;
+    try { target = document.querySelector(location.hash); } catch (e) { return; }
+    if (!target) return;
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    });
+  })();
+</script>
 
 </body>
 </html>
