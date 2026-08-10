@@ -1293,7 +1293,10 @@
     .result-card .metric-value.big { font-size: 24px; }
     .result-judgment .judgment-text { font-size: 18px; }
     .before-after { grid-template-columns: 1fr; }
-    .before-after .ba-arrow { transform: rotate(90deg); padding: 4px 0; }
+    /* 2026-08-10: 矢印が箱幅いっぱい(左寄せ)のままrotateされ字形が左端に飛んでいたため、回転前に中央寄せしてから回す */
+    .before-after .ba-arrow { transform: rotate(90deg); padding: 4px 0; display: flex; align-items: center; justify-content: center; }
+    /* 2026-08-10: impact-content(flex:1)がimpact-value(固定幅)に押されて激狭になり3行に割れていたため縦積みに */
+    .impact-bar { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
