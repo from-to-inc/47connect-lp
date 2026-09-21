@@ -239,7 +239,15 @@
     border-radius: 8px;
     padding: 10px 12px;
   }
+  .team-row .member-controls,
+  .team-row .member-details,
+  .team-row .role-wrap {
+    display: contents;
+  }
+  .team-row .role-field-label { display: none; }
   .team-row select.role {
+    grid-column: 1;
+    grid-row: 1;
     background: white;
     border: 1px solid var(--line);
     border-radius: 6px;
@@ -249,6 +257,8 @@
     cursor: pointer;
   }
   .team-row .salary-wrap {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -274,6 +284,8 @@
     color: #6b7280;
   }
   .team-row .member-info {
+    grid-column: 3;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -288,6 +300,8 @@
     font-weight: 700;
   }
   .team-row .remove-btn {
+    grid-column: 4;
+    grid-row: 1;
     background: var(--warn-tint);
     color: var(--warn);
     border: none;
@@ -295,7 +309,7 @@
     width: 32px;
     height: 32px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 11px;
     font-weight: 700;
     transition: background 0.2s;
   }
@@ -1019,11 +1033,101 @@
     header { padding: 28px 20px; }
     header h1 { font-size: 22px; }
     section { padding: 20px; }
+    input,
+    select,
+    textarea { font-size: 16px; }
+    .input-card input,
+    .input-card select,
+    .month-range select {
+      min-height: 44px;
+    }
+    .add-btn,
+    .action-btn,
+    .cta .btn {
+      min-width: 44px;
+      min-height: 44px;
+    }
     .team-row {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 8px;
     }
-    .team-row .annual-hours { text-align: left; }
+    .team-row .member-controls,
+    .team-row .member-details {
+      display: grid;
+      width: 100%;
+      gap: 8px;
+    }
+    .team-row .member-controls {
+      grid-template-columns: minmax(0, 1fr) 44px;
+      align-items: start;
+    }
+    .team-row .member-details {
+      grid-template-columns: minmax(0, 1fr) 118px;
+      align-items: end;
+    }
+    .team-row .role-wrap {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .team-row .role-field-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .team-row select.role {
+      width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .team-row .salary-wrap {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .team-row .salary-wrap label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .team-row .salary-wrap label::after { content: "（万円）"; }
+    .team-row .salary-wrap input {
+      width: 100%;
+      min-width: 44px;
+      height: 44px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+    }
+    .team-row .salary-wrap .unit { display: none; }
+    .team-row .member-info {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: end;
+      text-align: left;
+    }
+    .team-row .remove-btn {
+      grid-column: 2;
+      grid-row: 1;
+      width: 44px;
+      height: 44px;
+      font-size: 12px;
+    }
   }
 </style>
 </head>
@@ -1051,7 +1155,7 @@
       <div class="input-card">
         <label>年商（年間売上）</label>
         <div class="input-row">
-          <input type="number" id="annualRevenue" value="50" min="0">
+          <input type="number" id="annualRevenue" value="50" min="0" inputmode="decimal">
           <span class="unit">億円</span>
         </div>
         <div class="hint">参考値です（ROI計算には影響しません）</div>
@@ -1077,7 +1181,7 @@
       <div class="input-card">
         <label>月間稼働時間（1人あたり）</label>
         <div class="input-row">
-          <input type="number" id="monthlyHours" value="50" min="0">
+          <input type="number" id="monthlyHours" value="50" min="0" inputmode="decimal">
           <span class="unit">時間/月</span>
         </div>
         <div class="hint">活動月における1人あたりの自治体営業時間</div>
@@ -1123,7 +1227,7 @@
       <div class="input-card">
         <label>現状の年間案件獲得数</label>
         <div class="input-row">
-          <input type="number" id="annualCases" value="4" min="0" step="0.5">
+          <input type="number" id="annualCases" value="4" min="0" step="0.5" inputmode="decimal">
           <span class="unit">件/年</span>
         </div>
         <div class="hint">自治体から取れている年間案件数</div>
@@ -1131,7 +1235,7 @@
       <div class="input-card">
         <label>1案件あたりの平均単価</label>
         <div class="input-row">
-          <input type="number" id="unitPrice" value="500" min="0" step="50">
+          <input type="number" id="unitPrice" value="500" min="0" step="50" inputmode="decimal">
           <span class="unit">万円</span>
         </div>
         <div class="hint">1案件で得られる平均売上</div>
@@ -1452,20 +1556,27 @@
     const div = document.createElement('div');
     div.className = 'team-row';
     div.innerHTML = `
-      <select class="role">
-        <option value="leader" ${role==='leader'?'selected':''}>リーダー</option>
-        <option value="member" ${role==='member'?'selected':''}>メンバー</option>
-      </select>
-      <div class="salary-wrap">
-        <label>年収</label>
-        <input type="number" class="salary" value="${salary}" min="0" step="50">
-        <span class="unit">万円</span>
+      <div class="member-controls">
+        <div class="role-wrap">
+          <label class="role-field-label">役割</label>
+          <select class="role">
+            <option value="leader" ${role==='leader'?'selected':''}>リーダー</option>
+            <option value="member" ${role==='member'?'selected':''}>メンバー</option>
+          </select>
+        </div>
+        <button type="button" class="remove-btn" title="削除">削除</button>
       </div>
-      <div class="member-info">
-        <div>時給 <strong class="member-hourly">¥3,000</strong></div>
-        <div>年間 <strong class="member-hours">350</strong>h</div>
+      <div class="member-details">
+        <div class="salary-wrap">
+          <label>年収</label>
+          <input type="number" class="salary" value="${salary}" min="0" step="50" inputmode="decimal">
+          <span class="unit">万円</span>
+        </div>
+        <div class="member-info">
+          <div>時給 <strong class="member-hourly">¥3,000</strong></div>
+          <div>年間 <strong class="member-hours">350</strong>h</div>
+        </div>
       </div>
-      <button class="remove-btn" title="削除">×</button>
     `;
     list.appendChild(div);
 
@@ -1482,8 +1593,10 @@
     salaryInput.addEventListener('input', calculate);
     removeBtn.addEventListener('click', () => {
       if (document.querySelectorAll('.team-row').length > 1) {
-        div.remove();
-        calculate();
+        if (confirm('このメンバーを削除しますか？')) {
+          div.remove();
+          calculate();
+        }
       } else {
         alert('最低1名は必要です');
       }
