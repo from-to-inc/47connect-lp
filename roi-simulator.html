@@ -7,6 +7,8 @@
 <style>
   :root {
     --ink: #111827;
+    /* --muted より濃い副次テキスト。免責・前提など、小さくても AA（4.5:1）を満たす必要がある文字に使う */
+    --ink-2: #4B5563;
     --muted: #6B7280;
     --line: #E5E7EB;
     --surface: #FFFFFF;
@@ -744,9 +746,11 @@
   }
   .boss-summary-title h2 {
     font-size: 20px;
-    color: #1F4E78;
+    color: var(--navy);
     margin-bottom: 4px;
     font-weight: 800;
+    /* 狭い画面で「試算サマリ」＋「ー」のように長音符が行頭に孤立するのを防ぐ */
+    line-break: strict;
   }
   .boss-summary-title p {
     font-size: 13px;
@@ -879,7 +883,8 @@
     font-size: 12px;
   }
   .summary-kpis strong { margin-left: 4px; font-size: 19px; }
-  .summary-notes { margin-top: 10px; color: var(--muted); font-size: 10px; }
+  /* 免責と前提は法務上の意味を持つ。読める大きさとコントラスト（AA 4.5:1 以上）を確保する */
+  .summary-notes { margin-top: 10px; color: var(--ink-2); font-size: 11px; }
   .summary-notes p + p { margin-top: 3px; }
   .summary-assumptions {
     display: grid;
@@ -888,8 +893,8 @@
     margin-top: 12px;
     padding-top: 10px;
     border-top: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 10px;
+    color: var(--ink-2);
+    font-size: 11px;
   }
   @media (max-width: 700px) {
     .boss-summary { padding: 24px 16px; }
@@ -1345,15 +1350,17 @@
 
     <div class="summary-doc" id="summaryDoc">
       <h3>試算結果 <span class="summary-scenario">基本シナリオ</span></h3>
-      <div class="summary-equation" id="summaryEquation"
-           aria-label="追加売上2,000万円、工数削減220万円、費用250万円、年間効果差額1,970万円">
+      <!-- 式の見た目は CSS の content で出す（innerText を汚さずコピー結果を守るため）。
+           読み上げと選択コピーは下の .summary-copy-text が担うので、こちらは aria-hidden。
+           両方を aria-hidden にすると式が支援技術から完全に消えるため、下は隠さないこと。 -->
+      <div class="summary-equation" id="summaryEquation" aria-hidden="true">
         <span class="summary-term summary-revenue" id="summaryRevenue" data-value="+2,000万円" aria-hidden="true"></span>
         <span class="summary-term summary-saving" id="summarySaving" data-value="+220万円" aria-hidden="true"></span>
         <span class="summary-term summary-fee" id="summaryFee" data-value="−250万円" aria-hidden="true"></span>
         <span class="summary-equals" aria-hidden="true"></span>
         <span class="summary-term summary-profit" id="summaryProfit" data-value="+1,970万円" aria-hidden="true"></span>
       </div>
-      <p class="summary-copy-text" id="summaryCopyText" aria-hidden="true">
+      <p class="summary-copy-text" id="summaryCopyText">
         追加売上（見込み）+2,000万円 ＋ 工数削減（人件費換算）+220万円
         − 47Connect費用250万円 ＝ 年間効果差額（試算）+1,970万円
       </p>
@@ -1365,6 +1372,9 @@
         <p id="summaryWorkNote">年間工数 1,050→105時間。空いた945時間を提案活動等へ再配分します。</p>
         <p>売上は見込みであり、保証しません。原価は未控除で、工数削減は人件費換算です。</p>
         <p>AIクレジットは別途です。本試算には含みません。</p>
+        <!-- 端数の注記は印刷物にも必ず残すこと。結果セクション側の注記は @media print で
+             非表示になるため、ここに無いと印刷物だけ検算が合わない見た目になる -->
+        <p>金額は万円未満を切り捨てて表示しています。内訳の合計と1万円の差が出る場合があります。</p>
       </div>
       <div class="summary-assumptions">
         <span id="summaryTeamAssumption">チーム：3名／自治体営業の人件費245万円</span>
@@ -1519,7 +1529,10 @@
   const formatMultiple = value => {
     if (!Number.isFinite(value)) return '—';
     const absolute = Math.abs(value);
-    const amount = absolute < 10 ? absolute.toFixed(1) : Math.round(absolute).toLocaleString();
+    // 丸めた後の値で桁を判定する。先に判定すると 9.962 が「10.0倍」と出て
+    // 「10倍以上は整数」という表示規則を自分で破ってしまう
+    const rounded = Math.round(absolute * 10) / 10;
+    const amount = rounded < 10 ? rounded.toFixed(1) : Math.round(absolute).toLocaleString();
     return (value < 0 ? '−' : '') + amount;
   };
 
@@ -1572,7 +1585,8 @@
     // 費用
     const annualCost = MONTHLY_FEE * 12 + INITIAL_FEE + AI_CREDIT * 12;
     const annualProfit = annualTotalEffect - annualCost;
-    // ROI（投資対効果）= 純利益 ÷ 費用合計（標準的な定義）
+    // ROI（投資対効果）= 年間効果差額 ÷ 費用合計
+    // 「純利益」と呼ばないのは、追加売上から売上原価を控除していないため（2026-09-21 赤ペンQ3で確定）
     const yearlyROI = annualProfit / annualCost;
     const monthlyEffect = annualTotalEffect / 12;
     const paybackMonths = annualCost / monthlyEffect;
