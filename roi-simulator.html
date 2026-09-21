@@ -954,8 +954,11 @@
     }
     body { padding: 0; background: white; }
     .container { box-shadow: none; border-radius: 0; max-width: 100%; }
+    /* .input-result-digest は入力セクションの外にあり、かつモバイル規則が後方で
+       display:block を与えるため、明示的に消さないと狭い紙幅の印刷に混入する */
     header, .group-banner, section.input-section, section.result-section,
-    .cta, .footnote, .boss-summary-actions, .mobile-result-bar {
+    .cta, .footnote, .boss-summary-actions, .mobile-result-bar,
+    .input-result-digest {
       display: none !important;
     }
     .boss-summary {
@@ -1751,17 +1754,22 @@
     member: { label: 'メンバー', salary: 400 },
   };
 
+  // 行ごとに一意な id を振る。label と for で結ばないと、動的に足した行の入力に
+  // プログラム上の名前が付かず、読み上げで「何の入力か」が分からなくなる
+  let memberRowSeq = 0;
+
   function addMember(role = 'member', salary = null) {
     if (salary === null) salary = ROLE_DEFAULTS[role].salary;
 
+    const rowId = `member-${++memberRowSeq}`;
     const list = document.getElementById('teamList');
     const div = document.createElement('div');
     div.className = 'team-row';
     div.innerHTML = `
       <div class="member-controls">
         <div class="role-wrap">
-          <label class="role-field-label">役割</label>
-          <select class="role">
+          <label class="role-field-label" for="${rowId}-role">役割</label>
+          <select class="role" id="${rowId}-role">
             <option value="leader" ${role==='leader'?'selected':''}>リーダー</option>
             <option value="member" ${role==='member'?'selected':''}>メンバー</option>
           </select>
@@ -1770,8 +1778,8 @@
       </div>
       <div class="member-details">
         <div class="salary-wrap">
-          <label>年収</label>
-          <input type="number" class="salary" value="${salary}" min="0" step="50" inputmode="decimal">
+          <label for="${rowId}-salary">年収</label>
+          <input type="number" class="salary" id="${rowId}-salary" value="${salary}" min="0" step="50" inputmode="decimal">
           <span class="unit">万円</span>
         </div>
         <div class="member-info">
@@ -1797,6 +1805,9 @@
       if (document.querySelectorAll('.team-row').length > 1) {
         if (confirm('このメンバーを削除しますか？')) {
           div.remove();
+          // フォーカス中の要素が DOM ごと消えると focusout が発火しない経路があり、
+          // 固定バーが退避したまま戻らなくなる。ここで状態を作り直す
+          syncMobileResultBar();
           calculate();
         }
       } else {
@@ -2049,9 +2060,17 @@
   const mobileResultBar = document.getElementById('mobileResultBar');
   const isInputControl = element => element && element.matches('input, select, textarea');
   const setMobileResultBarRetreated = retreated => {
+    if (!mobileResultBar) return;
     mobileResultBar.classList.toggle('is-input-active', retreated);
     mobileResultBar.setAttribute('aria-hidden', retreated ? 'true' : 'false');
   };
+  // 退避状態を「いま入力にフォーカスがあるか」から作り直す。
+  // 消えた要素を activeElement が指すことはないので、DOM を壊した直後に呼べば必ず正しくなる。
+  // focusout に頼るだけだと、フォーカス中の要素が DOM ごと消えたときに復帰しない
+  function syncMobileResultBar() {
+    setMobileResultBarRetreated(isInputControl(document.activeElement));
+    if (lastInputControl && !lastInputControl.isConnected) lastInputControl = null;
+  }
 
   document.addEventListener('focusin', event => {
     if (!isInputControl(event.target)) return;
@@ -2105,6 +2124,9 @@
       alert('コピーに失敗しました。手動で範囲選択してコピーしてください。');
     }
     document.body.removeChild(textarea);
+    // この textarea は入力欄として扱われるためバーが退避する。削除で focusout が
+    // 発火しない経路があるので、消した直後に状態を作り直す
+    syncMobileResultBar();
   }
   window.copySummary = copySummary;
 
