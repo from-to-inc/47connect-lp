@@ -5,11 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>47Connect ROIシミュレーター | あなたの会社のROIを30秒で診断</title>
 <style>
+  :root {
+    --ink: #111827;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --surface: #FFFFFF;
+    --surface-2: #F7F8FA;
+    --navy: #1F4E78;
+    --navy-2: #2E75B6;
+    --navy-tint: #EDF2F8;
+    --amber: #FFD1A3;
+    --warn: #B45309;
+    --warn-line: #D97706;
+    --warn-tint: #FFF6EC;
+    --neg: #B91C1C;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e3eaf2 100%);
-    color: #1a1a1a;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--navy-tint) 100%);
+    color: var(--ink);
     line-height: 1.6;
     padding: 20px;
     min-height: 100vh;
@@ -63,7 +79,7 @@
     background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
   }
   .group-banner.result {
-    background: linear-gradient(135deg, #B45309 0%, #D97706 100%);
+    background: var(--warn);
   }
   .group-banner .step-num {
     background: rgba(255,255,255,0.2);
@@ -87,13 +103,13 @@
   /* Section base */
   section {
     padding: 24px 32px;
-    border-bottom: 1px solid #eef0f3;
+    border-bottom: 1px solid var(--line);
   }
   section:last-child { border-bottom: none; }
 
   /* Input sections - subtle blue tint */
   section.input-section {
-    background: linear-gradient(to right, #f8fbff 0%, #ffffff 60%);
+    background: linear-gradient(to right, var(--navy-tint) 0%, #ffffff 60%);
     border-left: 4px solid #2E75B6;
   }
   section.input-section .section-title {
@@ -102,11 +118,11 @@
 
   /* Result sections - subtle warm tint */
   section.result-section {
-    background: linear-gradient(to right, #fffaf0 0%, #ffffff 60%);
-    border-left: 4px solid #D97706;
+    background: var(--surface);
+    border-left: 4px solid var(--warn-line);
   }
   section.result-section .section-title {
-    color: #B45309;
+    color: var(--warn);
   }
 
   .section-title {
@@ -131,7 +147,7 @@
     gap: 14px;
   }
   .input-card {
-    background: #f9fafb;
+    background: var(--surface-2);
     border: 1px solid #e5e7eb;
     border-radius: 10px;
     padding: 14px;
@@ -144,7 +160,7 @@
   .input-card label {
     display: block;
     font-size: 12px;
-    color: #4b5563;
+    color: var(--muted);
     font-weight: 600;
     margin-bottom: 6px;
   }
@@ -160,7 +176,7 @@
     background: transparent;
     font-size: 22px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--ink);
     width: 100%;
     outline: none;
     font-family: inherit;
@@ -179,7 +195,7 @@
   }
   .input-card .hint {
     font-size: 11px;
-    color: #9ca3af;
+    color: var(--muted);
     margin-top: 4px;
   }
   .input-card .computed {
@@ -196,7 +212,7 @@
   }
   .month-range select {
     background: white;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--line);
     border-radius: 6px;
     padding: 4px 8px;
     font-size: 18px;
@@ -216,14 +232,14 @@
     grid-template-columns: 140px 1fr 140px 40px;
     gap: 10px;
     align-items: center;
-    background: #f9fafb;
+    background: var(--surface-2);
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 10px 12px;
   }
   .team-row select.role {
     background: white;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--line);
     border-radius: 6px;
     padding: 8px;
     font-size: 14px;
@@ -235,7 +251,7 @@
     align-items: center;
     gap: 6px;
     background: white;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--line);
     border-radius: 6px;
     padding: 6px 10px;
   }
@@ -270,8 +286,8 @@
     font-weight: 700;
   }
   .team-row .remove-btn {
-    background: #fee2e2;
-    color: #dc2626;
+    background: var(--warn-tint);
+    color: var(--warn);
     border: none;
     border-radius: 6px;
     width: 32px;
@@ -281,7 +297,7 @@
     font-weight: 700;
     transition: background 0.2s;
   }
-  .team-row .remove-btn:hover { background: #fecaca; }
+  .team-row .remove-btn:hover { background: var(--warn-tint); }
   .add-btn {
     background: white;
     color: #2E75B6;
@@ -294,18 +310,18 @@
     width: 100%;
     transition: background 0.2s;
   }
-  .add-btn:hover { background: #eff6ff; }
+  .add-btn:hover { background: var(--navy-tint); }
   .team-summary {
     margin-top: 12px;
     padding: 12px 16px;
-    background: #eff6ff;
+    background: var(--navy-tint);
     border-radius: 8px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
     font-size: 13px;
   }
-  .team-summary > div { color: #4b5563; }
+  .team-summary > div { color: var(--muted); }
   .team-summary strong {
     color: #1F4E78;
     font-size: 16px;
@@ -316,29 +332,29 @@
     padding: 10px 14px;
     font-size: 11px;
     color: #6b7280;
-    background: #fefce8;
-    border-left: 3px solid #facc15;
+    background: var(--warn-tint);
+    border-left: 3px solid var(--warn-line);
     border-radius: 4px;
     line-height: 1.6;
   }
   .team-note strong {
-    color: #854d0e;
+    color: var(--warn);
     font-weight: 700;
   }
 
   /* Premise box */
   .premise {
-    background: #f9fafb;
+    background: var(--surface-2);
     border-left: 4px solid #6b7280;
     padding: 14px 18px;
     border-radius: 6px;
     margin-bottom: 16px;
     font-size: 13px;
-    color: #4b5563;
+    color: var(--muted);
   }
   .premise-title {
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--ink);
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -362,13 +378,13 @@
     color: #2E75B6;
     font-weight: 700;
   }
-  .premise ul li strong { color: #1a1a1a; font-weight: 700; }
+  .premise ul li strong { color: var(--ink); font-weight: 700; }
   .premise .example-note {
     display: inline-block;
     margin-top: 6px;
     margin-left: 4px;
     padding: 4px 10px;
-    background: #eff6ff;
+    background: var(--navy-tint);
     border-left: 3px solid #2E75B6;
     border-radius: 4px;
     font-size: 11px;
@@ -376,459 +392,348 @@
     font-weight: 600;
   }
 
-  /* Disclaimer for 売上パネル */
-  .disclaimer {
-    margin-top: 14px;
-    padding: 12px 14px;
-    background: rgba(254, 242, 226, 0.85);
-    border: 1px solid #fbbf24;
-    border-left: 4px solid #d97706;
-    border-radius: 6px;
-    font-size: 11px;
-    line-height: 1.7;
-    color: #78350f;
-  }
-  .disclaimer strong { color: #92400e; font-weight: 700; }
-  .disclaimer-title {
-    font-weight: 700;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: #92400e;
-  }
-  .disclaimer ul {
-    list-style: none;
-    padding: 0;
-    margin: 4px 0 0 0;
-  }
-  .disclaimer ul li {
-    padding: 2px 0 2px 14px;
-    position: relative;
-  }
-  .disclaimer ul li::before {
-    content: "・";
-    position: absolute;
-    left: 0;
-  }
-
   /* Results */
   .results-grid { display: grid; gap: 14px; }
-  .result-card {
-    border-radius: 12px;
-    padding: 22px;
-    position: relative;
+  /* 結果ストーリー：工数 */
+  .result-block { min-width: 0; }
+  .result-block-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
   }
-  .result-card .label {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: 0.02em;
-  }
-  .result-card .title {
+  .result-block-head h3 {
+    color: var(--navy);
     font-size: 17px;
-    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+  .result-step {
+    color: var(--navy-2);
+    border-top: 2px solid var(--navy-2);
+    padding-top: 3px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .work-panel {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 21px 24px;
+  }
+  .work-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
     margin-bottom: 14px;
   }
-  .result-card .metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .result-card .metric {
-    display: flex;
-    flex-direction: column;
-  }
-  .result-card .metric-label {
+  .work-intro strong { color: var(--navy); font-size: 22px; }
+  .work-quiet { color: var(--muted); font-size: 11px; }
+  .work-caption {
+    margin: 9px 0 6px;
+    color: var(--ink);
     font-size: 12px;
-    opacity: 0.85;
-    margin-bottom: 2px;
-  }
-  .result-card .metric-value {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-  .result-card .metric-value.big { font-size: 28px; }
-  .result-card .metric-unit {
-    font-size: 13px;
-    margin-left: 2px;
-    opacity: 0.85;
-  }
-  .result-card .metric-breakdown {
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px dashed rgba(0,0,0,0.15);
-    font-size: 11px;
-    line-height: 1.7;
-    opacity: 0.85;
-  }
-  .result-card .metric-breakdown .breakdown-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
-    align-items: baseline;
-  }
-  .result-card .metric-breakdown .breakdown-row .role-label {
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .result-card .metric-breakdown .breakdown-row .calc {
-    color: inherit;
-    opacity: 0.7;
-    font-size: 10px;
-    margin-left: 6px;
-  }
-  .result-card .metric-breakdown .breakdown-row .amount {
-    font-weight: 600;
-    margin-left: auto;
-  }
-  .result-card .metric-breakdown .breakdown-row.total {
-    margin-top: 4px;
-    padding-top: 4px;
-    border-top: 1px solid rgba(0,0,0,0.15);
     font-weight: 700;
   }
-
-  .result-current {
-    background: #f3f4f6;
-    color: #1a1a1a;
+  .work-track { position: relative; height: 35px; }
+  .work-before-track {
+    background: var(--navy);
+    border: 1px solid var(--navy);
+    border-radius: 6px;
   }
-  .result-current .label { color: #6b7280; }
-
-  /* 工数削減パネル（青系） */
-  .result-workload {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-    color: #1e3a8a;
-    border: 2px solid #3b82f6;
-  }
-  .result-workload .label { color: #1e40af; font-weight: 700; }
-  .result-workload .impact-value {
-    color: #dc2626;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  }
-  /* 売上パネルのインパクト値（赤文字で目立たせ・見込み値の注意喚起） */
-  .result-revenue .impact-value {
-    color: #dc2626;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  }
-
-  /* 売上パネル（緑系） */
-  .result-revenue {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    color: #064e3b;
-    border: 2px solid #10b981;
-  }
-  .result-revenue .label { color: #065f46; font-weight: 700; }
-
-  /* 総合効果パネル */
-  .result-summary {
-    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-    color: #1a1a1a;
-    border: 2px solid #1F4E78;
-  }
-  .result-summary .label { color: #1F4E78; font-weight: 700; }
-
-  /* Before/After 比較レイアウト */
-  .before-after {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 12px;
-    align-items: stretch;
-    margin: 16px 0 12px;
-  }
-  .before-after .ba-side {
-    background: rgba(255,255,255,0.6);
-    border-radius: 8px;
-    padding: 14px;
-    text-align: center;
-  }
-  .before-after .ba-side.after {
-    background: rgba(255,255,255,0.95);
-    border: 2px solid currentColor;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  }
-  .before-after .ba-arrow {
-    font-size: 26px;
-    font-weight: 700;
-    align-self: center;
-    opacity: 0.7;
-  }
-  .before-after .ba-label {
-    font-size: 11px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    opacity: 0.75;
-    letter-spacing: 0.05em;
-  }
-  .before-after .ba-value {
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-  .before-after .ba-sub {
+  .work-before-value {
+    margin-top: 5px;
+    color: var(--ink);
     font-size: 12px;
-    margin-top: 6px;
-    opacity: 0.85;
   }
-  .before-after .ba-detail {
-    font-size: 11px;
-    margin: 6px 0 4px;
-    opacity: 0.75;
-    line-height: 1.6;
-    padding-top: 6px;
-    border-top: 1px dashed rgba(0,0,0,0.15);
-  }
-  .before-after .ba-detail div { margin: 1px 0; }
-
-  /* インパクト表示 */
-  .impact-bar {
-    margin-top: 14px;
-    padding: 14px 18px;
-    background: rgba(255,255,255,0.85);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-  }
-  .impact-bar .impact-content { flex: 1; }
-  .impact-bar .impact-label {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-  .impact-bar .impact-note {
-    font-size: 11px;
-    opacity: 0.75;
-  }
-  .impact-bar .impact-value {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
-  }
-
-  /* コスト削減 ↓ vs 売上拡大 ↑ ビジュアル */
-  .effect-comparison {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 14px;
-    align-items: stretch;
-    margin: 14px 0 18px;
-  }
-  .effect-box {
-    text-align: center;
-    padding: 18px 14px;
-    border-radius: 12px;
-    border: 2px solid;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
-  .effect-box.cost-down {
-    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-    border-color: #ef4444;
-    color: #991b1b;
-  }
-  .effect-box.revenue-up {
-    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-    border-color: #10b981;
-    color: #047857;
-  }
-  .effect-icon {
-    font-size: 36px;
-    line-height: 1;
-  }
-  .effect-title {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .effect-arrow-icon {
-    font-size: 18px;
-    font-weight: 900;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    line-height: 1;
-  }
-  .effect-box.cost-down .effect-arrow-icon { background: #dc2626; }
-  .effect-box.revenue-up .effect-arrow-icon { background: #059669; }
-  .effect-value {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-  .effect-note {
-    font-size: 11px;
-    opacity: 0.85;
-    margin-top: 2px;
-  }
-  .effect-plus {
-    align-self: center;
-    font-size: 30px;
-    font-weight: 800;
-    color: #6b7280;
-    padding: 0 4px;
-  }
-  @media (max-width: 600px) {
-    .effect-comparison {
-      grid-template-columns: 1fr;
-    }
-    .effect-plus { transform: rotate(90deg); }
-  }
-
-  /* 効果 − 費用 = 純利益 を1行で表示 */
-  .result-line {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1.5fr;
-    gap: 12px;
-    align-items: stretch;
-    margin-top: 18px;
-  }
-  .rl-item {
-    background: white;
-    padding: 16px 14px;
-    border-radius: 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .rl-item.profit {
-    background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
-    color: white;
-    padding: 22px 18px;
-    position: relative;
-    overflow: hidden;
-  }
-  .rl-item.profit::before {
-    content: '';
+  .work-bridge { position: relative; min-height: 69px; padding-top: 1px; }
+  .work-bracket {
     position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    top: 0;
+    bottom: 0;
+    border-right: 1.5px dashed var(--navy);
+    border-bottom: 1.5px dashed var(--navy);
+    border-left: 1.5px dashed var(--navy);
     pointer-events: none;
   }
-  .rl-label {
-    font-size: 12px;
-    font-weight: 700;
-    opacity: 0.75;
-    margin-bottom: 6px;
-    letter-spacing: 0.04em;
-  }
-  .rl-item.profit .rl-label { opacity: 0.95; font-size: 13px; }
-  .rl-value {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-  .rl-value-big {
-    font-size: 36px;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin: 2px 0;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .rl-formula {
-    font-size: 11px;
-    opacity: 0.7;
-    margin-top: 4px;
-  }
-  .rl-breakdown {
-    list-style: none;
-    padding: 0;
-    margin-top: 8px;
-    font-size: 10.5px;
-    color: #6b7280;
-    text-align: left;
-    line-height: 1.5;
-  }
-  .rl-breakdown li {
-    padding: 1px 0 1px 12px;
+  .work-bridge p {
     position: relative;
+    width: 100%;
+    padding: 13px 10px 7px;
+    color: var(--navy);
+    font-size: 13px;
+    text-align: center;
   }
-  .rl-breakdown li::before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: #9ca3af;
+  .work-after-track { display: flex; height: 43px; }
+  .work-used-time {
+    flex: none;
+    height: 100%;
+    background: var(--navy);
+    border-top: 3px solid var(--navy-2);
+    border-radius: 5px 0 0 5px;
   }
-  .rl-op {
-    align-self: center;
-    font-size: 28px;
-    font-weight: 800;
-    color: #9ca3af;
-    line-height: 1;
+  .work-freed-time {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 3px 7px;
+    background: var(--warn-tint);
+    border: 1.5px dashed var(--warn-line);
+    border-radius: 0 5px 5px 0;
+    color: var(--warn);
+    text-align: center;
   }
-  /* 純利益ボックス内のROI表示 */
-  .rl-roi {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255,255,255,0.3);
+  .work-freed-time span { font-size: 12px; font-weight: 700; }
+  .work-after-values {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .work-after-values strong { color: var(--navy); }
+  .work-outside-note {
+    display: none;
+    margin-top: 7px;
+    padding-left: 8px;
+    border-left: 1px dashed var(--warn-line);
+    color: var(--warn);
+    font-size: 11px;
+  }
+  .work-totals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 13px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--navy);
+    font-size: 12px;
+  }
+  .work-totals b { margin-left: 5px; font-size: 18px; }
+  .work-foot { margin-top: 10px; color: var(--muted); font-size: 10px; }
+  .opportunity-panel {
+    padding: 17px 20px;
+    background: var(--surface);
+    border: 1px dashed var(--warn-line);
+    border-radius: 16px;
+  }
+  .opportunity-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+  }
+  .opportunity-cell span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .opportunity-cell strong {
+    display: block;
+    color: var(--warn);
+    font-size: 22px;
+    line-height: 1.6;
+  }
+  .opportunity-cell:first-child strong { color: var(--navy); }
+  .opportunity-cell small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .opportunity-arrow { color: var(--muted); }
+  .opportunity-disclaimer {
+    padding-top: 10px;
+    border-top: 1px dashed var(--warn-line);
+    color: var(--warn);
+    font-size: 11px;
+  }
+  .opportunity-disclaimer p + p { margin-top: 3px; }
+  @media (max-width: 700px) {
+    .work-panel { padding: 18px 14px; }
+    .work-intro { display: block; }
+    .work-intro .work-quiet { margin-top: 3px; }
+    .work-freed-time span { display: none; }
+    .work-outside-note { display: block; }
+    .work-after-values { display: grid; gap: 4px; }
+    .opportunity-panel { padding: 16px 14px; }
+    .opportunity-flow { grid-template-columns: 1fr; gap: 8px; }
+    .opportunity-arrow { margin: 0 auto; transform: rotate(90deg); }
+  }
+
+  /* 結果ストーリー：3シナリオ */
+  .scenario-caption {
+    margin: -5px 0 12px;
+    color: var(--warn);
+    font-size: 11px;
+  }
+  .scenario-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 31px;
+  }
+  .scenario-card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    min-width: 0;
+    padding: 17px 14px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -18px rgba(31, 78, 120, 0.3);
   }
-  .rl-roi-label {
+  .scenario-card.basic {
+    padding: 15px 12px 12px;
+    border: 3px solid var(--navy);
+  }
+  .scenario-card.theory {
+    border: 1px dashed var(--warn-line);
+    box-shadow: none;
+  }
+  .basic-cue {
+    position: absolute;
+    top: -34px;
+    right: -3px;
+    left: -3px;
+    color: var(--navy);
     font-size: 11px;
-    opacity: 0.9;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    line-height: 1.2;
+    text-align: center;
   }
-  .rl-roi-value {
-    font-size: 26px;
-    font-weight: 900;
-    color: #FBBF24;
+  .basic-cue::after {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 5px auto 0;
+    border-top: 8px solid var(--navy);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+  }
+  .scenario-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .theory .scenario-title { color: var(--warn); }
+  .scenario-tag {
+    padding: 2px 5px;
+    border: 1px dashed var(--warn-line);
+    border-radius: 4px;
+    color: var(--warn);
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .scenario-description {
+    min-height: 36px;
+    margin: 7px 0 3px;
+    color: var(--ink);
+    font-size: 11px;
+  }
+  .scenario-cases {
+    color: var(--ink);
+    font-size: 17px;
+    font-weight: 800;
     letter-spacing: -0.02em;
-    line-height: 1.1;
   }
-  .rl-roi-formula {
-    font-size: 10.5px;
-    opacity: 0.85;
+  .scenario-cases small {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .roi-slab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin: 12px 0;
+    padding: 9px 12px;
+    background: var(--navy-tint);
+    border-radius: 8px;
+    color: var(--navy);
+  }
+  .roi-slab span { font-size: 10px; }
+  .roi-slab strong {
+    font-size: 31px;
+    line-height: 1.2;
+    letter-spacing: -0.045em;
+  }
+  .roi-slab strong small { margin-left: 2px; font-size: 14px; }
+  .basic .roi-slab { background: var(--navy); color: var(--surface); }
+  .basic .roi-slab strong { color: var(--amber); }
+  .theory .roi-slab { background: var(--surface-2); color: var(--warn); }
+  .theory .roi-slab strong { font-size: 26px; }
+  .scenario-breakdown { display: grid; gap: 7px; font-size: 11px; }
+  .scenario-breakdown > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 7px;
+  }
+  .scenario-breakdown dt { font-weight: 500; }
+  .scenario-breakdown dd {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .scenario-revenue {
+    padding-bottom: 7px;
+    border-bottom: 1px dashed var(--warn-line);
+    color: var(--warn);
+  }
+  .scenario-saving { color: var(--navy); }
+  .scenario-fee { color: var(--neg); }
+  .scenario-profit {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .scenario-profit dd { font-size: 17px; letter-spacing: -0.025em; }
+  .basic .scenario-profit { color: var(--navy); }
+  .scenario-note { margin-top: 9px; color: var(--muted); font-size: 9px; }
+  .scenario-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 20px;
     margin-top: 2px;
+    padding: 11px 0 9px;
+    border-bottom: 1px solid var(--line);
   }
+  .scenario-footer span { font-size: 11px; }
+  .scenario-footer strong { margin: 0 3px; color: var(--navy); font-size: 19px; }
+  .scenario-rounding,
+  .scenario-zero-note { margin-top: 6px; color: var(--muted); font-size: 10px; }
+  .scenario-zero-note { display: none; }
   @media (max-width: 700px) {
-    .result-line {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .rl-op { transform: rotate(90deg); margin: 4px auto; }
-    .rl-value-big { font-size: 28px; }
-    .rl-roi-value { font-size: 22px; }
+    .scenario-cards { grid-template-columns: 1fr; gap: 14px; padding-top: 0; }
+    .scenario-card { padding: 16px 18px; }
+    .scenario-card.basic { order: -1; margin-top: 32px; padding: 14px 16px; }
+    .scenario-description { min-height: 0; }
+    .roi-slab strong { font-size: 34px; }
+    .scenario-breakdown dd { font-size: 16px; }
+    .scenario-profit dd { font-size: 20px; }
   }
 
   /* ============ 試算サマリー（印刷・共有用） ============ */
-  .boss-summary {
-    background: white;
-    padding: 32px;
-    border-top: 6px solid #1F4E78;
-    border-bottom: 1px solid #eef0f3;
-  }
-  /* 数値の色分け */
-  .num-cost { color: #1F4E78; font-weight: 800; }       /* コスト削減 = 紺青 */
-  .num-revenue { color: #dc2626; font-weight: 800; }    /* 売上拡大(見込み) = 赤 */
-  .num-effect { color: #7c3aed; font-weight: 800; }     /* 効果合計 = 紫 */
-  .num-profit { color: #047857; font-weight: 800; }     /* 純利益 = 緑 */
-  .num-fee { color: #6b7280; font-weight: 700; }        /* 費用 = グレー */
-  .num-neutral { color: #1a1a1a; font-weight: 800; }    /* 中立 = 黒 */
   .boss-summary-header {
     display: flex;
     justify-content: space-between;
@@ -872,115 +777,129 @@
     background: #1F4E78;
     color: white;
   }
-  .action-btn.primary {
-    background: #FB923C;
-    border-color: #FB923C;
-    color: white;
+  /* 試算サマリー：基本シナリオ */
+  .boss-summary {
+    padding: 28px 32px 32px;
+    background: var(--surface);
+    border-top: 6px solid var(--navy);
+    border-bottom: 1px solid var(--line);
   }
-  .action-btn.primary:hover {
-    background: #EA580C;
-    border-color: #EA580C;
-  }
+  .boss-summary-title h2 { color: var(--navy); }
+  .boss-summary-title p { color: var(--muted); }
   .summary-doc {
-    background: #f9fafb;
-    border: 2px solid #1F4E78;
-    border-radius: 10px;
-    padding: 24px;
-    font-size: 14px;
+    padding: 20px;
+    background: var(--navy-tint);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    color: var(--ink);
   }
   .summary-doc h3 {
+    margin-bottom: 14px;
+    padding: 0;
+    border: 0;
+    color: var(--navy);
     font-size: 17px;
-    color: #1F4E78;
-    border-bottom: 2px solid #1F4E78;
-    padding-bottom: 8px;
-    margin-bottom: 16px;
+  }
+  .summary-doc h3 .summary-scenario {
+    margin-left: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .summary-equation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .summary-term {
+    display: flex;
+    flex: 1 1 130px;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .summary-term::before {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .summary-term::after {
+    margin-top: 3px;
+    color: var(--ink);
+    content: attr(data-value);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .summary-revenue { border-bottom: 1px dashed var(--warn-line); }
+  .summary-revenue::before { color: var(--warn); content: "追加売上（見込み）"; }
+  .summary-revenue::after { color: var(--warn); }
+  .summary-saving::before { color: var(--navy); content: "工数削減（人件費換算）"; }
+  .summary-saving::after { color: var(--navy); }
+  .summary-fee::before { color: var(--neg); content: "47Connect費用"; }
+  .summary-fee::after { color: var(--neg); }
+  .summary-profit { background: var(--navy); border-color: var(--navy); }
+  .summary-profit::before { color: var(--surface); content: "年間効果差額（試算）"; }
+  .summary-profit::after { color: var(--amber); }
+  .summary-equals {
+    display: flex;
+    align-items: center;
+    color: var(--navy);
+    font-size: 20px;
     font-weight: 800;
   }
-  .summary-flow { margin: 12px 0 16px; }
-  .summary-step {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 8px;
-    align-items: flex-start;
-  }
-  .summary-step-label {
-    font-weight: 700;
-    color: #1F4E78;
-    background: #dbeafe;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
+  .summary-equals::before { content: "＝"; }
+  .summary-copy-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+    /* overflow:hidden が無いと、clip/clip-path で見えなくなっても中身の幅が
+       祖先の scrollWidth を押し広げ、狭い画面で横スクロールが発生する */
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
     white-space: nowrap;
-    flex-shrink: 0;
-    line-height: 1.4;
   }
-  .summary-step-content {
-    flex: 1;
-    font-size: 13px;
-    line-height: 1.7;
-    padding-top: 2px;
-  }
-  .summary-step-content strong { color: #1a1a1a; font-weight: 700; }
-  .summary-arrow {
-    text-align: center;
-    font-size: 18px;
-    color: #9ca3af;
-    margin: 2px 0 2px 60px;
-    line-height: 1;
-  }
-  .summary-key-numbers {
+  .summary-kpis {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px dashed #d1d5db;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 12px;
+    color: var(--navy);
+    font-size: 12px;
   }
-  .summary-key {
-    background: white;
-    padding: 14px 22px;
-    border-radius: 8px;
-    border: 2px solid #1F4E78;
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
+  .summary-kpis strong { margin-left: 4px; font-size: 19px; }
+  .summary-notes { margin-top: 10px; color: var(--muted); font-size: 10px; }
+  .summary-notes p + p { margin-top: 3px; }
+  .summary-assumptions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 15px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 10px;
   }
-  .summary-key.roi-key {
-    background: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%);
-    color: white;
-    border-color: #EA580C;
-  }
-  .summary-key.payback-key {
-    background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
-    color: white;
-    border-color: #1F4E78;
-  }
-  .summary-key .key-label {
-    font-size: 14px;
-    font-weight: 700;
-    opacity: 0.95;
-    flex-shrink: 0;
-  }
-  .summary-key .key-value {
-    font-size: 26px;
-    font-weight: 900;
-    color: inherit;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-left: auto;
-  }
-  .summary-key.roi-key .key-value,
-  .summary-key.payback-key .key-value { color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.18); }
-  .summary-disclaimer {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px dashed #d1d5db;
-    font-size: 11px;
-    color: #6b7280;
-    font-style: italic;
+  @media (max-width: 700px) {
+    .boss-summary { padding: 24px 16px; }
+    .summary-doc { padding: 16px 14px; }
+    .summary-equals { flex-basis: 100%; justify-content: center; }
+    .summary-assumptions { grid-template-columns: 1fr; }
   }
 
   /* Print friendly — カラー強制保持 */
+  @page { size: A4 portrait; margin: 12mm; }
   @media print {
     * {
       -webkit-print-color-adjust: exact !important;
@@ -995,202 +914,13 @@
     }
     .boss-summary {
       padding: 20px;
-      border-top: 6px solid #1F4E78 !important;
+      border-top: 6px solid var(--navy) !important;
     }
     .summary-doc {
-      border: 2px solid #1F4E78 !important;
-      background: #f9fafb !important;
+      border: 2px solid var(--navy) !important;
+      background: var(--navy-tint) !important;
+      break-inside: avoid;
     }
-    /* 印刷時に色が確実に出るように */
-    .summary-key.roi-key {
-      background: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%) !important;
-    }
-    .summary-key.payback-key {
-      background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%) !important;
-    }
-    .summary-step-label {
-      background: #dbeafe !important;
-      color: #1F4E78 !important;
-    }
-  }
-
-  .result-max {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    color: #78350f;
-    border: 2px solid #d97706;
-  }
-  .result-max .label { color: #d97706; font-weight: 700; }
-  .result-max .title { color: #78350f; }
-  .result-max .metric-value { color: #b45309; }
-
-  /* おまけ（最大シナリオ + 現状/基本/最大の3段階比較） */
-  .result-bonus {
-    background: #fafaf9;
-    border: 1px dashed #d6d3d1;
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin-top: 14px;
-  }
-  .bonus-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-  }
-  .bonus-tag {
-    background: #fef3c7;
-    color: #92400e;
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-  }
-  .bonus-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #44403c;
-  }
-  .bonus-desc {
-    font-size: 12px;
-    color: #78716c;
-    margin-bottom: 12px;
-    line-height: 1.7;
-  }
-  /* 3段階比較レイアウト */
-  .bonus-comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin: 12px 0;
-  }
-  /* 流れを示すバナー（比較表の上に表示） */
-  .bonus-flow-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(90deg, #e7e5e4 0%, #10b981 50%, #d97706 100%);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin: 8px auto 14px;
-    max-width: 480px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
-  }
-  .bonus-flow-banner::before { content: "←"; opacity: 0.85; }
-  .bonus-flow-banner::after { content: "→"; opacity: 0.85; }
-  .bonus-col {
-    border-radius: 8px;
-    padding: 14px 12px;
-    text-align: center;
-    border: 1.5px solid;
-    position: relative;
-  }
-  .bonus-col.current {
-    background: #f5f5f4;
-    color: #57534e;
-    border-color: #d6d3d1;
-  }
-  .bonus-col.basic {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    color: #064e3b;
-    border-color: #10b981;
-  }
-  .bonus-col.max {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    color: #78350f;
-    border-color: #d97706;
-  }
-  .bonus-col-header {
-    font-size: 13px;
-    font-weight: 800;
-    border-bottom: 1px solid;
-    border-color: currentColor;
-    padding-bottom: 6px;
-    margin-bottom: 10px;
-    opacity: 0.95;
-  }
-  .bonus-col-header small {
-    display: block;
-    font-size: 10px;
-    font-weight: 500;
-    opacity: 0.75;
-    margin-top: 2px;
-  }
-  .bonus-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 4px 0;
-    font-size: 11px;
-    text-align: left;
-  }
-  .bonus-row .row-label {
-    opacity: 0.7;
-    font-weight: 600;
-  }
-  .bonus-row .row-value {
-    font-size: 13px;
-    font-weight: 700;
-  }
-  .bonus-row .row-delta {
-    font-size: 10px;
-    opacity: 0.7;
-    margin-left: 3px;
-    font-weight: 500;
-  }
-  .bonus-row.roi-row {
-    border-top: 1px dashed currentColor;
-    padding-top: 8px;
-    margin-top: 6px;
-  }
-  .bonus-row.roi-row .row-label {
-    font-weight: 800;
-    opacity: 1;
-    font-size: 12px;
-  }
-  .bonus-row.roi-row .row-value {
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-  }
-  .bonus-col.max .bonus-row.roi-row .row-value {
-    color: #b45309;
-  }
-  .bonus-note {
-    font-size: 10.5px;
-    color: #a8a29e;
-    margin-top: 10px;
-    line-height: 1.6;
-    font-style: italic;
-  }
-  @media (max-width: 700px) {
-    .bonus-comparison { grid-template-columns: 1fr; }
-    .bonus-flow-banner::before { content: "↓"; }
-    .bonus-flow-banner::after { content: "↓"; }
-    .bonus-flow-banner { font-size: 11px; padding: 6px 12px; }
-  }
-
-  .result-judgment {
-    background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
-    color: white;
-    text-align: center;
-    padding: 24px;
-  }
-  .result-judgment .judgment-text {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .result-judgment .judgment-detail {
-    font-size: 14px;
-    opacity: 0.9;
   }
 
   /* CTA */
@@ -1203,7 +933,7 @@
   .cta .cta-badge {
     display: inline-block;
     background: rgba(251,146,60,0.2);
-    color: #FED7AA;
+    color: var(--amber);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -1236,7 +966,7 @@
     align-items: center;
     gap: 6px;
     font-size: 13px;
-    color: #FED7AA;
+    color: var(--amber);
   }
   .cta-features .feature::before {
     content: "✓";
@@ -1247,7 +977,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #FB923C;
+    background: var(--warn-line);
     color: white;
     padding: 16px 40px;
     border-radius: 8px;
@@ -1272,10 +1002,10 @@
   }
 
   .footnote {
-    background: #f9fafb;
+    background: var(--surface-2);
     padding: 16px 32px;
     font-size: 11px;
-    color: #9ca3af;
+    color: var(--muted);
     text-align: center;
   }
 
@@ -1289,14 +1019,6 @@
       gap: 8px;
     }
     .team-row .annual-hours { text-align: left; }
-    .result-card .metrics { grid-template-columns: 1fr; }
-    .result-card .metric-value.big { font-size: 24px; }
-    .result-judgment .judgment-text { font-size: 18px; }
-    .before-after { grid-template-columns: 1fr; }
-    /* 2026-08-10: 矢印が箱幅いっぱい(左寄せ)のままrotateされ字形が左端に飛んでいたため、回転前に中央寄せしてから回す */
-    .before-after .ba-arrow { transform: rotate(90deg); padding: 4px 0; display: flex; align-items: center; justify-content: center; }
-    /* 2026-08-10: impact-content(flex:1)がimpact-value(固定幅)に押されて激狭になり3行に割れていたため縦積みに */
-    .impact-bar { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -1422,11 +1144,11 @@
 
   <!-- ============ 結果 ============ -->
   <section class="result-section">
-    <h2 class="section-title">📊 結果（リアルタイム計算）</h2>
+    <h2 class="section-title">結果（リアルタイム計算）</h2>
     <p class="section-desc">入力が変わると、すべての結果が自動で更新されます。</p>
 
     <div class="premise" style="margin-bottom: 18px;">
-      <div class="premise-title">📌 計算の前提</div>
+      <div class="premise-title">計算の前提</div>
       <ul>
         <li>47Connect 月20万円プラン：<strong>月額20万円</strong>（初期構築費10万円・AIクレジットは別途）</li>
         <li>導入後の工数：<strong>1/10に削減</strong>（90%削減目標）</li>
@@ -1440,254 +1162,169 @@
 
     <div class="results-grid">
 
-      <!-- 現状 -->
-      <div class="result-card result-current">
-        <div class="label">現状（47Connect導入前）</div>
-        <div class="title">📊 現在の状況</div>
-        <div class="metrics">
-          <div class="metric">
-            <div class="metric-label">年間売上</div>
-            <div class="metric-value big" id="currentRevenue">¥20,000,000</div>
+      <div class="result-block result-work">
+        <div class="result-block-head">
+          <span class="result-step">工数</span>
+          <h3>営業工数を減らし、提案に使う時間をつくる</h3>
+        </div>
+        <figure class="work-panel">
+          <div class="work-intro">
+            <strong id="workHeadline">総工数は1/10に</strong>
+            <p class="work-quiet" id="workRateNote">90%削減を仮定した試算</p>
           </div>
-          <div class="metric">
-            <div class="metric-label">年間人件費（自治体営業分）</div>
-            <div class="metric-value" id="currentCost">¥2,450,000</div>
-            <div class="metric-breakdown" id="currentCostBreakdown">
-              <!-- メンバーごとの内訳がJSで動的に挿入されます -->
+          <figcaption class="work-caption">導入前｜自治体営業に使う時間</figcaption>
+          <div class="work-track work-before-track" id="workBeforeBar"
+               aria-label="導入前は年間1,050時間"></div>
+          <p class="work-before-value">
+            年間 <b id="workBeforeHours">1,050時間</b> ／
+            人件費 <b id="workBeforeCost">245万円</b>
+          </p>
+
+          <div class="work-bridge">
+            <div class="work-bracket" id="workBracket" aria-hidden="true"></div>
+            <p>削減した <strong id="workReducedBridge">945時間</strong> が、<br>新たに使える時間になる</p>
+          </div>
+
+          <p class="work-caption">導入後｜必要な工数と、空いた時間</p>
+          <div class="work-track work-after-track" id="workAfterBar"
+               aria-label="必要な工数105時間、空いた時間945時間">
+            <div class="work-used-time" id="workUsedTime"></div>
+            <div class="work-freed-time" id="workFreedTime">
+              <span>空いた時間を「提案・面談・関係づくり」に回せる</span>
             </div>
+          </div>
+          <div class="work-after-values">
+            <span>必要な工数 <strong id="workAfterHours">105時間／年</strong></span>
+            <span>空いた時間 <strong id="workFreedHours">945時間／年</strong></span>
+          </div>
+          <p class="work-outside-note">空いた時間を「提案・面談・関係づくり」に回せます。</p>
+
+          <div class="work-totals">
+            <span>削減工数 <b id="workReducedTotal">945時間／年</b></span>
+            <span>人件費換算 <b id="workSavingTotal">220万円／年</b></span>
+          </div>
+          <p class="work-foot">
+            導入後の人件費換算は<span id="workAfterCost">24万円／年</span>。
+            工数削減額は現金支出の削減を意味しません。
+          </p>
+        </figure>
+      </div>
+
+      <div class="result-block result-opportunity">
+        <div class="result-block-head">
+          <span class="result-step">提案機会</span>
+          <h3>空いた時間が、次の提案機会に変わる</h3>
+        </div>
+        <div class="opportunity-panel">
+          <div class="opportunity-flow">
+            <div class="opportunity-cell">
+              <span>再配分できる時間</span>
+              <strong id="opportunityHours">945時間／年</strong>
+              <small id="opportunityRateNote">工数の90%を削減と仮定</small>
+            </div>
+            <div class="opportunity-arrow" aria-hidden="true">→</div>
+            <div class="opportunity-cell">
+              <span>基本の提案活動量</span>
+              <strong>2倍を想定</strong>
+              <small>案件獲得も<span id="opportunityCaseChange">4→8件</span>と仮定</small>
+            </div>
+            <div class="opportunity-arrow" aria-hidden="true">→</div>
+            <div class="opportunity-cell">
+              <span>追加売上の見込み</span>
+              <strong id="opportunityAddRevenue">+2,000万円</strong>
+              <small><span id="opportunityAddedCases">追加4件</span> × 単価<span id="opportunityUnitPrice">500万円</span></small>
+            </div>
+          </div>
+          <div class="opportunity-disclaimer">
+            <p>売上は見込みであり、獲得を保証するものではありません。</p>
+            <p>47Connectは提案機会の創出を支援します。</p>
+            <p>案件獲得は自治体側の判断によります。</p>
+            <p>実際の成果は、提案品質・自治体のニーズ・予算サイクル等で変わります。</p>
           </div>
         </div>
       </div>
 
-      <!-- ① 工数削減パネル -->
-      <div class="result-card result-workload">
-        <div class="label">47Connect導入で（① 工数・人件費）</div>
-        <div class="title">⏱️ 工数（人件費）はこう変わります</div>
-        <p style="font-size: 13px; opacity: 0.85; margin-bottom: 4px;">
-          47Connect導入で、自治体営業の工数が <strong>1/10</strong> に削減されます。
+      <div class="result-block result-scenarios">
+        <div class="result-block-head">
+          <span class="result-step">投資対効果</span>
+          <h3>3つの内訳で比較する</h3>
+        </div>
+        <p class="scenario-caption">
+          すべて売上見込みを含む試算です。売上の獲得を保証しません。
         </p>
-
-        <div class="before-after">
-          <div class="ba-side">
-            <div class="ba-label">現状</div>
-            <div class="ba-value" id="wlBeforeHours">1,050時間/年</div>
-            <div class="ba-detail" id="wlBeforeDetail">
-              <div>📅 4月〜10月（7ヶ月間）</div>
-              <div>⏰ 月50h/人 × 3名</div>
+        <div class="scenario-cards">
+          <article class="scenario-card conservative">
+            <h4 class="scenario-title">保守シナリオ</h4>
+            <p class="scenario-description">案件が年1件だけ増える想定</p>
+            <p class="scenario-cases">
+              <span id="conservativeTotalCases">4→5件</span><small>／年（追加<span id="conservativeAddCases">1</span>件）</small>
+            </p>
+            <div class="roi-slab">
+              <span>ROI<br>投資対効果</span>
+              <strong id="conservativeRoi">1.9<small>倍</small></strong>
             </div>
-            <div class="ba-sub">人件費 <strong id="wlBeforeCost">¥2,450,000</strong></div>
-          </div>
-          <div class="ba-arrow">→</div>
-          <div class="ba-side after">
-            <div class="ba-label">47Connect導入後</div>
-            <div class="ba-value" id="wlAfterHours">105時間/年</div>
-            <div class="ba-detail" id="wlAfterDetail">
-              <div>📅 4月〜10月（7ヶ月間）</div>
-              <div>⏰ 月5h/人 × 3名（1/10削減）</div>
+            <dl class="scenario-breakdown">
+              <div class="scenario-revenue"><dt>追加売上（見込み）</dt><dd id="conservativeRevenue">+500万円</dd></div>
+              <div class="scenario-saving"><dt>工数削減（人件費換算）</dt><dd id="conservativeSaving">+220万円</dd></div>
+              <div class="scenario-fee"><dt>47Connect費用</dt><dd id="conservativeFee">−250万円</dd></div>
+              <div class="scenario-profit"><dt>年間効果差額（試算）</dt><dd id="conservativeProfit">+470万円</dd></div>
+            </dl>
+            <p class="scenario-note">売上原価を控除していない試算です。</p>
+          </article>
+
+          <article class="scenario-card basic">
+            <div class="basic-cue">これが標準の想定です</div>
+            <h4 class="scenario-title">基本シナリオ</h4>
+            <p class="scenario-description">提案活動量が2倍になる想定</p>
+            <p class="scenario-cases">
+              <span id="basicTotalCases">4→8件</span><small>／年（追加<span id="basicAddCases">4</span>件）</small>
+            </p>
+            <div class="roi-slab">
+              <span>ROI<br>投資対効果</span>
+              <strong id="basicRoi">7.9<small>倍</small></strong>
             </div>
-            <div class="ba-sub">人件費 <strong id="wlAfterCost">¥245,000</strong></div>
-          </div>
-        </div>
+            <dl class="scenario-breakdown">
+              <div class="scenario-revenue"><dt>追加売上（見込み）</dt><dd id="basicRevenue">+2,000万円</dd></div>
+              <div class="scenario-saving"><dt>工数削減（人件費換算）</dt><dd id="basicSaving">+220万円</dd></div>
+              <div class="scenario-fee"><dt>47Connect費用</dt><dd id="basicFee">−250万円</dd></div>
+              <div class="scenario-profit"><dt>年間効果差額（試算）</dt><dd id="basicProfit">+1,970万円</dd></div>
+            </dl>
+            <p class="scenario-note">売上原価を控除していない試算です。</p>
+          </article>
 
-        <div class="impact-bar">
-          <div class="impact-content">
-            <div class="impact-label">年間 人件費削減効果</div>
-            <div class="impact-note" id="wlStaffingNote">1名で月15時間程度の運用が可能</div>
-          </div>
-          <div class="impact-value" id="wlSavingValue">¥2,205,000</div>
+          <article class="scenario-card theory">
+            <h4 class="scenario-title">MAXシナリオ <span class="scenario-tag">理論値</span></h4>
+            <p class="scenario-description">空いた時間をすべて新規提案へ再配分</p>
+            <p class="scenario-cases">
+              <span id="theoryTotalCases">4→122件</span><small>／年（追加<span id="theoryAddCases">118</span>件）</small>
+            </p>
+            <div class="roi-slab">
+              <span>ROI<br>投資対効果</span>
+              <strong id="theoryRoi">236<small>倍</small></strong>
+            </div>
+            <dl class="scenario-breakdown">
+              <div class="scenario-revenue"><dt>追加売上（見込み）</dt><dd id="theoryRevenue">+5億9,000万円</dd></div>
+              <div class="scenario-saving"><dt>工数削減（人件費換算）</dt><dd id="theorySaving">+220万円</dd></div>
+              <div class="scenario-fee"><dt>47Connect費用</dt><dd id="theoryFee">−250万円</dd></div>
+              <div class="scenario-profit"><dt>年間効果差額（試算）</dt><dd id="theoryProfit">+5億8,970万円</dd></div>
+            </dl>
+            <p class="scenario-note">全追加提案が売上に結びつく仮定です。</p>
+          </article>
         </div>
-      </div>
-
-      <!-- ② 売上パネル -->
-      <div class="result-card result-revenue">
-        <div class="label">47Connect導入で（② 売上拡大の見込み）</div>
-        <div class="title">💰 売上拡大のポテンシャル</div>
-        <p style="font-size: 13px; opacity: 0.85; margin-bottom: 4px;">
-          47Connect導入で、年間の<strong>提案活動量が2倍</strong>に拡大する想定です。<br>
-          <span style="font-size: 12px; opacity: 0.85;">※ 工数が1/10に削減され、空いた時間を提案活動に振り向けることで従来の2倍の提案が可能になる想定。</span>
+        <div class="scenario-footer">
+          <span>基本シナリオの投資回収 <strong id="basicPayback">1.4ヶ月</strong></span>
+          <span>初年度費用 <b id="scenarioAnnualCost">250万円</b> ／ 月額20万円＋初期構築費10万円</span>
+        </div>
+        <p class="scenario-rounding">
+          ROI＝年間効果差額÷初年度費用。金額は端数処理前の値で計算しています。
         </p>
-
-        <div class="before-after">
-          <div class="ba-side">
-            <div class="ba-label">現状</div>
-            <div class="ba-value" id="rvBeforeRevenue">¥20,000,000</div>
-            <div class="ba-sub">案件数 <strong id="rvBeforeCases">4件/年</strong></div>
-          </div>
-          <div class="ba-arrow">→</div>
-          <div class="ba-side after">
-            <div class="ba-label">47Connect導入後</div>
-            <div class="ba-value" id="rvAfterRevenue">¥40,000,000</div>
-            <div class="ba-sub">案件数 <strong id="rvAfterCases">8件/年（2倍）</strong></div>
-          </div>
-        </div>
-
-        <div class="impact-bar">
-          <div class="impact-content">
-            <div class="impact-label">年間 追加売上の見込み（最大値）</div>
-            <div class="impact-note">追加提案数 × 平均単価で算出した上限ポテンシャル</div>
-          </div>
-          <div class="impact-value" id="rvAddValue">+¥20,000,000</div>
-        </div>
-
-        <div class="disclaimer">
-          <div class="disclaimer-title">⚠️ 売上見込みについての重要な注意</div>
-          本シミュレーションは「<strong>提案活動量が増加することで得られる売上可能性</strong>」を試算した <strong>見込み値</strong> です。
-          <ul>
-            <li>47Connectが行うのはあくまで <strong>「売上獲得につながる種作り（提案機会の創出）」</strong> であり、提案件数の増加と工数削減を支援するサービスです。</li>
-            <li>最終的な案件獲得は <strong>提案後の自治体側のご判断</strong> に委ねられるため、本数値の通りの売上を <strong>保証するものではありません</strong>。</li>
-            <li>実際の売上は、お客様の提案品質・自治体ニーズとの合致度・予算サイクル等に左右されます。</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- ③ 総合効果パネル -->
-      <div class="result-card result-summary">
-        <div class="label">47Connect導入の総合効果</div>
-        <div class="title">✨ コスト削減 ＋ 売上拡大 = 総リターン</div>
-
-        <!-- 視覚的対比: コスト削減 ↓ + 売上拡大 ↑ -->
-        <div class="effect-comparison">
-          <div class="effect-box cost-down">
-            <div class="effect-icon">📉</div>
-            <div class="effect-title">コスト削減 <span class="effect-arrow-icon">↓</span></div>
-            <div class="effect-value" id="ecCostValue">¥2,205,000</div>
-            <div class="effect-note">稼働減による「コスト削減額」</div>
-          </div>
-          <div class="effect-plus">＋</div>
-          <div class="effect-box revenue-up">
-            <div class="effect-icon">📈</div>
-            <div class="effect-title">売上拡大 <span class="effect-arrow-icon">↑</span></div>
-            <div class="effect-value" id="ecRevenueValue">¥20,000,000</div>
-            <div class="effect-note">追加提案による「売上獲得見込額」</div>
-          </div>
-        </div>
-
-        <!-- 効果 − 費用 = 純利益（一行表示） + ROI(純利益ボックス内) -->
-        <div class="result-line">
-          <div class="rl-item">
-            <div class="rl-label">年間 効果合計</div>
-            <div class="rl-value" id="basicTotalEffect">¥22,205,000</div>
-            <div class="rl-formula">コスト削減 + 売上拡大</div>
-          </div>
-          <div class="rl-op">−</div>
-          <div class="rl-item">
-            <div class="rl-label">年間 費用合計</div>
-            <div class="rl-value" id="annualCostDisplay">¥2,500,000</div>
-            <ul class="rl-breakdown">
-              <li>月額料金 <span id="ecMonthlyFee">¥200,000</span> × 12ヶ月 = <strong id="ecAnnualFee">¥2,400,000</strong></li>
-              <li>初期構築費 <span id="ecInitialFee">¥100,000</span>（最初の1回）</li>
-              <li>AIクレジット <span id="ecAiCredit">¥0</span>/月（別途）</li>
-            </ul>
-          </div>
-          <div class="rl-op">=</div>
-          <div class="rl-item profit">
-            <div class="rl-label">💰 年間 純利益</div>
-            <div class="rl-value-big" id="basicProfit">¥19,705,000</div>
-            <div class="rl-formula" style="opacity:0.9">効果合計 − 費用合計</div>
-            <div class="rl-roi">
-              <div class="rl-roi-label">★ ROI（投資対効果）</div>
-              <div class="rl-roi-value" id="summaryRoi">7.9倍</div>
-              <div class="rl-roi-formula" id="summaryRoiFormula">純利益 ÷ 費用合計（投資 ¥1 → ¥7.9 の利益）</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- おまけ：3段階比較（現状 → 基本 → 最大） -->
-      <div class="result-bonus">
-        <div class="bonus-header">
-          <span class="bonus-tag">💡 おまけ</span>
-          <span class="bonus-title">もし、削減した時間を「すべて」新規提案に振り向けたら？</span>
-        </div>
-        <div class="bonus-desc">
-          基本シナリオでは「提案活動量を2倍」と控えめに見積もっていますが、もし削減した時間を <strong>100%新規提案に使った場合</strong>、理論上どこまで伸びるか比較してみました。<strong>右に行くほどROIが伸びます。</strong>
-        </div>
-
-        <div class="bonus-flow-banner">右に行くほど ROI が伸びます</div>
-
-        <div class="bonus-comparison">
-
-          <!-- 現状 -->
-          <div class="bonus-col current">
-            <div class="bonus-col-header">
-              📊 現状
-              <small>47Connect なし</small>
-            </div>
-            <div class="bonus-row">
-              <span class="row-label">年間案件数</span>
-              <span class="row-value" id="bonusCurrentCases">4件</span>
-            </div>
-            <div class="bonus-row">
-              <span class="row-label">年間売上</span>
-              <span class="row-value" id="bonusCurrentRevenue">¥20,000,000</span>
-            </div>
-            <div class="bonus-row roi-row">
-              <span class="row-label">★ ROI</span>
-              <span class="row-value">—</span>
-            </div>
-          </div>
-
-          <!-- 基本シナリオ -->
-          <div class="bonus-col basic">
-            <div class="bonus-col-header">
-              ✅ 基本シナリオ
-              <small>提案活動量2倍想定</small>
-            </div>
-            <div class="bonus-row">
-              <span class="row-label">年間案件数</span>
-              <span class="row-value">
-                <span id="bonusBasicCases">8件</span>
-                <span class="row-delta" id="bonusBasicCasesDelta">(+4)</span>
-              </span>
-            </div>
-            <div class="bonus-row">
-              <span class="row-label">年間売上</span>
-              <span class="row-value">
-                <span id="bonusBasicRevenue">¥40,000,000</span>
-              </span>
-            </div>
-            <div class="bonus-row roi-row">
-              <span class="row-label">★ ROI</span>
-              <span class="row-value" id="bonusBasicROI">7.9倍</span>
-            </div>
-          </div>
-
-          <!-- 最大シナリオ -->
-          <div class="bonus-col max">
-            <div class="bonus-col-header">
-              🚀 最大シナリオ
-              <small>削減時間100%振り向け</small>
-            </div>
-            <div class="bonus-row">
-              <span class="row-label">年間案件数</span>
-              <span class="row-value">
-                <span id="bonusMaxCases">122件</span>
-                <span class="row-delta" id="bonusMaxCasesDelta">(+118)</span>
-              </span>
-            </div>
-            <div class="bonus-row">
-              <span class="row-label">年間売上</span>
-              <span class="row-value">
-                <span id="bonusMaxRevenue">¥610,625,000</span>
-              </span>
-            </div>
-            <div class="bonus-row roi-row">
-              <span class="row-label">★ ROI</span>
-              <span class="row-value" id="bonusMaxROI">236倍</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bonus-note">
-          ※ 1件あたり営業工数<strong>8時間</strong>で算出（年間削減工数 ÷ 8h/件 = 最大提案可能数）<br>
-          ※ 最大シナリオは「削減時間を100%新規提案に振り向けた場合」の理論値です（実際には他業務との兼ね合いあり）
-        </div>
-      </div>
-
-      <!-- 判定 -->
-      <div class="result-card result-judgment">
-        <div class="judgment-text" id="judgmentText">💡 ROI 4.9倍 — 強くおすすめできます</div>
-        <div class="judgment-detail">投資回収期間：<span id="paybackMonths">2.5</span>ヶ月</div>
+        <p class="scenario-rounding">
+          金額は万円未満を切り捨てて表示しています。回収期間＝初年度費用÷月平均効果です。
+        </p>
+        <p class="scenario-zero-note" id="scenarioZeroNote">
+          年間案件0件のため、基本の追加売上も0です。
+          保守は追加1件、MAXは全時間の再配分を仮定します。
+        </p>
       </div>
 
     </div>
@@ -1697,7 +1334,7 @@
   <section class="boss-summary">
     <div class="boss-summary-header">
       <div class="boss-summary-title">
-        <h2>📊 47Connect 導入効果 試算サマリー</h2>
+        <h2>47Connect 導入効果 試算サマリー</h2>
         <p>本サマリーは印刷・PDF出力してそのまま提案資料としてお使いいただけます。</p>
       </div>
       <div class="boss-summary-actions">
@@ -1707,51 +1344,33 @@
     </div>
 
     <div class="summary-doc" id="summaryDoc">
-      <h3>47Connect 導入効果 試算結果</h3>
-
-      <div class="summary-flow">
-        <div class="summary-step">
-          <div class="summary-step-label">📊 現状</div>
-          <div class="summary-step-content" id="summaryStep1">
-            営業チーム<span class="num-neutral">3名</span>で年間 <span class="num-neutral">1,050時間</span> を自治体営業に投下。年間案件 <span class="num-neutral">4件</span>・売上 <span class="num-neutral">¥20,000,000</span>。
-          </div>
-        </div>
-        <div class="summary-arrow">↓</div>
-        <div class="summary-step">
-          <div class="summary-step-label">⚡ 47Connect導入</div>
-          <div class="summary-step-content" id="summaryStep2">
-            自治体営業の工数を <span class="num-cost">1/10</span>（90%削減）に。空いた時間で <span class="num-revenue">提案活動量を2倍</span> に拡大。
-          </div>
-        </div>
-        <div class="summary-arrow">↓</div>
-        <div class="summary-step">
-          <div class="summary-step-label">💡 効果</div>
-          <div class="summary-step-content" id="summaryStep3">
-            コスト削減 <span class="num-cost" id="sumCost">¥2,205,000</span> ＋ 売上拡大 <span class="num-revenue" id="sumRev">¥20,000,000</span>（見込み） ＝ 年間効果 <span class="num-effect" id="sumTot">¥22,205,000</span>
-          </div>
-        </div>
-        <div class="summary-arrow">↓</div>
-        <div class="summary-step">
-          <div class="summary-step-label">💰 純利益</div>
-          <div class="summary-step-content" id="summaryStep4">
-            年間効果 <span class="num-effect" id="sumEffect2">¥22,205,000</span> − 年間費用 <span class="num-fee" id="sumCost2">¥2,500,000</span>（月額¥200,000×12 ＋ 初期費¥100,000）＝ <span class="num-profit" id="sumProfit">¥19,705,000</span>
-          </div>
-        </div>
+      <h3>試算結果 <span class="summary-scenario">基本シナリオ</span></h3>
+      <div class="summary-equation" id="summaryEquation"
+           aria-label="追加売上2,000万円、工数削減220万円、費用250万円、年間効果差額1,970万円">
+        <span class="summary-term summary-revenue" id="summaryRevenue" data-value="+2,000万円" aria-hidden="true"></span>
+        <span class="summary-term summary-saving" id="summarySaving" data-value="+220万円" aria-hidden="true"></span>
+        <span class="summary-term summary-fee" id="summaryFee" data-value="−250万円" aria-hidden="true"></span>
+        <span class="summary-equals" aria-hidden="true"></span>
+        <span class="summary-term summary-profit" id="summaryProfit" data-value="+1,970万円" aria-hidden="true"></span>
       </div>
-
-      <div class="summary-key-numbers">
-        <div class="summary-key roi-key">
-          <span class="key-label">★ ROI（投資対効果）：</span>
-          <span class="key-value" id="sumRoi">7.9倍</span>
-        </div>
-        <div class="summary-key payback-key">
-          <span class="key-label">★ 投資回収期間：</span>
-          <span class="key-value" id="sumPayback">1.4ヶ月</span>
-        </div>
+      <p class="summary-copy-text" id="summaryCopyText" aria-hidden="true">
+        追加売上（見込み）+2,000万円 ＋ 工数削減（人件費換算）+220万円
+        − 47Connect費用250万円 ＝ 年間効果差額（試算）+1,970万円
+      </p>
+      <div class="summary-kpis">
+        <span>ROI（投資対効果）<strong id="sumRoi">7.9倍</strong></span>
+        <span>投資回収期間<strong id="sumPayback">1.4ヶ月</strong></span>
       </div>
-
-      <div class="summary-disclaimer">
-        ※ 売上拡大効果は「47Connectによる提案活動量増加で創出される売上見込み（種作り）」であり、最終的な案件獲得は自治体側のご判断によるため、本数値は売上獲得を保証するものではありません。
+      <div class="summary-notes">
+        <p id="summaryWorkNote">年間工数 1,050→105時間。空いた945時間を提案活動等へ再配分します。</p>
+        <p>売上は見込みであり、保証しません。原価は未控除で、工数削減は人件費換算です。</p>
+        <p>AIクレジットは別途です。本試算には含みません。</p>
+      </div>
+      <div class="summary-assumptions">
+        <span id="summaryTeamAssumption">チーム：3名／自治体営業の人件費245万円</span>
+        <span id="summaryPeriodAssumption">稼働：4月〜10月・7ヶ月／月50時間／人</span>
+        <span id="summaryCurrentAssumption">現状：年4件 × 単価500万円＝売上2,000万円</span>
+        <span id="summaryRateAssumption">時給換算：年間2,000時間／削減率90%</span>
       </div>
     </div>
   </section>
@@ -1867,21 +1486,57 @@
     addMember('member');
   });
 
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  };
+  const setHTML = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.innerHTML = value;
+  };
+  const setStyle = (id, property, value) => {
+    const element = document.getElementById(id);
+    if (element) element.style[property] = value;
+  };
+  const setAttribute = (id, name, value) => {
+    const element = document.getElementById(id);
+    if (element) element.setAttribute(name, value);
+  };
+  const formatNumber = value => value.toLocaleString('ja-JP', { maximumFractionDigits: 1 });
+  const formatMoney = (value, showPlus = false) => {
+    const absoluteMan = Math.floor(Math.abs(value) / 10_000);
+    const oku = Math.floor(absoluteMan / 10_000);
+    const man = absoluteMan % 10_000;
+    let amount;
+    if (oku > 0) {
+      amount = man > 0 ? `${oku}億${man.toLocaleString()}万円` : `${oku}億円`;
+    } else {
+      amount = `${man.toLocaleString()}万円`;
+    }
+    const sign = value < 0 ? '−' : showPlus ? '+' : '';
+    return sign + amount;
+  };
+  const formatMultiple = value => {
+    if (!Number.isFinite(value)) return '—';
+    const absolute = Math.abs(value);
+    const amount = absolute < 10 ? absolute.toFixed(1) : Math.round(absolute).toLocaleString();
+    return (value < 0 ? '−' : '') + amount;
+  };
+
   // ============ 計算 ============
   function calculate() {
     const monthlyHours = parseFloat(document.getElementById('monthlyHours').value) || 0;
     const activeMonths = getActiveMonths();
     const annualHoursPerPerson = monthlyHours * activeMonths;
 
-    document.getElementById('activeMonthsDisplay').textContent = activeMonths + 'ヶ月';
-    document.getElementById('annualHoursPerPerson').textContent = annualHoursPerPerson.toLocaleString() + '時間';
+    setText('activeMonthsDisplay', activeMonths + 'ヶ月');
+    setText('annualHoursPerPerson', annualHoursPerPerson.toLocaleString() + '時間');
 
     // チーム集計
     let teamCount = 0;
     let teamAnnualHours = 0;
     let teamAnnualCost = 0;
 
-    const breakdownData = [];  // 結果セクションの内訳表示用
     document.querySelectorAll('.team-row').forEach(row => {
       const role = row.querySelector('.role').value;
       const annualSalary = (parseFloat(row.querySelector('.salary').value) || 0) * 10_000;
@@ -1895,34 +1550,11 @@
       if (memberHoursEl) memberHoursEl.textContent = annualHoursPerPerson.toLocaleString();
       const memberHourlyEl = row.querySelector('.member-hourly');
       if (memberHourlyEl) memberHourlyEl.textContent = '¥' + Math.round(hourlyRate).toLocaleString();
-      // 内訳データを格納
-      breakdownData.push({
-        role: ROLE_DEFAULTS[role].label,
-        hours: annualHoursPerPerson,
-        hourlyRate: hourlyRate,
-        cost: personalCost,
-      });
     });
 
-    // 年間人件費の内訳を表示
-    const breakdownEl = document.getElementById('currentCostBreakdown');
-    if (breakdownEl) {
-      breakdownEl.innerHTML = breakdownData.map(m =>
-        `<div class="breakdown-row">
-          <span class="role-label">${m.role}</span>
-          <span class="calc">${m.hours.toLocaleString()}h × ¥${Math.round(m.hourlyRate).toLocaleString()}</span>
-          <span class="amount">¥${Math.round(m.cost).toLocaleString()}</span>
-        </div>`
-      ).join('') +
-      `<div class="breakdown-row total">
-        <span class="role-label">合計</span>
-        <span class="amount">¥${Math.round(teamAnnualCost).toLocaleString()}</span>
-      </div>`;
-    }
-
-    document.getElementById('teamCount').textContent = teamCount + '名';
-    document.getElementById('teamAnnualHours').textContent = teamAnnualHours.toLocaleString() + '時間';
-    document.getElementById('teamAnnualCost').textContent = '¥' + Math.round(teamAnnualCost).toLocaleString();
+    setText('teamCount', teamCount + '名');
+    setText('teamAnnualHours', teamAnnualHours.toLocaleString() + '時間');
+    setText('teamAnnualCost', '¥' + Math.round(teamAnnualCost).toLocaleString());
 
     // 案件
     const annualCases = parseFloat(document.getElementById('annualCases').value) || 0;
@@ -1939,138 +1571,137 @@
 
     // 費用
     const annualCost = MONTHLY_FEE * 12 + INITIAL_FEE + AI_CREDIT * 12;
-    const monthlyCost = MONTHLY_FEE + AI_CREDIT;
-
     const annualProfit = annualTotalEffect - annualCost;
     // ROI（投資対効果）= 純利益 ÷ 費用合計（標準的な定義）
     const yearlyROI = annualProfit / annualCost;
     const monthlyEffect = annualTotalEffect / 12;
     const paybackMonths = annualCost / monthlyEffect;
 
-    // 最大シナリオ
+    // 3シナリオ（基本の既存計算式は維持）
     const reducedHoursAnnual = teamAnnualHours * REDUCTION_RATE;
-    const maxAddCases = reducedHoursAnnual / HOURS_PER_PROPOSAL;
-    const maxAnnualAddRevenue = maxAddCases * unitPrice;
+    const scenarioAddCases = {
+      conservative: 1,
+      basic: annualCases * CASE_GROWTH,
+      theory: Math.floor(reducedHoursAnnual / HOURS_PER_PROPOSAL),
+    };
+    const makeScenario = addCases => {
+      const addRevenue = addCases * unitPrice;
+      const profit = addRevenue + annualCostSaving - annualCost;
+      return {
+        addCases,
+        addRevenue,
+        profit,
+        roi: profit / annualCost,
+        totalCases: annualCases + addCases,
+      };
+    };
+    const scenarios = {
+      conservative: makeScenario(scenarioAddCases.conservative),
+      basic: {
+        addCases: addedCases,
+        addRevenue: annualAddRevenue,
+        profit: annualProfit,
+        roi: yearlyROI,
+        totalCases: annualCases + addedCases,
+      },
+      theory: makeScenario(scenarioAddCases.theory),
+    };
 
     // ============ DOM更新 ============
-    document.getElementById('currentRevenue').textContent = '¥' + Math.round(currentRevenue).toLocaleString();
-    document.getElementById('currentCost').textContent = '¥' + Math.round(teamAnnualCost).toLocaleString();
-
     // ① 工数削減パネル
     const afterTeamHours = teamAnnualHours * (1 - REDUCTION_RATE);
     const afterTeamCost = teamAnnualCost * (1 - REDUCTION_RATE);
-    const afterMonthlyHoursPerPerson = monthlyHours * (1 - REDUCTION_RATE);
     const startMonthVal = parseInt(document.getElementById('startMonth').value);
     const endMonthVal = parseInt(document.getElementById('endMonth').value);
     const periodText = `${startMonthVal}月〜${endMonthVal}月（${activeMonths}ヶ月間）`;
 
-    document.getElementById('wlBeforeHours').textContent = teamAnnualHours.toLocaleString() + '時間/年';
-    document.getElementById('wlBeforeCost').textContent = '¥' + Math.round(teamAnnualCost).toLocaleString();
-    document.getElementById('wlAfterHours').textContent = afterTeamHours.toLocaleString() + '時間/年';
-    document.getElementById('wlAfterCost').textContent = '¥' + Math.round(afterTeamCost).toLocaleString();
-    document.getElementById('wlSavingValue').textContent = '¥' + Math.round(annualCostSaving).toLocaleString();
-
-    // 工数パネルの内訳（動的に期間・稼働時間・人数を反映）
-    const wlBeforeDetailEl = document.getElementById('wlBeforeDetail');
-    if (wlBeforeDetailEl) {
-      wlBeforeDetailEl.innerHTML = `
-        <div>📅 ${periodText}</div>
-        <div>⏰ 月${monthlyHours}h/人 × ${teamCount}名</div>
-      `;
-    }
-    const wlAfterDetailEl = document.getElementById('wlAfterDetail');
-    if (wlAfterDetailEl) {
-      wlAfterDetailEl.innerHTML = `
-        <div>📅 ${periodText}</div>
-        <div>⏰ 月${afterMonthlyHoursPerPerson.toFixed(0)}h/人 × ${teamCount}名（1/10削減）</div>
-      `;
-    }
-
-    // 推奨運用体制
-    const afterMonthlyHoursOnePerson = activeMonths > 0 ? afterTeamHours / activeMonths : 0;
-    let staffingText;
-    if (afterMonthlyHoursOnePerson <= 20) {
-      staffingText = `1名で月${afterMonthlyHoursOnePerson.toFixed(0)}時間程度の運用が可能`;
-    } else if (afterMonthlyHoursOnePerson <= 40) {
-      staffingText = `1名で月${afterMonthlyHoursOnePerson.toFixed(0)}時間 ≒ 週${(afterMonthlyHoursOnePerson/4).toFixed(0)}時間`;
-    } else {
-      const recommendedPeople = Math.ceil(afterMonthlyHoursOnePerson / 30);
-      staffingText = `${recommendedPeople}名で月${(afterMonthlyHoursOnePerson/recommendedPeople).toFixed(0)}時間ずつの運用想定`;
-    }
-    document.getElementById('wlStaffingNote').textContent = staffingText;
+    const remainingRate = 1 - REDUCTION_RATE;
+    const reductionPercent = REDUCTION_RATE * 100;
+    const remainingPercent = remainingRate * 100;
+    setText('workHeadline', `総工数は${formatNumber(remainingRate * 10)}/10に`);
+    setText('workRateNote', `${formatNumber(reductionPercent)}%削減を仮定した試算`);
+    setText('workBeforeHours', `${formatNumber(teamAnnualHours)}時間`);
+    setText('workBeforeCost', formatMoney(teamAnnualCost));
+    setText('workReducedBridge', `${formatNumber(reducedHoursAnnual)}時間`);
+    setText('workAfterHours', `${formatNumber(afterTeamHours)}時間／年`);
+    setText('workFreedHours', `${formatNumber(reducedHoursAnnual)}時間／年`);
+    setText('workReducedTotal', `${formatNumber(reducedHoursAnnual)}時間／年`);
+    setText('workSavingTotal', `${formatMoney(annualCostSaving)}／年`);
+    setText('workAfterCost', `${formatMoney(afterTeamCost)}／年`);
+    setStyle('workBeforeBar', 'width', '100%');
+    setStyle('workBracket', 'left', `${remainingPercent}%`);
+    setStyle('workBracket', 'width', `${reductionPercent}%`);
+    setStyle('workUsedTime', 'width', `${remainingPercent}%`);
+    setStyle('workFreedTime', 'width', `${reductionPercent}%`);
+    setAttribute('workBeforeBar', 'aria-label', `導入前は年間${formatNumber(teamAnnualHours)}時間`);
+    setAttribute('workAfterBar', 'aria-label', `必要な工数${formatNumber(afterTeamHours)}時間、空いた時間${formatNumber(reducedHoursAnnual)}時間`);
 
     // ② 売上パネル
     const afterAnnualCases = annualCases * (1 + CASE_GROWTH);  // 2倍
-    const afterRevenue = currentRevenue + annualAddRevenue;
-    document.getElementById('rvBeforeRevenue').textContent = '¥' + Math.round(currentRevenue).toLocaleString();
-    document.getElementById('rvBeforeCases').textContent = annualCases.toLocaleString() + '件/年';
-    document.getElementById('rvAfterRevenue').textContent = '¥' + Math.round(afterRevenue).toLocaleString();
-    document.getElementById('rvAfterCases').textContent = afterAnnualCases.toLocaleString() + '件/年（2倍）';
-    document.getElementById('rvAddValue').textContent = '+¥' + Math.round(annualAddRevenue).toLocaleString();
+    setText('opportunityHours', `${formatNumber(reducedHoursAnnual)}時間／年`);
+    setText('opportunityRateNote', `工数の${formatNumber(REDUCTION_RATE * 100)}%を削減と仮定`);
+    setText('opportunityCaseChange', `${formatNumber(annualCases)}→${formatNumber(afterAnnualCases)}件`);
+    setText('opportunityAddRevenue', formatMoney(annualAddRevenue, true));
+    setText('opportunityAddedCases', `追加${formatNumber(addedCases)}件`);
+    setText('opportunityUnitPrice', formatMoney(unitPrice));
 
-    // ③ 総合効果パネル
-    // コスト削減 ↓ + 売上拡大 ↑
-    document.getElementById('ecCostValue').textContent = '¥' + Math.round(annualCostSaving).toLocaleString();
-    document.getElementById('ecRevenueValue').textContent = '¥' + Math.round(annualAddRevenue).toLocaleString();
-    // 効果合計・費用合計
-    document.getElementById('basicTotalEffect').textContent = '¥' + Math.round(annualTotalEffect).toLocaleString();
-    document.getElementById('annualCostDisplay').textContent = '¥' + Math.round(annualCost).toLocaleString();
-    // 費用の詳細内訳
-    document.getElementById('ecMonthlyFee').textContent = '¥' + MONTHLY_FEE.toLocaleString();
-    document.getElementById('ecAnnualFee').textContent = '¥' + (MONTHLY_FEE * 12).toLocaleString();
-    document.getElementById('ecInitialFee').textContent = '¥' + INITIAL_FEE.toLocaleString();
-    document.getElementById('ecAiCredit').textContent = '¥' + AI_CREDIT.toLocaleString();
-    // 純利益 & ROI
-    document.getElementById('basicProfit').textContent = '¥' + Math.round(annualProfit).toLocaleString();
-    document.getElementById('summaryRoi').textContent = isFinite(yearlyROI) ? yearlyROI.toFixed(1) + '倍' : '—';
-    document.getElementById('summaryRoiFormula').textContent = '純利益 ÷ 費用合計';
+    Object.entries(scenarios).forEach(([key, scenario]) => {
+      setText(`${key}TotalCases`, `${formatNumber(annualCases)}→${formatNumber(scenario.totalCases)}件`);
+      setText(`${key}AddCases`, formatNumber(scenario.addCases));
+      setHTML(`${key}Roi`, `${formatMultiple(scenario.roi)}<small>倍</small>`);
+      setText(`${key}Revenue`, formatMoney(scenario.addRevenue, true));
+      setText(`${key}Saving`, formatMoney(annualCostSaving, true));
+      setText(`${key}Fee`, formatMoney(-annualCost));
+      setText(`${key}Profit`, formatMoney(scenario.profit, true));
+    });
+    setText('basicPayback', Number.isFinite(paybackMonths) ? `${paybackMonths.toFixed(1)}ヶ月` : '—');
+    setText('scenarioAnnualCost', formatMoney(annualCost));
+    setStyle('scenarioZeroNote', 'display', annualCases === 0 ? 'block' : 'none');
 
-    // ============ 試算サマリー（カラー付き） ============
-    const fmtY = n => '¥' + Math.round(n).toLocaleString();
-    document.getElementById('summaryStep1').innerHTML =
-      `営業チーム<span class="num-neutral">${teamCount}名</span>で年間 <span class="num-neutral">${teamAnnualHours.toLocaleString()}時間</span> を自治体営業に投下。年間案件 <span class="num-neutral">${annualCases}件</span>・売上 <span class="num-neutral">${fmtY(currentRevenue)}</span>。`;
-    document.getElementById('summaryStep2').innerHTML =
-      `自治体営業の工数を <span class="num-cost">1/10</span>（90%削減）の <span class="num-cost">${afterTeamHours.toLocaleString()}時間</span> に。空いた時間で <span class="num-revenue">提案活動量を2倍</span> に拡大。`;
-    document.getElementById('summaryStep3').innerHTML =
-      `コスト削減 <span class="num-cost">${fmtY(annualCostSaving)}</span> ＋ 売上拡大 <span class="num-revenue">${fmtY(annualAddRevenue)}</span>（見込み） ＝ 年間効果 <span class="num-effect">${fmtY(annualTotalEffect)}</span>`;
-    document.getElementById('summaryStep4').innerHTML =
-      `年間効果 <span class="num-effect">${fmtY(annualTotalEffect)}</span> − 年間費用 <span class="num-fee">${fmtY(annualCost)}</span>（月額${fmtY(MONTHLY_FEE)}×12 ＋ 初期費${fmtY(INITIAL_FEE)}）＝ <span class="num-profit">${fmtY(annualProfit)}</span>`;
-    document.getElementById('sumRoi').textContent = isFinite(yearlyROI) ? yearlyROI.toFixed(1) + '倍' : '—';
-    document.getElementById('sumPayback').textContent = isFinite(paybackMonths) ? paybackMonths.toFixed(1) + 'ヶ月' : '—';
+    // ============ 試算サマリー（基本シナリオ） ============
+    const summaryRevenue = formatMoney(scenarios.basic.addRevenue, true);
+    const summarySaving = formatMoney(annualCostSaving, true);
+    const summaryFee = formatMoney(-annualCost);
+    const summaryProfit = formatMoney(scenarios.basic.profit, true);
+    const summaryPayback = Number.isFinite(paybackMonths) ? `${paybackMonths.toFixed(1)}ヶ月` : '—';
+    setAttribute('summaryRevenue', 'data-value', summaryRevenue);
+    setAttribute('summarySaving', 'data-value', summarySaving);
+    setAttribute('summaryFee', 'data-value', summaryFee);
+    setAttribute('summaryProfit', 'data-value', summaryProfit);
+    setAttribute(
+      'summaryEquation',
+      'aria-label',
+      `追加売上${summaryRevenue}、工数削減${summarySaving}、費用${summaryFee}、年間効果差額${summaryProfit}`
+    );
+    setText(
+      'summaryCopyText',
+      `追加売上（見込み）${summaryRevenue} ＋ 工数削減（人件費換算）${summarySaving} ` +
+      `− 47Connect費用${formatMoney(annualCost)} ＝ 年間効果差額（試算）${summaryProfit}`
+    );
+    setText('sumRoi', `${formatMultiple(scenarios.basic.roi)}倍`);
+    setText('sumPayback', summaryPayback);
+    setText(
+      'summaryWorkNote',
+      `年間工数 ${formatNumber(teamAnnualHours)}→${formatNumber(afterTeamHours)}時間。` +
+      `空いた${formatNumber(reducedHoursAnnual)}時間を提案活動等へ再配分します。`
+    );
+    setText(
+      'summaryTeamAssumption',
+      `チーム：${teamCount}名／自治体営業の人件費${formatMoney(teamAnnualCost)}`
+    );
+    setText(
+      'summaryPeriodAssumption',
+      `稼働：${periodText}／月${formatNumber(monthlyHours)}時間／人`
+    );
+    setText(
+      'summaryCurrentAssumption',
+      `現状：年${formatNumber(annualCases)}件 × 単価${formatMoney(unitPrice)}＝売上${formatMoney(currentRevenue)}`
+    );
+    setText(
+      'summaryRateAssumption',
+      `時給換算：年間${ANNUAL_HOURS.toLocaleString()}時間／削減率${formatNumber(reductionPercent)}%`
+    );
 
-    // ============ おまけ：3段階比較（現状 / 基本 / 最大） ============
-    // 現状
-    document.getElementById('bonusCurrentCases').textContent = annualCases.toLocaleString() + '件';
-    document.getElementById('bonusCurrentRevenue').textContent = '¥' + Math.round(currentRevenue).toLocaleString();
-    // 基本シナリオ
-    const basicTotalCases = annualCases + addedCases;
-    const basicTotalRevenue = currentRevenue + annualAddRevenue;
-    document.getElementById('bonusBasicCases').textContent = basicTotalCases.toLocaleString() + '件';
-    document.getElementById('bonusBasicCasesDelta').textContent = '(+' + addedCases.toLocaleString() + ')';
-    document.getElementById('bonusBasicRevenue').textContent = '¥' + Math.round(basicTotalRevenue).toLocaleString();
-    document.getElementById('bonusBasicROI').textContent = isFinite(yearlyROI) ? yearlyROI.toFixed(1) + '倍' : '—';
-    // 最大シナリオ
-    const maxTotalCases = annualCases + maxAddCases;
-    const maxTotalRevenue = currentRevenue + maxAnnualAddRevenue;
-    const maxAnnualEffect = annualCostSaving + maxAnnualAddRevenue;
-    const maxAnnualProfit = maxAnnualEffect - annualCost;
-    const maxROI = maxAnnualProfit / annualCost;
-    document.getElementById('bonusMaxCases').textContent = maxTotalCases.toFixed(0) + '件';
-    document.getElementById('bonusMaxCasesDelta').textContent = '(+' + maxAddCases.toFixed(0) + ')';
-    document.getElementById('bonusMaxRevenue').textContent = '¥' + Math.round(maxTotalRevenue).toLocaleString();
-    document.getElementById('bonusMaxROI').textContent = isFinite(maxROI) ? maxROI.toFixed(0) + '倍' : '—';
-
-    document.getElementById('paybackMonths').textContent = isFinite(paybackMonths) ? paybackMonths.toFixed(1) : '—';
-
-    // 判定（表示は小数第1位に丸めるため、判定も同じ丸め値で行い「同じ表示なのに判定が違う」を防ぐ）
-    let judgment;
-    const roiText = isFinite(yearlyROI) ? yearlyROI.toFixed(1) : '—';
-    const roiRounded = isFinite(yearlyROI) ? Math.round(yearlyROI * 10) / 10 : NaN;
-    if (roiRounded >= 10) judgment = `💡 ROI ${roiText}倍 — 強くおすすめできます`;
-    else if (roiRounded >= 1) judgment = `✅ ROI ${roiText}倍 — 月20万円プラン適正`;
-    else if (roiRounded >= 0.5) judgment = `⚠️ ROI ${roiText}倍 — 導入範囲・形態は個別にご相談ください`;
-    else judgment = `❌ ROI ${roiText}倍 — 見直しが必要`;
-    document.getElementById('judgmentText').textContent = judgment;
   }
 
   // ============ 稟議サマリーをコピー ============
