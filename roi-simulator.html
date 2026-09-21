@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>47Connect ROIシミュレーター | あなたの会社のROIを30秒で診断</title>
 <style>
   :root {
@@ -29,7 +29,7 @@
     background: linear-gradient(135deg, var(--surface-2) 0%, var(--navy-tint) 100%);
     color: var(--ink);
     line-height: 1.6;
-    padding: 20px;
+    padding: 20px max(20px, env(safe-area-inset-right)) 20px max(20px, env(safe-area-inset-left));
     min-height: 100vh;
   }
   .container {
@@ -358,6 +358,21 @@
     font-weight: 700;
   }
 
+  /* Native disclosure controls used for secondary input guidance. */
+  .fold-summary {
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .fold-summary::marker { color: var(--navy-2); }
+  .company-details > .fold-summary {
+    color: var(--navy);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .company-details[open] > .fold-summary { margin-bottom: 4px; }
+  .team-note > .fold-summary { color: var(--warn); }
+  .team-note[open] > .team-note-content { margin-top: 6px; }
+
   /* Premise box */
   .premise {
     background: var(--surface-2);
@@ -377,6 +392,11 @@
     gap: 6px;
     font-size: 13px;
   }
+  .premise > .fold-summary {
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .premise[open] > .fold-summary { margin-bottom: 8px; }
   .premise ul {
     list-style: none;
     padding: 0;
@@ -406,6 +426,13 @@
     font-size: 11px;
     color: #1F4E78;
     font-weight: 600;
+  }
+
+  /* Mobile input-to-result digest and return navigation. */
+  .input-result-digest,
+  .back-to-input,
+  .mobile-result-bar {
+    display: none;
   }
 
   /* Results */
@@ -928,7 +955,7 @@
     body { padding: 0; background: white; }
     .container { box-shadow: none; border-radius: 0; max-width: 100%; }
     header, .group-banner, section.input-section, section.result-section,
-    .cta, .footnote, .boss-summary-actions {
+    .cta, .footnote, .boss-summary-actions, .mobile-result-bar {
       display: none !important;
     }
     .boss-summary {
@@ -1029,10 +1056,22 @@
   }
 
   @media (max-width: 700px) {
-    body { padding: 10px; }
+    body {
+      padding: 10px max(10px, env(safe-area-inset-right))
+        calc(74px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
     header { padding: 28px 20px; }
     header h1 { font-size: 22px; }
     section { padding: 20px; }
+    .fold-summary {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 9px 0;
+      line-height: 1.6;
+    }
+    .company-details[open] > .fold-summary { margin-bottom: 4px; }
+    .team-note[open] > .team-note-content { margin-top: 4px; }
+    .premise[open] > .fold-summary { margin-bottom: 6px; }
     input,
     select,
     textarea { font-size: 16px; }
@@ -1128,6 +1167,131 @@
       height: 44px;
       font-size: 12px;
     }
+    .input-result-digest {
+      display: block;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .digest-heading {
+      margin-bottom: 9px;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    /* 3等分の固定グリッドにすると、金額が長いセル（年間効果差額）だけが溢れ、
+       隣のセルの不透明な背景に「万円」が隠れて読めなくなる。
+       値の長さに応じてセルが伸び、入りきらなければ折り返す組み方にする
+       （固定バー .mobile-result-value と同じ考え方）。 */
+    .digest-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .digest-value {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 8px 6px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--navy-tint);
+    }
+    .digest-value span {
+      display: block;
+      color: var(--ink-2);
+      font-size: 10px;
+      line-height: 1.35;
+    }
+    .digest-value strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--navy);
+      font-size: clamp(13px, 4.1vw, 16px);
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    .digest-assumptions {
+      display: grid;
+      gap: 2px;
+      margin-top: 9px;
+      color: var(--ink-2);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .back-to-input {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+      margin-bottom: 10px;
+      padding: 8px 14px;
+      border: 1px solid var(--navy);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--navy);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .mobile-result-bar {
+      position: fixed;
+      z-index: 1000;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      padding-bottom: env(safe-area-inset-bottom);
+      background: var(--navy);
+      color: var(--surface);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .mobile-result-bar.is-input-active {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(100%);
+      pointer-events: none;
+    }
+    .mobile-result-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      height: 64px;
+      padding: 8px max(12px, env(safe-area-inset-right))
+        8px max(12px, env(safe-area-inset-left));
+    }
+    .mobile-result-value {
+      min-width: 0;
+      line-height: 1.25;
+    }
+    .mobile-result-value span {
+      display: block;
+      font-size: 10px;
+    }
+    .mobile-result-value strong {
+      display: block;
+      margin-top: 2px;
+      color: var(--amber);
+      font-size: 20px;
+      white-space: nowrap;
+    }
+    .mobile-result-link {
+      flex: 0 0 auto;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid var(--surface);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--navy);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
   }
 </style>
 </head>
@@ -1141,7 +1305,7 @@
   </header>
 
   <!-- ============ INPUT GROUP BANNER ============ -->
-  <div class="group-banner input">
+  <div class="group-banner input" id="inputStart">
     <span class="step-num">1</span>
     <span>INPUT — お客様の情報を入力</span>
     <span class="desc">下記4項目を埋めてください</span>
@@ -1149,18 +1313,20 @@
 
   <!-- ============ 会社情報 ============ -->
   <section class="input-section">
-    <h2 class="section-title">📋 会社情報（参考）</h2>
-    <p class="section-desc">会社の規模感を入力してください。計算には使いませんが、結果の参考値として表示されます。</p>
-    <div class="input-grid">
-      <div class="input-card">
-        <label>年商（年間売上）</label>
-        <div class="input-row">
-          <input type="number" id="annualRevenue" value="50" min="0" inputmode="decimal">
-          <span class="unit">億円</span>
+    <details class="company-details" data-mobile-collapsible>
+      <summary class="fold-summary">📋 会社情報（参考・計算に不使用）</summary>
+      <p class="section-desc">会社の規模感を入力してください。計算には使いませんが、結果の参考値として表示されます。</p>
+      <div class="input-grid">
+        <div class="input-card">
+          <label>年商（年間売上）</label>
+          <div class="input-row">
+            <input type="number" id="annualRevenue" value="50" min="0" inputmode="decimal">
+            <span class="unit">億円</span>
+          </div>
+          <div class="hint">参考値です（ROI計算には影響しません）</div>
         </div>
-        <div class="hint">参考値です（ROI計算には影響しません）</div>
       </div>
-    </div>
+    </details>
   </section>
 
   <!-- ============ 営業活動期間 ============ -->
@@ -1212,11 +1378,13 @@
       <div>年間人件費（自治体営業分）:<strong id="teamAnnualCost">¥2,450,000</strong></div>
     </div>
 
-    <div class="team-note">
-      💡 <strong>時給の算出方法について</strong><br>
-      時給は <strong>「年収 ÷ 年間稼働時間（2,000時間）」</strong> で算出したおおよその金額です（例：年収600万円 ÷ 2,000h ＝ 時給3,000円）。<br>
-      実際の労働時間や手当・賞与等は反映していないため、あくまで <strong>参考値</strong> としてご覧ください。
-    </div>
+    <details class="team-note" data-mobile-collapsible>
+      <summary class="fold-summary">💡 時給＝年収÷年間2,000時間（概算）</summary>
+      <div class="team-note-content">
+        時給は <strong>「年収 ÷ 年間稼働時間（2,000時間）」</strong> で算出したおおよその金額です（例：年収600万円 ÷ 2,000h ＝ 時給3,000円）。<br>
+        実際の労働時間や手当・賞与等は反映していないため、あくまで <strong>参考値</strong> としてご覧ください。
+      </div>
+    </details>
   </section>
 
   <!-- ============ 案件情報 ============ -->
@@ -1244,6 +1412,29 @@
 
   </section>
 
+  <aside class="input-result-digest" aria-label="基本シナリオの結果ダイジェスト">
+    <p class="digest-heading">基本シナリオ・売上見込みを含む試算</p>
+    <div class="digest-values">
+      <div class="digest-value">
+        <span>年間効果差額（試算）</span>
+        <strong id="digestProfit">+1,970万円</strong>
+      </div>
+      <div class="digest-value">
+        <span>ROI</span>
+        <strong id="digestRoi">7.9倍</strong>
+      </div>
+      <div class="digest-value">
+        <span>投資回収</span>
+        <strong id="digestPayback">1.4ヶ月</strong>
+      </div>
+    </div>
+    <div class="digest-assumptions">
+      <span>費用：月20万円＋初期構築費10万円・AIクレジット別途</span>
+      <span>仮定：工数90%削減・提案活動量2倍</span>
+      <span>時給換算：年収÷年間2,000時間</span>
+    </div>
+  </aside>
+
   <!-- ============ RESULT GROUP BANNER ============ -->
   <div class="group-banner result">
     <span class="step-num">2</span>
@@ -1256,8 +1447,8 @@
     <h2 class="section-title">結果（リアルタイム計算）</h2>
     <p class="section-desc">入力が変わると、すべての結果が自動で更新されます。</p>
 
-    <div class="premise" style="margin-bottom: 18px;">
-      <div class="premise-title">計算の前提</div>
+    <details class="premise" style="margin-bottom: 18px;" data-mobile-collapsible>
+      <summary class="fold-summary">計算の前提：費用 月20万円＋初期10万円／工数90%削減／提案活動量2倍</summary>
       <ul>
         <li>47Connect 月20万円プラン：<strong>月額20万円</strong>（初期構築費10万円・AIクレジットは別途）</li>
         <li>導入後の工数：<strong>1/10に削減</strong>（90%削減目標）</li>
@@ -1267,7 +1458,7 @@
         </li>
         <li>時給換算：<strong>年間稼働 2,000時間</strong>で年収から自動計算</li>
       </ul>
-    </div>
+    </details>
 
     <div class="results-grid">
 
@@ -1353,7 +1544,8 @@
         </div>
       </div>
 
-      <div class="result-block result-scenarios">
+      <div class="result-block result-scenarios" id="scenarioResults">
+        <button type="button" class="back-to-input" id="backToInputButton">入力に戻る</button>
         <div class="result-block-head">
           <span class="result-step">投資対効果</span>
           <h3>3つの内訳で比較する</h3>
@@ -1514,6 +1706,16 @@
     47Connect 月20万円プラン｜月額20万円｜初期構築費10万円｜AIクレジット別途
   </div>
 
+</div>
+
+<div class="mobile-result-bar" id="mobileResultBar">
+  <div class="mobile-result-bar-inner">
+    <div class="mobile-result-value">
+      <span>年間効果差額（試算）</span>
+      <strong id="mobileResultProfit">+1,970万円</strong>
+    </div>
+    <button type="button" class="mobile-result-link" id="viewResultsButton">結果を見る</button>
+  </div>
 </div>
 
 <script>
@@ -1829,7 +2031,51 @@
       `時給換算：年間${ANNUAL_HOURS.toLocaleString()}時間／削減率${formatNumber(reductionPercent)}%`
     );
 
+    // ============ モバイル結果ダイジェスト（基本シナリオ） ============
+    setText('digestProfit', summaryProfit);
+    setText('digestRoi', `${formatMultiple(scenarios.basic.roi)}倍`);
+    setText('digestPayback', summaryPayback);
+    setText('mobileResultProfit', summaryProfit);
+
   }
+
+  // ============ モバイルの折りたたみと結果への往復 ============
+  const mobileLayoutMedia = window.matchMedia('(max-width: 700px)');
+  document.querySelectorAll('[data-mobile-collapsible]').forEach(details => {
+    details.open = !mobileLayoutMedia.matches;
+  });
+
+  let lastInputControl = null;
+  const mobileResultBar = document.getElementById('mobileResultBar');
+  const isInputControl = element => element && element.matches('input, select, textarea');
+  const setMobileResultBarRetreated = retreated => {
+    mobileResultBar.classList.toggle('is-input-active', retreated);
+    mobileResultBar.setAttribute('aria-hidden', retreated ? 'true' : 'false');
+  };
+
+  document.addEventListener('focusin', event => {
+    if (!isInputControl(event.target)) return;
+    lastInputControl = event.target;
+    setMobileResultBarRetreated(true);
+  });
+  document.addEventListener('focusout', event => {
+    if (!isInputControl(event.target)) return;
+    requestAnimationFrame(() => {
+      setMobileResultBarRetreated(isInputControl(document.activeElement));
+    });
+  });
+
+  document.getElementById('viewResultsButton').addEventListener('click', () => {
+    document.getElementById('scenarioResults').scrollIntoView({ block: 'start' });
+  });
+  document.getElementById('backToInputButton').addEventListener('click', () => {
+    const target = lastInputControl && lastInputControl.isConnected
+      ? lastInputControl
+      : document.getElementById('inputStart');
+    const collapsedParent = target.closest('details:not([open])');
+    if (collapsedParent) collapsedParent.open = true;
+    target.scrollIntoView({ block: target === lastInputControl ? 'center' : 'start' });
+  });
 
   // ============ 稟議サマリーをコピー ============
   function copySummary() {
