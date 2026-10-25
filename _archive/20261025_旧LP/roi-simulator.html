@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>47Connect ROIシミュレーター | あなたの会社のROIを30秒で診断</title>
+<style>
+  :root {
+    --ink: #111827;
+    /* --muted より濃い副次テキスト。免責・前提など、小さくても AA（4.5:1）を満たす必要がある文字に使う */
+    --ink-2: #4B5563;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --surface: #FFFFFF;
+    --surface-2: #F7F8FA;
+    --navy: #1F4E78;
+    --navy-2: #2E75B6;
+    --navy-tint: #EDF2F8;
+    --amber: #FFD1A3;
+    --warn: #B45309;
+    --warn-line: #D97706;
+    --warn-tint: #FFF6EC;
+    --neg: #B91C1C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--navy-tint) 100%);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 20px max(20px, env(safe-area-inset-right)) 20px max(20px, env(safe-area-inset-left));
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
+    color: white;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  header p { font-size: 14px; opacity: 0.9; }
+  header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Group banners (Input vs Result divider) */
+  .group-banner {
+    padding: 18px 32px;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .group-banner.input {
+    background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
+  }
+  .group-banner.result {
+    background: var(--warn);
+  }
+  .group-banner .step-num {
+    background: rgba(255,255,255,0.2);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .group-banner .desc {
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.85;
+    letter-spacing: 0;
+    margin-left: auto;
+  }
+
+  /* Section base */
+  section {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  section:last-child { border-bottom: none; }
+
+  /* Input sections - subtle blue tint */
+  section.input-section {
+    background: linear-gradient(to right, var(--navy-tint) 0%, #ffffff 60%);
+    border-left: 4px solid #2E75B6;
+  }
+  section.input-section .section-title {
+    color: #1F4E78;
+  }
+
+  /* Result sections - subtle warm tint */
+  section.result-section {
+    background: var(--surface);
+    border-left: 4px solid var(--warn-line);
+  }
+  section.result-section .section-title {
+    color: var(--warn);
+  }
+
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1F4E78;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-desc {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 18px;
+  }
+
+  /* Inputs */
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .input-card {
+    background: var(--surface-2);
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px;
+    transition: border-color 0.2s;
+  }
+  .input-card:focus-within {
+    border-color: #2E75B6;
+    box-shadow: 0 0 0 3px rgba(46,117,182,0.1);
+  }
+  .input-card label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .input-card .input-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .input-card input,
+  .input-card select {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+    -moz-appearance: textfield;
+  }
+  .input-card input::-webkit-outer-spin-button,
+  .input-card input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .input-card .unit {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .input-card .hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .input-card .computed {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1F4E78;
+  }
+
+  /* Month range special layout */
+  .month-range {
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+  }
+  .month-range select {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* Team members */
+  .team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .team-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 140px 40px;
+    gap: 10px;
+    align-items: center;
+    background: var(--surface-2);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .team-row .member-controls,
+  .team-row .member-details,
+  .team-row .role-wrap {
+    display: contents;
+  }
+  .team-row .role-field-label { display: none; }
+  .team-row select.role {
+    grid-column: 1;
+    grid-row: 1;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .team-row .salary-wrap {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  .team-row .salary-wrap label {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .team-row .salary-wrap input {
+    width: 80px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+  }
+  .team-row .salary-wrap .unit {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .team-row .member-info {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 12px;
+    color: #6b7280;
+    text-align: right;
+    line-height: 1.4;
+  }
+  .team-row .member-info strong {
+    color: #1F4E78;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .team-row .remove-btn {
+    grid-column: 4;
+    grid-row: 1;
+    background: var(--warn-tint);
+    color: var(--warn);
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+  .team-row .remove-btn:hover { background: var(--warn-tint); }
+  .add-btn {
+    background: white;
+    color: #2E75B6;
+    border: 2px dashed #2E75B6;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    transition: background 0.2s;
+  }
+  .add-btn:hover { background: var(--navy-tint); }
+  .team-summary {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: var(--navy-tint);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    font-size: 13px;
+  }
+  .team-summary > div { color: var(--muted); }
+  .team-summary strong {
+    color: #1F4E78;
+    font-size: 16px;
+    margin-left: 4px;
+  }
+  .team-note {
+    margin-top: 10px;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: #6b7280;
+    background: var(--warn-tint);
+    border-left: 3px solid var(--warn-line);
+    border-radius: 4px;
+    line-height: 1.6;
+  }
+  .team-note strong {
+    color: var(--warn);
+    font-weight: 700;
+  }
+
+  /* Native disclosure controls used for secondary input guidance. */
+  .fold-summary {
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .fold-summary::marker { color: var(--navy-2); }
+  .company-details > .fold-summary {
+    color: var(--navy);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .company-details[open] > .fold-summary { margin-bottom: 4px; }
+  .team-note > .fold-summary { color: var(--warn); }
+  .team-note[open] > .team-note-content { margin-top: 6px; }
+
+  /* Premise box */
+  .premise {
+    background: var(--surface-2);
+    border-left: 4px solid #6b7280;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .premise-title {
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+  .premise > .fold-summary {
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .premise[open] > .fold-summary { margin-bottom: 8px; }
+  .premise ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .premise ul li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .premise ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 4px;
+    color: #2E75B6;
+    font-weight: 700;
+  }
+  .premise ul li strong { color: var(--ink); font-weight: 700; }
+  .premise .example-note {
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 4px;
+    padding: 4px 10px;
+    background: var(--navy-tint);
+    border-left: 3px solid #2E75B6;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #1F4E78;
+    font-weight: 600;
+  }
+
+  /* Mobile input-to-result digest and return navigation. */
+  .input-result-digest,
+  .back-to-input,
+  .mobile-result-bar {
+    display: none;
+  }
+
+  /* Results */
+  .results-grid { display: grid; gap: 14px; }
+  /* 結果ストーリー：工数 */
+  .result-block { min-width: 0; }
+  .result-block-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .result-block-head h3 {
+    color: var(--navy);
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+  .result-step {
+    color: var(--navy-2);
+    border-top: 2px solid var(--navy-2);
+    padding-top: 3px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .work-panel {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 21px 24px;
+  }
+  .work-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .work-intro strong { color: var(--navy); font-size: 22px; }
+  .work-quiet { color: var(--muted); font-size: 11px; }
+  .work-caption {
+    margin: 9px 0 6px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .work-track { position: relative; height: 35px; }
+  .work-before-track {
+    background: var(--navy);
+    border: 1px solid var(--navy);
+    border-radius: 6px;
+  }
+  .work-before-value {
+    margin-top: 5px;
+    color: var(--ink);
+    font-size: 12px;
+  }
+  .work-bridge { position: relative; min-height: 69px; padding-top: 1px; }
+  .work-bracket {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-right: 1.5px dashed var(--navy);
+    border-bottom: 1.5px dashed var(--navy);
+    border-left: 1.5px dashed var(--navy);
+    pointer-events: none;
+  }
+  .work-bridge p {
+    position: relative;
+    width: 100%;
+    padding: 13px 10px 7px;
+    color: var(--navy);
+    font-size: 13px;
+    text-align: center;
+  }
+  .work-after-track { display: flex; height: 43px; }
+  .work-used-time {
+    flex: none;
+    height: 100%;
+    background: var(--navy);
+    border-top: 3px solid var(--navy-2);
+    border-radius: 5px 0 0 5px;
+  }
+  .work-freed-time {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 3px 7px;
+    background: var(--warn-tint);
+    border: 1.5px dashed var(--warn-line);
+    border-radius: 0 5px 5px 0;
+    color: var(--warn);
+    text-align: center;
+  }
+  .work-freed-time span { font-size: 12px; font-weight: 700; }
+  .work-after-values {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .work-after-values strong { color: var(--navy); }
+  .work-outside-note {
+    display: none;
+    margin-top: 7px;
+    padding-left: 8px;
+    border-left: 1px dashed var(--warn-line);
+    color: var(--warn);
+    font-size: 11px;
+  }
+  .work-totals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 13px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--navy);
+    font-size: 12px;
+  }
+  .work-totals b { margin-left: 5px; font-size: 18px; }
+  .work-foot { margin-top: 10px; color: var(--muted); font-size: 10px; }
+  .opportunity-panel {
+    padding: 17px 20px;
+    background: var(--surface);
+    border: 1px dashed var(--warn-line);
+    border-radius: 16px;
+  }
+  .opportunity-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+  }
+  .opportunity-cell span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .opportunity-cell strong {
+    display: block;
+    color: var(--warn);
+    font-size: 22px;
+    line-height: 1.6;
+  }
+  .opportunity-cell:first-child strong { color: var(--navy); }
+  .opportunity-cell small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .opportunity-arrow { color: var(--muted); }
+  .opportunity-disclaimer {
+    padding-top: 10px;
+    border-top: 1px dashed var(--warn-line);
+    color: var(--warn);
+    font-size: 11px;
+  }
+  .opportunity-disclaimer p + p { margin-top: 3px; }
+  @media (max-width: 700px) {
+    .work-panel { padding: 18px 14px; }
+    .work-intro { display: block; }
+    .work-intro .work-quiet { margin-top: 3px; }
+    .work-foot { font-size: 11px; }
+    .work-freed-time span { display: none; }
+    .work-outside-note { display: block; }
+    .work-after-values { display: grid; gap: 4px; }
+    .opportunity-panel { padding: 16px 14px; }
+    .opportunity-flow { grid-template-columns: 1fr; gap: 8px; }
+    .opportunity-arrow { margin: 0 auto; transform: rotate(90deg); }
+  }
+
+  /* 結果ストーリー：3シナリオ */
+  .scenario-caption {
+    margin: -5px 0 12px;
+    color: var(--warn);
+    font-size: 11px;
+  }
+  .scenario-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 31px;
+  }
+  .scenario-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 17px 14px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -18px rgba(31, 78, 120, 0.3);
+  }
+  .scenario-card.basic {
+    padding: 15px 12px 12px;
+    border: 3px solid var(--navy);
+  }
+  .scenario-card.theory {
+    border: 1px dashed var(--warn-line);
+    box-shadow: none;
+  }
+  .basic-cue {
+    position: absolute;
+    top: -34px;
+    right: -3px;
+    left: -3px;
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .basic-cue::after {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 5px auto 0;
+    border-top: 8px solid var(--navy);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+  }
+  .scenario-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .theory .scenario-title { color: var(--warn); }
+  .scenario-tag {
+    padding: 2px 5px;
+    border: 1px dashed var(--warn-line);
+    border-radius: 4px;
+    color: var(--warn);
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .scenario-description {
+    min-height: 36px;
+    margin: 7px 0 3px;
+    color: var(--ink);
+    font-size: 11px;
+  }
+  .scenario-cases {
+    color: var(--ink);
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .scenario-cases small {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .roi-slab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin: 12px 0;
+    padding: 9px 12px;
+    background: var(--navy-tint);
+    border-radius: 8px;
+    color: var(--navy);
+  }
+  .roi-slab span { font-size: 10px; }
+  .roi-slab strong {
+    font-size: 31px;
+    line-height: 1.2;
+    letter-spacing: -0.045em;
+  }
+  .roi-slab strong small { margin-left: 2px; font-size: 14px; }
+  .basic .roi-slab { background: var(--navy); color: var(--surface); }
+  .basic .roi-slab strong { color: var(--amber); }
+  .theory .roi-slab { background: var(--surface-2); color: var(--warn); }
+  .theory .roi-slab strong { font-size: 26px; }
+  .scenario-breakdown { display: grid; gap: 7px; font-size: 11px; }
+  .scenario-breakdown > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 7px;
+  }
+  .scenario-breakdown dt { font-weight: 500; }
+  .scenario-breakdown dd {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .scenario-revenue {
+    padding-bottom: 7px;
+    border-bottom: 1px dashed var(--warn-line);
+    color: var(--warn);
+  }
+  .scenario-saving { color: var(--navy); }
+  .scenario-fee { color: var(--neg); }
+  .scenario-profit {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .scenario-profit dd { font-size: 17px; letter-spacing: -0.025em; }
+  .basic .scenario-profit { color: var(--navy); }
+  .scenario-note { margin-top: 9px; color: var(--muted); font-size: 9px; }
+  .scenario-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 20px;
+    margin-top: 2px;
+    padding: 11px 0 9px;
+    border-bottom: 1px solid var(--line);
+  }
+  .scenario-footer span { font-size: 11px; }
+  .scenario-footer strong { margin: 0 3px; color: var(--navy); font-size: 19px; }
+  .scenario-rounding,
+  .scenario-zero-note { margin-top: 6px; color: var(--muted); font-size: 10px; }
+  .scenario-zero-note { display: none; }
+  @media (max-width: 700px) {
+    .scenario-cards { grid-template-columns: 1fr; gap: 14px; padding-top: 0; }
+    .scenario-card { padding: 16px 18px; }
+    .scenario-card.basic { order: -1; margin-top: 32px; padding: 14px 16px; }
+    .basic-cue { right: 0; left: 0; }
+    .scenario-note,
+    .scenario-tag,
+    .scenario-rounding,
+    .scenario-zero-note { font-size: 11px; }
+    .scenario-description { min-height: 0; }
+    .roi-slab strong { font-size: 34px; }
+    .scenario-breakdown dd { font-size: 16px; }
+    .scenario-profit dd { font-size: 20px; }
+  }
+
+  /* ============ 試算サマリー（印刷・共有用） ============ */
+  .boss-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .boss-summary-title h2 {
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    font-weight: 800;
+    /* 狭い画面で「試算サマリ」＋「ー」のように長音符が行頭に孤立するのを防ぐ */
+    line-break: strict;
+  }
+  .boss-summary-title p {
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .boss-summary-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: white;
+    color: #1F4E78;
+    border: 1px solid #1F4E78;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .action-btn:hover {
+    background: #1F4E78;
+    color: white;
+  }
+  /* 試算サマリー：基本シナリオ */
+  .boss-summary {
+    padding: 28px 32px 32px;
+    background: var(--surface);
+    border-top: 6px solid var(--navy);
+    border-bottom: 1px solid var(--line);
+  }
+  .boss-summary-title h2 { color: var(--navy); }
+  .boss-summary-title p { color: var(--muted); }
+  .summary-doc {
+    padding: 20px;
+    background: var(--navy-tint);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    color: var(--ink);
+  }
+  .summary-doc h3 {
+    margin-bottom: 14px;
+    padding: 0;
+    border: 0;
+    color: var(--navy);
+    font-size: 17px;
+  }
+  .summary-doc h3 .summary-scenario {
+    margin-left: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .summary-equation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .summary-term {
+    display: flex;
+    flex: 1 1 130px;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .summary-term::before {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .summary-term::after {
+    margin-top: 3px;
+    color: var(--ink);
+    content: attr(data-value);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .summary-revenue { border-bottom: 1px dashed var(--warn-line); }
+  .summary-revenue::before { color: var(--warn); content: "追加売上（見込み）"; }
+  .summary-revenue::after { color: var(--warn); }
+  .summary-saving::before { color: var(--navy); content: "工数削減（人件費換算）"; }
+  .summary-saving::after { color: var(--navy); }
+  .summary-fee::before { color: var(--neg); content: "47Connect費用"; }
+  .summary-fee::after { color: var(--neg); }
+  .summary-profit { background: var(--navy); border-color: var(--navy); }
+  .summary-profit::before { color: var(--surface); content: "年間効果差額（試算）"; }
+  .summary-profit::after { color: var(--amber); }
+  .summary-equals {
+    display: flex;
+    align-items: center;
+    color: var(--navy);
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .summary-equals::before { content: "＝"; }
+  .summary-copy-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+    /* overflow:hidden が無いと、clip/clip-path で見えなくなっても中身の幅が
+       祖先の scrollWidth を押し広げ、狭い画面で横スクロールが発生する */
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .summary-kpis {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 12px;
+    color: var(--navy);
+    font-size: 12px;
+  }
+  .summary-kpis strong { margin-left: 4px; font-size: 19px; }
+  /* 免責と前提は法務上の意味を持つ。読める大きさとコントラスト（AA 4.5:1 以上）を確保する */
+  .summary-notes { margin-top: 10px; color: var(--ink-2); font-size: 11px; }
+  .summary-notes p + p { margin-top: 3px; }
+  .summary-assumptions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 15px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-2);
+    font-size: 11px;
+  }
+  @media (max-width: 700px) {
+    .boss-summary { padding: 24px 16px; }
+    .summary-doc { padding: 16px 14px; }
+    .summary-equals { flex-basis: 100%; justify-content: center; }
+    .summary-assumptions { grid-template-columns: 1fr; }
+  }
+
+  /* Print friendly — カラー強制保持 */
+  @page { size: A4 portrait; margin: 12mm; }
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body { padding: 0; background: white; }
+    .container { box-shadow: none; border-radius: 0; max-width: 100%; }
+    /* .input-result-digest は入力セクションの外にあり、かつモバイル規則が後方で
+       display:block を与えるため、明示的に消さないと狭い紙幅の印刷に混入する */
+    header, .group-banner, section.input-section, section.result-section,
+    .cta, .footnote, .boss-summary-actions, .mobile-result-bar,
+    .input-result-digest {
+      display: none !important;
+    }
+    .boss-summary {
+      padding: 20px;
+      border-top: 6px solid var(--navy) !important;
+    }
+    .summary-doc {
+      border: 2px solid var(--navy) !important;
+      background: var(--navy-tint) !important;
+      break-inside: avoid;
+    }
+  }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, #1F4E78 0%, #2E75B6 100%);
+    color: white;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .cta .cta-badge {
+    display: inline-block;
+    background: rgba(251,146,60,0.2);
+    color: var(--amber);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .cta h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .cta p {
+    font-size: 14px;
+    margin-bottom: 24px;
+    opacity: 0.9;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-features {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .cta-features .feature {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--amber);
+  }
+  .cta-features .feature::before {
+    content: "✓";
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .cta .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--warn-line);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(251,146,60,0.4);
+  }
+  .cta .btn-arrow {
+    font-size: 20px;
+    transition: transform 0.2s;
+  }
+  .cta .btn:hover .btn-arrow { transform: translateX(4px); }
+  .cta .btn-secondary-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .footnote {
+    background: var(--surface-2);
+    padding: 16px 32px;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    body {
+      padding: 10px max(10px, env(safe-area-inset-right))
+        calc(74px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
+    header { padding: 28px 20px; }
+    header h1 { font-size: 22px; }
+    section { padding: 20px; }
+    .fold-summary {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 9px 0;
+      line-height: 1.6;
+    }
+    .company-details[open] > .fold-summary { margin-bottom: 4px; }
+    .team-note[open] > .team-note-content { margin-top: 4px; }
+    .premise[open] > .fold-summary { margin-bottom: 6px; }
+    input,
+    select,
+    textarea { font-size: 16px; }
+    .input-card input,
+    .input-card select,
+    .month-range select {
+      min-height: 44px;
+    }
+    .add-btn,
+    .action-btn,
+    .cta .btn {
+      min-width: 44px;
+      min-height: 44px;
+    }
+    .team-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .team-row .member-controls,
+    .team-row .member-details {
+      display: grid;
+      width: 100%;
+      gap: 8px;
+    }
+    .team-row .member-controls {
+      grid-template-columns: minmax(0, 1fr) 44px;
+      align-items: start;
+    }
+    .team-row .member-details {
+      grid-template-columns: minmax(0, 1fr) 118px;
+      align-items: end;
+    }
+    .team-row .role-wrap {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .team-row .role-field-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .team-row select.role {
+      width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .team-row .salary-wrap {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .team-row .salary-wrap label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .team-row .salary-wrap label::after { content: "（万円）"; }
+    .team-row .salary-wrap input {
+      width: 100%;
+      min-width: 44px;
+      height: 44px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+    }
+    .team-row .salary-wrap .unit { display: none; }
+    .team-row .member-info {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: end;
+      text-align: left;
+    }
+    .team-row .remove-btn {
+      grid-column: 2;
+      grid-row: 1;
+      width: 44px;
+      height: 44px;
+      font-size: 12px;
+    }
+    .input-result-digest {
+      display: block;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .digest-heading {
+      margin-bottom: 9px;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    /* 3等分の固定グリッドにすると、金額が長いセル（年間効果差額）だけが溢れ、
+       隣のセルの不透明な背景に「万円」が隠れて読めなくなる。
+       値の長さに応じてセルが伸び、入りきらなければ折り返す組み方にする
+       （固定バー .mobile-result-value と同じ考え方）。 */
+    .digest-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .digest-value {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 8px 6px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--navy-tint);
+    }
+    .digest-value span {
+      display: block;
+      color: var(--ink-2);
+      font-size: 10px;
+      line-height: 1.35;
+    }
+    .digest-value strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--navy);
+      font-size: clamp(13px, 4.1vw, 16px);
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    .digest-assumptions {
+      display: grid;
+      gap: 2px;
+      margin-top: 9px;
+      color: var(--ink-2);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .back-to-input {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+      margin-bottom: 10px;
+      padding: 8px 14px;
+      border: 1px solid var(--navy);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--navy);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .mobile-result-bar {
+      position: fixed;
+      z-index: 1000;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      padding-bottom: env(safe-area-inset-bottom);
+      background: var(--navy);
+      color: var(--surface);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .mobile-result-bar.is-input-active {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(100%);
+      pointer-events: none;
+    }
+    .mobile-result-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      height: 64px;
+      padding: 8px max(12px, env(safe-area-inset-right))
+        8px max(12px, env(safe-area-inset-left));
+    }
+    .mobile-result-value {
+      min-width: 0;
+      line-height: 1.25;
+    }
+    .mobile-result-value span {
+      display: block;
+      font-size: 10px;
+    }
+    .mobile-result-value strong {
+      display: block;
+      margin-top: 2px;
+      color: var(--amber);
+      font-size: 20px;
+      white-space: nowrap;
+    }
+    .mobile-result-link {
+      flex: 0 0 auto;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid var(--surface);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--navy);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="badge">ROI診断</span>
+    <h1>あなたの会社のROIを30秒で診断</h1>
+    <p>47Connect導入で、自治体営業がどう変わるかを今すぐシミュレーション</p>
+  </header>
+
+  <!-- ============ INPUT GROUP BANNER ============ -->
+  <div class="group-banner input" id="inputStart">
+    <span class="step-num">1</span>
+    <span>INPUT — お客様の情報を入力</span>
+    <span class="desc">下記4項目を埋めてください</span>
+  </div>
+
+  <!-- ============ 会社情報 ============ -->
+  <section class="input-section">
+    <details class="company-details" data-mobile-collapsible>
+      <summary class="fold-summary">📋 会社情報（参考・計算に不使用）</summary>
+      <p class="section-desc">会社の規模感を入力してください。計算には使いませんが、結果の参考値として表示されます。</p>
+      <div class="input-grid">
+        <div class="input-card">
+          <label>年商（年間売上）</label>
+          <div class="input-row">
+            <input type="number" id="annualRevenue" value="50" min="0" inputmode="decimal">
+            <span class="unit">億円</span>
+          </div>
+          <div class="hint">参考値です（ROI計算には影響しません）</div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 営業活動期間 ============ -->
+  <section class="input-section">
+    <h2 class="section-title">📅 営業活動期間</h2>
+    <p class="section-desc">自治体営業を主に行っている期間と、月間稼働時間を入力してください。</p>
+    <div class="input-grid">
+      <div class="input-card">
+        <label>主な活動月（自治体営業）</label>
+        <div class="month-range">
+          <select id="startMonth"></select>
+          <span style="font-weight:700;">〜</span>
+          <select id="endMonth"></select>
+        </div>
+        <div class="hint">活動月数：<strong id="activeMonthsDisplay">7ヶ月</strong>（一般的には4月〜10月が繁忙期）</div>
+      </div>
+
+      <div class="input-card">
+        <label>月間稼働時間（1人あたり）</label>
+        <div class="input-row">
+          <input type="number" id="monthlyHours" value="50" min="0" inputmode="decimal">
+          <span class="unit">時間/月</span>
+        </div>
+        <div class="hint">活動月における1人あたりの自治体営業時間</div>
+      </div>
+
+      <div class="input-card">
+        <label>年間総稼働時間（1人あたり）</label>
+        <div class="computed" id="annualHoursPerPerson">350時間</div>
+        <div class="hint">月間稼働時間 × 活動月数（自動計算）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ チーム構成 ============ -->
+  <section class="input-section">
+    <h2 class="section-title">👥 チーム構成</h2>
+    <p class="section-desc">営業チームのメンバーを設定してください。「+ メンバーを追加」で人数を増やせます。一般的にはリーダー1名 + メンバー2名で運用されることが多いです。</p>
+
+    <div class="team-list" id="teamList">
+      <!-- Dynamic rows -->
+    </div>
+
+    <button class="add-btn" id="addMemberBtn">+ メンバーを追加</button>
+
+    <div class="team-summary">
+      <div>合計人数:<strong id="teamCount">3名</strong></div>
+      <div>チーム年間総工数:<strong id="teamAnnualHours">1,050時間</strong></div>
+      <div>年間人件費（自治体営業分）:<strong id="teamAnnualCost">¥2,450,000</strong></div>
+    </div>
+
+    <details class="team-note" data-mobile-collapsible>
+      <summary class="fold-summary">💡 時給＝年収÷年間2,000時間（概算）</summary>
+      <div class="team-note-content">
+        時給は <strong>「年収 ÷ 年間稼働時間（2,000時間）」</strong> で算出したおおよその金額です（例：年収600万円 ÷ 2,000h ＝ 時給3,000円）。<br>
+        実際の労働時間や手当・賞与等は反映していないため、あくまで <strong>参考値</strong> としてご覧ください。
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 案件情報 ============ -->
+  <section class="input-section">
+    <h2 class="section-title">💼 案件情報</h2>
+    <p class="section-desc">現在の年間案件獲得数と平均単価を入力してください。</p>
+    <div class="input-grid">
+      <div class="input-card">
+        <label>現状の年間案件獲得数</label>
+        <div class="input-row">
+          <input type="number" id="annualCases" value="4" min="0" step="0.5" inputmode="decimal">
+          <span class="unit">件/年</span>
+        </div>
+        <div class="hint">自治体から取れている年間案件数</div>
+      </div>
+      <div class="input-card">
+        <label>1案件あたりの平均単価</label>
+        <div class="input-row">
+          <input type="number" id="unitPrice" value="500" min="0" step="50" inputmode="decimal">
+          <span class="unit">万円</span>
+        </div>
+        <div class="hint">1案件で得られる平均売上</div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="input-result-digest" aria-label="基本シナリオの結果ダイジェスト">
+    <p class="digest-heading">基本シナリオ・売上見込みを含む試算</p>
+    <div class="digest-values">
+      <div class="digest-value">
+        <span>年間効果差額（試算）</span>
+        <strong id="digestProfit">+1,970万円</strong>
+      </div>
+      <div class="digest-value">
+        <span>ROI</span>
+        <strong id="digestRoi">7.9倍</strong>
+      </div>
+      <div class="digest-value">
+        <span>投資回収</span>
+        <strong id="digestPayback">1.4ヶ月</strong>
+      </div>
+    </div>
+    <div class="digest-assumptions">
+      <span>費用：月20万円＋初期構築費10万円・AIクレジット別途</span>
+      <span>仮定：工数90%削減・提案活動量2倍</span>
+      <span>時給換算：年収÷年間2,000時間</span>
+    </div>
+  </aside>
+
+  <!-- ============ RESULT GROUP BANNER ============ -->
+  <div class="group-banner result">
+    <span class="step-num">2</span>
+    <span>RESULT — シミュレーション結果</span>
+    <span class="desc">入力に応じて自動計算されます</span>
+  </div>
+
+  <!-- ============ 結果 ============ -->
+  <section class="result-section">
+    <h2 class="section-title">結果（リアルタイム計算）</h2>
+    <p class="section-desc">入力が変わると、すべての結果が自動で更新されます。</p>
+
+    <details class="premise" style="margin-bottom: 18px;" data-mobile-collapsible>
+      <summary class="fold-summary">計算の前提：費用 月20万円＋初期10万円／工数90%削減／提案活動量2倍</summary>
+      <ul>
+        <li>47Connect 月20万円プラン：<strong>月額20万円</strong>（初期構築費10万円・AIクレジットは別途）</li>
+        <li>導入後の工数：<strong>1/10に削減</strong>（90%削減目標）</li>
+        <li>
+          提案活動量：<strong>2倍に増加</strong>を想定（工数1/10で空いた時間を提案活動に振り向け）
+          <div class="example-note">例：現状 年3件提案 → 47Connect導入後 年6件提案が可能</div>
+        </li>
+        <li>時給換算：<strong>年間稼働 2,000時間</strong>で年収から自動計算</li>
+      </ul>
+    </details>
+
+    <div class="results-grid">
+
+      <div class="result-block result-work">
+        <div class="result-block-head">
+          <span class="result-step">工数</span>
+          <h3>営業工数を減らし、提案に使う時間をつくる</h3>
+        </div>
+        <figure class="work-panel">
+          <div class="work-intro">
+            <strong id="workHeadline">総工数は1/10に</strong>
+            <p class="work-quiet" id="workRateNote">90%削減を仮定した試算</p>
+          </div>
+          <figcaption class="work-caption">導入前｜自治体営業に使う時間</figcaption>
+          <div class="work-track work-before-track" id="workBeforeBar"
+               aria-label="導入前は年間1,050時間"></div>
+          <p class="work-before-value">
+            年間 <b id="workBeforeHours">1,050時間</b> ／
+            人件費 <b id="workBeforeCost">245万円</b>
+          </p>
+
+          <div class="work-bridge">
+            <div class="work-bracket" id="workBracket" aria-hidden="true"></div>
+            <p>削減した <strong id="workReducedBridge">945時間</strong> が、<br>新たに使える時間になる</p>
+          </div>
+
+          <p class="work-caption">導入後｜必要な工数と、空いた時間</p>
+          <div class="work-track work-after-track" id="workAfterBar"
+               aria-label="必要な工数105時間、空いた時間945時間">
+            <div class="work-used-time" id="workUsedTime"></div>
+            <div class="work-freed-time" id="workFreedTime">
+              <span>空いた時間を「提案・面談・関係づくり」に回せる</span>
+            </div>
+          </div>
+          <div class="work-after-values">
+            <span>必要な工数 <strong id="workAfterHours">105時間／年</strong></span>
+            <span>空いた時間 <strong id="workFreedHours">945時間／年</strong></span>
+          </div>
+          <p class="work-outside-note">空いた時間を「提案・面談・関係づくり」に回せます。</p>
+
+          <div class="work-totals">
+            <span>削減工数 <b id="workReducedTotal">945時間／年</b></span>
+            <span>人件費換算 <b id="workSavingTotal">220万円／年</b></span>
+          </div>
+          <p class="work-foot">
+            導入後の人件費換算は<span id="workAfterCost">24万円／年</span>。
+            工数削減額は現金支出の削減を意味しません。
+          </p>
+        </figure>
+      </div>
+
+      <div class="result-block result-opportunity">
+        <div class="result-block-head">
+          <span class="result-step">提案機会</span>
+          <h3>空いた時間が、次の提案機会に変わる</h3>
+        </div>
+        <div class="opportunity-panel">
+          <div class="opportunity-flow">
+            <div class="opportunity-cell">
+              <span>再配分できる時間</span>
+              <strong id="opportunityHours">945時間／年</strong>
+              <small id="opportunityRateNote">工数の90%を削減と仮定</small>
+            </div>
+            <div class="opportunity-arrow" aria-hidden="true">→</div>
+            <div class="opportunity-cell">
+              <span>基本の提案活動量</span>
+              <strong>2倍を想定</strong>
+              <small>案件獲得も<span id="opportunityCaseChange">4→8件</span>と仮定</small>
+            </div>
+            <div class="opportunity-arrow" aria-hidden="true">→</div>
+            <div class="opportunity-cell">
+              <span>追加売上の見込み</span>
+              <strong id="opportunityAddRevenue">+2,000万円</strong>
+              <small><span id="opportunityAddedCases">追加4件</span> × 単価<span id="opportunityUnitPrice">500万円</span></small>
+            </div>
+          </div>
+          <div class="opportunity-disclaimer">
+            <p>売上は見込みであり、獲得を保証するものではありません。</p>
+            <p>47Connectは提案機会の創出を支援します。</p>
+            <p>案件獲得は自治体側の判断によります。</p>
+            <p>実際の成果は、提案品質・自治体のニーズ・予算サイクル等で変わります。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-block result-scenarios" id="scenarioResults">
+        <button type="button" class="back-to-input" id="backToInputButton">入力に戻る</button>
+        <div class="result-block-head">
+          <span class="result-step">投資対効果</span>
+          <h3>3つの内訳で比較する</h3>
+        </div>
+        <p class="scenario-caption">
+          すべて売上見込みを含む試算です。売上の獲得を保証しません。
+        </p>
+        <div class="scenario-cards">
+          <article class="scenario-card conservative">
+            <h4 class="scenario-title">保守シナリオ</h4>
+            <p class="scenario-description">案件が年1件だけ増える想定</p>
+            <p class="scenario-cases">
+              <span id="conservativeTotalCases">4→5件</span><small>／年（追加<span id="conservativeAddCases">1</span>件）</small>
+            </p>
+            <div class="roi-slab">
+              <span>ROI<br>投資対効果</span>
+              <strong id="conservativeRoi">1.9<small>倍</small></strong>
+            </div>
+            <dl class="scenario-breakdown">
+              <div class="scenario-revenue"><dt>追加売上（見込み）</dt><dd id="conservativeRevenue">+500万円</dd></div>
+              <div class="scenario-saving"><dt>工数削減（人件費換算）</dt><dd id="conservativeSaving">+220万円</dd></div>
+              <div class="scenario-fee"><dt>47Connect費用</dt><dd id="conservativeFee">−250万円</dd></div>
+              <div class="scenario-profit"><dt>年間効果差額（試算）</dt><dd id="conservativeProfit">+470万円</dd></div>
+            </dl>
+            <p class="scenario-note">売上原価を控除していない試算です。</p>
+          </article>
+
+          <article class="scenario-card basic">
+            <div class="basic-cue">これが標準の想定です</div>
+            <h4 class="scenario-title">基本シナリオ</h4>
+            <p class="scenario-description">提案活動量が2倍になる想定</p>
+            <p class="scenario-cases">
+              <span id="basicTotalCases">4→8件</span><small>／年（追加<span id="basicAddCases">4</span>件）</small>
+            </p>
+            <div class="roi-slab">
+              <span>ROI<br>投資対効果</span>
+              <strong id="basicRoi">7.9<small>倍</small></strong>
+            </div>
+            <dl class="scenario-breakdown">
+              <div class="scenario-revenue"><dt>追加売上（見込み）</dt><dd id="basicRevenue">+2,000万円</dd></div>
+              <div class="scenario-saving"><dt>工数削減（人件費換算）</dt><dd id="basicSaving">+220万円</dd></div>
+              <div class="scenario-fee"><dt>47Connect費用</dt><dd id="basicFee">−250万円</dd></div>
+              <div class="scenario-profit"><dt>年間効果差額（試算）</dt><dd id="basicProfit">+1,970万円</dd></div>
+            </dl>
+            <p class="scenario-note">売上原価を控除していない試算です。</p>
+          </article>
+
+          <article class="scenario-card theory">
+            <h4 class="scenario-title">MAXシナリオ <span class="scenario-tag">理論値</span></h4>
+            <p class="scenario-description">空いた時間をすべて新規提案へ再配分</p>
+            <p class="scenario-cases">
+              <span id="theoryTotalCases">4→122件</span><small>／年（追加<span id="theoryAddCases">118</span>件）</small>
+            </p>
+            <div class="roi-slab">
+              <span>ROI<br>投資対効果</span>
+              <strong id="theoryRoi">236<small>倍</small></strong>
+            </div>
+            <dl class="scenario-breakdown">
+              <div class="scenario-revenue"><dt>追加売上（見込み）</dt><dd id="theoryRevenue">+5億9,000万円</dd></div>
+              <div class="scenario-saving"><dt>工数削減（人件費換算）</dt><dd id="theorySaving">+220万円</dd></div>
+              <div class="scenario-fee"><dt>47Connect費用</dt><dd id="theoryFee">−250万円</dd></div>
+              <div class="scenario-profit"><dt>年間効果差額（試算）</dt><dd id="theoryProfit">+5億8,970万円</dd></div>
+            </dl>
+            <p class="scenario-note">全追加提案が売上に結びつく仮定です。</p>
+          </article>
+        </div>
+        <div class="scenario-footer">
+          <span>基本シナリオの投資回収 <strong id="basicPayback">1.4ヶ月</strong></span>
+          <span>初年度費用 <b id="scenarioAnnualCost">250万円</b> ／ 月額20万円＋初期構築費10万円</span>
+        </div>
+        <p class="scenario-rounding">
+          ROI＝年間効果差額÷初年度費用。金額は端数処理前の値で計算しています。
+        </p>
+        <p class="scenario-rounding">
+          金額は万円未満を切り捨てて表示しています。回収期間＝初年度費用÷月平均効果です。
+        </p>
+        <p class="scenario-zero-note" id="scenarioZeroNote">
+          年間案件0件のため、基本の追加売上も0です。
+          保守は追加1件、MAXは全時間の再配分を仮定します。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 47Connect導入効果 試算サマリー（印刷・共有用） ============ -->
+  <section class="boss-summary">
+    <div class="boss-summary-header">
+      <div class="boss-summary-title">
+        <h2>47Connect 導入効果 試算サマリー</h2>
+        <p>本サマリーは印刷・PDF出力してそのまま提案資料としてお使いいただけます。</p>
+      </div>
+      <div class="boss-summary-actions">
+        <button class="action-btn" onclick="copySummary()">📋 内容をコピー</button>
+        <button class="action-btn" onclick="window.print()">🖨️ 印刷／PDF</button>
+      </div>
+    </div>
+
+    <div class="summary-doc" id="summaryDoc">
+      <h3>試算結果 <span class="summary-scenario">基本シナリオ</span></h3>
+      <!-- 式の見た目は CSS の content で出す（innerText を汚さずコピー結果を守るため）。
+           読み上げと選択コピーは下の .summary-copy-text が担うので、こちらは aria-hidden。
+           両方を aria-hidden にすると式が支援技術から完全に消えるため、下は隠さないこと。 -->
+      <div class="summary-equation" id="summaryEquation" aria-hidden="true">
+        <span class="summary-term summary-revenue" id="summaryRevenue" data-value="+2,000万円" aria-hidden="true"></span>
+        <span class="summary-term summary-saving" id="summarySaving" data-value="+220万円" aria-hidden="true"></span>
+        <span class="summary-term summary-fee" id="summaryFee" data-value="−250万円" aria-hidden="true"></span>
+        <span class="summary-equals" aria-hidden="true"></span>
+        <span class="summary-term summary-profit" id="summaryProfit" data-value="+1,970万円" aria-hidden="true"></span>
+      </div>
+      <p class="summary-copy-text" id="summaryCopyText">
+        追加売上（見込み）+2,000万円 ＋ 工数削減（人件費換算）+220万円
+        − 47Connect費用250万円 ＝ 年間効果差額（試算）+1,970万円
+      </p>
+      <div class="summary-kpis">
+        <span>ROI（投資対効果）<strong id="sumRoi">7.9倍</strong></span>
+        <span>投資回収期間<strong id="sumPayback">1.4ヶ月</strong></span>
+      </div>
+      <div class="summary-notes">
+        <p id="summaryWorkNote">年間工数 1,050→105時間。空いた945時間を提案活動等へ再配分します。</p>
+        <p>売上は見込みであり、保証しません。原価は未控除で、工数削減は人件費換算です。</p>
+        <p>AIクレジットは別途です。本試算には含みません。</p>
+        <!-- 端数の注記は印刷物にも必ず残すこと。結果セクション側の注記は @media print で
+             非表示になるため、ここに無いと印刷物だけ検算が合わない見た目になる -->
+        <p>金額は万円未満を切り捨てて表示しています。内訳の合計と1万円の差が出る場合があります。</p>
+      </div>
+      <div class="summary-assumptions">
+        <span id="summaryTeamAssumption">チーム：3名／自治体営業の人件費245万円</span>
+        <span id="summaryPeriodAssumption">稼働：4月〜10月・7ヶ月／月50時間／人</span>
+        <span id="summaryCurrentAssumption">現状：年4件 × 単価500万円＝売上2,000万円</span>
+        <span id="summaryRateAssumption">時給換算：年間2,000時間／削減率90%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <span class="cta-badge">個別相談・無料</span>
+    <h3>あなたの会社専用のシミュレーションを<br>個別相談でお伝えします</h3>
+    <p>47Connectのデモをお見せしながら、より詳細にご説明いたします。</p>
+
+    <div class="cta-features">
+      <div class="feature">完全無料</div>
+      <div class="feature">オンライン対応</div>
+      <div class="feature">最短当日返信</div>
+      <div class="feature">相談だけでもOK</div>
+    </div>
+
+    <a href="index.html#contact" class="btn">
+      無料で個別相談を申し込む
+      <span class="btn-arrow">→</span>
+    </a>
+    <div class="btn-secondary-note">※ 47Connectのお問い合わせフォームに移動します（所要時間1分）</div>
+  </section>
+
+  <div class="footnote">
+    ※ 本シミュレーションは仮置き値に基づく概算試算です。実際の効果はお客様の営業状況により異なります。<br>
+    47Connect 月20万円プラン｜月額20万円｜初期構築費10万円｜AIクレジット別途
+  </div>
+
+</div>
+
+<div class="mobile-result-bar" id="mobileResultBar">
+  <div class="mobile-result-bar-inner">
+    <div class="mobile-result-value">
+      <span>年間効果差額（試算）</span>
+      <strong id="mobileResultProfit">+1,970万円</strong>
+    </div>
+    <button type="button" class="mobile-result-link" id="viewResultsButton">結果を見る</button>
+  </div>
+</div>
+
+<script>
+  // ============ 固定の前提値 ============
+  const ANNUAL_HOURS = 2_000;            // 年間稼働時間（時給換算用）
+  const REDUCTION_RATE = 0.9;            // 工数削減率（90% = 1/10）
+  const CASE_GROWTH = 1.0;               // 案件増加率（100%増 = 2倍 ※工数1/10削減で空いた時間を提案活動に振り向ける想定）
+  const HOURS_PER_PROPOSAL = 8;          // 1件あたり営業工数（最大シナリオ用）
+  const MONTHLY_FEE = 200_000;           // 47Connect月額
+  const INITIAL_FEE = 100_000;           // 初期構築費
+  const AI_CREDIT = 0;                   // AIクレジット
+
+  // ============ 月セレクタ初期化 ============
+  function initMonthSelects() {
+    const startSel = document.getElementById('startMonth');
+    const endSel = document.getElementById('endMonth');
+    for (let m = 1; m <= 12; m++) {
+      startSel.innerHTML += `<option value="${m}" ${m===4?'selected':''}>${m}月</option>`;
+      endSel.innerHTML += `<option value="${m}" ${m===10?'selected':''}>${m}月</option>`;
+    }
+  }
+
+  function getActiveMonths() {
+    const s = parseInt(document.getElementById('startMonth').value);
+    const e = parseInt(document.getElementById('endMonth').value);
+    if (s <= e) return e - s + 1;
+    return (12 - s + 1) + e;
+  }
+
+  // ============ チームメンバー管理 ============
+  const ROLE_DEFAULTS = {
+    leader: { label: 'リーダー', salary: 600 },
+    member: { label: 'メンバー', salary: 400 },
+  };
+
+  // 行ごとに一意な id を振る。label と for で結ばないと、動的に足した行の入力に
+  // プログラム上の名前が付かず、読み上げで「何の入力か」が分からなくなる
+  let memberRowSeq = 0;
+
+  function addMember(role = 'member', salary = null) {
+    if (salary === null) salary = ROLE_DEFAULTS[role].salary;
+
+    const rowId = `member-${++memberRowSeq}`;
+    const list = document.getElementById('teamList');
+    const div = document.createElement('div');
+    div.className = 'team-row';
+    div.innerHTML = `
+      <div class="member-controls">
+        <div class="role-wrap">
+          <label class="role-field-label" for="${rowId}-role">役割</label>
+          <select class="role" id="${rowId}-role">
+            <option value="leader" ${role==='leader'?'selected':''}>リーダー</option>
+            <option value="member" ${role==='member'?'selected':''}>メンバー</option>
+          </select>
+        </div>
+        <button type="button" class="remove-btn" title="削除">削除</button>
+      </div>
+      <div class="member-details">
+        <div class="salary-wrap">
+          <label for="${rowId}-salary">年収</label>
+          <input type="number" class="salary" id="${rowId}-salary" value="${salary}" min="0" step="50" inputmode="decimal">
+          <span class="unit">万円</span>
+        </div>
+        <div class="member-info">
+          <div>時給 <strong class="member-hourly">¥3,000</strong></div>
+          <div>年間 <strong class="member-hours">350</strong>h</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(div);
+
+    // Listeners
+    const roleSelect = div.querySelector('.role');
+    const salaryInput = div.querySelector('.salary');
+    const removeBtn = div.querySelector('.remove-btn');
+
+    roleSelect.addEventListener('change', (e) => {
+      // Auto-set default salary when role changes
+      salaryInput.value = ROLE_DEFAULTS[e.target.value].salary;
+      calculate();
+    });
+    salaryInput.addEventListener('input', calculate);
+    removeBtn.addEventListener('click', () => {
+      if (document.querySelectorAll('.team-row').length > 1) {
+        if (confirm('このメンバーを削除しますか？')) {
+          div.remove();
+          // フォーカス中の要素が DOM ごと消えると focusout が発火しない経路があり、
+          // 固定バーが退避したまま戻らなくなる。ここで状態を作り直す
+          syncMobileResultBar();
+          calculate();
+        }
+      } else {
+        alert('最低1名は必要です');
+      }
+    });
+
+    calculate();
+  }
+
+  document.getElementById('addMemberBtn').addEventListener('click', () => {
+    addMember('member');
+  });
+
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  };
+  const setHTML = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.innerHTML = value;
+  };
+  const setStyle = (id, property, value) => {
+    const element = document.getElementById(id);
+    if (element) element.style[property] = value;
+  };
+  const setAttribute = (id, name, value) => {
+    const element = document.getElementById(id);
+    if (element) element.setAttribute(name, value);
+  };
+  const formatNumber = value => value.toLocaleString('ja-JP', { maximumFractionDigits: 1 });
+  const formatMoney = (value, showPlus = false) => {
+    const absoluteMan = Math.floor(Math.abs(value) / 10_000);
+    const oku = Math.floor(absoluteMan / 10_000);
+    const man = absoluteMan % 10_000;
+    let amount;
+    if (oku > 0) {
+      amount = man > 0 ? `${oku}億${man.toLocaleString()}万円` : `${oku}億円`;
+    } else {
+      amount = `${man.toLocaleString()}万円`;
+    }
+    const sign = value < 0 ? '−' : showPlus ? '+' : '';
+    return sign + amount;
+  };
+  const formatMultiple = value => {
+    if (!Number.isFinite(value)) return '—';
+    const absolute = Math.abs(value);
+    // 丸めた後の値で桁を判定する。先に判定すると 9.962 が「10.0倍」と出て
+    // 「10倍以上は整数」という表示規則を自分で破ってしまう
+    const rounded = Math.round(absolute * 10) / 10;
+    const amount = rounded < 10 ? rounded.toFixed(1) : Math.round(absolute).toLocaleString();
+    return (value < 0 ? '−' : '') + amount;
+  };
+
+  // ============ 計算 ============
+  function calculate() {
+    const monthlyHours = parseFloat(document.getElementById('monthlyHours').value) || 0;
+    const activeMonths = getActiveMonths();
+    const annualHoursPerPerson = monthlyHours * activeMonths;
+
+    setText('activeMonthsDisplay', activeMonths + 'ヶ月');
+    setText('annualHoursPerPerson', annualHoursPerPerson.toLocaleString() + '時間');
+
+    // チーム集計
+    let teamCount = 0;
+    let teamAnnualHours = 0;
+    let teamAnnualCost = 0;
+
+    document.querySelectorAll('.team-row').forEach(row => {
+      const role = row.querySelector('.role').value;
+      const annualSalary = (parseFloat(row.querySelector('.salary').value) || 0) * 10_000;
+      const hourlyRate = annualSalary / ANNUAL_HOURS;
+      const personalCost = annualHoursPerPerson * hourlyRate;
+      teamCount++;
+      teamAnnualHours += annualHoursPerPerson;
+      teamAnnualCost += personalCost;
+      // Update per-row display
+      const memberHoursEl = row.querySelector('.member-hours');
+      if (memberHoursEl) memberHoursEl.textContent = annualHoursPerPerson.toLocaleString();
+      const memberHourlyEl = row.querySelector('.member-hourly');
+      if (memberHourlyEl) memberHourlyEl.textContent = '¥' + Math.round(hourlyRate).toLocaleString();
+    });
+
+    setText('teamCount', teamCount + '名');
+    setText('teamAnnualHours', teamAnnualHours.toLocaleString() + '時間');
+    setText('teamAnnualCost', '¥' + Math.round(teamAnnualCost).toLocaleString());
+
+    // 案件
+    const annualCases = parseFloat(document.getElementById('annualCases').value) || 0;
+    const unitPriceMan = parseFloat(document.getElementById('unitPrice').value) || 0;
+    const unitPrice = unitPriceMan * 10_000;
+
+    const currentRevenue = annualCases * unitPrice;
+
+    // 47Connect導入後（基本）
+    const annualCostSaving = teamAnnualCost * REDUCTION_RATE;
+    const addedCases = annualCases * CASE_GROWTH;
+    const annualAddRevenue = addedCases * unitPrice;
+    const annualTotalEffect = annualCostSaving + annualAddRevenue;
+
+    // 費用
+    const annualCost = MONTHLY_FEE * 12 + INITIAL_FEE + AI_CREDIT * 12;
+    const annualProfit = annualTotalEffect - annualCost;
+    // ROI（投資対効果）= 年間効果差額 ÷ 費用合計
+    // 「純利益」と呼ばないのは、追加売上から売上原価を控除していないため（2026-09-21 赤ペンQ3で確定）
+    const yearlyROI = annualProfit / annualCost;
+    const monthlyEffect = annualTotalEffect / 12;
+    const paybackMonths = annualCost / monthlyEffect;
+
+    // 3シナリオ（基本の既存計算式は維持）
+    const reducedHoursAnnual = teamAnnualHours * REDUCTION_RATE;
+    const scenarioAddCases = {
+      conservative: 1,
+      basic: annualCases * CASE_GROWTH,
+      theory: Math.floor(reducedHoursAnnual / HOURS_PER_PROPOSAL),
+    };
+    const makeScenario = addCases => {
+      const addRevenue = addCases * unitPrice;
+      const profit = addRevenue + annualCostSaving - annualCost;
+      return {
+        addCases,
+        addRevenue,
+        profit,
+        roi: profit / annualCost,
+        totalCases: annualCases + addCases,
+      };
+    };
+    const scenarios = {
+      conservative: makeScenario(scenarioAddCases.conservative),
+      basic: {
+        addCases: addedCases,
+        addRevenue: annualAddRevenue,
+        profit: annualProfit,
+        roi: yearlyROI,
+        totalCases: annualCases + addedCases,
+      },
+      theory: makeScenario(scenarioAddCases.theory),
+    };
+
+    // ============ DOM更新 ============
+    // ① 工数削減パネル
+    const afterTeamHours = teamAnnualHours * (1 - REDUCTION_RATE);
+    const afterTeamCost = teamAnnualCost * (1 - REDUCTION_RATE);
+    const startMonthVal = parseInt(document.getElementById('startMonth').value);
+    const endMonthVal = parseInt(document.getElementById('endMonth').value);
+    const periodText = `${startMonthVal}月〜${endMonthVal}月（${activeMonths}ヶ月間）`;
+
+    const remainingRate = 1 - REDUCTION_RATE;
+    const reductionPercent = REDUCTION_RATE * 100;
+    const remainingPercent = remainingRate * 100;
+    setText('workHeadline', `総工数は${formatNumber(remainingRate * 10)}/10に`);
+    setText('workRateNote', `${formatNumber(reductionPercent)}%削減を仮定した試算`);
+    setText('workBeforeHours', `${formatNumber(teamAnnualHours)}時間`);
+    setText('workBeforeCost', formatMoney(teamAnnualCost));
+    setText('workReducedBridge', `${formatNumber(reducedHoursAnnual)}時間`);
+    setText('workAfterHours', `${formatNumber(afterTeamHours)}時間／年`);
+    setText('workFreedHours', `${formatNumber(reducedHoursAnnual)}時間／年`);
+    setText('workReducedTotal', `${formatNumber(reducedHoursAnnual)}時間／年`);
+    setText('workSavingTotal', `${formatMoney(annualCostSaving)}／年`);
+    setText('workAfterCost', `${formatMoney(afterTeamCost)}／年`);
+    setStyle('workBeforeBar', 'width', '100%');
+    setStyle('workBracket', 'left', `${remainingPercent}%`);
+    setStyle('workBracket', 'width', `${reductionPercent}%`);
+    setStyle('workUsedTime', 'width', `${remainingPercent}%`);
+    setStyle('workFreedTime', 'width', `${reductionPercent}%`);
+    setAttribute('workBeforeBar', 'aria-label', `導入前は年間${formatNumber(teamAnnualHours)}時間`);
+    setAttribute('workAfterBar', 'aria-label', `必要な工数${formatNumber(afterTeamHours)}時間、空いた時間${formatNumber(reducedHoursAnnual)}時間`);
+
+    // ② 売上パネル
+    const afterAnnualCases = annualCases * (1 + CASE_GROWTH);  // 2倍
+    setText('opportunityHours', `${formatNumber(reducedHoursAnnual)}時間／年`);
+    setText('opportunityRateNote', `工数の${formatNumber(REDUCTION_RATE * 100)}%を削減と仮定`);
+    setText('opportunityCaseChange', `${formatNumber(annualCases)}→${formatNumber(afterAnnualCases)}件`);
+    setText('opportunityAddRevenue', formatMoney(annualAddRevenue, true));
+    setText('opportunityAddedCases', `追加${formatNumber(addedCases)}件`);
+    setText('opportunityUnitPrice', formatMoney(unitPrice));
+
+    Object.entries(scenarios).forEach(([key, scenario]) => {
+      setText(`${key}TotalCases`, `${formatNumber(annualCases)}→${formatNumber(scenario.totalCases)}件`);
+      setText(`${key}AddCases`, formatNumber(scenario.addCases));
+      setHTML(`${key}Roi`, `${formatMultiple(scenario.roi)}<small>倍</small>`);
+      setText(`${key}Revenue`, formatMoney(scenario.addRevenue, true));
+      setText(`${key}Saving`, formatMoney(annualCostSaving, true));
+      setText(`${key}Fee`, formatMoney(-annualCost));
+      setText(`${key}Profit`, formatMoney(scenario.profit, true));
+    });
+    setText('basicPayback', Number.isFinite(paybackMonths) ? `${paybackMonths.toFixed(1)}ヶ月` : '—');
+    setText('scenarioAnnualCost', formatMoney(annualCost));
+    setStyle('scenarioZeroNote', 'display', annualCases === 0 ? 'block' : 'none');
+
+    // ============ 試算サマリー（基本シナリオ） ============
+    const summaryRevenue = formatMoney(scenarios.basic.addRevenue, true);
+    const summarySaving = formatMoney(annualCostSaving, true);
+    const summaryFee = formatMoney(-annualCost);
+    const summaryProfit = formatMoney(scenarios.basic.profit, true);
+    const summaryPayback = Number.isFinite(paybackMonths) ? `${paybackMonths.toFixed(1)}ヶ月` : '—';
+    setAttribute('summaryRevenue', 'data-value', summaryRevenue);
+    setAttribute('summarySaving', 'data-value', summarySaving);
+    setAttribute('summaryFee', 'data-value', summaryFee);
+    setAttribute('summaryProfit', 'data-value', summaryProfit);
+    setAttribute(
+      'summaryEquation',
+      'aria-label',
+      `追加売上${summaryRevenue}、工数削減${summarySaving}、費用${summaryFee}、年間効果差額${summaryProfit}`
+    );
+    setText(
+      'summaryCopyText',
+      `追加売上（見込み）${summaryRevenue} ＋ 工数削減（人件費換算）${summarySaving} ` +
+      `− 47Connect費用${formatMoney(annualCost)} ＝ 年間効果差額（試算）${summaryProfit}`
+    );
+    setText('sumRoi', `${formatMultiple(scenarios.basic.roi)}倍`);
+    setText('sumPayback', summaryPayback);
+    setText(
+      'summaryWorkNote',
+      `年間工数 ${formatNumber(teamAnnualHours)}→${formatNumber(afterTeamHours)}時間。` +
+      `空いた${formatNumber(reducedHoursAnnual)}時間を提案活動等へ再配分します。`
+    );
+    setText(
+      'summaryTeamAssumption',
+      `チーム：${teamCount}名／自治体営業の人件費${formatMoney(teamAnnualCost)}`
+    );
+    setText(
+      'summaryPeriodAssumption',
+      `稼働：${periodText}／月${formatNumber(monthlyHours)}時間／人`
+    );
+    setText(
+      'summaryCurrentAssumption',
+      `現状：年${formatNumber(annualCases)}件 × 単価${formatMoney(unitPrice)}＝売上${formatMoney(currentRevenue)}`
+    );
+    setText(
+      'summaryRateAssumption',
+      `時給換算：年間${ANNUAL_HOURS.toLocaleString()}時間／削減率${formatNumber(reductionPercent)}%`
+    );
+
+    // ============ モバイル結果ダイジェスト（基本シナリオ） ============
+    setText('digestProfit', summaryProfit);
+    setText('digestRoi', `${formatMultiple(scenarios.basic.roi)}倍`);
+    setText('digestPayback', summaryPayback);
+    setText('mobileResultProfit', summaryProfit);
+
+  }
+
+  // ============ モバイルの折りたたみと結果への往復 ============
+  const mobileLayoutMedia = window.matchMedia('(max-width: 700px)');
+  document.querySelectorAll('[data-mobile-collapsible]').forEach(details => {
+    details.open = !mobileLayoutMedia.matches;
+  });
+
+  let lastInputControl = null;
+  const mobileResultBar = document.getElementById('mobileResultBar');
+  const isInputControl = element => element && element.matches('input, select, textarea');
+  const setMobileResultBarRetreated = retreated => {
+    if (!mobileResultBar) return;
+    mobileResultBar.classList.toggle('is-input-active', retreated);
+    mobileResultBar.setAttribute('aria-hidden', retreated ? 'true' : 'false');
+  };
+  // 退避状態を「いま入力にフォーカスがあるか」から作り直す。
+  // 消えた要素を activeElement が指すことはないので、DOM を壊した直後に呼べば必ず正しくなる。
+  // focusout に頼るだけだと、フォーカス中の要素が DOM ごと消えたときに復帰しない
+  function syncMobileResultBar() {
+    setMobileResultBarRetreated(isInputControl(document.activeElement));
+    if (lastInputControl && !lastInputControl.isConnected) lastInputControl = null;
+  }
+
+  document.addEventListener('focusin', event => {
+    if (!isInputControl(event.target)) return;
+    lastInputControl = event.target;
+    setMobileResultBarRetreated(true);
+  });
+  document.addEventListener('focusout', event => {
+    if (!isInputControl(event.target)) return;
+    requestAnimationFrame(() => {
+      setMobileResultBarRetreated(isInputControl(document.activeElement));
+    });
+  });
+
+  document.getElementById('viewResultsButton').addEventListener('click', () => {
+    document.getElementById('scenarioResults').scrollIntoView({ block: 'start' });
+  });
+  document.getElementById('backToInputButton').addEventListener('click', () => {
+    const target = lastInputControl && lastInputControl.isConnected
+      ? lastInputControl
+      : document.getElementById('inputStart');
+    const collapsedParent = target.closest('details:not([open])');
+    if (collapsedParent) collapsedParent.open = true;
+    target.scrollIntoView({ block: target === lastInputControl ? 'center' : 'start' });
+  });
+
+  // ============ 稟議サマリーをコピー ============
+  function copySummary() {
+    const doc = document.getElementById('summaryDoc');
+    const text = doc.innerText;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('稟議用サマリーをクリップボードにコピーしました。\nメールやドキュメントに貼り付けてご利用ください。');
+      }).catch(() => {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+  function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      alert('稟議用サマリーをコピーしました。');
+    } catch (e) {
+      alert('コピーに失敗しました。手動で範囲選択してコピーしてください。');
+    }
+    document.body.removeChild(textarea);
+    // この textarea は入力欄として扱われるためバーが退避する。削除で focusout が
+    // 発火しない経路があるので、消した直後に状態を作り直す
+    syncMobileResultBar();
+  }
+  window.copySummary = copySummary;
+
+  // ============ 初期化 ============
+  initMonthSelects();
+  // Default team: リーダー1 + メンバー2
+  addMember('leader', 600);
+  addMember('member', 400);
+  addMember('member', 400);
+
+  // Listeners on global inputs
+  ['annualRevenue', 'startMonth', 'endMonth', 'monthlyHours', 'annualCases', 'unitPrice'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculate);
+    document.getElementById(id).addEventListener('change', calculate);
+  });
+
+  calculate();
+</script>
+</body>
+</html>
