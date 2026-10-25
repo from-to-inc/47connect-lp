@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>47Connect — 自治体提案をスマートに。｜自治体AI参謀｜β版特別キャンペーン受付中</title>
-<meta name="description" content="自治体提案をスマートに。47Connectは、自治体ビジネス企業の営業組織に常駐する自治体AI参謀。「どこへ・なぜ・いつ提案すべきか」を、レコメンド・サマライズ・CRM・AI参謀対話で毎日相談できます。FromTo「地域AI参謀」構想の第1実装プロダクト。先着10社限定のβ版特別キャンペーン受付中。" />
+<title>47Connect by FromTo｜自治体特化型のAI参謀｜先行予約 受付中（2027年1月 正式版リリース予定）</title>
+<meta name="description" content="47Connectは、全国1,788自治体を対象に「自治体特化型のAI参謀」が分析・提案するサービスです。自治体が予算化する前の情報を捉え、提案の機会をつくります。2027年1月 正式版リリース予定、先行予約 受付中です。" />
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,52 +13,47 @@
   gtag('js', new Date());
   gtag('config', 'G-5YLJ2SZ9ZR');
 </script>
-<!-- A/B テスト終了（2026-05-12）: 旧B版を正式版に昇格、ab-split.js は _archive/ に退避 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&family=Inter:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
   :root{
-    /* CI Brand */
-    --blue:        #286FB7;   /* primary */
+    
+    --blue:        #286FB7;   
     --blue-2:      #4B8DCC;
     --blue-3:      #8FBAE5;
     --blue-deep:   #164A7E;
-    --blue-ink:    #071A33;   /* hero / why bg */
+    --blue-ink:    #071A33;   
     --blue-50:     #EDF5FF;
     --blue-100:    #D7E8F8;
     --blue-200:    #BCD4EE;
     --blue-300:    #93B8DF;
 
-    --orange:      #F05A28;   /* accent / CTA（白背景・ボタン用） */
+    --orange:      #F05A28;   
     --orange-2:    #FF7A3D;
     --orange-50:   #FFF0E8;
 
-    /* Warm accent on dark — 濃い青背景上で使う暖色（橙の彩度を抑えた琥珀色系） */
-    --amber:       #FFD1A3;   /* 暖アンバー：濃い青上の文字色 */
-    --amber-soft:  #FFE0BF;   /* やわらかいクリーム：濃い青上の見出し色 */
-    --amber-bg-1:  rgba(255,209,163,.10);  /* レベル1：薄い暖背景 */
-    --amber-bg-2:  rgba(255,209,163,.17);  /* レベル2：標準暖背景 */
-    --amber-line:  rgba(255,209,163,.38);  /* 暖ボーダー */
+    --amber:       #FFD1A3;   
+    --amber-soft:  #FFE0BF;   
+    --amber-bg-1:  rgba(255,209,163,.10);  
+    --amber-bg-2:  rgba(255,209,163,.17);  
+    --amber-line:  rgba(255,209,163,.38);  
 
-    /* Surfaces on dark — 濃い青背景上の階層パネル */
-    --on-dark-1:   rgba(255,255,255,.07);  /* レベル1パネル背景 */
-    --on-dark-2:   rgba(255,255,255,.20);  /* レベル1ボーダー */
-    --on-dark-3:   rgba(255,255,255,.10);  /* レベル2パネル背景（より目立つ） */
+    --on-dark-1:   rgba(255,255,255,.07);  
+    --on-dark-2:   rgba(255,255,255,.20);  
+    --on-dark-3:   rgba(255,255,255,.10);  
 
-    --teal:        #25A79D;   /* sub accent (limited use) */
+    --teal:        #25A79D;   
 
-    /* Surfaces */
     --bg:          #FFFFFF;
     --bg-soft:     #F6F8FC;
     --bg-tint:     #EAF3FE;
     --bg-cool:     #F1F7FB;
     --bg-mint:     #EEF8F6;
-    --bg-warm:     #FFF5EF;  /* 極薄朱（痛みカテゴリ用） */
+    --bg-warm:     #FFF5EF;  
 
-    /* Ink */
     --ink:         #0E1F3A;
     --ink-2:       #2C3E5E;
     --ink-3:       #5C6E8E;
@@ -68,24 +62,20 @@
     --line-2:      #EEF3F8;
     --line-dark:   rgba(255,255,255,.10);
 
-    /* Inverted (on dark) */
     --t-inv:       #FFFFFF;
     --t-inv-2:     rgba(255,255,255,.78);
     --t-inv-3:     rgba(255,255,255,.55);
 
-    /* Type */
-    --sans: "Avenir Next","Avenir","Nunito Sans","ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+    --sans: "Noto Sans JP","Hiragino Sans","ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo UI","Meiryo",sans-serif;   
     --mono: "JetBrains Mono","SF Mono",ui-monospace,Menlo,monospace;
-    /* 数字専用フォント（40-50代向け視認性優先・Inter+tnum で太く揃える） */
-    --num: "Inter","Avenir Next","Avenir","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
+    
+    --num: var(--sans);
 
-    /* Shape */
     --r-sm: 8px;
     --r:    12px;
     --r-lg: 18px;
     --r-xl: 24px;
 
-    /* Shadow (no gradients — only solid + shadow) */
     --sh-1: 0 1px 2px rgba(7,26,51,.04), 0 1px 1px rgba(7,26,51,.03);
     --sh-2: 0 6px 18px rgba(7,26,51,.07), 0 2px 5px rgba(7,26,51,.04);
     --sh-3: 0 14px 32px rgba(7,26,51,.12), 0 5px 10px rgba(7,26,51,.06);
@@ -93,9 +83,8 @@
     --sh-blue: 0 14px 28px rgba(40,111,183,.24), 0 5px 10px rgba(40,111,183,.12);
     --sh-orange: 0 12px 24px rgba(240,90,40,.30), 0 5px 10px rgba(240,90,40,.16);
 
-    /* Unified card texture（2026-07-27 プレミアム統一トークン） */
-    --r-card:      20px;   /* 2026-08-09 Labid型: 16→20px */
-    --sh-card:       0 2px 6px rgba(7,26,51,.05), 0 24px 56px -22px rgba(7,26,51,.28);   /* 2026-08-09 長く拡散させ、境界線なしでも浮くように */
+    --r-card:      20px;   
+    --sh-card:       0 2px 6px rgba(7,26,51,.05), 0 24px 56px -22px rgba(7,26,51,.28);   
     --sh-card-hover: 0 4px 10px rgba(7,26,51,.06), 0 34px 74px -26px rgba(7,26,51,.36);
   }
 
@@ -118,20 +107,19 @@
   .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
   .wrap-narrow{max-width:880px;margin:0 auto;padding:0 28px}
   section{padding:96px 0;position:relative;border-top:1px solid var(--line-2)}
-  /* 暗背景セクションでは極薄白の区切り線に */
+  
   .hero,.why,.end{border-top-color:rgba(255,255,255,.08)}
-  /* HEROは最上部・header直後なので区切り線なし */
+  
   .hero{border-top:none}
   @media (max-width:760px){section{padding:64px 0}}
 
-  /* ============ TYPOGRAPHY ============ */
   .eyebrow{
     display:inline-flex;align-items:center;gap:10px;
     font-family:var(--mono);font-size:15px;font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;
     color:var(--blue-deep);margin-bottom:22px;
   }
-  /* 2026-08-09: text-transform:uppercase親内で「β」がΒ（大文字ベータ）化するのを防ぐ */
+  
   .no-uc{text-transform:none}
   .eyebrow .dot{width:8px;height:8px}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
@@ -148,7 +136,7 @@
     background:linear-gradient(90deg,var(--blue) 0%,var(--blue-2) 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
-  /* .accent（重要数値の橙）はグラデを打ち消して橙を維持 */
+  
   .h-section .accent{color:var(--orange);background:none;-webkit-text-fill-color:var(--orange)}
   .on-dark .h-section, .why .h-section, .end .h-section{color:#fff}
   .on-dark .h-section em, .why .h-section em, .end .h-section em{
@@ -159,19 +147,18 @@
 
   .lede{
     font-size:18px;color:var(--ink-2);line-height:1.95;max-width:none;margin:0 auto;font-weight:500;
-  }   /* 2026-08-09 64ch(768px)だと見出し1281pxに対し狭すぎ、句点改行した文が途中で折れていたため撤廃 */
+  }   
   .why .lede, .end .lede{color:var(--t-inv-2)}
-  /* PC限定の強制改行（スマホでは自然折り返しに任せる）・2026-08-09 */
+  
   .br-pc{display:inline}
   @media (max-width:760px){ .br-pc{display:none} }
 
   .section-head.center{text-align:center;margin-bottom:64px}
   .section-head.center .lede{margin-left:auto;margin-right:auto}
 
-  /* ============ BUTTONS ============ */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;   /* 2026-08-09 Labid型: 完全ピル */
+    padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;   
     letter-spacing:.01em;transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;white-space:nowrap;
     border:1px solid transparent;
   }
@@ -199,8 +186,6 @@
 
   .btn-lg{padding:20px 36px;font-size:17px;font-weight:800}
 
-  /* ============ HEADER ============ */
-  /* 告知トップバー（c1採用・2026-07-22） */
   .topbar{background:var(--blue-ink);color:#fff}
   .topbar .wrap{display:flex;align-items:center;justify-content:center;gap:14px;height:34px;font-size:12.5px;letter-spacing:.02em}
   .topbar .live{width:7px;height:7px;border-radius:50%;background:#37D67A;box-shadow:0 0 0 3px rgba(55,214,122,.25);display:inline-block}
@@ -213,7 +198,7 @@
     backdrop-filter:saturate(180%) blur(12px);
     border-bottom:1px solid var(--line);
   }
-  /* 2026-08-09: sticky header復活に伴い、#アンカー着地点がヘッダーに隠れないよう余白を確保 */
+  
   section[id]{scroll-margin-top:100px}
   .header-inner{
     display:flex;align-items:center;justify-content:space-between;
@@ -250,7 +235,6 @@
     background:#D84B1D;box-shadow:0 14px 28px rgba(240,90,40,.34);
   }
 
-  /* 文字サイズ切替スイッチャー（独立フローティング・右下固定・CEO指示2026-05-10） */
   .fz-switcher{
     position:fixed;bottom:20px;right:20px;z-index:55;
     display:inline-flex;align-items:center;gap:2px;
@@ -275,7 +259,7 @@
   .fz-switcher button[data-fz="sm"]{font-size:11px}
   .fz-switcher button[data-fz="md"]{font-size:12px}
   .fz-switcher button[data-fz="lg"]{font-size:14px}
-  /* モバイル：折りたたみ式（「文字」タップで小中大を展開・2026-07-24 被り解消） */
+  
   @media (max-width:760px){
     .fz-switcher{bottom:auto;top:84px;right:12px;padding:5px 10px}
     .fz-switcher .fz-label{display:inline;margin-right:0;cursor:pointer;padding:4px 2px}
@@ -285,8 +269,6 @@
     .fz-switcher.open button{display:inline-block}
   }
 
-  /* zoomで全体スケール（CEO指示2026-05-09・全体的に大きく）
-     小 = 1.00 (旧「中」相当) / 中 = 1.12 / 大 = 1.25 */
   html[data-fz="md"] body{zoom:1.12}
   html[data-fz="lg"] body{zoom:1.25}
 
@@ -312,7 +294,6 @@
     .header-cta .btn{padding:9px 12px;font-size:12px}
   }
 
-  /* ============ HERO ============ */
   .hero{
     background:var(--blue-ink);
     color:#fff;padding:100px 0 80px;position:relative;overflow:hidden;
@@ -332,7 +313,7 @@
     display:grid;grid-template-columns:1fr 1.22fr;gap:44px;align-items:center;
     position:relative;
   }
-  /* ヒーロー内キャンペーンリンク（告知一本化・旧hero-pill置換 2026-07-24） */
+  
   .hero-campaign-link{
     display:inline-flex;align-items:center;gap:6px;
     font-size:13px;font-weight:700;color:var(--blue-3);
@@ -348,7 +329,7 @@
   .hero h1 .grad{color:var(--amber-soft)}
   .hero-sub{
     font-size:17px;line-height:2;color:var(--t-inv-2);max-width:48ch;margin-bottom:32px;
-    text-wrap:balance;  /* 行末の泣き別れ（1〜2文字だけ次行に落ちる）を防ぐ・2026-08-07 */
+    text-wrap:balance;  
   }
   .hero-sub strong{color:#fff;font-weight:700}
   .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
@@ -361,16 +342,15 @@
     color:var(--blue-3);font-weight:800;
   }
 
-  /* HERO mock */
   .hero-visual{position:relative}
-  /* 浮遊メトリクスチップ（採用案 p0・2026-07-22） */
+  
   .hero-chip{
     position:absolute;z-index:3;background:#fff;border:1px solid var(--line);
     border-radius:13px;box-shadow:0 16px 34px rgba(7,26,51,.30);
     padding:12px 15px;display:flex;align-items:center;gap:11px;
     text-decoration:none;transition:transform .18s, box-shadow .18s;
   }
-  /* 根拠セクションへ飛べるチップ（2026-08-07：Above the Fold の数字を検証可能にする） */
+  
   a.hero-chip:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(7,26,51,.36)}
   .hero-chip .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:15px;flex-shrink:0}
   .hero-chip .n{font-size:20px;font-weight:900;letter-spacing:-.02em;line-height:1;color:var(--ink)}
@@ -383,7 +363,6 @@
     filter:drop-shadow(0 26px 50px rgba(7,26,51,.20)) drop-shadow(0 6px 16px rgba(7,26,51,.10));
   }
 
-  /* HERO — PCモニターモック（システム画面をモニター内に表示） */
   .monitor{
     position:relative;width:100%;
     display:flex;flex-direction:column;align-items:center;
@@ -405,7 +384,7 @@
     box-shadow:0 0 0 1px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.35);
     filter:none;
   }
-  /* 下部ベゼルのブランドドット */
+  
   .monitor-screen::after{
     content:"";position:absolute;left:50%;transform:translateX(-50%);
     bottom:9px;width:7px;height:7px;border-radius:50%;
@@ -495,11 +474,9 @@
     .mock{transform:none}
   }
 
-  /* ============ WORRIES ============ */
-  .worries{background:var(--bg-warm)}  /* 痛みカテゴリ：極薄朱 */
+  .worries{background:var(--bg-warm)}  
   .worries-head{text-align:center;margin-bottom:40px}
 
-  /* WORRIES お悩み見出し（フックを目立たせる） */
   .worries .eyebrow{
     font-size:18px;font-weight:800;letter-spacing:-.005em;
     color:var(--orange);text-transform:none;
@@ -561,7 +538,6 @@
   .sambo-answer .msg{font-size:17px;line-height:1.7;font-weight:600}
   .sambo-answer .msg em{font-style:normal;color:var(--amber);font-weight:800}
 
-  /* AI参謀 アバター（実画像版） */
   .sambo-avatar{
     width:80px;height:80px;border-radius:50%;
     background:#fff;flex-shrink:0;position:relative;overflow:hidden;
@@ -583,15 +559,14 @@
 
   @media (max-width:860px){
     .worries-grid{grid-template-columns:1fr}
-    /* 経営者タブ：スマホでも3つを横1行・英字ラベルは非表示 */
+    
     .role-tabs{flex-direction:row;flex-wrap:nowrap;gap:4px;padding:5px;max-width:none}
     .role-tab{flex:1 1 0;min-width:0;padding:11px 6px;font-size:13.5px;white-space:nowrap}
     .role-tab .role-en{display:none}
     .sambo-answer{flex-direction:column;text-align:center}
   }
 
-  /* ============ PROBLEM ============ */
-  .problems{background:#FFF9F5}  /* 痛みカテゴリ：極薄朱（連続） */
+  .problems{background:#FFF9F5}  
   .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
   .prob{
     background:#fff;border:none;border-radius:var(--r-card);
@@ -610,12 +585,12 @@
     width:78px;height:78px;stroke:var(--blue-deep);stroke-width:1.7;fill:none;
     stroke-linecap:round;stroke-linejoin:round;position:relative;
   }
-  /* 画像差し替え版（リアル感を出す。痛みの可視化）— 親パネル幅いっぱいに展開 */
+  
   .prob-visual.prob-visual-img{
     height:220px;background:#fff;
-    /* .prob の padding(30px 26px) を打ち消して親パネル幅いっぱいに広げる */
+    
     margin:-30px -26px 4px;
-    border-radius:var(--r-lg) var(--r-lg) 0 0;  /* 上だけ親カードに合わせて角丸 */
+    border-radius:var(--r-lg) var(--r-lg) 0 0;  
     border:none;
     border-bottom:1px solid var(--line);
   }
@@ -657,22 +632,18 @@
   .prob-points li{font-size:13px;color:var(--ink-3);line-height:1.65;padding-left:16px;position:relative}
   .prob-points li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:var(--blue)}
 
-  /* カードごとの色分け（CI 3色を活用：青/朱/ティール） */
-  /* 01 見つけられない = 朱（散らばり・警戒） */
   .prob-grid > .prob:nth-child(1){border-top:5px solid var(--orange)}
   .prob-grid > .prob:nth-child(1) .no{color:var(--orange);background:var(--orange-50);border-color:color-mix(in oklab,var(--orange) 30%, transparent)}
   .prob-grid > .prob:nth-child(1) .tag{color:var(--orange);background:var(--orange-50)}
   .prob-grid > .prob:nth-child(1) .prob-points li::before{background:var(--orange)}
   .prob-grid > .prob:nth-child(1) .prob-visual.prob-visual-img .mini{color:var(--orange)}
 
-  /* 02 わからない = 青（情報・読み解き） */
   .prob-grid > .prob:nth-child(2){border-top:5px solid var(--blue)}
   .prob-grid > .prob:nth-child(2) .no{color:var(--blue-deep);background:var(--blue-50);border-color:var(--blue-200)}
   .prob-grid > .prob:nth-child(2) .tag{color:var(--blue-deep);background:var(--blue-50)}
   .prob-grid > .prob:nth-child(2) .prob-points li::before{background:var(--blue)}
   .prob-grid > .prob:nth-child(2) .prob-visual.prob-visual-img .mini{color:var(--blue-deep);border-color:var(--blue-200)}
 
-  /* 03 管理ができない = ティール（混沌・複雑性） */
   .prob-grid > .prob:nth-child(3){border-top:5px solid var(--teal)}
   .prob-grid > .prob:nth-child(3) .no{color:#1F8077;background:#E5F4F2;border-color:color-mix(in oklab,var(--teal) 25%, transparent)}
   .prob-grid > .prob:nth-child(3) .tag{color:#1F8077;background:#E5F4F2}
@@ -681,8 +652,7 @@
 
   @media (max-width:920px){.prob-grid{grid-template-columns:1fr}}
 
-  /* ============ SOLUTION (2-LAYER) ============ */
-  .solution{background:#fff}  /* 戦略構造1：白 */
+  .solution{background:#fff}  
   .layer-stack{
     margin-top:42px;display:flex;justify-content:center;
   }
@@ -695,21 +665,20 @@
   .stack-image img{
     display:block;width:100%;height:auto;
   }
-  /* 3層構造ダイアグラム（下から積み上げ・Layer1土台・2026-07-24 CEO指示） */
+  
   .l3-diagram{margin:42px auto 0;max-width:900px;display:flex;flex-direction:column;align-items:center}
   .l3-layer{position:relative;border-radius:var(--r-card);padding:24px 28px;border:none;box-shadow:var(--sh-card);background:#fff;transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease}
   .l3-layer:hover{transform:translateY(-3px);box-shadow:var(--sh-card-hover)}
   .l3-layer + .l3-layer{margin-top:36px}
-  /* DOM順は L3→L2→L1（視覚上、頂上がL3・土台がL1）。矢印は下の層から上の層へ */
+  
   .l3-layer:not(:first-child)::after{content:"";position:absolute;left:50%;top:-36px;width:2px;height:36px;background:linear-gradient(transparent,var(--blue-3));transform:translateX(-50%);z-index:1}
   .l3-layer:not(:first-child)::before{content:"▲";position:absolute;left:50%;top:-31px;transform:translateX(-50%);color:var(--blue-3);font-size:14px;z-index:2;line-height:1}
-  /* 台形スタック：土台(L1)ほど幅広 */
+  
   .l3-layer.l3-l1{width:100%}
   .l3-layer.l3-l2{width:92%}
   .l3-layer.l3-l3{width:84%}
   @media(max-width:640px){.l3-layer.l3-l1{width:100%}.l3-layer.l3-l2{width:96%}.l3-layer.l3-l3{width:92%}}
 
-  /* ============ BEFORE / AFTER（画像つき横並び・2026-07-27 旧圧縮バンド置換） ============ */
   .ba2{background:#fff}
   .ba2-grid{
     display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:stretch;
@@ -731,7 +700,6 @@
   .ba2-item{font-weight:700;min-width:80px}
   .ba2-val{font-weight:800;margin-left:auto;text-align:right}
 
-  /* Before：モノトーン・グレー基調 */
   .ba2-before{background:var(--bg-soft)}
   .ba2-before .ba2-shot img{filter:grayscale(1) saturate(.12) contrast(.97) brightness(1.02)}
   .ba2-before .ba2-label{color:var(--ink-4)}
@@ -739,7 +707,6 @@
   .ba2-before .ba2-item{color:var(--ink-3)}
   .ba2-before .ba2-val{color:var(--ink-3)}
 
-  /* After：カラー・青基調・明るい */
   .ba2-after{border-color:var(--blue-200);box-shadow:0 1px 2px rgba(40,111,183,.06), 0 12px 34px rgba(40,111,183,.14)}
   .ba2-after .ba2-shot{border-bottom-color:var(--blue-100)}
   .ba2-after .ba2-label{color:var(--blue-deep)}
@@ -747,7 +714,6 @@
   .ba2-after .ba2-item{color:var(--ink-2)}
   .ba2-after .ba2-val{color:var(--blue-deep)}
 
-  /* 中央の転換バッジ（重要な転換点＝オレンジを許容） */
   .ba2-arrow{
     align-self:center;flex-shrink:0;
     width:56px;height:56px;border-radius:50%;
@@ -775,7 +741,7 @@
   .l3-l3 .l3-badge{background:linear-gradient(135deg,var(--orange),var(--orange-2))}
   .l3-l3 .l3-chip{background:var(--orange-50);border-color:#FAD3C2;color:#B23A12}
   @media(max-width:640px){.l3-layer{padding:20px 18px}.l3-badge{width:52px;height:52px}.l3-badge b{font-size:19px}.l3-ttl{font-size:16px}.l3-chip{font-size:12px}}
-  /* SOLUTION 強烈キャッチコピー（旧BRIDGE統合・CEO指示2026-05-08） */
+  
   .solution-punch{
     margin-top:48px;padding:36px 40px;
     background:var(--blue-deep);color:#fff;border-radius:var(--r-lg);
@@ -865,8 +831,7 @@
     .stack-diagram{padding:24px}
   }
 
-  /* ============ SCREEN TOUR ============ */
-  .screen-tour{background:var(--bg)}  /* 解決画面開始：白で痛み→解決の切替を強調 */
+  .screen-tour{background:var(--bg)}  
   .screen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
   .screen-card{
     background:#fff;border:none;border-radius:var(--r-card);
@@ -881,7 +846,7 @@
   .screen-shot img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
   .screen-body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
   .screen-kicker{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--blue-deep);letter-spacing:.12em;display:inline-flex;align-items:center;gap:7px}
-  /* ラインアイコン（Labid型・2026-08-09）: currentColor で親の色に追従 */
+  
   .screen-kicker svg{width:15px;height:15px;flex-shrink:0}
   .prob .en svg{width:14px;height:14px;flex-shrink:0}
   .hero-chip .ic svg{width:19px;height:19px}
@@ -889,7 +854,6 @@
   .screen-body p{font-size:14px;line-height:1.85;color:var(--ink-2)}
   @media (max-width:980px){.screen-grid{grid-template-columns:1fr}}
 
-  /* Layer 1 features chips（SOLUTION内の3機能チップ） */
   .layer-features{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
   .lf-chip{
     display:inline-block;font-size:12px;font-weight:700;
@@ -898,7 +862,6 @@
     letter-spacing:-.005em;
   }
 
-  /* ============ Layer 1 Features Section（データ層3機能） ============ */
   .l1feat{background:var(--bg-cool);padding-top:96px;padding-bottom:96px}
   .l1f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
   .l1f-card{
@@ -917,7 +880,6 @@
   .l1f-desc strong{color:var(--ink);font-weight:800}
   .l1f-note{margin-top:24px;font-size:12px;color:var(--ink-4);text-align:center;line-height:1.7}
 
-  /* Mock UI shared */
   .l1f-mock{
     background:var(--bg-tint);border:1px solid var(--blue-100);border-radius:var(--r);
     padding:14px 16px;font-family:var(--mono);font-size:12px;color:var(--ink);
@@ -929,7 +891,6 @@
   .mock-h-title{font-weight:700;color:var(--blue-deep);font-size:11px;letter-spacing:.04em}
   .mock-h-tag{font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--blue);color:#fff;letter-spacing:.04em}
 
-  /* Mock 1: Recommend rows */
   .mock-row{
     display:grid;grid-template-columns:auto 1fr 80px auto;gap:8px;align-items:center;
     padding:7px 0;font-size:11px;
@@ -940,9 +901,8 @@
   .mock-muni small{font-size:9px;color:var(--ink-4);font-weight:500;margin-left:4px}
   .mock-bar{display:block;width:80px;height:6px;border-radius:3px;background:var(--blue-100);overflow:hidden}
   .mock-bar-fill{display:block;height:100%;background:var(--blue);border-radius:3px}
-  .mock-score{font-family:var(--num);font-weight:900;font-size:15px;color:var(--blue-deep);text-align:right;min-width:24px;font-feature-settings:"tnum" 1}
+  .mock-score{font-family:var(--num);font-weight:700;font-size:15px;color:var(--blue-deep);text-align:right;min-width:24px;font-feature-settings:"tnum" 1}
 
-  /* Mock 2: Summarize dl */
   .mock-dl{display:grid;grid-template-columns:80px 1fr;gap:6px 10px;font-size:11px}
   .mock-dl dt{font-family:var(--mono);font-weight:700;color:var(--ink-4);font-size:10px;letter-spacing:.04em;align-self:start;padding-top:2px}
   .mock-dl dd{color:var(--ink);font-family:var(--sans);font-weight:600;line-height:1.55}
@@ -952,7 +912,6 @@
     background:#fff;color:var(--blue-deep);border:1px solid var(--blue-200);letter-spacing:.04em;
   }
 
-  /* Mock 3: CRM table */
   .mock-tbl{width:100%;border-collapse:collapse;font-size:11px;font-family:var(--sans)}
   .mock-tbl th{
     font-family:var(--mono);font-size:9px;font-weight:700;color:var(--ink-4);
@@ -976,8 +935,7 @@
     .l1f-card{padding:24px 22px 28px}
   }
 
-  /* ============ Bridge Section（1段落差別化） ============ */
-  .bridge{background:#fff;padding:0 0 64px}  /* 差別化短文：白 */
+  .bridge{background:#fff;padding:0 0 64px}  
   .bridge-line{
     background:var(--blue-deep);color:#fff;border-radius:var(--r-lg);
     padding:32px 36px;text-align:center;display:flex;flex-direction:column;
@@ -1003,8 +961,7 @@
     .bridge-line{padding:24px 20px;border-radius:var(--r)}
   }
 
-  /* ============ Vision Section（地域AI参謀ビジョン） ============ */
-  .vision{background:var(--bg-tint);padding-top:96px;padding-bottom:96px}  /* 戦略構造2：極薄青 */
+  .vision{background:var(--bg-tint);padding-top:96px;padding-bottom:96px}  
   .vision-position{
     margin-top:18px;display:inline-block;
     padding:14px 22px;background:#fff;border:1px solid var(--blue-200);
@@ -1013,7 +970,6 @@
   }
   .vision-position strong{color:var(--blue-deep);font-weight:800}
 
-  /* 2モード並列カード */
   .vision-modes{
     display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;
   }
@@ -1052,7 +1008,6 @@
   }
   .vmode-impl strong{color:var(--ink);font-weight:800}
 
-  /* キーコピー */
   .vision-keycopy{
     margin:48px auto;max-width:760px;text-align:center;
     padding:36px 32px;background:var(--blue-deep);color:#fff;
@@ -1070,7 +1025,6 @@
     letter-spacing:-.02em;line-height:1.55;color:#fff;
   }
 
-  /* 3事業統合 */
   .vision-3biz{margin-top:48px}
   .v3biz-label{
     font-family:var(--mono);font-size:11px;font-weight:700;
@@ -1098,7 +1052,6 @@
     background:var(--blue-50);color:var(--blue-deep);border:1px solid var(--blue-100);
   }
 
-  /* WHY（深青背景）内に置かれた3事業ブロック用ダーク変奏 */
   .why-3biz{margin-top:40px}
   .why-3biz .v3biz-label{color:var(--blue-3)}
   .why-3biz .v3biz-card{
@@ -1132,8 +1085,7 @@
   .layers-note strong{color:var(--ink);font-weight:800}
   @media (max-width:860px){.layers-grid{grid-template-columns:1fr}}
 
-  /* ============ ROI ============ */
-  .roi{background:#fff}  /* 決断カテゴリ：白 */
+  .roi{background:#fff}  
   .roi-cases{
     display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;
     margin-top:24px;margin-bottom:8px;
@@ -1150,7 +1102,7 @@
     background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;
   }
   .roi-case-num{
-    font-size:28px;font-weight:900;color:var(--ink);font-family:var(--num);
+    font-size:28px;font-weight:700;color:var(--ink);font-family:var(--num);
     letter-spacing:-.02em;line-height:1.2;margin-top:8px;font-feature-settings:"tnum" 1;
   }
   .roi-case-desc{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.7;font-weight:500}
@@ -1203,7 +1155,7 @@
   }
   .roi-card.effect .roi-lbl{color:var(--blue-3)}
   .roi-card .roi-num{
-    font-size:42px;font-weight:900;line-height:1.1;letter-spacing:-.025em;color:var(--ink);
+    font-size:42px;font-weight:700;line-height:1.1;letter-spacing:-.025em;color:var(--ink);
     font-family:var(--num);font-feature-settings:"tnum" 1;
   }
   .roi-card.after .roi-num{color:var(--blue-deep)}
@@ -1223,7 +1175,7 @@
     background:#fff;border:1px solid var(--line);border-radius:var(--r);
     padding:22px 20px;text-align:center;box-shadow:var(--sh-1);
   }
-  .roi-stat .n{font-size:44px;font-weight:900;color:var(--orange);font-family:var(--num);letter-spacing:-.025em;line-height:1.15;font-feature-settings:"tnum" 1}
+  .roi-stat .n{font-size:44px;font-weight:700;color:var(--orange);font-family:var(--num);letter-spacing:-.025em;line-height:1.15;font-feature-settings:"tnum" 1}
   .roi-stat .l{font-size:14px;color:var(--ink-2);margin-top:8px;line-height:1.7;font-weight:600}
 
   .roi-cta{
@@ -1243,7 +1195,7 @@
     color:var(--blue-deep);margin-bottom:8px;text-transform:uppercase;
   }
   .roi-cta h3{font-size:24px;font-weight:800;line-height:1.5;color:var(--ink);letter-spacing:-.01em;margin-bottom:8px}
-  /* roi-ctaは白背景カード。.pilot（暗色）内に置かれても見出しが白抜けしないよう固定 */
+  
   .pilot .roi-cta h3{color:var(--ink)}
   .roi-cta-hl{color:var(--orange)}
   .roi-cta p{font-size:15px;color:var(--ink-2);line-height:1.85}
@@ -1251,7 +1203,7 @@
   .roi-note{
     margin-top:20px;font-size:11px;color:var(--ink-4);line-height:1.85;
   }
-  /* ROI詳細の折りたたみ（2026-07-24 簡素化） */
+  
   .roi-details{margin-top:36px}
   .roi-details > summary{
     list-style:none;cursor:pointer;text-align:center;
@@ -1275,8 +1227,7 @@
     .roi-stats{grid-template-columns:1fr}
   }
 
-  /* ============ FLOW ============ */
-  .flow{background:var(--bg-cool)}  /* タイミング：薄グレー */
+  .flow{background:var(--bg-cool)}  
   .flow-stakes{
     display:grid;grid-template-columns:1fr 1fr;gap:16px;
     max-width:760px;margin:24px auto 0;
@@ -1288,7 +1239,7 @@
     box-shadow:var(--sh-1);
   }
   .flow-stake-num{
-    font-family:var(--num);font-size:32px;font-weight:900;
+    font-family:var(--num);font-size:32px;font-weight:700;
     color:var(--orange);letter-spacing:-.02em;line-height:1;
     font-feature-settings:"tnum" 1;flex-shrink:0;min-width:88px;
   }
@@ -1297,18 +1248,18 @@
     .flow-stakes{grid-template-columns:1fr;gap:10px}
     .flow-stake-num{font-size:26px;min-width:70px}
   }
-  /* カバー領域の図（2026-08-09 画像化）: 横長のためモバイルは横スクロールで可読性を確保 */
+  
   .flow-figure{margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r-card)}
   .flow-figure img{display:block;width:100%;height:auto}
   @media (max-width:760px){
-    .flow-figure img{width:auto;max-width:none}   /* 原寸1672pxのまま横スクロール。縮小すると図中の文字が判読不能になるため */
-    /* 2026-08-09: 図の高さが941pxあり下端ヒントが初回表示で画面外だったため、スクロール前から見える図の直前(上)に移動 */
+    .flow-figure img{width:auto;max-width:none}   
+    
     .flow-figure::before{content:"→ 横にスクロールできます";display:block;font-size:11px;font-weight:700;color:var(--ink-2);background:var(--bg-soft);padding:7px 12px;border-radius:var(--r-card) var(--r-card) 0 0}
   }
   .flow-track{
     display:grid;grid-template-columns:1fr auto auto auto 1fr;gap:14px;align-items:stretch;margin-top:24px;
   }
-  /* 予算化前 → 入札公示 → 予算化後 の流れ矢印（2026-07-27 CEO指示） */
+  
   .flow-arrow{
     align-self:center;justify-self:center;
     width:34px;height:34px;border-radius:50%;
@@ -1370,7 +1321,7 @@
   .flow-zone.planning .flow-zone-period{color:var(--ink-2)}
   .flow-zone.planning .flow-zone-period strong{color:var(--orange)}
   .flow-zone.bidding .flow-zone-period strong{color:var(--ink)}
-  /* 区切り線（パネルヘッダとステップの間） */
+  
   .flow-zone-div{height:1px;width:100%;margin:2px 0}
   .flow-zone.planning .flow-zone-div{background:var(--amber-line)}
   .flow-zone.bidding .flow-zone-div{background:var(--line)}
@@ -1390,7 +1341,7 @@
     background:var(--blue-ink);color:#fff;
     box-shadow:var(--sh-3);border:1px solid rgba(255,255,255,.12);
   }
-  /* AI参謀コールアウト共通フォーマット（左アイコン+右テキスト・横幅いっぱい） */
+  
   .ai-callout{
     display:flex;align-items:center;gap:28px;
   }
@@ -1417,7 +1368,7 @@
     .flow-track,.flow-periods{grid-template-columns:1fr}
     .flow-gate{writing-mode:initial;text-orientation:initial;justify-self:stretch;text-align:center}
     .flow-period.gap{display:none}
-    /* スマホ：STEPを1カラム縦積み＋↓コネクタ（2026-07-27 CEO指示） */
+    
     .flow-steps{grid-template-columns:1fr}
     .flow-step + .flow-step{position:relative;margin-top:18px}
     .flow-step + .flow-step::before{
@@ -1425,11 +1376,10 @@
       font-size:14px;font-weight:900;color:var(--ink-4);line-height:1;
     }
     .flow-zone.planning .flow-step + .flow-step::before{color:var(--orange)}
-    /* 流れ矢印は縦向きに */
+    
     .flow-arrow{transform:rotate(90deg)}
   }
 
-  /* ============ SAMBO ============ */
   .sambo{background:var(--bg-mint)}
   .release-plan{
     display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;
@@ -1475,8 +1425,7 @@
   .stage-tag.future{background:var(--bg-soft);color:var(--ink-3);border:1px solid var(--line)}
   @media (max-width:860px){.sambo-grid{grid-template-columns:1fr}}
 
-  /* ============ TTP ============ */
-  .ttp{background:var(--bg-cool)}  /* 数値証拠1：薄グレー */
+  .ttp{background:var(--bg-cool)}  
   .ttp-bars{display:flex;flex-direction:column;gap:18px;margin-top:24px}
   .ttp-row{
     display:grid;grid-template-columns:200px 1fr 130px;align-items:center;gap:20px;
@@ -1500,8 +1449,7 @@
     .ttp-time{text-align:left}
   }
 
-  /* ============ BEFORE / AFTER ============ */
-  .ba{background:#fff}  /* 数値証拠2：白 */
+  .ba{background:#fff}  
   .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
   .ba-card{
     background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
@@ -1524,16 +1472,15 @@
   }
   .ba-card.after .ba-step{border-color:var(--blue-100)}
   .ba-step:last-of-type{border-bottom:none}
-  /* 番号バッジは非表示（CEO指示2026-05-08：邪魔だから削除） */
+  
   .ba-step-no{display:none}
   .ba-step-text{font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.5;flex:1;min-width:0}
   .ba-step-text strong{display:block;font-size:21px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;line-height:1.35}
   .ba-card.after .ba-step-text strong{color:var(--blue-deep)}
   .ba-step-text small{display:block;font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.75}
-  .ba-step-time{font-family:var(--num);font-size:14px;font-weight:800;color:var(--ink-2);flex-shrink:0;font-feature-settings:"tnum" 1;letter-spacing:-.005em;align-self:center;white-space:nowrap}
+  .ba-step-time{font-family:var(--num);font-size:14px;font-weight:700;color:var(--ink-2);flex-shrink:0;font-feature-settings:"tnum" 1;letter-spacing:-.005em;align-self:center;white-space:nowrap}
   .ba-card.after .ba-step-time{color:var(--blue-deep)}
 
-  /* 3軸カラー差別化（番号バッジ削除に伴い、step全体の左borderで軸色を表現） */
   .ba-step{padding-left:14px;border-left:3px solid transparent}
   .ba-axis-find{border-left-color:var(--orange)}
   .ba-axis-read{border-left-color:var(--blue)}
@@ -1553,10 +1500,9 @@
   .ba-card.after .ba-total{background:var(--blue);color:#fff}
   .ba-total-label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
   .ba-card.after .ba-total-label{color:var(--blue-3)}
-  .ba-total-value{font-size:31px;font-weight:900;color:var(--ink);font-family:var(--num);letter-spacing:-.025em;font-feature-settings:"tnum" 1}
+  .ba-total-value{font-size:31px;font-weight:700;color:var(--ink);font-family:var(--num);letter-spacing:-.025em;font-feature-settings:"tnum" 1}
   .ba-card.after .ba-total-value{color:#fff}
 
-  /* BA-punchline 統合版 v3（CEO指示2026-05-10: 中央ratio強調・コールアウト削除） */
   .ba-punchline{
     margin-top:48px;background:var(--blue-ink);color:#fff;
     border-radius:var(--r-lg);padding:48px 48px 36px;
@@ -1565,7 +1511,7 @@
   }
   .ratio{display:grid;grid-template-columns:auto auto 1fr;gap:36px;align-items:center}
   .ratio-block{text-align:center}
-  .ratio-num{display:flex;align-items:center;color:var(--amber);font-family:var(--num);font-weight:900;line-height:1;font-feature-settings:"tnum" 1;letter-spacing:-.03em}
+  .ratio-num{display:flex;align-items:center;color:var(--amber);font-family:var(--num);font-weight:700;line-height:1;font-feature-settings:"tnum" 1;letter-spacing:-.03em}
   .ratio-num .top{font-size:48px}
   .ratio-num .slash{font-size:64px;margin:0 6px;opacity:.5}
   .ratio-num .bot{font-size:88px}
@@ -1604,8 +1550,7 @@
     .ratio-sub{text-align:left}
   }
 
-  /* ============ PRICING ============ */
-  .pricing{background:var(--bg-tint)}  /* 決断カテゴリ重要：極薄青 */
+  .pricing{background:var(--bg-tint)}  
   .pilot{
     margin-top:24px;background:var(--blue-ink);color:#fff;
     border-radius:var(--r-xl);padding:56px 56px;
@@ -1624,7 +1569,7 @@
   .pilot-pricing{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
   .pilot-equiv{display:block;width:100%;font-size:13px;color:var(--t-inv-2);font-weight:500;line-height:1.7;margin-top:4px}
   .pilot-equiv strong{color:var(--amber)}
-  .pilot-price{font-size:52px;font-weight:900;color:#fff;line-height:1;letter-spacing:-.025em;font-family:var(--num);font-feature-settings:"tnum" 1}
+  .pilot-price{font-size:52px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.025em;font-family:var(--num);font-feature-settings:"tnum" 1}
   .pilot-price small{font-size:13px;font-weight:500;color:var(--t-inv-2);margin-left:8px;font-family:var(--sans)}
   .pilot-disc{
     display:inline-block;font-size:13px;font-weight:700;color:var(--amber-soft);
@@ -1650,7 +1595,6 @@
   }
   .pilot-incs li strong{color:#fff;font-weight:700}
 
-  /* PROMO ROI block (β版枠内の応募前試算誘導) */
   .promo-roi{
     margin-top:32px;padding:28px 32px;
     background:var(--on-dark-1);border:1px solid var(--on-dark-2);
@@ -1669,7 +1613,6 @@
     .promo-roi{grid-template-columns:1fr;padding:24px}
   }
 
-  /* PLANS */
   .plans-head{margin-top:64px;text-align:center;margin-bottom:32px}
   .plans-head h3{font-size:24px;font-weight:800;letter-spacing:-.005em;margin-bottom:10px;color:var(--ink)}
   .plans-head p{font-size:14px;color:var(--ink-3);line-height:1.95;max-width:none;margin:0 auto}
@@ -1721,7 +1664,6 @@
   .plan-feat li.muted::after{border-color:var(--ink-4)}
   .plan-feat li strong{color:var(--ink);font-weight:800}
 
-  /* CREDITS */
   .credits{
     margin-top:32px;background:#fff;border:1px solid var(--line);border-radius:var(--r-xl);
     padding:40px 44px;box-shadow:var(--sh-1);
@@ -1731,7 +1673,6 @@
   .credits-head p{font-size:14px;color:var(--ink-2);line-height:1.85}
   .credits-head strong{color:var(--ink);font-weight:700}
 
-  /* TBA（本番ローンチ時公開）プレースホルダ */
   .credits-tba{
     margin-bottom:20px;padding:24px 28px;
     background:var(--bg-tint);border:1px dashed var(--blue-200);border-radius:var(--r);
@@ -1782,8 +1723,7 @@
     .credits-tbl th,.credits-tbl td{padding:12px 8px;font-size:12px}
   }
 
-  /* ============ COMPARE ============ */
-  .compare{background:var(--bg-cool)}  /* 決断カテゴリ：薄グレー */
+  .compare{background:var(--bg-cool)}  
   .compare-tbl{
     width:100%;border-collapse:separate;border-spacing:0;
     font-size:16px;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
@@ -1809,7 +1749,6 @@
     .compare-tbl th,.compare-tbl td{padding:12px 8px}
   }
 
-  /* ============ FOUNDER STORY ============ */
   .founder{background:#fff}
   .founder-card{
     background:#fff;border:1px solid var(--line);border-radius:18px;
@@ -1851,7 +1790,6 @@
     .founder-act-no{display:inline-block;width:auto;padding:6px 14px;border:none;background:var(--orange);color:#fff;border-radius:999px;font-size:11px}
   }
 
-  /* ============ WHY ============ */
   .why{background:var(--blue-ink);color:#fff;position:relative;overflow:hidden}
   .why::before{
     content:"";position:absolute;inset:0;
@@ -1887,7 +1825,7 @@
     border-radius:var(--r-xl);padding:40px 48px;
   }
   .why-main h3{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.005em;line-height:1.5;margin-bottom:14px}
-  .why-main p{font-size:15px;color:var(--t-inv-2);line-height:2;max-width:none}   /* 2026-08-09 78ch(678px)だとコンテナ1281pxに対し狭く不自然な位置で折れていた */
+  .why-main p{font-size:15px;color:var(--t-inv-2);line-height:2;max-width:none}   
   .why-main p + p{margin-top:18px}
   .why-main p strong{color:#fff;font-weight:700;background:rgba(233,71,11,.5);padding:1px 4px;border-radius:3px}
   @media (max-width:860px){
@@ -1896,8 +1834,7 @@
     .why-main h3{font-size:18px}
   }
 
-  /* ============ ASSURANCE ============ */
-  .assurance{background:#fff}  /* 信頼カテゴリ：白（WHY深青→白で目を引く） */
+  .assurance{background:#fff}  
   .assurance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:24px}
   .assurance-card{
     background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
@@ -1913,8 +1850,7 @@
   @media (max-width:980px){.assurance-grid{grid-template-columns:1fr 1fr}}
   @media (max-width:560px){.assurance-grid{grid-template-columns:1fr}}
 
-  /* ============ FAQ ============ */
-  .faq{background:var(--bg-cool)}  /* 信頼カテゴリ：薄グレー */
+  .faq{background:var(--bg-cool)}  
   .faq-list{margin-top:32px;display:flex;flex-direction:column;gap:10px}
   .faq-item{
     background:var(--bg-soft);border:none;border-radius:var(--r-card);
@@ -1954,7 +1890,6 @@
     .faq-item .ans-when{min-width:0}
   }
 
-  /* ============ END CTA ============ */
   .end{
     background:var(--blue-ink);color:#fff;text-align:center;padding:120px 28px;
     position:relative;overflow:hidden;
@@ -1980,7 +1915,7 @@
     line-height:1.4;letter-spacing:-.01em;margin-bottom:24px;color:#fff;text-wrap:balance;
   }
   .end h2 .grad{color:var(--blue-3)}
-  /* ブランドタグライン（LPの締め・2026-08-07） */
+  
   .end-tagline{
     position:relative;margin:44px auto 0;padding-top:30px;
     border-top:1px solid rgba(255,255,255,.12);max-width:520px;
@@ -2013,7 +1948,7 @@
     .end-stage{max-width:none}
     .end-stage-arrow{transform:rotate(90deg)}
   }
-  /* β特典の別枠ボックス（通常価格と分別・2026-07-27 CEO指示） */
+  
   .end-tokuten{
     position:relative;max-width:640px;margin:28px auto 32px;
     padding:18px 22px;border:1px dashed rgba(255,122,61,.55);border-radius:14px;
@@ -2033,14 +1968,12 @@
   .end-cta .btn{padding:16px 32px;font-size:15px}
   .end small{position:relative;display:block;margin-top:24px;color:var(--t-inv-3);font-size:12px;letter-spacing:.04em;font-family:var(--mono)}
 
-  /* ============ FOOTER ============ */
   .foot{background:#061426;color:rgba(255,255,255,.55);padding:40px 28px;font-size:13px;border-top:1px solid rgba(255,255,255,.10)}
   .foot-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
   .foot .brand{display:flex;flex-direction:column;gap:4px}
   .foot strong{color:#fff;font-weight:800;font-size:15px}
   .foot .foot-tagline{font-size:19px;font-weight:900;letter-spacing:-.015em;margin-bottom:2px}
 
-  /* ============ STICKY MOBILE CTA ============ */
   .sticky-cta{
     position:fixed;bottom:0;left:0;right:0;z-index:60;
     background:var(--blue-ink);color:#fff;
@@ -2053,12 +1986,10 @@
   .sticky-cta .btn{padding:11px 18px;font-size:13px}
   @media (max-width:760px){.sticky-cta{display:flex} body{padding-bottom:84px}}
 
-  /* V3BIZ INTRO（2026-05-16 CEO指示で寄附仲介=基盤として説明文追加） */
   .v3biz-intro{font-size:15px;line-height:1.9;color:rgba(255,255,255,.82);max-width:820px;margin:14px auto 32px;text-align:center}
   .v3biz-intro strong{color:#fff;font-weight:700}
   .v3biz-num small{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--orange-2);margin-left:6px;text-transform:uppercase}
 
-  /* PLAN COMPARE TABLE（2026-05-15 CEO指示で2カラムカードから比較表に移行） */
   .plan-compare{margin-top:48px}
   .plan-compare-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-2)}
   .plan-compare-table th,.plan-compare-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
@@ -2089,7 +2020,6 @@
     .plan-compare-table tbody td:first-child{font-size:12px}
   }
 
-  /* ============ 機能マトリックス（6列・2026-06-30 刷新） ============ */
   .plan-matrix{
     width:100%;border-collapse:separate;border-spacing:0;background:#fff;
     border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
@@ -2107,7 +2037,7 @@
   .plan-matrix tr td:last-child,.plan-matrix tr th:last-child{border-right:none}
   .plan-matrix tbody tr:last-child td,
   .plan-matrix tbody tr:last-child th{border-bottom:none}
-  /* ヘッダー行 */
+  
   .plan-matrix thead th{font-size:13px;line-height:1.4;vertical-align:middle}
   .plan-matrix .mx-h-cat{
     background:var(--blue-deep);color:#fff;font-weight:800;
@@ -2122,7 +2052,7 @@
   .plan-matrix thead th.mx-h-light span{
     display:block;font-size:11px;font-weight:600;color:var(--ink-3);line-height:1.45;
   }
-  /* カテゴリ結合セル */
+  
   .plan-matrix .mx-cat-cell{
     text-align:center;font-weight:800;font-size:13px;line-height:1.4;
     letter-spacing:.02em;color:#fff;
@@ -2131,10 +2061,10 @@
   .plan-matrix .mx-cat-blue{background:var(--blue)}
   .plan-matrix .mx-cat-orange{background:var(--orange)}
   .plan-matrix .mx-cat-navy2{background:var(--ink-3)}
-  /* 機能名・機能内容 */
+  
   .plan-matrix .mx-feat-cell{font-size:14px;font-weight:700;color:var(--ink);line-height:1.5}
   .plan-matrix .mx-desc-cell{font-size:13px;color:var(--ink-2);line-height:1.7}
-  /* マーク */
+  
   .plan-matrix .mx-mark{text-align:center;font-size:20px;font-weight:700;line-height:1.2}
   .plan-matrix .mx-yes{color:var(--blue)}
   .plan-matrix .mx-no{color:var(--ink-4);font-weight:600}
@@ -2144,16 +2074,15 @@
   .plan-matrix thead th.mx-h-beta{background:#FFF3EC;color:var(--orange)}
   .plan-matrix thead th.mx-h-beta strong{color:var(--orange)}
   .plan-matrix tbody td.mx-col-beta{background:rgba(255,243,236,.55)}
-  /* 深堀り分析行（★NEW・全プラン共通の横断セル） */
+  
   .plan-matrix .mx-feat-cell .mx-star{color:var(--orange);margin-right:2px}
   .plan-matrix .mx-feat-cell .mx-new{display:inline-block;margin-left:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;letter-spacing:.05em;padding:2px 6px;border-radius:5px;vertical-align:middle}
   .plan-matrix .mx-span{text-align:center;background:#EDF5FF;color:var(--blue-deep);font-weight:800;font-size:13px}
   .plan-matrix .mx-span .o{color:var(--blue);font-size:18px;margin-right:6px;font-weight:700}
-  /* 行のゼブラ（マークセルの読みやすさ） */
+  
   .plan-matrix tbody td.mx-desc-cell,
   .plan-matrix tbody td.mx-feat-cell{background:#fff}
 
-  /* 料金マトリクス：スマホはカード型（横スクロール廃止・2026-07-24 赤ペンQ4=A） */
   @media (max-width:860px){
     .plan-compare .tscroll{overflow:visible;border:none;border-radius:0}
     .plan-compare .tscroll::before{display:none}
@@ -2172,7 +2101,7 @@
     .plan-matrix .mx-feat-cell{font-size:14px;padding:10px 4px 2px;border-bottom:none;background:transparent}
     .plan-matrix .mx-desc-cell{font-size:12.5px;line-height:1.7;padding:0 4px 10px;border-bottom:1px solid var(--line-2);background:transparent}
     .plan-matrix tbody tr:last-child .mx-desc-cell{border-bottom:none}
-    /* β版が「完成後に順次公開」の機能は、スマホでも注記を残す */
+    
     .plan-matrix tr:has(td.mx-beta) .mx-desc-cell{border-bottom:none;padding-bottom:3px}
     .plan-matrix .mx-mark.mx-beta{
       display:block;font-size:0;text-align:left;background:transparent;
@@ -2186,7 +2115,6 @@
     .plan-matrix .mx-span{display:block;border-radius:8px;margin:2px 0 6px;padding:9px 12px;text-align:left;border-bottom:none}
   }
 
-  /* DATABASE vs AI参謀 セクション（2026-05-15 追加） */
   .db-vs{padding:96px 0;background:#fff}
   .db-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;margin-top:40px}
   .db-col{border:1px solid var(--line);border-radius:16px;padding:36px 32px;background:#fff}
@@ -2207,17 +2135,10 @@
     .db-arrow{transform:rotate(90deg);padding:4px 0;font-size:26px}
   }
 
-  /* ============================================================
-     MOBILE BRUSH-UP — 2026-06（スマホ表示最適化 / iPhone 390px 基準）
-     既存ルールの後に配置し、同詳細度で上書き。内容は変更せず見せ方のみ最適化。
-     ============================================================ */
-
-  /* 横はみ出しの安全網（2026-08-09: hiddenだとoverflow-yがautoに強制変換されhtml/bodyがスクロールコンテナ化 → smooth scroll/#anchor遷移とsticky headerが機能しなくなる。clipなら強制変換されない） */
   html,body{overflow-x:clip}
-  /* 横スクロール用ラッパ（料金表・比較表） */
+  
   .tscroll{width:100%}
 
-  /* ---- ハンバーガーボタン ---- */
   .nav-toggle{
     display:none;width:44px;height:44px;flex-shrink:0;
     border:1px solid var(--line);border-radius:10px;background:#fff;
@@ -2233,7 +2154,6 @@
   .nav-toggle.open span:nth-child(2){opacity:0}
   .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-  /* ---- モバイルメニュー（右からスライドイン） ---- */
   .mobile-menu{
     position:fixed;inset:0;z-index:70;
     background:rgba(7,26,51,.48);backdrop-filter:blur(2px);
@@ -2286,12 +2206,10 @@
     .nav-toggle{display:flex}
   }
 
-  /* ===== ≤760px：スマホ最適化 ===== */
   @media (max-width:760px){
-    /* 文字サイズ切替はスマホ非表示 */
+    
     .fz-switcher{display:none}
 
-    /* 余白・本文の間延び解消 */
     section{padding:56px 0}
     .wrap,.wrap-narrow{padding:0 18px}
     .section-head.center{margin-bottom:34px}
@@ -2300,10 +2218,8 @@
     .lede{font-size:15.5px;line-height:1.85}
     body{font-size:16px}
 
-    /* ヘッダー */
     .header-cta{gap:8px}
 
-    /* HERO */
     .hero{padding:64px 0 52px}
     .hero-campaign-link{font-size:12px}
     .hero h1{font-size:clamp(29px,8.4vw,40px);line-height:1.34;margin-bottom:18px}
@@ -2311,30 +2227,24 @@
     .hero-cta{gap:10px;margin-bottom:24px}
     .hero-meta{flex-direction:column;gap:9px;font-size:12.5px;padding-top:20px}
 
-    /* PROBLEM（負マージンを padding に合わせて再調整し画像を端まで） */
     .prob{padding:24px 22px;gap:14px}
     .prob-visual.prob-visual-img{height:184px;margin:-24px -22px 2px}
     .prob h3{font-size:23px}
     .prob p{font-size:15px}
 
-    /* WORRIES */
     .worry-card{padding:22px 20px}
     .worry-bubble{font-size:15px}
     .sambo-answer{padding:24px 22px;gap:16px}
     .sambo-answer .msg{font-size:15.5px}
 
-    /* SOLUTION / DB-VS */
     .solution-punch{padding:24px 20px}
     .db-col{padding:24px 22px}
 
-    /* SCREEN TOUR */
     .screen-body{padding:20px 20px 22px}
     .screen-body h3{font-size:20px}
 
-    /* FLOW */
     .flow-insight{padding:24px 20px}
 
-    /* ROI */
     .roi-calc{padding:22px 18px 24px}
     .roi-card .roi-num{font-size:32px}
     .roi-card.effect .roi-num{font-size:36px}
@@ -2342,30 +2252,24 @@
     .roi-cta{padding:24px 20px}
     .roi-cta h3{font-size:21px}
 
-    /* PRICING */
     .pilot{padding:28px 20px}
     .pilot h3{font-size:23px}
     .pilot-price{font-size:38px}
     .pilot-incs{padding:20px 18px}
     .promo-roi{padding:22px 18px}
 
-    /* WHY */
     .why-pillar{padding:24px 22px}
     .why-pillar h3{font-size:22px}
 
-    /* BEFORE / AFTER */
     .ba-card{padding:24px 22px}
 
-    /* FAQ */
     .faq-item summary{padding:18px 18px;font-size:15.5px}
     .faq-item .ans{padding:0 18px 20px;font-size:15px;line-height:1.85}
 
-    /* END / FOOTER */
     .end{padding:64px 18px}
     .end p{font-size:15px}
     .foot-inner{flex-direction:column;align-items:flex-start;gap:10px}
 
-    /* ===== 表：横スクロールで読めるように ===== */
     .tscroll{
       overflow-x:auto;-webkit-overflow-scrolling:touch;
       border:1px solid var(--line);border-radius:var(--r-lg);
@@ -2377,7 +2281,7 @@
       letter-spacing:.06em;color:var(--ink-4);background:var(--bg-soft);
       border-bottom:1px solid var(--line-2);text-align:center;
     }
-    /* 料金比較表（枠線はラッパ側に集約） */
+    
     .plan-compare-table{min-width:540px;border:none;border-radius:0;box-shadow:none}
     .plan-compare-table th,.plan-compare-table td{padding:11px 12px}
     .plan-compare-table th.plan-col{width:170px;padding:30px 12px 14px}
@@ -2387,41 +2291,32 @@
     .plan-compare-table tbody td:nth-child(2),
     .plan-compare-table tbody td:nth-child(3){font-size:18px}
     .plan-compare-table tbody td:first-child{font-size:13px}
-    /* 比較表（5列） */
+    
     .compare-tbl{display:table;width:100%;min-width:560px;white-space:normal;
       border:none;border-radius:0;box-shadow:none;font-size:13px}
     .compare-tbl th,.compare-tbl td{padding:12px 10px}
   }
 
-  /* ===== ≤430px：小型 iPhone 微調整 ===== */
   @media (max-width:430px){
-    .header-demo-btn{display:none}   /* 小画面ではハンバーガー＋下部固定CTAに集約 */
+    .header-demo-btn{display:none}   
     .h-section{font-size:clamp(23px,7vw,29px)}
     .hero h1{font-size:clamp(27px,9vw,34px)}
     .logo-sub{display:none}
   }
 
-  /* ============================================================
-     MOBILE UX v2 — 2026-06（縦長感の解消・アイキャッチ・タイポ階層）
-     UI/UX視点でスマホの「常にスクロールしないと見えない」状態を改善。
-     デスクトップ(>760px)には一切影響しない。内容は変更しない。
-     ============================================================ */
   @media (max-width:760px){
 
-    /* ---- 縦リズムを締める（間延び解消） ---- */
     section{padding:48px 0}
     .section-head.center{margin-bottom:26px}
     .worries-head{margin-bottom:26px}
     .eyebrow{margin-bottom:12px;font-size:11px;letter-spacing:.14em}
 
-    /* ---- タイポ階層を整理（見やすさ最優先） ---- */
     .h-section{font-size:clamp(24px,6.2vw,30px);line-height:1.4;letter-spacing:-.01em;margin-bottom:14px;text-wrap:balance}
     .lede{font-size:14.5px;line-height:1.8;text-wrap:pretty}
     body{font-size:15.5px}
 
-    /* ---- HERO：余白を締めて要素を上へ ---- */
     .hero{padding:32px 0 0}
-    /* スマホ順番：リンク→キャッチコピー→アイキャッチ画像→本文→CTA */
+    
     .hero-inner{display:flex;flex-direction:column;gap:18px}
     .hero-inner > div:first-child{display:contents}
     .hero-campaign-link{order:1;font-size:12px;align-self:flex-start}
@@ -2430,10 +2325,10 @@
     .hero-sub{order:4}
     .hero-cta{order:5}
     .hero-meta{order:6}
-    /* デスクトップの固定幅・大きめフォントのインライン指定をモバイルだけ打ち消し */
+    
     .hero h1{
       width:auto !important;max-width:100% !important;
-      font-size:clamp(27px,7.8vw,31px) !important;  /* 2行に収まるサイズ */
+      font-size:clamp(27px,7.8vw,31px) !important;  
       line-height:1.34;letter-spacing:-.012em;margin:0 !important;text-wrap:balance;
     }
     .hero-sub{
@@ -2442,7 +2337,6 @@
     }
     .hero-cta{gap:9px;margin:0}
 
-    /* ---- HERO アイキャッチ：MacBook画像を画面いっぱいに（潰れさせない） ---- */
     .hero-visual{position:relative;margin:0;width:100%}
     .hero-shot{
       width:100% !important;max-width:100% !important;height:auto !important;
@@ -2450,14 +2344,12 @@
       filter:drop-shadow(0 16px 32px rgba(7,26,51,.18));
     }
 
-    /* ---- カードグリッドのギャップを締める ---- */
     .worries-grid{gap:12px}
     .prob-grid{gap:14px}
     .sambo-grid{gap:14px;margin-top:28px}
     .ba-grid{gap:14px}
     .why-pillars{gap:14px}
 
-    /* ---- 各カードの内側余白を一段締める ---- */
     .worry-card{padding:20px 18px}
     .prob{padding:22px 20px;gap:12px}
     .prob-visual.prob-visual-img{height:172px;margin:-22px -20px 2px}
@@ -2472,16 +2364,13 @@
     .flow-insight{padding:22px 18px}
     .solution-punch{padding:22px 18px}
 
-    /* ---- ボタンの可読性（小さすぎ/大きすぎを是正） ---- */
     .btn{font-size:14.5px}
     .btn-lg{padding:15px 22px;font-size:15.5px}
     .hero-cta .btn{width:100%;white-space:normal;text-align:center}
 
-    /* ---- セクション区切りの上罫線を少し控えめに ---- */
     section{border-top-width:1px}
   }
 
-  /* ===== ≤390px：標準iPhoneでの最終調整 ===== */
   @media (max-width:390px){
     .wrap,.wrap-narrow{padding:0 16px}
     .h-section{font-size:clamp(22px,6.6vw,27px)}
@@ -2489,13 +2378,8 @@
     .prob h3{font-size:20px}
   }
 
-  /* ============================================================
-     COMMENT FIXES — チームレビュー反映（スマホのみ）
-     ①ROIパネル群3組をそれぞれ3列横並び ②プロダクト見出しを3行
-     ③問題見出しを1行に ④ヒーローCTAを横並び
-     ============================================================ */
   @media (max-width:760px){
-    /* ①-a 保守／標準／攻めケース：3列横並び */
+    
     .roi-cases{grid-template-columns:1fr 1fr 1fr !important;gap:7px}
     .roi-case{padding:13px 8px}
     .roi-case-tag{font-size:11px;flex-direction:column;gap:2px}
@@ -2503,7 +2387,6 @@
     .roi-case-num{font-size:16px;margin-top:5px}
     .roi-case-desc{font-size:10px;margin-top:5px;line-height:1.5}
 
-    /* ①-b 現状／47Connect導入／年間効果：3列横並び（矢印は非表示） */
     .roi-grid{grid-template-columns:1fr 1fr 1fr !important;gap:7px}
     .roi-arrow{display:none}
     .roi-card{padding:14px 8px;gap:5px}
@@ -2512,20 +2395,16 @@
     .roi-card.effect .roi-num{font-size:15.5px;line-height:1.2}
     .roi-card .roi-cap{font-size:10.5px;line-height:1.55}
 
-    /* ①-c 効果指標（7.9倍／1.4ヶ月／2倍）：3列横並び */
     .roi-stats{grid-template-columns:1fr 1fr 1fr !important;gap:7px}
     .roi-stat{padding:14px 8px}
     .roi-stat .n{font-size:22px}
     .roi-stat .l{font-size:10px;margin-top:5px;line-height:1.5}
 
-    /* ② プロダクト見出し：3行で表示 */
     .prod-h .ph{display:block}
     .prod-h br{display:none}
 
-    /* ③ 「自治体営業はなぜ進めづらいのか」：1行に収める */
     .prob-h{font-size:21px !important;letter-spacing:-.02em;white-space:nowrap}
 
-    /* ④ ヒーローのCTAボタンを横並び */
     .hero-cta{flex-direction:row !important;flex-wrap:nowrap;gap:8px}
     .hero-cta .btn{
       width:auto !important;height:auto !important;flex:1 1 0;min-width:0;
@@ -2540,10 +2419,6 @@
     .hero-cta .btn{font-size:12.5px;padding-left:8px;padding-right:8px}
   }
 
-  /* ============ SCROLL REVEAL ============
-     JS が .reveal を付与（prefers-reduced-motion: reduce では付与しない）。
-     カード独自の transition に負けないよう、意図的に全カード定義より後ろで定義する。
-     stagger は JS 側の setTimeout で行い、hover 挙動に遅延を残さない。 */
   .reveal{
     opacity:0;transform:translateY(16px);
     transition:opacity .5s ease, transform .5s ease,
@@ -2551,36 +2426,455 @@
     will-change:opacity,transform;
   }
   .reveal.is-visible{opacity:1;transform:none}
+
+  .screen-card-focus{box-shadow:0 0 0 2px var(--blue),var(--sh-card, 0 8px 24px rgba(14,31,58,.08))}
+  .sambo-can{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .sambo-can-col{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 26px}
+  .sambo-can-lbl{font-weight:800;font-size:15px;color:var(--ink);margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .sambo-can-lbl.soon{margin-top:24px}
+  .sambo-can .st{font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;line-height:1.6}
+  .sambo-can .st-live{background:var(--bg-mint);color:#15756D}
+  .sambo-can .st-soon{background:var(--orange-50);color:var(--orange);border:1px dashed var(--orange)}
+  .sambo-can ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .sambo-can li{font-size:14px;color:var(--ink-2);line-height:1.7;padding-left:14px;border-left:3px solid var(--blue-100)}
+  .sambo-can li strong{display:block;color:var(--ink);font-size:15px}
+  .sambo-can ul.soon li{border-left-style:dashed;border-left-color:var(--orange-2)}
+  .sambo-can-note{font-size:12px;color:var(--ink-3);margin:12px 0 0}
+  @media (max-width:860px){.sambo-can{grid-template-columns:1fr}.sambo-can-col{padding:20px 18px}}
+  .roi-cases.roi-cases-2{grid-template-columns:1fr 1fr !important}
+  .roi-formula{text-align:center;font-weight:800;font-size:clamp(17px,2.4vw,22px);color:var(--ink);background:var(--blue-50);border-radius:var(--r);padding:14px 18px;margin:20px auto 0;max-width:640px}
+  .roi-formula em{font-style:normal;color:var(--orange)}
+  .plan-matrix .mx-now{display:inline-block;font-size:12px;font-weight:700;color:#15756D;background:var(--bg-mint);border-radius:999px;padding:2px 10px}
+  .plan-matrix .mx-soon{display:inline-block;font-size:12px;font-weight:700;color:var(--orange);background:var(--orange-50);border:1px dashed var(--orange);border-radius:999px;padding:2px 10px}
+
+  .sambo-journey{background:var(--bg-soft)}
+  .journey-steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:32px 0}
+  .journey-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
+  .journey-step:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:45%;color:var(--blue);font-size:24px;font-weight:800}
+  .journey-no{font-family:var(--mono);font-weight:800;color:var(--blue);font-size:14px}
+  .journey-step h3{font-size:22px;line-height:1.5;margin:12px 0}
+  .journey-step p{font-size:15px;color:var(--ink-2)}
+  .journey-status{display:inline-block;margin-top:14px;padding:3px 10px;border-radius:999px;background:var(--blue-50);color:var(--blue-deep);font-size:12px;font-weight:700}
+  .journey-status.soon{background:var(--orange-50);color:var(--orange);border:1px dashed var(--orange)}
+  .journey-outcome{text-align:center;background:#fff;border:1px solid var(--blue-200);border-radius:var(--r-lg);padding:24px}
+  .journey-outcome strong{display:block;font-size:clamp(19px,2.4vw,26px);color:var(--blue-deep);line-height:1.6}
+  .journey-outcome p{margin-top:12px;color:var(--ink-2);font-size:15px}
+  @media(max-width:760px){.journey-steps{grid-template-columns:1fr;gap:26px}.journey-step{padding:22px}.journey-step:not(:last-child)::after{content:"↓";right:calc(50% - 12px);top:auto;bottom:-29px}.journey-outcome{text-align:left;padding:22px}}
+
+  section{padding:64px 0}.section-head.center{margin-bottom:32px}
+  .journey-steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+  .journey-step{padding:22px 18px}.journey-step h3{font-size:21px}
+  .compact-section{padding:28px 0}.compact-details{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:0 22px;color:var(--ink)}
+  .compact-details>summary{padding:18px 0;cursor:pointer;font-size:17px;font-weight:700}.compact-details[open]{padding-bottom:24px}
+  .compact-details .wrap{padding:0}.compact-details .section-head{margin-top:24px}
+  .why.compact-section{background:#fff}.why.compact-section .compact-details{background:var(--blue-ink);color:#fff;border-color:var(--blue-deep)}
+  .compact-pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.compact-pains>div{border-left:3px solid var(--blue);padding:14px 18px;background:var(--bg-soft)}
+  .compact-pains strong{font-size:24px;color:var(--blue-deep)}.compact-pains p,.compact-note{font-size:15px}.compact-note{margin-top:20px;color:var(--ink-2)}
+  .scene-flow{margin-top:16px;padding:12px;background:var(--blue-50);border-radius:var(--r-sm);font-size:15px;font-weight:700}
+  @media(max-width:760px){section{padding:40px 0}.compact-section{padding:20px 0}.journey-steps,.compact-pains{grid-template-columns:1fr}.journey-step{padding:20px}.compact-details{padding:0 16px}.compact-details>summary{font-size:16px}.section-head.center{margin-bottom:24px}}
+
+.anchor-keep{display:block;height:0;overflow:hidden;scroll-margin-top:100px}
+.note-mark{font-size:max(.5em,11.5px);font-weight:700;vertical-align:super;margin-left:2px;letter-spacing:0}
+.fig-note{font-size:13px;line-height:1.8;color:var(--ink-3);margin-top:12px}
+.roi{background:var(--bg-soft)}
+
+.hero-target{display:block;width:var(--hero-ttl-w,fit-content);min-width:max-content;max-width:100%;margin:0 0 20px;text-align:center;text-wrap:balance;padding:10px 14px;border-radius:999px;background:#fff;border:0;color:var(--ink);font-size:19px;font-weight:800;line-height:1.55;box-shadow:0 10px 26px rgba(0,0,0,.32)}
+.br-band{display:inline}  
+.hero-target em{font-style:normal;font-weight:900;white-space:nowrap;color:var(--amber);background:var(--blue-ink);padding:2px 10px;margin:0 1px;border-radius:999px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hero-effect{margin:0 0 24px;padding:16px 20px;border-radius:var(--r);background:var(--on-dark-1);border:1px solid var(--on-dark-2)}
+.hero-effect-lbl{font-size:13px;font-weight:700;color:var(--t-inv-2);line-height:1.6}
+.hero-effect-val{display:flex;align-items:baseline;gap:10px;margin-top:4px;font-family:var(--num);font-feature-settings:"tnum" 1}
+.hero-effect-val .from,.hero-effect-val .arr{font-size:20px;font-weight:700;color:var(--t-inv-2)}
+.hero-effect-val .to{font-size:44px;font-weight:700;line-height:1.1;color:var(--amber-soft)}
+.hero-effect-val .to small{font-size:20px;margin-left:2px}
+
+.hero-notes{margin-top:8px;padding-top:14px;border-top:1px solid var(--on-dark-2);color:var(--t-inv-2)}
+.hero-notes p{font-size:13px;line-height:1.85;color:var(--t-inv-2)}
+.hero-notes p + p{margin-top:2px}
+.hero-notes .hero-notes-lbl{margin-bottom:2px;font-size:13px;font-weight:800;letter-spacing:.08em;color:#fff}
+@media (max-width:760px){
+  .br-band{display:inline}
+  .hero-target{order:1;align-self:flex-start;text-align:center;font-size:16px;line-height:1.7;padding:9px 12px;border-radius:18px;margin:0}
+
+  .hero-visual{order:1}.hero-target{order:2}.hero h1{order:3}.hero-sub{order:4}.hero-effect{order:5;margin:0}.hero-cta{order:6}.hero-notes{order:7;margin-top:0}
+  .hero-effect-val .to{font-size:36px}
+}
+
+.budget-fig{margin:0;display:grid;grid-template-columns:minmax(0,3fr) auto minmax(0,2fr);gap:16px;align-items:stretch}
+.budget-band{border-radius:var(--r-lg);padding:20px 20px 22px;background:var(--bg-soft);border:1px solid var(--line)}
+.budget-band.is-pre{background:var(--blue-50);border:2px solid var(--blue)}
+.budget-tag{display:inline-block;padding:3px 12px;border-radius:999px;font-size:12.5px;font-weight:800;color:#fff;background:var(--ink-4)}
+.is-pre .budget-tag{background:var(--blue)}
+.budget-ttl{margin-top:8px;font-size:28px;font-weight:900;line-height:1.3;color:var(--ink-3)}
+.is-pre .budget-ttl{color:var(--blue-deep)}
+.budget-sub{font-size:14px;font-weight:700;color:var(--ink-2)}
+.budget-steps{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px}
+
+.budget-card{display:block;flex:var(--w,1) 1 0;min-width:0;max-width:300px;width:100%;height:auto;filter:drop-shadow(0 1px 3px rgba(7,26,51,.16))}
+.budget-note{margin:2px 0 0}
+.budget-arr{flex-shrink:0;width:20px;color:var(--ink-4)}
+.is-pre .budget-arr{color:var(--blue)}
+.budget-arr svg,.uc-arr svg,.uc-join svg,.budget-gap svg{display:block;width:100%;height:auto}
+
+.budget-gap{align-self:center;width:8em;text-align:center;font-size:14px;font-weight:800;line-height:1.5;color:var(--ink)}
+.budget-gap svg{width:44px;margin:0 auto 6px;color:var(--orange)}
+
+.budget-pointer{display:flex;flex-direction:row-reverse;justify-content:flex-end;align-items:center;gap:14px;margin:6px 0 2px clamp(32px,9%,110px);color:var(--orange)}
+.budget-pointer-arrow{display:block;flex:none;width:56px;height:64px}
+
+.bp-sp{display:none}
+@media (max-width:760px){.bp-sp{display:inline}}
+.budget-pointer-lbl{display:inline-block;padding:4px 14px;border-radius:999px;background:var(--orange);color:var(--ink);font-size:14px;font-weight:800;line-height:1.5}
+.budget-msg{margin-top:0;display:flex;gap:16px;align-items:center;padding:18px 22px;background:var(--orange-50);border:2px solid var(--orange);border-radius:var(--r)}
+.budget-msg .ic{flex-shrink:0;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:26px;line-height:1;font-weight:900;color:#fff;background:var(--orange)}
+.budget-msg strong{display:block;font-size:17px;color:var(--ink)}
+.budget-msg p{font-size:15px;color:var(--ink-2)}
+@media (max-width:760px){
+  .budget-fig{grid-template-columns:1fr}
+  .budget-steps{flex-direction:column;align-items:center}
+  .budget-card{flex:none;width:100%;max-width:300px}
+  .budget-arr{width:28px}
+  .budget-arr,.budget-gap svg{transform:rotate(90deg);align-self:center}
+  .budget-gap{width:auto}
+  .budget-gap svg{width:40px;margin:8px auto 14px}
+  .budget-ttl{font-size:24px}
+  .budget-msg{padding:16px 16px;gap:12px}
+}
+
+@media (max-width:1200px){
+  .budget-pointer{flex-direction:column;justify-content:center;gap:6px;margin:18px 0 4px}
+}
+
+@media (max-width:760px){
+  .budget-pointer{display:none}
+  .budget-msg{margin-top:20px}
+}
+
+.journey-step .step-ic{position:absolute;top:18px;right:16px;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--blue-deep);background:var(--blue-50)}
+.journey-step .step-ic svg{width:24px;height:24px}
+.journey-kick{display:block;margin-top:14px;font-size:13px;font-weight:800;color:var(--blue-deep)}
+.journey-step h3{margin:2px 0 10px}
+
+.uc-note{text-align:right;margin:0 0 10px}
+.uc-fig{margin:0;display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,300px);gap:0 12px;align-items:center}
+.uc-pats{display:grid;gap:16px}
+.uc-pat{padding:18px 20px;background:#fff;border:2px solid var(--blue);border-radius:var(--r-lg)}
+.uc-pat.is-b{border-color:var(--teal)}
+.uc-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+.uc-chip{padding:3px 12px;border-radius:999px;font-size:13px;font-weight:800;color:#fff;background:var(--blue)}
+.is-b .uc-chip{background:var(--teal)}
+.uc-ptl{font-size:18px;font-weight:800;color:var(--ink)}
+.uc-ptl small{margin-left:4px;font-size:13px;font-weight:700;color:var(--ink-3)}
+.uc-steps{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1.3fr);gap:8px;align-items:stretch}
+.uc-box{padding:12px 14px;background:var(--bg-soft);border-radius:var(--r)}
+.uc-ttl{margin-bottom:6px;font-size:14px;font-weight:800;color:var(--ink)}
+.uc-txt{font-size:13.5px;line-height:1.7;color:var(--ink-2)}
+.uc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.uc-tags span{padding:2px 10px;font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:999px}
+.uc-arr{align-self:center;color:var(--ink-3)}
+.uc-q{display:flex;gap:6px;align-items:flex-start;margin-bottom:6px;padding:8px 10px;font-size:13.5px;font-weight:700;background:#fff;border:2px solid var(--teal);border-radius:var(--r-sm)}
+.uc-q svg{flex-shrink:0;width:16px;height:16px;margin-top:3px;color:var(--teal)}
+.uc-src{margin-top:6px;padding:6px 10px;font-size:12.5px;line-height:1.6;background:#fff;border-radius:var(--r-sm)}
+.uc-src b{margin-right:6px;font-size:11.5px;color:var(--ink-3)}
+.uc-rank{list-style:none;display:grid;gap:4px}
+.uc-rank li{display:grid;grid-template-columns:18px 34px minmax(0,1fr) auto;gap:6px;align-items:center;padding:6px 8px;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm)}
+.uc-rank li:first-child{border:2px solid var(--blue)}
+.is-b .uc-rank li:first-child{border-color:var(--teal)}
+.uc-rank .rk{font-family:var(--num);font-weight:700;font-feature-settings:"tnum" 1}
+.uc-rank .ct{font-weight:800}
+.uc-rank .fit{font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.uc-rank .fit b{margin-left:2px;font-family:var(--num);font-size:16px;font-weight:700;color:var(--ink);font-feature-settings:"tnum" 1}
+.uc-join{color:var(--ink-3)}
+.uc-deep{padding:22px;color:#fff;background:var(--blue-ink);border-radius:var(--r-lg)}
+.uc-deep-ttl{margin-bottom:12px;font-size:18px;font-weight:800;color:#fff}
+.uc-deep ol{list-style:none;display:grid;gap:12px}
+.uc-deep li{min-width:0;padding-top:12px;border-top:1px solid var(--on-dark-2)}
+.uc-deep li:first-child{padding-top:0;border-top:none}
+.uc-deep li strong{display:block;font-size:15px;color:#fff}
+.uc-deep li span{display:block;font-size:13.5px;line-height:1.7;color:var(--t-inv-2)}
+@media (max-width:980px){
+  .uc-fig{grid-template-columns:1fr;gap:10px}
+  .uc-join{justify-self:center;width:28px;transform:rotate(90deg)}
+}
+@media (max-width:760px){
+  .uc-note{text-align:left}
+  .uc-steps{grid-template-columns:1fr}
+  .uc-arr{justify-self:center;width:20px;transform:rotate(90deg)}
+}
+
+.effect-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:20px}
+.effect-bars,.effect-stat{margin:0;padding:22px 24px;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.effect-h{margin-bottom:14px;font-size:16px;font-weight:800;color:var(--ink)}
+.effect-row{display:grid;grid-template-columns:4.5em minmax(0,1fr);gap:12px;align-items:center;margin-bottom:10px}
+.effect-lbl{font-size:14px;font-weight:700;color:var(--ink-2)}
+.effect-track{display:flex;align-items:center;gap:10px;min-width:0}
+.effect-bar{height:34px;border-radius:6px;flex-shrink:0}
+.effect-bar.is-before{width:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;background:var(--ink-3)}
+.effect-bar.is-after{width:10%;background:var(--blue)}
+.effect-val{font-family:var(--num);font-size:16px;font-weight:700;font-feature-settings:"tnum" 1;white-space:nowrap;color:var(--ink)}
+.effect-bar.is-before .effect-val{color:#fff}
+.effect-cap{margin-top:6px;font-size:14px;color:var(--ink-2)}
+.effect-stat{display:flex;flex-direction:column;justify-content:center;text-align:center;border:2px solid var(--orange)}
+.effect-stat-lbl{font-size:16px;font-weight:800;color:var(--ink)}
+.effect-stat-num{font-family:var(--num);font-size:64px;font-weight:700;line-height:1.1;color:var(--orange);font-feature-settings:"tnum" 1}
+.effect-stat-num small{margin-left:2px;font-size:24px}
+.effect-stat p:last-child{font-size:14px;text-align:left;color:var(--ink-2)}
+.effect-link{margin-top:20px;text-align:center}
+@media (max-width:760px){
+  .effect-grid{grid-template-columns:1fr}
+  .effect-stat-num{font-size:52px}
+  .effect-val{font-size:14px}
+}
+
+.pilot-offer .pilot-disc{margin:0 0 12px}
+.pilot-offer h3{margin-bottom:6px}
+.pilot-offer-sub{font-size:15px;color:var(--t-inv-2)}
+.pilot-offer-lead{margin-bottom:6px;line-height:1.8}  
+.pilot-price small{margin-left:4px;font-size:20px;font-weight:700;color:#fff}
+.pilot-price .pre{margin-right:8px;font-family:var(--sans);font-size:16px;font-weight:700;letter-spacing:0;color:var(--t-inv-2)}
+.pilot-fee-sub{margin:8px 0 14px;font-size:14px;color:var(--t-inv-2)}
+.pilot-team{margin:0 0 16px;padding:0}
+.pilot-team .pilot-team-ttl{margin-bottom:8px;font-size:15px;font-weight:800;color:var(--amber-soft)}
+
+.pilot-team-fig{display:block;width:100%;max-width:560px;height:auto;margin:0 0 10px}
+.pilot-team-fig text{font-family:var(--sans)}
+.pilot-team-fig .tf-bg{fill:#fff}
+.pilot-team-fig .tf-a{fill:var(--blue-50);stroke:var(--blue);stroke-width:2.5}
+.pilot-team-fig .tf-b{fill:var(--bg-soft);stroke:var(--ink-4);stroke-width:2.5;stroke-dasharray:8 6}
+.pilot-team-fig .tf-t{font-size:21px;font-weight:800;fill:var(--ink)}
+.pilot-team-fig .tf-s{font-size:20px;font-weight:600;fill:var(--ink-2)}
+.pilot-team-fig .tf-pl{fill:var(--blue)}
+.pilot-team-fig .tf-pr{fill:var(--ink-4)}
+.pilot-team-fig .tf-pill-a{fill:var(--orange)}
+.pilot-team-fig .tf-pt{font-size:20px;font-weight:800;fill:var(--ink)}
+.pilot-team-fig .tf-pill-b{fill:#fff;stroke:var(--ink-4);stroke-width:1.5}
+.pilot-team-fig .tf-pb{font-size:20px;font-weight:700;fill:var(--ink-2)}
+.pilot-team-fig .tf-f{font-size:19.5px;font-weight:600;fill:var(--ink-3)}
+.pilot-team p{font-size:14px;line-height:1.8;color:var(--t-inv-2)}
+.pilot-team p + p{margin-top:4px}
+.pilot-team p{word-break:auto-phrase}
+.pilot-fee ul li{padding-left:0;font-size:15px;color:#fff}
+.pilot-fee ul li::before,.pilot-fee ul li::after{content:none}
+.pilot-fee ul li,.pilot-team p{text-wrap:balance;word-break:auto-phrase}  
+@media (max-width:989px){.pilot-inner{grid-template-columns:1fr;gap:28px}}
+
+@media (min-width:990px){.pilot-inner{grid-template-columns:1fr 1fr;gap:40px}}
+
+.pilot-inner > div{min-width:0}  
+.pilot-team-fig.is-narrow{display:none}
+.pilot-team-fig.is-narrow .tf-t{font-size:19px}
+.pilot-team-fig.is-narrow .tf-s{font-size:17px}
+.pilot-team-fig.is-narrow .tf-pt,.pilot-team-fig.is-narrow .tf-pb{font-size:17.5px}
+.pilot-team-fig.is-narrow .tf-f{font-size:17px}
+
+@media (max-width:760px){
+  .pilot-team-fig.is-wide{display:none}
+  .pilot-team-fig.is-narrow{display:block;width:100%;max-width:420px;margin:0 auto 10px}
+}
+
+.end-stages.is-4 .end-stage{min-width:0;max-width:none;overflow:hidden}  
+.end-stage-no{font-size:13px}
+.end-stage-ic{display:block;width:32px;height:32px;margin-bottom:10px;color:var(--blue-3)}
+.end-stage-ic svg{width:100%;height:100%}
+.end-stage.is-key{border-color:var(--amber-line);background:var(--on-dark-3)}
+.end-stage.is-key .end-stage-title{color:var(--amber-soft)}
+@media (max-width:980px){
+  .end-stages.is-4{flex-direction:column;align-items:stretch}
+  .end-stages.is-4 .end-stage-arrow{transform:rotate(90deg)}
+}
+
+.hero-sub,.pilot-offer-lead,.budget-gap span,.budget-msg,.journey-step p,.uc-box,.uc-src,.uc-rank .jg,.uc-deep li span,.effect-cap,.effect-stat p,.end-stage-desc,.pilot-offer h3,.faq-item .ans,.effect-h,.flow .h-section,.sambo-journey .h-section,.use-scenes .h-section,.roi .h-section{word-break:auto-phrase}
+.hero-sub strong{white-space:nowrap}
+.budget-arr{align-self:center}
+
+@media (min-width:761px){
+  .hero-cta .btn-lg{padding:14px 28px}
+  .hero-cta{gap:10px;margin-bottom:0}
+  .hero-effect{margin-bottom:20px}
+  .hero{padding-bottom:44px !important}  
+}
+
+@media (min-width:961px){
+  .br-band{display:inline}  
+  .hero-inner{max-width:none;margin:0;padding:0 8px 0 max(28px,calc((100% - 1200px)/2 + 28px));grid-template-columns:360px minmax(0,900px);column-gap:0;align-items:center}
+  .hero-inner > div:first-child{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+  .hero-target{order:1;align-self:flex-start;font-size:17px;line-height:1.6;padding:8px 11px;border-radius:24px;margin:0 0 18px}
+  .hero h1{order:2;font-size:32px !important;margin-bottom:18px}
+  .hero-sub{order:3;font-size:16px;line-height:1.95;margin-bottom:22px}
+  .hero-cta{order:4;margin-bottom:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .hero-effect{order:5;align-self:stretch;margin:0}
+  .hero-cta .btn-lg{padding:14px 28px}
+  .hero-cta .btn-ghost-dark{font-size:15px;padding:11px 18px}
+  .hero-visual{min-width:0}
+  .hero-shot{width:131.7%;max-width:none;margin:-14% -15.85% -20% -15.85%;pointer-events:none}
+  .hero-notes{grid-column:1 / -1;margin-top:18px;padding-right:20px;max-width:1100px}
+}
+@media (min-width:1181px){
+  .hero-inner{grid-template-columns:400px minmax(0,900px)}
+  .hero-target{font-size:18px;padding:9px 13px}
+  .hero h1{font-size:36px !important}
+  .hero-sub{font-size:17px}
+}
+@media (max-width:960px){
+  .hero-shot{width:140%;margin:-9% 0 -20% -20%;pointer-events:none}
+}
+@media (max-width:760px){
+  .hero-shot{width:140% !important;max-width:none !important;margin:-9% 0 -20% -20% !important}  
+  .hero-inner{align-items:stretch}
+  .hero-cta{flex-direction:column !important;flex-wrap:nowrap}
+  .hero-cta .btn{width:100% !important;flex:none;font-size:15px;white-space:normal}
+  .pilot-tag,.pilot-incs-lbl{font-size:12px}
+  .sticky-cta .info small{font-size:11.5px}
+  .roi .h-section em,.use-scenes .h-section em{white-space:nowrap}
+}
+
+@media (max-width:1200px){
+  .budget-fig{grid-template-columns:1fr}
+  .budget-gap{width:auto}
+  .budget-gap svg{transform:rotate(90deg)}
+}
+@media (max-width:1180px){
+  .uc-fig{grid-template-columns:1fr;gap:10px}
+  .uc-join{justify-self:center;width:28px;transform:rotate(90deg)}
+}
+
+.uc-rank li{grid-template-columns:auto auto minmax(0,1fr) auto;grid-template-areas:"rk ct . fit" "jg jg jg jg" "hit hit hit hit";column-gap:8px;row-gap:0}
+.uc-rank .rk{grid-area:rk}.uc-rank .ct{grid-area:ct}.uc-rank .jg{grid-area:jg;line-height:1.6}.uc-rank .fit{grid-area:fit}.uc-rank .hit{grid-area:hit}
+@media (max-width:760px){
+  .uc-rank li{grid-template-columns:18px 34px minmax(0,1fr) auto;grid-template-areas:none;column-gap:6px}
+  .uc-rank .rk,.uc-rank .ct,.uc-rank .jg,.uc-rank .fit{grid-area:auto}
+  .uc-rank .hit{grid-area:auto;grid-column:1 / -1}
+}
+
+.sambo-journey .phr,.uc-deep .phr,.faq .ans.phr{word-break:keep-all;overflow-wrap:anywhere}
+
+@media (max-width:900px){
+  .uc-steps{grid-template-columns:1fr}
+  .uc-arr{justify-self:center;width:20px;transform:rotate(90deg)}
+}
+@media (min-width:761px) and (max-width:1180px){
+  .journey-steps{grid-template-columns:1fr;gap:26px}
+  .journey-step:not(:last-child)::after{content:"↓";right:calc(50% - 12px);top:auto;bottom:-29px}
+}
+@media (max-width:1100px){
+  .end-stages.is-4{flex-direction:column;align-items:stretch}
+  .end-stages.is-4 .end-stage-arrow{transform:rotate(90deg)}
+}
+@media (max-width:760px){
+  
+  .uc-txt,.uc-src,.uc-q,.end-stage-desc{font-size:15px}
+  .end-stage-desc{line-height:1.7}
+  .uc-rank li{font-size:14px}
+  .uc-deep li span{font-size:14.5px}
+  
+  .logo-sub{display:inline;font-size:11.5px;margin-left:2px}
+}
+
+@media (min-width:1181px){
+  .journey-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px}
+  .journey-step:nth-child(2)::after{content:"↙";right:calc(50% - 12px);top:auto;bottom:-34px}
+}
+
+.journey-step{display:flex;flex-direction:column}
+.step-fig{margin:auto 0 0;padding-top:18px}
+.step-fig img{display:block;width:100%;max-width:640px;height:auto;margin:0 auto}
+
+.bud-ill{display:block;width:100%;max-width:300px;height:auto;margin:10px auto 0}
+.bud-ill .bi-cover{fill:var(--blue-deep)}
+.bud-ill .bi-cv{fill:#fff;font-family:var(--sans);font-weight:800}
+.bud-ill .bi-page{fill:#fff;stroke:var(--ink-4);stroke-width:1.5}
+.bud-ill .bi-h{fill:var(--ink-3);font-family:var(--sans);font-weight:800}
+.bud-ill .bi-rule{stroke:var(--ink-4);stroke-width:1;opacity:.6}
+.bud-ill .bi-t{fill:var(--ink-2);font-family:var(--sans);font-weight:600}
+.bud-ill .bi-t-hl{fill:var(--ink);font-weight:800}
+.bud-ill .bi-amt{fill:var(--ink-4);opacity:.6}
+.bud-ill .bi-hl{fill:var(--orange-50);stroke:var(--orange);stroke-width:2}
+
+.uc-img{display:block;width:100%;height:auto;margin:2px 0 10px;border-radius:10px;background:#fff}
+
+.nw{white-space:nowrap}
+.uc-deep li span.nw{display:inline;font-size:inherit;line-height:inherit;color:inherit}  
+.uc-txt,.uc-src,.uc-ttl,.uc-ptl,.uc-rank .jg,.uc-deep li > span,.uc-deep li strong{text-wrap:balance}  
+.uc-src b{white-space:nowrap}
+
+.uc-rank .hit{justify-self:start;margin:5px 0 2px;padding:1px 11px;font-size:12px;font-weight:800;line-height:1.6;white-space:nowrap;color:var(--ink);background:var(--orange);border-radius:999px}
+
+.uc-deep li .uc-deep-img{display:block;width:100%;max-width:440px;height:auto;margin:10px 0 8px;border-radius:10px;background:#fff}  
+
+.hero .hero-effect{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:center}
+.hero .hero-effect-val{justify-content:center}
+@media (min-width:961px){.hero .hero-effect{align-self:center}}
+@media (max-width:760px){.hero .hero-effect{align-self:center}}
+
+.pilot-tag,.pilot-period,.pilot-incs-lbl,.end-tag{font-family:var(--sans);letter-spacing:.04em;text-transform:none}
+.journey-no,.end-stage-no{font-family:var(--num);font-weight:700;letter-spacing:.02em}
+
+.end-stage-img{display:block;width:calc(100% + 44px);max-width:none;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:13px 13px 0 0;margin:-20px -22px 14px;background:#fff}  
+
+.challenge{background:var(--bg-warm)}
+.ch-tag{display:inline-block;margin-bottom:16px;padding:6px 18px;border-radius:999px;font-size:14px;font-weight:800;color:var(--blue-deep);background:var(--blue-50);border:1px solid var(--blue-100)}
+.ch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;max-width:960px;margin:0 auto}
+
+.ch-voice{display:grid;grid-template-columns:84px minmax(0,1fr);gap:18px;align-items:start}
+.ch-who{display:flex;flex-direction:column;align-items:center;gap:6px}
+.ch-person{display:block;width:64px;height:64px}
+.chp-bg{fill:var(--blue-50);stroke:var(--blue-100);stroke-width:2}
+.chp-f{fill:var(--blue-deep)}
+.chp-b{fill:var(--blue-2)}
+.ch-role{font-size:14px;font-weight:800;line-height:1.4;text-align:center;color:var(--ink-2)}
+.ch-bubble{position:relative;margin:0;padding:18px 20px;background:#fff;border:2px solid var(--blue-200);border-radius:18px;box-shadow:var(--sh-1)}
+.ch-bubble::before,.ch-bubble::after{content:"";position:absolute;width:0;height:0;border-style:solid;border-color:transparent}
+.ch-bubble::before{left:-13px;top:22px;border-width:10px 12px 10px 0;border-right-color:var(--blue-200)}
+.ch-bubble::after{left:-9px;top:24px;border-width:8px 10px 8px 0;border-right-color:#fff}
+.ch-bubble p{font-size:16px;line-height:1.85;color:var(--ink)}
+.ch-note{max-width:960px;margin:14px auto 0;font-size:13px;line-height:1.7;text-align:center;color:var(--ink-3)}
+.ch-bridge{max-width:960px;margin:28px auto 0;text-align:center}
+.ch-bridge-band{padding:20px 28px;border-radius:var(--r-lg);background:var(--blue-deep);box-shadow:var(--sh-3)}
+.ch-bridge-band p{font-size:18px;font-weight:700;line-height:1.8;color:#fff}
+.ch-bridge-band strong{font-weight:900;color:var(--amber)}
+.ch-bridge-arrow{display:block;width:44px;height:34px;margin:12px auto 0;color:var(--orange)}
+.ch-bridge-arrow svg{width:100%;height:100%}
+.challenge .h-section,.ch-bubble p,.ch-bridge-band p{word-break:auto-phrase}
+@media (max-width:760px){
+  .ch-grid{grid-template-columns:1fr;gap:22px}
+  
+  .ch-voice{grid-template-columns:1fr;gap:12px}
+  .ch-who{flex-direction:row;justify-content:flex-start;gap:10px}
+  .ch-person{width:52px;height:52px}
+  .ch-bubble{padding:16px 16px}
+  .ch-bubble::before{left:20px;top:-13px;border-width:0 10px 12px 10px;border-color:transparent transparent var(--blue-200) transparent}
+  .ch-bubble::after{left:22px;top:-9px;border-width:0 8px 10px 8px;border-color:transparent transparent #fff transparent}
+  .ch-bridge-band{padding:18px}
+  .ch-bridge-band p{font-size:16px}
+}
 </style>
 </head>
 <body>
 
-<!-- TOPBAR（告知バー・c1採用） -->
 <div class="topbar">
   <div class="wrap">
-    <span class="live"></span>β版特別キャンペーン受付中<span class="sep">|</span><strong>先着10社限定</strong><span class="sep">|</span>8月末締切
+    <span class="live"></span>先行予約 受付中 ・ <strong>2027年1月</strong> 正式版リリース予定
   </div>
 </div>
 
-<!-- HEADER -->
 <header class="header">
   <div class="wrap header-inner">
     <a href="#top" class="logo">
       <span class="logo-mark">47</span>
-      <span>自治体AI参謀<small class="logo-sub"> by 47Connect</small></span>
+      <span>47Connect<small class="logo-sub"> by FromTo</small></span>
     </a>
     <nav class="nav">
-      <a href="#worries">お悩み</a>
-      <a href="#screens">プロダクト</a>
-      <a href="#solution">仕組み</a>
-      <a href="#why">FromTo</a>
+      <a href="#timing">予算化前</a>
+      <a href="#ai-support">AI参謀</a>
       <a href="#roi">投資効果</a>
       <a href="#pricing">料金</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="header-cta">
-      <a href="#screens" class="btn btn-ghost ghost-mob">プロダクトを見る</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary header-demo-btn">個別デモを予約<span class="arrow">→</span></a>
+      
+      <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost ghost-mob roi-sim-link">ROIを試算する</a>
+      
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary header-demo-btn">デモ申請はこちら<span class="arrow">→</span></a>
       <button type="button" class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
@@ -2588,7 +2882,6 @@
   </div>
 </header>
 
-<!-- MOBILE MENU（スマホ用ナビ：≤960px で表示） -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="メニュー">
   <div class="mobile-menu-panel">
     <div class="mm-top">
@@ -2596,22 +2889,18 @@
       <button type="button" class="mm-close" data-close aria-label="メニューを閉じる">×</button>
     </div>
     <nav class="mm-links">
-      <a href="#worries">お悩み<span class="en">Worries</span></a>
-      <a href="#screens">プロダクト<span class="en">Product</span></a>
-      <a href="#solution">仕組み<span class="en">How it works</span></a>
-      <a href="#why">FromTo<span class="en">Why</span></a>
-      <a href="#roi">投資効果<span class="en">ROI</span></a>
+      <a href="#timing">予算化前<span class="en">Timing</span></a>
+      <a href="#ai-support">AI参謀<span class="en">AI Sambo</span></a>
+      <a href="#roi">投資効果<span class="en">Impact</span></a>
       <a href="#pricing">料金<span class="en">Pricing</span></a>
       <a href="#faq">FAQ<span class="en">FAQ</span></a>
     </nav>
     <div class="mm-cta">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">個別デモを予約する<span class="arrow">→</span></a>
-      <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-light">ROIを試算する</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">デモ申請はこちら<span class="arrow">→</span></a>
     </div>
   </div>
 </div>
 
-<!-- 文字サイズ切替（独立フローティング・右下固定） -->
 <div class="fz-switcher" role="group" aria-label="文字サイズの切替">
   <span class="fz-label" aria-hidden="true">文字</span>
   <button type="button" data-fz="sm" aria-label="小さい文字">小</button>
@@ -2619,743 +2908,443 @@
   <button type="button" data-fz="lg" aria-label="大きい文字">大</button>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top" data-screen-label="01 Hero" style="padding: 56px 0px 64px">
   <div class="wrap hero-inner">
     <div>
-      <a class="hero-campaign-link" href="#pricing">β版特別キャンペーン実施中<span class="arrow">→</span></a>
-      <h1 style="font-weight: 900; max-width: 100%; font-size: clamp(28px, 7vw, 40px)">自治体提案、<br>
-毎日 AIに相談する時代へ</h1>
-      <p class="hero-sub" style="max-width: 100%"><strong>探す・読む・動く・続ける。</strong><br>
-自治体営業のこの4工程を、御社専属のAI参謀が引き受けます。<br>
-「どこへ・なぜ・いつ提案すべきか」の答えが、その日のうちに。</p>
-      <div class="hero-cta">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">個別デモを予約する<span class="arrow">→</span></a>
-        <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg">ROIを試算する</a>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <img class="hero-shot" src="images/header_app.png" alt="FromTo 自治体管理 — 自治体分析詳細・分野別総合性マップ画面" />
-      <div class="hero-chip a"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span><span><span class="n">1,788</span><br><span class="t">自治体を分析</span></span></div>
-      <a class="hero-chip b" href="#roi" aria-label="営業工数の圧縮効果。投資効果セクションで根拠を見る"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 17v-5h-5"/></svg></span><span><span class="n">40h→4h</span><br><span class="t">営業工数を圧縮 — 根拠を見る</span></span></a>
-    </div>
-  </div>
-</section>
-
-<!-- WORRIES -->
-<section class="worries" id="worries" data-screen-label="02 Worries">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>以下のようなお悩みはございませんか？</div>
-      <h2 class="h-section">自治体ビジネスの<em>「歩留まり」</em>、<br>本当に納得していますか？</h2>
-    </div>
-
-    <div class="who-for" style="max-width:720px;margin:0 auto 44px;">
-      <p style="text-align:center;font-weight:800;font-size:18px;color:var(--ink,#0E1F3A);margin:0 0 18px;">該当する企業の、参謀になります。</p>
-      <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px;">
-        <li style="padding:13px 18px;background:var(--bg-soft,#F6F8FC);border-left:3px solid var(--blue-deep,#164A7E);border-radius:8px;font-size:15px;color:var(--ink-2,#2C3E5E);">自治体ビジネスを<strong>事業の柱</strong>に据えたいが、勝ち筋が属人化している企業</li>
-        <li style="padding:13px 18px;background:var(--bg-soft,#F6F8FC);border-left:3px solid var(--blue-deep,#164A7E);border-radius:8px;font-size:15px;color:var(--ink-2,#2C3E5E);"><strong>どこへ・なぜ・いつ</strong>提案すべきかを、組織の判断として持ちたい企業</li>
-        <li style="padding:13px 18px;background:var(--bg-soft,#F6F8FC);border-left:3px solid var(--blue-deep,#164A7E);border-radius:8px;font-size:15px;color:var(--ink-2,#2C3E5E);">コンサルやリサーチに<strong>月数十万円</strong>を投じながら、効果が見えずにいる企業</li>
-      </ul>
-    </div>
-
-    <div class="prob-grid">
-      <div class="prob">
-        <div class="prob-visual prob-visual-img">
-          <img src="images/problem-01-find.png" alt="自治体公式サイトに散在する予算書・議案書PDFの実例" loading="lazy" />
-          <span class="mini a">BUDGET</span>
-          <span class="mini b">1,788</span>
-        </div>
-        <div class="row">
-          <div class="no">01</div>
-          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Hard to Find</div>
-        </div>
-        <h3>見つけられない</h3>
-        <p><strong>1,788自治体のうち、どこに勝ち目があるのか。</strong><br>
-予算書も総合計画も公開されてはいるが、掲載場所も様式も自治体ごとにバラバラで、絞り込みの作業だけが積み上がる。</p>
-        <div class="tag">狙うべき自治体が、定まらないまま</div>
-        <ul class="prob-points">
-          <li>予算書・総合計画・議事録の在りかが、自治体ごとに違う</li>
-          <li>自社商材に合う自治体の優先順位を、根拠つきで示せない</li>
-        </ul>
-      </div>
-      <div class="prob">
-        <div class="prob-visual prob-visual-img">
-          <img src="images/problem-02-understand.png" alt="自治体補助金の申請書類・対象経費表など複雑な書類の実例" loading="lazy" />
-          <span class="mini a">POLICY</span>
-          <span class="mini b">WHY?</span>
-        </div>
-        <div class="row">
-          <div class="no">02</div>
-          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Hard to Read</div>
-        </div>
-        <h3>わからない</h3>
-        <p><strong>読み込んでも、提案書の1行にならない。</strong><br>
-どの課が何に困っていて、自社商材をどの切り口で当て、なぜ今なのか——予算書や総合計画を開いても、そこが書けない。</p>
-        <div class="tag">情報はあるのに、提案に変換できないまま</div>
-        <ul class="prob-points">
-          <li>担当課・政策文脈・提案余地の読み解きに、そのつど時間を取られる</li>
-          <li>提案仮説の質が、担当者の経験値でそのまま変わってしまう</li>
-        </ul>
-      </div>
-      <div class="prob">
-        <div class="prob-visual prob-visual-img">
-          <img src="images/problem-03-manage.png" alt="首長任期・選挙・パブコメ・接触履歴・方針転換に追われ、管理が属人化する自治体営業担当者" loading="lazy" />
-          <span class="mini a">CRM</span>
-          <span class="mini b">NEXT</span>
-        </div>
-        <div class="row">
-          <div class="no">03</div>
-          <div class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>Hard to Manage</div>
-        </div>
-        <h3>管理ができない</h3>
-        <p><strong>誰がどの自治体を持っていて、今どこまで進んでいるのか。</strong><br>
-接触履歴も次アクションも個人のExcelとメールの中にあり、異動のたびに文脈が消え、上長は進捗を聞いて回るしかない。</p>
-        <div class="tag">チームの進捗も引き継ぎも、個人任せのまま</div>
-        <ul class="prob-points">
-          <li>提案状況・メモ・優先度が個人のExcelに散らばり、チームから見えない</li>
-          <li>首長の任期・選挙・方針転換を追い切れず、引き継ぎのたびに文脈がゼロに戻る</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="sambo-answer">
-      <div class="sambo-avatar lg">
-        <img src="images/ai_sanbo.png" alt="自治体AI参謀キャラクター" />
-      </div>
-      <div class="text">
-        <div class="lbl">AI参謀より</div>
-        <div class="msg"><strong>稟議の「現状の課題」欄に、こう書けます。</strong><br>
-——自治体向けの売上が、担当者個人の当たり外れに依存している。<br>
-原因は力不足ではなく、<em>「どこへ・なぜ・いつ」を毎日相談できる相手が社内にいないこと</em>。<br>
-それを埋めるのが <strong>47Connect</strong>（ヨンナナコネクト）です。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCREEN TOUR（解決宣言：探す・読む・続ける。2026-08-07 課題の直後へ前倒し） -->
-<section class="screen-tour" id="screens" data-screen-label="04b Screens">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Product Screens</div>
-      <h2 class="h-section prod-h"><span class="ph"><em>すばやく</em>探し、</span><span class="ph"><em>根拠まで</em>読み、</span><br><span class="ph"><em>チームで</em>続ける。</span></h2>
-      <p class="lede">実際の画面でご覧ください。<strong>探す・読む・続ける</strong>の3工程を、そのまま提案判断に使える画面にしました。<br>
-4つ目の<strong>動く</strong>＝提案タイミングは、次のセクションで。</p>
-    </div>
-    <div class="screen-grid">
-      <div class="screen-card">
-        <div class="screen-shot">
-          <img src="images/recommend-screen.png" alt="47Connectの自治体レコメンド画面" />
-        </div>
-        <div class="screen-body">
-          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>01 FIND</div>
-          <h3>探す</h3>
-          <p>御社の商材が刺さる自治体を、勝てる順に。<br>
-根拠（スコア）つきだから、上司にもそのまま説明できます。</p>
-        </div>
-      </div>
-      <div class="screen-card">
-        <div class="screen-shot">
-          <img src="images/image.png" alt="47Connectの自治体サマライズ画面" />
-        </div>
-        <div class="screen-body">
-          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>02 UNDERSTAND</div>
-          <h3>読む</h3>
-          <p>予算・政策・担当課・提案余地を1自治体ごとに要約。<br>
-「なぜ今、ここなのか」が一目で腑に落ちます。</p>
-        </div>
-      </div>
-      <div class="screen-card">
-        <div class="screen-shot">
-          <img src="images/crm_list.png" alt="47Connectの提案管理CRM画面" />
-        </div>
-        <div class="screen-body">
-          <div class="screen-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.2"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16.5 4.2a4 4 0 0 1 0 5.6"/></svg>03 MANAGE</div>
-          <h3>続ける</h3>
-          <p>提案状況・優先度・次アクションをCRMに集約。<br>
-<strong>担当者が代わっても引き継げる</strong>し、チーム全体の進捗も一目で分かる。<br>
-属人的な自治体営業が、抜けない「チームの資産」に変わります。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FLOW（動く＝タイミング／SCREEN TOURの直後に配置：CEO指示2026-05-07） -->
-<section class="flow" data-screen-label="04c Flow">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>動く — Timing Matters</div>
-      <h2 class="h-section">自治体の予算は、入札の<br><em>半年〜2年前</em>に決まっている。</h2>
-      <p class="lede"><strong>入札公示を見てから動くと、価格競争に巻き込まれます。</strong><br>
-勝負がつくのは<strong>予算に書き込まれる前</strong>。課題設定から予算要求までの間に、担当課と話せているかどうかです。<br>
-<strong>次の予算編成に間に合わなければ、提案は次年度送り。</strong></p>
       
-    </div>
-
-    <!-- 47Connectがカバーする領域の図（2026-08-09 PO提供画像へ差し替え。旧HTML版のSTEP/統計カードは git 履歴を参照） -->
-    <figure class="flow-figure">
-      <picture>
-        <source srcset="images/flow-coverage.webp" type="image/webp">
-        <img src="images/flow-coverage.png" width="1672" height="941" loading="lazy" decoding="async"
-             alt="自治体の意思決定フロー図。47Connectがカバーするのは入札公示より前の上流3ステップで、意思決定上流期間は半年〜2年前。STEP01 事業の方向性決定（首長／課題抽出・方向性の決定）、STEP02 政策内容決定（政策企画課／政策立案）、STEP03 予算編成（各部署／参考見積取得・予算編成）。入札公示を挟んだ予算化後は入札後の競争1〜3ヶ月で、STEP04 入札公示（価格競争・複数社競合）、STEP05 落札・契約（最低価格落札方式が中心）。あわせて、予算編成期は年に1度で逃すと次は12ヶ月後。自治体予算 約100兆円のうち上流接続できている企業は3%以下（当社推計）。" />
-      </picture>
-    </figure>
-
-    <div class="flow-insight ai-callout">
-      <div class="ai-callout-avatar"><img src="images/ai_sanbo.png" alt="AI参謀" /></div>
-      <div class="ai-callout-body">
-        <div class="ai-callout-label">AI参謀より</div>
-        <p>だからこそ <strong>自治体AI参謀</strong> は、公示を待ちません。<br>
-予算・議会・公募の動きを毎日見て、<strong>「今、この自治体のこの課へ」</strong>をお知らせします。</p>
+      <p class="hero-target">既存顧客の対応で、<br class="br-band"><em>新規開拓に手が回らない</em>営業部へ</p>
+      <h1 style="font-weight: 900; max-width: 100%; font-size: clamp(26px, 6.2vw, 38px); word-break: keep-all">自治体探しのコツは<br><span class="grad">『予算化前』</span>から探すこと</h1>
+      <p class="hero-sub" style="max-width: 100%">47Connectは、自治体が事業を検討し<strong>予算化する前</strong>の情報を捉え、提案の機会をつくります。</p>
+      <div class="hero-effect">
+        <p class="hero-effect-lbl">自治体リサーチから提案の準備にかかる工数</p>
+        <p class="hero-effect-val"><span class="from">約4週間</span><span class="arr" aria-hidden="true">→</span><span class="to">30<small>分</small><span class="note-mark">※1</span></span></p>
       </div>
+      <div class="hero-cta">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">デモ申請はこちら<span class="arrow">→</span></a>
+        
+        <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg roi-sim-link">ROIを試算する</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      
+      <img class="hero-shot" src="images/hero-laptop-ai-sambo-lp.webp" width="1600" height="1174" fetchpriority="high" decoding="async"
+           alt="47Connectの自治体分析の画面（AI参謀）。自社の事業内容に合う自治体の予算事業を一覧で示し、右側に提案ポイント（提案理由・予算アロケーション・数量試算）を表示します。自治体コード・自治体名・首長名はぼかしています。">
+    </div>
+    
+    <div class="hero-notes" role="note" aria-label="注釈">
+      <p class="hero-notes-lbl">注釈</p>
+      <p>※1 「約4週間→30分」は、自治体候補の抽出と公開情報の初期分析を想定した標準ケースです（当社ヒアリングに基づく）。業種・体制により変わり、効果を保証するものではありません。</p>
+      <p>※画面は現在の版のもので、正式版では変わる場合があります。</p>
     </div>
   </div>
 </section>
 
-<!-- Before/After 画像つき横並び（2026-07-27 旧圧縮バンド置換） -->
-<section class="ba2" data-screen-label="04x BeforeAfter">
+<section class="challenge" id="challenge" data-screen-label="01b Challenge">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Before / After</div>
-      <h2 class="h-section">情報収集〜提案準備の<em>数週間</em>を、<em>1日</em>に。</h2>
+      <span class="ch-tag">事業責任者・部門長の方へ</span>
+      <h2 class="h-section">自治体営業、こんな状態になっていませんか？</h2>
     </div>
-    <div class="ba2-grid">
-      <figure class="ba2-card ba2-before">
-        <div class="ba2-shot">
-          <img src="images/problem-01-find.png" alt="従来の自治体営業：情報収集に数週間を要する様子" loading="lazy" />
+    
+    <div class="ch-grid">
+      <article class="ch-voice">
+        <div class="ch-who">
+          <svg class="ch-person" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="人物のアイコン（営業責任者）" focusable="false"><defs><clipPath id="ch-clip-1"><circle cx="32" cy="32" r="30"/></clipPath></defs><circle class="chp-bg" cx="32" cy="32" r="30"/><g clip-path="url(#ch-clip-1)"><circle class="chp-f" cx="32" cy="25" r="9.5"/><path class="chp-f" d="M13 62c0-14 8-23 19-23s19 9 19 23z"/></g></svg>
+          <p class="ch-role">営業責任者</p>
         </div>
-        <figcaption class="ba2-body">
-          <span class="ba2-label">Before — 従来のやり方</span>
-          <ul class="ba2-rows">
-            <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">情報収集</span><span class="ba2-val">自治体HP・担当者に自ら確認＝数週間</span></li>
-            <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">提案の根拠</span><span class="ba2-val">担当者の勘と経験</span></li>
-            <li class="ba2-row"><span class="ba2-ic ba2-x" aria-hidden="true">✕</span><span class="ba2-item">管理</span><span class="ba2-val">個人のExcel。異動で引き継げない</span></li>
-          </ul>
-        </figcaption>
-      </figure>
-      <div class="ba2-arrow" aria-hidden="true">→</div>
-      <figure class="ba2-card ba2-after">
-        <div class="ba2-shot">
-          <img src="images/recommend-screen.png" alt="47Connect導入後：47Connectが毎週自動収集し、AIが提案を組み立てるレコメンド画面" loading="lazy" />
+        <blockquote class="ch-bubble"><p>既存顧客の対応で手いっぱいで、新しい自治体への提案が後回しになっている。</p></blockquote>
+      </article>
+      <article class="ch-voice">
+        <div class="ch-who">
+          <svg class="ch-person" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="人物のアイコン（経営陣・複数人）" focusable="false"><defs><clipPath id="ch-clip-2"><circle cx="32" cy="32" r="30"/></clipPath></defs><circle class="chp-bg" cx="32" cy="32" r="30"/><g clip-path="url(#ch-clip-2)"><circle class="chp-b" cx="42" cy="22" r="8"/><path class="chp-b" d="M26 56c0-12 7-19 16-19s16 7 16 19z"/><circle class="chp-f" cx="24" cy="26" r="9.5"/><path class="chp-f" d="M6 62c0-14 7-23 18-23s18 9 18 23z"/></g></svg>
+          <p class="ch-role">経営陣</p>
         </div>
-        <figcaption class="ba2-body">
-          <span class="ba2-label">After — 47Connect</span>
-          <ul class="ba2-rows">
-            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">情報収集</span><span class="ba2-val">すべて47Connectが毎週収集</span></li>
-            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">提案の根拠</span><span class="ba2-val">自治体データ×御社情報をAIが組み合わせ提案</span></li>
-            <li class="ba2-row"><span class="ba2-ic ba2-check" aria-hidden="true">✓</span><span class="ba2-item">管理</span><span class="ba2-val">チームで進捗を共有。異動しても引き継げる</span></li>
-          </ul>
-        </figcaption>
-      </figure>
+        <blockquote class="ch-bubble"><p>問い合わせが来た自治体にしか動けていない。こちらから提案できる自治体があるはずなのに…</p></blockquote>
+      </article>
+    </div>
+    <p class="ch-note">※よくあるお悩みのイメージです（特定の企業・個人の発言ではありません）</p>
+    <div class="ch-bridge">
+      <div class="ch-bridge-band"><p>限られた時間で新しい自治体に提案するには、<strong>探す時期</strong>と、<strong>探す・調べる・資料作成の進め方</strong>を変える必要があります。</p></div>
+      <a href="#timing" class="ch-bridge-arrow" aria-label="次へ（予算化前の情報の説明に進む）"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 30" role="img" aria-label="下向きの矢印"><path d="M6 8l14 14L34 8" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- SOLUTION（3層構造＝仕組みの説明。2026-08-07 Detail群へ後退） -->
-<section class="solution" id="solution" data-screen-label="05 Solution">
+<section class="flow" id="timing" data-screen-label="04c Flow">
+  <span id="worries" class="anchor-keep" aria-hidden="true"></span>
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>The Solution</div>
-      <h2 class="h-section">基本機能、企業別分析、AI参謀を<em>つなぐ3層構造。</em></h2>
-      <p class="lede">御社が受け取るのは、データではありません。<strong>提案の切り口・提案メールの下書き・次アクション</strong>です。<br>全国の公開情報を土台に、御社の事業文脈で読み替えるところまでを、この3層が担います。</p>
+      <h2 class="h-section">「入札情報で探す」は<span class="accent">手遅れです</span></h2>
     </div>
-
-    <!-- 3層構造の図（2026-08-09 PO提供画像へ差し替え。旧HTML版の l3-layer/l3-chip は git 履歴を参照） -->
-    <figure class="flow-figure l3-figure">
-      <picture>
-        <source srcset="images/layer3-structure.webp" type="image/webp">
-        <img src="images/layer3-structure.png" width="1672" height="941" loading="lazy" decoding="async"
-             alt="47Connectの3層構造。土台のLAYER1 基本機能（データ層）は全国1,788自治体の公開情報をAIが構造化して基盤にするもので、自治体網羅データ・自治体レコメンド・自治体サマライズ・CRM管理を含む。その上のLAYER2 企業別レイヤーは御社の事業文脈で自治体を分析するもので、企業×自治体の相性分析・フォーカス自治体の深掘り分析・情報通知機能を含む。最上位のLAYER3 AI参謀は具体的な提案・次アクションへ変換するもので、提案の切り口の提示・提案メール（文書）の作成・実際の深掘り分析を含む。" />
-      </picture>
+    <figure class="budget-fig" role="img" aria-label="自治体の事業が決まるまでの流れの図。予算化前は47Connectの対象領域で、提案フェーズ・約半年〜2年の検討期間です。1 課題・方針の検討、2 政策・計画の議論、3 予算の検討と進みます。予算化後は競争が激化します。予算化後は一般的な入札の対象領域で、入札・調達フェーズ・数週間〜数か月です。4 入札情報の公開、5 入札・契約の実行と進みます。">
+      <div class="budget-band is-pre">
+        <span class="budget-tag">47Connectの対象領域</span>
+        <p class="budget-ttl">予算化前</p>
+        <p class="budget-sub">提案フェーズ・約半年〜2年の検討期間</p>
+        <p class="fig-note budget-note">※期間は自治体・事業により異なります。</p>
+        <div class="budget-steps">
+          <img class="budget-card" style="--w:289" src="images/budget-card-1.png" width="289" height="349" loading="lazy" decoding="async" alt="1 課題・方針の検討。地域の課題整理、事業の方向性検討、首長・部署の意向確認。">
+          <span class="budget-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+          <img class="budget-card" style="--w:300" src="images/budget-card-2.png" width="300" height="349" loading="lazy" decoding="async" alt="2 政策・計画の議論。政策・計画への反映検討、議会での議論、関係部署との調整。">
+          <span class="budget-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+          <img class="budget-card" style="--w:274" src="images/budget-card-3.png" width="274" height="349" loading="lazy" decoding="async" alt="3 予算の検討。概算・予算要求、事業スキームの検討、仕様・導入方法の整理。">
+        </div>
+      </div>
+      <div class="budget-gap" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg><span>予算化後は競争が激化</span></div>
+      <div class="budget-band is-post">
+        <span class="budget-tag">一般的な入札の対象領域</span>
+        <p class="budget-ttl">予算化後</p>
+        <p class="budget-sub">入札・調達フェーズ・数週間〜数か月</p>
+        <div class="budget-steps">
+          <img class="budget-card" style="--w:294" src="images/budget-card-4.png" width="294" height="352" loading="lazy" decoding="async" alt="4 入札情報の公開。入札情報の公示、仕様書の公開、参加事業者の募集。">
+          <span class="budget-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+          <img class="budget-card" style="--w:294" src="images/budget-card-5.png" width="294" height="352" loading="lazy" decoding="async" alt="5 入札・契約の実行。入札・見積の提出、事業者の選定、契約・事業開始。">
+        </div>
+      </div>
     </figure>
-
-    <!-- 強烈キャッチコピー（旧BRIDGEから統合：CEO指示2026-05-08）
-         2026-08-07: ①「AI参謀より」吹き出しが3連発だったため本箇所のみ地の文へ変更
-                     ②社内語の平易化に伴い文言を改稿（"使い切る"→"次の一手に変える" 等）。
-                     対比構造（置く／変える）は維持。★CEO指示2026-05-08 由来のため要CEO確認 -->
-    <div class="solution-punch">
-      <p class="punch-strong">DBサービスは情報を "置く" だけ。<br>
-
-47Connectは、AI参謀がそれを "次の一手" に変える。</p>
-      <p class="punch-sub">レコメンド・サマライズ・CRMの中身を、御社専属AI参謀との毎日の対話で引き出せます。</p>
+    <div class="budget-pointer">
+      <span class="budget-pointer-lbl">47Connectの対象領域から</span>
+      <svg class="budget-pointer-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 72" role="img" aria-label="下向きの矢印" aria-hidden="true" focusable="false"><path fill="currentColor" d="M22 0h20v36h16L32 72 6 36h16z"/></svg>
+    </div>
+    <div class="budget-msg">
+      <span class="ic" aria-hidden="true">!</span>
+      <div>
+        <strong>予算化前<span class="bp-sp">（1〜3）</span>の情報には、予算化情報だけでなく、自治体の潜在ニーズが詰まっています。</strong>
+        <p>早い段階からのアプローチで、競合より一歩先に提案の機会をつかみましょう。</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- COMPARE -->
-<section class="compare" data-screen-label="11 Compare">
+<section class="sambo-journey" id="ai-support" data-screen-label="03 AI Support">
+  <span id="screens" class="anchor-keep" aria-hidden="true"></span>
+  <span id="solution" class="anchor-keep" aria-hidden="true"></span>
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>Comparison</div>
-      <h2 class="h-section">コンサルは1〜2回/月。AI参謀は、<em>毎日いつでも相談できる</em>。</h2>
-      <p class="lede"><strong>稟議の「他社比較」欄に、そのまま書ける4項目。</strong><br>
-<strong>月額 / 相談頻度 / 公開情報への反応速度 / 御社事業文脈の学習</strong>で、外部コンサル・DB系ツール・自前リサーチと比べました。<br>
-4つ目は<strong>学習がチーム側に貯まる</strong>ということ。担当者が代わっても、判断の土台は残ります。</p>
+      <h2 class="h-section">全国1,788自治体を対象に、<br class="br-pc"><em>自治体特化型のAI参謀</em>が分析・提案</h2>
     </div>
-    <div class="tscroll">
-    <table class="compare-tbl">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="us">47Connect<br>AI参謀</th>
-          <th>外部<br>コンサル</th>
-          <th>DB系<br>ツール</th>
-          <th>自前<br>リサーチ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>月額の目安</td>
-          <td class="us"><strong>月20万円</strong><br><small style="font-weight:500;color:var(--ink-2);font-size:12px;">（税別・全機能込み）</small></td>
-          <td>50〜100万円</td>
-          <td>4〜15万円</td>
-          <td>人件費</td>
-        </tr>
-        <tr>
-          <td>関係性 / 継続伴走</td>
-          <td class="us">常駐型・毎日相談</td>
-          <td>3週間で納品終了</td>
-          <td>ツール提供のみ</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>公開即日対応<sup>※1</sup></td>
-          <td class="us"><span class="mark-yes">24時間 AI参謀に相談可能</span></td>
-          <td><span class="mark-no">数週間</span></td>
-          <td><span class="mark-mid">議事録のみ</span></td>
-          <td><span class="mark-no">—</span></td>
-        </tr>
-        <tr>
-          <td>御社事業文脈の学習</td>
-          <td class="us"><strong>御社専用に最適化</strong><br><small style="font-weight:500;color:var(--ink-2);font-size:12px;">（初期導入時に設定いたします）</small></td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="compare-foot">※1 公開即日対応（即日通知＋24時間以内・AI参謀との相談可能）は、月20万円プランの標準機能です。</p>
+    <ol class="journey-steps" aria-label="4つのステップ。1 見つける（レコメンド）、2 分析する（自治体分析）、3 提案する（アプローチ）、4 管理する（CRM・営業管理）。">
+      <li class="journey-step">
+        <span class="journey-no">STEP 1</span>
+        <span class="step-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="見つける（自治体と虫めがね）"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="10" width="5" height="10.5" rx="0.8"/><path d="M7 20.5V6.8a.8.8 0 0 1 .8-.8h3.4a.8.8 0 0 1 .8.8V9"/><circle cx="16" cy="13.5" r="4.6"/><path d="M19.4 16.9 22 19.5"/></g></svg></span>
+        <span class="journey-kick">レコメンド</span>
+        <h3>見つける</h3>
+        <p>自社にとって相性の良い自治体を見つける。<br>予算書・議会の横断検索でも探せます。</p>
+        <figure class="step-fig"><a href="images/step-fig-1-find.png" target="_blank" rel="noopener" aria-label="STEP 1 の図を大きく表示（新しいタブで開きます）"><img src="images/step-fig-1-find.png" width="1400" height="598" loading="lazy" decoding="async" alt="STEP 1 のイメージ図。日本地図の上に印を付けた複数の地域から、「介護アプリを開発する企業」の例に合う候補が並びます。A市は介護ICT導入支援事業、B市は介護人材確保事業、C市は施設デジタル化事業で、いずれも予算書横断検索で見つけた例です。自治体名・事業名は架空です。"></a></figure>
+      </li>
+      <li class="journey-step">
+        <span class="journey-no">STEP 2</span>
+        <span class="step-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="分析する（ひらめき）"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.6 18.2h5.8M9.4 21.4h4.2"/><path d="M11.5 3.4a6 6 0 0 0-3.6 10.8c.6.5.9 1.1.9 1.8v.4h5.4V16c0-.7.3-1.3.9-1.8a6 6 0 0 0-3.6-10.8z"/><path d="M19.6 2.6v3.6M17.8 4.4h3.6"/><path d="M21 10.2v2M20 11.2h2"/></g></svg></span>
+        <span class="journey-kick">自治体分析</span>
+        <h3>分析する</h3>
+        <p>なぜこの自治体・この予算が良いのかを分析し、さらに深掘りして提案につなげられます。</p>
+        <figure class="step-fig"><a href="images/step-fig-2-analyze.png" target="_blank" rel="noopener" aria-label="STEP 2 の図を大きく表示（新しいタブで開きます）"><img src="images/step-fig-2-analyze.png" width="1400" height="599" loading="lazy" decoding="async" alt="STEP 2 のイメージ図。「自治体の予算事業・議事録」と「テーマと提供サービス」を掛け合わせると、「提案ポイント」として、提案理由・予算の目安・数量の試算が示されます。"></a></figure>
+      </li>
+      <li class="journey-step">
+        <span class="journey-no">STEP 3</span>
+        <span class="step-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="提案する（紙飛行機）"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.4 2.6 2.8 10.2l7.4 3.2 3.2 7.4z"/><path d="m21.4 2.6-11.2 10.8"/></g></svg></span>
+        <span class="journey-kick">アプローチ</span>
+        <h3>提案する</h3>
+        <p class="phr">提案メール文をAIが作成し、問い合わせフォームから、1自治体ずつ承認して送信。</p>
+        <figure class="step-fig"><a href="images/step-fig-3-propose.png" target="_blank" rel="noopener" aria-label="STEP 3 の図を大きく表示（新しいタブで開きます）"><img src="images/step-fig-3-propose.png" width="1400" height="594" loading="lazy" decoding="async" alt="STEP 3 のイメージ図。議会の質疑・答弁と予算書の該当箇所を根拠に、AIが提案文を下書きし、問い合わせフォームから送信する流れです（正式版で提供する機能）。"></a></figure>
+      </li>
+      <li class="journey-step">
+        <span class="journey-no">STEP 4</span>
+        <span class="step-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="管理する（リスト）"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="3.6" width="3.4" height="3.4" rx="0.6"/><rect x="2.6" y="10.3" width="3.4" height="3.4" rx="0.6"/><rect x="2.6" y="17" width="3.4" height="3.4" rx="0.6"/><path d="M9.4 5.3h10.4M9.4 12h10.4M9.4 18.7h10.4"/></g></svg></span>
+        <span class="journey-kick">CRM・営業管理</span>
+        <h3>管理する</h3>
+        <p>営業リストで、既存顧客も新規もまとめて管理。<br>進捗を社内で共有できます。</p>
+        <figure class="step-fig"><a href="images/step-fig-4-manage.png" target="_blank" rel="noopener" aria-label="STEP 4 の図を大きく表示（新しいタブで開きます）"><img src="images/step-fig-4-manage.png" width="1400" height="504" loading="lazy" decoding="async" alt="STEP 4 のイメージ図。営業リストが「検討中」「提案中」「商談中」「受注」の4つの列に分かれ、案件のカードが進み具合に応じて並びます。"></a></figure>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- WHY -->
-<section class="why" id="why" data-screen-label="12 Why">
+<section class="use-scenes" id="use-scenes" data-screen-label="04d Use Scenes">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow on-dark"><span class="dot"></span>Why FromTo</div>
-      <h2 class="h-section">なぜFromToが、<br>自治体AI参謀を提供できるのか。</h2>
-      <p class="lede"><strong>他社が真似できないのは、機能ではなく実績です。</strong><br>
-企業版ふるさと納税の寄附仲介で <strong>210件以上・139自治体</strong> の実取引、担当部局との <strong>直接パイプ</strong>、現場で得た <strong>一次情報</strong>。この上に構築しています。</p>
+      <h2 class="h-section">活用イメージ：<br class="br-pc">防災システムを<em>自治体に提案したい</em>場合</h2>
     </div>
-    <div class="why-pillars">
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 01</div>
-        <h3><em>実取引</em>の重み</h3>
-        <p>企業版ふるさと納税の寄附仲介で <strong>210件以上・139自治体</strong> の実取引を積み上げてきました。<br>
-机上の調査ではなく、<strong>実際にお金が動いた取引データ</strong>が判断材料の源泉です。</p>
-        <div class="pillar-tag">→ 210件超・139自治体の実取引実績</div>
+    <p class="fig-note uc-note">※自治体名・事業名・発言は架空の例です。</p>
+    <figure class="uc-fig" role="img" aria-label="活用イメージの図。自治体名・事業名・発言は架空の例です。パターンAは自社の商材から探す方法で、自社の情報をAIが予算書・議事録と照合し、相性の良い予算事業を見つけます。パターンBは商材を欲しがっていそうな自治体を探す方法で、普段の言葉で検索し、予算書・議事録から課題を見つけます。どちらからも、A市を深掘りして提案へ進みます。">
+      <div class="uc-pats">
+        <div class="uc-pat is-a">
+          <div class="uc-head"><span class="uc-chip">パターンA</span><p class="uc-ptl"><span class="nw">自社の商材から探す</span><small class="nw">（レコメンド）</small></p></div>
+          <div class="uc-steps">
+            <div class="uc-box"><p class="uc-ttl">① 自社の情報</p>
+              <img class="uc-img" src="images/uc-product-bosai.webp" width="960" height="640" loading="lazy" decoding="async" alt="自社の商材のイメージ。防災システムの画面で、地図の上に警報や避難所の情報が並び、タブレットでも同じ情報を確認できます（イメージ画像）。">
+              <p class="uc-tags"><span>商材：防災システム</span><span>注力テーマ：防災</span><span>導入実績</span><span>営業エリア</span></p></div>
+            <span class="uc-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+            <div class="uc-box"><p class="uc-ttl">② AIが照合</p><p class="uc-txt"><span class="nw">予算書・議事録と</span><span class="nw">突き合わせ、</span><span class="nw">相性の良い事業を抽出</span></p>
+              <svg class="bud-ill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 134" role="img" aria-label="予算書のイメージ図。「○○市 令和○年度 予算書（イメージ）」の歳出（事業別）の事業名の行が3行並び、防災システム整備の1行が橙の枠で強調されています。金額は数字を書かず灰色の棒で表しています。自治体名・金額は架空です。"><rect class="bi-page" x="1" y="1" width="198" height="132" rx="6"/><rect class="bi-cover" x="1" y="1" width="198" height="34" rx="6"/><rect class="bi-cover" x="1" y="20" width="198" height="15"/><text class="bi-cv" x="12" y="17" font-size="13.5">予算書（イメージ）</text><text class="bi-cv" x="12" y="30" font-size="11" style="font-weight:600">○○市　令和○年度　歳出（事業別）</text><text class="bi-t" x="13" y="58" font-size="13">道路維持補修</text><rect class="bi-amt" x="154" y="51" width="34" height="7" rx="3.5"/><rect class="bi-hl" x="6" y="72" width="188" height="26" rx="4"/><text class="bi-t bi-t-hl" x="13" y="88" font-size="13.5">防災システム整備</text><rect class="bi-amt" x="154" y="81" width="34" height="7" rx="3.5"/><text class="bi-t" x="13" y="118" font-size="13">公園管理運営</text><rect class="bi-amt" x="154" y="111" width="34" height="7" rx="3.5"/></svg></div>
+            <span class="uc-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+            <div class="uc-box"><p class="uc-ttl"><span class="nw">③ 相性の良い</span><span class="nw">予算事業を発見</span></p>
+              <ol class="uc-rank">
+                <li><span class="rk">1</span><span class="ct">A市</span><span class="jg"><span class="nw">防災システム</span><span class="nw">整備事業</span></span><span class="fit">適合度<b>S</b></span><span class="hit">A市に提案がハマりそう</span></li>
+                <li><span class="rk">2</span><span class="ct">B市</span><span class="jg"><span class="nw">避難所機能</span><span class="nw">強化事業</span></span><span class="fit">適合度<b>A</b></span></li>
+                <li><span class="rk">3</span><span class="ct">C市</span><span class="jg"><span class="nw">防災設備</span><span class="nw">更新事業</span></span><span class="fit">適合度<b>A</b></span></li>
+              </ol></div>
+          </div>
+        </div>
+        <div class="uc-pat is-b">
+          <div class="uc-head"><span class="uc-chip">パターンB</span><p class="uc-ptl"><span class="nw">商材を欲しがっていそうな</span><span class="nw">自治体を探す</span><small class="nw">（ニュアンス検索）</small></p></div>
+          <div class="uc-steps">
+            <div class="uc-box"><p class="uc-ttl"><span class="nw">① 普段の言葉で検索</span></p>
+              <p class="uc-txt"><span class="nw">キーワードだけでなく、</span><span class="nw">文章でも探せます</span></p>
+              <img class="uc-img" src="images/uc-img-nuance.webp" width="960" height="640" loading="lazy" decoding="async" alt="ニュアンス検索のイメージ。普段の言葉で検索欄に入力すると、地図つきの自治体のカードが3件並び、そのうち1件が橙の枠で示されます（イラスト）。"></div>
+            <span class="uc-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+            <div class="uc-box"><p class="uc-ttl"><span class="nw">② 議事録から</span><span class="nw">課題を見つける</span></p>
+              <p class="uc-src"><b>議事録</b>A市「<span class="nw">避難所との情報共有に</span><span class="nw">時間がかかる」</span></p>
+              <p class="uc-src"><b>議事録</b>B市「<span class="nw">安否確認の手段が</span><span class="nw">足りない」</span></p>
+              <svg class="bud-ill min-ill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 134" role="img" aria-label="議事録のイメージ図。「○○市議会 令和○年○月」の議事録に、発言の行が並び、「避難所との情報共有に時間がかかる」という発言の1行が橙の枠で強調されています。自治体名・発言は架空です。"><rect class="bi-page" x="1" y="1" width="198" height="132" rx="6"/><rect class="bi-cover" x="1" y="1" width="198" height="34" rx="6"/><rect class="bi-cover" x="1" y="20" width="198" height="15"/><text class="bi-cv" x="12" y="17" font-size="13.5">議事録（イメージ）</text><text class="bi-cv" x="12" y="30" font-size="11" style="font-weight:600">○○市議会　令和○年○月</text><rect class="bi-amt" x="13" y="44" width="22" height="8" rx="4"/><rect class="bi-amt" x="41" y="45" width="146" height="6" rx="3"/><rect class="bi-amt" x="13" y="57" width="174" height="6" rx="3"/><rect class="bi-hl" x="6" y="68" width="188" height="36" rx="4"/><text class="bi-t bi-t-hl" x="13" y="83" font-size="12.5">避難所との情報共有に</text><text class="bi-t bi-t-hl" x="13" y="98" font-size="12.5">時間がかかる</text><rect class="bi-amt" x="13" y="113" width="22" height="8" rx="4"/><rect class="bi-amt" x="41" y="114" width="120" height="6" rx="3"/><rect class="bi-amt" x="13" y="125" width="150" height="5" rx="2.5"/></svg></div>
+            <span class="uc-arr" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+            <div class="uc-box"><p class="uc-ttl"><span class="nw">③ 相性の良い</span><span class="nw">自治体を発見</span></p>
+              <ol class="uc-rank">
+                <li><span class="rk">1</span><span class="ct">A市</span><span class="jg"><span class="nw">避難所との</span><span class="nw">情報共有</span></span><span class="fit">適合<b>高</b></span><span class="hit">A市に提案がハマりそう</span></li>
+                <li><span class="rk">2</span><span class="ct">B市</span><span class="jg"><span class="nw">安否確認の</span><span class="nw">手段</span></span><span class="fit">適合<b>中</b></span></li>
+                <li><span class="rk">3</span><span class="ct">C市</span><span class="jg"><span class="nw">防災無線の</span><span class="nw">聞き取りにくさ</span></span><span class="fit">適合<b>中</b></span></li>
+              </ol></div>
+          </div>
+        </div>
       </div>
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 02</div>
-        <h3><em>自治体</em>との信頼パイプ</h3>
-        <p><strong>139自治体の担当部局と直接取引</strong>で築いた信頼関係。<br>
-広告でもインタビューでもなく、寄附仲介の現場で積み上げた人脈と知見が、AI参謀の判断精度を支えます。</p>
-        <div class="pillar-tag">→ 139自治体との直接パイプ</div>
+      <span class="uc-join" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17" role="img" aria-label="次へ"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5h17M12.5 2.2l6.6 6.3-6.6 6.3"/></g></svg></span>
+      <div class="uc-deep">
+        <p class="uc-deep-ttl">A市を深掘りして提案へ</p>
+        <ol>
+          <li><strong>「なぜこの自治体か」を分析</strong>
+            <img class="uc-deep-img" src="images/uc-img-analysis.webp" width="960" height="640" loading="lazy" decoding="async" alt="自治体を分析するAIのイメージ。10の分野の表の中で、提案の優先候補が橙の枠で示されます（イラスト）。">
+            <span><span class="nw">予算書・議事録をもとに、</span><span class="nw">提案理由・予算・試算を整理</span></span></li>
+          <li><strong>提案メール文をAIが作成</strong>
+            <img class="uc-deep-img" src="images/uc-img-mail.webp" width="960" height="640" loading="lazy" decoding="async" alt="提案メール文をAIが下書きするイメージ。パソコンの画面に文面が並び、手前に確認済みの印がついた封筒が置かれています（イラスト）。">
+            
+            <span><span class="nw">議会の答弁など</span><span class="nw">出典を添えた文面をAIが下書きし、</span><span class="nw">1自治体ずつ</span><span class="nw">確認して承認・送信できます</span><span class="nw">（正式版の機能）。</span></span></li>
+          <li><strong>営業リストで進捗を管理</strong>
+            <img class="uc-deep-img" src="images/uc-img-kanban.webp" width="960" height="640" loading="lazy" decoding="async" alt="営業リストで進捗を管理するイメージ。案件のカードが4つの列を左から右へ進み、3人のメンバーが同じ画面を見て共有します（イラスト）。">
+            <span><span class="nw">既存顧客も新規もまとめて、</span><span class="nw">社内で共有</span></span></li>
+        </ol>
       </div>
-      <div class="why-pillar">
-        <div class="pillar-no">PILLAR 03</div>
-        <h3><em>公開情報</em>＋一次情報</h3>
-        <p>公開情報だけでは見えない、<strong>担当者から直接聞いた予算編成の温度感・政策の優先度・部局のニーズ</strong>。<br>
-寄附仲介の現場で得た <strong>一次情報</strong> を、AI参謀の知見として組み込みます。</p>
-        <div class="pillar-tag">→ 公開情報 × 一次情報</div>
-      </div>
-    </div>
-    <div class="why-main">
-      <h3>3本柱が揃って、はじめて「自治体AI参謀」になる。</h3>
-      <p>対話だけでは、答えの根拠がありません。データだけでは、DBのままです。鮮度だけでは、ニュース通知で終わります。</p>
-      <p>支えているのは<strong>実際にお金が動いた取引と、担当部局との直接のやりとり</strong>。<br>
-<strong>3つを一体で提供する点が、独自のポジション</strong>です（当社調べ）。<br>
-<strong>「なぜこの自治体か」「なぜ今か」「誰に何を出すか」</strong>を、同じ画面で確かめることができます。</p>
-    </div>
-
+    </figure>
   </div>
 </section>
 
-<!-- ROI（2026-08-07 PRICINGの「直前」へ移動。旧配置＝PRICINGの直後・CEO指示2026-05-07 を反転） -->
 <section class="roi" id="roi" data-screen-label="12b ROI">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>ROI by Numbers</div>
-      <h2 class="h-section">月20万円が、御社にいくらの<em>追加効果</em>を生むか。</h2>
-      <p class="lede"><strong>稟議の「導入効果」欄に、この1行が書けます。</strong><br>
-——情報収集の時間を提案活動へ振り替え、提案活動量を2倍に（標準ケース試算）。<br>
-増えるのは<strong>当たり外れではなく、チームで積み上がる提案本数</strong>です。<br>
-下は営業3名・年4件・売上2,000万円規模での試算。</p>
+      <h2 class="h-section">浮いた時間で、<em>新規の商談</em>を増やす</h2>
+      <p class="lede">自治体リサーチから提案までの流れを、最小限にします。</p>
     </div>
-
-    <!-- 3ケース見出し帯 -->
-    <div class="roi-cases">
-      <div class="roi-case roi-case-conservative">
-        <div class="roi-case-tag">保守ケース</div>
-        <div class="roi-case-num">ROI 0.9倍</div>
-        <div class="roi-case-desc">工数削減効果のみ（売上拡大効果ゼロを仮定）</div>
-      </div>
-      <div class="roi-case roi-case-standard is-active">
-        <div class="roi-case-tag">標準ケース<span class="roi-case-pin">基準</span></div>
-        <div class="roi-case-num">ROI 7.9倍</div>
-        <div class="roi-case-desc">工数1/10削減＋提案活動量2倍（下記詳細）</div>
-      </div>
-      <div class="roi-case roi-case-aggressive">
-        <div class="roi-case-tag">攻めケース</div>
-        <div class="roi-case-num">ROI 11.9倍超</div>
-        <div class="roi-case-desc">提案活動量2倍＋案件単価向上を併せて見込む場合</div>
+    <div class="effect-grid">
+      <figure class="effect-bars" role="img" aria-label="探す・調べる・資料作成の工数（営業3名の合計）の棒グラフ。導入前は1,050時間/年、導入後は105時間/年で、10分の1です。当社試算です。">
+        <p class="effect-h">探す・調べる・資料作成の工数（営業3名の合計）</p>
+        <div class="effect-row"><span class="effect-lbl">導入前</span>
+          <span class="effect-track"><span class="effect-bar is-before"><span class="effect-val">1,050時間/年</span></span></span></div>
+        <div class="effect-row"><span class="effect-lbl">導入後</span>
+          <span class="effect-track"><span class="effect-bar is-after"></span><span class="effect-val">105時間/年（1/10）<span class="note-mark">※2</span></span></span></div>
+        <p class="effect-cap">浮いた工数を、自治体へのアプローチに回し、商談と関係づくりへ。</p>
+      </figure>
+      <div class="effect-stat">
+        <p class="effect-stat-lbl">成約2倍シナリオの投資効果</p>
+        <p class="effect-stat-num">7.9<small>倍</small><span class="note-mark">※2</span></p>
+        <p>浮いた時間で新規の提案が増え、商談数と成約数が増えて、受注が2倍（4→8件）になった場合です。</p>
       </div>
     </div>
-
-    <!-- 計算式エリア（投資対効果の試算・標準ケース）：初期は折りたたみ（2026-07-24 簡素化） -->
-    <details class="roi-details">
-      <summary>標準ケースの詳細内訳を見る（現状→導入後→年間効果）</summary>
-    <div class="roi-calc">
-      <div class="roi-calc-label">標準ケース 詳細：営業3名・年4件・売上2,000万円規模（500万円/案件の場合）</div>
-      <div class="roi-grid">
-        <div class="roi-card now">
-          <div class="roi-lbl">現状</div>
-          <div class="roi-num">年1,050時間</div>
-          <div class="roi-cap">営業3名 × 月50h × <strong>繁忙期7ヶ月</strong><br>（4〜10月）を自治体営業に投下<br>（年4件・売上2,000万円）</div>
-        </div>
-        <div class="roi-arrow">→</div>
-        <div class="roi-card after">
-          <div class="roi-lbl">47Connect導入</div>
-          <div class="roi-num">年105時間</div>
-          <div class="roi-cap">月5h × 3名 × 7ヶ月（<strong>1/10削減</strong>）<br>空いた時間で<br><strong>提案活動量2倍</strong>に拡大</div>
-        </div>
-        <div class="roi-arrow">→</div>
-        <div class="roi-card effect">
-          <div class="roi-lbl">年間効果</div>
-          <div class="roi-num">¥2,220万円</div>
-          <div class="roi-cap">コスト削減 ¥220万円<br>+ 売上拡大見込 ¥2,000万円<br>（年間費用 ¥250万円）</div>
-        </div>
-      </div>
-
-      <div class="roi-stats">
-        <div class="roi-stat">
-          <div class="n">7.9倍</div>
-          <div class="l">ROI(投資対効果)<br>投資 ¥1 → ¥7.9 のリターン</div>
-        </div>
-        <div class="roi-stat">
-          <div class="n">1.4ヶ月</div>
-          <div class="l">投資回収期間<br>(ペイバック)</div>
-        </div>
-        <div class="roi-stat">
-          <div class="n">2倍</div>
-          <div class="l">提案活動量<br>(年4件 → 年8件相当の余力)</div>
-        </div>
-      </div>
-      <p class="roi-note">※ 営業3名・年4件・売上2,000万円規模（500万円/案件の場合）での標準ケース試算／年間費用 ¥250万円（月額20万円×12 + 初期構築費10万円）に対する試算／47Connect ROIシミュレーターに基づく／<strong>保守ケース</strong>は工数削減効果のみ（年220万円相当）でROI 0.9倍・回収14ヶ月、<strong>攻めケース</strong>は標準＋案件単価向上を含めROI 11.9倍超を想定／売上拡大効果は提案活動量増加により創出される売上見込み(種作り)であり、最終的な案件獲得は自治体側の判断によるため、本数値は売上獲得を保証するものではありません／業種・規模・営業体制により数値は変動します。</p>
-    </div>
-    </details>
-
-    <!-- 区切りディバイダー -->
-    <div class="roi-divider">
-      <span class="roi-divider-icon">↓</span>
-      <span class="roi-divider-text" style="font-size:clamp(16px,2.2vw,21px);font-weight:700;line-height:1.6;color:var(--ink-2)">こちらは試算例。<strong>御社専用</strong>のROIを30秒でシミュレーション</span>
-    </div>
-
-    <!-- ROIシミュレーター誘導（スゴ資料風・派手） -->
-    <div class="roi-cta">
-      <div class="roi-cta-decor"></div>
-      <div class="roi-cta-content">
-        <div class="roi-cta-eyebrow">役員会・稟議資料に、そのまま使える</div>
-        <h3><span class="roi-cta-hl">人数・案件単価を入れるだけ。ROIを30秒で。</span></h3>
-        <p>営業人数・年間案件数・受注単価を入れると、<strong>ROI・回収期間・年間効果</strong>が即座に出ます。<br>
-結果は <strong>役員会・稟議資料にそのまま貼れる形式</strong>。「上司に共有」の最初の1枚に使えます。</p>
-      </div>
-      <div class="roi-cta-btns">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">個別デモを予約する<span class="arrow">→</span></a>
-        <a href="./roi-simulator.html" class="btn btn-ghost-light btn-lg roi-sim-btn" target="_blank" rel="noopener">ROIを試算する</a>
-      </div>
-    </div>
+    <p class="fig-note">※2 当社試算の前提：営業3名（リーダー1名・年収600万円、メンバー2名・年収400万円）、活動7か月・月50時間/人。年4件受注・1件500万円・年間費用250万円（税別）・売上は受注額ベースで、売上原価は差し引いていません。時給は年収÷2,000時間の概算です。人件費換算は現金支出の削減ではありません。追加売上は見込みで、受注を保証するものではありません。金額は1,000円未満を四捨五入しています。業種・体制により変わり、効果を保証するものではありません。</p>
+    
+    <p class="effect-link"><a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-orange btn-lg roi-sim-link">ROIを試算する<span class="arrow" aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
-<!-- PRICING（価値提示=ROI の直後に料金。2026-08-07） -->
 <section class="pricing" id="pricing" data-screen-label="13 Pricing">
   <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span><span class="no-uc">β</span>版特別キャンペーン</div>
-      <h2 class="h-section">β版特別キャンペーンに参画する10社だけの、<em>特別な条件。</em></h2>
-      <p class="lede">自治体AI参謀の精度を一緒に磨いていただく<strong>共創パートナー枠</strong>です。<br>
-御社の勝ちパターンをAIに学習させる立ち上げ期間として、通常価格より低い特別価格でご提供します。</p>
-    </div>
-
+    <div class="section-head center"><h2 class="h-section">料金</h2></div>
     <div class="pilot">
       <div class="pilot-inner">
-        <div>
-          <span class="pilot-tag">〜2026年8月末までの特典 / 先着10社限定 / 本キャンペーンは今期のみ</span>
-          <h3>自治体AI参謀 β版（先着10社）</h3>
-          <div class="pilot-period">2026年9月〜12月 / 4ヶ月間（一括前払い）</div>
-          <div class="pilot-pricing">
-            <span class="pilot-price">¥300,000<small>／4ヶ月一括（税別）</small></span>
-            <span class="pilot-equiv">通常なら <strong>月20万円×4ヶ月＋初期構築費10万円＝¥900,000</strong> のところ、<br>β版特別キャンペーン価格として <strong>4ヶ月 ¥300,000（実質 月¥75,000相当・約1/3）</strong> で先行利用<br><small>※ 機能は順次投入</small></span>
-          </div>
-          <div class="pilot-cta">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">個別デモを予約する<span class="arrow">→</span></a>
-            <a href="#roi" class="pilot-roi-link">御社専用のROI試算はこちら<span class="arrow">→</span></a>
-          </div>
+        <div class="pilot-offer">
+          <span class="pilot-tag">先行予約 受付中</span>
+          <p class="pilot-period">2027年1月 正式版リリース予定</p>
+          <span class="pilot-disc">2週間無料トライアル</span>
+          <h3>御社専用のデモ環境を構築します</h3>
+          <p class="pilot-offer-sub pilot-offer-lead">デモのお打ち合わせでは、使い方のご説明を含めて、御社専用の環境をご用意します。</p>
+          <p class="pilot-offer-sub">デモは5自治体のみです。</p>
+          <div class="pilot-cta"><a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">デモ申請はこちら<span class="arrow">→</span></a></div>
         </div>
-        <div class="pilot-incs">
-          <div class="pilot-incs-lbl"><span class="no-uc">β</span>版10社にしか与えない、3つの権利</div>
+        <div class="pilot-incs pilot-fee">
+          <p class="pilot-incs-lbl">正式版の料金</p>
+          <p class="pilot-price"><span class="pre">月額</span>20<small>万円</small></p>
+          <p class="pilot-fee-sub">1チームあたり・税別</p>
+          
+          <div class="pilot-team">
+            <p class="pilot-team-ttl">チームごとのご契約です</p>
+            <svg class="pilot-team-fig is-wide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" role="img" aria-label="チームごとのご契約の図。左の枠は防災の部署（防災系サービスのチーム）で、4人のメンバーが同じチームにいて、1チーム＝月額20万円（税別）です。右の破線の枠は他部署（例えば観光部署など）で、3人のメンバーがいて、別部署のご契約（別のチーム）になります。同じチームのメンバーは、同じご契約でご利用いただけます。"><rect class="tf-bg" x="0" y="0" width="520" height="220" rx="14"/><rect class="tf-a" x="12" y="14" width="282" height="166" rx="12"/><text class="tf-t" x="153" y="43" text-anchor="middle">防災の部署</text><text class="tf-s" x="153" y="67" text-anchor="middle">（防災系サービスのチーム）</text><g class="tf-pl"><circle cx="69" cy="84" r="8.5"/><path d="M56 114v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pl"><circle cx="125" cy="84" r="8.5"/><path d="M112 114v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pl"><circle cx="181" cy="84" r="8.5"/><path d="M168 114v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pl"><circle cx="237" cy="84" r="8.5"/><path d="M224 114v-5a13 13 0 0 1 26 0v5z"/></g><rect class="tf-pill-a" x="16" y="128" width="274" height="34" rx="17"/><text class="tf-pt" x="153" y="151" text-anchor="middle">1チーム＝月額20万円（税別）</text><rect class="tf-b" x="308" y="14" width="200" height="166" rx="12"/><text class="tf-t" x="408" y="43" text-anchor="middle">他部署、例えば</text><text class="tf-t" x="408" y="67" text-anchor="middle">観光部署など</text><g class="tf-pr"><circle cx="352" cy="84" r="8.5"/><path d="M339 114v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pr"><circle cx="408" cy="84" r="8.5"/><path d="M395 114v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pr"><circle cx="464" cy="84" r="8.5"/><path d="M451 114v-5a13 13 0 0 1 26 0v5z"/></g><rect class="tf-pill-b" x="318" y="122" width="180" height="52" rx="14"/><text class="tf-pb" x="408" y="145" text-anchor="middle">別部署のご契約</text><text class="tf-pb" x="408" y="167" text-anchor="middle">（別のチーム）</text><text class="tf-f" x="260" y="207" text-anchor="middle">同じチームのメンバーは、同じご契約でご利用いただけます</text></svg>
+            <svg class="pilot-team-fig is-narrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 362" role="img" aria-label="チームごとのご契約の図。左の枠は防災の部署（防災系サービスのチーム）で、4人のメンバーが同じチームにいて、1チーム＝月額20万円（税別）です。右の破線の枠は他部署（例えば観光部署など）で、3人のメンバーがいて、別部署のご契約（別のチーム）になります。同じチームのメンバーは、同じご契約でご利用いただけます。"><rect class="tf-bg" x="0" y="0" width="340" height="362" rx="12"/><rect class="tf-a" x="8" y="8" width="324" height="152" rx="12"/><text class="tf-t" x="170" y="37" text-anchor="middle">防災の部署</text><text class="tf-s" x="170" y="59" text-anchor="middle">（防災系サービスのチーム）</text><g class="tf-pl"><circle cx="89" cy="78" r="8.5"/><path d="M76 108v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pl"><circle cx="143" cy="78" r="8.5"/><path d="M130 108v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pl"><circle cx="197" cy="78" r="8.5"/><path d="M184 108v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pl"><circle cx="251" cy="78" r="8.5"/><path d="M238 108v-5a13 13 0 0 1 26 0v5z"/></g><rect class="tf-pill-a" x="22" y="118" width="296" height="32" rx="16"/><text class="tf-pt" x="170" y="140" text-anchor="middle">1チーム＝月額20万円（税別）</text><rect class="tf-b" x="8" y="172" width="324" height="132" rx="12"/><text class="tf-t" x="170" y="201" text-anchor="middle">他部署、例えば観光部署など</text><g class="tf-pr"><circle cx="116" cy="222" r="8.5"/><path d="M103 252v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pr"><circle cx="170" cy="222" r="8.5"/><path d="M157 252v-5a13 13 0 0 1 26 0v5z"/></g><g class="tf-pr"><circle cx="224" cy="222" r="8.5"/><path d="M211 252v-5a13 13 0 0 1 26 0v5z"/></g><rect class="tf-pill-b" x="22" y="262" width="296" height="32" rx="12"/><text class="tf-pb" x="170" y="284" text-anchor="middle">別部署のご契約（別のチーム）</text><text class="tf-f" x="170" y="330" text-anchor="middle">同じチームのメンバーは、</text><text class="tf-f" x="170" y="352" text-anchor="middle">同じご契約でご利用いただけます</text></svg>
+            <p>利用する人の数（ID数）ではなく、チームごとの料金です。</p>
+            <p>チームは、部署・事業部・課など、自治体向けの商材を扱う単位です。</p>
+          </div>
           <ul>
-            <li><strong>① 先行アクセス</strong> — β版期間中、全機能を順次解放。通常価格より特別価格で先行体験。</li>
-            <li><strong>② 機能要望反映優先権</strong> — 月次FBで、御社の声が次の機能に直接反映。</li>
-            <li><strong>③ 初期構築費 無料</strong> — 通常 10万円が無料。</li>
+            <li>初期構築費10万円（税別）</li>
+            
+            <li><span class="nw">AIクレジット</span><span class="nw">（課題で探すなどで</span><span class="nw">使う回数の枠）は</span><span class="nw">月額の中で付与します。</span><span class="nw">付与量と追加の条件は</span><span class="nw">商談時にご案内します。</span></li>
           </ul>
         </div>
       </div>
-
     </div>
-
-    <div class="plans-head">
-      <h3>すべての機能を、通常 月20万円（税別）で。</h3>
-      <p><strong>プランは一つ。月20万円（税別）</strong>で全機能を含みます。<br>
-<strong>月払い・1年契約</strong>。13ヶ月目以降は月単位継続、30日予告でいつでも解約可。<br>
-<strong>1チーム単位</strong>で、人が増えても異動で引き継いでも費用は変わりません。<strong>チームの標準ツール</strong>として申請できます。<br>
-まずは <strong>2週間の無料トライアル</strong> を。<br><small>※ 2026年8月末までのお申し込みは、別枠の「β版特別キャンペーン」（上記）が適用されます。</small></p>
-    </div>
-    <div class="plan-compare">
-      <div class="tscroll">
-      <table class="plan-matrix">
-        <colgroup>
-          <col class="mx-cat" />
-          <col class="mx-feat" />
-          <col class="mx-desc" />
-          <col class="mx-plan" />
-          <col class="mx-plan-beta" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th class="mx-h-cat" scope="col">カテゴリ</th>
-            <th class="mx-h-light" scope="col">機能</th>
-            <th class="mx-h-light" scope="col">機能内容</th>
-            <th class="mx-h-light" scope="col">
-              <strong>月20万円プラン</strong>
-              <span>標準搭載（税別）</span>
-            </th>
-            <th class="mx-h-light mx-h-beta" scope="col">
-              <strong>β版</strong>
-              <span>先着10社／2026年9月〜</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="mx-cat-cell mx-cat-navy" rowspan="4" scope="rowgroup">Layer 1<br>基本機能</th>
-            <td class="mx-feat-cell">自治体網羅データ</td>
-            <td class="mx-desc-cell">1,788自治体の予算書・議事録・パブコメ・首長動向</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-yes mx-col-beta">○</td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell">自治体レコメンド</td>
-            <td class="mx-desc-cell">御社事業との適合度を自動スコア化・自動アラート</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-yes mx-col-beta">○</td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell">自治体サマライズ</td>
-            <td class="mx-desc-cell">公開情報の要約・主要論点・提案余地の整理</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-yes mx-col-beta">○</td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell">CRM管理</td>
-            <td class="mx-desc-cell">自治体提案特化・首長任期・予算サイクル・議会日程の統合管理</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-yes mx-col-beta">○</td>
-          </tr>
-          <tr>
-            <th class="mx-cat-cell mx-cat-blue" rowspan="3" scope="rowgroup">Layer 2<br>企業別</th>
-            <td class="mx-feat-cell">企業×自治体の相性分析</td>
-            <td class="mx-desc-cell">御社事業と各自治体の課題・予算の適合度をスコア化し、狙うべき自治体を提示</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell"><span class="mx-star">★</span>フォーカス自治体の深掘り分析【100自治体】<span class="mx-new">NEW</span></td>
-            <td class="mx-desc-cell">注力自治体の課題×御社商材の事業機会を毎月AI生成（基本100自治体）</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell">情報通知機能</td>
-            <td class="mx-desc-cell">予算・議会・公募などの公開情報をAIが自動照合し、動くべきタイミングを即通知</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-          <tr>
-            <th class="mx-cat-cell mx-cat-orange" rowspan="3" scope="rowgroup">Layer 3<br>AI参謀</th>
-            <td class="mx-feat-cell">提案の切り口の提示</td>
-            <td class="mx-desc-cell">自治体ごとに刺さる提案アングル・論点をAIが提示</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell">提案メール（文書）の作成</td>
-            <td class="mx-desc-cell">提案先に合わせたメールの下書きを自動生成</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-          <tr>
-            <td class="mx-feat-cell">実際の深掘り分析</td>
-            <td class="mx-desc-cell">AI参謀と対話しながら、戦略・提案を具体化する深掘り分析</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-          <tr>
-            <th class="mx-cat-cell mx-cat-navy2" rowspan="1" scope="rowgroup">サポート</th>
-            <td class="mx-feat-cell">付帯オンボーディング</td>
-            <td class="mx-desc-cell">1年間／前半：集中支援・後半：運用最適化（年6回）</td>
-            <td class="mx-mark mx-yes">○</td>
-            <td class="mx-mark mx-beta mx-col-beta">○<sup>※</sup><small class="mx-beta-note">β版：完成後に随時公開</small></td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      <p class="plan-compare-foot">※ β版の「○（※）」の機能は、完成後に随時公開します。</p>
-      <p class="plan-compare-foot">※ 基本100自治体を超える深堀り分析には追加費用が発生します（+100／+300／+500の追加パックをご用意しています）。</p>
-      <p class="plan-compare-foot">※ 上記の全機能が、通常価格 月20万円（税別）に含まれます。<br>
-AI参謀対話・提案生成などのAI利用分は、別途チャージ料金の対象です。</p>
-    </div>
-
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq" id="faq" data-screen-label="15 FAQ">
   <div class="wrap">
     <div class="section-head center">
-      <div class="eyebrow"><span class="dot"></span>FAQ</div>
       <h2 class="h-section">よくある質問</h2>
     </div>
     <div class="faq-list">
       <details class="faq-item" open>
+        <summary>どんな企業に向いていますか？</summary>
+        <div class="ans">自社の商材を、自治体へ提案したい企業を想定しています。主に自治体に提供する製品やサービスを持つ企業に向いています（例：防災、観光、子育て、DXサービスなど）。</div>
+      </details>
+      
+      <details class="faq-item">
         <summary>自社の業界・体制でも活用できますか？</summary>
-        <div class="ans"><strong>自治体営業を1人〜数名で担う組織なら、業種を問わず効果が出やすい設計です。</strong><br>
-製造・建設・インフラ・製薬・医療機器・SI/ITコンサル・人材・広告等で実績・想定ROIを試算済み。自治体ビジネス（BtoG）を本格展開する中堅〜大企業を想定しています。</div>
+        <div class="ans"><strong>自治体営業を1人〜数名で担う組織なら、業種を問わずお使いいただける設計です。</strong><br>
+自治体向けのビジネスを本格展開する中堅〜大企業を想定しています。</div>
       </details>
+      
       <details class="faq-item">
-        <summary>データのセキュリティ・ガバナンスは万全ですか？</summary>
-        <div class="ans">御社の企業情報・営業データは暗号化して管理し、第三者への提供および<strong>AI学習への利用は一切行いません</strong>。<br>
-アクセス権限はアカウント単位で管理します。<br>
-情報システム部門・法務部門のご確認用に、これらの取り扱いは契約書・プライバシーポリシーで明文化しています。</div>
+        <summary>複数の事業部・チームで利用できますか？</summary>
+        <div class="ans">チームごとのご契約です。事業部ごとに<strong>別のチーム</strong>としてご契約いただけます。<br>
+レコメンド・CRM・AIクレジット（課題で探すなどで使う回数の枠）は<strong>チームごとに独立</strong>し、事業ごとに異なる戦略を並行できます。</div>
       </details>
-      <details class="faq-item">
-        <summary>公開情報やWikipediaの取り扱いは適法ですか？</summary>
-        <div class="ans">はい。自治体の公開情報（予算書・議会会議録・総合計画等）は<strong>出典リンクを明記</strong>のうえAIが分析し、原典ファイルの<strong>再配布は行いません</strong>（著作権法第30条の4「情報解析」に基づく適法な利用）。<br>
-Wikipedia等も全文・部分のコピーはせず、出典（CC BY-SA）を明記します。<br>
-なお分析結果は正確性・完全性を確約するものではないため、重要なご判断の際は原典・一次情報をご確認ください。</div>
-      </details>
-      <details class="faq-item">
-        <summary>コンサルや他社DBツールと何が違いますか？</summary>
-        <div class="ans"><strong>違いは、相談できる頻度と中身です。</strong><br>
-コンサルは月1〜2回の伴走。AI参謀は<strong>毎日いつでも相談できる常駐型</strong>で、3週間かかる成果を即日・対話で出し、価格は約1/5です。<br>
-DB系ツールとの違いは、その中身を<strong>対話しながら提案に変えられる</strong>点です（当社調べ）。</div>
-      </details>
-      <details class="faq-item">
-        <summary>いつから利用でき、現時点で何が使えますか？</summary>
-        <div class="ans"><strong>β版は2026年9月開始・先着10社限定</strong>です。<br>
-2026年8月末までにお申し込みいただき、<strong>9月から12月までの4ヶ月間</strong>ご利用いただけます。<br>
-9月時点で「自治体調査の参謀」「戦略立案の参謀」が稼働します。<br>
-本格運用への移行は2027年1月を予定しています。</div>
-      </details>
-      <details class="faq-item">
-        <summary>導入してみて合わなかった場合は、どうなりますか？</summary>
-        <div class="ans">まず<strong>2週間の無料トライアル</strong>で実際の画面をお試しいただき、その結果を見てから本契約をご判断いただけます。<br>
-トライアル期間中の費用は発生せず、本契約に進まないご判断も可能です。<br>
-本契約は月払い・1年契約で、<strong>13ヶ月目以降は月単位の継続（30日前の予告でいつでも解約可）</strong>となります。<br>
-解約時のデータの取り扱いを含む詳細は、契約書でご確認いただけます。</div>
-      </details>
+      
       <details class="faq-item">
         <summary>担当者が異動しても引き継げますか？上長はチームの進捗をどう把握しますか？</summary>
         <div class="ans">提案状況・優先度・次アクション・メモは<strong>CRMに集約</strong>され、個人のExcelではなく<strong>チームで共有</strong>されます。<br>
 どの自治体がどこまで進んでいるかを、誰もが同じ画面で確認できます。<br>
-<strong>1チーム単位</strong>で追加課金がないため、後任の方を加えれば文脈ごと引き継げます。</div>
+<strong>同じチームの中では追加の料金がない</strong>ため、後任の方を加えれば文脈ごと引き継げます。</div>
+      </details>
+      
+      <details class="faq-item">
+        <summary>データのセキュリティと取り扱いは、どうなっていますか？</summary>
+        <div class="ans">御社の企業情報・営業データは、通信を暗号化し、契約企業ごとに分けて管理します。アクセス権限はアカウント単位で管理します。<br>
+AI基盤サービスの提供事業者が、御社のデータをAIモデルの学習に使わない契約形態・設定を選んでいます。<br>
+法令に基づく場合などを除き、御社を特定できる形で第三者に提供・公表することはありません。<br>
+当社が、御社を特定できない形に匿名化・統計処理したうえで、サービスの改善や当社のAIの学習に使う場合があります（停止のお申し出ができます）。範囲と方法は利用契約書に定めています。<br>
+情報システム部門・法務部門のご確認用に、利用契約書とプライバシーポリシーを事前にお渡しします。</div>
+      </details>
+      
+      <details class="faq-item">
+        <summary>公開情報やWikipediaの取り扱いは適法ですか？</summary>
+        <div class="ans">自治体の公開情報（予算書・議事録・総合計画等）は、<strong>出典リンクを明記</strong>したうえで、著作権法の規定（情報解析のための利用〔第30条の4〕、議会での発言の利用〔第40条〕など）の範囲で利用しています。<br>
+<strong>原典ファイルの再配布は行いません。</strong><br>
+Wikipedia等も全文・部分のコピーはせず、出典（CC BY-SA）を明記します。<br>
+なお分析結果は正確性・完全性を確約するものではないため、重要なご判断の際は原典・一次情報をご確認ください。</div>
       </details>
       <details class="faq-item">
-        <summary>複数の事業部・チームで利用できますか？</summary>
-        <div class="ans">はい。事業部ごとに<strong>別のチーム</strong>としてご契約いただけます。<br>
-レコメンド・CRM・AIクレジットは<strong>チームごとに独立</strong>し、事業ごとに異なる戦略を並行できます。<br>
-<strong>2契約目以降も同額</strong>で、β版特典も各チームに個別適用可能です。</div>
+        <summary>正式版はいつから使えますか？</summary>
+        <div class="ans">2027年1月 正式版リリース予定です。現在、先行予約を受け付けています。</div>
+      </details>
+      <details class="faq-item">
+        <summary>デモ環境では、何を見られますか？</summary>
+        <div class="ans">事前ヒアリングで伺った商材・実績・注力テーマに合わせて作った御社専用のデモ環境で、5自治体の分析をご覧いただけます（2週間無料）。</div>
+      </details>
+      <details class="faq-item">
+        <summary>提案メールは、どのように送りますか？</summary>
+        <div class="ans phr">正式版では、提案メール文をAIが作成し、問い合わせフォームから、1自治体ずつ承認して送信します。文面には、議会の答弁などの出典を添えます。</div>
+      </details>
+      <details class="faq-item">
+        <summary>料金の割引はありますか？</summary>
+        <div class="ans">年間一括払いは割引があります。条件は商談時にご案内します。</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- END CTA -->
 <section class="end" id="contact" data-screen-label="16 CTA">
-  <div class="end-tag">2週間 無料トライアル</div>
-  <h2>まずは <span class="grad">打ち合わせ</span>。<br>2週間の無料トライアルで、<br class="br-pc">御社専用画面をお試しください。</h2>
-  <p>無理に申込までの大ジャンプはお願いしません。<br>
-まず <strong>60分の打ち合わせ</strong> で御社の課題を伺い、専用のデモアカウントを発行。<br>
-<strong>2週間の無料トライアル</strong>で実際の画面を体験してから、本契約（月20万円）をご判断いただけます。</p>
-  <div class="end-stages">
-    <div class="end-stage">
-      <div class="end-stage-no">STEP 1</div>
-      <div class="end-stage-title">個別デモ・打ち合わせ（60分・無料）</div>
-      <div class="end-stage-desc">御社業界に合わせた自治体マップ・ROI試算・役員会向け1ページサマリをご提示</div>
+  <span id="why" class="anchor-keep" aria-hidden="true"></span>
+  <div class="end-tag">先行予約 受付中</div>
+  <h2>ご利用までの流れ</h2>
+  <p>デモ申請のあと、次の4つのステップで進みます。</p>
+  <div class="end-stages is-4" role="list" aria-label="ご利用までの流れ。1 事前ヒアリング、2 専用デモ環境を構築、3 デモ環境で商談、4 正式版を先行予約。">
+    <div class="end-stage" role="listitem">
+      <img class="end-stage-img" src="images/s8-flow-hearing.webp" alt="事前ヒアリングのイメージ。営業担当者が、お客様の担当者の話を聞きながら、チェックリストに記入している。" width="960" height="640" decoding="async">
+      <div class="end-stage-no">①</div>
+      <div class="end-stage-title">事前ヒアリング</div>
+      <div class="end-stage-desc">商談の前に、御社の商材・実績・注力テーマを伺います。</div>
     </div>
-    <div class="end-stage-arrow">→</div>
-    <div class="end-stage">
-      <div class="end-stage-no">STEP 2</div>
-      <div class="end-stage-title">デモアカウント発行・2週間 無料トライアル</div>
-      <div class="end-stage-desc">御社専用のデモアカウントを発行。実際の画面を2週間、無料でお試しいただけます</div>
+    <div class="end-stage-arrow" aria-hidden="true">→</div>
+    <div class="end-stage" role="listitem">
+      <img class="end-stage-img" src="images/s8-flow-demo-env.webp" alt="専用デモ環境を構築するイメージ。担当者が、地図とグラフの画面を確認しながら、御社専用の環境を用意している。" width="960" height="640" decoding="async">
+      <div class="end-stage-no">②</div>
+      <div class="end-stage-title">専用デモ環境を構築</div>
+      <div class="end-stage-desc">伺った情報を入れて、御社専用に用意します（5自治体・2週間無料）。</div>
     </div>
-    <div class="end-stage-arrow">→</div>
-    <div class="end-stage">
-      <div class="end-stage-no">STEP 3</div>
-      <div class="end-stage-title">本契約（月20万円・税別）</div>
-      <div class="end-stage-desc">通常価格 月20万円（税別）・月払い1年契約。全機能が含まれます</div>
+    <div class="end-stage-arrow" aria-hidden="true">→</div>
+    <div class="end-stage is-key" role="listitem">
+      <img class="end-stage-img" src="images/s8-flow-meeting.webp" alt="デモ環境で商談するイメージ。営業担当者が、ノートパソコンの画面を見せながら、お客様の担当者2名に説明している。" width="960" height="640" decoding="async">
+      <div class="end-stage-no">③</div>
+      <div class="end-stage-title">デモ環境で商談</div>
+      <div class="end-stage-desc">御社専用のデモ環境を使ってご説明します。</div>
     </div>
-  </div>
-  <div class="end-tokuten">
-    <span class="tk-badge">〜2026年8月末までの特典</span>
-    <p><strong>β版特別キャンペーン</strong>：先着10社限定、4ヶ月 ¥300,000（実質 月¥75,000相当）で先行利用いただけます。<a href="#pricing">詳細を見る<span class="arrow">→</span></a></p>
+    <div class="end-stage-arrow" aria-hidden="true">→</div>
+    <div class="end-stage" role="listitem">
+      <img class="end-stage-img" src="images/s8-flow-reserve.webp" alt="正式版を先行予約するイメージ。タブレットを持つ担当者の横で、カレンダーの1日に印がついている。" width="960" height="640" decoding="async">
+      <div class="end-stage-no">④</div>
+      <div class="end-stage-title">正式版を先行予約</div>
+      <div class="end-stage-desc">2027年1月に本格利用予定です。導入時に、現場の方へ使い方もご説明します。</div>
+    </div>
   </div>
   <div class="end-cta">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" class="btn btn-orange btn-lg">個別デモを予約する<span class="arrow">→</span></a>
-    <a href="./roi-simulator.html" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg">ROIを試算する</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange btn-lg">デモ申請はこちら<span class="arrow">→</span></a>
   </div>
-  <small>デモ予約後、担当者より1営業日以内にご連絡いたします。デモ視聴は応募義務を伴いません。</small>
-  <div class="end-tagline">自治体提案を<span class="grad">スマートに。</span></div>
 </section>
 
-<!-- FOOTER -->
 <footer class="foot">
   <div class="foot-inner">
     <div class="brand">
-      <strong class="foot-tagline">自治体提案をスマートに。</strong>
-      <strong>自治体AI参謀</strong>
-      <span>by 47Connect / FromTo「地域AI参謀」構想 第1実装</span>
+      <strong class="foot-tagline">47Connect by FromTo</strong>
+      <span>自治体特化型のAI参謀</span>
     </div>
     <div>運営: <a href="https://from-to.biz/" target="_blank" rel="noopener">株式会社FromTo</a></div>
     <div>© 2026 FromTo, Inc. All rights reserved.</div>
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
-  <div class="info">
-    <strong>2週間 無料トライアル</strong>
-  </div>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">個別デモを予約<span class="arrow">→</span></a>
+  <div class="info"><strong>先行予約 受付中</strong><small>2027年1月 正式版リリース予定</small></div>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-orange">デモ申請はこちら<span class="arrow">→</span></a>
 </div>
 
 <script>
-  // 文字サイズスイッチャー（小/中/大・localStorage保存）
+  (function(){
+    var hero=document.querySelector('.hero'); var h1=hero&&hero.querySelector('h1');
+    if(!hero||!h1||!document.createRange) return;
+    function measure(){
+      try{
+        var r=document.createRange(); r.selectNodeContents(h1);
+        var rects=[].slice.call(r.getClientRects()).filter(function(x){return x.width>0&&x.height>0});
+        if(!rects.length) return;
+        var lines=[];
+        rects.forEach(function(x){
+          var ln=null;
+          for(var i=0;i<lines.length;i++){ if(Math.abs(lines[i].top-x.top)<x.height/2){ ln=lines[i]; break; } }
+          if(!ln){ lines.push({top:x.top,l:x.left,r:x.right}); } else { ln.l=Math.min(ln.l,x.left); ln.r=Math.max(ln.r,x.right); }
+        });
+        var w=Math.max.apply(null,lines.map(function(l){return l.r-l.l}));
+        var cw=parseFloat(getComputedStyle(h1).width), bw=h1.getBoundingClientRect().width;
+        var k=(cw>0&&bw>0)?bw/cw:1;   // 画面の px ÷ CSS の px（文字サイズ「中」「大」の zoom）
+        if(w>0&&isFinite(w/k)) hero.style.setProperty('--hero-ttl-w',(w/k).toFixed(2)+'px');
+      }catch(e){}
+    }
+    var raf=0;
+    function sched(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; measure(); }); }
+    measure();
+    document.addEventListener('DOMContentLoaded',measure);
+    window.addEventListener('load',measure);
+    window.addEventListener('resize',sched);
+    if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(measure); }
+    document.querySelectorAll('.fz-switcher button').forEach(function(b){ b.addEventListener('click',sched); });
+  })();
+</script>
+
+<script>
   (function(){
     const html = document.documentElement;
     const buttons = document.querySelectorAll('.fz-switcher button');
@@ -3375,7 +3364,6 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
       btn.addEventListener('click', () => apply(btn.dataset.fz));
     });
 
-    // モバイル：「文字」ラベルのタップで小中大を開閉（被り解消）
     const sw = document.querySelector('.fz-switcher');
     const label = sw && sw.querySelector('.fz-label');
     if (label) {
@@ -3385,7 +3373,6 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
 </script>
 
 <script>
-  // モバイルメニュー（ハンバーガー開閉）
   (function(){
     var toggle = document.querySelector('.nav-toggle');
     var menu = document.getElementById('mobileMenu');
@@ -3411,7 +3398,6 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
 </script>
 
 <script>
-  // スクロールリビール（控えめなフェードアップ・グリッド内は60msずつstagger）
   (function(){
     if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -3419,7 +3405,6 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
     var els = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (!els.length) return;
 
-    // 同じ親（グリッド）内での並び順を記録（stagger 用インデックス）
     var counts = new Map();
     els.forEach(function(el){
       el.classList.add('reveal');
@@ -3434,7 +3419,6 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
         if (!e.isIntersecting) return;
         var el = e.target;
         io.unobserve(el);
-        // stagger は setTimeout で。CSS transition-delay を残さず hover を汚さない
         var delay = (el._revIdx || 0) * 60;
         if (delay) {
           setTimeout(function(){ el.classList.add('is-visible'); }, delay);
@@ -3448,9 +3432,6 @@ DB系ツールとの違いは、その中身を<strong>対話しながら提案�
   })();
 </script>
 <script>
-  // 2026-08-10: 別ドキュメント(roi-simulator.html等)からの#アンカー付き遷移で、
-  // ブラウザネイティブの初回ジャンプがscroll-behavior:smoothや画像読込中のレイアウト
-  // 変動と競合し着地に失敗する既知の挙動があるための保険。window.load後に再実行する。
   (function(){
     if (!location.hash) return;
     var target;
