@@ -4253,7 +4253,7 @@ var PX_WHY = {
 
   // ---------- 申し込みの 2 段目（くわしい情報）と送信（2026-11-11 v34・v35 で PO の赤入れ 12 件・v36 で 3 件＝必須の項目なし・v37 で資料請求は 1 段目だけで送る） ----------
   // 送り先（受付の窓口の URL。Google Apps Script のウェブアプリ）。空のあいだは確認用で送らない（v38 から受付のウェブアプリにつないだ）
-  const LEAD_ENDPOINT = window.LP_LEAD_ENDPOINT || "https://script.google.com/macros/s/AKfycbw_cNkXfsCBcX-sJ0OeTSrIebzfNGSZizCXE8Hp5WgIXlaxDq7PzcILJ4henPuJ3Q/exec";
+  const LEAD_ENDPOINT = window.LP_LEAD_ENDPOINT || "https://script.google.com/macros/s/AKfycbyHsoAY87mmbEW5ix82MKml8aWDso-SkhQnSPVrIHxMXG9iqtl_uPb8OgxNfUNKKOZ2/exec";
   const detail = document.getElementById("lead-detail"),
     detailForm = document.getElementById("lead-detail-form"),
     done = document.getElementById("lead-done"),
@@ -4568,7 +4568,7 @@ var PX_WHY = {
       page: location.origin + location.pathname,
       referrer: document.referrer,
       submitted_at: new Date().toISOString(),
-      form_version: "lp1-v38",
+      form_version: "lp1-v39",
     };
     ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"].forEach((k) => {
       if (q.get(k)) p[k] = q.get(k);
