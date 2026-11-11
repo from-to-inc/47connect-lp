@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>投資効果の試算 | 47Connect</title>
+<meta name="description" content="営業の体制と稼働時間、受注の前提を入れると、導入前と導入後の比較と投資効果を試算できます。当社試算です。" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YLJ2SZ9ZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5YLJ2SZ9ZR');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<style>
+
+:root{
+  --blue:#286FB7;--blue-2:#4B8DCC;--blue-3:#8FBAE5;--blue-deep:#164A7E;--blue-ink:#071A33;
+  --blue-50:#EDF5FF;--blue-100:#D7E8F8;--blue-200:#BCD4EE;--blue-300:#93B8DF;
+  --orange:#F05A28;--orange-2:#FF7A3D;--orange-50:#FFF0E8;
+  --amber:#FFD1A3;--amber-soft:#FFE0BF;
+  --teal:#25A79D;
+  --bg:#FFFFFF;--bg-soft:#F6F8FC;--bg-tint:#EAF3FE;--bg-cool:#F1F7FB;--bg-mint:#EEF8F6;--bg-warm:#FFF5EF;
+  --ink:#0E1F3A;--ink-2:#2C3E5E;--ink-3:#5C6E8E;--ink-4:#8898B5;--line:#DDE6F2;--line-2:#EEF3F8;
+  --t-inv-2:rgba(255,255,255,.78);
+  --sans:"Noto Sans JP","Hiragino Sans","ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo UI","Meiryo",sans-serif;
+  --num:var(--sans);
+  --r-sm:8px;--r:12px;--r-lg:18px;--r-card:20px;
+  --sh-1:0 1px 2px rgba(7,26,51,.04),0 1px 1px rgba(7,26,51,.03);
+  --sh-2:0 6px 18px rgba(7,26,51,.07),0 2px 5px rgba(7,26,51,.04);
+  --sh-blue:0 14px 28px rgba(40,111,183,.24),0 5px 10px rgba(40,111,183,.12);
+  --sh-orange:0 12px 24px rgba(240,90,40,.30),0 5px 10px rgba(240,90,40,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-feature-settings:"palt";line-height:1.85;font-size:17px}
+svg{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.nw{white-space:nowrap}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;letter-spacing:.01em;white-space:nowrap;border:1px solid transparent;transition:background .18s ease,border-color .18s ease}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:var(--sh-blue)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--bg-soft);border-color:var(--blue-200)}
+.btn[disabled]{background:var(--line-2);color:var(--ink-4);border-color:var(--line);cursor:not-allowed;box-shadow:none}
+
+.pi{width:44px;height:44px;flex-shrink:0}
+.pi .pi-fig{fill:var(--blue-2)}
+.pi.is-leader .pi-fig{fill:var(--blue-deep)}
+.pi .pi-collar{fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pi .pi-tie{fill:#fff}
+.org{display:grid;justify-items:center}
+.org-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));justify-items:center;gap:10px;width:100%}
+.org-link{display:block;width:2px;height:18px;background:var(--ink-4)}
+.org-team{width:100%;padding:10px 10px 12px;border:1.5px dashed var(--blue-200);border-radius:var(--r-lg);background:var(--bg-soft)}
+.org-team-h{margin:0 0 8px;text-align:center;font-size:13px;font-weight:800;color:var(--ink-3);line-height:1.5}
+.org-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;justify-items:center}
+.ptile{display:flex;flex-direction:column;align-items:center;width:100%;max-width:220px;padding:12px 10px 10px;text-align:center;background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue-2);border-radius:var(--r)}
+.ptile.is-leader{border-top-color:var(--blue-deep)}
+.ptile-role{margin-top:4px;font-size:15px;font-weight:800;line-height:1.5;color:var(--ink)}
+.ptile-sal{font-size:14px;font-weight:700;line-height:1.6;color:var(--ink-2)}
+.ptile-out{font-size:14px;line-height:1.6;color:var(--ink-2)}
+.ptile-out b,.ptile-sal b{font-family:var(--num);font-weight:700;color:var(--ink)}
+.hrs{margin-top:18px}
+.hrs-row{display:grid;grid-template-columns:4.2em minmax(0,1fr);grid-template-areas:"lbl track" ". val";column-gap:12px;row-gap:4px;align-items:center;margin-bottom:12px}
+.hrs-lbl{grid-area:lbl;font-size:14px;font-weight:700;color:var(--ink-2)}
+.hrs-track{grid-area:track;display:block;height:30px}
+.hrs-bar{display:flex;gap:2px;height:100%;border-radius:6px;overflow:hidden}
+.hrs-bar.is-before>i{flex:1 1 0;background:var(--ink-3)}
+.hrs-bar.is-after{background:var(--blue)}
+.hrs-val{grid-area:val;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 12px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.hrs-val b{font-family:var(--num);font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;font-feature-settings:"tnum" 1}
+.hrs-saved{padding:10px 12px;border-radius:var(--r-sm);background:var(--blue-50);font-size:14px;line-height:1.7;color:var(--ink-2)}
+.hrs-saved b{font-family:var(--num);font-weight:700;color:var(--blue-deep);white-space:nowrap}
+.fx-card{padding:22px 24px;background:#fff;border:2px solid var(--orange);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.fx-head{padding-bottom:14px;margin-bottom:14px;text-align:center;border-bottom:1px solid var(--line)}
+.fx-lbl{font-size:16px;font-weight:800;color:var(--ink)}
+.fx-num{font-family:var(--num);font-size:64px;font-weight:700;line-height:1.1;color:var(--orange);font-feature-settings:"tnum" 1}
+.fx-num small{margin-left:2px;font-size:24px}
+.fx-num.is-neg{color:var(--ink-2)}
+.fx-desc{margin-top:6px;font-size:14px;line-height:1.7;text-align:left;color:var(--ink-2)}
+.wf{display:grid;gap:10px;margin:0}
+.wf-row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"lbl val" "track track";column-gap:12px;row-gap:4px;align-items:end}
+.wf-lbl{grid-area:lbl;font-size:14px;font-weight:700;line-height:1.5;color:var(--ink-2)}
+.wf-lbl small{display:block;font-size:14px;font-weight:500;color:var(--ink-3)}
+.wf-val{grid-area:val;font-family:var(--num);font-size:17px;font-weight:700;line-height:1.5;color:var(--ink);white-space:nowrap;font-feature-settings:"tnum" 1}
+.wf-track{grid-area:track;position:relative;height:14px;border-radius:4px;background:var(--line-2)}
+.wf-bar{position:absolute;top:0;bottom:0;min-width:3px;border-radius:4px}
+.wf-bar.is-zero{min-width:0}
+.wf-row.is-rev .wf-bar{background:var(--blue)}
+.wf-row.is-save .wf-bar{background:var(--blue-2)}
+.wf-row.is-fee .wf-bar{background:var(--ink-3)}
+.wf-row.is-net{padding-top:10px;border-top:1px solid var(--line)}
+.wf-row.is-net .wf-bar{background:var(--blue-deep)}
+.wf-row.is-net .wf-lbl{font-weight:800;color:var(--ink)}
+.wf-zero{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+.wf-eq{margin-top:14px;padding:10px 12px;border-radius:var(--r-sm);background:var(--orange-50);font-size:15px;font-weight:700;line-height:1.7;text-align:center;color:var(--ink)}
+.wf-eq b{font-family:var(--num);font-weight:700;white-space:nowrap}
+.wf-eq b.is-key{color:var(--orange)}
+.fx-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+.org-card{margin:0;padding:22px 24px;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.fx-grid .effect-cap{word-break:auto-phrase}
+@media (max-width:760px){
+  .fx-grid{grid-template-columns:1fr}
+  .org-card,.fx-card{padding:18px 16px}
+  .fx-num{font-size:52px}
+}
+
+.sim{background:var(--bg-soft);min-height:100vh}
+.sim-headbar{background:#fff;border-bottom:1px solid var(--line)}
+.sim-headbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;min-height:56px}
+.sim-logo{display:inline-flex;align-items:baseline;min-height:44px;padding-top:10px;font-size:18px;font-weight:800;color:var(--ink);white-space:nowrap}
+.sim-logo small{margin-left:6px;font-size:14px;font-weight:600;color:var(--ink-3)}
+
+.sim-h1{flex:1 1 auto;font-size:19px;font-weight:800;line-height:1.4;color:var(--ink);word-break:auto-phrase}
+.sim-back{padding:10px 16px;font-size:14px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:start;padding:16px 0 24px}
+
+.pane-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:10px 16px;border-radius:var(--r)}
+.pane-head svg{width:22px;height:22px;flex-shrink:0}
+.pane-head h2{font-size:17px;font-weight:800;line-height:1.4}
+.pane-head p{flex:1 1 12em;font-size:14px;line-height:1.6}
+.pane-head.is-edit{margin-bottom:12px;background:#fff;border:1px solid var(--line);color:var(--ink)}
+.pane-head.is-edit svg{color:var(--blue-deep)}
+.pane-head.is-edit p{color:var(--ink-2)}
+.pane-head.is-edit .btn{padding:8px 14px;font-size:14px}
+.pane-head.is-view{background:var(--blue-ink);color:#fff;border-radius:0}
+.pane-head.is-view svg{color:var(--amber-soft)}
+.pane-head.is-view p{color:var(--t-inv-2)}
+.pane-tag{display:inline-block;padding:1px 10px;border-radius:999px;border:1px solid var(--amber);font-size:13px;font-weight:800;line-height:1.6;color:var(--amber-soft)}
+
+.sim-step{margin-bottom:16px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.sim-step h3{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;line-height:1.4}
+.sim-no{display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--num);font-size:15px;font-weight:700}
+.sim-help{margin:6px 0 12px;font-size:14px;line-height:1.7;color:var(--ink-2)}
+.prow{margin-bottom:10px;padding:8px 10px 10px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue-2);border-radius:var(--r)}
+.prow.is-leader{border-left-color:var(--blue-deep)}
+.prow-head{display:flex;align-items:center;gap:8px}
+.prow-head .pi{width:28px;height:28px}
+.prow-name{min-width:5.4em;font-size:15px;font-weight:800;line-height:1.4;white-space:nowrap}
+.prow-role{flex:0 1 9em;min-width:0;height:44px;padding:0 8px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;font-size:15px;font-weight:700}
+.prow-del{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;margin-left:auto;border-radius:var(--r-sm);font-size:20px;line-height:1;color:var(--ink-3)}
+.prow-del:hover{background:var(--bg-soft);color:var(--ink)}
+.prow-del[disabled]{color:var(--line);cursor:not-allowed}
+.prow-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+.pf-lbl{display:block;margin-bottom:4px;font-size:14px;font-weight:700;line-height:1.5;color:var(--ink-2)}
+.prow-out{margin-top:6px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.prow-out b{font-family:var(--num);font-weight:700;color:var(--ink)}
+.org-add{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px}
+.org-add .btn{padding:10px 16px;font-size:14px}
+.org-count{font-size:14px;color:var(--ink-2)}
+.bulk{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 10px;margin-top:14px;padding:10px 12px;border-radius:var(--r);background:var(--bg-soft)}
+.bulk .pf-lbl{flex:1 1 100%;margin:0}
+.bulk .stp{flex:1 1 170px;width:auto}
+.bulk .btn{flex:1 1 auto;padding:10px 14px;font-size:14px}
+.fld{margin-bottom:14px}
+.fld-lbl{display:block;margin-bottom:6px;font-size:15px;font-weight:700;color:var(--ink)}
+.stp{display:flex;align-items:stretch;gap:4px;width:100%}
+.stp-btn{flex:0 0 44px;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;font-size:20px;font-weight:700;line-height:1;color:var(--blue-deep)}
+.stp-btn:hover{background:var(--blue-50);border-color:var(--blue-200)}
+.stp-in{flex:1 1 auto;min-width:0;width:100%;height:44px;padding:0 8px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;font-family:var(--num);font-size:18px;font-weight:700;text-align:right;font-feature-settings:"tnum" 1;-moz-appearance:textfield}
+.stp-in::-webkit-outer-spin-button,.stp-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.stp-unit{align-self:center;font-size:14px;color:var(--ink-2);white-space:nowrap}
+.fld-msg{margin-top:4px;font-size:13px;font-weight:700;line-height:1.6;color:var(--orange)}
+.fld-msg:empty{display:none}
+.mon-sel{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.sel{height:44px;padding:0 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;font-size:16px}
+.mon-n{font-size:15px;color:var(--ink-2)}
+.mon-n b{font-family:var(--num);font-weight:700;color:var(--ink)}
+.mon-strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;margin-top:8px;list-style:none}
+.mon-strip li{padding:2px 0;border-radius:4px;background:var(--line-2);font-family:var(--num);font-size:14px;font-weight:700;text-align:center;color:var(--ink-4)}
+.mon-strip li.is-on{background:var(--blue-100);color:var(--blue-deep)}
+.seg{border:none}
+.seg legend{margin-bottom:6px;font-size:15px;font-weight:700}
+.seg-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg label{position:relative;display:block;cursor:pointer}
+.seg input{position:absolute;width:1px;height:1px;margin:0;clip:rect(0,0,0,0);overflow:hidden}
+.seg span{display:block;min-height:44px;height:100%;padding:8px 12px;border:1.5px solid var(--line);border-radius:var(--r);background:#fff;font-size:15px;font-weight:700;line-height:1.5}
+.seg span small{display:block;font-size:14px;font-weight:600;color:var(--ink-3)}
+.seg input:checked+span{border-color:var(--blue);background:var(--blue-50);color:var(--blue-deep)}
+.seg input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+
+.sim-view{background:#fff;border:1px solid var(--blue-200);border-radius:var(--r-card);box-shadow:var(--sh-2);overflow:hidden}
+.view-top{background:#fff}
+.pane-head.is-view{padding:6px 14px 8px;row-gap:0}
+.view-kpi{flex:1 0 100%;display:flex;flex-wrap:wrap;gap:0 22px}
+.vk{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px}
+.vk>span{font-size:12px;font-weight:700;line-height:1.4;color:var(--t-inv-2)}
+.vk b{font-family:var(--num);font-size:18px;font-weight:700;line-height:1.25;color:#fff;white-space:nowrap;font-feature-settings:"tnum" 1}
+.vk.is-key b{font-size:22px;color:var(--amber-soft)}
+.vk.is-key b.is-neg{color:var(--t-inv-2)}
+.view-sec{padding:8px 14px 10px;border-top:1px solid var(--line)}
+.view-sec:first-of-type{border-top:none}
+.view-sec>h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px;margin-bottom:6px;font-size:15px;font-weight:800;color:var(--ink)}
+.view-sec>h3 small{font-size:14px;font-weight:600;color:var(--ink-2)}
+.view-note{margin-top:2px;font-size:13px;line-height:1.5;color:var(--ink-3)}
+.sim-view .org-link{height:8px}
+.sim-view .org-team{padding:4px 6px 6px}
+.sim-view .org-team-h{margin-bottom:2px}
+.sim-view .org-row,.sim-view .org-grid{grid-template-columns:repeat(auto-fit,minmax(214px,1fr));gap:6px}
+
+.vtile{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:6px;align-items:start;width:100%;max-width:300px;padding:4px 8px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue-2);border-radius:var(--r-sm)}
+.vtile.is-leader{border-left-color:var(--blue-deep)}
+.vtile.is-zero{border-style:dashed}
+.vtile .pi{width:24px;height:24px;margin-top:2px;grid-row:1 / span 3}
+.vt-line{font-size:14px;line-height:1.4;color:var(--ink-2)}
+.vt-line b{font-family:var(--num);font-weight:700;color:var(--ink)}
+.vt-name{margin-right:6px;font-weight:800;color:var(--ink)}
+.vt-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 6px}
+.vt-barline{display:flex;align-items:center;gap:6px;margin:1px 0}
+.vt-bar{flex:1 1 auto;display:block;height:8px;border-radius:4px;background:var(--line-2);overflow:hidden}
+.vt-bar>span{display:block;height:100%;background:var(--blue-2)}
+.vtile.is-leader .vt-bar>span{background:var(--blue-deep)}
+.vt-barline .vt-line{flex:0 0 auto}
+
+.tsum{display:flex;align-items:center;gap:8px;margin-top:6px}
+.tstack-lbl{flex:0 0 auto;font-size:14px;font-weight:700;color:var(--ink-2)}
+.tstack{flex:1 1 auto;display:flex;gap:2px;height:10px;border-radius:4px;overflow:hidden;background:var(--line-2)}
+.tstack>span{background:var(--blue-2)}
+.tstack>span.is-leader{background:var(--blue-deep)}
+
+.sim-cta{display:grid;gap:10px;padding:12px 16px 16px;border-top:1px solid var(--line)}
+.sim-cta-sub{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim-cta-sub .btn{padding:10px 12px;font-size:14px;white-space:normal}
+.sim-status{min-height:1.7em;font-size:14px;color:var(--ink-2);text-align:center}
+
+.sim-detail{margin-bottom:40px;padding:0 22px;background:#fff;border:1px solid var(--line);border-radius:var(--r-card)}
+.sim-detail>summary{min-height:44px;padding:14px 0;font-size:16px;font-weight:800;cursor:pointer}
+.sim-table{width:100%;margin-bottom:18px;border-collapse:collapse;font-size:14px}
+.sim-table th,.sim-table td{padding:8px 6px;border-top:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.6}
+.sim-table td:last-child{font-family:var(--num);font-weight:700;text-align:right}
+.sim-table th{font-weight:700;color:var(--ink-2)}
+
+.sim-bar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:var(--sh-2)}
+.sim-bar[hidden]{display:none}
+.sim-bar p{display:flex;flex-direction:column;font-size:13px;line-height:1.4;color:var(--ink-2)}
+.sim-bar b{font-family:var(--num);font-size:22px;font-weight:700;color:var(--orange)}
+.sim-bar .btn{padding:10px 18px;font-size:14px}
+
+@media (min-width:1024px){
+  .sim-view{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
+  .view-top{position:sticky;top:0;z-index:2}
+  .sim-edit{padding-bottom:clamp(0px,calc(100vh - 420px),560px)}
+}
+@media (max-width:1023px){
+  .sim-grid{grid-template-columns:1fr}
+  .sim{padding-bottom:72px}
+}
+@media (max-width:760px){
+  .sim .wrap{padding:0 16px}
+  .sim-h1{order:3;flex-basis:100%;padding-bottom:8px;font-size:20px}
+  .sim-step{padding:16px 12px}
+  .sim-detail{padding:0 14px}
+  .view-sec{padding:8px 12px 10px}
+  .view-kpi{justify-content:space-between}
+  .org-team{padding:8px 6px 10px}
+  .sim-logo small{display:none}
+  .sim-cta{padding:12px}
+  .sim-view .org-row,.sim-view .org-grid{grid-template-columns:1fr}
+  .vtile{max-width:none}
+}
+@media (max-width:420px){
+  .seg-opts{grid-template-columns:1fr}
+  .sim-cta-sub{grid-template-columns:1fr}
+}
+
+@media (max-width:380px){
+  .prow{padding:8px 6px}
+  .prow-fields{gap:6px}
+  .prow .stp{gap:2px}
+}
+
+/* RESULT-CSS:BEGIN */
+.cmp-card{position:relative;padding:10px 14px 12px;background:#fff;border:2px solid var(--orange);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.cmp-title{font-size:15px;font-weight:800;line-height:1.5;color:var(--ink)}
+.cmp-flag{margin-top:2px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.cmp{width:100%;margin-top:6px;border-collapse:collapse;table-layout:fixed}
+.cmp col.c-b,.cmp col.c-a{width:31%}
+.cmp col.c-d{width:38%}
+.cmp thead th{padding:0 6px 4px;font-size:14px;font-weight:700;line-height:1.5;text-align:right;color:var(--ink-3);border-bottom:1px solid var(--line);white-space:nowrap}
+.cmp thead th.c-d{color:var(--blue-deep);white-space:normal;word-break:auto-phrase}
+.sw{display:inline-block;width:10px;height:10px;margin-right:5px;border-radius:2px;vertical-align:0}
+.sw.is-before{background:var(--ink-4)}
+.sw.is-after{background:var(--blue)}
+.cmp-item th{padding:6px 0 0;font-size:15px;font-weight:800;line-height:1.5;text-align:left;color:var(--ink);word-break:auto-phrase}
+.cmp-item .sub{display:inline-block;font-size:14px;font-weight:500;color:var(--ink-3)}
+.cmp-word{float:right;margin-left:8px;padding-right:6px;font-size:14px;font-weight:700;line-height:1.6;color:var(--blue-deep)}
+.cmp-main td{padding:1px 6px 0;text-align:right;vertical-align:top}
+.v{display:block;font-family:var(--num);font-size:17px;font-weight:700;line-height:1.4;color:var(--ink);font-feature-settings:"tnum" 1}
+.cmp-nb{white-space:nowrap}
+.c-d .v{color:var(--blue-deep)}
+.bar{display:block;width:100%;height:7px;margin-top:3px}
+.bar .tr{fill:var(--line-2)}
+.bar .is-before{fill:var(--ink-4)}
+.bar .is-after{fill:var(--blue)}
+.cmp-aux td{padding:2px 6px 5px;font-size:14px;line-height:1.5;text-align:right;color:var(--ink-2);border-bottom:1px solid var(--line-2)}
+.cmp-aux td.c-d{color:var(--blue-deep)}
+.cmp-g.is-last .cmp-main td{padding-bottom:6px}
+.cmp tfoot td{padding:6px 6px 0;border-top:2px solid var(--ink-2)}
+.sum{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;column-gap:12px}
+.sum-l{font-size:15px;font-weight:800;line-height:1.5;color:var(--ink)}
+.sum .v{margin-left:auto;font-size:19px;text-align:right;color:var(--blue-deep)}
+.eq{margin-top:8px;padding:6px 10px;border-radius:var(--r-sm);background:var(--bg-soft);font-size:15px;font-weight:700;line-height:1.7;text-align:center;color:var(--ink)}
+.eq b{font-family:var(--num);font-weight:700;color:var(--ink)}
+.eq-g{white-space:nowrap}
+.notes{margin-top:8px;padding-top:6px;border-top:1px solid var(--line);list-style:none}
+.notes li{font-size:14px;line-height:1.6;color:var(--ink-3)}
+.notes li+li{margin-top:2px}
+@media (max-width:600px){
+  .cmp-card{padding:14px 12px}
+  .cmp col.c-b,.cmp col.c-a{width:30%}
+  .cmp col.c-d{width:40%}
+  .cmp thead th,.cmp-main td,.cmp-aux td{padding-left:3px;padding-right:3px}
+  .cmp-word{padding-right:3px}
+  .v{font-size:15px}
+  .sum .v{font-size:17px}
+}
+/* RESULT-CSS:END */
+
+.pv{display:none}
+@page{size:A4 landscape;margin:10mm}
+@media print{
+  html,body{background:#fff}
+  body{font-size:9pt;line-height:1.45}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body > *:not(#printView){display:none !important}
+  .pv{display:block;width:100%}
+  .pv-head{display:flex;justify-content:space-between;align-items:baseline;gap:6mm;padding-bottom:1.5mm;margin-bottom:3mm;border-bottom:.5mm solid var(--blue-deep)}
+  .pv-title{font-size:13pt;font-weight:800;color:var(--ink)}
+  .pv-brand{margin-left:3mm;font-size:9pt;font-weight:800;color:var(--blue-deep);white-space:nowrap}
+  .pv-brand small{margin-left:1mm;font-size:8pt;font-weight:600;color:var(--ink-3)}
+  .pv-meta{font-size:8pt;line-height:1.4;color:var(--ink-3);text-align:right}
+  .pv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6mm;align-items:start}
+  .pv h2{margin-bottom:2mm;padding-left:2mm;border-left:1mm solid var(--blue);font-size:10.5pt;font-weight:800;line-height:1.4;color:var(--ink)}
+  
+  .pv .org-row,.pv .org-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5mm}
+  .pv .org-row > .pt,.pv .org-grid > .pt{flex:0 0 auto;width:calc((100% - 3mm) / 3)}
+  .pv .org-link{height:2.5mm;width:.4mm}
+  .pv .org-team{padding:1.5mm;border-width:.3mm;border-radius:2mm}
+  .pv .org-team-h{margin-bottom:1mm;font-size:8pt}
+  .pt{display:grid;grid-template-columns:6mm minmax(0,1fr);column-gap:1.5mm;width:100%;padding:1.2mm 1.5mm;background:#fff;border:.3mm solid var(--line);border-left:1mm solid var(--blue-2);border-radius:1.5mm}
+  .pt.is-leader{border-left-color:var(--blue-deep)}
+  .pt.is-zero{border-style:dashed}
+  .pt .pi{width:6mm;height:6mm;grid-row:1 / span 4}
+  .pt-l{font-size:8.5pt;line-height:1.35;color:var(--ink-2)}
+  .pt-l b{font-family:var(--num);font-weight:700;color:var(--ink)}
+  .pt-n{font-weight:800;color:var(--ink)}
+  .pt-bar{display:block;height:1.4mm;margin:.6mm 0;border-radius:.7mm;background:var(--line-2);overflow:hidden}
+  .pt-bar>span{display:block;height:100%;background:var(--blue-2)}
+  .pt.is-leader .pt-bar>span{background:var(--blue-deep)}
+  .pv-total{margin-top:2mm;font-size:9pt;font-weight:700;color:var(--ink)}
+  .pv-total b{font-family:var(--num)}
+  .pv-prem{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.8mm 3mm;margin-top:2.5mm;padding:2mm 2.5mm;border-radius:1.5mm;background:var(--bg-soft);font-size:8.5pt;line-height:1.4}
+  .pv-prem dt{font-weight:700;color:var(--ink-3)}
+  .pv-prem dd{font-weight:700;color:var(--ink)}
+  .pv-note{margin-top:1.5mm;font-size:8pt;color:var(--ink-3)}
+  .pv-roi{display:flex;align-items:baseline;justify-content:space-between;gap:4mm;margin-bottom:2mm;padding:1.5mm 3mm;border-radius:1.5mm;background:var(--orange-50)}
+  .pv-roi-l{font-size:9.5pt;font-weight:800;color:var(--ink)}
+  .pv-roi-n{font-family:var(--num);font-size:22pt;font-weight:700;line-height:1.1;color:var(--orange)}
+  .pv-roi-n small{font-size:11pt}
+  .pv-roi-n.is-neg{color:var(--ink-2)}
+  .pv .cmp-card{padding:2.5mm 3mm;border-width:.5mm;border-radius:2.5mm;box-shadow:none}
+  .pv .cmp-title{font-size:9.5pt}
+  .pv .cmp-flag{font-size:8.5pt}
+  .pv .cmp thead th{padding:0 1.5mm 1mm;font-size:8.5pt}
+  .pv .cmp-item th{padding-top:1.5mm;font-size:9.5pt}
+  .pv .cmp-item .sub,.pv .cmp-word{font-size:8.5pt}
+  .pv .cmp-main td{padding:0 1.5mm}
+  .pv .v{font-size:11pt}
+  .pv .sum .v{font-size:12pt}
+  .pv .sum-l{font-size:9.5pt}
+  .pv .bar{height:1.6mm;margin-top:.6mm}
+  .pv .cmp-aux td{padding:.4mm 1.5mm 1.2mm;font-size:8.5pt}
+  .pv .cmp tfoot td{padding:1.5mm 1.5mm 0}
+  .pv .eq{margin-top:2mm;padding:1.5mm 2mm;font-size:9.5pt}
+  .pv .notes{margin-top:2mm;padding-top:1.2mm}
+  .pv .notes li{font-size:8.5pt;line-height:1.45}
+}
+</style>
+</head>
+<body>
+
+<div class="sim" id="simView">
+  <header class="sim-headbar">
+    <div class="wrap">
+      <a class="sim-logo" href="index.html">47Connect<small>by FromTo</small></a>
+      <h1 class="sim-h1">自社の体制で、投資効果を試算する</h1>
+      <a class="btn btn-ghost sim-back" href="index.html#roi">投資効果の説明に戻る</a>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="sim-grid">
+      
+      <div class="sim-edit" role="region" aria-labelledby="editH">
+        <div class="pane-head is-edit">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="鉛筆の印" focusable="false"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2 id="editH">編集</h2>
+          <p>ここで入れると、右の反映結果にすぐ出ます。</p>
+          <button type="button" class="btn btn-ghost" id="resetBtn">当社試算の前提に戻す</button>
+        </div>
+
+        <section class="sim-step" aria-labelledby="st1">
+          <h3 id="st1"><span class="sim-no" aria-hidden="true">1</span>体制と稼働時間</h3>
+          <p class="sim-help">自治体営業に関わる人ごとに、役職・年収・1か月の稼働時間を入れてください。</p>
+          <div id="rowsEdit"></div>
+          <div class="org-add">
+            <button type="button" class="btn btn-ghost" id="addMember">＋ メンバーを追加</button>
+            <button type="button" class="btn btn-ghost" id="addLeader">＋ リーダーを追加</button>
+            <span class="org-count" id="orgCount">3名（10名まで）</span>
+          </div>
+          <div class="bulk">
+            <label class="pf-lbl" for="bulkHours">月間稼働をまとめて設定（時間/月）</label>
+            <div class="stp">
+              <button type="button" class="stp-btn" data-step="bulkHours" data-delta="-5" aria-label="まとめて設定する時間を5時間減らす">−</button>
+              <input class="stp-in" id="bulkHours" type="number" inputmode="decimal" min="0" max="200" step="any" value="50">
+              <button type="button" class="stp-btn" data-step="bulkHours" data-delta="5" aria-label="まとめて設定する時間を5時間増やす">＋</button>
+            </div>
+            <button type="button" class="btn btn-ghost" id="bulkBtn">全員をこの時間にそろえる</button>
+          </div>
+        </section>
+
+        <section class="sim-step" aria-labelledby="st2">
+          <h3 id="st2"><span class="sim-no" aria-hidden="true">2</span>主に活動する月（全員共通）</h3>
+          <p class="sim-help">自治体営業を主に行う月です。年をまたぐ指定もできます。</p>
+          <div class="fld">
+            <span class="fld-lbl sr-only" id="monLbl">主に活動する月</span>
+            <div class="mon-sel" role="group" aria-labelledby="monLbl">
+              <label class="sr-only" for="startMonth">始まりの月</label>
+              <select class="sel" id="startMonth"></select>
+              <span aria-hidden="true">〜</span>
+              <label class="sr-only" for="endMonth">終わりの月</label>
+              <select class="sel" id="endMonth"></select>
+              <span class="mon-n"><b data-o="months">7</b>か月</span>
+            </div>
+            <ol class="mon-strip" id="monStrip" aria-hidden="true"></ol>
+          </div>
+        </section>
+
+        <section class="sim-step" aria-labelledby="st3">
+          <h3 id="st3"><span class="sim-no" aria-hidden="true">3</span>受注の前提</h3>
+          <p class="sim-help">いま自治体から受注している件数と、1件あたりの受注額です。</p>
+          <div class="fld">
+            <label class="fld-lbl" for="annualCases">年間の受注件数（いま）</label>
+            <div class="stp">
+              <button type="button" class="stp-btn" data-step="annualCases" data-delta="-1" aria-label="受注件数を1件減らす">−</button>
+              <input class="stp-in" id="annualCases" type="number" inputmode="decimal" min="0" max="100" step="any" value="4" aria-describedby="annualCasesMsg">
+              <span class="stp-unit">件/年</span>
+              <button type="button" class="stp-btn" data-step="annualCases" data-delta="1" aria-label="受注件数を1件増やす">＋</button>
+            </div>
+            <p class="fld-msg" id="annualCasesMsg"></p>
+          </div>
+          <div class="fld">
+            <label class="fld-lbl" for="unitPrice">1件あたりの受注額</label>
+            <div class="stp">
+              <button type="button" class="stp-btn" data-step="unitPrice" data-delta="-50" aria-label="受注額を50万円下げる">−</button>
+              <input class="stp-in" id="unitPrice" type="number" inputmode="decimal" min="0" max="10000" step="any" value="500" aria-describedby="unitPriceMsg">
+              <span class="stp-unit">万円</span>
+              <button type="button" class="stp-btn" data-step="unitPrice" data-delta="50" aria-label="受注額を50万円上げる">＋</button>
+            </div>
+            <p class="fld-msg" id="unitPriceMsg"></p>
+          </div>
+          <fieldset class="seg">
+            <legend>成約の増え方</legend>
+            <div class="seg-opts">
+              <label><input type="radio" name="scenario" value="basic" checked><span>成約2倍シナリオ<small data-o="scnBasic">4件→8件・7.9倍</small></span></label>
+              <label><input type="radio" name="scenario" value="conservative"><span>成約1件増シナリオ<small data-o="scnCons">4件→5件・1.9倍</small></span></label>
+            </div>
+          </fieldset>
+        </section>
+      </div>
+
+      <aside class="sim-view" id="simResult" aria-labelledby="viewH">
+        <div class="view-top">
+          
+          <div class="pane-head is-view">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="目の印" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <h2 id="viewH">反映結果</h2>
+            <span class="pane-tag">閲覧のみ</span>
+            <div class="view-kpi" id="viewKpi">
+              <p class="vk is-key"><span data-o="kLbl">成約2倍シナリオの投資効果（当社試算）</span><b data-o="kRoi">7.9倍</b></p>
+              <p class="vk"><span>年間効果差額</span><b data-o="kProfit">+1,970.5万円</b></p>
+            </div>
+          </div>
+        </div>
+        <section class="view-sec" aria-labelledby="vh1">
+          <h3 id="vh1">体制図<small data-o="tsumLine">3名・年間換算 1,050時間・人件費 245万円</small></h3>
+          <div id="orgView"></div>
+          <div class="tsum">
+            <span class="tstack-lbl">人件費の積み上げ</span>
+            <div class="tstack" id="teamStack" role="img" aria-label="人件費の積み上げ"></div>
+          </div>
+          <p class="view-note">帯の長さは月間稼働です（端まで＝月200時間）。時給は年収÷2,000時間の概算です。</p>
+        </section>
+        <section class="view-sec" aria-labelledby="vh2">
+          <h3 id="vh2" class="sr-only">導入前と導入後の比較</h3>
+          <div class="cmp-card" id="simFx"></div>
+        </section>
+        <div class="sim-cta">
+          <a class="btn btn-orange" href="https://docs.google.com/forms/d/e/1FAIpQLScaIZFrCT9iNPqvsIftZylPZx9VVOzWgwfoGkaow6mX-DIFJQ/viewform?usp=dialog" target="_blank" rel="noopener">デモ申請はこちら<span aria-hidden="true">→</span></a>
+          <div class="sim-cta-sub">
+            <button type="button" class="btn btn-ghost" id="copyBtn">試算の内容をコピー</button>
+            <button type="button" class="btn btn-ghost" id="printBtn">印刷する</button>
+          </div>
+          <p class="sim-status" id="copyStatus" role="status"></p>
+        </div>
+      </aside>
+    </div>
+
+    <details class="sim-detail">
+      <summary>計算の内訳を見る</summary>
+      <table class="sim-table">
+        <thead><tr><th scope="col">項目</th><th scope="col">計算</th><th scope="col">値</th></tr></thead>
+        <tbody id="detailBody"></tbody>
+      </table>
+    </details>
+  </div>
+</div>
+
+<div class="sim-bar" id="simBar" hidden>
+  <p><span data-o="barLbl">成約2倍シナリオの投資効果（当社試算）</span><b data-o="barVal">7.9倍</b></p>
+  <a class="btn btn-primary" href="#simResult">結果を見る</a>
+</div>
+<div class="sr-only" aria-live="polite" id="live"></div>
+
+<div class="pv" id="printView" aria-hidden="true"></div>
+
+<script>
+/* ROI-CORE:BEGIN */
+const ROI_CONST = Object.freeze({
+  ANNUAL_HOURS: 2_000,       // 時給換算の年間時間
+  REDUCTION_RATE: 0.9,       // 工数削減率（1/10）
+  CASE_GROWTH: 1.0,          // 成約2倍シナリオ（追加件数 = いまの件数 × 1.0）
+  HOURS_PER_PROPOSAL: 8,     // 旧 MAX シナリオ用。画面には出さない（2026-09-30 PO 決定）
+  MONTHLY_FEE: 200_000,
+  INITIAL_FEE: 100_000,
+  AI_CREDIT: 0,
+});
+const ROLE_DEFAULTS = Object.freeze({
+  leader: { label: 'リーダー', salary: 600 },
+  member: { label: 'メンバー', salary: 400 },
+});
+const ROI_LIMITS = Object.freeze({ team: [1, 10], salary: [0, 3000], monthlyHours: [0, 200], annualCases: [0, 100], unitPrice: [0, 10000] });
+
+function roiActiveMonths(s, e) {
+  if (s <= e) return e - s + 1;
+  return (12 - s + 1) + e;
+}
+
+function roiReadNumber(raw, range) {
+  const text = String(raw == null ? '' : raw).trim();
+  if (text === '') return { value: 0, issue: 'empty' };
+  const parsed = parseFloat(text);
+  if (!Number.isFinite(parsed)) return { value: 0, issue: 'nan' };
+  const value = parsed || 0;
+  if (value < range[0]) return { value: range[0], issue: 'min' };
+  if (value > range[1]) return { value: range[1], issue: 'max' };
+  return { value, issue: null };
+}
+function roiMonth(raw, fallback) {
+  const n = parseInt(raw, 10);
+  return n >= 1 && n <= 12 ? n : fallback;
+}
+function roiParseInput(raw) {
+  const issues = {};
+  const num = (key, v, range) => {
+    const r = roiReadNumber(v, range);
+    if (r.issue) issues[key] = r.issue;
+    return r.value;
+  };
+  const members = raw.members.slice(0, ROI_LIMITS.team[1]).map((m, i) => ({
+    role: m.role === 'leader' ? 'leader' : 'member',
+    salaryMan: num('salary' + i, m.salary, ROI_LIMITS.salary),
+    monthlyHours: num('hours' + i, m.hours, ROI_LIMITS.monthlyHours),
+  }));
+  return {
+    input: {
+      members,
+      startMonth: roiMonth(raw.startMonth, 4),
+      endMonth: roiMonth(raw.endMonth, 10),
+      annualCases: num('annualCases', raw.annualCases, ROI_LIMITS.annualCases),
+      unitPriceMan: num('unitPrice', raw.unitPrice, ROI_LIMITS.unitPrice),
+    },
+    issues,
+  };
+}
+
+function computeRoi(inp) {
+  const { ANNUAL_HOURS, REDUCTION_RATE, CASE_GROWTH, HOURS_PER_PROPOSAL, MONTHLY_FEE, INITIAL_FEE, AI_CREDIT } = ROI_CONST;
+  const activeMonths = roiActiveMonths(inp.startMonth, inp.endMonth);
+
+  let teamCount = 0;
+  let teamAnnualHours = 0;
+  let teamAnnualCost = 0;
+  const members = [];
+  for (const m of inp.members) {
+    const annualHours = m.monthlyHours * activeMonths;
+    const annualSalary = m.salaryMan * 10_000;
+    const hourlyRate = annualSalary / ANNUAL_HOURS;
+    const personalCost = annualHours * hourlyRate;
+    teamCount++;
+    teamAnnualHours += annualHours;
+    teamAnnualCost += personalCost;
+    members.push({ role: m.role, salaryMan: m.salaryMan, monthlyHours: m.monthlyHours, annualSalary, hourlyRate, personalCost, hours: annualHours });
+  }
+  const uniform = members.length > 0 && members.every(x => x.monthlyHours === members[0].monthlyHours);
+  const annualHoursPerPerson = uniform ? members[0].hours : null;
+
+  const annualCases = inp.annualCases;
+  const unitPriceMan = inp.unitPriceMan;
+  const unitPrice = unitPriceMan * 10_000;
+  const currentRevenue = annualCases * unitPrice;
+
+  const annualCostSaving = teamAnnualCost * REDUCTION_RATE;
+  const addedCases = annualCases * CASE_GROWTH;
+  const annualAddRevenue = addedCases * unitPrice;
+  const annualTotalEffect = annualCostSaving + annualAddRevenue;
+
+  const annualCost = MONTHLY_FEE * 12 + INITIAL_FEE + AI_CREDIT * 12;
+  const annualProfit = annualTotalEffect - annualCost;
+  const yearlyROI = annualProfit / annualCost;
+  const monthlyEffect = annualTotalEffect / 12;
+  const paybackMonths = annualCost / monthlyEffect;
+
+  const reducedHoursAnnual = teamAnnualHours * REDUCTION_RATE;
+  const makeScenario = addCases => {
+    const addRevenue = addCases * unitPrice;
+    const profit = addRevenue + annualCostSaving - annualCost;
+    return { addCases, addRevenue, profit, roi: profit / annualCost, totalCases: annualCases + addCases };
+  };
+  const scenarios = {
+    conservative: makeScenario(1),
+    basic: { addCases: addedCases, addRevenue: annualAddRevenue, profit: annualProfit, roi: yearlyROI, totalCases: annualCases + addedCases },
+    theory: makeScenario(Math.floor(reducedHoursAnnual / HOURS_PER_PROPOSAL)), // 画面に出さない
+  };
+
+  const afterTeamHours = teamAnnualHours * (1 - REDUCTION_RATE);
+  const afterTeamCost = teamAnnualCost * (1 - REDUCTION_RATE);
+  const afterAnnualCases = annualCases * (1 + CASE_GROWTH);
+
+  const compareOf = s => {
+    const c = {
+      cases: { before: annualCases, after: s.totalCases, diff: s.addCases },
+      revenue: { before: currentRevenue, after: s.totalCases * unitPrice, diff: s.addRevenue },
+      labor: { before: teamAnnualCost, after: afterTeamCost, diff: -annualCostSaving },
+      hours: { before: teamAnnualHours, after: afterTeamHours, diff: -reducedHoursAnnual },
+      fee: { before: 0, after: annualCost, diff: annualCost },
+    };
+    c.profit = c.revenue.diff + (-c.labor.diff) - c.fee.diff;
+    return c;
+  };
+  const cmpBasic = compareOf(scenarios.basic);
+
+  return {
+    activeMonths, annualHoursPerPerson, members,
+    teamCount, teamAnnualHours, teamAnnualCost,
+    annualCases, unitPriceMan, unitPrice, currentRevenue,
+    annualCostSaving, addedCases, annualAddRevenue, annualTotalEffect,
+    annualCost, annualProfit, yearlyROI, monthlyEffect, paybackMonths,
+    reducedHoursAnnual, afterTeamHours, afterTeamCost, afterAnnualCases, scenarios,
+    feeMonthlyTotal: MONTHLY_FEE * 12, feeInitial: INITIAL_FEE, feeAiCredit: AI_CREDIT * 12,
+    cases: cmpBasic.cases, revenue: cmpBasic.revenue, labor: cmpBasic.labor, hours: cmpBasic.hours, fee: cmpBasic.fee, profit: cmpBasic.profit,
+    compareConservative: compareOf(scenarios.conservative),
+  };
+}
+
+const formatNumber = value => value.toLocaleString('ja-JP', { maximumFractionDigits: 1 });
+const formatMoney = (value, showPlus = false) => {
+  const absoluteMan = Math.floor(Math.abs(value) / 10_000);
+  const oku = Math.floor(absoluteMan / 10_000);
+  const man = absoluteMan % 10_000;
+  let amount;
+  if (oku > 0) {
+    amount = man > 0 ? `${oku}億${man.toLocaleString()}万円` : `${oku}億円`;
+  } else {
+    amount = `${man.toLocaleString()}万円`;
+  }
+  const sign = value < 0 ? '−' : showPlus ? '+' : '';
+  return sign + amount;
+};
+const formatMultiple = value => {
+  if (!Number.isFinite(value)) return '—';
+  const absolute = Math.abs(value);
+  const rounded = Math.round(absolute * 10) / 10;
+  const amount = rounded < 10 ? rounded.toFixed(1) : Math.round(absolute).toLocaleString();
+  return (value < 0 ? '−' : '') + amount;
+};
+const formatPayback = months => (Number.isFinite(months) ? `${months.toFixed(1)}か月` : '—');
+/* ROI-CORE:END */
+
+/* RESULT-DISPLAY:BEGIN */
+function rdRoundTo(x, d) {
+  const s = Number((x * Math.pow(10, d)).toFixed(6));
+  const r = Math.round(Math.abs(s));
+  return s < 0 ? -r : r;
+}
+function rdRoundTenths(x) { return rdRoundTo(x, 1); }
+function rdYenToTenths(yen) { return rdRoundTenths(yen / 10000); }
+function rdFmtUnits(n, d) {
+  const a = Math.abs(n), p = Math.pow(10, d);
+  const i = Math.floor(a / p), f = a % p;
+  return i.toLocaleString('ja-JP') + (f ? '.' + String(f).padStart(d, '0').replace(/0+$/, '') : '');
+}
+function rdFmtTenths(t) { return rdFmtUnits(t, 1); }
+function rdMan(t, withPlus) {
+  const a = Math.abs(t);
+  if (a === 0) return '0円';
+  let s;
+  if (a >= 100000) {
+    const oku = Math.floor(a / 100000), rest = a % 100000;
+    s = oku + '億' + (rest ? rdFmtTenths(rest) + '万円' : '円');
+  } else {
+    s = rdFmtTenths(a) + '万円';
+  }
+  return (t < 0 ? '−' : withPlus ? '+' : '') + s;
+}
+function rdManOf(yen) { return rdMan(rdYenToTenths(yen), false); } // 1 つだけの金額（人ごとの人件費など）を同じ規則で
+function rdManExact(yen) {
+  const u = rdRoundTo(yen / 10000, 4);
+  if (u === 0) return '0円';
+  const a = Math.abs(u);
+  if (a >= 100000000) {
+    const oku = Math.floor(a / 100000000), rest = a % 100000000;
+    return oku + '億' + (rest ? rdFmtUnits(rest, 4) + '万円' : '円');
+  }
+  return rdFmtUnits(a, 4) + '万円';
+}
+function rdRoundDiv(n, d) {
+  let q = Math.floor(n / d);
+  while (q * d > n) q--;
+  while ((q + 1) * d <= n) q++;
+  return (n - q * d) * 2 >= d ? q + 1 : q;
+}
+function rdRoiShown(profitTenths, feeTenths) {
+  if (!(feeTenths > 0)) return '—';
+  const a = Math.abs(profitTenths);
+  const t = rdRoundDiv(a * 10, feeTenths);
+  const s = t < 100 ? Math.floor(t / 10) + '.' + (t % 10) : rdRoundDiv(a, feeTenths).toLocaleString('ja-JP');
+  return (profitTenths < 0 ? '−' : '') + s;
+}
+function rdRoiExact(profitTenths, feeTenths) {
+  if (!(feeTenths > 0)) return false;
+  const a = Math.abs(profitTenths);
+  return rdRoundDiv(a * 10, feeTenths) < 100 ? (a * 10) % feeTenths === 0 : a % feeTenths === 0;
+}
+function rdModelFromCompare(c, unitPrice, roi) {
+  return {
+    cases0: c.cases.before, casesAdd: c.cases.diff, cases1: c.cases.after,
+    unitPrice,
+    rev0: c.revenue.before, revAdd: c.revenue.diff, rev1: c.revenue.after,
+    hours0: c.hours.before, hours1: c.hours.after, hoursCut: -c.hours.diff,
+    cost0: c.labor.before, cost1: c.labor.after, costCut: -c.labor.diff,
+    fee: c.fee.after, profit: c.profit, roi,
+  };
+}
+function rdBuildView(m) {
+  const rev = { before: rdYenToTenths(m.rev0), diff: rdYenToTenths(m.revAdd) };
+  rev.after = rev.before + rev.diff;
+  const cost = { before: rdYenToTenths(m.cost0), after: rdYenToTenths(m.cost1) };
+  cost.diff = cost.before - cost.after;
+  const fee = { before: 0, after: rdYenToTenths(m.fee) };
+  fee.diff = fee.before - fee.after;
+  const profit = rev.diff + cost.diff + fee.diff;
+  const cases = { before: rdRoundTo(m.cases0, 4), diff: rdRoundTo(m.casesAdd, 4) };
+  cases.after = cases.before + cases.diff;
+  const hours = { before: rdRoundTenths(m.hours0), after: rdRoundTenths(m.hours1) };
+  hours.diff = hours.before - hours.after;
+  const qty = (n, d, unit, word) => (n === 0 ? '0' + unit : rdFmtUnits(n, d) + unit + (word ? ' ' + word : ''));
+  const roi = rdRoiShown(profit, fee.after);
+  const text = {
+    roi,
+    eqRoi: roi === '—' ? '—' : (rdRoiExact(profit, fee.after) ? '' : '約') + roi + '倍',
+    unitPrice: rdManExact(m.unitPrice),
+    rev: { before: rdMan(rev.before), after: rdMan(rev.after), diff: rdMan(rev.diff, true) },
+    cost: { before: rdMan(cost.before), after: rdMan(cost.after), diff: rdMan(cost.diff, true) },
+    fee: { before: rdMan(fee.before), after: rdMan(fee.after), diff: rdMan(fee.diff, true) },
+    cases: { before: qty(cases.before, 4, '件'), after: qty(cases.after, 4, '件'), diff: qty(cases.diff, 4, '件', '増') },
+    hours: { before: qty(hours.before, 1, '時間'), after: qty(hours.after, 1, '時間'), diff: qty(hours.diff, 1, '時間', '減') },
+    profitSigned: rdMan(profit, true),
+    profit: rdMan(profit, false),
+    feePlain: rdMan(fee.after, false),
+  };
+  return { rev, cost, fee, profit, cases, hours, roi, roiRaw: m.roi, text };
+}
+/* RESULT-DISPLAY:END */
+
+/* RESULT-RENDER:BEGIN */
+function rdEl(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  Object.entries(attrs || {}).forEach(([k, val]) => {
+    if (val === null || val === undefined || val === false) return;
+    if (k === 'text') el.textContent = val; else el.setAttribute(k, val);
+  });
+  kids.flat().forEach(k => { if (k !== null && k !== undefined && k !== false) el.append(k); });
+  return el;
+}
+function rdNoBreak(text) {
+  const nodes = [];
+  String(text).split(' ').forEach((word, wi) => {
+    if (wi) nodes.push(' ');
+    word.split(/(?<=億)(?=.)/).forEach((piece, pi) => {
+      if (pi) nodes.push(document.createElement('wbr'));
+      nodes.push(rdEl('span', { class: 'cmp-nb', text: piece }));
+    });
+  });
+  return nodes;
+}
+function rdBar(value, max, kind) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const w = max > 0 && value > 0 ? Math.max(1.5, (value / max) * 100) : 0;
+  const svg = document.createElementNS(NS, 'svg');
+  [['class', 'bar'], ['viewBox', '0 0 100 7'], ['preserveAspectRatio', 'none'], ['aria-hidden', 'true'], ['focusable', 'false']]
+    .forEach(([k, val]) => svg.setAttribute(k, val));
+  const rect = (cls, width) => {
+    const r = document.createElementNS(NS, 'rect');
+    [['class', cls], ['x', '0'], ['y', '0'], ['width', String(width)], ['height', '7']].forEach(([k, val]) => r.setAttribute(k, val));
+    return r;
+  };
+  svg.append(rect('tr', 100), rect(kind, w.toFixed(2)));
+  return svg;
+}
+const RD_BAR_MIN = 0.1;
+const RD_NOTES = [
+  '当社試算です。業種・体制により変わり、効果を保証するものではありません。',
+  '売上は見込みで、受注を保証するものではありません。売上は受注額ベースで、売上原価を控除していません。',
+  '人件費換算は現金支出の削減ではありません。',
+  
+  '年間費用には、AIクレジットの追加の費用を含みません。',
+  '金額は1,000円未満を四捨五入し、表の足し引きが合うよう一部は表示した数字から計算しています。1件の受注額は1円単位に丸めて表示しています。',
+];
+function rdRenderCard(root, v, o) {
+  const t = v.text, P = o.idp || '';
+  const max = Math.max(v.rev.before, v.rev.after, v.cost.before, v.cost.after, v.fee.after);
+  const K = o.consts;
+  
+  const feeSub = '月額' + (K.MONTHLY_FEE / 10000) + '万円×12か月＋初期構築費' + (K.INITIAL_FEE / 10000) + '万円（税別）';
+  const costSub = '工数を' + (K.REDUCTION_RATE * 100) + '%減らす仮定';
+  const hd = key => ({ before: `${P}h-before ${P}h-${key}`, after: `${P}h-after ${P}h-${key}`, diff: `${P}h-diff ${P}h-${key}` });
+  const group = (key, label, sub, word, aux, last) => {
+    const r = v[key], tx = t[key], H = hd(key);
+    const bars = max > 0 && Math.max(r.before, r.after) >= max * RD_BAR_MIN;
+    return rdEl('tbody', { class: 'cmp-g' + (last ? ' is-last' : '') },
+      rdEl('tr', { class: 'cmp-item' },
+        rdEl('th', { scope: 'rowgroup', colspan: '3', id: `${P}h-${key}` },
+          rdEl('span', { class: 'cmp-word', 'data-k': key + '.word', 'aria-hidden': 'true', text: word }),
+          label, ' ', rdEl('span', { class: 'sub', text: sub }))),
+      rdEl('tr', { class: 'cmp-main' },
+        rdEl('td', { headers: H.before }, rdEl('span', { class: 'v', 'data-k': key + '.before' }, rdNoBreak(tx.before)), bars ? rdBar(r.before, max, 'is-before') : null),
+        rdEl('td', { headers: H.after }, rdEl('span', { class: 'v', 'data-k': key + '.after' }, rdNoBreak(tx.after)), bars ? rdBar(r.after, max, 'is-after') : null),
+        rdEl('td', { class: 'c-d', headers: H.diff }, rdEl('span', { class: 'v', 'data-k': key + '.diff' }, rdNoBreak(tx.diff)),
+          rdEl('span', { class: 'sr-only', text: '（' + word + '）' }))),
+      aux ? rdEl('tr', { class: 'cmp-aux' },
+        rdEl('td', { headers: H.before, 'data-k': aux + '.before' }, rdNoBreak((aux === 'cases' ? '受注 ' : '工数 ') + t[aux].before)),
+        rdEl('td', { headers: H.after, 'data-k': aux + '.after' }, rdNoBreak(t[aux].after)),
+        rdEl('td', { class: 'c-d', headers: H.diff, 'data-k': aux + '.diff' }, rdNoBreak(t[aux].diff))) : null);
+  };
+  root.replaceChildren(
+    rdEl('p', { class: 'cmp-title', 'data-k': 'title', text: o.title }),
+    ...(o.flags || []).map(f => rdEl('p', { class: 'cmp-flag', text: f })),
+    rdEl('table', { class: 'cmp' },
+      rdEl('caption', { class: 'sr-only', text: '導入前と導入後の比較（年間）' }),
+      rdEl('colgroup', null, rdEl('col', { class: 'c-b' }), rdEl('col', { class: 'c-a' }), rdEl('col', { class: 'c-d' })),
+      rdEl('thead', null, rdEl('tr', null,
+        rdEl('th', { scope: 'col', id: `${P}h-before` }, rdEl('span', { class: 'sw is-before', 'aria-hidden': 'true' }), '導入前'),
+        rdEl('th', { scope: 'col', id: `${P}h-after` }, rdEl('span', { class: 'sw is-after', 'aria-hidden': 'true' }), '導入後'),
+        rdEl('th', { scope: 'col', id: `${P}h-diff`, class: 'c-d', 'data-k': 'h.diff', text: '年間効果への影響' }))),
+      group('rev', '売上（見込み）', '1件 ' + t.unitPrice, '売上が増えた分', 'cases'),
+      group('cost', '自治体営業の人件費換算', costSub, '人件費が減った分', 'hours'),
+      group('fee', '47Connect の年間費用', feeSub, '費用が増えた分', null, true),
+      rdEl('tfoot', null, rdEl('tr', null,
+        rdEl('td', { colspan: '3', headers: `${P}h-diff` }, rdEl('div', { class: 'sum' },
+          rdEl('span', { class: 'sum-l', 'data-k': 'sum.label', text: '年間効果差額（影響の合計）' }),
+          rdEl('span', { class: 'v', 'data-k': 'profit' }, rdNoBreak(t.profitSigned))))))),
+    rdEl('p', { class: 'eq' },
+      rdEl('span', { class: 'eq-g' }, '年間効果差額 ', rdEl('b', { 'data-k': 'eq.profit', text: t.profit })), ' ',
+      rdEl('span', { class: 'eq-g' }, '÷ 年間費用 ', rdEl('b', { 'data-k': 'eq.fee', text: t.feePlain })), ' ',
+      rdEl('span', { class: 'eq-g' }, '＝ ', rdEl('b', { 'data-k': 'eq.roi', text: t.eqRoi }))),
+    rdEl('ul', { class: 'notes' }, RD_NOTES.map(n => rdEl('li', { text: n }))));
+  return v;
+}
+/* RESULT-RENDER:END */
+
+(function () {
+  'use strict';
+
+  const $ = id => document.getElementById(id);
+  const pct = (a, b) => (b > 0 ? Math.min(100, Math.max(0, (a / b) * 100)) : 0);
+  const SCENARIO = {
+    basic: { name: '成約2倍シナリオ', title: '成約2倍シナリオ（受注が2倍になった場合）の年間の比較' },
+    conservative: { name: '成約1件増シナリオ', title: '成約1件増シナリオ（受注が年1件増えた場合）の年間の比較' },
+  };
+
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  function setProps(el, props) {
+    if (!props) return;
+    Object.keys(props).forEach(k => {
+      const v = props[k];
+      if (v == null || v === false) return;
+      if (k === 'text') el.textContent = v;
+      else el.setAttribute(k, v === true ? '' : String(v));
+    });
+  }
+  function addKids(el, kids) {
+    kids.flat(Infinity).forEach(kid => {
+      if (kid == null || kid === false || kid === '') return;
+      el.append(kid instanceof Node ? kid : String(kid));
+    });
+  }
+  function h(tag, props, ...kids) { const el = document.createElement(tag); setProps(el, props); addKids(el, kids); return el; }
+  function sv(tag, props, ...kids) { const el = document.createElementNS(SVGNS, tag); setProps(el, props); addKids(el, kids); return el; }
+
+  function icon(role) {
+    const leader = role === 'leader';
+    return sv('svg', { class: 'pi' + (leader ? ' is-leader' : ''), xmlns: SVGNS, viewBox: '0 0 48 48', role: 'img', 'aria-label': ROLE_DEFAULTS[leader ? 'leader' : 'member'].label },
+      sv('circle', { class: 'pi-fig', cx: 24, cy: 14, r: 8.5 }),
+      sv('path', { class: 'pi-fig', d: 'M7 46c0-10.2 7.6-17.6 17-17.6S41 35.8 41 46z' }),
+      leader
+        ? sv('path', { class: 'pi-tie', d: 'M24 29.6l-2.7 3.3 2.7 9.8 2.7-9.8z' })
+        : sv('path', { class: 'pi-collar', d: 'M18.6 30.2l5.4 5.4 5.4-5.4' }));
+  }
+
+  let pidSeq = 0;
+  const person = (role, salary, hours) => ({ id: ++pidSeq, role, salary: String(salary), hours: String(hours) });
+  const DEFAULT_RAW = () => ({
+    members: [person('leader', 600, 50), person('member', 400, 50), person('member', 400, 50)],
+    startMonth: '4', endMonth: '10', annualCases: '4', unitPrice: '500', scenario: 'basic',
+  });
+  let state = DEFAULT_RAW();
+  const ordered = () => state.members.filter(m => m.role === 'leader').concat(state.members.filter(m => m.role !== 'leader'));
+  function names(list) {
+    const nL = list.filter(m => m.role === 'leader').length;
+    const nM = list.length - nL;
+    let iL = 0, iM = 0;
+    const out = {};
+    list.forEach(m => {
+      if (m.role === 'leader') out[m.id] = nL > 1 ? `リーダー${++iL}` : 'リーダー';
+      else out[m.id] = nM > 1 ? `メンバー${++iM}` : 'メンバー';
+    });
+    return out;
+  }
+  function viewOf(r, key) {
+    const cmp = key === 'conservative' ? r.compareConservative : r;
+    return rdBuildView(rdModelFromCompare(cmp, r.unitPrice, r.scenarios[key].roi));
+  }
+  function compute() {
+    const list = ordered();
+    const parsed = roiParseInput(Object.assign({}, state, { members: list }));
+    const r = computeRoi(parsed.input);
+    return { list, issues: parsed.issues, r, v: viewOf(r, state.scenario) };
+  }
+  const casesPair = v => `${rdFmtUnits(v.cases.before, 4)}→${rdFmtUnits(v.cases.after, 4)}件`;
+
+  function stepper(targetId, delta, label, p) {
+    return h('div', { class: 'stp' },
+      h('button', { type: 'button', class: 'stp-btn', 'data-step': targetId, 'data-delta': -delta, 'aria-label': `${label}を${delta}${p.unit}減らす`, text: '−' }),
+      h('input', { class: 'stp-in', id: targetId, type: 'number', inputmode: 'decimal', min: p.min, max: p.max, step: 'any', value: p.value, 'data-act': p.act, 'data-pid': p.pid, 'aria-describedby': p.msgId }),
+      h('button', { type: 'button', class: 'stp-btn', 'data-step': targetId, 'data-delta': delta, 'aria-label': `${label}を${delta}${p.unit}増やす`, text: '＋' }));
+  }
+  function rowEl(m, name, total) {
+    const id = `p${m.id}`;
+    const leader = m.role === 'leader';
+    return h('div', { class: 'prow' + (leader ? ' is-leader' : ''), 'data-pid': m.id },
+      h('div', { class: 'prow-head' },
+        icon(m.role),
+        h('span', { class: 'prow-name', text: name }),
+        h('label', { class: 'sr-only', for: `${id}-role`, text: `${name}の役職` }),
+        h('select', { class: 'prow-role', id: `${id}-role`, 'data-act': 'role', 'data-pid': m.id },
+          h('option', { value: 'leader', selected: leader, text: 'リーダー' }),
+          h('option', { value: 'member', selected: !leader, text: 'メンバー' })),
+        h('button', { type: 'button', class: 'prow-del', 'data-act': 'del', 'data-pid': m.id, 'aria-label': `${name}を外す`, disabled: total <= ROI_LIMITS.team[0], text: '×' })),
+      h('div', { class: 'prow-fields' },
+        h('div', { class: 'pf' },
+          h('label', { class: 'pf-lbl', for: `${id}-sal`, text: '年収（万円）' }),
+          stepper(`${id}-sal`, 50, `${name}の年収`, { unit: '万円', min: 0, max: ROI_LIMITS.salary[1], value: m.salary, act: 'sal', pid: m.id, msgId: `${id}-msg` })),
+        h('div', { class: 'pf' },
+          h('label', { class: 'pf-lbl', for: `${id}-hrs`, text: '月間稼働（時間/月）' }),
+          stepper(`${id}-hrs`, 5, `${name}の月間稼働`, { unit: '時間', min: 0, max: ROI_LIMITS.monthlyHours[1], value: m.hours, act: 'hrs', pid: m.id, msgId: `${id}-msg` }))),
+      h('p', { class: 'prow-out' }, '年間換算 ', h('b', { 'data-o': 'pHours', text: '0' }), '時間・人件費 ', h('b', { 'data-o': 'pCost', text: '0万円' })),
+      h('p', { class: 'fld-msg', id: `${id}-msg`, 'data-o': 'pMsg' }));
+  }
+  function renderRows(focusSel) {
+    const list = ordered();
+    const nm = names(list);
+    const total = list.length;
+    $('rowsEdit').replaceChildren(...list.map(m => rowEl(m, nm[m.id], total)));
+    const full = total >= ROI_LIMITS.team[1];
+    $('addMember').disabled = full;
+    $('addLeader').disabled = full;
+    $('orgCount').textContent = full ? `${total}名（10名まで試算できます）` : `${total}名（10名まで）`;
+    if (focusSel) {
+      const el = document.querySelector(focusSel);
+      if (el) el.focus();
+    }
+  }
+
+  function orgViewEl(list, r) {
+    const nm = names(list);
+    const tile = (m, i) => {
+      const pm = r.members[i];
+      return h('div', { class: 'vtile' + (m.role === 'leader' ? ' is-leader' : '') + (pm.hours === 0 ? ' is-zero' : ''), 'data-vid': m.id },
+        icon(m.role),
+        h('p', { class: 'vt-line vt-top' }, h('span', { class: 'vt-name nw', text: nm[m.id] }),
+          h('span', { class: 'nw' }, '人件費 ', h('b', { 'data-o': 'vCost', text: rdManOf(pm.personalCost) }))),
+        h('div', { class: 'vt-barline' },
+          h('span', { class: 'vt-bar' }, h('span', { 'data-o': 'vBar', style: `width:${pct(pm.monthlyHours, ROI_LIMITS.monthlyHours[1])}%` })),
+          h('span', { class: 'vt-line nw' }, '月', h('b', { 'data-o': 'vMonthly', text: formatNumber(pm.monthlyHours) }), '時間')),
+        h('p', { class: 'vt-line' }, h('span', { class: 'nw' }, '年収', h('b', { text: formatNumber(pm.salaryMan) }), '万円・'),
+          h('span', { class: 'nw' }, '年間換算', h('b', { 'data-o': 'vAnnual', text: formatNumber(pm.hours) }), '時間')));
+    };
+    const idx = new Map(list.map((m, i) => [m.id, i]));
+    const leaders = list.filter(m => m.role === 'leader');
+    const mems = list.filter(m => m.role !== 'leader');
+    const aria = '体制図。' + list.map((m, i) => {
+      const pm = r.members[i];
+      return `${nm[m.id]}：年収${formatNumber(pm.salaryMan)}万円、月${formatNumber(pm.monthlyHours)}時間、年間換算${formatNumber(pm.hours)}時間、人件費${rdManOf(pm.personalCost)}`;
+    }).join('。') + '。';
+    return h('figure', { class: 'org', role: 'img', 'aria-label': aria, style: 'margin:0' },
+      leaders.length ? h('div', { class: 'org-row' }, leaders.map(m => tile(m, idx.get(m.id)))) : null,
+      leaders.length && mems.length ? h('span', { class: 'org-link' }) : null,
+      mems.length ? h('div', { class: 'org-team' },
+        h('div', { class: 'org-grid' }, mems.map(m => tile(m, idx.get(m.id))))) : null);
+  }
+  function cardFlags(r, v, key) {
+    const f = [];
+    if (key === 'basic' && r.annualCases === 0) f.push('いまの受注が0件のため、受注が2倍になっても追加売上は0円です。');
+    if (v.profit < 0) f.push('この前提では、費用が効果を上回ります。');
+    return f;
+  }
+
+  function renderPrint(list, r, v, key) {
+    const nm = names(list);
+    const d = new Date();
+    const ds = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+    const ptile = (m, i) => {
+      const pm = r.members[i];
+      return h('div', { class: 'pt' + (m.role === 'leader' ? ' is-leader' : '') + (pm.hours === 0 ? ' is-zero' : '') },
+        icon(m.role),
+        h('p', { class: 'pt-l' }, h('span', { class: 'pt-n', text: nm[m.id] }), ' ', h('span', { class: 'nw' }, '年収', h('b', { text: formatNumber(pm.salaryMan) }), '万円')),
+        h('span', { class: 'pt-bar' }, h('span', { style: `width:${pct(pm.monthlyHours, ROI_LIMITS.monthlyHours[1])}%` })),
+        h('p', { class: 'pt-l' }, h('span', { class: 'nw' }, '月', h('b', { text: formatNumber(pm.monthlyHours) }), '時間・'), h('span', { class: 'nw' }, '年間換算', h('b', { text: formatNumber(pm.hours) }), '時間')),
+        h('p', { class: 'pt-l' }, '人件費', h('b', { text: rdManOf(pm.personalCost) })));
+    };
+    const idx = new Map(list.map((m, i) => [m.id, i]));
+    const leaders = list.filter(m => m.role === 'leader');
+    const mems = list.filter(m => m.role !== 'leader');
+    const card = h('div', { class: 'cmp-card' });
+    rdRenderCard(card, v, { idp: 'pv-', title: SCENARIO[key].title, flags: cardFlags(r, v, key), consts: ROI_CONST });
+    $('printView').replaceChildren(
+      h('header', { class: 'pv-head' },
+        h('p', { class: 'pv-title' }, '47Connect 投資効果の試算',
+          h('span', { class: 'pv-brand' }, '47Connect ', h('small', { text: 'by FromTo' }))),
+        h('p', { class: 'pv-meta', text: `株式会社FromTo の試算・${ds} 作成。業種・体制により変わり、効果を保証するものではありません。` })),
+      h('div', { class: 'pv-grid' },
+        h('section', { class: 'pv-left' },
+          h('h2', { text: '入力した体制と前提' }),
+          h('div', { class: 'org' },
+            leaders.length ? h('div', { class: 'org-row' }, leaders.map(m => ptile(m, idx.get(m.id)))) : null,
+            leaders.length && mems.length ? h('span', { class: 'org-link' }) : null,
+            mems.length ? h('div', { class: 'org-team' },
+              h('p', { class: 'org-team-h', text: `メンバー ${mems.length}名` }),
+              h('div', { class: 'org-grid' }, mems.map(m => ptile(m, idx.get(m.id))))) : null),
+          h('p', { class: 'pv-total' }, `合計 ${r.teamCount}名・年間換算 `, h('b', { text: formatNumber(r.teamAnnualHours) }), '時間・人件費 ', h('b', { text: v.text.cost.before })),
+          h('dl', { class: 'pv-prem' },
+            h('dt', { text: '主に活動する月' }), h('dd', { text: `${roiMonth(state.startMonth, 4)}月〜${roiMonth(state.endMonth, 10)}月（${r.activeMonths}か月・全員共通）` }),
+            h('dt', { text: '年間の受注件数（いま）' }), h('dd', { text: v.text.cases.before }),
+            h('dt', { text: '1件あたりの受注額' }), h('dd', { text: v.text.unitPrice }),
+            h('dt', { text: '成約の増え方' }), h('dd', { text: `${SCENARIO[key].name}（受注${casesPair(v)}）` })),
+          h('p', { class: 'pv-note', text: '帯の長さは月間稼働です（端まで＝月200時間）。時給は年収÷2,000時間の概算です。' })),
+        h('section', { class: 'pv-right' },
+          h('h2', { text: '投資効果（導入前 → 導入後）' }),
+          h('div', { class: 'pv-roi' },
+            h('p', { class: 'pv-roi-l' }, `${SCENARIO[key].name}の投資効果`, h('br'), `年間効果差額 ${v.text.profitSigned}`),
+            h('p', { class: 'pv-roi-n' + (v.profit < 0 ? ' is-neg' : '') }, v.text.roi, h('small', { text: '倍' }))),
+          card)));
+  }
+
+  const MSG = {
+    empty: what => `${what}が未入力です。0として計算しています。`,
+    nan: what => `${what}に数字を入れてください。0として計算しています。`,
+    min: what => `${what}は0より小さくできません。0として計算しています。`,
+    max: (what, max, unit) => `${what}の上限は${formatNumber(max)}${unit}です。${formatNumber(max)}${unit}で計算しています。`,
+  };
+  function msgFor(issue, what, range, unit, inputEl) {
+    if (inputEl && inputEl.validity && inputEl.validity.badInput) return MSG.nan(what);
+    if (!issue) return '';
+    return issue === 'max' ? MSG.max(what, range[1], unit) : MSG[issue](what);
+  }
+  function setOut(name, text) {
+    document.querySelectorAll(`#simView [data-o="${name}"], #simBar [data-o="${name}"]`).forEach(el => { el.textContent = text; });
+  }
+  function monthOn(m) {
+    const s = roiMonth(state.startMonth, 4), e = roiMonth(state.endMonth, 10);
+    return s <= e ? (m >= s && m <= e) : (m >= s || m <= e);
+  }
+
+  let liveTimer = null;
+  let lastSummary = null;
+  function update() {
+    const { list, issues, r, v } = compute();
+    const key = state.scenario;
+    const nm = names(list);
+
+    list.forEach((m, i) => {
+      const row = document.querySelector(`.prow[data-pid="${m.id}"]`);
+      if (!row) return;
+      const pm = r.members[i];
+      row.querySelector('[data-o="pHours"]').textContent = formatNumber(pm.hours);
+      row.querySelector('[data-o="pCost"]').textContent = rdManOf(pm.personalCost);
+      const msgs = [
+        msgFor(issues['salary' + i], '年収', ROI_LIMITS.salary, '万円', $(`p${m.id}-sal`)),
+        msgFor(issues['hours' + i], '月間稼働', ROI_LIMITS.monthlyHours, '時間', $(`p${m.id}-hrs`)),
+        pm.hours > ROI_CONST.ANNUAL_HOURS ? `年間換算${formatNumber(pm.hours)}時間で、時給の基準（年2,000時間）を超えています。` : '',
+      ].filter(Boolean);
+      row.querySelector('[data-o="pMsg"]').textContent = msgs.join(' ');
+    });
+    setOut('months', String(r.activeMonths));
+    Array.from($('monStrip').children).forEach((li, idx) => li.classList.toggle('is-on', monthOn(idx + 1)));
+    $('annualCasesMsg').textContent = msgFor(issues.annualCases, '受注件数', ROI_LIMITS.annualCases, '件', $('annualCases'));
+    $('unitPriceMsg').textContent = msgFor(issues.unitPrice, '受注額', ROI_LIMITS.unitPrice, '万円', $('unitPrice'));
+    const vB = viewOf(r, 'basic'), vC = viewOf(r, 'conservative');
+    setOut('scnBasic', `${vB.text.cases.before}→${vB.text.cases.after}・${vB.text.roi}倍`);
+    setOut('scnCons', `${vC.text.cases.before}→${vC.text.cases.after}・${vC.text.roi}倍`);
+
+    setOut('kLbl', `${SCENARIO[key].name}の投資効果（当社試算）`);
+    setOut('kRoi', `${v.text.roi}倍`);
+    document.querySelector('#simView [data-o="kRoi"]').classList.toggle('is-neg', v.profit < 0);
+    setOut('kProfit', v.text.profitSigned);
+    $('orgView').replaceChildren(orgViewEl(list, r));
+    $('teamStack').replaceChildren(...r.members.map(pm => h('span', { class: pm.role === 'leader' ? 'is-leader' : null, style: `width:${pct(pm.personalCost, r.teamAnnualCost)}%` })));
+    $('teamStack').setAttribute('aria-label', '人件費の積み上げ。' + list.map((m, i) => `${nm[m.id]} ${rdManOf(r.members[i].personalCost)}`).join('、') + `。合計${v.text.cost.before}。`);
+    setOut('tsumLine', `${r.teamCount}名・年間換算 ${formatNumber(r.teamAnnualHours)}時間・人件費 ${v.text.cost.before}`);
+    rdRenderCard($('simFx'), v, { idp: 'sv-', title: SCENARIO[key].title, flags: cardFlags(r, v, key), consts: ROI_CONST });
+    setOut('barLbl', `${SCENARIO[key].name}の投資効果（当社試算）`);
+    setOut('barVal', `${v.text.roi}倍`);
+
+    const perList = r.members.map(pm => formatNumber(pm.hours)).join('・');
+    const rows = [
+      ['活動月数', `${roiMonth(state.startMonth, 4)}月〜${roiMonth(state.endMonth, 10)}月`, `${r.activeMonths}か月`],
+      ['各人の年間換算の時間', `各人の 月間稼働 × ${r.activeMonths}か月`, `${perList}時間`],
+      ['チームの工数（年間換算）', '各人の年間換算の時間の合計', v.text.hours.before],
+      ['自治体営業の人件費', '各人の 年収 ÷ 2,000時間 × 年間換算の時間 の合計', v.text.cost.before],
+      ['導入後の工数', `${v.text.hours.before} × 1/10`, v.text.hours.after],
+      ['浮いた工数の人件費換算', `${v.text.cost.before} − ${v.text.cost.after}`, v.text.cost.diff.replace('+', '')],
+      ['追加売上（見込み）', `追加${v.text.cases.diff.replace(' 増', '')} × ${v.text.unitPrice}`, v.text.rev.diff.replace('+', '')],
+      ['47Connect の年間費用', `月額${rdManOf(ROI_CONST.MONTHLY_FEE)} × 12か月 ＋ 初期構築費${rdManOf(r.feeInitial)}`, v.text.feePlain],
+      ['年間効果差額', '追加売上 ＋ 人件費換算 − 年間費用', v.text.profit],
+      ['投資効果', '年間効果差額 ÷ 年間費用', v.text.eqRoi],
+    ];
+    if (key === 'basic') rows.push(['（参考）年間費用 ÷ 1か月あたりの効果', '（売上と人件費換算。現金の回収ではありません）', formatPayback(r.paybackMonths)]);
+    $('detailBody').replaceChildren(...rows.map(([a, b, c]) => h('tr', null, h('th', { scope: 'row', text: a }), h('td', { text: b }), h('td', { text: c }))));
+
+    renderPrint(list, r, v, key);
+
+    clearTimeout(liveTimer);
+    liveTimer = setTimeout(() => {
+      $('live').textContent = `${r.teamCount}名、自治体営業の人件費${v.text.cost.before}。${SCENARIO[key].name}の投資効果は${v.text.roi}倍、年間効果差額は${v.text.profit}です。`;
+    }, 700);
+    lastSummary = { list, r, v, key };
+  }
+
+  function stepInput(input, delta) {
+    const min = parseFloat(input.min), max = parseFloat(input.max);
+    const cur = parseFloat(input.value) || 0;
+    let next = Math.round((cur + delta) * 100) / 100;
+    if (next < min) next = min;
+    if (next > max) next = max;
+    input.value = String(next);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  function announce(text) {
+    clearTimeout(liveTimer);
+    $('live').textContent = text;
+  }
+  function addPerson(role) {
+    if (state.members.length >= ROI_LIMITS.team[1]) return;
+    const bulk = parseFloat($('bulkHours').value);
+    const m = person(role, ROLE_DEFAULTS[role].salary, Number.isFinite(bulk) ? bulk : 50);
+    state.members.push(m);
+    renderRows(`#p${m.id}-sal`);
+    update();
+    announce(`${ROLE_DEFAULTS[role].label}を追加しました。${state.members.length}名です。`);
+  }
+  function removePerson(pid) {
+    if (state.members.length <= ROI_LIMITS.team[0]) return;
+    const list = ordered();
+    const idx = list.findIndex(m => m.id === pid);
+    const name = names(list)[pid];
+    state.members = state.members.filter(m => m.id !== pid);
+    const rest = ordered();
+    const next = rest[Math.min(idx, rest.length - 1)];
+    renderRows(next ? `.prow[data-pid="${next.id}"] .prow-del` : '#addMember');
+    if (document.activeElement && document.activeElement.disabled) $('addMember').focus();
+    update();
+    announce(`${name}を外しました。${state.members.length}名です。`);
+  }
+  function clampOnBlur(input, key) {
+    const range = ROI_LIMITS[key];
+    const v = parseFloat(input.value);
+    if (!Number.isFinite(v)) return;
+    const c = Math.min(range[1], Math.max(range[0], v));
+    if (c !== v) {
+      input.value = String(c);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+  function loadState(raw) {
+    state = raw;
+    $('startMonth').value = state.startMonth;
+    $('endMonth').value = state.endMonth;
+    $('annualCases').value = state.annualCases;
+    $('unitPrice').value = state.unitPrice;
+    document.querySelectorAll('input[name="scenario"]').forEach(r => { r.checked = r.value === state.scenario; });
+    renderRows();
+    update();
+  }
+
+  function summaryText() {
+    const { list, r, v, key } = lastSummary;
+    const nm = names(list);
+    const nL = list.filter(m => m.role === 'leader').length;
+    const t = v.text;
+    return [
+      '47Connect 投資効果の試算（株式会社FromTo の試算・効果を保証するものではありません）',
+      `体制：${r.teamCount}名（リーダー${nL}名・メンバー${r.teamCount - nL}名）／自治体営業の人件費 ${t.cost.before}`,
+      ...list.map((m, i) => `　${nm[m.id]}：年収${formatNumber(r.members[i].salaryMan)}万円・月${formatNumber(r.members[i].monthlyHours)}時間・年間換算${formatNumber(r.members[i].hours)}時間・人件費${rdManOf(r.members[i].personalCost)}`),
+      `活動月：${roiMonth(state.startMonth, 4)}月〜${roiMonth(state.endMonth, 10)}月（${r.activeMonths}か月）`,
+      `${SCENARIO[key].name}：導入前 → 導入後（年間効果への影響）`,
+      `　売上（見込み）：${t.rev.before} → ${t.rev.after}（${t.rev.diff}）／受注 ${t.cases.before} → ${t.cases.after}`,
+      `　自治体営業の人件費換算：${t.cost.before} → ${t.cost.after}（${t.cost.diff}）／工数 ${t.hours.before} → ${t.hours.after}`,
+      `　47Connect の年間費用（税別）：${t.fee.before} → ${t.fee.after}（${t.fee.diff}）`,
+      `　年間効果差額：${t.profitSigned}`,
+      `投資効果：${t.roi}倍（年間効果差額 ${t.profit} ÷ 年間費用 ${t.feePlain} ＝ ${t.eqRoi}）`,
+      ...RD_NOTES.map(n => '注記：' + n),
+    ].join('\n');
+  }
+  function fallbackCopy(text) {
+    const back = document.activeElement;
+    const ta = h('textarea', { readonly: true, class: 'sr-only' });
+    ta.value = text;
+    document.body.append(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    if (back) back.focus();
+    return ok;
+  }
+  function copySummary() {
+    const text = summaryText();
+    const done = ok => { $('copyStatus').textContent = ok ? '試算の内容をコピーしました。' : 'コピーできませんでした。内訳を選んでコピーしてください。'; };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => done(true), () => done(fallbackCopy(text)));
+    } else {
+      done(fallbackCopy(text));
+    }
+  }
+
+  let currentView = 'sim'; // 本番はシミュレーターの画面だけを出す
+  function bindSim() {
+    ['startMonth', 'endMonth'].forEach(id => {
+      for (let m = 1; m <= 12; m++) $(id).append(new Option(`${m}月`, String(m)));
+    });
+    $('monStrip').replaceChildren(...Array.from({ length: 12 }, (_, i) => h('li', { text: String(i + 1) })));
+
+    $('rowsEdit').addEventListener('input', e => {
+      const t = e.target;
+      const m = state.members.find(x => x.id === Number(t.dataset.pid));
+      if (!m) return;
+      if (t.dataset.act === 'sal') m.salary = t.value;
+      else if (t.dataset.act === 'hrs') m.hours = t.value;
+      else return;
+      update();
+    });
+    $('rowsEdit').addEventListener('change', e => {
+      const t = e.target;
+      if (t.dataset.act !== 'role') return;
+      const m = state.members.find(x => x.id === Number(t.dataset.pid));
+      if (!m) return;
+      const prevDefault = String(ROLE_DEFAULTS[m.role].salary);
+      m.role = t.value === 'leader' ? 'leader' : 'member';
+      if (String(parseFloat(m.salary)) === prevDefault) m.salary = String(ROLE_DEFAULTS[m.role].salary);
+      renderRows(`#p${m.id}-role`);
+      update();
+    });
+    $('rowsEdit').addEventListener('focusout', e => {
+      const act = e.target.dataset && e.target.dataset.act;
+      if (act === 'sal') clampOnBlur(e.target, 'salary');
+      if (act === 'hrs') clampOnBlur(e.target, 'monthlyHours');
+    });
+    document.addEventListener('click', e => {
+      const stepBtn = e.target.closest('[data-step]');
+      if (stepBtn) { stepInput($(stepBtn.dataset.step), Number(stepBtn.dataset.delta)); return; }
+      const del = e.target.closest('[data-act="del"]');
+      if (del && !del.disabled) removePerson(Number(del.dataset.pid));
+    });
+    $('addMember').addEventListener('click', () => addPerson('member'));
+    $('addLeader').addEventListener('click', () => addPerson('leader'));
+    $('bulkHours').addEventListener('blur', e => clampOnBlur(e.target, 'monthlyHours'));
+    $('bulkBtn').addEventListener('click', () => {
+      const rr = roiReadNumber($('bulkHours').value, ROI_LIMITS.monthlyHours);
+      const val = String(rr.value);
+      $('bulkHours').value = val;
+      state.members.forEach(m => { m.hours = val; });
+      renderRows();
+      update();
+      announce(`全員の月間稼働を${formatNumber(rr.value)}時間にそろえました。`);
+    });
+    ['startMonth', 'endMonth'].forEach(id => $(id).addEventListener('change', e => { state[id] = e.target.value; update(); }));
+    ['annualCases', 'unitPrice'].forEach(id => {
+      $(id).addEventListener('input', e => { state[id] = e.target.value; update(); });
+      $(id).addEventListener('blur', e => clampOnBlur(e.target, id));
+    });
+    document.querySelectorAll('input[name="scenario"]').forEach(r => r.addEventListener('change', e => { state.scenario = e.target.value; update(); }));
+    $('resetBtn').addEventListener('click', () => { $('bulkHours').value = '50'; loadState(DEFAULT_RAW()); announce('当社試算の前提に戻しました。'); });
+    $('copyBtn').addEventListener('click', copySummary);
+    $('printBtn').addEventListener('click', () => { update(); window.print(); });
+
+    const bar = $('simBar');
+    let resultVisible = false, typing = false;
+    const isField = el => !!(el && el.matches && el.matches('input[type=number], select'));
+    const syncBar = () => {
+      const wide = window.matchMedia('(min-width: 1024px)').matches;
+      bar.hidden = currentView !== 'sim' || wide || resultVisible || typing;
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => { resultVisible = es[0].isIntersecting; syncBar(); }).observe($('simFx'));
+    }
+    document.addEventListener('focusin', e => { typing = isField(e.target); syncBar(); });
+    document.addEventListener('focusout', () => requestAnimationFrame(() => { typing = isField(document.activeElement); syncBar(); }));
+    window.addEventListener('resize', syncBar);
+    window.addEventListener('beforeprint', () => update());
+    return syncBar;
+  }
+
+  bindSim();
+  loadState(state);
+})();
+</script>
+</body>
+</html>
